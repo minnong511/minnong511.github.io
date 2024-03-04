@@ -6,6 +6,8 @@ categories: [Photo,  Travel , Hong Kong]
 tags: [photo]
 render_with_liquid: false
 ---
+솔직히 사진 잘 찍었다 인정?
+
 ### 빅토리아 피크에서 
 ![빅토리아 피크](/img/hongkong/photo1.jpg)
 ### 광장 앞에서
