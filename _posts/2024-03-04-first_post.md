@@ -6,6 +6,10 @@ categories: [Photo,  Travel , Hong Kong]
 tags: [photo]
 render_with_liquid: false
 ---
+### 빅토리아 피크에서 
+![빅토리아 피크](/img/hongkong/photo1.jpg)
+### 광장 앞에서
+![내 배경화면](/img/hongkong/background_img.jpg)
+### 맥도날드 앞에서 
+![밤의 길거리 사진](/img/hongkong/photo2.jpg) 
 
-![제일 잘찍은 사진](assets/my_images/avatar.jpg)
-![뭐지](https://github.com/minnong511/minnong511.github.io/blob/4c532746e6ca85010ed8327f70a0eb6cd819586c/assets/my_images/avatar.jpg)
