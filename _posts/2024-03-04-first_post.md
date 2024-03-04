@@ -7,4 +7,4 @@ tags: [photo]
 render_with_liquid: false
 ---
 
-![제일 잘찍은 사진](assets/my_images/avatar.jpg)
+![제일 잘찍은 사진](./assets/my_images/avatar.jpg)
