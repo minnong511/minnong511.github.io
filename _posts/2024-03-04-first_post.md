@@ -1,7 +1,7 @@
 ---
 title: 첫 게시물 
 author: 이민형
-date: 2024-0304
+date: 2024-03-04
 categories: [Photo,  Travel , Hong Kong]
 tags: [photo]
 render_with_liquid: false
