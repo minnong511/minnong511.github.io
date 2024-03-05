@@ -6,12 +6,13 @@ categories: [Photo,  Travel , Hong Kong]
 tags: [photo]
 render_with_liquid: false
 ---
-솔직히 사진 잘 찍었다 인정?
+
+사진을 올리는 첫 게시물
+
 
 ### 빅토리아 피크에서 
-![빅토리아 피크](/img/hongkong/photo1.jpg)
+![photo1](https://github.com/minnong511/minnong511.github.io/assets/63529591/8f6d2005-28bd-433c-b878-e336ce403571)
 ### 광장 앞에서
-![내 배경화면](/img/hongkong/background_img.jpg)
+![background_img](https://github.com/minnong511/minnong511.github.io/assets/63529591/e9e53fba-6d3f-44df-b395-3a68a9b778e8)
 ### 맥도날드 앞에서 
-![밤의 길거리 사진](/img/hongkong/photo2.jpg) 
-
+![photo2](https://github.com/minnong511/minnong511.github.io/assets/63529591/236e0dfc-7660-4813-91fe-774bb98f7170)
