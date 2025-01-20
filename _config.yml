@@ -1,9 +1,9 @@
 site: 
-  title: My GitHub Pages Blog
-  description: A blog about various topics and ideas.
-  url: https://yourusername.github.io/github-blog
-  author: Your Name
-  email: your.email@example.com
+  title: 이미뇽의 블로그
+  description: 공부 및 잡담 블로그
+  url: https://minnong511.github.io/github-blog
+  author: Min Hyeong Lee
+  email: kzxx1234@souletech.ac.kr
   baseurl: ""
   permalink: /:categories/:year/:month/:day/:title/
   markdown: kramdown

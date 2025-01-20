@@ -1,0 +1,90 @@
+/* 전체 스타일 */
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* 헤더 스타일 */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.main-header .logo {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.navbar a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.button button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 메인 콘텐츠 레이아웃 */
+.main-content {
+  display: flex;
+  margin: 20px;
+}
+
+/* 좌측 섹션 */
+.left-section {
+  flex: 1;
+  text-align: center;
+}
+
+.left-section img {
+  max-width: 80%;
+  border-radius: 10px;
+}
+
+/* 중앙 섹션 */
+.center-section {
+  flex: 2;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.center-section .product-card,
+.center-section .welcome-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 우측 섹션 */
+.right-section {
+  flex: 1;
+  text-align: center;
+}
+
+.right-section img {
+  max-width: 80%;
+  border-radius: 10px;
+}
+
+.right-section button {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,19 +1,20 @@
+<!-- filepath: /c:/github_project_vscode/github_blog/minnong511.github.io/_layouts/default.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-    {% include header.html %}
-    {% include navigation.html %}
-    
-    <main>
-        {{ content }}
-    </main>
-    
-    {% include footer.html %}
+  {% include navigation.html %}
+  <div class="content">
+    {{ content }}
+  </div>
+  <footer>
+    <p>&copy; 2023 My Blog</p>
+  </footer>
 </body>
 </html>
+
