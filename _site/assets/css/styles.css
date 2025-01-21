@@ -1,4 +1,3 @@
-/* 전체 스타일 */
 body {
   margin: 0;
   font-family: 'Pretendard', sans-serif;
@@ -6,85 +5,105 @@ body {
 }
 
 /* 헤더 스타일 */
-.main-header {
+.top-header {
+  border-bottom: 1px solid #353434;
+  padding: 20px 40px; /* 여기 건드리면 상단바 디자인 건들 수 있음음*/
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #ccc;
+  position: relative;
 }
 
-.main-header .logo {
-  font-size: 24px;
-  font-weight: normal;
+/* 메뉴 제목 스타일 */
+.menu-title {
+  font-size: 2em; /* 크기를 키움 */
+  font-weight: bold;
 }
 
-.navbar a {
-  margin: 0 10px;
+.menu-toggle {
   text-decoration: none;
   color: #333;
-}
-
-.button button {
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-/* 메인 콘텐츠 레이아웃 */
-.main-content {
+/* 하위 메뉴 스타일 */
+.submenu {
+  list-style-type: none;
+  padding-left: 20px; /* 들여쓰기 */
+  max-height: 0; /* 초기 상태: 숨김 */
+  overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
+  transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
+}
+
+.submenu.open {
+  max-height: 500px; /* 하위 메뉴가 열릴 때 최대 높이 설정 */
+}
+
+.github-button {
   display: flex;
-  margin: 20px;
+  align-items: center;
 }
 
-/* 좌측 섹션 */
-.left-section {
-  flex: 1;
-  text-align: center;
+.github-logo {
+  width: 24px;
+  height: 24px;
 }
 
-.left-section img {
-  max-width: 80%;
-  border-radius: 10px;
+
+.github-button {
+  display: flex;
+  align-items: center;
 }
 
-/* 중앙 섹션 */
-.center-section {
-  flex: 2;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 20px;
-  padding: 0 20px;
+.github-logo {
+  width: 24px;
+  height: 24px;
 }
 
-.center-section .product-card,
-.center-section .welcome-card {
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: -100%; /* 초기 상태: 화면 밖으로 숨김 */
+  width: 300px; /* 메뉴 너비 */
+  height: 100%;
   background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: left 0.5s ease-in-out; /* 부드러운 슬라이드 효과 */
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.menu-overlay.open {
+  left: 0; /* 메뉴가 화면 안으로 나타남 */
+}
+
+.menu-content {
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 우측 섹션 */
-.right-section {
-  flex: 1;
-  text-align: center;
+.menu-content h2 {
+  margin-top: 0;
 }
 
-.right-section img {
-  max-width: 80%;
-  border-radius: 10px;
+.menu-content ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.right-section button {
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
+.menu-content ul li {
+  margin: 10px 0;
+}
+
+.menu-content ul li a {
+  text-decoration: none;
+  color: #333;
 }

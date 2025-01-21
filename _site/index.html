@@ -1,55 +1,73 @@
-<!-- 메인화면 디자인-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>minnong's Blog</title>
-    <link rel="stylesheet" href="/assets/css/styles.css"> 
-    <link rel="stylesheet" href="/assets/css/fonts.css">
-    <!-- 여기서 스타일 불러오는 구나! -->
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
-
 <body>
-    <!-- Header -->
-    <header class="main-header">
-        <div class="logo">minnong511's Blog</div>
-        <nav class="navbar">
-            <a href="#study">Study</a>
-            <a href="#일상">일상</a>
-            <a href="#Archive">Archive</a>
-            <a href="#about">About</a>
-        </nav>
-        <div class="button">
-            <button>Don't Click</button>
-        </div>
+    <header>
+        <div class="top-header">
+            <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
+            <h1 class="site-title">minnong's Blog</h1>
+            <a href="https://github.com/minnong511" class="github-button">
+              <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
+          </a>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Left Section -->
-        <section class="left-section">
-            <h2>minnong's Blog</h2>
-        </section>
+    <div class="menu-overlay" id="menu">
+      <div class="menu-content">
+          <h2 class="menu-title">Menu</h2>
+          <ul>
+              <li>
+                  <a href="#" onclick="toggleSubmenu(event)">Deep Learning</a>
+                  <ul class="submenu">
+                      <li><a href="#">- Introduction</a></li>
+                      <li><a href="#">- Advanced Topics</a></li>
+                      <li><a href="#">- Projects</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#" onclick="toggleSubmenu(event)">Math</a>
+                  <ul class="submenu">
+                      <li><a href="#">- Algebra</a></li>
+                      <li><a href="#">- Calculus</a></li>
+                      <li><a href="#">- Statistics</a></li>
+                  </ul>
+              </li>
+              <li><a href="#">일상</a></li>
+              <li><a href="#">Photo</a></li>
+              <li><a href="#">--------</a></li>
+          </ul>
+      </div>
+  </div>
+  
 
-        <!-- Center Section -->
-        <section class="center-section">
-            <div class="product-card">
-                <h3>dsadasdasd</h3>
-                <p>여기는 뭘까?<br>으흠?</p>
-            </div>
-            <div class="welcome-card">
-                <h3>Welcome</h3>
-                <p>내가 만드는 첫 게시물이야!</p>
-            </div>
-        </section>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('open');
+        }
 
-        <!-- Right Section -->
-        <section class="right-section">
-            <img src="/assets/images/model.jpg" alt="이게 뭘까..?">
-            <h2>Absolute HardCoding</h2>
-        </section>
-    </main>
+        function toggleSubmenu(event) {
+        event.preventDefault();
+        const submenu = event.target.nextElementSibling;
+        if (submenu && submenu.classList.contains('submenu')) {
+            submenu.classList.toggle('open');
+        }
+    }
+
+        // 메뉴 바깥쪽을 클릭하면 메뉴를 닫는 기능 추가
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuContent = document.querySelector('.menu-content');
+
+            if (!menuContent.contains(event.target) && !menuToggle.contains(event.target)) {
+                menu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
