@@ -1,7 +1,7 @@
 site: 
   title: 이미뇽의 블로그
   description: 공부 및 잡담 블로그
-  url: https://minnong511.github.io/github-blog
+  url: https://minnong511.github.io
   author: Min Hyeong Lee
   email: kzxx1234@souletech.ac.kr
   baseurl: ""
