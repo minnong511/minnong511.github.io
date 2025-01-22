@@ -1,72 +1,18 @@
+/* 기본 스타일 */
 body {
   margin: 0;
   font-family: 'Pretendard', sans-serif;
   background-color: #f4f4f4;
 }
 
-/* 헤더 스타일 */
+/* 레이아웃 스타일 */
 .top-header {
   border-bottom: 1px solid #353434;
-  padding: 20px 40px; /* 여기 건드리면 상단바 디자인 건들 수 있음음*/
+  padding: 20px 40px; /* 여기 건드리면 상단바 디자인 건들 수 있음음 */
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
-}
-
-/* 메뉴 제목 스타일 */
-.menu-title {
-  font-size: 2em; /* 크기를 키움 */
-  font-weight: bold;
-}
-
-.menu-toggle {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* 하위 메뉴 스타일 */
-.submenu {
-  list-style-type: none;
-  padding-left: 20px; /* 들여쓰기 */
-  max-height: 0; /* 초기 상태: 숨김 */
-  overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
-  transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
-}
-
-.submenu.open {
-  max-height: 500px; /* 하위 메뉴가 열릴 때 최대 높이 설정 */
-}
-
-.github-button {
-  display: flex;
-  align-items: center;
-}
-
-.github-logo {
-  width: 24px;
-  height: 24px;
-}
-
-
-.github-button {
-  display: flex;
-  align-items: center;
-}
-
-.github-logo {
-  width: 24px;
-  height: 24px;
-}
-
-.site-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  font-weight: bold;
 }
 
 .menu-overlay {
@@ -106,4 +52,43 @@ body {
 .menu-content ul li a {
   text-decoration: none;
   color: #333;
+}
+
+/* 컴포넌트 스타일 */
+.menu-toggle {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.github-button {
+  display: flex;
+  align-items: center;
+}
+
+.github-logo {
+  width: 36px;
+  height: 36px;
+}
+
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* 하위 메뉴 스타일 */
+.submenu {
+  list-style-type: none;
+  padding-left: 20px; /* 들여쓰기 */
+  max-height: 0; /* 초기 상태: 숨김 */
+  overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
+  transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
+}
+
+.submenu.open {
+  max-height: 500px; /* 하위 메뉴가 열릴 때 최대 높이 설정 */
 }

@@ -3,7 +3,7 @@ site:
   description: 공부 및 잡담 블로그
   url: https://minnong511.github.io
   author: Min Hyeong Lee
-  email: kzxx1234@souletech.ac.kr
+  email: kzxx1234@seouletech.ac.kr
   baseurl: ""
   permalink: /:categories/:year/:month/:day/:title/
   markdown: kramdown
