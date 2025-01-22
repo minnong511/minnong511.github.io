@@ -6,85 +6,78 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>My Blog</title>
+    <title>Home</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
+    <!-- 헤더와 네비게이션 포함 -->
     <header>
-        <div class="top-header">
-            <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
-            <h1 class="site-title">minnong's Blog</h1>
-            <a href="https://github.com/minnong511" class="github-button">
-                <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
-            </a>
-        </div>
-    </header>
+    <div class="top-header">
+        <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
+        <h1 class="site-title">minnong's Blog</h1>
+        <a href="https://github.com/minnong511" class="github-button">
+            <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
+        </a>
+    </div>
+</header>
 
-    <div class="menu-overlay" id="menu">
-        <div class="menu-content">
-            <h2 class="menu-title">Menu</h2>
-            <ul>
-                <li>
-                    <a href="#" onclick="toggleSubmenu(event)">Deep Learning</a>
-                    <ul class="submenu">
-                        <li><a href="#">- Introduction</a></li>
-                        <li><a href="#">- Advanced Topics</a></li>
-                        <li><a href="#">- Projects</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" onclick="toggleSubmenu(event)">박건태 ㅄㅄ</a>
-                    <ul class="submenu">
-                        <li><a href="#">- Introduction</a></li>
-                        <li><a href="#">- Advanced Topics</a></li>
-                        <li><a href="#">- Projects</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#" onclick="toggleSubmenu(event)">Math</a>
-                    <ul class="submenu">
-                        <li><a href="#">- Algebra</a></li>
-                        <li><a href="#">- Calculus</a></li>
-                        <li><a href="#">- Statistics</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">일상</a></li>
-                <li><a href="#">Photo</a></li>
-                <li><a href="#">--------</a></li>
+<!-- 공통 네비게이션 파일 포함 -->
+<div class="menu-overlay" id="menu">
+  <div class="menu-content">
+      <h2 class="menu-title">Menu</h2>
+      <ul>
+          <li>
+              <a href="#" onclick="toggleSubmenu(event)">Deep Learning</a>
+              <ul class="submenu">
+                <li><a href="/categories/deep-learning/introduction.html">- Introduction</a></li>
+                <li><a href="/categories/deep-learning/advanced-topics.html">- Advanced Topics</a></li>
+                <li><a href="/categories/deep-learning/projects.html">- Projects</a></li>
             </ul>
-        </div>
+          </li>
+          <li>
+              <a href="#" onclick="toggleSubmenu(event)">Math</a>
+              <ul class="submenu">
+                <li><a href="/categories/math/algebra.html">- Algebra</a></li>
+                <li><a href="/categories/math/calculus.html">- Calculus</a></li>
+                <li><a href="/categories/math/statistics.html">- Statistics</a></li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">일상</a>
+          </li>
+          <li>
+              <a href="#">Photo</a>
+          </li>
+          <li>
+              <a href="#">--------</a>
+          </li>
+      </ul>
+  </div>
+</div>
+
+
+    <!-- 페이지 내용 -->
+    <div class="content">
+        <h1>Welcome to My Blog!</h1>
+<p>This is the homepage of your blog.</p>
     </div>
 
+    <!-- 최근 게시물 -->
+    <div class="recent-posts">
+    <h2>Recent Posts</h2>
+    <ul id="recent-posts-list">
+        <!-- 최근 게시물 목록이 여기에 동적으로 추가됩니다 -->
+    </ul>
+</div> 
+
+    <footer>
+        <p>&copy; 2023 My Blog</p>
+    </footer>
+
+    <!-- 화면 어두워지는 거 --> 
     <div class="overlay" id="overlay"></div>
 
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            const overlay = document.getElementById('overlay');
-            menu.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
-
-        function toggleSubmenu(event) {
-            event.preventDefault();
-            const submenu = event.target.nextElementSibling;
-            if (submenu && submenu.classList.contains('submenu')) {
-                submenu.classList.toggle('open');
-            }
-        }
-
-        // 메뉴 바깥쪽을 클릭하면 메뉴를 닫는 기능 추가
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('menu');
-            const overlay = document.getElementById('overlay');
-            const menuToggle = document.querySelector('.menu-toggle');
-            const menuContent = document.querySelector('.menu-content');
-
-            if (!menuContent.contains(event.target) && !menuToggle.contains(event.target)) {
-                menu.classList.remove('open');
-                overlay.classList.remove('active');
-            }
-        });
-    </script>
+    <!-- 스크립트 파일 --> 
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>

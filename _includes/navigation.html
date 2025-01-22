@@ -1,18 +1,32 @@
-<!-- filepath: /c:/github_project_vscode/github_blog/minnong511.github.io/_includes/navigation.html -->
-<nav class="navbar">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="/">
-      My Blog 
-    </a>
+<div class="menu-overlay" id="menu">
+  <div class="menu-content">
+      <h2 class="menu-title">Menu</h2>
+      <ul>
+          <li>
+              <a href="#" onclick="toggleSubmenu(event)">Deep Learning</a>
+              <ul class="submenu">
+                <li><a href="/categories/deep-learning/introduction.html">- Introduction</a></li>
+                <li><a href="/categories/deep-learning/advanced-topics.html">- Advanced Topics</a></li>
+                <li><a href="/categories/deep-learning/projects.html">- Projects</a></li>
+            </ul>
+          </li>
+          <li>
+              <a href="#" onclick="toggleSubmenu(event)">Math</a>
+              <ul class="submenu">
+                <li><a href="/categories/math/algebra.html">- Algebra</a></li>
+                <li><a href="/categories/math/calculus.html">- Calculus</a></li>
+                <li><a href="/categories/math/statistics.html">- Statistics</a></li>
+              </ul>
+          </li>
+          <li>
+              <a href="#">일상</a>
+          </li>
+          <li>
+              <a href="#">Photo</a>
+          </li>
+          <li>
+              <a href="#">--------</a>
+          </li>
+      </ul>
   </div>
-  <div class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="/">
-        Home
-      </a>
-      <a class="navbar-item" href="/about.html">
-        About
-      </a>
-    </div>
-  </div>
-</nav>
+</div>

@@ -1,0 +1,14 @@
+1. 문제 원인
+Jekyll은 일반적으로 _posts 디렉토리 안에 있는 파일만 블로그 게시글로 인식합니다.
+따라서 categories라는 커스텀 폴더에 게시글을 넣으면, Jekyll이 이를 게시글로 인식하지 못합니다.
+
+
+
+2. 대주제와 소주제 관리법
+
+. _config.yml 설정
+_config.yml에서 permalink를 설정하여 대주제와 소주제에 따라 URL 구조를 생성합니다.
+
+예시 설정
+
+permalink: /categories/:categories/:title/

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
-</head>
-<body>
-    <header>
-        <h1>{{ site.title }}</h1>
-        <p>{{ site.description }}</p>
-    </header>
-    <nav>
-        {% include navigation.html %}
-    </nav>
+<header>
+    <div class="top-header">
+        <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
+        <h1 class="site-title">minnong's Blog</h1>
+        <a href="https://github.com/minnong511" class="github-button">
+            <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
+        </a>
+    </div>
+</header>
+
+<!-- 공통 네비게이션 파일 포함 -->
+{% include navigation.html %}

@@ -4,10 +4,9 @@ body {
   background-color: #f4f4f4;
 }
 
-/* 헤더 스타일 */
 .top-header {
   border-bottom: 1px solid #353434;
-  padding: 20px 40px; /* 여기 건드리면 상단바 디자인 건들 수 있음음*/
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,65 +14,48 @@ body {
 }
 
 .menu-toggle {
-  display: flex; /* Flexbox로 정렬 */
-  align-items: center; /* 텍스트와 막대를 수직 중앙 정렬 */
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: #333;
   font-weight: normal;
   cursor: pointer;
-  font-size: 1.5em; /* 메뉴 글자의 크기 */
-  padding-right: 40px; /* 텍스트와 막대 간의 간격 */
-  margin-right: 10px; /* 막대 뒤의 간격 */
-  position: relative; /* ::after에 기준을 제공 */
+  font-size: 1.5em;
+  padding-right: 40px;
+  margin-right: 10px;
+  position: relative;
 }
-
 .menu-toggle::after {
-  content: ""; /* 가상 요소로 막대 생성 */
+  content: "";
   display: block;
-  width: 1px; /* 막대 두께 */
-  height: 60px; /* 텍스트 높이에 딱 맞춤 */
-  background-color: black; /* 막대 색상 */
+  width: 1px;
+  height: 60px;
+  background-color: black;
   position: absolute;
-  right: 0; /* 막대를 텍스트 경계 끝에 위치 */
-}
-
-/* 하위 메뉴 스타일 */
-.submenu {
-  list-style-type: none;
-  padding-left: 24px; /* 들여쓰기 */
-  max-height: 0; /* 초기 상태: 숨김 */
-  overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
-  transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
-}
-
-.submenu.open {
-  max-height: 500px; /* 하위 메뉴가 열릴 때 최대 높이 설정 */
+  right: 0;
 }
 
 .github-button {
   display: flex;
   align-items: center;
-  position: relative; /* ::before에 기준을 제공 */
-  padding-left: 40px; /* 텍스트와 막대 간의 간격 */
+  position: relative;
+  padding-left: 40px;
 }
-
 
 .github-button::before {
-  content: ""; /* 가상 요소로 막대 생성 */
+  content: "";
   display: block;
-  width: 1px; /* 막대 두께 */
-  height: 60px; /* 텍스트 높이에 딱 맞춤 */
-  background-color: black; /* 막대 색상 */
+  width: 1px;
+  height: 60px;
+  background-color: black;
   position: absolute;
-  left: 0; /* 막대를 텍스트 경계 시작에 위치 */
+  left: 0;
 }
 
-
-.github-logo {
+header .github-logo {
   width: 36px;
   height: 36px;
 }
-
 
 .site-title {
   position: absolute;
@@ -86,18 +68,18 @@ body {
 .menu-overlay {
   position: fixed;
   top: 0;
-  left: -100%; /* 초기 상태: 화면 밖으로 숨김 */
-  width: 300px; /* 메뉴 너비 */
+  left: -100%;
+  width: 300px;
   height: 100%;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: left 0.2s ease-in-out; /* 부드러운 슬라이드 효과 */
+  transition: left 0.2s ease-in-out;
   z-index: 1000;
   overflow-y: auto;
 }
 
 .menu-overlay.open {
-  left: 0; /* 메뉴가 화면 안으로 나타남 */
+  left: 0;
 }
 
 .menu-content {
@@ -114,7 +96,13 @@ body {
 }
 
 .menu-content ul li {
-  margin: 10px 0;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.menu-content ul li:last-child {
+  border-bottom: none;
 }
 
 .menu-content ul li a {
@@ -122,18 +110,47 @@ body {
   color: #333;
 }
 
-/* 오버레이 스타일 */
+/* 오버레이 */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* 반투명 검정색 */
-  z-index: 999; /* 메뉴보다 낮은 z-index */
-  display: none; /* 초기 상태: 숨김 */
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: none;
 }
 
 .overlay.active {
-  display: block; /* 메뉴가 열릴 때 표시 */
+  display: block;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .top-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+  }
+
+  .site-title {
+      position: static;
+      transform: none;
+      font-size: 24px;
+      margin-bottom: 10px;
+  }
+
+  .menu-toggle {
+      padding-right: 0;
+  }
+
+  .github-button {
+      padding-left: 0;
+  }
+
+  .menu-overlay {
+      width: 100%;
+      max-width: none;
+  }
 }

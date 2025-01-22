@@ -5,7 +5,7 @@ site:
   author: Min Hyeong Lee
   email: kzxx1234@seouletech.ac.kr
   baseurl: ""
-  permalink: /:categories/:year/:month/:day/:title/
+  permalink: /categories/:categories/:title/ 
   markdown: kramdown
   theme: minima
   plugins:

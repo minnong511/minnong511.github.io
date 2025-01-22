@@ -1,20 +1,34 @@
-<!-- filepath: /c:/github_project_vscode/github_blog/minnong511.github.io/_layouts/default.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  {% include navigation.html %}
-  <div class="content">
-    {{ content }}
-  </div>
-  <footer>
-    <p>&copy; 2023 My Blog</p>
-  </footer>
+    <!-- 헤더와 네비게이션 포함 -->
+    {% include header.html %}
+
+    <!-- 페이지 내용 -->
+    <div class="content">
+        {{ content }}
+    </div>
+
+    <!-- 최근 게시물 -->
+    {% include recent-posts.html %} 
+
+    <footer>
+        <p>&copy; 2023 My Blog</p>
+    </footer>
+
+    <!-- 화면 어두워지는 거 --> 
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 스크립트 파일 --> 
+    <script src="/assets/js/script.js"></script>
 </body>
 </html>
-
