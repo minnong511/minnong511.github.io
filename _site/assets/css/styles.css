@@ -148,6 +148,19 @@ header .github-logo {
   display: block;
 }
 
+/* 서브메뉴 기본적으로 숨기기 */
+.submenu {
+  display: none; /* 기본적으로 숨김 */
+  padding-left: 20px; /* 들여쓰기 */
+  margin-top: 10px; /* 상위 메뉴와의 간격 추가 */
+}
+
+/* 서브메뉴 활성화 시 표시 */
+.submenu.open {
+  display: block; /* 'open' 클래스가 추가되면 보이게 함 */
+}
+
+
 /* 반응형 */
 @media (max-width: 768px) {
   .top-header {
