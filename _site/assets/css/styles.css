@@ -15,18 +15,26 @@ body {
 }
 
 .menu-toggle {
+  display: flex; /* Flexbox로 정렬 */
+  align-items: center; /* 텍스트와 막대를 수직 중앙 정렬 */
   text-decoration: none;
-  color: #333; /* 텍스트 색상 */
+  color: #333;
   font-weight: normal;
   cursor: pointer;
   font-size: 1.5em; /* 메뉴 글자의 크기 */
-  padding-right: 30px; /* 텍스트와 수직선 간격 */
-  border-right: 1px solid black; /* 수직선 추가 */
-  margin-right: 100px; /* 수직선 뒤의 간격 */
-  height: 40px; /* 수직선의 높이 설정 (늘림) */
-  line-height: 40px; /* 텍스트 정렬 높이 */
-  display: inline-block; /* 수직선과 텍스트를 정렬 */
-  vertical-align: middle; /* 텍스트와 수직선이 수직으로 정렬되도록 설정 */
+  padding-right: 40px; /* 텍스트와 막대 간의 간격 */
+  margin-right: 10px; /* 막대 뒤의 간격 */
+  position: relative; /* ::after에 기준을 제공 */
+}
+
+.menu-toggle::after {
+  content: ""; /* 가상 요소로 막대 생성 */
+  display: block;
+  width: 1px; /* 막대 두께 */
+  height: 60px; /* 텍스트 높이에 딱 맞춤 */
+  background-color: black; /* 막대 색상 */
+  position: absolute;
+  right: 0; /* 막대를 텍스트 경계 끝에 위치 */
 }
 
 /* 하위 메뉴 스타일 */
@@ -45,7 +53,21 @@ body {
 .github-button {
   display: flex;
   align-items: center;
+  position: relative; /* ::before에 기준을 제공 */
+  padding-left: 40px; /* 텍스트와 막대 간의 간격 */
 }
+
+
+.github-button::before {
+  content: ""; /* 가상 요소로 막대 생성 */
+  display: block;
+  width: 1px; /* 막대 두께 */
+  height: 60px; /* 텍스트 높이에 딱 맞춤 */
+  background-color: black; /* 막대 색상 */
+  position: absolute;
+  left: 0; /* 막대를 텍스트 경계 시작에 위치 */
+}
+
 
 .github-logo {
   width: 36px;
