@@ -14,7 +14,7 @@
     <header>
     <div class="top-header">
         <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
-        <h1 class="site-title">minnong's Blog</h1>
+        <a href="/" class="site-title">minnong's Blog</a>
         <a href="https://github.com/minnong511" class="github-button">
             <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
         </a>
@@ -62,6 +62,11 @@
   </div>
 </div>
 
+<!-- 화면 어두워지는 거 --> 
+<div class="overlay" id="overlay"></div>
+
+<!-- 스크립트 파일 --> 
+<script src="/assets/js/script.js"></script>
 
     <!-- 페이지 내용 -->
     <div class="content">
@@ -84,14 +89,15 @@
 </ul>
     </div>
 
-    <footer>
-        <p>&copy; 2023 My Blog</p>
-    </footer>
+    <!-- Footer 영역 -->
+<footer>
+    <p>&copy; <span id="current-year"></span> minnong's Blog. All rights reserved.</p>
+  
+    <!-- 이스터에그: 숨겨진 이미지 -->
+    <img id="bouncing-face" src="/assets/images/shit.jpg" alt="Bouncing Face" style="display: none;">
+</footer>
 
-    <!-- 화면 어두워지는 거 --> 
-    <div class="overlay" id="overlay"></div>
-
-    <!-- 스크립트 파일 --> 
-    <script src="/assets/js/script.js"></script>
+<script src="/assets/js/footer.js"></script>
+<script src="/assets/js/egg.js" defer></script> 
 </body>
 </html>

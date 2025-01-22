@@ -8,7 +8,9 @@
     <meta http-equiv="Expires" content="0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/egg.css">
 </head>
+
 <body>
     <!-- 헤더와 네비게이션 포함 -->
     {% include header.html %}
@@ -21,14 +23,7 @@
     <!-- 최근 게시물 -->
     {% include recent-posts.html %} 
 
-    <footer>
-        <p>&copy; 2023 My Blog</p>
-    </footer>
 
-    <!-- 화면 어두워지는 거 --> 
-    <div class="overlay" id="overlay"></div>
-
-    <!-- 스크립트 파일 --> 
-    <script src="/assets/js/script.js"></script>
+    {% include footer.html %} 
 </body>
 </html>

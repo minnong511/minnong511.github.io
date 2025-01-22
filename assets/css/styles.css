@@ -1,7 +1,18 @@
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
-  font-family: 'Pretendard', sans-serif;
-  background-color: #f4f4f4;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+  margin-top: auto;
+  padding: 10px 0;
 }
 
 .top-header {
@@ -34,6 +45,17 @@ body {
   position: absolute;
   right: 0;
 }
+
+.site-title {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 링크 색상을 부모 요소의 색상으로 설정 */
+  font-size: 24px;
+  margin: 0 auto; /* 중앙 정렬 */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 .github-button {
   display: flex;
@@ -135,10 +157,18 @@ header .github-logo {
   }
 
   .site-title {
-      position: static;
-      transform: none;
-      font-size: 24px;
-      margin-bottom: 10px;
+    position: static;
+    transform: none;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 링크 색상을 부모 요소의 색상으로 설정 */
+}
+
+/* 추가: 링크의 기본 스타일 제거 */
+  a.site-title {
+      text-decoration: none; /* 밑줄 제거 */
+      color: inherit; /* 링크 색상을 부모 요소의 색상으로 설정 */
   }
 
   .menu-toggle {

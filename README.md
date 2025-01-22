@@ -1,1 +1,1 @@
-[www.](https://minnong511.github.io)
+https://minnong511.github.io
