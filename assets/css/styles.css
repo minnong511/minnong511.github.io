@@ -16,10 +16,17 @@ body {
 
 .menu-toggle {
   text-decoration: none;
-  color: #333;
+  color: #333; /* 텍스트 색상 */
   font-weight: normal;
   cursor: pointer;
-  font-size: 1.5em; /*여기가 왼쪽 상단 메뉴 크기*/
+  font-size: 1.5em; /* 메뉴 글자의 크기 */
+  padding-right: 30px; /* 텍스트와 수직선 간격 */
+  border-right: 1px solid black; /* 수직선 추가 */
+  margin-right: 100px; /* 수직선 뒤의 간격 */
+  height: 40px; /* 수직선의 높이 설정 (늘림) */
+  line-height: 40px; /* 텍스트 정렬 높이 */
+  display: inline-block; /* 수직선과 텍스트를 정렬 */
+  vertical-align: middle; /* 텍스트와 수직선이 수직으로 정렬되도록 설정 */
 }
 
 /* 하위 메뉴 스타일 */
