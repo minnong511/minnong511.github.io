@@ -4,7 +4,7 @@ name: Deploy Jekyll site
 on:
   push:
     branches:
-      - main  # 배포를 실행할 브랜치
+      - master # 배포를 실행할 브랜치
 
 jobs:
   build-deploy:
