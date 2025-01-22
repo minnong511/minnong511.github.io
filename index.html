@@ -12,60 +12,66 @@
             <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
             <h1 class="site-title">minnong's Blog</h1>
             <a href="https://github.com/minnong511" class="github-button">
-              <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
-          </a>
+                <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
+            </a>
+        </div>
     </header>
 
     <div class="menu-overlay" id="menu">
-      <div class="menu-content">
-          <h2 class="menu-title">Menu</h2>
-          <ul>
-              <li>
-                  <a href="#" onclick="toggleSubmenu(event)">Deep Learning</a>
-                  <ul class="submenu">
-                      <li><a href="#">- Introduction</a></li>
-                      <li><a href="#">- Advanced Topics</a></li>
-                      <li><a href="#">- Projects</a></li>
-                  </ul>
-              </li>
-              <li>
-                  <a href="#" onclick="toggleSubmenu(event)">Math</a>
-                  <ul class="submenu">
-                      <li><a href="#">- Algebra</a></li>
-                      <li><a href="#">- Calculus</a></li>
-                      <li><a href="#">- Statistics</a></li>
-                  </ul>
-              </li>
-              <li><a href="#">일상</a></li>
-              <li><a href="#">Photo</a></li>
-              <li><a href="#">--------</a></li>
-          </ul>
-      </div>
-  </div>
-  
+        <div class="menu-content">
+            <h2 class="menu-title">Menu</h2>
+            <ul>
+                <li>
+                    <a href="#" onclick="toggleSubmenu(event)">Deep Learning</a>
+                    <ul class="submenu">
+                        <li><a href="#">- Introduction</a></li>
+                        <li><a href="#">- Advanced Topics</a></li>
+                        <li><a href="#">- Projects</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" onclick="toggleSubmenu(event)">Math</a>
+                    <ul class="submenu">
+                        <li><a href="#">- Algebra</a></li>
+                        <li><a href="#">- Calculus</a></li>
+                        <li><a href="#">- Statistics</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">일상</a></li>
+                <li><a href="#">Photo</a></li>
+                <li><a href="#">--------</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
 
     <script>
         function toggleMenu() {
             const menu = document.getElementById('menu');
+            const overlay = document.getElementById('overlay');
             menu.classList.toggle('open');
+            overlay.classList.toggle('active');
         }
 
         function toggleSubmenu(event) {
-        event.preventDefault();
-        const submenu = event.target.nextElementSibling;
-        if (submenu && submenu.classList.contains('submenu')) {
-            submenu.classList.toggle('open');
+            event.preventDefault();
+            const submenu = event.target.nextElementSibling;
+            if (submenu && submenu.classList.contains('submenu')) {
+                submenu.classList.toggle('open');
+            }
         }
-    }
 
         // 메뉴 바깥쪽을 클릭하면 메뉴를 닫는 기능 추가
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('menu');
+            const overlay = document.getElementById('overlay');
             const menuToggle = document.querySelector('.menu-toggle');
             const menuContent = document.querySelector('.menu-content');
 
             if (!menuContent.contains(event.target) && !menuToggle.contains(event.target)) {
                 menu.classList.remove('open');
+                overlay.classList.remove('active');
             }
         });
     </script>

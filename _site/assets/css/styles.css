@@ -1,18 +1,57 @@
-/* 기본 스타일 */
 body {
   margin: 0;
   font-family: 'Pretendard', sans-serif;
   background-color: #f4f4f4;
 }
 
-/* 레이아웃 스타일 */
+/* 헤더 스타일 */
 .top-header {
   border-bottom: 1px solid #353434;
-  padding: 20px 40px; /* 여기 건드리면 상단바 디자인 건들 수 있음음 */
+  padding: 20px 40px; /* 여기 건드리면 상단바 디자인 건들 수 있음음*/
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
+}
+
+.menu-toggle {
+  text-decoration: none;
+  color: #333;
+  font-weight: normal;
+  cursor: pointer;
+  font-size: 1.5em; /*여기가 왼쪽 상단 메뉴 크기*/
+}
+
+/* 하위 메뉴 스타일 */
+.submenu {
+  list-style-type: none;
+  padding-left: 24px; /* 들여쓰기 */
+  max-height: 0; /* 초기 상태: 숨김 */
+  overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
+  transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
+}
+
+.submenu.open {
+  max-height: 500px; /* 하위 메뉴가 열릴 때 최대 높이 설정 */
+}
+
+.github-button {
+  display: flex;
+  align-items: center;
+}
+
+.github-logo {
+  width: 36px;
+  height: 36px;
+}
+
+
+.site-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  font-weight: normal;
 }
 
 .menu-overlay {
@@ -23,7 +62,7 @@ body {
   height: 100%;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: left 0.5s ease-in-out; /* 부드러운 슬라이드 효과 */
+  transition: left 0.2s ease-in-out; /* 부드러운 슬라이드 효과 */
   z-index: 1000;
   overflow-y: auto;
 }
@@ -54,41 +93,18 @@ body {
   color: #333;
 }
 
-/* 컴포넌트 스타일 */
-.menu-toggle {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  cursor: pointer;
+/* 오버레이 스타일 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* 반투명 검정색 */
+  z-index: 999; /* 메뉴보다 낮은 z-index */
+  display: none; /* 초기 상태: 숨김 */
 }
 
-.github-button {
-  display: flex;
-  align-items: center;
-}
-
-.github-logo {
-  width: 36px;
-  height: 36px;
-}
-
-.site-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* 하위 메뉴 스타일 */
-.submenu {
-  list-style-type: none;
-  padding-left: 20px; /* 들여쓰기 */
-  max-height: 0; /* 초기 상태: 숨김 */
-  overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
-  transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
-}
-
-.submenu.open {
-  max-height: 500px; /* 하위 메뉴가 열릴 때 최대 높이 설정 */
+.overlay.active {
+  display: block; /* 메뉴가 열릴 때 표시 */
 }

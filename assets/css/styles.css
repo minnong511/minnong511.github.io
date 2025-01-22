@@ -17,14 +17,15 @@ body {
 .menu-toggle {
   text-decoration: none;
   color: #333;
-  font-weight: bold;
+  font-weight: normal;
   cursor: pointer;
+  font-size: 1.5em; /*여기가 왼쪽 상단 메뉴 크기*/
 }
 
 /* 하위 메뉴 스타일 */
 .submenu {
   list-style-type: none;
-  padding-left: 20px; /* 들여쓰기 */
+  padding-left: 24px; /* 들여쓰기 */
   max-height: 0; /* 초기 상태: 숨김 */
   overflow: hidden; /* 숨겨진 상태에서 내용이 보이지 않도록 설정 */
   transition: max-height 0.5s ease-out; /* 부드러운 애니메이션 효과 */
@@ -40,27 +41,17 @@ body {
 }
 
 .github-logo {
-  width: 24px;
-  height: 24px;
+  width: 36px;
+  height: 36px;
 }
 
-
-.github-button {
-  display: flex;
-  align-items: center;
-}
-
-.github-logo {
-  width: 24px;
-  height: 24px;
-}
 
 .site-title {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight: normal;
 }
 
 .menu-overlay {
@@ -71,7 +62,7 @@ body {
   height: 100%;
   background-color: #fff;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  transition: left 0.5s ease-in-out; /* 부드러운 슬라이드 효과 */
+  transition: left 0.2s ease-in-out; /* 부드러운 슬라이드 효과 */
   z-index: 1000;
   overflow-y: auto;
 }
@@ -100,4 +91,20 @@ body {
 .menu-content ul li a {
   text-decoration: none;
   color: #333;
+}
+
+/* 오버레이 스타일 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* 반투명 검정색 */
+  z-index: 999; /* 메뉴보다 낮은 z-index */
+  display: none; /* 초기 상태: 숨김 */
+}
+
+.overlay.active {
+  display: block; /* 메뉴가 열릴 때 표시 */
 }

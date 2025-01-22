@@ -1,0 +1,2 @@
+# 서버 구동 
+bundle exec jekyll serve
