@@ -9,6 +9,7 @@
     <title>Photo Grid</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/egg.css">
+    <link rel="stylesheet" href="/assets/css/photocollection.css">
     <link rel="stylesheet" hred="/assets/css/photocollection">
     
 </head>
@@ -17,13 +18,18 @@
     <!-- 헤더 포함 -->
     {% include header.html %}
 
-    <!-- 사진 격자 -->
-    <main class="photo-grid-container">
+    <div class="photo-grid-container">
         <h1>My Photo Collection</h1>
         <div class="photo-grid" id="photo-grid">
-            <!-- JavaScript로 이미지 로딩 -->
+            <!-- JavaScript가 동적으로 사진 격자를 생성 -->
         </div>
-    </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close" id="lightbox-close">&times;</span>
+        <img id="lightbox-image" class="lightbox-image" alt="Expanded View">
+    </div>
 
     <!-- 푸터 포함 -->
     {% include footer.html %}
