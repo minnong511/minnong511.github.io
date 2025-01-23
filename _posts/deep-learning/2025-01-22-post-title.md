@@ -1,8 +1,7 @@
 ---
-layout: subcategory
+layout: page
 title: "Introduction to Deep Learning"
 category: deep-learning
 subcategory: introduction
-permalink: /categories/deep-learning/introduction/
+permalink: /categories/deep-learning/introduction
 ---
-

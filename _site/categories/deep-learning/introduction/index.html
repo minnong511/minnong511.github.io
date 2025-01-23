@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- 헤더와 네비게이션 포함 -->
+    <!-- 헤더 영역 -->
     <header>
     <div class="top-header">
         <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
@@ -19,6 +19,9 @@
         <a href="https://github.com/minnong511" class="github-button">
             <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
         </a>
+    </div>
+    <div class="scrolling-ticker">
+        <span id="ticker-text"></span>
     </div>
 </header>
 
@@ -67,7 +70,7 @@
               </ul>
           </li>
           <li>
-              <a href="#">--------</a>
+              <a href="/categories/profile/">프로필</a>
           </li>
       </ul>
   </div>
@@ -77,20 +80,39 @@
 <div class="overlay" id="overlay"></div>
 
 <!-- 스크립트 파일 --> 
-<script src="/assets/js/script.js"></script>
+<script src="/assets/js/menu_script.js"></script>
 
-    <!-- 페이지 내용 -->
-    <div class="content">
-        <h1>Introduction to Deep Learning</h1>
-<p>Welcome to the Introduction section of Deep Learning.</p>
+<!-- CSS 및 JavaScript 파일 포함 -->
+ <!-- Latex 작동되게 만드는 파일 -->
+<link rel="stylesheet" href="/assets/css/header.css">
+<script src="/assets/js/header.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
-<!-- 최신 게시글 -->
-<h2>Posts in Introduction to Deep Learning</h2>
-<ul>
-  
-</ul>
-    </div>
+    <!-- 본문 레이아웃 -->
+    <main class="subcategory-layout">
+        <div class="subcategory-container">
+            <header class="subcategory-header">
+                <h1>Introduction to Deep Learning</h1>
+                
+            </header>
 
+            <!-- 소분류와 관련된 콘텐츠 -->
+            <section class="subcategory-content">
+                
+            </section>
+
+            <!-- 관련 게시글 목록 -->
+            <section class="subcategory-posts">
+                <h2>Posts in introduction</h2>
+                <ul>
+                    
+                    
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- 푸터 포함 -->
     <!-- Footer 영역 -->
 <footer>
     <p>&copy; <span id="current-year"></span> minnong's Blog. All rights reserved.</p>
@@ -100,6 +122,6 @@
 </footer>
 
 <script src="/assets/js/footer.js"></script>
-<script src="/assets/js/egg.js" defer></script> 
+<script src="/assets/js/egg.js" defer></script>
 </body>
 </html>

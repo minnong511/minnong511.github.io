@@ -6,20 +6,22 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>My Blog</title>
+    <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/pages.css">
+    <link rel="stylesheet" href="/assets/css/cv.css">
     <script src="/assets/js/pages.js" defer></script>
 </head>
 
 <body>
+    <!-- 기존 헤더 -->
     {% include header.html %}
-    <main>
-        <aside id="toc"></aside> <!-- 목차를 표시할 공간 -->
-        <article>
-            <h1>{{ page.title }}</h1>
-            {{ content }}
-        </article>
+
+    <!-- 본문 컨텐츠 -->
+    <main class="cv-container">
+        {{ content }}
     </main>
+
+    <!-- 기존 푸터 -->
     {% include footer.html %}
 </body>
+</html>

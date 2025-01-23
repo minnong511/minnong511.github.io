@@ -1,6 +1,20 @@
-<div class="recent-posts">
+<link rel="stylesheet" href="/assets/css/home.css">
+
+<section class="recent-posts">
     <h2>Recent Posts</h2>
-    <ul id="recent-posts-list">
-        <!-- 최근 게시물 목록이 여기에 동적으로 추가됩니다 -->
+    <ul>
+        {% assign recent_posts = site.posts | slice: 0, 5 %}
+        {% for post in recent_posts %}
+            <li>
+                <article>
+                    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                    <p class="post-date">{{ post.date | date: "%B %d, %Y" }}</p>
+                    <p class="post-excerpt">
+                        {{ post.excerpt | strip_html | default: post.content | truncate: 150 }}
+                    </p>
+                    <a href="{{ post.url }}" class="read-more">Read More →</a>
+                </article>
+            </li>
+        {% endfor %}
     </ul>
-</div>
+</section>

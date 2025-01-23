@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Home</title>
+    <title>Home page</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="stylesheet" href="/assets/css/egg.css">
 </head>
@@ -20,6 +20,9 @@
         <a href="https://github.com/minnong511" class="github-button">
             <img src="/assets/images/github-mark.svg" alt="GitHub" class="github-logo">
         </a>
+    </div>
+    <div class="scrolling-ticker">
+        <span id="ticker-text"></span>
     </div>
 </header>
 
@@ -68,7 +71,7 @@
               </ul>
           </li>
           <li>
-              <a href="#">--------</a>
+              <a href="/categories/profile/">프로필</a>
           </li>
       </ul>
   </div>
@@ -78,21 +81,43 @@
 <div class="overlay" id="overlay"></div>
 
 <!-- 스크립트 파일 --> 
-<script src="/assets/js/script.js"></script>
+<script src="/assets/js/menu_script.js"></script>
+
+<!-- CSS 및 JavaScript 파일 포함 -->
+ <!-- Latex 작동되게 만드는 파일 -->
+<link rel="stylesheet" href="/assets/css/header.css">
+<script src="/assets/js/header.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 
     <!-- 페이지 내용 -->
     <div class="content">
         <h1>Welcome to My Blog!</h1>
 <p>This is the homepage of your blog.</p>
+
+<!-- 최근 게시물 목록 포함 -->
+<link rel="stylesheet" href="/assets/css/home.css">
+
+<section class="recent-posts">
+    <h2>Recent Posts</h2>
+    <ul>
+        
+        
+    </ul>
+</section>
+
     </div>
 
     <!-- 최근 게시물 -->
-    <div class="recent-posts">
+    <link rel="stylesheet" href="/assets/css/home.css">
+
+<section class="recent-posts">
     <h2>Recent Posts</h2>
-    <ul id="recent-posts-list">
-        <!-- 최근 게시물 목록이 여기에 동적으로 추가됩니다 -->
+    <ul>
+        
+        
     </ul>
-</div> 
+</section>
+ 
 
 
     <!-- Footer 영역 -->
