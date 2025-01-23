@@ -16,7 +16,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
-  - _posts
   - _drafts
 
 defaults:

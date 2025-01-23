@@ -4,29 +4,4 @@ title: "Math"
 category: Math
 permalink: /categories/Math/
 ---
-<!--대분류용 페이지 -->
 
-<h1>{{ page.title }}</h1>
-<p> 앙 수학띠 </p>
-
-<!-- 소분류 목록 -->
-<h2>Subcategories</h2>
-<ul>
-  {% assign subcategories = site.posts | where_exp: "post", "post.categories[0] == page.category" | map: "categories[1]" | uniq %}
-  {% for subcategory in subcategories %}
-    <li><a href="/categories/{{ page.category }}/{{ subcategory | slugify }}/">{{ subcategory }}</a></li>
-  {% endfor %}
-</ul>
-
-<!-- 최신 게시글 -->
-<h2>Recent Posts</h2>
-<ul>
-  {% for post in site.posts %}
-    {% if post.categories contains page.category %}
-      <li>
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <small>({{ post.date | date: "%Y-%m-%d" }})</small>
-      </li>
-    {% endif %}
-  {% endfor %}
-</ul>

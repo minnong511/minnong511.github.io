@@ -8,16 +8,27 @@
     <meta http-equiv="Expires" content="0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/category.css">
 </head>
 <body>
     <!-- 헤더와 네비게이션 포함 -->
     {% include header.html %}
-
     <!-- 페이지 내용 -->
     <div class="content">
-        {{ content }}
+        <h1 class="page-title">{{ page.title }}</h1>
+        <ul>
+            {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+            {% for post in sorted_posts %}
+                {% if post.categories contains page.category %}
+                    <li>
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                        <small>({{ post.date | date: "%Y-%m-%d" }})</small>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
     </div>
 
-    {% include footer.html %} 
+    {% include footer.html %}
 </body>
 </html>
