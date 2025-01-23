@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "이거테스트용임임32132"
+title: "사진용"
 date: 2025-01-22
 categories:
-  - deep-learning
-  - introduction
-permalink: /categories/deep-learning/first_gle
+  - Photo
+  - film
+permalink: /categories/Photo/film_1
 ---
 
 

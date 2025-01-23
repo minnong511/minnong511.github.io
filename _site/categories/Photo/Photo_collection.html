@@ -6,12 +6,15 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Photo</title>
+    <title>Photo Grid</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/category.css">
+    <link rel="stylesheet" href="/assets/css/egg.css">
+    <link rel="stylesheet" hred="/assets/css/photocollection">
+    
 </head>
+
 <body>
-    <!-- 헤더와 네비게이션 포함 -->
+    <!-- 헤더 포함 -->
     <header>
     <div class="top-header">
         <a href="#" class="menu-toggle" onclick="toggleMenu()">Menu</a>
@@ -54,19 +57,17 @@
 
           <!-- 기타 메뉴 -->
           <li>
-              <a href="/categories/daily/">일상</a>
+              <a href="/categories/math/index" onclick="toggleSubmenu(event)">일상상</a>
               <ul class="submenu">
                 <li><a href="/categories/daily/daily/">-일상</a></li>
                 <li><a href="/categories/daily/matzip">-맛집</a></li>
               </ul>
           </li>
           <li>
-              <a href="/categories/photo/">Photo</a>
+              <a href="/categories/math/index" onclick="toggleSubmenu(event)">Photo</a>
               <ul class="submenu">
-                <li><a href="/categories/math/index/">-최신글</a></li>
-                <li><a href="/categories/math/algebra/">- Algebra</a></li>
-                <li><a href="/categories/math/calculus/">- Calculus</a></li>
-                <li><a href="/categories/math/statistics/">- Statistics</a></li>
+                <li><a href="/categories/Photo/Photo_collection/">- Photo Collection</a></li>
+                <li><a href="/categories/Photo/film/">- film</a></li>
               </ul>
           </li>
           <li>
@@ -87,17 +88,16 @@
 <link rel="stylesheet" href="/assets/css/header.css">
 <script src="/assets/js/header.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-    <!-- 페이지 내용 -->
-    <div class="content">
-        <h1 class="page-title">Photo</h1>
-        <ul>
-            
-            
-                
-            
-        </ul>
-    </div>
 
+    <!-- 사진 격자 -->
+    <main class="photo-grid-container">
+        <h1>My Photo Collection</h1>
+        <div class="photo-grid" id="photo-grid">
+            <!-- JavaScript로 이미지 로딩 -->
+        </div>
+    </main>
+
+    <!-- 푸터 포함 -->
     <!-- Footer 영역 -->
 <footer>
     <p>&copy; <span id="current-year"></span> minnong's Blog. All rights reserved.</p>
@@ -109,5 +109,10 @@
 <link rel="stylesheet" href="/assets/css/footer.css">
 <script src="/assets/js/footer.js"></script>
 <script src="/assets/js/egg.js" defer></script>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/photocollection.js"></script>
 </body>
 </html>
+
+

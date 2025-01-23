@@ -8,48 +8,19 @@
     <meta http-equiv="Expires" content="0">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/pages.css">
+    <script src="/assets/js/pages.js" defer></script>
 </head>
 
 <body>
-    <!-- 헤더 -->
     {% include header.html %}
-
-    <main class="post-container">
-        <article class="post">
-            <!-- 게시글 제목 -->
-            <h1 class="post-title">{{ page.title }}</h1>
-            
-            <!-- 작성일 -->
-            <time class="post-date" datetime="{{ page.date | date: '%Y-%m-%d' }}">
-                Published on {{ page.date | date: '%B %d, %Y' }}
-            </time>
-            
-            <!-- 카테고리 및 태그 -->
-            <div class="post-meta">
-                {% if page.categories %}
-                    <p>Categories: 
-                        {% for category in page.categories %}
-                            <a href="/categories/{{ category | downcase }}/">{{ category }}</a>{% if forloop.last == false %}, {% endif %}
-                        {% endfor %}
-                    </p>
-                {% endif %}
-                {% if page.tags %}
-                    <p>Tags: 
-                        {% for tag in page.tags %}
-                            <a href="/tags/{{ tag | downcase }}/">{{ tag }}</a>{% if forloop.last == false %}, {% endif %}
-                        {% endfor %}
-                    </p>
-                {% endif %}
-            </div>
-            
-            <!-- 게시글 본문 -->
-            <div class="post-content">
-                {{ content }}
-            </div>
+    <main>
+        <aside id="toc"></aside> <!-- 목차를 표시할 공간 -->
+        <article class="content">
+            <h1>{{ page.title }}</h1>
+            {{ content }}
         </article>
     </main>
-
-    <!-- 푸터 -->
     {% include footer.html %}
 </body>
 </html>

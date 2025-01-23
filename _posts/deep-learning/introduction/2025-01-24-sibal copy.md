@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "이거테스트용임임32132"
+title: "이거테스트용임임32213123132"
 date: 2025-01-22
 categories:
   - deep-learning
   - introduction
-permalink: /categories/deep-learning/first_gle
+permalink: /categories/deep-learning/second
 ---
 
 

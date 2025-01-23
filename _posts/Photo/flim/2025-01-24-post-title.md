@@ -1,13 +1,12 @@
 ---
 layout: post
-title: "이거테스트용임임32132"
+title: "사진용"
 date: 2025-01-22
 categories:
-  - deep-learning
-  - introduction
-permalink: /categories/deep-learning/first_gle
+  - Photo
+  - film
+permalink: /categories/Photo/film_1
 ---
-
 
 김치는 한국 음식의 대표적인 재료로, 다양한 요리에 활용될 수 있습니다. 아래는 김치를 사용한 몇 가지 요리 예시입니다.
 

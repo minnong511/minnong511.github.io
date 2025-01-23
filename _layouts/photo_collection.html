@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Photo Grid</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/egg.css">
+    <link rel="stylesheet" hred="/assets/css/photocollection">
+    
+</head>
+
+<body>
+    <!-- 헤더 포함 -->
+    {% include header.html %}
+
+    <!-- 사진 격자 -->
+    <main class="photo-grid-container">
+        <h1>My Photo Collection</h1>
+        <div class="photo-grid" id="photo-grid">
+            <!-- JavaScript로 이미지 로딩 -->
+        </div>
+    </main>
+
+    <!-- 푸터 포함 -->
+    {% include footer.html %}
+
+    <!-- JavaScript -->
+    <script src="/assets/js/photocollection.js"></script>
+</body>
+</html>
+
+
