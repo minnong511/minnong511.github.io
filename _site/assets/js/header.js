@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 순환할 텍스트 설정
     const messages = [
         `Today's Date: ${dateStr}`,
-        "Welcome to minnong's Blog!",
-        "Check out the latest posts!",
+        "Welcome to minnong's Blog!"
     ];
 
     // 텍스트를 순환 문자열로 설정

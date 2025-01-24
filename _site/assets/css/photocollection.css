@@ -1,4 +1,20 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
 .photo-grid-container {
+    width: 80%; /* 부모 컨테이너 너비를 80%로 설정 */
     max-width: 1200px; /* 부모 컨테이너 최대 너비 */
     margin: 0 auto;
     padding: 20px;
@@ -7,15 +23,15 @@
 
 .photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 최소 100px, 가로 공간에 따라 조정 */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 최소 200px, 가로 공간에 따라 조정 */
     gap: 10px; /* 사진 간 간격 */
     max-width: 100%; /* 상위 요소 초과 금지 */
     margin: 0 auto;
 }
 
 .photo-item {
-    width: 100px; /* 고정된 너비 */
-    height: 100px; /* 고정된 높이 */
+    width: 100%; /* 그리드 셀의 너비에 맞춤 */
+    height: auto; /* 높이를 자동으로 설정 */
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -51,11 +67,26 @@
     border-radius: 8px;
 }
 
-.lightbox .close {
+.lightbox .close, .lightbox .prev, .lightbox .next {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     color: white;
     font-size: 2rem;
     cursor: pointer;
+    user-select: none;
+}
+
+.lightbox .close {
+    top: 20px;
+    right: 20px;
+    transform: none;
+}
+
+.lightbox .prev {
+    left: 20px;
+}
+
+.lightbox .next {
+    right: 20px;
 }

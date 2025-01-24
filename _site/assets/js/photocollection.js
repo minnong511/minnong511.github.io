@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const lightbox = document.getElementById("lightbox");
     const lightboxImage = document.getElementById("lightbox-image");
     const closeButton = document.getElementById("lightbox-close");
+    const prevButton = document.getElementById("lightbox-prev");
+    const nextButton = document.getElementById("lightbox-next");
+
+    let currentIndex = 0;
+    let imageLinks = [];
 
     try {
         // 텍스트 파일 읽기
@@ -11,10 +16,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!response.ok) throw new Error(`Failed to load file: ${response.statusText}`);
 
         const textData = await response.text();
-        const imageLinks = textData.split("\n").map(link => link.trim()).filter(link => link.length > 0);
+        imageLinks = textData.split("\n").map(link => link.trim()).filter(link => link.length > 0);
 
         // 이미지 링크로 사진 격자 생성
-        imageLinks.forEach(link => {
+        imageLinks.forEach((link, index) => {
             const photoItem = document.createElement("div");
             photoItem.classList.add("photo-item");
 
@@ -24,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // 클릭 이벤트: Lightbox 열기
             photoItem.addEventListener("click", () => {
+                currentIndex = index;
                 lightbox.style.display = "flex";
                 lightboxImage.src = link;
             });
@@ -42,6 +48,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (e.target === lightbox) {
                 lightbox.style.display = "none";
             }
+        });
+
+        // 이전 이미지로 이동
+        prevButton.addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + imageLinks.length) % imageLinks.length;
+            lightboxImage.src = imageLinks[currentIndex];
+        });
+
+        // 다음 이미지로 이동
+        nextButton.addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % imageLinks.length;
+            lightboxImage.src = imageLinks[currentIndex];
         });
     } catch (error) {
         console.error("Error loading images:", error);
