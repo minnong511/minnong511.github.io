@@ -54,7 +54,8 @@
                 margin: 0;
                 white-space: pre;
                 font-size: 24px; /* 아스키 아트 크기 */
-                font-weight: bold; /* 볼드체 설정 */
+                font-weight: normal; 
+                color: #00FF00; /* 매트릭스 터미널 형광색 */
             }
         </style>
     </head>
@@ -99,11 +100,26 @@
             function randomBrightness() {
                 const spans = document.querySelectorAll(".background-text span");
                 spans.forEach((span) => {
-                    const randomOpacity = Math.random() * 0.69; // 밝기 최대값을 0.69로 제한
+                    const randomOpacity = Math.random() * 0.4; // 밝기 최대값을 0.로 제한
                     const color = `rgba(255, 255, 255, ${randomOpacity})`;
                     span.style.color = color;
                 });
             }
+
+                    // 아스키 아트를 한 글자씩 출력
+        function typeAsciiArt(text, element, delay = 50) {
+            let index = 0;
+            element.textContent = "";
+            function type() {
+                if (index < text.length) {
+                    element.textContent += text[index];
+                    index++;
+                    setTimeout(type, delay);
+                }
+            }
+            type();
+        }
+
 
             // 배경 텍스트와 아스키 아트 애니메이션 초기화
             fillBackground();
