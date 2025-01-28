@@ -19,28 +19,6 @@
             position: relative;
         }
 
-        /* 배경 텍스트를 그리드로 정렬 */
-        .background-text {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(15px, 1fr));
-            grid-auto-rows: 15px;
-            justify-content: center;
-            align-items: center;
-            opacity: 0; /* 초기 상태에서 투명 */
-            transition: opacity 5s ease-in-out; /* 밝아지는 효과 */
-        }
-
-        .background-text span {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0);
-            transition: color 2s ease, opacity 2s ease;
-        }
-
         /* 중앙 텍스트 */
         .center-text {
             position: relative;
@@ -70,6 +48,12 @@
             transform-origin: center;
         }
 
+        /* 각 스팬을 숨기고 전환 효과 추가 */
+        .ascii-art span {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
         /* 화면 크기별 미디어 쿼리 */
         @media screen and (max-width: 768px) {
             .ascii-art {
@@ -87,9 +71,6 @@
     </style>
 </head>
 <body>
-    <!-- 배경 텍스트 -->
-    <div class="background-text" id="background"></div>
-
     <!-- 중앙 텍스트 -->
     <div class="center-text">
         <a href="/categories/Photo/Photo_collection/" target="_blank" class="ascii-art" id="ascii-art">
@@ -109,63 +90,28 @@
     </div>
 
     <script>
-        // 배경에 표시할 글자들
-        const characters = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
-        const background = document.getElementById("background");
-        const asciiArt = document.getElementById("ascii-art");
+        document.addEventListener("DOMContentLoaded", function() {
+            const asciiArt = document.getElementById("ascii-art");
 
-        // 화면에 텍스트 채우기
-        function fillBackground() {
-            const cols = Math.floor(window.innerWidth / 15);
-            const rows = Math.floor(window.innerHeight / 15);
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const span = document.createElement("span");
-                    span.textContent = characters[Math.floor(Math.random() * characters.length)];
-                    span.dataset.row = row;
-                    span.dataset.col = col;
-                    background.appendChild(span);
-                }
+            // 아스키 아트 글자를 감싸는 <span> 태그 추가
+            asciiArt.innerHTML = asciiArt.textContent
+                .split("")
+                .map((char) => `<span>${char}</span>`)
+                .join("");
+
+            // 아스키 아트 글자 하나씩 표시
+            function revealAsciiArt() {
+                const spans = asciiArt.querySelectorAll("span");
+                spans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.style.opacity = 1; // 글자를 순차적으로 표시
+                    }, index * 1.4); // 50ms 간격으로 표시
+                });
             }
-        }
 
-        // 무작위로 글자의 밝기 변경
-        function randomBrightness() {
-            const spans = document.querySelectorAll(".background-text span");
-            spans.forEach((span) => {
-                const randomOpacity = Math.random() * 0.4; // 밝기 최대값을 0.4로 제한
-                const color = `rgba(255, 255, 255, ${randomOpacity})`;
-                span.style.color = color;
-            });
-        }
-
-        // 아스키 아트 글자 한 글자씩 표시
-        function revealAsciiArt() {
-            const spans = asciiArt.querySelectorAll("span");
-            spans.forEach((span, index) => {
-                setTimeout(() => {
-                    span.style.opacity = 1; // 글자를 순차적으로 표시
-                }, index * 2.6); // 100ms 간격으로 표시
-            });
-        }
-
-        // 초기화
-        fillBackground();
-
-        // 아스키 아트 글자를 감싸는 <span> 태그 추가
-        asciiArt.innerHTML = asciiArt.textContent
-            .split("")
-            .map((char) => `<span>${char}</span>`)
-            .join("");
-
-        // 배경 텍스트 밝기 애니메이션
-        setTimeout(() => {
-            background.style.opacity = 1; // 20초 후 배경 텍스트 서서히 나타남
-            setInterval(randomBrightness, 500); // 밝기 갱신 유지
-        }, 4000);
-
-        // 아스키 아트 애니메이션 시작
-        revealAsciiArt();
+            // 애니메이션 시작
+            revealAsciiArt();
+        });
     </script>
 </body>
 </html>
