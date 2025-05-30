@@ -1,0 +1,8 @@
+title: My GitHub Blog
+description: A simple Jekyll blog hosted on GitHub Pages.
+author: Min Hyeong Lee
+baseurl: ""
+url: "https://your-username.github.io"
+theme: minima
+plugins:
+  - jekyll-feed
