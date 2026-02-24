@@ -14,12 +14,13 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}" />
   </head>
-  <body id="home">
+  <body id="home" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
-        <form action="{{ '/search/' | relative_url }}" method="get">
+        <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
           <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
         </form>
+        <div class="search-live-results" id="searchLiveResults"></div>
       </div>
     </div>
 
@@ -98,17 +99,10 @@
       </div>
     </footer>
 
+    <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
     <script>
-      var searchLayer = document.getElementById('searchLayer');
       var menuLayer = document.getElementById('menuLayer');
-      var searchButton = document.querySelector('.toggle-search');
       var menuButton = document.querySelector('.toggle-nav');
-
-      if (searchButton && searchLayer) {
-        searchButton.addEventListener('click', function () {
-          searchLayer.classList.toggle('is-hidden');
-        });
-      }
 
       if (menuButton && menuLayer) {
         menuButton.addEventListener('click', function () {

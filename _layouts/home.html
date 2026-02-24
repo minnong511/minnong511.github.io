@@ -21,12 +21,13 @@
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
     <link href="{{ '/assets/css/home-mag.css' | relative_url }}" rel="stylesheet" />
   </head>
-  <body id="home">
+  <body id="home" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
-        <form action="{{ '/search/' | relative_url }}" method="get">
+        <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
           <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
         </form>
+        <div class="search-live-results" id="searchLiveResults"></div>
       </div>
     </div>
 
@@ -39,7 +40,6 @@
           <div class="column right">
             <nav class="header-nav">
               <ul>
-                <li><a href="{{ '/' | relative_url }}" style="text-transform: uppercase;">KO</a></li>
                 <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
                 <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
               </ul>
@@ -65,7 +65,7 @@
       <section class="section">
         <div class="container">
           <header class="section-header">
-            <h1 class="title">{{ "now" | date: "%B %Y" }} Issue</h1>
+            <h1 class="title"><span id="home-issue-date">{{ "now" | date: "%B %Y" }}</span> Issue</h1>
           </header>
 
           {% if hero_posts.size > 0 %}
@@ -155,22 +155,22 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
     <script>
-      var searchLayer = document.getElementById('searchLayer');
       var menuLayer = document.getElementById('menuLayer');
-      var searchButton = document.querySelector('.toggle-search');
       var menuButton = document.querySelector('.toggle-nav');
-
-      if (searchButton && searchLayer) {
-        searchButton.addEventListener('click', function () {
-          searchLayer.classList.toggle('is-hidden');
-        });
-      }
+      var issueDate = document.getElementById('home-issue-date');
 
       if (menuButton && menuLayer) {
         menuButton.addEventListener('click', function () {
           menuLayer.classList.toggle('is-hidden');
         });
+      }
+
+      if (issueDate) {
+        var now = new Date();
+        var monthYear = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(now);
+        issueDate.textContent = monthYear;
       }
 
       var carousel = document.querySelector('.js-carousel');

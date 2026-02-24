@@ -3,21 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Morning Calm Style Home</title>
+    <title>Search | My GitHub Blog</title>
     <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
-    <meta name="keywords" content="블로그, 여행, 포토, 에디토리얼" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Morning Calm Style Home" />
-    <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
-    <meta property="og:url" content="http://localhost:4000/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/test_image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
-    <link href="/assets/css/home-mag.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css" />
   </head>
   <body id="home" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
@@ -38,6 +31,7 @@
           <div class="column right">
             <nav class="header-nav">
               <ul>
+                <li><a href="/" style="text-transform: uppercase;">KO</a></li>
                 <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
                 <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
               </ul>
@@ -56,62 +50,17 @@
       </div>
     </header>
 
-    <main class="main">
-      
-      
-
+    <main class="main page-main">
       <section class="section">
         <div class="container">
-          <header class="section-header">
-            <h1 class="title"><span id="home-issue-date">February 2026</span> Issue</h1>
-          </header>
+          <article class="page-panel">
+            <h1 class="title page-title">Search</h1>
+            <div class="page-content">
+              <p class="search-page-help">검색어를 입력하면 제목, 카테고리, 본문에서 결과를 찾습니다.</p>
+<div id="search-page-results" class="archive-list"></div>
 
-          
-            <div class="columns">
-              <div class="column">
-                <div class="carousel js-carousel">
-                  
-                    
-                    <div class="carousel-cell">
-                      <a href="/2025/05/30/welcome-to-my-blog/">
-                        <div class="cover-image">
-                          <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" />
-                        </div>
-                      </a>
-                    </div>
-                  
-                </div>
-              </div>
             </div>
-          
-
-          
-            <div class="columns card-grid">
-              
-                
-                <div class="column card-column">
-                  <a href="/2025/05/30/welcome-to-my-blog/" class="card-link">
-                    <article class="card">
-                      <header class="card-header">
-                        <div class="title-small">Feature</div>
-                        <div class="title-small">2025.05.30</div>
-                      </header>
-                      <div class="card-columns">
-                        <div class="card-image-wrap">
-                          <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" />
-                        </div>
-                        <div class="card-content">
-                          <h2>블로그에 오신 것을 환영합니다</h2>
-                          <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
-</p>
-                        </div>
-                      </div>
-                    </article>
-                  </a>
-                </div>
-              
-            </div>
-          
+          </article>
         </div>
       </section>
     </main>
@@ -122,8 +71,7 @@
           <div class="column">
             <div class="footer-logo">Minnong's blog</div>
           </div>
-          <div class="column">
-          </div>
+          <div class="column"></div>
           <div class="column">
             <ul class="list">
               <li>운영자: Min Hyeong Lee</li>
@@ -151,32 +99,14 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="/assets/js/site-search.js"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
-      var issueDate = document.getElementById('home-issue-date');
 
       if (menuButton && menuLayer) {
         menuButton.addEventListener('click', function () {
           menuLayer.classList.toggle('is-hidden');
-        });
-      }
-
-      if (issueDate) {
-        var now = new Date();
-        var monthYear = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(now);
-        issueDate.textContent = monthYear;
-      }
-
-      var carousel = document.querySelector('.js-carousel');
-      if (carousel) {
-        new Flickity(carousel, {
-          wrapAround: true,
-          imagesLoaded: true,
-          pageDots: false,
-          autoPlay: 3400
         });
       }
     </script>

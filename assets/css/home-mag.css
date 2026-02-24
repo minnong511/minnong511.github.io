@@ -52,6 +52,7 @@ a {
 .search {
   border-bottom: 1px solid var(--color-border);
   background: var(--color-bg);
+  background: #ffffff;
 }
 
 .search .container {
@@ -61,9 +62,50 @@ a {
 .search-input {
   width: 100%;
   border: 1px solid #bcbcbc;
-  background: #d4d4d4;
+  background: #ffffff;
   padding: 0.72rem 0.85rem;
   font-size: 0.96rem;
+  text-align: center;
+}
+
+.search-input::placeholder {
+  text-align: center;
+}
+
+.search-live-results {
+  margin-top: 0.5rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.search-result-item {
+  display: grid;
+  gap: 0.14rem;
+  padding: 0.56rem 0.7rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.search-result-item strong {
+  font-size: 0.92rem;
+  color: var(--color-text);
+}
+
+.search-result-item time {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+}
+
+.search-result-item span {
+  font-size: 0.82rem;
+  color: var(--color-muted);
+}
+
+.search-empty,
+.search-page-help {
+  margin: 0.4rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
 }
 
 .is-hidden {
@@ -81,7 +123,7 @@ a {
 .header::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: 1px;
   left: 50%;
   width: calc(100vw - 1.6rem);
   border-bottom: 1px solid var(--color-border);
@@ -90,7 +132,7 @@ a {
 
 .header-row {
   align-items: center;
-  min-height: 72px;
+  min-height: 84px;
   gap: 0;
 }
 
@@ -107,7 +149,7 @@ a {
   display: inline-flex;
   font-family: "Helvetica Neue", "Avenir Next", "Pretendard", sans-serif;
   letter-spacing: 0.01em;
-  font-size: clamp(2.25rem, 5vw, 3.2rem);
+  font-size: clamp(2.25rem, 4.5vw, 3.2rem);
   line-height: 1;
   font-weight: 300;
 }
@@ -124,7 +166,7 @@ a {
 .header-nav button {
   border: 0;
   background: transparent;
-  font-size: 1.14rem;
+  font-size: 1.35rem;
   cursor: pointer;
   color: #273140;
 }
