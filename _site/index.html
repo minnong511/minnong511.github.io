@@ -3,83 +3,72 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My GitHub Blog</title>
+    <title>Minnong Blog Home</title>
     <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Minnong Blog Home" />
+    <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta property="og:url" content="https://your-username.github.io/" />
+    <meta property="og:image" content="https://your-username.github.io/assets/base_image/test_image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css" />
+    <link href="/assets/css/home-mag.css" rel="stylesheet" />
   </head>
   <body>
-    <header class="mc-header">
-      <div class="mc-container mc-header-inner">
-        <a class="mc-logo" href="/">
-          <span class="mc-logo-mark">MORNING</span>
-          <span class="mc-logo-name">MINNONG CALM</span>
-        </a>
-        <button class="mc-nav-toggle" type="button" aria-label="메뉴 토글">
-          <i class="ri-menu-line"></i>
-        </button>
-        <nav class="mc-nav" id="mc-nav">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="site-logo">Minnong's blog</a>
+        <nav class="site-nav">
           <a href="/">Home</a>
           <a href="/about/">About</a>
+          <a href="/photostream/">Photo</a>
           <a href="/feed.xml">Feed</a>
         </nav>
       </div>
     </header>
 
-    <main class="mc-main">
-      
-      
-      
-
-      <section class="mc-hero mc-fade-up">
-        <div class="mc-container">
-          <header class="mc-headline">
-            <p class="mc-kicker">Digital Issue</p>
-            <h1>Journeys, Stories,<br />and Quiet Frames</h1>
-            <p>미니멀한 에디토리얼 구조의 홈입니다. 새 글을 작성하면 상단 커버와 카드에 자동 반영됩니다.</p>
-          </header>
-
-          
-            
-            <article class="mc-lead">
-              <a class="mc-lead-link" href="/minnong511.github.io/2025/05/30/welcome-to-my-blog.html">
-                <div class="mc-lead-image-wrap">
-                  <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" loading="lazy" />
-                </div>
-                <div class="mc-lead-copy">
-                  <p class="mc-issue">Cover Story</p>
-                  <h2>블로그에 오신 것을 환영합니다</h2>
-                  <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
-</p>
-                  <span class="mc-read">Read Feature <i class="ri-arrow-right-line"></i></span>
-                </div>
-              </a>
-            </article>
-          
+    <main class="site-main">
+      <section class="hero">
+        <div class="container">
+          <h1 class="hero-title">February 2026 Posts</h1>
+          <p class="hero-subtitle">미니멀한 에디토리얼 구조의 홈입니다. 새 글을 작성하면 상단 커버와 카드에 자동 반영됩니다.</p>
         </div>
       </section>
 
-      <section class="mc-section mc-fade-up" style="--delay: 120ms">
-        <div class="mc-container">
-          <header class="mc-section-head mc-section-head-row">
-            <h2>Spotlight</h2>
-            <a class="mc-more" href="/feed.xml">RSS <i class="ri-rss-line"></i></a>
-          </header>
-
+      <section class="posts">
+        <div class="container">
           
-            <div class="mc-spotlight-grid">
+            <div class="post-grid">
               
                 
-                <article class="mc-spotlight-card">
-                  <a href="/2025/05/30/welcome-to-my-blog.html">
-                    <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" loading="lazy" />
-                    <div class="mc-spotlight-body">
-                      <h3>블로그에 오신 것을 환영합니다</h3>
+                <article class="post-card">
+                  <a href="/minnong511.github.io/2025/05/30/welcome-to-my-blog.html" class="post-link">
+                    <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" class="post-image" loading="lazy" />
+                    <div class="post-body">
+                      <p class="post-meta">
+                        <span>minnong511.github.io</span>
+                        <time>2025.05.30</time>
+                      </p>
+                      <h2>블로그에 오신 것을 환영합니다</h2>
+                      <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
+</p>
+                    </div>
+                  </a>
+                </article>
+              
+                
+                <article class="post-card">
+                  <a href="/2025/05/30/welcome-to-my-blog.html" class="post-link">
+                    <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" class="post-image" loading="lazy" />
+                    <div class="post-body">
+                      <p class="post-meta">
+                        <span>Post</span>
+                        <time>2025.05.30</time>
+                      </p>
+                      <h2>블로그에 오신 것을 환영합니다</h2>
                       <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
 </p>
                     </div>
@@ -90,37 +79,18 @@
           
         </div>
       </section>
-
-      <section class="mc-section mc-fade-up" style="--delay: 200ms">
-        <div class="mc-container">
-          <header class="mc-section-head mc-section-head-row">
-            <h2>Latest Stories</h2>
-          </header>
-          
-            <p class="mc-empty">게시글이 늘어나면 여기에 최신 카드가 자동 배치됩니다.</p>
-          
-        </div>
-      </section>
     </main>
 
-    <footer class="mc-footer">
-      <div class="mc-container mc-footer-inner">
-        <p>© 2026 My GitHub Blog</p>
-        <div class="mc-footer-links">
-          <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram</a>
-          <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Minnong's blog</p>
+        <div class="footer-links">
+          <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+          <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+          <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+          <a href="mailto:kzxx1234@gmail.com"><i class="ri-mail-line"></i></a>
         </div>
       </div>
     </footer>
-    <script>
-      var navButton = document.querySelector('.mc-nav-toggle');
-      var nav = document.getElementById('mc-nav');
-      if (navButton && nav) {
-        navButton.addEventListener('click', function () {
-          nav.classList.toggle('is-open');
-        });
-      }
-    </script>
   </body>
 </html>
