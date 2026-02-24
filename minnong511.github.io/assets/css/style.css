@@ -1,0 +1,11 @@
+body {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+  line-height: 1.6;
+}
+header {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2em;
+}
