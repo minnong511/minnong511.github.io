@@ -6,10 +6,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title | default: site.title }}</title>
-    <meta name="description" content="{{ site.description | default: 'Personal blog home' }}" />
+    <meta name="description" content="{{ site.description | default: 'Morning Calm style home' }}" />
+    <meta name="keywords" content="블로그, 여행, 포토, 에디토리얼" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{ page.title | default: site.title }}" />
-    <meta property="og:description" content="{{ site.description | default: 'Personal blog home' }}" />
+    <meta property="og:description" content="{{ site.description | default: 'Morning Calm style home' }}" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
     <meta property="og:image" content="{{ '/assets/base_image/test_image.png' | absolute_url }}" />
 
@@ -17,67 +18,170 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
     <link href="{{ '/assets/css/home-mag.css' | relative_url }}" rel="stylesheet" />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a href="{{ '/' | relative_url }}" class="site-logo">Minnong's blog</a>
-        <nav class="site-nav">
-          <a href="{{ '/' | relative_url }}">Home</a>
-          <a href="{{ '/about/' | relative_url }}">About</a>
-          <a href="{{ '/photostream/' | relative_url }}">Photo</a>
-          <a href="{{ '/feed.xml' | relative_url }}">Feed</a>
+  <body id="home">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="{{ '/search/' | relative_url }}" method="get">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a href="{{ '/' | relative_url }}" class="header-logo">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><a href="{{ '/' | relative_url }}" style="text-transform: uppercase;">KO</a></li>
+                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="{{ '/' | relative_url }}">Home</a></li>
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
+            <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+          </ul>
         </nav>
       </div>
     </header>
 
-    <main class="site-main">
-      <section class="hero">
-        <div class="container">
-          <h1 class="hero-title">{{ "now" | date: "%B %Y" }} Posts</h1>
-          <p class="hero-subtitle">{{ content | strip_html | strip_newlines }}</p>
-        </div>
-      </section>
+    <main class="main">
+      {% assign hero_posts = site.posts | slice: 0, 4 %}
+      {% assign grid_posts = site.posts | slice: 0, 15 %}
 
-      <section class="posts">
+      <section class="section">
         <div class="container">
-          {% if site.posts.size > 0 %}
-            <div class="post-grid">
-              {% for post in site.posts %}
-                {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
-                <article class="post-card">
-                  <a href="{{ post.url | relative_url }}" class="post-link">
-                    <img src="{{ cover | relative_url }}" alt="{{ post.title }}" class="post-image" loading="lazy" />
-                    <div class="post-body">
-                      <p class="post-meta">
-                        <span>{{ post.categories | first | default: "Post" }}</span>
-                        <time>{{ post.date | date: "%Y.%m.%d" }}</time>
-                      </p>
-                      <h2>{{ post.title }}</h2>
-                      <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          <header class="section-header">
+            <h1 class="title">{{ "now" | date: "%B %Y" }} Issue</h1>
+          </header>
+
+          {% if hero_posts.size > 0 %}
+            <div class="columns">
+              <div class="column">
+                <div class="carousel js-carousel">
+                  {% for post in hero_posts %}
+                    {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
+                    <div class="carousel-cell">
+                      <a href="{{ post.url | relative_url }}">
+                        <div class="cover-image">
+                          <img src="{{ cover | relative_url }}" alt="{{ post.title }}" />
+                        </div>
+                      </a>
                     </div>
-                  </a>
-                </article>
-              {% endfor %}
+                  {% endfor %}
+                </div>
+              </div>
             </div>
           {% else %}
-            <p class="empty">아직 게시글이 없습니다. 포스트를 추가해 주세요.</p>
+            <p class="empty">포스트를 추가하면 캐러셀이 표시됩니다.</p>
+          {% endif %}
+
+          {% if grid_posts.size > 0 %}
+            <div class="columns card-grid">
+              {% for post in grid_posts %}
+                {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
+                <div class="column card-column">
+                  <a href="{{ post.url | relative_url }}" class="card-link">
+                    <article class="card">
+                      <header class="card-header">
+                        <div class="title-small">{{ post.categories | first | default: "Feature" }}</div>
+                        <div class="title-small">{{ post.date | date: "%Y.%m.%d" }}</div>
+                      </header>
+                      <div class="card-columns">
+                        <div class="card-image-wrap">
+                          <img src="{{ cover | relative_url }}" alt="{{ post.title }}" />
+                        </div>
+                        <div class="card-content">
+                          <h2>{{ post.title }}</h2>
+                          <p>{{ post.excerpt | strip_html | truncate: 130 }}</p>
+                        </div>
+                      </div>
+                    </article>
+                  </a>
+                </div>
+              {% endfor %}
+            </div>
           {% endif %}
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>© {{ "now" | date: "%Y" }} Minnong's blog</p>
-        <div class="footer-links">
-          <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-          <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-          <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-          <a href="mailto:kzxx1234@gmail.com"><i class="ri-mail-line"></i></a>
+    <footer class="footer">
+      <div class="container">
+        <div class="columns footer-columns">
+          <div class="column">
+            <div class="footer-logo">Minnong's blog</div>
+          </div>
+          <div class="column">
+          </div>
+          <div class="column">
+            <ul class="list">
+              <li>운영자: {{ site.author }}</li>
+              <li>Based in Seoul</li>
+              <li>Contact: kzxx1234@gmail.com</li>
+            </ul>
+          </div>
+          <div class="column">
+            <ul class="list">
+              <li>개인 포트폴리오 &amp; 블로그</li>
+              <li>Photo / Travel / Engineering</li>
+            </ul>
+          </div>
+        </div>
+        <div class="columns footer-bottom">
+          <div class="column">
+            <p>© {{ "now" | date: "%Y" }} Minnong blog</p>
+          </div>
+          <div class="column social">
+            <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+            <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+            <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+          </div>
         </div>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script>
+      var searchLayer = document.getElementById('searchLayer');
+      var menuLayer = document.getElementById('menuLayer');
+      var searchButton = document.querySelector('.toggle-search');
+      var menuButton = document.querySelector('.toggle-nav');
+
+      if (searchButton && searchLayer) {
+        searchButton.addEventListener('click', function () {
+          searchLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      var carousel = document.querySelector('.js-carousel');
+      if (carousel) {
+        new Flickity(carousel, {
+          wrapAround: true,
+          imagesLoaded: true,
+          pageDots: false,
+          autoPlay: 3400
+        });
+      }
+    </script>
   </body>
 </html>

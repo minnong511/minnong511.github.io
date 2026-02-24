@@ -2,7 +2,15 @@ title: My GitHub Blog
 description: A simple Jekyll blog hosted on GitHub Pages.
 author: Min Hyeong Lee
 baseurl: ""
-url: "https://your-username.github.io"
+url: "https://minnong511.github.io"
 theme: minima
+timezone: Asia/Seoul
+permalink: /:categories/:year/:month/:day/:title/
 plugins:
   - jekyll-feed
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

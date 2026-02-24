@@ -3,77 +3,112 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Minnong Blog Home</title>
+    <title>Morning Calm Style Home</title>
     <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta name="keywords" content="블로그, 여행, 포토, 에디토리얼" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Minnong Blog Home" />
+    <meta property="og:title" content="Morning Calm Style Home" />
     <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
-    <meta property="og:url" content="https://your-username.github.io/" />
-    <meta property="og:image" content="https://your-username.github.io/assets/base_image/test_image.png" />
+    <meta property="og:url" content="https://minnong511.github.io/" />
+    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/test_image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
     <link href="/assets/css/home-mag.css" rel="stylesheet" />
   </head>
-  <body>
-    <header class="site-header">
-      <div class="container header-inner">
-        <a href="/" class="site-logo">Minnong's blog</a>
-        <nav class="site-nav">
-          <a href="/">Home</a>
-          <a href="/about/">About</a>
-          <a href="/photostream/">Photo</a>
-          <a href="/feed.xml">Feed</a>
+  <body id="home">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="/search/" method="get">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a href="/" class="header-logo">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><a href="/" style="text-transform: uppercase;">KO</a></li>
+                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/photostream/">Photo</a></li>
+            <li><a href="/archive/">Archive</a></li>
+          </ul>
         </nav>
       </div>
     </header>
 
-    <main class="site-main">
-      <section class="hero">
-        <div class="container">
-          <h1 class="hero-title">February 2026 Posts</h1>
-          <p class="hero-subtitle">미니멀한 에디토리얼 구조의 홈입니다. 새 글을 작성하면 상단 커버와 카드에 자동 반영됩니다.</p>
-        </div>
-      </section>
+    <main class="main">
+      
+      
 
-      <section class="posts">
+      <section class="section">
         <div class="container">
+          <header class="section-header">
+            <h1 class="title">February 2026 Issue</h1>
+          </header>
+
           
-            <div class="post-grid">
+            <div class="columns">
+              <div class="column">
+                <div class="carousel js-carousel">
+                  
+                    
+                    <div class="carousel-cell">
+                      <a href="/2025/05/30/welcome-to-my-blog/">
+                        <div class="cover-image">
+                          <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" />
+                        </div>
+                      </a>
+                    </div>
+                  
+                </div>
+              </div>
+            </div>
+          
+
+          
+            <div class="columns card-grid">
               
                 
-                <article class="post-card">
-                  <a href="/minnong511.github.io/2025/05/30/welcome-to-my-blog.html" class="post-link">
-                    <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" class="post-image" loading="lazy" />
-                    <div class="post-body">
-                      <p class="post-meta">
-                        <span>minnong511.github.io</span>
-                        <time>2025.05.30</time>
-                      </p>
-                      <h2>블로그에 오신 것을 환영합니다</h2>
-                      <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
+                <div class="column card-column">
+                  <a href="/2025/05/30/welcome-to-my-blog/" class="card-link">
+                    <article class="card">
+                      <header class="card-header">
+                        <div class="title-small">Feature</div>
+                        <div class="title-small">2025.05.30</div>
+                      </header>
+                      <div class="card-columns">
+                        <div class="card-image-wrap">
+                          <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" />
+                        </div>
+                        <div class="card-content">
+                          <h2>블로그에 오신 것을 환영합니다</h2>
+                          <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
 </p>
-                    </div>
+                        </div>
+                      </div>
+                    </article>
                   </a>
-                </article>
-              
-                
-                <article class="post-card">
-                  <a href="/2025/05/30/welcome-to-my-blog.html" class="post-link">
-                    <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" class="post-image" loading="lazy" />
-                    <div class="post-body">
-                      <p class="post-meta">
-                        <span>Post</span>
-                        <time>2025.05.30</time>
-                      </p>
-                      <h2>블로그에 오신 것을 환영합니다</h2>
-                      <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
-</p>
-                    </div>
-                  </a>
-                </article>
+                </div>
               
             </div>
           
@@ -81,16 +116,69 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <p>© 2026 Minnong's blog</p>
-        <div class="footer-links">
-          <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-          <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-          <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-          <a href="mailto:kzxx1234@gmail.com"><i class="ri-mail-line"></i></a>
+    <footer class="footer">
+      <div class="container">
+        <div class="columns footer-columns">
+          <div class="column">
+            <div class="footer-logo">Minnong's blog</div>
+          </div>
+          <div class="column">
+          </div>
+          <div class="column">
+            <ul class="list">
+              <li>운영자: Min Hyeong Lee</li>
+              <li>Based in Seoul</li>
+              <li>Contact: kzxx1234@gmail.com</li>
+            </ul>
+          </div>
+          <div class="column">
+            <ul class="list">
+              <li>개인 포트폴리오 &amp; 블로그</li>
+              <li>Photo / Travel / Engineering</li>
+            </ul>
+          </div>
+        </div>
+        <div class="columns footer-bottom">
+          <div class="column">
+            <p>© 2026 Minnong blog</p>
+          </div>
+          <div class="column social">
+            <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+            <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+            <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+          </div>
         </div>
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script>
+      var searchLayer = document.getElementById('searchLayer');
+      var menuLayer = document.getElementById('menuLayer');
+      var searchButton = document.querySelector('.toggle-search');
+      var menuButton = document.querySelector('.toggle-nav');
+
+      if (searchButton && searchLayer) {
+        searchButton.addEventListener('click', function () {
+          searchLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      var carousel = document.querySelector('.js-carousel');
+      if (carousel) {
+        new Flickity(carousel, {
+          wrapAround: true,
+          imagesLoaded: true,
+          pageDots: false,
+          autoPlay: 3400
+        });
+      }
+    </script>
   </body>
 </html>

@@ -1,0 +1,197 @@
+---
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ page.title }} | {{ site.title }}" />
+    <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    {% if page.image %}
+      <meta property="og:image" content="{{ page.image | absolute_url }}" />
+    {% endif %}
+
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}" />
+  </head>
+  <body id="article">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="{{ '/search/' | relative_url }}" method="get">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a class="header-logo" href="{{ '/' | relative_url }}">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><a href="{{ '/' | relative_url }}" style="text-transform: uppercase;">KO</a></li>
+                <li><button class="toggle-search" type="button" aria-label="검색"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button" aria-label="메뉴"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="{{ '/' | relative_url }}">Home</a></li>
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
+            <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main page-main">
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <h1 class="title page-title">{{ page.title }}</h1>
+          </header>
+
+          <article class="page-panel">
+            {% assign cover = page.image | default: '/assets/base_image/test_image.png' %}
+            <div class="cover-image">
+              <img src="{{ cover | relative_url }}" alt="{{ page.title }}" loading="lazy" />
+            </div>
+
+            <div class="page-content" style="margin-top: 0.9rem;">
+              <p style="margin: 0; font-size: 0.8rem;">
+                {% if page.categories and page.categories.size > 0 %}
+                  {{ page.categories | first }}
+                {% else %}
+                  Post
+                {% endif %}
+                · {{ page.date | date: "%Y.%m.%d" }}
+              </p>
+              {% if page.excerpt %}
+                <p>{{ page.excerpt | strip_html }}</p>
+              {% endif %}
+
+              {{ content }}
+            </div>
+
+            <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>Share</span>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ page.url | absolute_url | uri_escape }}"><i class="ri-twitter-x-fill"></i></a>
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u={{ page.url | absolute_url | uri_escape }}"><i class="ri-facebook-fill"></i></a>
+              <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <h2 class="title page-title">Related Posts</h2>
+          </header>
+          <div class="columns card-grid">
+            {% for post in site.posts limit: 6 %}
+              {% unless post.url == page.url %}
+                {% assign card_cover = post.image | default: '/assets/base_image/test_image.png' %}
+                <div class="column card-column">
+                  <a href="{{ post.url | relative_url }}" class="card-link">
+                    <article class="card">
+                      <header class="card-header">
+                        <div class="title-small">{{ post.categories | first | default: "Post" }}</div>
+                        <div class="title-small">{{ post.date | date: "%Y.%m.%d" }}</div>
+                      </header>
+                      <div class="card-columns">
+                        <div class="card-image-wrap">
+                          <img src="{{ card_cover | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+                        </div>
+                        <div class="card-content">
+                          <h2>{{ post.title }}</h2>
+                          <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+                        </div>
+                      </div>
+                    </article>
+                  </a>
+                </div>
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns footer-columns">
+          <div class="column">
+            <div class="footer-logo">Minnong's blog</div>
+          </div>
+          <div class="column"></div>
+          <div class="column">
+            <ul class="list">
+              <li>운영자: {{ site.author }}</li>
+              <li>Based in Seoul</li>
+              <li>Contact: kzxx1234@gmail.com</li>
+            </ul>
+          </div>
+          <div class="column">
+            <ul class="list">
+              <li>개인 포트폴리오 &amp; 블로그</li>
+              <li>Photo / Travel / Engineering</li>
+            </ul>
+          </div>
+        </div>
+        <div class="columns footer-bottom">
+          <div class="column">
+            <p>© {{ "now" | date: "%Y" }} Minnong blog</p>
+          </div>
+          <div class="column social">
+            <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+            <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+            <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script>
+      var searchLayer = document.getElementById('searchLayer');
+      var menuLayer = document.getElementById('menuLayer');
+      var searchButton = document.querySelector('.toggle-search');
+      var menuButton = document.querySelector('.toggle-nav');
+      var copyButton = document.querySelector('.copy-url');
+
+      if (searchButton && searchLayer) {
+        searchButton.addEventListener('click', function () {
+          searchLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener('click', function () {
+          var url = copyButton.getAttribute('data-url');
+          if (!url) return;
+          navigator.clipboard.writeText(url);
+        });
+      }
+    </script>
+  </body>
+</html>

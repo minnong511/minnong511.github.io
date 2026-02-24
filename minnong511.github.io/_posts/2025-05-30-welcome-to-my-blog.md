@@ -1,8 +1,0 @@
----
-layout: post
-title: "블로그에 오신 것을 환영합니다"
-date: 2025-05-30 09:00:00 +0900
-image: /assets/base_image/test_image.png
----
-
-첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.

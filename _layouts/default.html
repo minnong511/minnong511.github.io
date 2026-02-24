@@ -1,12 +1,8 @@
+---
+---
 <html>
   <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Public+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
 
     <title>Minnong's Blog</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
@@ -14,7 +10,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
   <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Public Sans", "Noto Sans", sans-serif;'>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden" style='font-family: "Pretendard", "Noto Sans KR", sans-serif;'>
       <div class="layout-container flex h-full grow flex-col">
         {% include header.html %}
         <div class="gap-1 px-6 flex flex-1 justify-center py-5">
@@ -24,11 +20,10 @@
               <div class="flex items-stretch justify-between gap-4 rounded-lg">
                 <div class="flex flex-col gap-1 flex-[2_2_0px]">
                   <p class="text-[#60758a] text-sm font-normal leading-normal">Featured</p>
-                  <p class="text-[#111418] text-base font-bold leading-tight">Building a Scalable Microservices Architecture</p>
-                  <p class="text-[#60758a] text-sm font-normal leading-normal">
-                    Explore the key principles and best practices for designing and implementing a robust microservices architecture that can handle rapid growth and high
-                    availability requirements.
-                  </p>
+                  <p class="text-[#111418] text-base font-bold leading-tight">{{ page.title | default: site.title }}</p>
+                  <div class="text-[#60758a] text-sm font-normal leading-normal">
+                    {{ content }}
+                  </div>
                 </div>
                 <div
                   class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
@@ -37,62 +32,28 @@
               </div>
             </div>
             <h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Latest Posts</h2>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#111418] text-base font-bold leading-tight">Optimizing Database Performance with Indexing</p>
-                  <p class="text-[#60758a] text-sm font-normal leading-normal">
-                    Learn how to effectively use database indexing to improve query performance and reduce response times in your applications.
-                  </p>
+            {% if site.posts.size > 0 %}
+              {% for post in site.posts limit:4 %}
+                <div class="p-4">
+                  <div class="flex items-stretch justify-between gap-4 rounded-lg">
+                    <div class="flex flex-col gap-1 flex-[2_2_0px]">
+                      <a class="text-[#111418] text-base font-bold leading-tight hover:underline" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                      <p class="text-[#60758a] text-sm font-normal leading-normal">
+                        {{ post.excerpt | strip_html | truncate: 150 }}
+                      </p>
+                    </div>
+                    <div
+                      class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                      style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdr4tdk7G5e0OHk7uB-WkxMNZCjV70bnjbWoJ-7VWFb8bszAQnUTNFR8BrhNdYiiyRti0FPe9gMOhx2SaJ19IMdKAzcKRn-3B826xsRLBMuLpP45SRm6O3ZZOhRu0A1pw2euMHE1awSSIzZkSOM-QyPz-6oL0mUHaeVY_dH_8eDw10t2SwMI7HiiYwL9afUgg5aEZBPTx1DkEMFcrHJK6lukMt_37VnAqAPySVK6UQh2-_Ap95oD0xnVvUlFbB6SHyEFl4941JlXAr");'
+                    ></div>
+                  </div>
                 </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAdr4tdk7G5e0OHk7uB-WkxMNZCjV70bnjbWoJ-7VWFb8bszAQnUTNFR8BrhNdYiiyRti0FPe9gMOhx2SaJ19IMdKAzcKRn-3B826xsRLBMuLpP45SRm6O3ZZOhRu0A1pw2euMHE1awSSIzZkSOM-QyPz-6oL0mUHaeVY_dH_8eDw10t2SwMI7HiiYwL9afUgg5aEZBPTx1DkEMFcrHJK6lukMt_37VnAqAPySVK6UQh2-_Ap95oD0xnVvUlFbB6SHyEFl4941JlXAr");'
-                ></div>
+              {% endfor %}
+            {% else %}
+              <div class="p-4">
+                <p class="text-[#60758a] text-sm font-normal leading-normal">아직 게시글이 없습니다. `_posts`에 새 글을 추가해보세요.</p>
               </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#111418] text-base font-bold leading-tight">Implementing Continuous Integration and Deployment (CI/CD)</p>
-                  <p class="text-[#60758a] text-sm font-normal leading-normal">
-                    Discover the benefits of CI/CD and how to set up a pipeline to automate your software delivery process, ensuring faster and more reliable releases.
-                  </p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBaGOtjutP5MZstLl1g3kk-rp3R5zRyQheZvUqUvYf7SgkXi3Fzw99mzTBdMImQOvyq94glYESvZmbii4JfW9A8DRaS7wcI3MKOqWlU1_O08P-G_V9b7ToRS-w_-8qoo3DzHnSa1clVR5nu3cfxFyjZ9skjYRfM7GFlcj0eGBAS_1hzwOyotN_WRhqN__kbkJdk0ro0huoO5lp1d4f9N8TvEJcO6k6U9IsdFXs3_rF5-c6SmOzXeOwhjllf_ZQeMRGUDULM3vxpA9T0");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#111418] text-base font-bold leading-tight">Securing Your Web Applications Against Common Threats</p>
-                  <p class="text-[#60758a] text-sm font-normal leading-normal">
-                    Understand common web application vulnerabilities and how to implement security measures to protect your applications from attacks.
-                  </p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmvus9APtohMReTqIsdoyRdHJfhEwxOEWJy8RCnTwFfor06DxDn87BM4tgSpQCmOf26Ss7sz9NVVRDMEpo9ji2poq8YtURrIHgiq4m5Fc5stFDRiOKrkXEg_ANAGUnU56yCe8it_NpV0eSjqijX9Y5SsH5Df7u8JeDClDjQkxzjztkxI7ByZDWWCAJOfAy1Li2lwBaRJ1PMlpd-BgnCyAAKKkNjnNqshp80bJXuufdB54ei7zLT4A6PNPKss_pVk7Cc1cGlJBcq_rj");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-lg">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-[#111418] text-base font-bold leading-tight">Introduction to Serverless Computing</p>
-                  <p class="text-[#60758a] text-sm font-normal leading-normal">
-                    Get started with serverless computing and learn how it can help you build and run applications without managing servers.
-                  </p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-EV6gv3vw-38Vj49HVZThTLhHDjnQq3wDWSzOzhfbbPTIK_jGgwtBZqeYqqGugBLpCLCSCSjbFMTEFsBGFlg0WYeCgWkHS1SuaVtJwwuSrWhzIM9blWke1dEqotn5TsSpNDHWQbu-sJ1dHHzDT_MQROE3B958ZQxExCe5vREhE_kdQSzn3WcnOlSNE0w3_UX-b6GmgmTgxnmjRLAbB8x3Ovw4AUi5grEvRrrq6DISVt2iO5X5m7E9ytmaCJgG9EUDD-cRthndaYRz");'
-                ></div>
-              </div>
-            </div>
+            {% endif %}
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Projects</p></div>
             <div class="p-4">
               <div class="flex items-stretch justify-between gap-4 rounded-lg">
