@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My GitHub Blog</title>
+    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css" />
+  </head>
+  <body>
+    <header class="mc-header">
+      <div class="mc-container mc-header-inner">
+        <a class="mc-logo" href="/">
+          <span class="mc-logo-mark">MORNING</span>
+          <span class="mc-logo-name">MINNONG CALM</span>
+        </a>
+        <button class="mc-nav-toggle" type="button" aria-label="메뉴 토글">
+          <i class="ri-menu-line"></i>
+        </button>
+        <nav class="mc-nav" id="mc-nav">
+          <a href="/">Home</a>
+          <a href="/about/">About</a>
+          <a href="/feed.xml">Feed</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mc-main">
+      
+      
+      
+
+      <section class="mc-hero mc-fade-up">
+        <div class="mc-container">
+          <header class="mc-headline">
+            <p class="mc-kicker">Digital Issue</p>
+            <h1>Journeys, Stories,<br />and Quiet Frames</h1>
+            <p>미니멀한 에디토리얼 구조의 홈입니다. 새 글을 작성하면 아래 카드와 상단 슬라이드에 자동 반영됩니다.</p>
+          </header>
+
+          
+            
+            <article class="mc-lead">
+              <a class="mc-lead-link" href="/minnong511.github.io/2025/05/30/welcome-to-my-blog.html">
+                <div class="mc-lead-image-wrap">
+                  <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" loading="lazy" />
+                </div>
+                <div class="mc-lead-copy">
+                  <p class="mc-issue">Cover Story</p>
+                  <h2>블로그에 오신 것을 환영합니다</h2>
+                  <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
+</p>
+                  <span class="mc-read">Read Feature <i class="ri-arrow-right-line"></i></span>
+                </div>
+              </a>
+            </article>
+          
+        </div>
+      </section>
+
+      <section class="mc-section mc-fade-up" style="--delay: 120ms">
+        <div class="mc-container">
+          <header class="mc-section-head mc-section-head-row">
+            <h2>Spotlight</h2>
+            <a class="mc-more" href="/feed.xml">RSS <i class="ri-rss-line"></i></a>
+          </header>
+
+          
+            <div class="mc-spotlight-grid">
+              
+                
+                <article class="mc-spotlight-card">
+                  <a href="/2025/05/30/welcome-to-my-blog.html">
+                    <img src="/assets/base_image/test_image.png" alt="블로그에 오신 것을 환영합니다" loading="lazy" />
+                    <div class="mc-spotlight-body">
+                      <h3>블로그에 오신 것을 환영합니다</h3>
+                      <p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
+</p>
+                    </div>
+                  </a>
+                </article>
+              
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="mc-section mc-fade-up" style="--delay: 200ms">
+        <div class="mc-container">
+          <header class="mc-section-head mc-section-head-row">
+            <h2>Latest Stories</h2>
+          </header>
+          
+            <p class="mc-empty">게시글이 늘어나면 여기에 최신 카드가 자동 배치됩니다.</p>
+          
+        </div>
+      </section>
+    </main>
+
+    <footer class="mc-footer">
+      <div class="mc-container mc-footer-inner">
+        <p>© 2026 My GitHub Blog</p>
+        <div class="mc-footer-links">
+          <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      var navButton = document.querySelector('.mc-nav-toggle');
+      var nav = document.getElementById('mc-nav');
+      if (navButton && nav) {
+        navButton.addEventListener('click', function () {
+          nav.classList.toggle('is-open');
+        });
+      }
+    </script>
+  </body>
+</html>

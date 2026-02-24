@@ -1,0 +1,155 @@
+---
+---
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}" />
+  </head>
+  <body>
+    <header class="mc-header">
+      <div class="mc-container mc-header-inner">
+        <a class="mc-logo" href="{{ '/' | relative_url }}">
+          <span class="mc-logo-mark">MORNING</span>
+          <span class="mc-logo-name">MINNONG CALM</span>
+        </a>
+        <button class="mc-nav-toggle" type="button" aria-label="메뉴 토글">
+          <i class="ri-menu-line"></i>
+        </button>
+        <nav class="mc-nav" id="mc-nav">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="{{ '/about/' | relative_url }}">About</a>
+          <a href="{{ '/feed.xml' | relative_url }}">Feed</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="mc-main">
+      {% assign lead_post = site.posts | first %}
+      {% assign spotlight_posts = site.posts | slice: 1, 3 %}
+      {% assign archive_posts = site.posts | slice: 4, 6 %}
+
+      <section class="mc-hero mc-fade-up">
+        <div class="mc-container">
+          <header class="mc-headline">
+            <p class="mc-kicker">Digital Issue</p>
+            <h1>Journeys, Stories,<br />and Quiet Frames</h1>
+            <p>{{ content | strip_html | strip_newlines }}</p>
+          </header>
+
+          {% if lead_post %}
+            {% assign lead_cover = lead_post.image | default: '/assets/base_image/test_image.png' %}
+            <article class="mc-lead">
+              <a class="mc-lead-link" href="{{ lead_post.url | relative_url }}">
+                <div class="mc-lead-image-wrap">
+                  <img src="{{ lead_cover | relative_url }}" alt="{{ lead_post.title }}" loading="lazy" />
+                </div>
+                <div class="mc-lead-copy">
+                  <p class="mc-issue">Cover Story</p>
+                  <h2>{{ lead_post.title }}</h2>
+                  <p>{{ lead_post.excerpt | strip_html | truncate: 220 }}</p>
+                  <span class="mc-read">Read Feature <i class="ri-arrow-right-line"></i></span>
+                </div>
+              </a>
+            </article>
+          {% else %}
+            <div class="mc-empty">포스트를 추가하면 여기에 대표 콘텐츠가 표시됩니다.</div>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="mc-section mc-fade-up" style="--delay: 120ms">
+        <div class="mc-container">
+          <header class="mc-section-head mc-section-head-row">
+            <h2>Spotlight</h2>
+            <a class="mc-more" href="{{ '/feed.xml' | relative_url }}">RSS <i class="ri-rss-line"></i></a>
+          </header>
+
+          {% if spotlight_posts.size > 0 %}
+            <div class="mc-spotlight-grid">
+              {% for post in spotlight_posts %}
+                {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
+                <article class="mc-spotlight-card">
+                  <a href="{{ post.url | relative_url }}">
+                    <img src="{{ cover | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+                    <div class="mc-spotlight-body">
+                      <h3>{{ post.title }}</h3>
+                      <p>{{ post.excerpt | strip_html | truncate: 95 }}</p>
+                    </div>
+                  </a>
+                </article>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="mc-empty">스포트라이트 항목을 위해 2개 이상의 포스트가 필요합니다.</p>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="mc-section mc-fade-up" style="--delay: 200ms">
+        <div class="mc-container">
+          <header class="mc-section-head mc-section-head-row">
+            <h2>Latest Stories</h2>
+          </header>
+          {% if archive_posts.size > 0 %}
+            <div class="mc-grid">
+              {% for post in archive_posts %}
+                {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
+                <article class="mc-card">
+                  <a href="{{ post.url | relative_url }}" class="mc-card-link">
+                    <div class="mc-card-image-wrap">
+                      <img class="mc-card-image" src="{{ cover | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+                    </div>
+                    <div class="mc-card-body">
+                      <div class="mc-card-topline">
+                        {% if post.categories and post.categories.size > 0 %}
+                          <span>{{ post.categories | first }}</span>
+                        {% else %}
+                          <span>Post</span>
+                        {% endif %}
+                        <time>{{ post.date | date: "%Y.%m.%d" }}</time>
+                      </div>
+                      <h3>{{ post.title }}</h3>
+                      <p>{{ post.excerpt | strip_html | truncate: 120 }}</p>
+                    </div>
+                  </a>
+                </article>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="mc-empty">게시글이 늘어나면 여기에 최신 카드가 자동 배치됩니다.</p>
+          {% endif %}
+        </div>
+      </section>
+    </main>
+
+    <footer class="mc-footer">
+      <div class="mc-container mc-footer-inner">
+        <p>© {{ "now" | date: "%Y" }} {{ site.title }}</p>
+        <div class="mc-footer-links">
+          <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+    <script>
+      var navButton = document.querySelector('.mc-nav-toggle');
+      var nav = document.getElementById('mc-nav');
+      if (navButton && nav) {
+        navButton.addEventListener('click', function () {
+          nav.classList.toggle('is-open');
+        });
+      }
+    </script>
+  </body>
+</html>
