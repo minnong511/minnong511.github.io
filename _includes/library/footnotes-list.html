@@ -1,0 +1,19 @@
+{% assign fn_title = include.title | default: "References" %}
+{% assign fn_items = include.items | default: "" | split: "||" %}
+
+<section class="footnotes-card">
+  <header class="footnotes-head">
+    <span>{{ fn_title }}</span>
+  </header>
+  <ol class="footnotes-list">
+    {% for item in fn_items %}
+      {% assign parts = item | split: "|" %}
+      {% assign fid = parts[0] | strip %}
+      {% assign ftext = parts[1] | strip %}
+      <li id="fn-{{ fid }}">
+        {{ ftext }}
+        <a class="footnote-back" href="#fnref-{{ fid }}">↩</a>
+      </li>
+    {% endfor %}
+  </ol>
+</section>

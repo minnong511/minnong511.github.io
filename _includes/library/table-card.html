@@ -1,0 +1,36 @@
+{% assign table_caption = include.caption | default: "" %}
+{% assign table_headers = include.headers | default: "" | split: "|" %}
+{% assign table_rows = include.rows | default: "" | split: "||" %}
+
+<section class="table-card">
+  {% if table_caption != "" %}
+    <header class="table-card-header">
+      <span>{{ table_caption }}</span>
+    </header>
+  {% endif %}
+  <div class="table-card-scroll">
+    <table class="table-card-table">
+      {% if table_headers.size > 0 and table_headers[0] != "" %}
+        <thead>
+          <tr>
+            {% for head in table_headers %}
+              <th>{{ head | strip }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+      {% endif %}
+      <tbody>
+        {% for row in table_rows %}
+          {% assign cells = row | split: "|" %}
+          {% if cells.size > 0 and cells[0] != "" %}
+            <tr>
+              {% for cell in cells %}
+                <td>{{ cell | strip }}</td>
+              {% endfor %}
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>

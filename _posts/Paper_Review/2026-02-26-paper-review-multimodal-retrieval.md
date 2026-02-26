@@ -4,7 +4,7 @@ title: "논문 리뷰: 멀티모달 검색 모델 요약"
 date: 2026-02-26 09:30:00 +0900
 categories: [Paper_Review]
 tags: [paper-review, multimodal, retrieval]
-image: /assets/base_image/test_image.png
+image: https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1400&q=80
 ---
 
 이번 리뷰에서는 텍스트와 이미지를 함께 다루는 멀티모달 검색 모델의 핵심 아이디어를 정리한다.

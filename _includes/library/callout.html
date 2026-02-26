@@ -1,0 +1,13 @@
+{% assign callout_type = include.type | default: "note" %}
+{% assign callout_title = include.title | default: "Note" %}
+{% assign callout_content = include.content | default: "" %}
+
+<section class="callout callout-{{ callout_type }}">
+  <div class="callout-head">
+    <span class="callout-dot" aria-hidden="true"></span>
+    <strong>{{ callout_title }}</strong>
+  </div>
+  {% if callout_content != "" %}
+    <p>{{ callout_content }}</p>
+  {% endif %}
+</section>

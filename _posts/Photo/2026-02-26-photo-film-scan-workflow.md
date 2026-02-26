@@ -4,7 +4,7 @@ title: "필름 스캔 워크플로우 정리"
 date: 2026-02-26 09:40:00 +0900
 categories: [Photo]
 tags: [photo, film, workflow]
-image: /assets/base_image/test_image.png
+image: https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&fit=crop&w=1400&q=80
 ---
 
 필름 촬영 후 스캔부터 보정까지의 작업 흐름을 간단히 정리해봤다.

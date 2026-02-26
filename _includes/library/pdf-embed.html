@@ -1,0 +1,19 @@
+{% assign pdf_title = include.title | default: "PDF Preview" %}
+{% assign pdf_src = include.src | default: "" %}
+{% assign pdf_height = include.height | default: "520" %}
+
+{% if pdf_src != "" %}
+  <section class="pdf-card">
+    <header class="pdf-card-header">
+      <span class="pdf-card-title">{{ pdf_title }}</span>
+      <a class="pdf-card-open" href="{{ pdf_src }}" target="_blank" rel="noreferrer noopener">Open PDF</a>
+    </header>
+    <iframe
+      class="pdf-card-frame"
+      src="{{ pdf_src }}"
+      height="{{ pdf_height }}"
+      loading="lazy"
+      title="{{ pdf_title }}"
+    ></iframe>
+  </section>
+{% endif %}

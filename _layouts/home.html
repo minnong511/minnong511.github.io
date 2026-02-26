@@ -20,7 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="{{ '/assets/css/home-mag.css' | relative_url }}" rel="stylesheet" />
   </head>
-  <body id="home" data-baseurl="{{ site.baseurl | default: '' }}">
+  <body id="home" class="is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
@@ -53,7 +53,7 @@
             <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
             <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
             <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
-            <li><a href="{{ '/search/?q=blog+update' | relative_url }}">Blog update</a></li>
+            <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
           </ul>
         </nav>
       </div>
@@ -141,6 +141,10 @@
           menuLayer.classList.toggle('is-hidden');
         });
       }
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
 
       if (issueDate) {
         var now = new Date();

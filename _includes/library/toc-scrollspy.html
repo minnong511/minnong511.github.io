@@ -1,0 +1,87 @@
+{% assign spy_title = include.title | default: "On this page" %}
+{% assign spy_target = include.target | default: ".page-content" %}
+
+<aside class="inline-toc js-inline-toc" data-toc-target="{{ spy_target }}">
+  <h3>{{ spy_title }}</h3>
+  <ul></ul>
+</aside>
+
+<script>
+  (function () {
+    if (window.__inlineTocInit) return;
+    window.__inlineTocInit = true;
+
+    function slugify(text) {
+      return (text || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-가-힣]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+    }
+
+    function initToc(toc) {
+      if (toc.dataset.ready === 'true') return;
+      toc.dataset.ready = 'true';
+
+      var targetSelector = toc.dataset.tocTarget || '.page-content';
+      var scope = document.querySelector(targetSelector);
+      var list = toc.querySelector('ul');
+      if (!scope || !list) return;
+
+      var headings = Array.prototype.slice.call(scope.querySelectorAll('h2, h3'));
+      if (!headings.length) {
+        toc.classList.add('is-hidden');
+        return;
+      }
+
+      var used = {};
+      headings.forEach(function (h, idx) {
+        var text = (h.textContent || '').trim();
+        if (!text) return;
+        var id = h.id || slugify(text) || ('spy-section-' + (idx + 1));
+        if (used[id]) id = id + '-' + (idx + 1);
+        used[id] = true;
+        h.id = id;
+
+        var li = document.createElement('li');
+        if (h.tagName.toLowerCase() === 'h3') li.className = 'depth-3';
+        var a = document.createElement('a');
+        a.href = '#' + id;
+        a.textContent = text;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+
+      var links = Array.prototype.slice.call(list.querySelectorAll('a'));
+      if (!('IntersectionObserver' in window)) return;
+      var map = {};
+      links.forEach(function (a) {
+        map[a.getAttribute('href').slice(1)] = a;
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var link = map[entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(function (x) { x.classList.remove('is-active'); });
+            link.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0.1 });
+
+      headings.forEach(function (h) { io.observe(h); });
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-inline-toc').forEach(initToc);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>

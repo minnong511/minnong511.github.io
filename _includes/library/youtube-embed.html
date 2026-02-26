@@ -1,0 +1,29 @@
+{% assign yt_title = include.title | default: "YouTube" %}
+{% assign yt_height = include.height | default: "380" %}
+{% assign yt_video_id = include.video_id | default: "" %}
+{% assign yt_query = include.query | default: "" %}
+{% assign yt_query_encoded = yt_query | url_encode %}
+
+{% if yt_video_id != "" %}
+  {% assign yt_src = "https://www.youtube-nocookie.com/embed/" | append: yt_video_id %}
+  {% assign yt_open_url = "https://www.youtube.com/watch?v=" | append: yt_video_id %}
+{% else %}
+  {% assign yt_src = "https://www.youtube.com/embed?listType=search&list=" | append: yt_query_encoded %}
+  {% assign yt_open_url = "https://www.youtube.com/results?search_query=" | append: yt_query_encoded %}
+{% endif %}
+
+<section class="video-card">
+  <header class="video-card-header">
+    <span class="video-card-title">{{ yt_title }}</span>
+    <a class="video-card-open" href="{{ yt_open_url }}" target="_blank" rel="noreferrer noopener">Open on YouTube</a>
+  </header>
+  <iframe
+    class="video-card-frame"
+    src="{{ yt_src }}"
+    height="{{ yt_height }}"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    title="{{ yt_title }}"
+  ></iframe>
+</section>

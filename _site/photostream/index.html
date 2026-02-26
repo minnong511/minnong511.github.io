@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Photo Stream | My GitHub Blog</title>
+    <title>Photo Stream | Minnong's blog</title>
     <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,7 +45,7 @@
             <li><a href="/photostream/">Photo</a></li>
             <li><a href="/archive/">Archive</a></li>
             <li><a href="/tags/">Tags</a></li>
-            <li><a href="/search/?q=blog+update">Blog update</a></li>
+            <li><a href="/blog-update/">Blog update</a></li>
           </ul>
         </nav>
       </div>
@@ -57,12 +57,13 @@
           <article class="page-panel">
             
             <div class="page-content">
-              <div class="photo-archive-intro">
-  <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
-</div>
-
+              
 <div id="photoArchiveApp" class="photo-archive-app">
   <div class="photo-archive-view is-active" data-view="albums">
+    <header class="photo-archive-intro">
+      <h1>Photo Stream</h1>
+      <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
+    </header>
     <div class="photo-archive-grid" id="photoAlbumGrid"></div>
   </div>
 
@@ -164,7 +165,9 @@
 
     function setView(name) {
       views.forEach(function (view) {
-        view.classList.toggle("is-active", view.getAttribute("data-view") === name);
+        var isTarget = view.getAttribute("data-view") === name;
+        view.classList.toggle("is-active", isTarget);
+        view.style.display = isTarget ? "block" : "none";
       });
     }
 
@@ -241,6 +244,7 @@
       if (event.key === "Escape") closeLightbox();
     });
 
+    setView("albums");
     renderAlbums();
   })();
 </script>

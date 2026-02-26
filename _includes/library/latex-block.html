@@ -1,0 +1,43 @@
+{% assign latex_title = include.title | default: "" %}
+{% assign latex_formula = include.formula | default: "" %}
+
+<section class="latex-card js-latex-block">
+  {% if latex_title != "" %}
+    <header class="latex-card-header">
+      <span class="latex-card-title">{{ latex_title }}</span>
+      <span class="latex-card-badge">LaTeX</span>
+    </header>
+  {% endif %}
+  <div class="latex-card-body">\[{{ latex_formula }}\]</div>
+</section>
+
+<script>
+  (function () {
+    if (!window.__latexLibInit) {
+      window.__latexLibInit = true;
+      window.MathJax = window.MathJax || {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+        svg: { fontCache: 'global' }
+      };
+
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise(
+            Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+          );
+        }
+      };
+      document.head.appendChild(script);
+      return;
+    }
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise(
+        Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+      );
+    }
+  })();
+</script>

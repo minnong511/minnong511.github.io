@@ -21,7 +21,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}" />
   </head>
-  <body id="article" data-baseurl="{{ site.baseurl | default: '' }}">
+  <body id="article" class="is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
@@ -53,7 +53,7 @@
             <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
             <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
             <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
-            <li><a href="{{ '/search/?q=blog+update' | relative_url }}">Blog update</a></li>
+            <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
           </ul>
         </nav>
       </div>
@@ -74,9 +74,6 @@
 
             <div class="page-content" style="margin-top: 0.9rem;">
               <p style="margin: 0; font-size: 0.8rem;">{{ page.date | date: "%Y.%m.%d" }}</p>
-              {% if page.excerpt %}
-                <p>{{ page.excerpt | strip_html }}</p>
-              {% endif %}
 
               {{ content }}
             </div>
@@ -135,6 +132,20 @@
               </p>
             </section>
           </article>
+
+          <aside class="post-toc is-hidden is-collapsed" id="postToc" aria-label="Table of contents">
+            <button class="post-toc-fab" id="postTocToggle" type="button" aria-expanded="false" aria-controls="postTocNav" aria-label="목차 열기/닫기">
+              <i class="ri-list-unordered"></i>
+            </button>
+            <div class="post-toc-panel" id="postTocNav">
+              <div class="post-toc-head">
+                <h2 class="post-toc-title">Contents</h2>
+              </div>
+              <nav>
+                <ul id="postTocList"></ul>
+              </nav>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -144,29 +155,34 @@
             <h2 class="title page-title">Related Posts</h2>
           </header>
           <div class="columns card-grid">
-            {% for post in site.posts limit: 6 %}
-              {% unless post.url == page.url %}
-                {% assign card_cover = post.image | default: '/assets/base_image/test_image.png' %}
-                <div class="column card-column">
-                  <a href="{{ post.url | relative_url }}" class="card-link">
-                    <article class="card">
-                      <header class="card-header">
-                        <div class="title-small">{{ post.categories | first | default: "Post" }}</div>
-                        <div class="title-small">{{ post.date | date: "%Y.%m.%d" }}</div>
-                      </header>
-                      <div class="card-columns">
-                        <div class="card-image-wrap">
-                          <img src="{{ card_cover | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+            {% assign current_category = page.categories | first %}
+            {% assign related_count = 0 %}
+            {% for post in site.posts %}
+              {% if post.url != page.url and related_count < 3 %}
+                {% if current_category and post.categories contains current_category %}
+                  {% assign card_cover = post.image | default: '/assets/base_image/test_image.png' %}
+                  <div class="column card-column">
+                    <a href="{{ post.url | relative_url }}" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">{{ post.categories | first | default: "Post" }}</div>
+                          <div class="title-small">{{ post.date | date: "%Y.%m.%d" }}</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="{{ card_cover | relative_url }}" alt="{{ post.title }}" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>{{ post.title }}</h2>
+                            <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+                          </div>
                         </div>
-                        <div class="card-content">
-                          <h2>{{ post.title }}</h2>
-                          <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
-                        </div>
-                      </div>
-                    </article>
-                  </a>
-                </div>
-              {% endunless %}
+                      </article>
+                    </a>
+                  </div>
+                  {% assign related_count = related_count | plus: 1 %}
+                {% endif %}
+              {% endif %}
             {% endfor %}
           </div>
         </div>
@@ -175,11 +191,14 @@
 
     {% include site-footer.html %}
 
-    <div class="lightbox is-hidden" id="imageLightbox" aria-hidden="true">
-      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close image">
+    <div class="photo-archive-lightbox is-hidden" id="imageLightbox" aria-hidden="true">
+      <button class="photo-archive-lightbox-close" id="lightboxClose" type="button" aria-label="Close image">
         <i class="ri-close-line"></i>
       </button>
-      <img class="lightbox-image" id="lightboxImage" alt="" />
+      <div class="photo-archive-lightbox-inner">
+        <img id="lightboxImage" alt="" />
+        <p id="lightboxCaption"></p>
+      </div>
     </div>
     <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
 
@@ -193,7 +212,11 @@
       var lightbox = document.getElementById('imageLightbox');
       var lightboxImage = document.getElementById('lightboxImage');
       var lightboxClose = document.getElementById('lightboxClose');
+      var lightboxCaption = document.getElementById('lightboxCaption');
       var commentsFallback = document.getElementById('commentsFallback');
+      var postToc = document.getElementById('postToc');
+      var postTocList = document.getElementById('postTocList');
+      var postTocToggle = document.getElementById('postTocToggle');
       var copyToastTimer = null;
 
       if (menuButton && menuLayer) {
@@ -201,6 +224,10 @@
           menuLayer.classList.toggle('is-hidden');
         });
       }
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
 
       function showCopyToast(message) {
         if (!copyToast) return;
@@ -252,17 +279,24 @@
           lightboxImage.removeAttribute('src');
           lightboxImage.removeAttribute('alt');
         }
+        if (lightboxCaption) {
+          lightboxCaption.textContent = '';
+        }
       }
 
       if (postPanel && lightbox && lightboxImage) {
         postPanel.querySelectorAll('.cover-image img, .page-content img').forEach(function (img) {
           if (img.closest('a')) return;
+          if (img.closest('.image-compare-stage')) return;
           img.classList.add('lightbox-target');
           img.addEventListener('click', function () {
             var src = img.getAttribute('src');
             if (!src) return;
             lightboxImage.setAttribute('src', src);
             lightboxImage.setAttribute('alt', img.getAttribute('alt') || '');
+            if (lightboxCaption) {
+              lightboxCaption.textContent = img.getAttribute('alt') || '';
+            }
             lightbox.classList.remove('is-hidden');
             lightbox.setAttribute('aria-hidden', 'false');
           });
@@ -286,6 +320,51 @@
       document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') closeLightbox();
       });
+
+      function slugify(text) {
+        return (text || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-가-힣]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      if (postPanel && postToc && postTocList) {
+        var headings = Array.prototype.slice.call(postPanel.querySelectorAll('.page-content h2, .page-content h3'));
+        var usedIds = {};
+
+        headings.forEach(function (heading, idx) {
+          var text = (heading.textContent || '').trim();
+          if (!text) return;
+
+          var id = heading.id || slugify(text) || ('section-' + (idx + 1));
+          if (usedIds[id]) {
+            id = id + '-' + (idx + 1);
+          }
+          usedIds[id] = true;
+          heading.id = id;
+
+          var item = document.createElement('li');
+          if (heading.tagName.toLowerCase() === 'h3') item.className = 'toc-depth-3';
+          var link = document.createElement('a');
+          link.href = '#' + id;
+          link.textContent = text;
+          item.appendChild(link);
+          postTocList.appendChild(item);
+        });
+
+        if (postTocList.children.length > 0) {
+          postToc.classList.remove('is-hidden');
+        }
+      }
+
+      if (postToc && postTocToggle) {
+        postTocToggle.addEventListener('click', function () {
+          var collapsed = postToc.classList.toggle('is-collapsed');
+          postTocToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        });
+      }
 
       if (commentsFallback) {
         setTimeout(function () {

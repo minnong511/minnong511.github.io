@@ -1,0 +1,11 @@
+{% assign ap_title = include.title | default: "Audio" %}
+{% assign ap_src = include.src | default: "" %}
+
+{% if ap_src != "" %}
+  <section class="audio-card">
+    <header class="audio-head">
+      <span>{{ ap_title }}</span>
+    </header>
+    <audio controls preload="none" src="{{ ap_src }}"></audio>
+  </section>
+{% endif %}

@@ -1,0 +1,68 @@
+{% assign tabs_id = include.id | default: "tabs" %}
+{% assign tab_titles = include.titles | default: "" | split: "|" %}
+{% assign tab_contents = include.contents | default: "" | split: "||" %}
+
+<section class="tabs-card js-tabs" id="{{ tabs_id }}">
+  <div class="tabs-nav" role="tablist" aria-label="Tabs">
+    {% for title in tab_titles %}
+      <button
+        class="tabs-btn{% if forloop.first %} is-active{% endif %}"
+        type="button"
+        role="tab"
+        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+        data-tab-index="{{ forloop.index0 }}"
+      >
+        {{ title | strip }}
+      </button>
+    {% endfor %}
+  </div>
+  <div class="tabs-panels">
+    {% for content in tab_contents %}
+      <div class="tabs-panel{% if forloop.first %} is-active{% endif %}" data-tab-panel="{{ forloop.index0 }}">
+        <p>{{ content | strip }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  (function () {
+    if (window.__tabsLibInit) return;
+    window.__tabsLibInit = true;
+
+    function initTabs(card) {
+      if (card.dataset.ready === 'true') return;
+      card.dataset.ready = 'true';
+      var buttons = Array.prototype.slice.call(card.querySelectorAll('.tabs-btn'));
+      var panels = Array.prototype.slice.call(card.querySelectorAll('.tabs-panel'));
+      if (!buttons.length || !panels.length) return;
+
+      function activate(index) {
+        buttons.forEach(function (btn, idx) {
+          var active = idx === index;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(function (panel, idx) {
+          panel.classList.toggle('is-active', idx === index);
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activate(Number(btn.dataset.tabIndex || 0));
+        });
+      });
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-tabs').forEach(initTabs);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>

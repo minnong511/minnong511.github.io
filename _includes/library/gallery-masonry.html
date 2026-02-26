@@ -1,0 +1,15 @@
+{% assign g_title = include.title | default: "Gallery" %}
+{% assign g_images = include.images | default: "" | split: "|" %}
+
+<section class="masonry-card">
+  <header class="masonry-head">
+    <span>{{ g_title }}</span>
+  </header>
+  <div class="masonry-grid">
+    {% for image in g_images %}
+      <figure class="masonry-item">
+        <img src="{{ image | strip }}" alt="Gallery image {{ forloop.index }}" loading="lazy" />
+      </figure>
+    {% endfor %}
+  </div>
+</section>

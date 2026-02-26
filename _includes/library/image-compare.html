@@ -1,0 +1,61 @@
+{% assign compare_title = include.title | default: "" %}
+{% assign compare_before = include.before | default: "" %}
+{% assign compare_after = include.after | default: "" %}
+{% assign compare_before_label = include.before_label | default: "Before" %}
+{% assign compare_after_label = include.after_label | default: "After" %}
+{% assign compare_start = include.start | default: "50" %}
+
+<section class="image-compare-card js-image-compare" data-start="{{ compare_start }}">
+  {% if compare_title != "" %}
+    <header class="image-compare-header">
+      <span>{{ compare_title }}</span>
+    </header>
+  {% endif %}
+  <div class="image-compare-stage">
+    <img class="image-compare-before" src="{{ compare_before }}" alt="{{ compare_before_label }}" loading="lazy" />
+    <div class="image-compare-after-wrap">
+      <img class="image-compare-after" src="{{ compare_after }}" alt="{{ compare_after_label }}" loading="lazy" />
+    </div>
+    <div class="image-compare-line" aria-hidden="true"></div>
+    <div class="image-compare-label before">{{ compare_before_label }}</div>
+    <div class="image-compare-label after">{{ compare_after_label }}</div>
+  </div>
+  <input class="image-compare-slider" type="range" min="0" max="100" value="{{ compare_start }}" />
+</section>
+
+<script>
+  (function () {
+    if (window.__imageCompareInit) return;
+    window.__imageCompareInit = true;
+
+    function initCompare(card) {
+      if (card.dataset.ready === 'true') return;
+      card.dataset.ready = 'true';
+
+      var stage = card.querySelector('.image-compare-stage');
+      var afterWrap = card.querySelector('.image-compare-after-wrap');
+      var line = card.querySelector('.image-compare-line');
+      var slider = card.querySelector('.image-compare-slider');
+      if (!stage || !afterWrap || !line || !slider) return;
+
+      function update() {
+        var value = Number(slider.value || 50);
+        afterWrap.style.width = value + '%';
+        line.style.left = value + '%';
+      }
+
+      slider.addEventListener('input', update);
+      update();
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-image-compare').forEach(initCompare);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>

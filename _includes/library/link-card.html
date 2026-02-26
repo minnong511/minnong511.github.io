@@ -1,0 +1,8 @@
+{% assign card_url = include.url | default: '#' %}
+{% assign card_title = include.title | default: card_url %}
+{% assign card_desc = include.desc | default: '' %}
+{% assign card_host = include.host | default: card_url | remove: 'https://' | remove: 'http://' | split: '/' | first %}
+{% assign card_new_tab = include.new_tab | default: 'true' %}
+{% capture card_desc_html %}{% if card_desc != '' %}<span class="link-card-desc">{{ card_desc }}</span>{% endif %}{% endcapture %}
+
+<a class="link-card" href="{{ card_url }}"{% if card_new_tab == 'true' %} target="_blank" rel="noreferrer noopener"{% endif %}><span class="link-card-main"><span class="link-card-title">{{ card_title }}</span>{{ card_desc_html }}<span class="link-card-host">{{ card_host }}</span></span><i class="ri-external-link-line" aria-hidden="true"></i></a>

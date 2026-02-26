@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>3.라이브러리 제작 | Minnong's blog</title>
+    <meta name="description" content="오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다." />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="3.라이브러리 제작 | Minnong's blog" />
+    <meta property="og:description" content="오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다." />
+    <meta property="og:url" content="https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/" />
+    
+      <meta property="og:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" />
+    
+
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css" />
+  </head>
+  <body id="article" class="is-preload" data-baseurl="">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="/search/" method="get" class="search-form">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+        <div class="search-live-results" id="searchLiveResults"></div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a class="header-logo" href="/">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><button class="toggle-search" type="button" aria-label="검색"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button" aria-label="메뉴"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/photostream/">Photo</a></li>
+            <li><a href="/archive/">Archive</a></li>
+            <li><a href="/tags/">Tags</a></li>
+            <li><a href="/blog-update/">Blog update</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main page-main">
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <h1 class="title page-title">3.라이브러리 제작</h1>
+          </header>
+
+          <article class="page-panel">
+            
+            <div class="cover-image">
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" alt="3.라이브러리 제작" loading="lazy" />
+            </div>
+
+            <div class="page-content" style="margin-top: 0.9rem;">
+              <p style="margin: 0; font-size: 0.8rem;">2026.02.26</p>
+
+              <p>오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.<br />
+컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.</p>
+
+<p>이번에 만든 라이브러리 모듈은 아래처럼 정리했다.</p>
+
+<h2 id="1-link-card">1) link-card</h2>
+
+<p>노션 스타일 링크 블록.</p>
+
+<p><a class="link-card" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noreferrer noopener"><span class="link-card-main"><span class="link-card-title">블로그 저장소</span><span class="link-card-desc">현재 블로그 소스 코드 저장소</span><span class="link-card-host">github.com</span></span><i class="ri-external-link-line" aria-hidden="true"></i></a></p>
+
+<h2 id="2-code-snippet">2) code-snippet</h2>
+
+<p>다크 테마 + 복사 버튼 + 파이썬 하이라이트 지원.</p>
+
+<section class="code-snippet-card js-code-snippet">
+  <header class="code-snippet-header">
+    <span class="code-snippet-title">선형회귀 코드 예시</span>
+    <span class="code-snippet-tools">
+      <span class="code-snippet-lang">python</span>
+      <button class="code-snippet-copy" type="button" aria-label="Copy code">Copy</button>
+    </span>
+  </header>
+  <pre class="code-snippet-pre"><code class="language-python" data-lang="python">import torch
+import torch.nn as nn
+import torch.optim as optim
+
+x = torch.tensor([[1.0], [2.0], [3.0], [4.0]])
+y = torch.tensor([[3.0], [5.0], [7.0], [9.0]])  # y = 2x + 1
+
+model = nn.Linear(1, 1)
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+for epoch in range(300):
+    pred = model(x)
+    loss = criterion(pred, y)
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.item())</code></pre>
+</section>
+
+<script>
+  (function () {
+    if (window.__codeSnippetLibInit) return;
+    window.__codeSnippetLibInit = true;
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function highlightPython(raw) {
+      var tokenRegex = /(#.*$)|("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|\b(import|from|as|def|class|for|while|if|elif|else|try|except|finally|return|with|in|is|and|or|not|None|True|False|lambda|pass|break|continue|yield|raise|global|nonlocal|assert|del)\b|\b(print|len|range|list|dict|set|tuple|int|float|str|bool|enumerate|zip|map|filter|sum|min|max)\b|\b(\d+(?:\.\d+)?)\b|(@[A-Za-z_][A-Za-z0-9_]*)/gm;
+      var out = '';
+      var last = 0;
+      var match;
+
+      while ((match = tokenRegex.exec(raw)) !== null) {
+        out += escapeHtml(raw.slice(last, match.index));
+        var cls = 'py-text';
+        if (match[1]) cls = 'py-comment';
+        else if (match[2]) cls = 'py-string';
+        else if (match[3]) cls = 'py-keyword';
+        else if (match[4]) cls = 'py-builtin';
+        else if (match[5]) cls = 'py-number';
+        else if (match[6]) cls = 'py-decorator';
+        out += '<span class="' + cls + '">' + escapeHtml(match[0]) + '</span>';
+        last = tokenRegex.lastIndex;
+      }
+      out += escapeHtml(raw.slice(last));
+      return out;
+    }
+
+    function enhanceSnippets() {
+      document.querySelectorAll('.js-code-snippet').forEach(function (card) {
+        if (card.dataset.ready === 'true') return;
+        card.dataset.ready = 'true';
+
+        var code = card.querySelector('code');
+        if (!code) return;
+
+        var raw = code.textContent || '';
+        var lang = (code.dataset.lang || '').toLowerCase();
+        if (lang === 'python' || lang === 'py') {
+          code.innerHTML = highlightPython(raw);
+        } else {
+          code.textContent = raw;
+        }
+      });
+    }
+
+    function copyToClipboard(text, onDone, onFail) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onDone).catch(onFail);
+        return;
+      }
+
+      var input = document.createElement('textarea');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand('copy');
+        onDone();
+      } catch (e) {
+        onFail();
+      }
+      document.body.removeChild(input);
+    }
+
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('.code-snippet-copy');
+      if (!button) return;
+      var card = button.closest('.js-code-snippet');
+      if (!card) return;
+      var code = card.querySelector('code');
+      if (!code) return;
+
+      var original = button.textContent;
+      copyToClipboard(code.textContent || '', function () {
+        button.textContent = 'Copied';
+        setTimeout(function () {
+          button.textContent = original;
+        }, 1200);
+      }, function () {
+        button.textContent = 'Failed';
+        setTimeout(function () {
+          button.textContent = original;
+        }, 1200);
+      });
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', enhanceSnippets);
+    } else {
+      enhanceSnippets();
+    }
+  })();
+</script>
+
+<h2 id="3-latex-block">3) latex-block</h2>
+
+<p>MathJax 기반 수식 카드 렌더.</p>
+
+<section class="latex-card js-latex-block">
+  
+    <header class="latex-card-header">
+      <span class="latex-card-title">선형회귀 예시 수식</span>
+      <span class="latex-card-badge">LaTeX</span>
+    </header>
+  
+  <div class="latex-card-body">\[
+\hat{y} = wx + b,\quad
+\mathcal{L}(w,b)=\frac{1}{N}\sum_{i=1}^{N}(y_i-(wx_i+b))^2
+\]</div>
+</section>
+
+<script>
+  (function () {
+    if (!window.__latexLibInit) {
+      window.__latexLibInit = true;
+      window.MathJax = window.MathJax || {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+        svg: { fontCache: 'global' }
+      };
+
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise(
+            Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+          );
+        }
+      };
+      document.head.appendChild(script);
+      return;
+    }
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise(
+        Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+      );
+    }
+  })();
+</script>
+
+<h2 id="4-google-map">4) google-map</h2>
+
+<p>장소 검색 기반 지도 임베드.</p>
+
+<section class="map-card">
+  <header class="map-card-header">
+    <span class="map-card-title">명동교자 명동점</span>
+    <a class="map-card-open" href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AA%85%EB%8F%99%EA%B5%90%EC%9E%90+%EB%AA%85%EB%8F%99%EC%A0%90+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%EB%AA%85%EB%8F%9910%EA%B8%B8+29" target="_blank" rel="noreferrer noopener">Open in Google Maps</a>
+  </header>
+  <iframe class="map-card-frame" src="https://maps.google.com/maps?q=%EB%AA%85%EB%8F%99%EA%B5%90%EC%9E%90+%EB%AA%85%EB%8F%99%EC%A0%90+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%EB%AA%85%EB%8F%9910%EA%B8%B8+29&amp;z=17&amp;output=embed" height="320" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="명동교자 명동점"></iframe>
+</section>
+
+<h2 id="5-youtube-embed">5) youtube-embed</h2>
+
+<p>영상 ID/검색어 기반 유튜브 임베드.</p>
+
+<section class="video-card">
+  <header class="video-card-header">
+    <span class="video-card-title">명동교자 관련 영상</span>
+    <a class="video-card-open" href="https://www.youtube.com/watch?v=8Qn0RoQTfaQ" target="_blank" rel="noreferrer noopener">Open on YouTube</a>
+  </header>
+  <iframe class="video-card-frame" src="https://www.youtube-nocookie.com/embed/8Qn0RoQTfaQ" height="320" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" title="명동교자 관련 영상"></iframe>
+</section>
+
+<h2 id="6-callout">6) callout</h2>
+
+<section class="callout callout-tip">
+  <div class="callout-head">
+    <span class="callout-dot" aria-hidden="true"></span>
+    <strong>Tip</strong>
+  </div>
+  
+    <p>모듈화를 해두면 포스트를 쓸 때 포맷 고민 없이 콘텐츠 작성에 집중할 수 있다.</p>
+  
+</section>
+
+<h2 id="7-table">7) table</h2>
+
+<section class="table-card">
+  
+    <header class="table-card-header">
+      <span>오늘 추가한 모듈 상태</span>
+    </header>
+  
+  <div class="table-card-scroll">
+    <table class="table-card-table">
+      
+        <thead>
+          <tr>
+            
+              <th>모듈</th>
+            
+              <th>용도</th>
+            
+              <th>상태</th>
+            
+          </tr>
+        </thead>
+      
+      <tbody>
+        
+          
+          
+            <tr>
+              
+                <td>callout</td>
+              
+                <td>중요 문구 강조</td>
+              
+                <td>완료</td>
+              
+            </tr>
+          
+        
+          
+          
+            <tr>
+              
+                <td>table</td>
+              
+                <td>데이터 비교/정리</td>
+              
+                <td>완료</td>
+              
+            </tr>
+          
+        
+          
+          
+            <tr>
+              
+                <td>image compare</td>
+              
+                <td>전후 이미지 비교</td>
+              
+                <td>완료</td>
+              
+            </tr>
+          
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<h2 id="8-image-compare">8) image compare</h2>
+
+<section class="image-compare-card js-image-compare" data-start="45">
+  
+    <header class="image-compare-header">
+      <span>Photo Tone Compare</span>
+    </header>
+  
+  <div class="image-compare-stage">
+    <img class="image-compare-before" src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Before" loading="lazy" />
+    <div class="image-compare-after-wrap">
+      <img class="image-compare-after" src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60f?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="After" loading="lazy" />
+    </div>
+    <div class="image-compare-line" aria-hidden="true"></div>
+    <div class="image-compare-label before">Before</div>
+    <div class="image-compare-label after">After</div>
+  </div>
+  <input class="image-compare-slider" type="range" min="0" max="100" value="45" />
+</section>
+
+<script>
+  (function () {
+    if (window.__imageCompareInit) return;
+    window.__imageCompareInit = true;
+
+    function initCompare(card) {
+      if (card.dataset.ready === 'true') return;
+      card.dataset.ready = 'true';
+
+      var stage = card.querySelector('.image-compare-stage');
+      var afterWrap = card.querySelector('.image-compare-after-wrap');
+      var line = card.querySelector('.image-compare-line');
+      var slider = card.querySelector('.image-compare-slider');
+      if (!stage || !afterWrap || !line || !slider) return;
+
+      function update() {
+        var value = Number(slider.value || 50);
+        afterWrap.style.width = value + '%';
+        line.style.left = value + '%';
+      }
+
+      slider.addEventListener('input', update);
+      update();
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-image-compare').forEach(initCompare);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+<h2 id="9-pdf-embed">9) pdf-embed</h2>
+
+<p>PDF 문서를 포스트 안에서 바로 미리보기로 띄울 수 있다.</p>
+
+<section class="pdf-card">
+    <header class="pdf-card-header">
+      <span class="pdf-card-title">Attention Is All You Need (PDF)</span>
+      <a class="pdf-card-open" href="https://arxiv.org/pdf/1706.03762" target="_blank" rel="noreferrer noopener">Open PDF</a>
+    </header>
+    <iframe class="pdf-card-frame" src="https://arxiv.org/pdf/1706.03762" height="520" loading="lazy" title="Attention Is All You Need (PDF)"></iframe>
+  </section>
+
+<h2 id="10-tabs">10) tabs</h2>
+
+<p>콘텐츠를 탭으로 나눠서 읽을 수 있다.</p>
+
+<section class="tabs-card js-tabs" id="library-demo-tabs">
+  <div class="tabs-nav" role="tablist" aria-label="Tabs">
+    
+      <button class="tabs-btn is-active" type="button" role="tab" aria-selected="true" data-tab-index="0">
+        개요
+      </button>
+    
+      <button class="tabs-btn" type="button" role="tab" aria-selected="false" data-tab-index="1">
+        장점
+      </button>
+    
+      <button class="tabs-btn" type="button" role="tab" aria-selected="false" data-tab-index="2">
+        주의사항
+      </button>
+    
+  </div>
+  <div class="tabs-panels">
+    
+      <div class="tabs-panel is-active" data-tab-panel="0">
+        <p>라이브러리 컴포넌트를 주제별로 분리해 재사용성을 높였다.</p>
+      </div>
+    
+      <div class="tabs-panel" data-tab-panel="1">
+        <p>포스트 작성 시간이 줄고, UI 일관성이 유지된다.</p>
+      </div>
+    
+      <div class="tabs-panel" data-tab-panel="2">
+        <p>너무 많은 컴포넌트를 한 글에 넣으면 가독성이 떨어질 수 있다.</p>
+      </div>
+    
+  </div>
+</section>
+
+<script>
+  (function () {
+    if (window.__tabsLibInit) return;
+    window.__tabsLibInit = true;
+
+    function initTabs(card) {
+      if (card.dataset.ready === 'true') return;
+      card.dataset.ready = 'true';
+      var buttons = Array.prototype.slice.call(card.querySelectorAll('.tabs-btn'));
+      var panels = Array.prototype.slice.call(card.querySelectorAll('.tabs-panel'));
+      if (!buttons.length || !panels.length) return;
+
+      function activate(index) {
+        buttons.forEach(function (btn, idx) {
+          var active = idx === index;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(function (panel, idx) {
+          panel.classList.toggle('is-active', idx === index);
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activate(Number(btn.dataset.tabIndex || 0));
+        });
+      });
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-tabs').forEach(initTabs);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+<h2 id="11-accordion">11) accordion</h2>
+
+<p>FAQ나 접기형 설명에 적합하다.</p>
+
+<section class="accordion-card">
+  <header class="accordion-head">
+    <span>Library FAQ</span>
+  </header>
+  <div class="accordion-list">
+    
+      
+      
+      
+      <details class="accordion-item" open="">
+        <summary>어디에 정의되어 있나?</summary>
+        <div class="accordion-body">
+          <p>_includes/library 폴더에서 관리한다.</p>
+        </div>
+      </details>
+    
+      
+      
+      
+      <details class="accordion-item">
+        <summary>스타일은 어디서 바꾸나?</summary>
+        <div class="accordion-body">
+          <p>assets/css/home-mag.css에서 컴포넌트 클래스를 수정한다.</p>
+        </div>
+      </details>
+    
+  </div>
+</section>
+
+<h2 id="12-timeline">12) timeline</h2>
+
+<p>업데이트 이력을 시간 순으로 기록하기 좋다.</p>
+
+<section class="timeline-card">
+  <header class="timeline-head">
+    <span>모듈 제작 흐름</span>
+  </header>
+  <ul class="timeline-list">
+    
+      
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>2026.02</time>
+          <strong>기초 모듈</strong>
+          <p>link-card, code-snippet, latex-block 제작</p>
+        </div>
+      </li>
+    
+      
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>2026.02</time>
+          <strong>임베드 확장</strong>
+          <p>google-map, youtube, pdf 모듈 추가</p>
+        </div>
+      </li>
+    
+      
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>2026.02</time>
+          <strong>문서화</strong>
+          <p>README 사용법 정리 완료</p>
+        </div>
+      </li>
+    
+  </ul>
+</section>
+
+<h2 id="13-gallery-masonry">13) gallery-masonry</h2>
+
+<p>이미지 비율이 제각각일 때도 자연스럽게 쌓이는 갤러리.</p>
+
+<section class="masonry-card">
+  <header class="masonry-head">
+    <span>Masonry Demo</span>
+  </header>
+  <div class="masonry-grid">
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 1" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 2" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 3" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 4" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 5" loading="lazy" />
+      </figure>
+    
+  </div>
+</section>
+
+<h2 id="14-toc-scrollspy">14) toc-scrollspy</h2>
+
+<p>본문의 <code class="language-plaintext highlighter-rouge">h2/h3</code>를 기준으로 인라인 목차를 만들고, 현재 섹션을 하이라이트한다.</p>
+
+<aside class="inline-toc js-inline-toc" data-toc-target=".page-content">
+  <h3>Inline TOC</h3>
+  <ul></ul>
+</aside>
+
+<script>
+  (function () {
+    if (window.__inlineTocInit) return;
+    window.__inlineTocInit = true;
+
+    function slugify(text) {
+      return (text || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-가-힣]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+    }
+
+    function initToc(toc) {
+      if (toc.dataset.ready === 'true') return;
+      toc.dataset.ready = 'true';
+
+      var targetSelector = toc.dataset.tocTarget || '.page-content';
+      var scope = document.querySelector(targetSelector);
+      var list = toc.querySelector('ul');
+      if (!scope || !list) return;
+
+      var headings = Array.prototype.slice.call(scope.querySelectorAll('h2, h3'));
+      if (!headings.length) {
+        toc.classList.add('is-hidden');
+        return;
+      }
+
+      var used = {};
+      headings.forEach(function (h, idx) {
+        var text = (h.textContent || '').trim();
+        if (!text) return;
+        var id = h.id || slugify(text) || ('spy-section-' + (idx + 1));
+        if (used[id]) id = id + '-' + (idx + 1);
+        used[id] = true;
+        h.id = id;
+
+        var li = document.createElement('li');
+        if (h.tagName.toLowerCase() === 'h3') li.className = 'depth-3';
+        var a = document.createElement('a');
+        a.href = '#' + id;
+        a.textContent = text;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+
+      var links = Array.prototype.slice.call(list.querySelectorAll('a'));
+      if (!('IntersectionObserver' in window)) return;
+      var map = {};
+      links.forEach(function (a) {
+        map[a.getAttribute('href').slice(1)] = a;
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var link = map[entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(function (x) { x.classList.remove('is-active'); });
+            link.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0.1 });
+
+      headings.forEach(function (h) { io.observe(h); });
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-inline-toc').forEach(initToc);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+<h2 id="15-mermaid-diagram">15) mermaid-diagram</h2>
+
+<p>텍스트 기반으로 다이어그램을 삽입할 수 있다.</p>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Blog Workflow</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart LR
+  A[Idea] --&gt; B[Design]
+  B --&gt; C[Build]
+  C --&gt; D[Publish]
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<h2 id="16-audio-player">16) audio-player</h2>
+
+<p>오디오 링크를 본문에서 바로 재생할 수 있다.</p>
+
+<section class="audio-card">
+    <header class="audio-head">
+      <span>Audio Demo</span>
+    </header>
+    <audio controls="" preload="none" src="https://file-examples.com/storage/fe86f7f4349f4fd23f4f2f1/2017/11/file_example_MP3_700KB.mp3"></audio>
+  </section>
+
+<h2 id="17-citation--footnote">17) citation / footnote</h2>
+
+<p>본문 인용 표기</p>
+
+<p><sup class="citation-ref">
+  <a id="fnref-1" href="#fn-1">[1]</a>
+</sup>
+와 각주 목록을 연결한다.</p>
+
+<section class="footnotes-card">
+  <header class="footnotes-head">
+    <span>References</span>
+  </header>
+  <ol class="footnotes-list">
+    
+      
+      
+      
+      <li id="fn-1">
+        Vaswani et al., Attention Is All You Need (2017), arXiv:1706.03762.
+        <a class="footnote-back" href="#fnref-1">↩</a>
+      </li>
+    
+  </ol>
+</section>
+
+
+            </div>
+
+            
+              <div class="tag-list">
+                
+                  
+                  
+                  
+                  <a class="tag-chip tag-chip--minimal tag-chip--blue" href="/tags/#blog-update">#blog update</a>
+                
+                  
+                  
+                  
+                  <a class="tag-chip tag-chip--minimal tag-chip--green" href="/tags/#library">#library</a>
+                
+                  
+                  
+                  
+                  <a class="tag-chip tag-chip--minimal tag-chip--purple" href="/tags/#jekyll">#jekyll</a>
+                
+              </div>
+            
+
+            <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>Share</span>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=3.%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%20%EC%A0%9C%EC%9E%91&url=https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/"><i class="ri-twitter-x-fill"></i></a>
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u=https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/"><i class="ri-facebook-fill"></i></a>
+              <button class="copy-url" type="button" data-url="https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
+            </div>
+
+            <section class="comments-panel">
+              <h2 class="comments-title">Comments</h2>
+              <script
+                src="https://giscus.app/client.js"
+                data-repo="minnong511/minnong511.github.io"
+                data-repo-id="R_kgDONte4cw"
+                data-category="General"
+                data-category-id="DIC_kwDONte4c84C3PLr"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="light"
+                data-lang="ko"
+                data-loading="eager"
+                crossorigin="anonymous"
+                async
+              ></script>
+              <p class="comments-help is-hidden" id="commentsFallback">
+                댓글 위젯이 보이지 않으면 광고차단/추적차단 설정을 확인하거나
+                <a href="https://github.com/minnong511/minnong511.github.io/discussions/categories/general" target="_blank" rel="noreferrer">GitHub Discussions</a>에서 확인해 주세요.
+              </p>
+            </section>
+          </article>
+
+          <aside class="post-toc is-hidden is-collapsed" id="postToc" aria-label="Table of contents">
+            <button class="post-toc-fab" id="postTocToggle" type="button" aria-expanded="false" aria-controls="postTocNav" aria-label="목차 열기/닫기">
+              <i class="ri-list-unordered"></i>
+            </button>
+            <div class="post-toc-panel" id="postTocNav">
+              <div class="post-toc-head">
+                <h2 class="post-toc-title">Contents</h2>
+              </div>
+              <nav>
+                <ul id="postTocList"></ul>
+              </nav>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <h2 class="title page-title">Related Posts</h2>
+          </header>
+          <div class="columns card-grid">
+            
+            
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/convenience-improvements-part-4/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1400&q=80" alt="4. 편의성 개선" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>4. 편의성 개선</h2>
+                            <p>이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
+                
+              
+            
+              
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/design-implementation-part-2/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="2. 디자인 구현" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>2. 디자인 구현</h2>
+                            <p>
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
+                
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/blog-design-reference-exploration/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1400&q=80" alt="블로그 디자인 레퍼런스 탐색" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>블로그 디자인 레퍼런스 탐색</h2>
+                            <p>블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
+                
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+  <div class="container">
+    <div class="columns footer-columns">
+      <div class="column">
+        <div class="footer-logo">Minnong's blog</div>
+      </div>
+      <div class="column"></div>
+      <div class="column">
+        <ul class="list">
+          <li>운영자: Min Hyeong Lee</li>
+          <li>Based in Seoul</li>
+          <li>Contact: kzxx1234@gmail.com</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul class="list">
+          <li>개인 포트폴리오 &amp; 블로그</li>
+          <li>Photo / Travel / Engineering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns footer-bottom">
+      <div class="column">
+        <p>© 2026 Minnong blog</p>
+      </div>
+      <div class="column social">
+        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <div class="photo-archive-lightbox is-hidden" id="imageLightbox" aria-hidden="true">
+      <button class="photo-archive-lightbox-close" id="lightboxClose" type="button" aria-label="Close image">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="photo-archive-lightbox-inner">
+        <img id="lightboxImage" alt="" />
+        <p id="lightboxCaption"></p>
+      </div>
+    </div>
+    <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
+
+    <script src="/assets/js/site-search.js"></script>
+    <script>
+      var menuLayer = document.getElementById('menuLayer');
+      var menuButton = document.querySelector('.toggle-nav');
+      var copyButton = document.querySelector('.copy-url');
+      var copyToast = document.getElementById('copyToast');
+      var postPanel = document.querySelector('.page-panel');
+      var lightbox = document.getElementById('imageLightbox');
+      var lightboxImage = document.getElementById('lightboxImage');
+      var lightboxClose = document.getElementById('lightboxClose');
+      var lightboxCaption = document.getElementById('lightboxCaption');
+      var commentsFallback = document.getElementById('commentsFallback');
+      var postToc = document.getElementById('postToc');
+      var postTocList = document.getElementById('postTocList');
+      var postTocToggle = document.getElementById('postTocToggle');
+      var copyToastTimer = null;
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
+
+      function showCopyToast(message) {
+        if (!copyToast) return;
+        copyToast.textContent = message;
+        copyToast.classList.add('is-visible');
+        copyToast.setAttribute('aria-hidden', 'false');
+        if (copyToastTimer) clearTimeout(copyToastTimer);
+        copyToastTimer = setTimeout(function () {
+          copyToast.classList.remove('is-visible');
+          copyToast.setAttribute('aria-hidden', 'true');
+        }, 1400);
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener('click', function () {
+          var url = copyButton.getAttribute('data-url');
+          if (!url) return;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function () {
+              showCopyToast('Link copied');
+            }).catch(function () {
+              showCopyToast('Copy failed');
+              alert('Copy failed');
+            });
+            return;
+          }
+
+          var tempInput = document.createElement('input');
+          tempInput.value = url;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand('copy');
+            showCopyToast('Link copied');
+          } catch (e) {
+            showCopyToast('Copy failed');
+            alert('Copy failed');
+          }
+          document.body.removeChild(tempInput);
+        });
+      }
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.add('is-hidden');
+        lightbox.setAttribute('aria-hidden', 'true');
+        if (lightboxImage) {
+          lightboxImage.removeAttribute('src');
+          lightboxImage.removeAttribute('alt');
+        }
+        if (lightboxCaption) {
+          lightboxCaption.textContent = '';
+        }
+      }
+
+      if (postPanel && lightbox && lightboxImage) {
+        postPanel.querySelectorAll('.cover-image img, .page-content img').forEach(function (img) {
+          if (img.closest('a')) return;
+          if (img.closest('.image-compare-stage')) return;
+          img.classList.add('lightbox-target');
+          img.addEventListener('click', function () {
+            var src = img.getAttribute('src');
+            if (!src) return;
+            lightboxImage.setAttribute('src', src);
+            lightboxImage.setAttribute('alt', img.getAttribute('alt') || '');
+            if (lightboxCaption) {
+              lightboxCaption.textContent = img.getAttribute('alt') || '';
+            }
+            lightbox.classList.remove('is-hidden');
+            lightbox.setAttribute('aria-hidden', 'false');
+          });
+        });
+      }
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeLightbox();
+        });
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', function (event) {
+          if (event.target === lightbox) closeLightbox();
+        });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeLightbox();
+      });
+
+      function slugify(text) {
+        return (text || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-가-힣]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      if (postPanel && postToc && postTocList) {
+        var headings = Array.prototype.slice.call(postPanel.querySelectorAll('.page-content h2, .page-content h3'));
+        var usedIds = {};
+
+        headings.forEach(function (heading, idx) {
+          var text = (heading.textContent || '').trim();
+          if (!text) return;
+
+          var id = heading.id || slugify(text) || ('section-' + (idx + 1));
+          if (usedIds[id]) {
+            id = id + '-' + (idx + 1);
+          }
+          usedIds[id] = true;
+          heading.id = id;
+
+          var item = document.createElement('li');
+          if (heading.tagName.toLowerCase() === 'h3') item.className = 'toc-depth-3';
+          var link = document.createElement('a');
+          link.href = '#' + id;
+          link.textContent = text;
+          item.appendChild(link);
+          postTocList.appendChild(item);
+        });
+
+        if (postTocList.children.length > 0) {
+          postToc.classList.remove('is-hidden');
+        }
+      }
+
+      if (postToc && postTocToggle) {
+        postTocToggle.addEventListener('click', function () {
+          var collapsed = postToc.classList.toggle('is-collapsed');
+          postTocToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        });
+      }
+
+      if (commentsFallback) {
+        setTimeout(function () {
+          var giscusFrame = document.querySelector('iframe.giscus-frame');
+          if (!giscusFrame) {
+            commentsFallback.classList.remove('is-hidden');
+          }
+        }, 2500);
+      }
+    </script>
+  </body>
+</html>

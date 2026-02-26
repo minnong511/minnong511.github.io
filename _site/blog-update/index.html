@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog update | Minnong's blog</title>
+    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css" />
+  </head>
+  <body id="home" data-baseurl="">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="/search/" method="get" class="search-form">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+        <div class="search-live-results" id="searchLiveResults"></div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a href="/" class="header-logo">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/photostream/">Photo</a></li>
+            <li><a href="/archive/">Archive</a></li>
+            <li><a href="/tags/">Tags</a></li>
+            <li><a href="/blog-update/">Blog update</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main page-main">
+      <section class="section">
+        <div class="container">
+          <article class="page-panel">
+            
+              <h1 class="title page-title">Blog update</h1>
+            
+            <div class="page-content">
+              <p>블로그 업데이트 로그</p>
+
+<div class="archive-list">
+  
+  <a class="archive-item" href="/blog%20update/2026/02/26/convenience-improvements-part-4/">
+    <time>2026.02.26</time>
+    <strong>4. 편의성 개선</strong>
+    <span>이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.
+
+</span>
+  </a>
+  
+  <a class="archive-item" href="/blog%20update/2026/02/26/library-module-build/">
+    <time>2026.02.26</time>
+    <strong>3.라이브러리 제작</strong>
+    <span>오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.
+컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.
+
+</span>
+  </a>
+  
+  <a class="archive-item" href="/blog%20update/2026/02/26/design-implementation-part-2/">
+    <time>2026.02.26</time>
+    <strong>2. 디자인 구현</strong>
+    <span>
+</span>
+  </a>
+  
+  <a class="archive-item" href="/blog%20update/2026/02/26/blog-design-reference-exploration/">
+    <time>2026.02.26</time>
+    <strong>블로그 디자인 레퍼런스 탐색</strong>
+    <span>블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.
+
+</span>
+  </a>
+  
+</div>
+
+
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+  <div class="container">
+    <div class="columns footer-columns">
+      <div class="column">
+        <div class="footer-logo">Minnong's blog</div>
+      </div>
+      <div class="column"></div>
+      <div class="column">
+        <ul class="list">
+          <li>운영자: Min Hyeong Lee</li>
+          <li>Based in Seoul</li>
+          <li>Contact: kzxx1234@gmail.com</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul class="list">
+          <li>개인 포트폴리오 &amp; 블로그</li>
+          <li>Photo / Travel / Engineering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns footer-bottom">
+      <div class="column">
+        <p>© 2026 Minnong blog</p>
+      </div>
+      <div class="column social">
+        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/assets/js/site-search.js"></script>
+    <script>
+      var menuLayer = document.getElementById('menuLayer');
+      var menuButton = document.querySelector('.toggle-nav');
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+    </script>
+  </body>
+</html>

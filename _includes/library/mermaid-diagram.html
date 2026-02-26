@@ -1,0 +1,35 @@
+{% assign md_title = include.title | default: "Mermaid Diagram" %}
+{% assign md_chart = include.chart | default: "" %}
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>{{ md_title }}</span>
+  </header>
+  <div class="mermaid js-mermaid">{{ md_chart }}</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>

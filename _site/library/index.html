@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Link Block Library | Minnong's blog</title>
+    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css" />
+  </head>
+  <body id="home" data-baseurl="">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="/search/" method="get" class="search-form">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+        <div class="search-live-results" id="searchLiveResults"></div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a href="/" class="header-logo">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/photostream/">Photo</a></li>
+            <li><a href="/archive/">Archive</a></li>
+            <li><a href="/tags/">Tags</a></li>
+            <li><a href="/blog-update/">Blog update</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main page-main">
+      <section class="section">
+        <div class="container">
+          <article class="page-panel">
+            
+              <h1 class="title page-title">Link Block Library</h1>
+            
+            <div class="page-content">
+              <h1 id="link-block-library">Link Block Library</h1>
+
+<p>재사용 가능한 포스트 컴포넌트 모음입니다.</p>
+
+<h2 id="1-링크-카드-사용법">1) 링크 카드 사용법</h2>
+
+<p>포스트 본문(<code class="language-plaintext highlighter-rouge">.md</code>)에서 아래처럼 호출하세요.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/link-card.html<span class="err">
+</span><span class="w">  </span><span class="na">url</span><span class="o">=</span><span class="s2">"https://example.com"</span><span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"링크 제목"</span><span class="err">
+</span><span class="w">  </span><span class="na">desc</span><span class="o">=</span><span class="s2">"간단한 설명"</span><span class="err">
+</span><span class="w">  </span><span class="na">host</span><span class="o">=</span><span class="s2">"example.com"</span><span class="err">
+</span><span class="w">  </span><span class="na">new_tab</span><span class="o">=</span><span class="s2">"true"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="2-파라미터">2) 파라미터</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">url</code> (필수): 링크 URL</li>
+  <li><code class="language-plaintext highlighter-rouge">title</code> (선택): 카드 제목</li>
+  <li><code class="language-plaintext highlighter-rouge">desc</code> (선택): 카드 설명</li>
+  <li><code class="language-plaintext highlighter-rouge">host</code> (선택): 하단 도메인 텍스트 (미지정 시 URL에서 자동 추출)</li>
+  <li><code class="language-plaintext highlighter-rouge">new_tab</code> (선택): <code class="language-plaintext highlighter-rouge">"true"</code> 또는 <code class="language-plaintext highlighter-rouge">"false"</code> (기본 <code class="language-plaintext highlighter-rouge">"true"</code>)</li>
+</ul>
+
+<h2 id="3-코드-스니펫-사용법">3) 코드 스니펫 사용법</h2>
+
+<p>멀티라인 코드는 <code class="language-plaintext highlighter-rouge">capture</code>로 받아서 include에 전달하세요.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">sample_code</span><span class="w"> </span><span class="p">%}</span>
+const message = "hello";
+console.log(message);
+<span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/code-snippet.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"기본 예시"</span><span class="err">
+</span><span class="w">  </span><span class="na">lang</span><span class="o">=</span><span class="s2">"js"</span><span class="err">
+</span><span class="w">  </span><span class="na">code</span><span class="o">=</span><span class="nv">sample_code</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="4-코드-스니펫-파라미터">4) 코드 스니펫 파라미터</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">title</code> (선택): 코드 블록 제목</li>
+  <li><code class="language-plaintext highlighter-rouge">lang</code> (선택): 언어 라벨 (<code class="language-plaintext highlighter-rouge">js</code>, <code class="language-plaintext highlighter-rouge">python</code>, <code class="language-plaintext highlighter-rouge">bash</code> 등, 기본 <code class="language-plaintext highlighter-rouge">text</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">code</code> (필수): <code class="language-plaintext highlighter-rouge">capture</code>로 담은 코드 문자열</li>
+</ul>
+
+<h2 id="5-기본-동작">5) 기본 동작</h2>
+
+<ul>
+  <li>다크 테마 카드 UI</li>
+  <li><code class="language-plaintext highlighter-rouge">Copy</code> 버튼으로 코드 복사</li>
+  <li><code class="language-plaintext highlighter-rouge">lang="python"</code> 또는 <code class="language-plaintext highlighter-rouge">lang="py"</code>일 때 기본 파이썬 문법 하이라이트 적용</li>
+</ul>
+
+<h2 id="6-latex-수식-블록-사용법">6) LaTeX 수식 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">linear_formula</span><span class="w"> </span><span class="p">%}</span>
+\hat{y} = wx + b
+<span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/latex-block.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"선형회귀 수식"</span><span class="err">
+</span><span class="w">  </span><span class="na">formula</span><span class="o">=</span><span class="nv">linear_formula</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="7-latex-파라미터">7) LaTeX 파라미터</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">title</code> (선택): 수식 카드 제목</li>
+  <li><code class="language-plaintext highlighter-rouge">formula</code> (필수): <code class="language-plaintext highlighter-rouge">capture</code>로 담은 LaTeX 식</li>
+</ul>
+
+<h2 id="8-google-지도-블록-사용법">8) Google 지도 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/google-map.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"명동교자 명동점"</span><span class="err">
+</span><span class="w">  </span><span class="na">query</span><span class="o">=</span><span class="s2">"명동교자 명동점 서울"</span><span class="err">
+</span><span class="w">  </span><span class="na">zoom</span><span class="o">=</span><span class="s2">"16"</span><span class="err">
+</span><span class="w">  </span><span class="na">height</span><span class="o">=</span><span class="s2">"360"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="9-google-지도-파라미터">9) Google 지도 파라미터</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">title</code> (선택): 지도 카드 제목</li>
+  <li><code class="language-plaintext highlighter-rouge">query</code> (필수): 장소명/주소 검색어</li>
+  <li><code class="language-plaintext highlighter-rouge">zoom</code> (선택): 줌 레벨 (기본 <code class="language-plaintext highlighter-rouge">16</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">height</code> (선택): iframe 높이 px (기본 <code class="language-plaintext highlighter-rouge">360</code>)</li>
+</ul>
+
+<h2 id="10-youtube-블록-사용법">10) YouTube 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/youtube-embed.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"명동교자 관련 영상"</span><span class="err">
+</span><span class="w">  </span><span class="na">query</span><span class="o">=</span><span class="s2">"명동교자 명동점"</span><span class="err">
+</span><span class="w">  </span><span class="na">height</span><span class="o">=</span><span class="s2">"380"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<p>또는 특정 영상 ID를 직접 지정할 수 있습니다.</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/youtube-embed.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"영상 제목"</span><span class="err">
+</span><span class="w">  </span><span class="na">video_id</span><span class="o">=</span><span class="s2">"dQw4w9WgXcQ"</span><span class="err">
+</span><span class="w">  </span><span class="na">height</span><span class="o">=</span><span class="s2">"380"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="11-youtube-파라미터">11) YouTube 파라미터</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">title</code> (선택): 영상 카드 제목</li>
+  <li><code class="language-plaintext highlighter-rouge">query</code> (선택): 검색 기반 임베드용 검색어</li>
+  <li><code class="language-plaintext highlighter-rouge">video_id</code> (선택): 특정 영상 ID</li>
+  <li><code class="language-plaintext highlighter-rouge">height</code> (선택): iframe 높이 px (기본 <code class="language-plaintext highlighter-rouge">380</code>)</li>
+</ul>
+
+<h2 id="12-callout-블록-사용법">12) Callout 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/callout.html<span class="err">
+</span><span class="w">  </span><span class="na">type</span><span class="o">=</span><span class="s2">"tip"</span><span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"Tip"</span><span class="err">
+</span><span class="w">  </span><span class="na">content</span><span class="o">=</span><span class="s2">"핵심 메시지를 강조할 때 사용"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="13-table-블록-사용법">13) Table 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/table-card.html<span class="err">
+</span><span class="w">  </span><span class="na">caption</span><span class="o">=</span><span class="s2">"모듈 상태"</span><span class="err">
+</span><span class="w">  </span><span class="na">headers</span><span class="o">=</span><span class="s2">"모듈|설명|상태"</span><span class="err">
+</span><span class="w">  </span><span class="na">rows</span><span class="o">=</span><span class="s2">"callout|강조 메시지|완료||table|비교/정리|완료"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="14-image-compare-블록-사용법">14) Image Compare 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/image-compare.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"Before / After"</span><span class="err">
+</span><span class="w">  </span><span class="na">before</span><span class="o">=</span><span class="s2">"https://images.unsplash.com/..."</span><span class="err">
+</span><span class="w">  </span><span class="na">after</span><span class="o">=</span><span class="s2">"https://images.unsplash.com/..."</span><span class="err">
+</span><span class="w">  </span><span class="na">before_label</span><span class="o">=</span><span class="s2">"Before"</span><span class="err">
+</span><span class="w">  </span><span class="na">after_label</span><span class="o">=</span><span class="s2">"After"</span><span class="err">
+</span><span class="w">  </span><span class="na">start</span><span class="o">=</span><span class="s2">"50"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="15-pdf-임베드-블록-사용법">15) PDF 임베드 블록 사용법</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/pdf-embed.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"문서 미리보기"</span><span class="err">
+</span><span class="w">  </span><span class="na">src</span><span class="o">=</span><span class="s2">"https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"</span><span class="err">
+</span><span class="w">  </span><span class="na">height</span><span class="o">=</span><span class="s2">"520"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="16-pdf-임베드-파라미터">16) PDF 임베드 파라미터</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">title</code> (선택): 카드 제목</li>
+  <li><code class="language-plaintext highlighter-rouge">src</code> (필수): PDF 파일 URL</li>
+  <li><code class="language-plaintext highlighter-rouge">height</code> (선택): iframe 높이 px (기본 <code class="language-plaintext highlighter-rouge">520</code>)</li>
+</ul>
+
+<h2 id="17-tabs-블록">17) Tabs 블록</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/tabs.html<span class="err">
+</span><span class="w">  </span><span class="na">id</span><span class="o">=</span><span class="s2">"demo-tabs"</span><span class="err">
+</span><span class="w">  </span><span class="na">titles</span><span class="o">=</span><span class="s2">"개요|장점|주의사항"</span><span class="err">
+</span><span class="w">  </span><span class="na">contents</span><span class="o">=</span><span class="s2">"개요 내용||장점 내용||주의사항 내용"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="18-accordion-블록">18) Accordion 블록</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/accordion.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"FAQ"</span><span class="err">
+</span><span class="w">  </span><span class="na">items</span><span class="o">=</span><span class="s2">"질문1|답변1||질문2|답변2"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="19-timeline-블록">19) Timeline 블록</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/timeline.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"업데이트 타임라인"</span><span class="err">
+</span><span class="w">  </span><span class="na">items</span><span class="o">=</span><span class="s2">"2026.02|초안|구조 설계||2026.03|개선|세부 기능 추가"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="20-masonry-갤러리">20) Masonry 갤러리</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/gallery-masonry.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"Gallery"</span><span class="err">
+</span><span class="w">  </span><span class="na">images</span><span class="o">=</span><span class="s2">"https://images.unsplash.com/...|https://images.unsplash.com/..."</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="21-toc-scrollspy">21) TOC Scrollspy</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/toc-scrollspy.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"On this page"</span><span class="err">
+</span><span class="w">  </span><span class="na">target</span><span class="o">=</span><span class="s2">".page-content"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="22-mermaid-다이어그램">22) Mermaid 다이어그램</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">capture</span><span class="w"> </span><span class="nv">chart</span><span class="w"> </span><span class="p">%}</span>
+flowchart LR
+  A[Draft] --&gt; B[Review]
+  B --&gt; C[Publish]
+<span class="p">{%</span><span class="w"> </span><span class="nt">endcapture</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/mermaid-diagram.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"Workflow"</span><span class="err">
+</span><span class="w">  </span><span class="na">chart</span><span class="o">=</span><span class="nv">chart</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="23-audio-player">23) Audio Player</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/audio-player.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"Sample Audio"</span><span class="err">
+</span><span class="w">  </span><span class="na">src</span><span class="o">=</span><span class="s2">"https://file-examples.com/storage/fe86f7f4349f4fd23f4f2f1/2017/11/file_example_MP3_700KB.mp3"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+<h2 id="24-citation--footnote">24) Citation / Footnote</h2>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>본문 인용<span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/citation-ref.html<span class="w"> </span><span class="na">id</span><span class="o">=</span><span class="s2">"1"</span><span class="w"> </span><span class="p">%}</span>
+
+<span class="p">{%</span><span class="w"> </span><span class="nt">include</span><span class="w"> </span>library/footnotes-list.html<span class="err">
+</span><span class="w">  </span><span class="na">title</span><span class="o">=</span><span class="s2">"References"</span><span class="err">
+</span><span class="w">  </span><span class="na">items</span><span class="o">=</span><span class="s2">"1|Vaswani et al., Attention Is All You Need (2017)"</span><span class="err">
+</span><span class="p">%}</span>
+</code></pre></div></div>
+
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+  <div class="container">
+    <div class="columns footer-columns">
+      <div class="column">
+        <div class="footer-logo">Minnong's blog</div>
+      </div>
+      <div class="column"></div>
+      <div class="column">
+        <ul class="list">
+          <li>운영자: Min Hyeong Lee</li>
+          <li>Based in Seoul</li>
+          <li>Contact: kzxx1234@gmail.com</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul class="list">
+          <li>개인 포트폴리오 &amp; 블로그</li>
+          <li>Photo / Travel / Engineering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns footer-bottom">
+      <div class="column">
+        <p>© 2026 Minnong blog</p>
+      </div>
+      <div class="column social">
+        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/assets/js/site-search.js"></script>
+    <script>
+      var menuLayer = document.getElementById('menuLayer');
+      var menuButton = document.querySelector('.toggle-nav');
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+    </script>
+  </body>
+</html>

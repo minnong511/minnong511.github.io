@@ -1,0 +1,22 @@
+{% assign map_query = include.query | default: "" %}
+{% assign map_title = include.title | default: "Google Map" %}
+{% assign map_height = include.height | default: "360" %}
+{% assign map_zoom = include.zoom | default: "16" %}
+{% assign map_query_encoded = map_query | url_encode %}
+{% assign map_src = "https://maps.google.com/maps?q=" | append: map_query_encoded | append: "&z=" | append: map_zoom | append: "&output=embed" %}
+
+<section class="map-card">
+  <header class="map-card-header">
+    <span class="map-card-title">{{ map_title }}</span>
+    <a class="map-card-open" href="https://www.google.com/maps/search/?api=1&query={{ map_query_encoded }}" target="_blank" rel="noreferrer noopener">Open in Google Maps</a>
+  </header>
+  <iframe
+    class="map-card-frame"
+    src="{{ map_src }}"
+    height="{{ map_height }}"
+    loading="lazy"
+    allowfullscreen
+    referrerpolicy="no-referrer-when-downgrade"
+    title="{{ map_title }}"
+  ></iframe>
+</section>

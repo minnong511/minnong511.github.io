@@ -1,13 +1,33 @@
 [
   
     {
-      "title": "블로그 디자인 레퍼런스 탐색",
-      "url": "/blog%20update/2026/02/26/blog-design-reference-exploration/",
+      "title": "4. 편의성 개선",
+      "url": "/blog%20update/2026/02/26/convenience-improvements-part-4/",
       "date": "2026.02.26",
       "categories": "Blog update",
-      "tags": "design, ui, reference",
-      "excerpt": "블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.",
-      "content": "블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다."
+      "tags": "blog update",
+      "excerpt": "이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.",
+      "content": "이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.1) 댓글 기능 (Giscus)포스트 하단에 GitHub Discussions 기반 댓글 시스템을 연결했다.독자가 별도 회원가입 없이 GitHub 계정으로 바로 의견을 남길 수 있고, 작성자 입장에서도 관리 흐름이 단순해졌다.2) 목차 보기 기능 (PC 우측 하단)데스크톱 화면에서 우측 하단에 동그란 목차 버튼을 추가했다.버튼을 누르면 현재 포스트의 h2, h3를 기준으로 자동 생성된 목차가 펼쳐지고, 다시 눌러 접을 수 있다.3) 추가 편의성 기능이번 작업 과정에서 함께 반영한 주요 편의성 기능은 아래와 같다.  포스트 공유 영역의 링크 복사 버튼 + Link copied 토스트 알림  이미지 라이트박스(확대 보기) 기능  태그 페이지 인터랙션 개선: 태그 모음집 클릭 필터 + 초기 진입 시 태그만 노출  포스트 로딩 시 부드러운 진입 모션(페이드/슬라이드)  반복 UI를 빠르게 재사용하기 위한 라이브러리 모듈화          link-card, code-snippet, latex-block, google-map, youtube-embed, callout, table-card, image-compare, pdf-embed      다음 단계에서는 검색 정확도 개선과 포스트 작성 자동화 템플릿까지 확장해볼 예정이다."
+    },
+  
+    {
+      "title": "3.라이브러리 제작",
+      "url": "/blog%20update/2026/02/26/library-module-build/",
+      "date": "2026.02.26",
+      "categories": "Blog update",
+      "tags": "blog update, library, jekyll",
+      "excerpt": "오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.",
+      "content": "오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.이번에 만든 라이브러리 모듈은 아래처럼 정리했다.1) link-card노션 스타일 링크 블록.블로그 저장소현재 블로그 소스 코드 저장소github.com2) code-snippet다크 테마 + 복사 버튼 + 파이썬 하이라이트 지원.      선형회귀 코드 예시          python      Copy        import torchimport torch.nn as nnimport torch.optim as optimx = torch.tensor([[1.0], [2.0], [3.0], [4.0]])y = torch.tensor([[3.0], [5.0], [7.0], [9.0]])  # y = 2x + 1model = nn.Linear(1, 1)criterion = nn.MSELoss()optimizer = optim.SGD(model.parameters(), lr=0.01)for epoch in range(300):    pred = model(x)    loss = criterion(pred, y)    optimizer.zero_grad()    loss.backward()    optimizer.step()print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.item())3) latex-blockMathJax 기반 수식 카드 렌더.            선형회귀 예시 수식      LaTeX        \\[\\hat{y} = wx + b,\\quad\\mathcal{L}(w,b)=\\frac{1}{N}\\sum_{i=1}^{N}(y_i-(wx_i+b))^2\\]4) google-map장소 검색 기반 지도 임베드.      명동교자 명동점    Open in Google Maps    5) youtube-embed영상 ID/검색어 기반 유튜브 임베드.      명동교자 관련 영상    Open on YouTube    6) callout          Tip        모듈화를 해두면 포스트를 쓸 때 포맷 고민 없이 콘텐츠 작성에 집중할 수 있다.  7) table            오늘 추가한 모듈 상태                                                              모듈                          용도                          상태                                                                                                                callout                              중요 문구 강조                              완료                                                                                                          table                              데이터 비교/정리                              완료                                                                                                          image compare                              전후 이미지 비교                              완료                                                        8) image compare            Photo Tone Compare                                  Before    After    9) pdf-embedPDF 문서를 포스트 안에서 바로 미리보기로 띄울 수 있다.          Attention Is All You Need (PDF)      Open PDF          10) tabs콘텐츠를 탭으로 나눠서 읽을 수 있다.                    개요                        장점                        주의사항                                라이브러리 컴포넌트를 주제별로 분리해 재사용성을 높였다.                        포스트 작성 시간이 줄고, UI 일관성이 유지된다.                        너무 많은 컴포넌트를 한 글에 넣으면 가독성이 떨어질 수 있다.            11) accordionFAQ나 접기형 설명에 적합하다.      Library FAQ                                        어디에 정의되어 있나?                  _includes/library 폴더에서 관리한다.                                                  스타일은 어디서 바꾸나?                  assets/css/home-mag.css에서 컴포넌트 클래스를 수정한다.                    12) timeline업데이트 이력을 시간 순으로 기록하기 좋다.      모듈 제작 흐름                                              2026.02          기초 모듈          link-card, code-snippet, latex-block 제작                                                        2026.02          임베드 확장          google-map, youtube, pdf 모듈 추가                                                        2026.02          문서화          README 사용법 정리 완료                    13) gallery-masonry이미지 비율이 제각각일 때도 자연스럽게 쌓이는 갤러리.      Masonry Demo                                                                                                                                  14) toc-scrollspy본문의 h2/h3를 기준으로 인라인 목차를 만들고, 현재 섹션을 하이라이트한다.  Inline TOC  15) mermaid-diagram텍스트 기반으로 다이어그램을 삽입할 수 있다.      Blog Workflow    flowchart LR  A[Idea] --&gt; B[Design]  B --&gt; C[Build]  C --&gt; D[Publish]16) audio-player오디오 링크를 본문에서 바로 재생할 수 있다.          Audio Demo          17) citation / footnote본문 인용 표기  [1]와 각주 목록을 연결한다.      References                                        Vaswani et al., Attention Is All You Need (2017), arXiv:1706.03762.        ↩            "
+    },
+  
+    {
+      "title": "2. 디자인 구현",
+      "url": "/blog%20update/2026/02/26/design-implementation-part-2/",
+      "date": "2026.02.26",
+      "categories": "Blog update",
+      "tags": "blog update",
+      "excerpt": "",
+      "content": ""
     },
   
     {
@@ -31,13 +51,23 @@
     },
   
     {
+      "title": "블로그 디자인 레퍼런스 탐색",
+      "url": "/blog%20update/2026/02/26/blog-design-reference-exploration/",
+      "date": "2026.02.26",
+      "categories": "Blog update",
+      "tags": "design, ui, reference",
+      "excerpt": "블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.",
+      "content": "블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.이번 blog 디자인 레퍼런스 탐색은 아래 Figma 팀 파일에 정리하며 작성했습니다.블로그 디자인 레퍼런스 탐색 (Figma)레이아웃, 타이포그래피, UI 레퍼런스를 정리한 팀 파일figma.com"
+    },
+  
+    {
       "title": "주말 서울 맛집 지도 업데이트",
       "url": "/matzip/2026/02/26/matzip-weekend-seoul-map/",
       "date": "2026.02.26",
       "categories": "Matzip",
       "tags": "food, seoul, weekend",
       "excerpt": "최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.",
-      "content": "최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.이번 버전은 웨이팅 시간, 재방문 의사, 1인 방문 난이도 기준으로 정리했다.식당 리뷰는 분위기보다 음식 완성도와 운영 안정성을 중심으로 기록할 예정이다."
+      "content": "최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.이번 버전은 웨이팅 시간, 재방문 의사, 1인 방문 난이도 기준으로 정리했다.식당 리뷰는 분위기보다 음식 완성도와 운영 안정성을 중심으로 기록할 예정이다.테스트용으로 명동교자 명동점 위치 지도를 아래에 추가해 둔다.      명동교자 명동점    Open in Google Maps    명동교자 관련 유튜브도 함께 확인할 수 있도록 영상 블록을 추가했다.      명동교자 관련 영상    Open on YouTube    "
     },
   
     {
@@ -47,7 +77,7 @@
       "categories": "Deep_Learning",
       "tags": "deep-learning, training, checklist",
       "excerpt": "모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.",
-      "content": "모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.학습률 스케줄러, 배치 크기, 정규화, 데이터 증강을 순서대로 확인하면 원인을 빠르게 좁힐 수 있다.특히 검증 손실이 흔들릴 때는 초기 학습률과 weight decay 조합을 먼저 조정하는 것이 체감상 가장 효과적이었다."
+      "content": "모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.학습률 스케줄러, 배치 크기, 정규화, 데이터 증강을 순서대로 확인하면 원인을 빠르게 좁힐 수 있다.특히 검증 손실이 흔들릴 때는 초기 학습률과 weight decay 조합을 먼저 조정하는 것이 체감상 가장 효과적이었다.아래는 학습 루프 점검 전에 빠르게 sanity check로 돌려볼 수 있는 선형회귀 최소 예제다.      PyTorch 선형회귀 최소 예제          python      Copy        import torchimport torch.nn as nnimport torch.optim as optim# y = 2x + 1 데이터x = torch.tensor([[1.0], [2.0], [3.0], [4.0]])y = torch.tensor([[3.0], [5.0], [7.0], [9.0]])model = nn.Linear(1, 1)criterion = nn.MSELoss()optimizer = optim.SGD(model.parameters(), lr=0.01)for epoch in range(300):    pred = model(x)    loss = criterion(pred, y)    optimizer.zero_grad()    loss.backward()    optimizer.step()print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.item())            선형회귀 목표식 (MSE)      LaTeX        \\[\\hat{y} = wx + b,\\quad\\mathcal{L}(w,b) = \\frac{1}{N}\\sum_{i=1}^{N}\\left(y_i - (wx_i + b)\\right)^2\\]"
     },
   
     {

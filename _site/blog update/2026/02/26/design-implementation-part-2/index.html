@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>2. 디자인 구현 | Minnong's blog</title>
+    <meta name="description" content="" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="2. 디자인 구현 | Minnong's blog" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2/" />
+    
+      <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" />
+    
+
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css" />
+  </head>
+  <body id="article" class="is-preload" data-baseurl="">
+    <div class="search is-hidden" id="searchLayer">
+      <div class="container">
+        <form action="/search/" method="get" class="search-form">
+          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+        </form>
+        <div class="search-live-results" id="searchLiveResults"></div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="container">
+        <div class="columns header-row">
+          <div class="column left">
+            <a class="header-logo" href="/">Minnong's blog</a>
+          </div>
+          <div class="column right">
+            <nav class="header-nav">
+              <ul>
+                <li><button class="toggle-search" type="button" aria-label="검색"><i class="ri-search-line"></i></button></li>
+                <li><button class="toggle-nav" type="button" aria-label="메뉴"><i class="ri-menu-line"></i></button></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <nav class="nav is-hidden" id="menuLayer">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/photostream/">Photo</a></li>
+            <li><a href="/archive/">Archive</a></li>
+            <li><a href="/tags/">Tags</a></li>
+            <li><a href="/blog-update/">Blog update</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main page-main">
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <h1 class="title page-title">2. 디자인 구현</h1>
+          </header>
+
+          <article class="page-panel">
+            
+            <div class="cover-image">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="2. 디자인 구현" loading="lazy" />
+            </div>
+
+            <div class="page-content" style="margin-top: 0.9rem;">
+              <p style="margin: 0; font-size: 0.8rem;">2026.02.26</p>
+
+              
+
+            </div>
+
+            
+              <div class="tag-list">
+                
+                  
+                  
+                  
+                  <a class="tag-chip tag-chip--minimal tag-chip--blue" href="/tags/#blog-update">#blog update</a>
+                
+              </div>
+            
+
+            <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>Share</span>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=2.%20%EB%94%94%EC%9E%90%EC%9D%B8%20%EA%B5%AC%ED%98%84&url=https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2/"><i class="ri-twitter-x-fill"></i></a>
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u=https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2/"><i class="ri-facebook-fill"></i></a>
+              <button class="copy-url" type="button" data-url="https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2/" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
+            </div>
+
+            <section class="comments-panel">
+              <h2 class="comments-title">Comments</h2>
+              <script
+                src="https://giscus.app/client.js"
+                data-repo="minnong511/minnong511.github.io"
+                data-repo-id="R_kgDONte4cw"
+                data-category="General"
+                data-category-id="DIC_kwDONte4c84C3PLr"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="light"
+                data-lang="ko"
+                data-loading="eager"
+                crossorigin="anonymous"
+                async
+              ></script>
+              <p class="comments-help is-hidden" id="commentsFallback">
+                댓글 위젯이 보이지 않으면 광고차단/추적차단 설정을 확인하거나
+                <a href="https://github.com/minnong511/minnong511.github.io/discussions/categories/general" target="_blank" rel="noreferrer">GitHub Discussions</a>에서 확인해 주세요.
+              </p>
+            </section>
+          </article>
+
+          <aside class="post-toc is-hidden is-collapsed" id="postToc" aria-label="Table of contents">
+            <button class="post-toc-fab" id="postTocToggle" type="button" aria-expanded="false" aria-controls="postTocNav" aria-label="목차 열기/닫기">
+              <i class="ri-list-unordered"></i>
+            </button>
+            <div class="post-toc-panel" id="postTocNav">
+              <div class="post-toc-head">
+                <h2 class="post-toc-title">Contents</h2>
+              </div>
+              <nav>
+                <ul id="postTocList"></ul>
+              </nav>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <header class="section-header">
+            <h2 class="title page-title">Related Posts</h2>
+          </header>
+          <div class="columns card-grid">
+            
+            
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/convenience-improvements-part-4/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1400&q=80" alt="4. 편의성 개선" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>4. 편의성 개선</h2>
+                            <p>이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
+                
+              
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/library-module-build/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" alt="3.라이브러리 제작" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>3.라이브러리 제작</h2>
+                            <p>오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.
+컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
+                
+              
+            
+              
+            
+              
+                
+              
+            
+              
+                
+              
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/blog-design-reference-exploration/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1400&q=80" alt="블로그 디자인 레퍼런스 탐색" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>블로그 디자인 레퍼런스 탐색</h2>
+                            <p>블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
+                
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+  <div class="container">
+    <div class="columns footer-columns">
+      <div class="column">
+        <div class="footer-logo">Minnong's blog</div>
+      </div>
+      <div class="column"></div>
+      <div class="column">
+        <ul class="list">
+          <li>운영자: Min Hyeong Lee</li>
+          <li>Based in Seoul</li>
+          <li>Contact: kzxx1234@gmail.com</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul class="list">
+          <li>개인 포트폴리오 &amp; 블로그</li>
+          <li>Photo / Travel / Engineering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns footer-bottom">
+      <div class="column">
+        <p>© 2026 Minnong blog</p>
+      </div>
+      <div class="column social">
+        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <div class="photo-archive-lightbox is-hidden" id="imageLightbox" aria-hidden="true">
+      <button class="photo-archive-lightbox-close" id="lightboxClose" type="button" aria-label="Close image">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="photo-archive-lightbox-inner">
+        <img id="lightboxImage" alt="" />
+        <p id="lightboxCaption"></p>
+      </div>
+    </div>
+    <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
+
+    <script src="/assets/js/site-search.js"></script>
+    <script>
+      var menuLayer = document.getElementById('menuLayer');
+      var menuButton = document.querySelector('.toggle-nav');
+      var copyButton = document.querySelector('.copy-url');
+      var copyToast = document.getElementById('copyToast');
+      var postPanel = document.querySelector('.page-panel');
+      var lightbox = document.getElementById('imageLightbox');
+      var lightboxImage = document.getElementById('lightboxImage');
+      var lightboxClose = document.getElementById('lightboxClose');
+      var lightboxCaption = document.getElementById('lightboxCaption');
+      var commentsFallback = document.getElementById('commentsFallback');
+      var postToc = document.getElementById('postToc');
+      var postTocList = document.getElementById('postTocList');
+      var postTocToggle = document.getElementById('postTocToggle');
+      var copyToastTimer = null;
+
+      if (menuButton && menuLayer) {
+        menuButton.addEventListener('click', function () {
+          menuLayer.classList.toggle('is-hidden');
+        });
+      }
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
+
+      function showCopyToast(message) {
+        if (!copyToast) return;
+        copyToast.textContent = message;
+        copyToast.classList.add('is-visible');
+        copyToast.setAttribute('aria-hidden', 'false');
+        if (copyToastTimer) clearTimeout(copyToastTimer);
+        copyToastTimer = setTimeout(function () {
+          copyToast.classList.remove('is-visible');
+          copyToast.setAttribute('aria-hidden', 'true');
+        }, 1400);
+      }
+
+      if (copyButton) {
+        copyButton.addEventListener('click', function () {
+          var url = copyButton.getAttribute('data-url');
+          if (!url) return;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function () {
+              showCopyToast('Link copied');
+            }).catch(function () {
+              showCopyToast('Copy failed');
+              alert('Copy failed');
+            });
+            return;
+          }
+
+          var tempInput = document.createElement('input');
+          tempInput.value = url;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand('copy');
+            showCopyToast('Link copied');
+          } catch (e) {
+            showCopyToast('Copy failed');
+            alert('Copy failed');
+          }
+          document.body.removeChild(tempInput);
+        });
+      }
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.add('is-hidden');
+        lightbox.setAttribute('aria-hidden', 'true');
+        if (lightboxImage) {
+          lightboxImage.removeAttribute('src');
+          lightboxImage.removeAttribute('alt');
+        }
+        if (lightboxCaption) {
+          lightboxCaption.textContent = '';
+        }
+      }
+
+      if (postPanel && lightbox && lightboxImage) {
+        postPanel.querySelectorAll('.cover-image img, .page-content img').forEach(function (img) {
+          if (img.closest('a')) return;
+          if (img.closest('.image-compare-stage')) return;
+          img.classList.add('lightbox-target');
+          img.addEventListener('click', function () {
+            var src = img.getAttribute('src');
+            if (!src) return;
+            lightboxImage.setAttribute('src', src);
+            lightboxImage.setAttribute('alt', img.getAttribute('alt') || '');
+            if (lightboxCaption) {
+              lightboxCaption.textContent = img.getAttribute('alt') || '';
+            }
+            lightbox.classList.remove('is-hidden');
+            lightbox.setAttribute('aria-hidden', 'false');
+          });
+        });
+      }
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeLightbox();
+        });
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', function (event) {
+          if (event.target === lightbox) closeLightbox();
+        });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeLightbox();
+      });
+
+      function slugify(text) {
+        return (text || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-가-힣]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      if (postPanel && postToc && postTocList) {
+        var headings = Array.prototype.slice.call(postPanel.querySelectorAll('.page-content h2, .page-content h3'));
+        var usedIds = {};
+
+        headings.forEach(function (heading, idx) {
+          var text = (heading.textContent || '').trim();
+          if (!text) return;
+
+          var id = heading.id || slugify(text) || ('section-' + (idx + 1));
+          if (usedIds[id]) {
+            id = id + '-' + (idx + 1);
+          }
+          usedIds[id] = true;
+          heading.id = id;
+
+          var item = document.createElement('li');
+          if (heading.tagName.toLowerCase() === 'h3') item.className = 'toc-depth-3';
+          var link = document.createElement('a');
+          link.href = '#' + id;
+          link.textContent = text;
+          item.appendChild(link);
+          postTocList.appendChild(item);
+        });
+
+        if (postTocList.children.length > 0) {
+          postToc.classList.remove('is-hidden');
+        }
+      }
+
+      if (postToc && postTocToggle) {
+        postTocToggle.addEventListener('click', function () {
+          var collapsed = postToc.classList.toggle('is-collapsed');
+          postTocToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        });
+      }
+
+      if (commentsFallback) {
+        setTimeout(function () {
+          var giscusFrame = document.querySelector('iframe.giscus-frame');
+          if (!giscusFrame) {
+            commentsFallback.classList.remove('is-hidden');
+          }
+        }, 2500);
+      }
+    </script>
+  </body>
+</html>

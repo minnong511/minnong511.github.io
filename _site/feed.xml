@@ -1,21 +1,975 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-02-27T03:07:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My GitHub Blog</title><subtitle>A simple Jekyll blog hosted on GitHub Pages.</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">블로그 디자인 레퍼런스 탐색</title><link href="http://localhost:4000/blog%20update/2026/02/26/blog-design-reference-exploration/" rel="alternate" type="text/html" title="블로그 디자인 레퍼런스 탐색" /><published>2026-02-26T10:30:00+09:00</published><updated>2026-02-26T10:30:00+09:00</updated><id>http://localhost:4000/blog%20update/2026/02/26/blog-design-reference-exploration</id><content type="html" xml:base="http://localhost:4000/blog%20update/2026/02/26/blog-design-reference-exploration/"><![CDATA[<p>블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Blog update" /><category term="design" /><category term="ui" /><category term="reference" /><summary type="html"><![CDATA[블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">필름 스캔 워크플로우 정리</title><link href="http://localhost:4000/photo/2026/02/26/photo-film-scan-workflow/" rel="alternate" type="text/html" title="필름 스캔 워크플로우 정리" /><published>2026-02-26T09:40:00+09:00</published><updated>2026-02-26T09:40:00+09:00</updated><id>http://localhost:4000/photo/2026/02/26/photo-film-scan-workflow</id><content type="html" xml:base="http://localhost:4000/photo/2026/02/26/photo-film-scan-workflow/"><![CDATA[<p>필름 촬영 후 스캔부터 보정까지의 작업 흐름을 간단히 정리해봤다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://minnong511.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://minnong511.github.io/" rel="alternate" type="text/html" /><updated>2026-02-27T06:47:34+09:00</updated><id>https://minnong511.github.io/feed.xml</id><title type="html">Minnong’s blog</title><subtitle>A simple Jekyll blog hosted on GitHub Pages.</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">4. 편의성 개선</title><link href="https://minnong511.github.io/blog%20update/2026/02/26/convenience-improvements-part-4/" rel="alternate" type="text/html" title="4. 편의성 개선" /><published>2026-02-26T12:30:00+09:00</published><updated>2026-02-26T12:30:00+09:00</updated><id>https://minnong511.github.io/blog%20update/2026/02/26/convenience-improvements-part-4</id><content type="html" xml:base="https://minnong511.github.io/blog%20update/2026/02/26/convenience-improvements-part-4/"><![CDATA[<p>이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.</p>
+
+<h2 id="1-댓글-기능-giscus">1) 댓글 기능 (Giscus)</h2>
+
+<p>포스트 하단에 GitHub Discussions 기반 댓글 시스템을 연결했다.<br />
+독자가 별도 회원가입 없이 GitHub 계정으로 바로 의견을 남길 수 있고, 작성자 입장에서도 관리 흐름이 단순해졌다.</p>
+
+<h2 id="2-목차-보기-기능-pc-우측-하단">2) 목차 보기 기능 (PC 우측 하단)</h2>
+
+<p>데스크톱 화면에서 우측 하단에 동그란 목차 버튼을 추가했다.<br />
+버튼을 누르면 현재 포스트의 <code class="language-plaintext highlighter-rouge">h2</code>, <code class="language-plaintext highlighter-rouge">h3</code>를 기준으로 자동 생성된 목차가 펼쳐지고, 다시 눌러 접을 수 있다.</p>
+
+<h2 id="3-추가-편의성-기능">3) 추가 편의성 기능</h2>
+
+<p>이번 작업 과정에서 함께 반영한 주요 편의성 기능은 아래와 같다.</p>
+
+<ul>
+  <li>포스트 공유 영역의 링크 복사 버튼 + <code class="language-plaintext highlighter-rouge">Link copied</code> 토스트 알림</li>
+  <li>이미지 라이트박스(확대 보기) 기능</li>
+  <li>태그 페이지 인터랙션 개선: 태그 모음집 클릭 필터 + 초기 진입 시 태그만 노출</li>
+  <li>포스트 로딩 시 부드러운 진입 모션(페이드/슬라이드)</li>
+  <li>반복 UI를 빠르게 재사용하기 위한 라이브러리 모듈화
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">link-card</code>, <code class="language-plaintext highlighter-rouge">code-snippet</code>, <code class="language-plaintext highlighter-rouge">latex-block</code>, <code class="language-plaintext highlighter-rouge">google-map</code>, <code class="language-plaintext highlighter-rouge">youtube-embed</code>, <code class="language-plaintext highlighter-rouge">callout</code>, <code class="language-plaintext highlighter-rouge">table-card</code>, <code class="language-plaintext highlighter-rouge">image-compare</code>, <code class="language-plaintext highlighter-rouge">pdf-embed</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>다음 단계에서는 검색 정확도 개선과 포스트 작성 자동화 템플릿까지 확장해볼 예정이다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Blog update" /><category term="blog update" /><summary type="html"><![CDATA[이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">3.라이브러리 제작</title><link href="https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/" rel="alternate" type="text/html" title="3.라이브러리 제작" /><published>2026-02-26T11:30:00+09:00</published><updated>2026-02-26T11:30:00+09:00</updated><id>https://minnong511.github.io/blog%20update/2026/02/26/library-module-build</id><content type="html" xml:base="https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/"><![CDATA[<p>오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.<br />
+컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.</p>
+
+<p>이번에 만든 라이브러리 모듈은 아래처럼 정리했다.</p>
+
+<h2 id="1-link-card">1) link-card</h2>
+
+<p>노션 스타일 링크 블록.</p>
+
+<p><a class="link-card" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noreferrer noopener"><span class="link-card-main"><span class="link-card-title">블로그 저장소</span><span class="link-card-desc">현재 블로그 소스 코드 저장소</span><span class="link-card-host">github.com</span></span><i class="ri-external-link-line" aria-hidden="true"></i></a></p>
+
+<h2 id="2-code-snippet">2) code-snippet</h2>
+
+<p>다크 테마 + 복사 버튼 + 파이썬 하이라이트 지원.</p>
+
+<section class="code-snippet-card js-code-snippet">
+  <header class="code-snippet-header">
+    <span class="code-snippet-title">선형회귀 코드 예시</span>
+    <span class="code-snippet-tools">
+      <span class="code-snippet-lang">python</span>
+      <button class="code-snippet-copy" type="button" aria-label="Copy code">Copy</button>
+    </span>
+  </header>
+  <pre class="code-snippet-pre"><code class="language-python" data-lang="python">import torch
+import torch.nn as nn
+import torch.optim as optim
+
+x = torch.tensor([[1.0], [2.0], [3.0], [4.0]])
+y = torch.tensor([[3.0], [5.0], [7.0], [9.0]])  # y = 2x + 1
+
+model = nn.Linear(1, 1)
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+for epoch in range(300):
+    pred = model(x)
+    loss = criterion(pred, y)
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.item())</code></pre>
+</section>
+
+<script>
+  (function () {
+    if (window.__codeSnippetLibInit) return;
+    window.__codeSnippetLibInit = true;
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function highlightPython(raw) {
+      var tokenRegex = /(#.*$)|("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|\b(import|from|as|def|class|for|while|if|elif|else|try|except|finally|return|with|in|is|and|or|not|None|True|False|lambda|pass|break|continue|yield|raise|global|nonlocal|assert|del)\b|\b(print|len|range|list|dict|set|tuple|int|float|str|bool|enumerate|zip|map|filter|sum|min|max)\b|\b(\d+(?:\.\d+)?)\b|(@[A-Za-z_][A-Za-z0-9_]*)/gm;
+      var out = '';
+      var last = 0;
+      var match;
+
+      while ((match = tokenRegex.exec(raw)) !== null) {
+        out += escapeHtml(raw.slice(last, match.index));
+        var cls = 'py-text';
+        if (match[1]) cls = 'py-comment';
+        else if (match[2]) cls = 'py-string';
+        else if (match[3]) cls = 'py-keyword';
+        else if (match[4]) cls = 'py-builtin';
+        else if (match[5]) cls = 'py-number';
+        else if (match[6]) cls = 'py-decorator';
+        out += '<span class="' + cls + '">' + escapeHtml(match[0]) + '</span>';
+        last = tokenRegex.lastIndex;
+      }
+      out += escapeHtml(raw.slice(last));
+      return out;
+    }
+
+    function enhanceSnippets() {
+      document.querySelectorAll('.js-code-snippet').forEach(function (card) {
+        if (card.dataset.ready === 'true') return;
+        card.dataset.ready = 'true';
+
+        var code = card.querySelector('code');
+        if (!code) return;
+
+        var raw = code.textContent || '';
+        var lang = (code.dataset.lang || '').toLowerCase();
+        if (lang === 'python' || lang === 'py') {
+          code.innerHTML = highlightPython(raw);
+        } else {
+          code.textContent = raw;
+        }
+      });
+    }
+
+    function copyToClipboard(text, onDone, onFail) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onDone).catch(onFail);
+        return;
+      }
+
+      var input = document.createElement('textarea');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand('copy');
+        onDone();
+      } catch (e) {
+        onFail();
+      }
+      document.body.removeChild(input);
+    }
+
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('.code-snippet-copy');
+      if (!button) return;
+      var card = button.closest('.js-code-snippet');
+      if (!card) return;
+      var code = card.querySelector('code');
+      if (!code) return;
+
+      var original = button.textContent;
+      copyToClipboard(code.textContent || '', function () {
+        button.textContent = 'Copied';
+        setTimeout(function () {
+          button.textContent = original;
+        }, 1200);
+      }, function () {
+        button.textContent = 'Failed';
+        setTimeout(function () {
+          button.textContent = original;
+        }, 1200);
+      });
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', enhanceSnippets);
+    } else {
+      enhanceSnippets();
+    }
+  })();
+</script>
+
+<h2 id="3-latex-block">3) latex-block</h2>
+
+<p>MathJax 기반 수식 카드 렌더.</p>
+
+<section class="latex-card js-latex-block">
+  
+    <header class="latex-card-header">
+      <span class="latex-card-title">선형회귀 예시 수식</span>
+      <span class="latex-card-badge">LaTeX</span>
+    </header>
+  
+  <div class="latex-card-body">\[
+\hat{y} = wx + b,\quad
+\mathcal{L}(w,b)=\frac{1}{N}\sum_{i=1}^{N}(y_i-(wx_i+b))^2
+\]</div>
+</section>
+
+<script>
+  (function () {
+    if (!window.__latexLibInit) {
+      window.__latexLibInit = true;
+      window.MathJax = window.MathJax || {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+        svg: { fontCache: 'global' }
+      };
+
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise(
+            Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+          );
+        }
+      };
+      document.head.appendChild(script);
+      return;
+    }
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise(
+        Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+      );
+    }
+  })();
+</script>
+
+<h2 id="4-google-map">4) google-map</h2>
+
+<p>장소 검색 기반 지도 임베드.</p>
+
+<section class="map-card">
+  <header class="map-card-header">
+    <span class="map-card-title">명동교자 명동점</span>
+    <a class="map-card-open" href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AA%85%EB%8F%99%EA%B5%90%EC%9E%90+%EB%AA%85%EB%8F%99%EC%A0%90+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%EB%AA%85%EB%8F%9910%EA%B8%B8+29" target="_blank" rel="noreferrer noopener">Open in Google Maps</a>
+  </header>
+  <iframe class="map-card-frame" src="https://maps.google.com/maps?q=%EB%AA%85%EB%8F%99%EA%B5%90%EC%9E%90+%EB%AA%85%EB%8F%99%EC%A0%90+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%EB%AA%85%EB%8F%9910%EA%B8%B8+29&amp;z=17&amp;output=embed" height="320" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="명동교자 명동점"></iframe>
+</section>
+
+<h2 id="5-youtube-embed">5) youtube-embed</h2>
+
+<p>영상 ID/검색어 기반 유튜브 임베드.</p>
+
+<section class="video-card">
+  <header class="video-card-header">
+    <span class="video-card-title">명동교자 관련 영상</span>
+    <a class="video-card-open" href="https://www.youtube.com/watch?v=8Qn0RoQTfaQ" target="_blank" rel="noreferrer noopener">Open on YouTube</a>
+  </header>
+  <iframe class="video-card-frame" src="https://www.youtube-nocookie.com/embed/8Qn0RoQTfaQ" height="320" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" title="명동교자 관련 영상"></iframe>
+</section>
+
+<h2 id="6-callout">6) callout</h2>
+
+<section class="callout callout-tip">
+  <div class="callout-head">
+    <span class="callout-dot" aria-hidden="true"></span>
+    <strong>Tip</strong>
+  </div>
+  
+    <p>모듈화를 해두면 포스트를 쓸 때 포맷 고민 없이 콘텐츠 작성에 집중할 수 있다.</p>
+  
+</section>
+
+<h2 id="7-table">7) table</h2>
+
+<section class="table-card">
+  
+    <header class="table-card-header">
+      <span>오늘 추가한 모듈 상태</span>
+    </header>
+  
+  <div class="table-card-scroll">
+    <table class="table-card-table">
+      
+        <thead>
+          <tr>
+            
+              <th>모듈</th>
+            
+              <th>용도</th>
+            
+              <th>상태</th>
+            
+          </tr>
+        </thead>
+      
+      <tbody>
+        
+          
+          
+            <tr>
+              
+                <td>callout</td>
+              
+                <td>중요 문구 강조</td>
+              
+                <td>완료</td>
+              
+            </tr>
+          
+        
+          
+          
+            <tr>
+              
+                <td>table</td>
+              
+                <td>데이터 비교/정리</td>
+              
+                <td>완료</td>
+              
+            </tr>
+          
+        
+          
+          
+            <tr>
+              
+                <td>image compare</td>
+              
+                <td>전후 이미지 비교</td>
+              
+                <td>완료</td>
+              
+            </tr>
+          
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<h2 id="8-image-compare">8) image compare</h2>
+
+<section class="image-compare-card js-image-compare" data-start="45">
+  
+    <header class="image-compare-header">
+      <span>Photo Tone Compare</span>
+    </header>
+  
+  <div class="image-compare-stage">
+    <img class="image-compare-before" src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Before" loading="lazy" />
+    <div class="image-compare-after-wrap">
+      <img class="image-compare-after" src="https://images.unsplash.com/photo-1505765050516-f72dcac9c60f?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="After" loading="lazy" />
+    </div>
+    <div class="image-compare-line" aria-hidden="true"></div>
+    <div class="image-compare-label before">Before</div>
+    <div class="image-compare-label after">After</div>
+  </div>
+  <input class="image-compare-slider" type="range" min="0" max="100" value="45" />
+</section>
+
+<script>
+  (function () {
+    if (window.__imageCompareInit) return;
+    window.__imageCompareInit = true;
+
+    function initCompare(card) {
+      if (card.dataset.ready === 'true') return;
+      card.dataset.ready = 'true';
+
+      var stage = card.querySelector('.image-compare-stage');
+      var afterWrap = card.querySelector('.image-compare-after-wrap');
+      var line = card.querySelector('.image-compare-line');
+      var slider = card.querySelector('.image-compare-slider');
+      if (!stage || !afterWrap || !line || !slider) return;
+
+      function update() {
+        var value = Number(slider.value || 50);
+        afterWrap.style.width = value + '%';
+        line.style.left = value + '%';
+      }
+
+      slider.addEventListener('input', update);
+      update();
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-image-compare').forEach(initCompare);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+<h2 id="9-pdf-embed">9) pdf-embed</h2>
+
+<p>PDF 문서를 포스트 안에서 바로 미리보기로 띄울 수 있다.</p>
+
+<section class="pdf-card">
+    <header class="pdf-card-header">
+      <span class="pdf-card-title">Attention Is All You Need (PDF)</span>
+      <a class="pdf-card-open" href="https://arxiv.org/pdf/1706.03762" target="_blank" rel="noreferrer noopener">Open PDF</a>
+    </header>
+    <iframe class="pdf-card-frame" src="https://arxiv.org/pdf/1706.03762" height="520" loading="lazy" title="Attention Is All You Need (PDF)"></iframe>
+  </section>
+
+<h2 id="10-tabs">10) tabs</h2>
+
+<p>콘텐츠를 탭으로 나눠서 읽을 수 있다.</p>
+
+<section class="tabs-card js-tabs" id="library-demo-tabs">
+  <div class="tabs-nav" role="tablist" aria-label="Tabs">
+    
+      <button class="tabs-btn is-active" type="button" role="tab" aria-selected="true" data-tab-index="0">
+        개요
+      </button>
+    
+      <button class="tabs-btn" type="button" role="tab" aria-selected="false" data-tab-index="1">
+        장점
+      </button>
+    
+      <button class="tabs-btn" type="button" role="tab" aria-selected="false" data-tab-index="2">
+        주의사항
+      </button>
+    
+  </div>
+  <div class="tabs-panels">
+    
+      <div class="tabs-panel is-active" data-tab-panel="0">
+        <p>라이브러리 컴포넌트를 주제별로 분리해 재사용성을 높였다.</p>
+      </div>
+    
+      <div class="tabs-panel" data-tab-panel="1">
+        <p>포스트 작성 시간이 줄고, UI 일관성이 유지된다.</p>
+      </div>
+    
+      <div class="tabs-panel" data-tab-panel="2">
+        <p>너무 많은 컴포넌트를 한 글에 넣으면 가독성이 떨어질 수 있다.</p>
+      </div>
+    
+  </div>
+</section>
+
+<script>
+  (function () {
+    if (window.__tabsLibInit) return;
+    window.__tabsLibInit = true;
+
+    function initTabs(card) {
+      if (card.dataset.ready === 'true') return;
+      card.dataset.ready = 'true';
+      var buttons = Array.prototype.slice.call(card.querySelectorAll('.tabs-btn'));
+      var panels = Array.prototype.slice.call(card.querySelectorAll('.tabs-panel'));
+      if (!buttons.length || !panels.length) return;
+
+      function activate(index) {
+        buttons.forEach(function (btn, idx) {
+          var active = idx === index;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(function (panel, idx) {
+          panel.classList.toggle('is-active', idx === index);
+        });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          activate(Number(btn.dataset.tabIndex || 0));
+        });
+      });
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-tabs').forEach(initTabs);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+<h2 id="11-accordion">11) accordion</h2>
+
+<p>FAQ나 접기형 설명에 적합하다.</p>
+
+<section class="accordion-card">
+  <header class="accordion-head">
+    <span>Library FAQ</span>
+  </header>
+  <div class="accordion-list">
+    
+      
+      
+      
+      <details class="accordion-item" open="">
+        <summary>어디에 정의되어 있나?</summary>
+        <div class="accordion-body">
+          <p>_includes/library 폴더에서 관리한다.</p>
+        </div>
+      </details>
+    
+      
+      
+      
+      <details class="accordion-item">
+        <summary>스타일은 어디서 바꾸나?</summary>
+        <div class="accordion-body">
+          <p>assets/css/home-mag.css에서 컴포넌트 클래스를 수정한다.</p>
+        </div>
+      </details>
+    
+  </div>
+</section>
+
+<h2 id="12-timeline">12) timeline</h2>
+
+<p>업데이트 이력을 시간 순으로 기록하기 좋다.</p>
+
+<section class="timeline-card">
+  <header class="timeline-head">
+    <span>모듈 제작 흐름</span>
+  </header>
+  <ul class="timeline-list">
+    
+      
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>2026.02</time>
+          <strong>기초 모듈</strong>
+          <p>link-card, code-snippet, latex-block 제작</p>
+        </div>
+      </li>
+    
+      
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>2026.02</time>
+          <strong>임베드 확장</strong>
+          <p>google-map, youtube, pdf 모듈 추가</p>
+        </div>
+      </li>
+    
+      
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>2026.02</time>
+          <strong>문서화</strong>
+          <p>README 사용법 정리 완료</p>
+        </div>
+      </li>
+    
+  </ul>
+</section>
+
+<h2 id="13-gallery-masonry">13) gallery-masonry</h2>
+
+<p>이미지 비율이 제각각일 때도 자연스럽게 쌓이는 갤러리.</p>
+
+<section class="masonry-card">
+  <header class="masonry-head">
+    <span>Masonry Demo</span>
+  </header>
+  <div class="masonry-grid">
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 1" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 2" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 3" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 4" loading="lazy" />
+      </figure>
+    
+      <figure class="masonry-item">
+        <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 5" loading="lazy" />
+      </figure>
+    
+  </div>
+</section>
+
+<h2 id="14-toc-scrollspy">14) toc-scrollspy</h2>
+
+<p>본문의 <code class="language-plaintext highlighter-rouge">h2/h3</code>를 기준으로 인라인 목차를 만들고, 현재 섹션을 하이라이트한다.</p>
+
+<aside class="inline-toc js-inline-toc" data-toc-target=".page-content">
+  <h3>Inline TOC</h3>
+  <ul></ul>
+</aside>
+
+<script>
+  (function () {
+    if (window.__inlineTocInit) return;
+    window.__inlineTocInit = true;
+
+    function slugify(text) {
+      return (text || '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-가-힣]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+    }
+
+    function initToc(toc) {
+      if (toc.dataset.ready === 'true') return;
+      toc.dataset.ready = 'true';
+
+      var targetSelector = toc.dataset.tocTarget || '.page-content';
+      var scope = document.querySelector(targetSelector);
+      var list = toc.querySelector('ul');
+      if (!scope || !list) return;
+
+      var headings = Array.prototype.slice.call(scope.querySelectorAll('h2, h3'));
+      if (!headings.length) {
+        toc.classList.add('is-hidden');
+        return;
+      }
+
+      var used = {};
+      headings.forEach(function (h, idx) {
+        var text = (h.textContent || '').trim();
+        if (!text) return;
+        var id = h.id || slugify(text) || ('spy-section-' + (idx + 1));
+        if (used[id]) id = id + '-' + (idx + 1);
+        used[id] = true;
+        h.id = id;
+
+        var li = document.createElement('li');
+        if (h.tagName.toLowerCase() === 'h3') li.className = 'depth-3';
+        var a = document.createElement('a');
+        a.href = '#' + id;
+        a.textContent = text;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+
+      var links = Array.prototype.slice.call(list.querySelectorAll('a'));
+      if (!('IntersectionObserver' in window)) return;
+      var map = {};
+      links.forEach(function (a) {
+        map[a.getAttribute('href').slice(1)] = a;
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var link = map[entry.target.id];
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach(function (x) { x.classList.remove('is-active'); });
+            link.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0.1 });
+
+      headings.forEach(function (h) { io.observe(h); });
+    }
+
+    function boot() {
+      document.querySelectorAll('.js-inline-toc').forEach(initToc);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+  })();
+</script>
+
+<h2 id="15-mermaid-diagram">15) mermaid-diagram</h2>
+
+<p>텍스트 기반으로 다이어그램을 삽입할 수 있다.</p>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Blog Workflow</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart LR
+  A[Idea] --&gt; B[Design]
+  B --&gt; C[Build]
+  C --&gt; D[Publish]
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<h2 id="16-audio-player">16) audio-player</h2>
+
+<p>오디오 링크를 본문에서 바로 재생할 수 있다.</p>
+
+<section class="audio-card">
+    <header class="audio-head">
+      <span>Audio Demo</span>
+    </header>
+    <audio controls="" preload="none" src="https://file-examples.com/storage/fe86f7f4349f4fd23f4f2f1/2017/11/file_example_MP3_700KB.mp3"></audio>
+  </section>
+
+<h2 id="17-citation--footnote">17) citation / footnote</h2>
+
+<p>본문 인용 표기</p>
+
+<p><sup class="citation-ref">
+  <a id="fnref-1" href="#fn-1">[1]</a>
+</sup>
+와 각주 목록을 연결한다.</p>
+
+<section class="footnotes-card">
+  <header class="footnotes-head">
+    <span>References</span>
+  </header>
+  <ol class="footnotes-list">
+    
+      
+      
+      
+      <li id="fn-1">
+        Vaswani et al., Attention Is All You Need (2017), arXiv:1706.03762.
+        <a class="footnote-back" href="#fnref-1">↩</a>
+      </li>
+    
+  </ol>
+</section>]]></content><author><name>Min Hyeong Lee</name></author><category term="Blog update" /><category term="blog update" /><category term="library" /><category term="jekyll" /><summary type="html"><![CDATA[오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다. 컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">2. 디자인 구현</title><link href="https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2/" rel="alternate" type="text/html" title="2. 디자인 구현" /><published>2026-02-26T10:30:00+09:00</published><updated>2026-02-26T10:30:00+09:00</updated><id>https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2</id><content type="html" xml:base="https://minnong511.github.io/blog%20update/2026/02/26/design-implementation-part-2/"><![CDATA[]]></content><author><name>Min Hyeong Lee</name></author><category term="Blog update" /><category term="blog update" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">필름 스캔 워크플로우 정리</title><link href="https://minnong511.github.io/photo/2026/02/26/photo-film-scan-workflow/" rel="alternate" type="text/html" title="필름 스캔 워크플로우 정리" /><published>2026-02-26T09:40:00+09:00</published><updated>2026-02-26T09:40:00+09:00</updated><id>https://minnong511.github.io/photo/2026/02/26/photo-film-scan-workflow</id><content type="html" xml:base="https://minnong511.github.io/photo/2026/02/26/photo-film-scan-workflow/"><![CDATA[<p>필름 촬영 후 스캔부터 보정까지의 작업 흐름을 간단히 정리해봤다.</p>
 
 <p>현재는 장면별 노출 기록을 남긴 뒤, 스캔 단계에서 컬러 밸런스를 먼저 맞추는 방식을 사용하고 있다.</p>
 
-<p>보정은 과하지 않게 톤과 콘트라스트만 최소 조정해서 촬영 당시의 분위기를 유지하는 방향으로 진행한다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Photo" /><category term="photo" /><category term="film" /><category term="workflow" /><summary type="html"><![CDATA[필름 촬영 후 스캔부터 보정까지의 작업 흐름을 간단히 정리해봤다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">논문 리뷰: 멀티모달 검색 모델 요약</title><link href="http://localhost:4000/paper_review/2026/02/26/paper-review-multimodal-retrieval/" rel="alternate" type="text/html" title="논문 리뷰: 멀티모달 검색 모델 요약" /><published>2026-02-26T09:30:00+09:00</published><updated>2026-02-26T09:30:00+09:00</updated><id>http://localhost:4000/paper_review/2026/02/26/paper-review-multimodal-retrieval</id><content type="html" xml:base="http://localhost:4000/paper_review/2026/02/26/paper-review-multimodal-retrieval/"><![CDATA[<p>이번 리뷰에서는 텍스트와 이미지를 함께 다루는 멀티모달 검색 모델의 핵심 아이디어를 정리한다.</p>
+<p>보정은 과하지 않게 톤과 콘트라스트만 최소 조정해서 촬영 당시의 분위기를 유지하는 방향으로 진행한다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Photo" /><category term="photo" /><category term="film" /><category term="workflow" /><summary type="html"><![CDATA[필름 촬영 후 스캔부터 보정까지의 작업 흐름을 간단히 정리해봤다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1470115636492-6d2b56f9146d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">논문 리뷰: 멀티모달 검색 모델 요약</title><link href="https://minnong511.github.io/paper_review/2026/02/26/paper-review-multimodal-retrieval/" rel="alternate" type="text/html" title="논문 리뷰: 멀티모달 검색 모델 요약" /><published>2026-02-26T09:30:00+09:00</published><updated>2026-02-26T09:30:00+09:00</updated><id>https://minnong511.github.io/paper_review/2026/02/26/paper-review-multimodal-retrieval</id><content type="html" xml:base="https://minnong511.github.io/paper_review/2026/02/26/paper-review-multimodal-retrieval/"><![CDATA[<p>이번 리뷰에서는 텍스트와 이미지를 함께 다루는 멀티모달 검색 모델의 핵심 아이디어를 정리한다.</p>
 
 <p>논문의 주요 기여는 인코더 정렬 전략과 하드 네거티브 샘플링 개선에 있다.</p>
 
-<p>실험 재현 시에는 데이터 전처리 규칙과 평가 지표 계산 방식이 결과 차이를 크게 만들기 때문에 주의가 필요하다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Paper_Review" /><category term="paper-review" /><category term="multimodal" /><category term="retrieval" /><summary type="html"><![CDATA[이번 리뷰에서는 텍스트와 이미지를 함께 다루는 멀티모달 검색 모델의 핵심 아이디어를 정리한다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">주말 서울 맛집 지도 업데이트</title><link href="http://localhost:4000/matzip/2026/02/26/matzip-weekend-seoul-map/" rel="alternate" type="text/html" title="주말 서울 맛집 지도 업데이트" /><published>2026-02-26T09:20:00+09:00</published><updated>2026-02-26T09:20:00+09:00</updated><id>http://localhost:4000/matzip/2026/02/26/matzip-weekend-seoul-map</id><content type="html" xml:base="http://localhost:4000/matzip/2026/02/26/matzip-weekend-seoul-map/"><![CDATA[<p>최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.</p>
+<p>실험 재현 시에는 데이터 전처리 규칙과 평가 지표 계산 방식이 결과 차이를 크게 만들기 때문에 주의가 필요하다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Paper_Review" /><category term="paper-review" /><category term="multimodal" /><category term="retrieval" /><summary type="html"><![CDATA[이번 리뷰에서는 텍스트와 이미지를 함께 다루는 멀티모달 검색 모델의 핵심 아이디어를 정리한다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">블로그 디자인 레퍼런스 탐색</title><link href="https://minnong511.github.io/blog%20update/2026/02/26/blog-design-reference-exploration/" rel="alternate" type="text/html" title="블로그 디자인 레퍼런스 탐색" /><published>2026-02-26T09:30:00+09:00</published><updated>2026-02-26T09:30:00+09:00</updated><id>https://minnong511.github.io/blog%20update/2026/02/26/blog-design-reference-exploration</id><content type="html" xml:base="https://minnong511.github.io/blog%20update/2026/02/26/blog-design-reference-exploration/"><![CDATA[<p>블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.</p>
+
+<p>이번 <code class="language-plaintext highlighter-rouge">blog 디자인 레퍼런스 탐색</code>은 아래 Figma 팀 파일에 정리하며 작성했습니다.</p>
+
+<p><a class="link-card" href="https://www.figma.com/files/team/1264787497364969159/recents-and-sharing?fuid=1264787495555984294" target="_blank" rel="noreferrer noopener"><span class="link-card-main"><span class="link-card-title">블로그 디자인 레퍼런스 탐색 (Figma)</span><span class="link-card-desc">레이아웃, 타이포그래피, UI 레퍼런스를 정리한 팀 파일</span><span class="link-card-host">figma.com</span></span><i class="ri-external-link-line" aria-hidden="true"></i></a></p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Blog update" /><category term="design" /><category term="ui" /><category term="reference" /><summary type="html"><![CDATA[블로그 디자인 레퍼런스를 탐색하며 레이아웃, 타이포그래피, 색상 시스템의 방향성을 정리해보는 기록입니다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">주말 서울 맛집 지도 업데이트</title><link href="https://minnong511.github.io/matzip/2026/02/26/matzip-weekend-seoul-map/" rel="alternate" type="text/html" title="주말 서울 맛집 지도 업데이트" /><published>2026-02-26T09:20:00+09:00</published><updated>2026-02-26T09:20:00+09:00</updated><id>https://minnong511.github.io/matzip/2026/02/26/matzip-weekend-seoul-map</id><content type="html" xml:base="https://minnong511.github.io/matzip/2026/02/26/matzip-weekend-seoul-map/"><![CDATA[<p>최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.</p>
 
 <p>이번 버전은 웨이팅 시간, 재방문 의사, 1인 방문 난이도 기준으로 정리했다.</p>
 
-<p>식당 리뷰는 분위기보다 음식 완성도와 운영 안정성을 중심으로 기록할 예정이다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Matzip" /><category term="food" /><category term="seoul" /><category term="weekend" /><summary type="html"><![CDATA[최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">딥러닝 학습 루프 점검 체크리스트</title><link href="http://localhost:4000/deep_learning/2026/02/26/deep-learning-training-loop-checklist/" rel="alternate" type="text/html" title="딥러닝 학습 루프 점검 체크리스트" /><published>2026-02-26T09:10:00+09:00</published><updated>2026-02-26T09:10:00+09:00</updated><id>http://localhost:4000/deep_learning/2026/02/26/deep-learning-training-loop-checklist</id><content type="html" xml:base="http://localhost:4000/deep_learning/2026/02/26/deep-learning-training-loop-checklist/"><![CDATA[<p>모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.</p>
+<p>식당 리뷰는 분위기보다 음식 완성도와 운영 안정성을 중심으로 기록할 예정이다.</p>
+
+<p>테스트용으로 <code class="language-plaintext highlighter-rouge">명동교자 명동점</code> 위치 지도를 아래에 추가해 둔다.</p>
+
+<section class="map-card">
+  <header class="map-card-header">
+    <span class="map-card-title">명동교자 명동점</span>
+    <a class="map-card-open" href="https://www.google.com/maps/search/?api=1&amp;query=%EB%AA%85%EB%8F%99%EA%B5%90%EC%9E%90+%EB%AA%85%EB%8F%99%EC%A0%90+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%EB%AA%85%EB%8F%9910%EA%B8%B8+29" target="_blank" rel="noreferrer noopener">Open in Google Maps</a>
+  </header>
+  <iframe class="map-card-frame" src="https://maps.google.com/maps?q=%EB%AA%85%EB%8F%99%EA%B5%90%EC%9E%90+%EB%AA%85%EB%8F%99%EC%A0%90+%EC%84%9C%EC%9A%B8+%EC%A4%91%EA%B5%AC+%EB%AA%85%EB%8F%9910%EA%B8%B8+29&amp;z=17&amp;output=embed" height="380" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="명동교자 명동점"></iframe>
+</section>
+
+<p>명동교자 관련 유튜브도 함께 확인할 수 있도록 영상 블록을 추가했다.</p>
+
+<section class="video-card">
+  <header class="video-card-header">
+    <span class="video-card-title">명동교자 관련 영상</span>
+    <a class="video-card-open" href="https://www.youtube.com/watch?v=8Qn0RoQTfaQ" target="_blank" rel="noreferrer noopener">Open on YouTube</a>
+  </header>
+  <iframe class="video-card-frame" src="https://www.youtube-nocookie.com/embed/8Qn0RoQTfaQ" height="380" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" title="명동교자 관련 영상"></iframe>
+</section>]]></content><author><name>Min Hyeong Lee</name></author><category term="Matzip" /><category term="food" /><category term="seoul" /><category term="weekend" /><summary type="html"><![CDATA[최근에 다시 방문한 식당 중심으로 주말 맛집 리스트를 업데이트했다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">딥러닝 학습 루프 점검 체크리스트</title><link href="https://minnong511.github.io/deep_learning/2026/02/26/deep-learning-training-loop-checklist/" rel="alternate" type="text/html" title="딥러닝 학습 루프 점검 체크리스트" /><published>2026-02-26T09:10:00+09:00</published><updated>2026-02-26T09:10:00+09:00</updated><id>https://minnong511.github.io/deep_learning/2026/02/26/deep-learning-training-loop-checklist</id><content type="html" xml:base="https://minnong511.github.io/deep_learning/2026/02/26/deep-learning-training-loop-checklist/"><![CDATA[<p>모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.</p>
 
 <p>학습률 스케줄러, 배치 크기, 정규화, 데이터 증강을 순서대로 확인하면 원인을 빠르게 좁힐 수 있다.</p>
 
-<p>특히 검증 손실이 흔들릴 때는 초기 학습률과 weight decay 조합을 먼저 조정하는 것이 체감상 가장 효과적이었다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="deep-learning" /><category term="training" /><category term="checklist" /><summary type="html"><![CDATA[모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">알고리즘 복습: 정렬과 탐색 핵심 노트</title><link href="http://localhost:4000/computer_science/2026/02/26/computer-science-algorithm-notes/" rel="alternate" type="text/html" title="알고리즘 복습: 정렬과 탐색 핵심 노트" /><published>2026-02-26T09:00:00+09:00</published><updated>2026-02-26T09:00:00+09:00</updated><id>http://localhost:4000/computer_science/2026/02/26/computer-science-algorithm-notes</id><content type="html" xml:base="http://localhost:4000/computer_science/2026/02/26/computer-science-algorithm-notes/"><![CDATA[<p>자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.</p>
+<p>특히 검증 손실이 흔들릴 때는 초기 학습률과 weight decay 조합을 먼저 조정하는 것이 체감상 가장 효과적이었다.</p>
+
+<p>아래는 학습 루프 점검 전에 빠르게 sanity check로 돌려볼 수 있는 선형회귀 최소 예제다.</p>
+
+<section class="code-snippet-card js-code-snippet">
+  <header class="code-snippet-header">
+    <span class="code-snippet-title">PyTorch 선형회귀 최소 예제</span>
+    <span class="code-snippet-tools">
+      <span class="code-snippet-lang">python</span>
+      <button class="code-snippet-copy" type="button" aria-label="Copy code">Copy</button>
+    </span>
+  </header>
+  <pre class="code-snippet-pre"><code class="language-python" data-lang="python">import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# y = 2x + 1 데이터
+x = torch.tensor([[1.0], [2.0], [3.0], [4.0]])
+y = torch.tensor([[3.0], [5.0], [7.0], [9.0]])
+
+model = nn.Linear(1, 1)
+criterion = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr=0.01)
+
+for epoch in range(300):
+    pred = model(x)
+    loss = criterion(pred, y)
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+
+print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.item())</code></pre>
+</section>
+
+<script>
+  (function () {
+    if (window.__codeSnippetLibInit) return;
+    window.__codeSnippetLibInit = true;
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function highlightPython(raw) {
+      var tokenRegex = /(#.*$)|("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|\b(import|from|as|def|class|for|while|if|elif|else|try|except|finally|return|with|in|is|and|or|not|None|True|False|lambda|pass|break|continue|yield|raise|global|nonlocal|assert|del)\b|\b(print|len|range|list|dict|set|tuple|int|float|str|bool|enumerate|zip|map|filter|sum|min|max)\b|\b(\d+(?:\.\d+)?)\b|(@[A-Za-z_][A-Za-z0-9_]*)/gm;
+      var out = '';
+      var last = 0;
+      var match;
+
+      while ((match = tokenRegex.exec(raw)) !== null) {
+        out += escapeHtml(raw.slice(last, match.index));
+        var cls = 'py-text';
+        if (match[1]) cls = 'py-comment';
+        else if (match[2]) cls = 'py-string';
+        else if (match[3]) cls = 'py-keyword';
+        else if (match[4]) cls = 'py-builtin';
+        else if (match[5]) cls = 'py-number';
+        else if (match[6]) cls = 'py-decorator';
+        out += '<span class="' + cls + '">' + escapeHtml(match[0]) + '</span>';
+        last = tokenRegex.lastIndex;
+      }
+      out += escapeHtml(raw.slice(last));
+      return out;
+    }
+
+    function enhanceSnippets() {
+      document.querySelectorAll('.js-code-snippet').forEach(function (card) {
+        if (card.dataset.ready === 'true') return;
+        card.dataset.ready = 'true';
+
+        var code = card.querySelector('code');
+        if (!code) return;
+
+        var raw = code.textContent || '';
+        var lang = (code.dataset.lang || '').toLowerCase();
+        if (lang === 'python' || lang === 'py') {
+          code.innerHTML = highlightPython(raw);
+        } else {
+          code.textContent = raw;
+        }
+      });
+    }
+
+    function copyToClipboard(text, onDone, onFail) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onDone).catch(onFail);
+        return;
+      }
+
+      var input = document.createElement('textarea');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand('copy');
+        onDone();
+      } catch (e) {
+        onFail();
+      }
+      document.body.removeChild(input);
+    }
+
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('.code-snippet-copy');
+      if (!button) return;
+      var card = button.closest('.js-code-snippet');
+      if (!card) return;
+      var code = card.querySelector('code');
+      if (!code) return;
+
+      var original = button.textContent;
+      copyToClipboard(code.textContent || '', function () {
+        button.textContent = 'Copied';
+        setTimeout(function () {
+          button.textContent = original;
+        }, 1200);
+      }, function () {
+        button.textContent = 'Failed';
+        setTimeout(function () {
+          button.textContent = original;
+        }, 1200);
+      });
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', enhanceSnippets);
+    } else {
+      enhanceSnippets();
+    }
+  })();
+</script>
+
+<section class="latex-card js-latex-block">
+  
+    <header class="latex-card-header">
+      <span class="latex-card-title">선형회귀 목표식 (MSE)</span>
+      <span class="latex-card-badge">LaTeX</span>
+    </header>
+  
+  <div class="latex-card-body">\[
+\hat{y} = wx + b,\quad
+\mathcal{L}(w,b) = \frac{1}{N}\sum_{i=1}^{N}\left(y_i - (wx_i + b)\right)^2
+\]</div>
+</section>
+
+<script>
+  (function () {
+    if (!window.__latexLibInit) {
+      window.__latexLibInit = true;
+      window.MathJax = window.MathJax || {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+        svg: { fontCache: 'global' }
+      };
+
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise(
+            Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+          );
+        }
+      };
+      document.head.appendChild(script);
+      return;
+    }
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise(
+        Array.prototype.slice.call(document.querySelectorAll('.js-latex-block'))
+      );
+    }
+  })();
+</script>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="deep-learning" /><category term="training" /><category term="checklist" /><summary type="html"><![CDATA[모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">알고리즘 복습: 정렬과 탐색 핵심 노트</title><link href="https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes/" rel="alternate" type="text/html" title="알고리즘 복습: 정렬과 탐색 핵심 노트" /><published>2026-02-26T09:00:00+09:00</published><updated>2026-02-26T09:00:00+09:00</updated><id>https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes</id><content type="html" xml:base="https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes/"><![CDATA[<p>자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.</p>
 
 <p>이번 글에서는 정렬 알고리즘의 시간복잡도 비교와 이진 탐색의 조건 처리 포인트를 다룬다.</p>
 
-<p>코딩 테스트에서는 구현 실수보다 경계 조건에서 점수를 잃는 경우가 많아서, 예외 케이스 체크리스트를 습관화하는 것이 중요하다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Computer_Science" /><category term="algorithm" /><category term="sorting" /><category term="cs" /><summary type="html"><![CDATA[자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">블로그에 오신 것을 환영합니다</title><link href="http://localhost:4000/2025/05/30/welcome-to-my-blog/" rel="alternate" type="text/html" title="블로그에 오신 것을 환영합니다" /><published>2025-05-30T09:00:00+09:00</published><updated>2025-05-30T09:00:00+09:00</updated><id>http://localhost:4000/2025/05/30/welcome-to-my-blog</id><content type="html" xml:base="http://localhost:4000/2025/05/30/welcome-to-my-blog/"><![CDATA[<p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="start" /><category term="welcome" /><category term="blog" /><summary type="html"><![CDATA[첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/base_image/test_image.png" /><media:content medium="image" url="http://localhost:4000/assets/base_image/test_image.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+<p>코딩 테스트에서는 구현 실수보다 경계 조건에서 점수를 잃는 경우가 많아서, 예외 케이스 체크리스트를 습관화하는 것이 중요하다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Computer_Science" /><category term="algorithm" /><category term="sorting" /><category term="cs" /><summary type="html"><![CDATA[자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">블로그에 오신 것을 환영합니다</title><link href="https://minnong511.github.io/2025/05/30/welcome-to-my-blog/" rel="alternate" type="text/html" title="블로그에 오신 것을 환영합니다" /><published>2025-05-30T09:00:00+09:00</published><updated>2025-05-30T09:00:00+09:00</updated><id>https://minnong511.github.io/2025/05/30/welcome-to-my-blog</id><content type="html" xml:base="https://minnong511.github.io/2025/05/30/welcome-to-my-blog/"><![CDATA[<p>첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="start" /><category term="welcome" /><category term="blog" /><summary type="html"><![CDATA[첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

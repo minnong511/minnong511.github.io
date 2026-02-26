@@ -5,14 +5,14 @@ permalink: /photostream/
 hide_page_title: true
 ---
 
-<div class="photo-archive-intro">
-  <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
-</div>
-
 {% assign photos = site.static_files | where_exp: "item", "item.path contains '/assets/photo_lib/'" %}
 
 <div id="photoArchiveApp" class="photo-archive-app">
   <div class="photo-archive-view is-active" data-view="albums">
+    <header class="photo-archive-intro">
+      <h1>{{ page.title }}</h1>
+      <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
+    </header>
     <div class="photo-archive-grid" id="photoAlbumGrid"></div>
   </div>
 
@@ -128,7 +128,9 @@ hide_page_title: true
 
     function setView(name) {
       views.forEach(function (view) {
-        view.classList.toggle("is-active", view.getAttribute("data-view") === name);
+        var isTarget = view.getAttribute("data-view") === name;
+        view.classList.toggle("is-active", isTarget);
+        view.style.display = isTarget ? "block" : "none";
       });
     }
 
@@ -205,6 +207,7 @@ hide_page_title: true
       if (event.key === "Escape") closeLightbox();
     });
 
+    setView("albums");
     renderAlbums();
   })();
 </script>

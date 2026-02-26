@@ -4,7 +4,7 @@ title: "알고리즘 복습: 정렬과 탐색 핵심 노트"
 date: 2026-02-26 09:00:00 +0900
 categories: [Computer_Science]
 tags: [algorithm, sorting, cs]
-image: /assets/base_image/test_image.png
+image: https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80
 ---
 
 자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.

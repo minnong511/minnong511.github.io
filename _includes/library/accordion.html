@@ -1,0 +1,21 @@
+{% assign acc_title = include.title | default: "Accordion" %}
+{% assign acc_items = include.items | default: "" | split: "||" %}
+
+<section class="accordion-card">
+  <header class="accordion-head">
+    <span>{{ acc_title }}</span>
+  </header>
+  <div class="accordion-list">
+    {% for item in acc_items %}
+      {% assign parts = item | split: "|" %}
+      {% assign q = parts[0] | strip %}
+      {% assign a = parts[1] | strip %}
+      <details class="accordion-item"{% if forloop.first %} open{% endif %}>
+        <summary>{{ q }}</summary>
+        <div class="accordion-body">
+          <p>{{ a }}</p>
+        </div>
+      </details>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,21 @@
+{% assign tl_title = include.title | default: "Timeline" %}
+{% assign tl_items = include.items | default: "" | split: "||" %}
+
+<section class="timeline-card">
+  <header class="timeline-head">
+    <span>{{ tl_title }}</span>
+  </header>
+  <ul class="timeline-list">
+    {% for item in tl_items %}
+      {% assign parts = item | split: "|" %}
+      <li class="timeline-item">
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="timeline-content">
+          <time>{{ parts[0] | strip }}</time>
+          <strong>{{ parts[1] | strip }}</strong>
+          <p>{{ parts[2] | strip }}</p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
