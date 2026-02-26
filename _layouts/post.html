@@ -40,7 +40,6 @@
           <div class="column right">
             <nav class="header-nav">
               <ul>
-                <li><a href="{{ '/' | relative_url }}" style="text-transform: uppercase;">KO</a></li>
                 <li><button class="toggle-search" type="button" aria-label="검색"><i class="ri-search-line"></i></button></li>
                 <li><button class="toggle-nav" type="button" aria-label="메뉴"><i class="ri-menu-line"></i></button></li>
               </ul>
@@ -53,6 +52,7 @@
             <li><a href="{{ '/about/' | relative_url }}">About</a></li>
             <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
             <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+            <li><a href="{{ '/search/?q=blog+update' | relative_url }}">Blog update</a></li>
           </ul>
         </nav>
       </div>
@@ -93,6 +93,35 @@
               <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u={{ page.url | absolute_url | uri_escape }}"><i class="ri-facebook-fill"></i></a>
               <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
             </div>
+
+            {% if site.giscus.enabled %}
+              <section class="comments-panel">
+                <h2 class="comments-title">Comments</h2>
+                {% if site.giscus.repo_id == "REPO_ID_HERE" or site.giscus.category_id == "CATEGORY_ID_HERE" %}
+                  <p class="comments-help">
+                    댓글을 활성화하려면 <code>_config.yml</code>의 <code>giscus.repo_id</code>, <code>giscus.category_id</code> 값을 실제 값으로 바꿔주세요.
+                  </p>
+                {% else %}
+                  <script
+                    src="https://giscus.app/client.js"
+                    data-repo="{{ site.giscus.repo }}"
+                    data-repo-id="{{ site.giscus.repo_id }}"
+                    data-category="{{ site.giscus.category }}"
+                    data-category-id="{{ site.giscus.category_id }}"
+                    data-mapping="{{ site.giscus.mapping }}"
+                    data-strict="{{ site.giscus.strict }}"
+                    data-reactions-enabled="{{ site.giscus.reactions_enabled }}"
+                    data-emit-metadata="{{ site.giscus.emit_metadata }}"
+                    data-input-position="{{ site.giscus.input_position }}"
+                    data-theme="{{ site.giscus.theme }}"
+                    data-lang="{{ site.giscus.lang }}"
+                    data-loading="{{ site.giscus.loading }}"
+                    crossorigin="anonymous"
+                    async
+                  ></script>
+                {% endif %}
+              </section>
+            {% endif %}
           </article>
         </div>
       </section>
@@ -132,39 +161,7 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="columns footer-columns">
-          <div class="column">
-            <div class="footer-logo">Minnong's blog</div>
-          </div>
-          <div class="column"></div>
-          <div class="column">
-            <ul class="list">
-              <li>운영자: {{ site.author }}</li>
-              <li>Based in Seoul</li>
-              <li>Contact: kzxx1234@gmail.com</li>
-            </ul>
-          </div>
-          <div class="column">
-            <ul class="list">
-              <li>개인 포트폴리오 &amp; 블로그</li>
-              <li>Photo / Travel / Engineering</li>
-            </ul>
-          </div>
-        </div>
-        <div class="columns footer-bottom">
-          <div class="column">
-            <p>© {{ "now" | date: "%Y" }} Minnong blog</p>
-          </div>
-          <div class="column social">
-            <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-            <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-            <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include site-footer.html %}
 
     <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
     <script>

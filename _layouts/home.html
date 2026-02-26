@@ -18,7 +18,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
     <link href="{{ '/assets/css/home-mag.css' | relative_url }}" rel="stylesheet" />
   </head>
   <body id="home" data-baseurl="{{ site.baseurl | default: '' }}">
@@ -53,6 +52,7 @@
             <li><a href="{{ '/about/' | relative_url }}">About</a></li>
             <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
             <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+            <li><a href="{{ '/search/?q=blog+update' | relative_url }}">Blog update</a></li>
           </ul>
         </nav>
       </div>
@@ -71,17 +71,25 @@
           {% if hero_posts.size > 0 %}
             <div class="columns">
               <div class="column">
-                <div class="carousel js-carousel">
-                  {% for post in hero_posts %}
-                    {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
-                    <div class="carousel-cell">
-                      <a href="{{ post.url | relative_url }}">
-                        <div class="cover-image">
-                          <img src="{{ cover | relative_url }}" alt="{{ post.title }}" />
-                        </div>
-                      </a>
-                    </div>
-                  {% endfor %}
+                <div class="carousel js-carousel" aria-label="Featured posts carousel">
+                  <div class="carousel-track">
+                    {% for post in hero_posts %}
+                      {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
+                      <div class="carousel-cell{% if forloop.first %} is-active{% endif %}">
+                        <a href="{{ post.url | relative_url }}">
+                          <div class="cover-image">
+                            <img src="{{ cover | relative_url }}" alt="{{ post.title }}" />
+                          </div>
+                        </a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <button class="carousel-btn prev" type="button" aria-label="Previous slide">
+                    <i class="ri-arrow-left-s-line"></i>
+                  </button>
+                  <button class="carousel-btn next" type="button" aria-label="Next slide">
+                    <i class="ri-arrow-right-s-line"></i>
+                  </button>
                 </div>
               </div>
             </div>
@@ -119,42 +127,8 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="columns footer-columns">
-          <div class="column">
-            <div class="footer-logo">Minnong's blog</div>
-          </div>
-          <div class="column">
-          </div>
-          <div class="column">
-            <ul class="list">
-              <li>운영자: {{ site.author }}</li>
-              <li>Based in Seoul</li>
-              <li>Contact: kzxx1234@gmail.com</li>
-            </ul>
-          </div>
-          <div class="column">
-            <ul class="list">
-              <li>개인 포트폴리오 &amp; 블로그</li>
-              <li>Photo / Travel / Engineering</li>
-            </ul>
-          </div>
-        </div>
-        <div class="columns footer-bottom">
-          <div class="column">
-            <p>© {{ "now" | date: "%Y" }} Minnong blog</p>
-          </div>
-          <div class="column social">
-            <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-            <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-            <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include site-footer.html %}
 
-    <script src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
@@ -175,12 +149,51 @@
 
       var carousel = document.querySelector('.js-carousel');
       if (carousel) {
-        new Flickity(carousel, {
-          wrapAround: true,
-          imagesLoaded: true,
-          pageDots: false,
-          autoPlay: 3400
-        });
+        var track = carousel.querySelector('.carousel-track');
+        var cells = carousel.querySelectorAll('.carousel-cell');
+        var prevBtn = carousel.querySelector('.carousel-btn.prev');
+        var nextBtn = carousel.querySelector('.carousel-btn.next');
+        var currentIndex = 0;
+        var autoTimer = null;
+
+        function showSlide(index) {
+          if (!cells.length || !track) return;
+          currentIndex = (index + cells.length) % cells.length;
+          track.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
+        }
+
+        function startAutoSlide() {
+          stopAutoSlide();
+          autoTimer = setInterval(function () {
+            showSlide(currentIndex + 1);
+          }, 3400);
+        }
+
+        function stopAutoSlide() {
+          if (autoTimer) {
+            clearInterval(autoTimer);
+            autoTimer = null;
+          }
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            showSlide(currentIndex - 1);
+            startAutoSlide();
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            showSlide(currentIndex + 1);
+            startAutoSlide();
+          });
+        }
+
+        carousel.addEventListener('mouseenter', stopAutoSlide);
+        carousel.addEventListener('mouseleave', startAutoSlide);
+
+        showSlide(0);
+        startAutoSlide();
       }
     </script>
   </body>

@@ -1,4 +1,4 @@
-title: My GitHub Blog
+title: Minnong's blog
 description: A simple Jekyll blog hosted on GitHub Pages.
 author: Min Hyeong Lee
 baseurl: ""
@@ -14,3 +14,18 @@ defaults:
       type: posts
     values:
       layout: post
+
+giscus:
+  enabled: true
+  repo: "minnong511/minnong511.github.io"
+  repo_id: "R_kgDONte4cw"
+  category: "General"
+  category_id: "DIC_kwDONte4c84C3PLr"
+  mapping: "pathname"
+  strict: "0"
+  reactions_enabled: "1"
+  emit_metadata: "0"
+  input_position: "top"
+  theme: "light"
+  lang: "ko"
+  loading: "lazy"
