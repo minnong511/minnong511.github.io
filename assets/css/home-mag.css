@@ -123,7 +123,7 @@ a {
 .header::after {
   content: "";
   position: absolute;
-  bottom: 1px;
+  bottom: px;
   left: 50%;
   width: calc(100vw - 1.6rem);
   border-bottom: 1px solid var(--color-border);
@@ -132,7 +132,7 @@ a {
 
 .header-row {
   align-items: center;
-  min-height: 84px;
+  min-height: 80px;
   gap: 0;
 }
 
@@ -420,6 +420,87 @@ a {
   margin: 0.65rem 0;
 }
 
+.tag-list {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0.34rem 0.62rem;
+  border-radius: 0.42rem;
+  letter-spacing: 0.01em;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.tag-chip--minimal {
+  font-weight: 450;
+}
+
+.tag-chip--blue {
+  color: #1d4ed8;
+}
+
+.tag-chip--green {
+  color: #15803d;
+}
+
+.tag-chip--purple {
+  color: #6d28d9;
+}
+
+.tag-chip--orange {
+  color: #c2410c;
+}
+
+.tag-chip--gray {
+  color: #4b5563;
+}
+
+.tag-chip:hover {
+  text-decoration: none;
+}
+
+.tag-chip--blue:hover {
+  background: #eff6ff;
+}
+
+.tag-chip--green:hover {
+  background: #f0fdf4;
+}
+
+.tag-chip--purple:hover {
+  background: #f5f3ff;
+}
+
+.tag-chip--orange:hover {
+  background: #fff7ed;
+}
+
+.tag-chip--gray:hover {
+  background: #f9fafb;
+}
+
+.tag-section + .tag-section {
+  margin-top: 1rem;
+}
+
+.tag-section-title {
+  margin: 0 0 0.55rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
 .comments-panel {
   margin-top: 1.25rem;
   padding-top: 1rem;
@@ -436,6 +517,79 @@ a {
   margin: 0;
   color: var(--color-muted);
   font-size: 0.9rem;
+}
+
+.lightbox-target {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(14, 18, 24, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+}
+
+.lightbox.is-hidden {
+  display: none !important;
+}
+
+.lightbox-image {
+  position: relative;
+  z-index: 1;
+  max-width: min(1200px, 96vw);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 3;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  background: rgba(10, 14, 20, 0.35);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 2.4rem;
+  transform: translate(-50%, 8px);
+  z-index: 140;
+  background: rgba(22, 28, 36, 0.92);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.62rem 1.15rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+}
+
+.copy-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 
 .photo-grid {
@@ -456,6 +610,231 @@ a {
   aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
+}
+
+.photo-archive-intro p {
+  margin: 0 0 0.8rem;
+  color: var(--color-muted);
+  font-size: 0.94rem;
+  letter-spacing: 0.01em;
+}
+
+.photo-archive-app {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.photo-archive-view {
+  display: none;
+}
+
+.photo-archive-view.is-active {
+  display: block;
+}
+
+.photo-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.photo-album-card {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.photo-album-cover {
+  position: relative;
+  overflow: hidden;
+  background: #f6f6f6;
+  aspect-ratio: 4 / 5;
+  margin-bottom: 0.8rem;
+}
+
+.photo-album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.photo-album-card:hover .photo-album-cover img {
+  transform: scale(1.05);
+}
+
+.photo-album-info {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.photo-album-info h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.photo-album-info .meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8a8f96;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.photo-album-info .dot,
+.photo-album-meta .dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 999px;
+  background: #c9ced4;
+}
+
+.photo-album-info p {
+  margin: 0;
+  color: #8a8f96;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.photo-back-button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0 0 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #8a8f96;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.photo-back-button i {
+  font-size: 1.1rem;
+}
+
+.photo-back-button:hover {
+  color: var(--color-text);
+}
+
+.photo-album-header {
+  margin-bottom: 1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.photo-album-header h2 {
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+
+.photo-album-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  color: #8a8f96;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.photo-album-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.photo-detail-card {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.photo-detail-image {
+  overflow: hidden;
+  background: #f6f6f6;
+  aspect-ratio: 3 / 4;
+  margin-bottom: 0.45rem;
+}
+
+.photo-detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.photo-detail-card:hover .photo-detail-image img {
+  transform: scale(1.08);
+}
+
+.photo-detail-card p {
+  margin: 0;
+  color: #8a8f96;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.photo-archive-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem;
+}
+
+.photo-archive-lightbox.is-hidden {
+  display: none !important;
+}
+
+.photo-archive-lightbox-inner {
+  width: min(1100px, 100%);
+}
+
+.photo-archive-lightbox-inner img {
+  width: 100%;
+  max-height: 84vh;
+  object-fit: contain;
+  display: block;
+}
+
+.photo-archive-lightbox-inner p {
+  margin: 0.8rem 0 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.78);
+  letter-spacing: 0.02em;
+}
+
+.photo-archive-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+.photo-archive-lightbox-close:hover {
+  color: #fff;
 }
 
 .archive-list {
@@ -518,6 +897,16 @@ a {
   .photo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .photo-archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.4rem;
+  }
+
+  .photo-album-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
 }
 
 @media (max-width: 720px) {
@@ -538,6 +927,11 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .photo-archive-grid,
+  .photo-album-grid {
+    grid-template-columns: 1fr;
+  }
+
   .nav ul {
     flex-direction: column;
     gap: 0.6rem;
@@ -550,5 +944,17 @@ a {
 
   .social {
     justify-content: flex-start;
+  }
+}
+
+@media (min-width: 981px) {
+  .photo-archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem 2rem;
+  }
+
+  .photo-album-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.4rem;
   }
 }

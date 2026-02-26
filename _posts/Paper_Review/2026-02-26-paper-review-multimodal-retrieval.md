@@ -3,6 +3,7 @@ layout: post
 title: "논문 리뷰: 멀티모달 검색 모델 요약"
 date: 2026-02-26 09:30:00 +0900
 categories: [Paper_Review]
+tags: [paper-review, multimodal, retrieval]
 image: /assets/base_image/test_image.png
 ---
 

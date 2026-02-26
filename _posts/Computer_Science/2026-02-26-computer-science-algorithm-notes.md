@@ -3,6 +3,7 @@ layout: post
 title: "알고리즘 복습: 정렬과 탐색 핵심 노트"
 date: 2026-02-26 09:00:00 +0900
 categories: [Computer_Science]
+tags: [algorithm, sorting, cs]
 image: /assets/base_image/test_image.png
 ---
 

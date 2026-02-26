@@ -3,6 +3,7 @@ layout: post
 title: "필름 스캔 워크플로우 정리"
 date: 2026-02-26 09:40:00 +0900
 categories: [Photo]
+tags: [photo, film, workflow]
 image: /assets/base_image/test_image.png
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "딥러닝 학습 루프 점검 체크리스트"
 date: 2026-02-26 09:10:00 +0900
 categories: [Deep_Learning]
+tags: [deep-learning, training, checklist]
 image: /assets/base_image/test_image.png
 ---
 

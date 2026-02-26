@@ -52,6 +52,7 @@
             <li><a href="{{ '/about/' | relative_url }}">About</a></li>
             <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
             <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+            <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
             <li><a href="{{ '/search/?q=blog+update' | relative_url }}">Blog update</a></li>
           </ul>
         </nav>
@@ -72,20 +73,35 @@
             </div>
 
             <div class="page-content" style="margin-top: 0.9rem;">
-              <p style="margin: 0; font-size: 0.8rem;">
-                {% if page.categories and page.categories.size > 0 %}
-                  {{ page.categories | first }}
-                {% else %}
-                  Post
-                {% endif %}
-                · {{ page.date | date: "%Y.%m.%d" }}
-              </p>
+              <p style="margin: 0; font-size: 0.8rem;">{{ page.date | date: "%Y.%m.%d" }}</p>
               {% if page.excerpt %}
                 <p>{{ page.excerpt | strip_html }}</p>
               {% endif %}
 
               {{ content }}
             </div>
+
+            {% if page.tags and page.tags.size > 0 %}
+              <div class="tag-list">
+                {% for tag in page.tags %}
+                  {% assign tag_id = tag | slugify %}
+                  {% assign color_index = forloop.index0 | modulo: 5 %}
+                  {% case color_index %}
+                    {% when 0 %}
+                      {% assign color_class = "tag-chip--blue" %}
+                    {% when 1 %}
+                      {% assign color_class = "tag-chip--green" %}
+                    {% when 2 %}
+                      {% assign color_class = "tag-chip--purple" %}
+                    {% when 3 %}
+                      {% assign color_class = "tag-chip--orange" %}
+                    {% else %}
+                      {% assign color_class = "tag-chip--gray" %}
+                  {% endcase %}
+                  <a class="tag-chip tag-chip--minimal {{ color_class }}" href="{{ '/tags/#' | append: tag_id | relative_url }}">#{{ tag }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
 
             <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
               <span>Share</span>
@@ -94,34 +110,30 @@
               <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
             </div>
 
-            {% if site.giscus.enabled %}
-              <section class="comments-panel">
-                <h2 class="comments-title">Comments</h2>
-                {% if site.giscus.repo_id == "REPO_ID_HERE" or site.giscus.category_id == "CATEGORY_ID_HERE" %}
-                  <p class="comments-help">
-                    댓글을 활성화하려면 <code>_config.yml</code>의 <code>giscus.repo_id</code>, <code>giscus.category_id</code> 값을 실제 값으로 바꿔주세요.
-                  </p>
-                {% else %}
-                  <script
-                    src="https://giscus.app/client.js"
-                    data-repo="{{ site.giscus.repo }}"
-                    data-repo-id="{{ site.giscus.repo_id }}"
-                    data-category="{{ site.giscus.category }}"
-                    data-category-id="{{ site.giscus.category_id }}"
-                    data-mapping="{{ site.giscus.mapping }}"
-                    data-strict="{{ site.giscus.strict }}"
-                    data-reactions-enabled="{{ site.giscus.reactions_enabled }}"
-                    data-emit-metadata="{{ site.giscus.emit_metadata }}"
-                    data-input-position="{{ site.giscus.input_position }}"
-                    data-theme="{{ site.giscus.theme }}"
-                    data-lang="{{ site.giscus.lang }}"
-                    data-loading="{{ site.giscus.loading }}"
-                    crossorigin="anonymous"
-                    async
-                  ></script>
-                {% endif %}
-              </section>
-            {% endif %}
+            <section class="comments-panel">
+              <h2 class="comments-title">Comments</h2>
+              <script
+                src="https://giscus.app/client.js"
+                data-repo="{{ site.giscus.repo | default: 'minnong511/minnong511.github.io' }}"
+                data-repo-id="{{ site.giscus.repo_id | default: 'R_kgDONte4cw' }}"
+                data-category="{{ site.giscus.category | default: 'General' }}"
+                data-category-id="{{ site.giscus.category_id | default: 'DIC_kwDONte4c84C3PLr' }}"
+                data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
+                data-strict="{{ site.giscus.strict | default: '0' }}"
+                data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
+                data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
+                data-input-position="{{ site.giscus.input_position | default: 'top' }}"
+                data-theme="{{ site.giscus.theme | default: 'light' }}"
+                data-lang="{{ site.giscus.lang | default: 'ko' }}"
+                data-loading="{{ site.giscus.loading | default: 'eager' }}"
+                crossorigin="anonymous"
+                async
+              ></script>
+              <p class="comments-help is-hidden" id="commentsFallback">
+                댓글 위젯이 보이지 않으면 광고차단/추적차단 설정을 확인하거나
+                <a href="https://github.com/{{ site.giscus.repo | default: 'minnong511/minnong511.github.io' }}/discussions/categories/general" target="_blank" rel="noreferrer">GitHub Discussions</a>에서 확인해 주세요.
+              </p>
+            </section>
           </article>
         </div>
       </section>
@@ -163,11 +175,26 @@
 
     {% include site-footer.html %}
 
+    <div class="lightbox is-hidden" id="imageLightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close image">
+        <i class="ri-close-line"></i>
+      </button>
+      <img class="lightbox-image" id="lightboxImage" alt="" />
+    </div>
+    <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
+
     <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
       var copyButton = document.querySelector('.copy-url');
+      var copyToast = document.getElementById('copyToast');
+      var postPanel = document.querySelector('.page-panel');
+      var lightbox = document.getElementById('imageLightbox');
+      var lightboxImage = document.getElementById('lightboxImage');
+      var lightboxClose = document.getElementById('lightboxClose');
+      var commentsFallback = document.getElementById('commentsFallback');
+      var copyToastTimer = null;
 
       if (menuButton && menuLayer) {
         menuButton.addEventListener('click', function () {
@@ -175,12 +202,98 @@
         });
       }
 
+      function showCopyToast(message) {
+        if (!copyToast) return;
+        copyToast.textContent = message;
+        copyToast.classList.add('is-visible');
+        copyToast.setAttribute('aria-hidden', 'false');
+        if (copyToastTimer) clearTimeout(copyToastTimer);
+        copyToastTimer = setTimeout(function () {
+          copyToast.classList.remove('is-visible');
+          copyToast.setAttribute('aria-hidden', 'true');
+        }, 1400);
+      }
+
       if (copyButton) {
         copyButton.addEventListener('click', function () {
           var url = copyButton.getAttribute('data-url');
           if (!url) return;
-          navigator.clipboard.writeText(url);
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function () {
+              showCopyToast('Link copied');
+            }).catch(function () {
+              showCopyToast('Copy failed');
+              alert('Copy failed');
+            });
+            return;
+          }
+
+          var tempInput = document.createElement('input');
+          tempInput.value = url;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          try {
+            document.execCommand('copy');
+            showCopyToast('Link copied');
+          } catch (e) {
+            showCopyToast('Copy failed');
+            alert('Copy failed');
+          }
+          document.body.removeChild(tempInput);
         });
+      }
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.add('is-hidden');
+        lightbox.setAttribute('aria-hidden', 'true');
+        if (lightboxImage) {
+          lightboxImage.removeAttribute('src');
+          lightboxImage.removeAttribute('alt');
+        }
+      }
+
+      if (postPanel && lightbox && lightboxImage) {
+        postPanel.querySelectorAll('.cover-image img, .page-content img').forEach(function (img) {
+          if (img.closest('a')) return;
+          img.classList.add('lightbox-target');
+          img.addEventListener('click', function () {
+            var src = img.getAttribute('src');
+            if (!src) return;
+            lightboxImage.setAttribute('src', src);
+            lightboxImage.setAttribute('alt', img.getAttribute('alt') || '');
+            lightbox.classList.remove('is-hidden');
+            lightbox.setAttribute('aria-hidden', 'false');
+          });
+        });
+      }
+
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          closeLightbox();
+        });
+      }
+
+      if (lightbox) {
+        lightbox.addEventListener('click', function (event) {
+          if (event.target === lightbox) closeLightbox();
+        });
+      }
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeLightbox();
+      });
+
+      if (commentsFallback) {
+        setTimeout(function () {
+          var giscusFrame = document.querySelector('iframe.giscus-frame');
+          if (!giscusFrame) {
+            commentsFallback.classList.remove('is-hidden');
+          }
+        }, 2500);
       }
     </script>
   </body>

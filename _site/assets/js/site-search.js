@@ -16,6 +16,7 @@
     var score = 0;
     if (normalize(item.title).indexOf(q) !== -1) score += 5;
     if (normalize(item.categories).indexOf(q) !== -1) score += 3;
+    if (normalize(item.tags).indexOf(q) !== -1) score += 3;
     if (normalize(item.excerpt).indexOf(q) !== -1) score += 2;
     if (normalize(item.content).indexOf(q) !== -1) score += 1;
     return score;

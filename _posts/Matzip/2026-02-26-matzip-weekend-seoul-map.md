@@ -3,6 +3,7 @@ layout: post
 title: "주말 서울 맛집 지도 업데이트"
 date: 2026-02-26 09:20:00 +0900
 categories: [Matzip]
+tags: [food, seoul, weekend]
 image: /assets/base_image/test_image.png
 ---
 

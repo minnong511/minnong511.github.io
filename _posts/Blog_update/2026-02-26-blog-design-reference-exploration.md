@@ -3,6 +3,7 @@ layout: post
 title: "블로그 디자인 레퍼런스 탐색"
 date: 2026-02-26 10:30:00 +0900
 categories: ["Blog update"]
+tags: [design, ui, reference]
 image: /assets/base_image/test_image.png
 ---
 

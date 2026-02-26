@@ -28,4 +28,4 @@ giscus:
   input_position: "top"
   theme: "light"
   lang: "ko"
-  loading: "lazy"
+  loading: "eager"
