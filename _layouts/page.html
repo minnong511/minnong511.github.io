@@ -7,12 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ page.title }} | {{ site.title }}</title>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ page.title }} | {{ site.title }}" />
+    <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:image" content="{{ site.og_image | default: '/assets/base_image/test_image.png' | absolute_url }}" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
   </head>
   <body id="home" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
@@ -70,7 +75,7 @@
 
     {% include site-footer.html %}
 
-    <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');

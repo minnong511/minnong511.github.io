@@ -12,13 +12,13 @@
     <meta property="og:title" content="{{ page.title | default: site.title }}" />
     <meta property="og:description" content="{{ site.description | default: 'Morning Calm style home' }}" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:image" content="{{ '/assets/base_image/test_image.png' | absolute_url }}" />
+    <meta property="og:image" content="{{ site.og_image | default: '/assets/base_image/test_image.png' | absolute_url }}" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="{{ '/assets/css/home-mag.css' | relative_url }}" rel="stylesheet" />
+    <link href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" rel="stylesheet" />
   </head>
   <body id="home" class="is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
@@ -130,7 +130,7 @@
 
     {% include site-footer.html %}
 
-    <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');

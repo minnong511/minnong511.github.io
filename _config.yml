@@ -1,8 +1,10 @@
 title: Minnong's blog
-description: A simple Jekyll blog hosted on GitHub Pages.
+description: Welcome! Minnong's blog
 author: Min Hyeong Lee
 baseurl: ""
 url: "https://minnong511.github.io"
+assets_version: "2"
+og_image: "/assets/base_image/image.png"
 theme: minima
 timezone: Asia/Seoul
 permalink: /:categories/:year/:month/:day/:title/

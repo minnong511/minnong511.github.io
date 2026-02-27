@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>알고리즘 복습: 정렬과 탐색 핵심 노트 | Minnong's blog</title>
-    <meta name="description" content="자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다." />
+    <title>5. 유지보수 | Minnong's blog</title>
+    <meta name="description" content="이번 업데이트에서는 필요할 때만 캐시를 무효화할 수 있는 유지보수 기능을 추가했다." />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="알고리즘 복습: 정렬과 탐색 핵심 노트 | Minnong's blog" />
-    <meta property="og:description" content="자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다." />
-    <meta property="og:url" content="https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes/" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" />
+    <meta property="og:title" content="5. 유지보수 | Minnong's blog" />
+    <meta property="og:description" content="이번 업데이트에서는 필요할 때만 캐시를 무효화할 수 있는 유지보수 기능을 추가했다." />
+    <meta property="og:url" content="https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" />
 
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
@@ -59,23 +59,43 @@
       <section class="section">
         <div class="container">
           <header class="section-header">
-            <h1 class="title page-title">알고리즘 복습: 정렬과 탐색 핵심 노트</h1>
+            <h1 class="title page-title">5. 유지보수</h1>
           </header>
 
           <article class="page-panel">
             
             <div class="cover-image">
-              <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" alt="알고리즘 복습: 정렬과 탐색 핵심 노트" loading="lazy" />
+              <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" alt="5. 유지보수" loading="lazy" />
             </div>
 
             <div class="page-content" style="margin-top: 0.9rem;">
               <p style="margin: 0; font-size: 0.8rem;">2026.02.26</p>
 
-              <p>자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.</p>
+              <p>이번 업데이트에서는 <strong>필요할 때만 캐시를 무효화</strong>할 수 있는 유지보수 기능을 추가했다.</p>
 
-<p>이번 글에서는 정렬 알고리즘의 시간복잡도 비교와 이진 탐색의 조건 처리 포인트를 다룬다.</p>
+<h2 id="기능">기능</h2>
 
-<p>코딩 테스트에서는 구현 실수보다 경계 조건에서 점수를 잃는 경우가 많아서, 예외 케이스 체크리스트를 습관화하는 것이 중요하다.</p>
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">assets_version</code> 값을 두고, 템플릿의 CSS/JS 링크에 <code class="language-plaintext highlighter-rouge">?v=2</code>를 붙이는 방식이다.<br />
+값을 바꾸지 않으면 기존 캐시를 유지하고, 값만 올리면 브라우저가 새 파일로 인식해 다시 받아온다.</p>
+
+<h2 id="넣는-이유">넣는 이유</h2>
+
+<ul>
+  <li>매번 강제 새로고침 없이도 배포 반영 문제를 줄일 수 있다.</li>
+  <li>항상 캐시를 깨지 않고, <strong>진짜 변경이 필요할 때만</strong> 무효화할 수 있다.</li>
+  <li>운영 중 성능(캐시 효율)과 최신 반영 안정성을 같이 가져갈 수 있다.</li>
+</ul>
+
+<h2 id="쉬운-예시">쉬운 예시</h2>
+
+<ol>
+  <li>현재 값이 <code class="language-plaintext highlighter-rouge">assets_version: "1"</code> 이라고 가정한다.</li>
+  <li>CSS/JS를 수정해서 배포했는데 일부 사용자에게 옛 화면이 보인다.</li>
+  <li><code class="language-plaintext highlighter-rouge">_config.yml</code>에서 값을 <code class="language-plaintext highlighter-rouge">"2"</code>로 바꾼 뒤 다시 배포한다.</li>
+  <li>브라우저가 <code class="language-plaintext highlighter-rouge">home-mag.css?v=2</code>, <code class="language-plaintext highlighter-rouge">site-search.js?v=2</code>를 새 파일로 받아와 최신 화면이 반영된다.</li>
+</ol>
+
+<p>이제 유지보수 단계에서 필요한 순간에만 안전하게 캐시 무효화를 실행할 수 있다.</p>
 
             </div>
 
@@ -85,26 +105,16 @@
                   
                   
                   
-                  <a class="tag-chip tag-chip--minimal tag-chip--blue" href="/tags/#algorithm">#algorithm</a>
-                
-                  
-                  
-                  
-                  <a class="tag-chip tag-chip--minimal tag-chip--green" href="/tags/#sorting">#sorting</a>
-                
-                  
-                  
-                  
-                  <a class="tag-chip tag-chip--minimal tag-chip--purple" href="/tags/#cs">#cs</a>
+                  <a class="tag-chip tag-chip--minimal tag-chip--blue" href="/tags/#blog-update">#blog update</a>
                 
               </div>
             
 
             <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
               <span>Share</span>
-              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%20%EB%B3%B5%EC%8A%B5:%20%EC%A0%95%EB%A0%AC%EA%B3%BC%20%ED%83%90%EC%83%89%20%ED%95%B5%EC%8B%AC%20%EB%85%B8%ED%8A%B8&url=https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes/"><i class="ri-twitter-x-fill"></i></a>
-              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u=https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes/"><i class="ri-facebook-fill"></i></a>
-              <button class="copy-url" type="button" data-url="https://minnong511.github.io/computer_science/2026/02/26/computer-science-algorithm-notes/" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=5.%20%EC%9C%A0%EC%A7%80%EB%B3%B4%EC%88%98&url=https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/"><i class="ri-twitter-x-fill"></i></a>
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u=https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/"><i class="ri-facebook-fill"></i></a>
+              <button class="copy-url" type="button" data-url="https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
             </div>
 
             <section class="comments-panel">
@@ -159,45 +169,103 @@
             
             
               
+            
+              
+                
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/convenience-improvements-part-4/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1400&q=80" alt="4. 편의성 개선" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>4. 편의성 개선</h2>
+                            <p>이번 업데이트에서는 블로그 사용성을 높이기 위한 편의성 기능을 중심으로 정리했다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
                 
               
             
               
                 
-              
-            
-              
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/library-module-build/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" alt="3.라이브러리 제작" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>3.라이브러리 제작</h2>
+                            <p>오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.
+컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.
+
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
                 
               
             
               
                 
-              
-            
-              
+                  
+                  <div class="column card-column">
+                    <a href="/blog%20update/2026/02/26/design-implementation-part-2/" class="card-link">
+                      <article class="card">
+                        <header class="card-header">
+                          <div class="title-small">Blog update</div>
+                          <div class="title-small">2026.02.26</div>
+                        </header>
+                        <div class="card-columns">
+                          <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" alt="2. 디자인 구현" loading="lazy" />
+                          </div>
+                          <div class="card-content">
+                            <h2>2. 디자인 구현</h2>
+                            <p>
+</p>
+                          </div>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
+                  
                 
               
             
               
-                
-              
             
               
-                
-              
             
-              
-                
-              
-            
-              
-                
               
             
               
             
               
-                
+            
+              
+            
               
             
           </div>

@@ -12,14 +12,12 @@
     <meta property="og:title" content="{{ page.title }} | {{ site.title }}" />
     <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
-    {% if page.image %}
-      <meta property="og:image" content="{{ page.image | absolute_url }}" />
-    {% endif %}
+    <meta property="og:image" content="{{ page.image | default: site.og_image | default: '/assets/base_image/test_image.png' | absolute_url }}" />
 
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
   </head>
   <body id="article" class="is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
@@ -202,7 +200,7 @@
     </div>
     <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
 
-    <script src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
