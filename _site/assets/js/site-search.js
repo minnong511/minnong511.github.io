@@ -104,15 +104,33 @@
       });
   }
 
+  function syncSearchOpenState() {
+    if (!searchLayer) return;
+    var isOpen = !searchLayer.classList.contains("is-hidden");
+    document.body.classList.toggle("search-open", isOpen);
+  }
+
   if (searchButton && searchLayer) {
     searchButton.addEventListener("click", function () {
       searchLayer.classList.toggle("is-hidden");
+      syncSearchOpenState();
       if (!searchLayer.classList.contains("is-hidden") && searchInput) {
-        searchInput.focus();
+        try {
+          searchInput.focus({ preventScroll: true });
+        } catch (e) {
+          searchInput.focus();
+        }
       }
       fetchIndex();
     });
   }
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key !== "Escape" || !searchLayer) return;
+    if (searchLayer.classList.contains("is-hidden")) return;
+    searchLayer.classList.add("is-hidden");
+    syncSearchOpenState();
+  });
 
   if (searchInput) {
     searchInput.addEventListener("input", function () {
@@ -130,4 +148,6 @@
       renderSearchPage(query);
     });
   }
+
+  syncSearchOpenState();
 })();

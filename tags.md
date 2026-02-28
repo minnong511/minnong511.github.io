@@ -57,16 +57,30 @@ permalink: /tags/
 
       var placeholder = document.getElementById('tagHubPlaceholder');
 
-      function applySelection(tag, syncHash) {
-        var selected = tag === 'all' || knownTags[tag] ? tag : 'none';
+      var selectedTags = [];
+
+      function normalizeFromHash(rawHash) {
+        var raw = (rawHash || '').replace(/^#/, '').trim();
+        if (!raw) return [];
+        if (raw === 'all') return ['all'];
+        return raw
+          .split(',')
+          .map(function (t) { return t.trim(); })
+          .filter(function (t) { return knownTags[t]; });
+      }
+
+      function applySelection(syncHash) {
+        var isAll = selectedTags.indexOf('all') !== -1;
 
         chips.forEach(function (chip) {
-          chip.classList.toggle('is-active', selected !== 'none' && chip.dataset.tag === selected);
+          var tag = chip.dataset.tag;
+          var active = isAll ? tag === 'all' : selectedTags.indexOf(tag) !== -1;
+          chip.classList.toggle('is-active', active);
         });
 
         var hasVisible = false;
         sections.forEach(function (section) {
-          var visible = selected === 'all' || section.dataset.tag === selected;
+          var visible = isAll || selectedTags.indexOf(section.dataset.tag) !== -1;
           section.classList.toggle('is-hidden', !visible);
           if (visible) hasVisible = true;
         });
@@ -76,21 +90,35 @@ permalink: /tags/
         }
 
         if (!syncHash) return;
-        if (selected === 'all' || selected === 'none') {
+        if (!selectedTags.length || isAll) {
           history.replaceState(null, '', window.location.pathname + window.location.search);
         } else {
-          history.replaceState(null, '', '#' + selected);
+          history.replaceState(null, '', '#' + selectedTags.join(','));
         }
       }
 
       chips.forEach(function (chip) {
         chip.addEventListener('click', function () {
-          applySelection(chip.dataset.tag, true);
+          var tag = chip.dataset.tag;
+
+          if (tag === 'all') {
+            selectedTags = ['all'];
+            applySelection(true);
+            return;
+          }
+
+          selectedTags = selectedTags.filter(function (t) { return t !== 'all'; });
+          var idx = selectedTags.indexOf(tag);
+          if (idx === -1) selectedTags.push(tag);
+          else selectedTags.splice(idx, 1);
+
+          applySelection(true);
         });
       });
 
-      var initialHash = window.location.hash ? window.location.hash.slice(1) : 'none';
-      applySelection(initialHash, false);
+      selectedTags = normalizeFromHash(window.location.hash);
+      if (!selectedTags.length) selectedTags = [];
+      applySelection(false);
 
       requestAnimationFrame(function () {
         hub.classList.add('is-ready');

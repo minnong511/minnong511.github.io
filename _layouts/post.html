@@ -19,7 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
   </head>
-  <body id="article" class="is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
+  <body id="article" class="page-transition is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
@@ -223,8 +223,54 @@
         });
       }
 
+      function syncHeaderScrollState() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        var isScrolled = document.body.classList.contains('is-scrolled');
+        var enterThreshold = 72;
+        var leaveThreshold = 36;
+
+        if (!isScrolled && y > enterThreshold) {
+          document.body.classList.add('is-scrolled');
+        } else if (isScrolled && y < leaveThreshold) {
+          document.body.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+      syncHeaderScrollState();
+
       requestAnimationFrame(function () {
         document.body.classList.remove('is-preload');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        var link = event.target.closest('a[href]');
+        if (!link) return;
+        if (link.hasAttribute('download')) return;
+        if (link.target && link.target !== '_self') return;
+
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+        var url;
+        try {
+          url = new URL(link.href, window.location.href);
+        } catch (e) {
+          return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+        event.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = url.href;
+        }, 120);
       });
 
       function showCopyToast(message) {

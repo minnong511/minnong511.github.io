@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Search | Minnong's blog</title>
-    <meta name="description" content="Welcome! Minnong's blog" />
+    <title>Search | My GitHub Blog</title>
+    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Search | Minnong's blog" />
-    <meta property="og:description" content="Welcome! Minnong's blog" />
-    <meta property="og:url" content="https://minnong511.github.io/search/" />
-    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/image.png" />
+    <meta property="og:title" content="Search | My GitHub Blog" />
+    <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta property="og:url" content="http://localhost:4000/search/" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/test_image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
   </head>
-  <body id="home" data-baseurl="">
+  <body id="home" class="page-transition is-preload" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="/search/" method="get" class="search-form">
@@ -84,7 +84,8 @@
       </section>
     </main>
 
-    <footer class="footer">
+    
+      <footer class="footer">
   <div class="container">
     <div class="columns footer-columns">
       <div class="column">
@@ -118,8 +119,9 @@
   </div>
 </footer>
 
+    
 
-    <script src="/assets/js/site-search.js?v=2"></script>
+    <script src="/assets/js/site-search.js?v=1"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -129,6 +131,56 @@
           menuLayer.classList.toggle('is-hidden');
         });
       }
+
+      function syncHeaderScrollState() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        var isScrolled = document.body.classList.contains('is-scrolled');
+        var enterThreshold = 72;
+        var leaveThreshold = 36;
+
+        if (!isScrolled && y > enterThreshold) {
+          document.body.classList.add('is-scrolled');
+        } else if (isScrolled && y < leaveThreshold) {
+          document.body.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+      syncHeaderScrollState();
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        var link = event.target.closest('a[href]');
+        if (!link) return;
+        if (link.hasAttribute('download')) return;
+        if (link.target && link.target !== '_self') return;
+
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+        var url;
+        try {
+          url = new URL(link.href, window.location.href);
+        } catch (e) {
+          return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+        event.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = url.href;
+        }, 120);
+      });
     </script>
   </body>
 </html>

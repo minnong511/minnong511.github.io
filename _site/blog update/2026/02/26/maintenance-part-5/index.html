@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>5. 유지보수 | Minnong's blog</title>
+    <title>5. 유지보수 | My GitHub Blog</title>
     <meta name="description" content="이번 업데이트에서는 필요할 때만 캐시를 무효화할 수 있는 유지보수 기능을 추가했다." />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="5. 유지보수 | Minnong's blog" />
+    <meta property="og:title" content="5. 유지보수 | My GitHub Blog" />
     <meta property="og:description" content="이번 업데이트에서는 필요할 때만 캐시를 무효화할 수 있는 유지보수 기능을 추가했다." />
-    <meta property="og:url" content="https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/" />
+    <meta property="og:url" content="http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80" />
 
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
   </head>
-  <body id="article" class="is-preload" data-baseurl="">
+  <body id="article" class="page-transition is-preload" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="/search/" method="get" class="search-form">
@@ -75,7 +75,7 @@
 
 <h2 id="기능">기능</h2>
 
-<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">assets_version</code> 값을 두고, 템플릿의 CSS/JS 링크에 <code class="language-plaintext highlighter-rouge">?v=2</code>를 붙이는 방식이다.<br />
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">assets_version</code> 값을 두고, 템플릿의 CSS/JS 링크에 <code class="language-plaintext highlighter-rouge">?v=</code>를 붙이는 방식이다.<br />
 값을 바꾸지 않으면 기존 캐시를 유지하고, 값만 올리면 브라우저가 새 파일로 인식해 다시 받아온다.</p>
 
 <h2 id="넣는-이유">넣는 이유</h2>
@@ -112,9 +112,9 @@
 
             <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
               <span>Share</span>
-              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=5.%20%EC%9C%A0%EC%A7%80%EB%B3%B4%EC%88%98&url=https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/"><i class="ri-twitter-x-fill"></i></a>
-              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u=https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/"><i class="ri-facebook-fill"></i></a>
-              <button class="copy-url" type="button" data-url="https://minnong511.github.io/blog%20update/2026/02/26/maintenance-part-5/" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text=5.%20%EC%9C%A0%EC%A7%80%EB%B3%B4%EC%88%98&url=http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/"><i class="ri-twitter-x-fill"></i></a>
+              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u=http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/"><i class="ri-facebook-fill"></i></a>
+              <button class="copy-url" type="button" data-url="http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
             </div>
 
             <section class="comments-panel">
@@ -319,7 +319,7 @@
     </div>
     <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
 
-    <script src="/assets/js/site-search.js?v=2"></script>
+    <script src="/assets/js/site-search.js?v=1"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -342,8 +342,54 @@
         });
       }
 
+      function syncHeaderScrollState() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        var isScrolled = document.body.classList.contains('is-scrolled');
+        var enterThreshold = 72;
+        var leaveThreshold = 36;
+
+        if (!isScrolled && y > enterThreshold) {
+          document.body.classList.add('is-scrolled');
+        } else if (isScrolled && y < leaveThreshold) {
+          document.body.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+      syncHeaderScrollState();
+
       requestAnimationFrame(function () {
         document.body.classList.remove('is-preload');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        var link = event.target.closest('a[href]');
+        if (!link) return;
+        if (link.hasAttribute('download')) return;
+        if (link.target && link.target !== '_self') return;
+
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+        var url;
+        try {
+          url = new URL(link.href, window.location.href);
+        } catch (e) {
+          return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+        event.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = url.href;
+        }, 120);
       });
 
       function showCopyToast(message) {

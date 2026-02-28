@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Tags | Minnong's blog</title>
-    <meta name="description" content="Welcome! Minnong's blog" />
+    <title>Tags | My GitHub Blog</title>
+    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tags | Minnong's blog" />
-    <meta property="og:description" content="Welcome! Minnong's blog" />
-    <meta property="og:url" content="https://minnong511.github.io/tags/" />
-    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/image.png" />
+    <meta property="og:title" content="Tags | My GitHub Blog" />
+    <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta property="og:url" content="http://localhost:4000/tags/" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/test_image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
   </head>
-  <body id="home" data-baseurl="">
+  <body id="home" class="page-transition is-preload" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="/search/" method="get" class="search-form">
@@ -693,16 +693,30 @@
 
       var placeholder = document.getElementById('tagHubPlaceholder');
 
-      function applySelection(tag, syncHash) {
-        var selected = tag === 'all' || knownTags[tag] ? tag : 'none';
+      var selectedTags = [];
+
+      function normalizeFromHash(rawHash) {
+        var raw = (rawHash || '').replace(/^#/, '').trim();
+        if (!raw) return [];
+        if (raw === 'all') return ['all'];
+        return raw
+          .split(',')
+          .map(function (t) { return t.trim(); })
+          .filter(function (t) { return knownTags[t]; });
+      }
+
+      function applySelection(syncHash) {
+        var isAll = selectedTags.indexOf('all') !== -1;
 
         chips.forEach(function (chip) {
-          chip.classList.toggle('is-active', selected !== 'none' && chip.dataset.tag === selected);
+          var tag = chip.dataset.tag;
+          var active = isAll ? tag === 'all' : selectedTags.indexOf(tag) !== -1;
+          chip.classList.toggle('is-active', active);
         });
 
         var hasVisible = false;
         sections.forEach(function (section) {
-          var visible = selected === 'all' || section.dataset.tag === selected;
+          var visible = isAll || selectedTags.indexOf(section.dataset.tag) !== -1;
           section.classList.toggle('is-hidden', !visible);
           if (visible) hasVisible = true;
         });
@@ -712,21 +726,35 @@
         }
 
         if (!syncHash) return;
-        if (selected === 'all' || selected === 'none') {
+        if (!selectedTags.length || isAll) {
           history.replaceState(null, '', window.location.pathname + window.location.search);
         } else {
-          history.replaceState(null, '', '#' + selected);
+          history.replaceState(null, '', '#' + selectedTags.join(','));
         }
       }
 
       chips.forEach(function (chip) {
         chip.addEventListener('click', function () {
-          applySelection(chip.dataset.tag, true);
+          var tag = chip.dataset.tag;
+
+          if (tag === 'all') {
+            selectedTags = ['all'];
+            applySelection(true);
+            return;
+          }
+
+          selectedTags = selectedTags.filter(function (t) { return t !== 'all'; });
+          var idx = selectedTags.indexOf(tag);
+          if (idx === -1) selectedTags.push(tag);
+          else selectedTags.splice(idx, 1);
+
+          applySelection(true);
         });
       });
 
-      var initialHash = window.location.hash ? window.location.hash.slice(1) : 'none';
-      applySelection(initialHash, false);
+      selectedTags = normalizeFromHash(window.location.hash);
+      if (!selectedTags.length) selectedTags = [];
+      applySelection(false);
 
       requestAnimationFrame(function () {
         hub.classList.add('is-ready');
@@ -741,7 +769,8 @@
       </section>
     </main>
 
-    <footer class="footer">
+    
+      <footer class="footer">
   <div class="container">
     <div class="columns footer-columns">
       <div class="column">
@@ -775,8 +804,9 @@
   </div>
 </footer>
 
+    
 
-    <script src="/assets/js/site-search.js?v=2"></script>
+    <script src="/assets/js/site-search.js?v=1"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -786,6 +816,56 @@
           menuLayer.classList.toggle('is-hidden');
         });
       }
+
+      function syncHeaderScrollState() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        var isScrolled = document.body.classList.contains('is-scrolled');
+        var enterThreshold = 72;
+        var leaveThreshold = 36;
+
+        if (!isScrolled && y > enterThreshold) {
+          document.body.classList.add('is-scrolled');
+        } else if (isScrolled && y < leaveThreshold) {
+          document.body.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+      syncHeaderScrollState();
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        var link = event.target.closest('a[href]');
+        if (!link) return;
+        if (link.hasAttribute('download')) return;
+        if (link.target && link.target !== '_self') return;
+
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+        var url;
+        try {
+          url = new URL(link.href, window.location.href);
+        } catch (e) {
+          return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+        event.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = url.href;
+        }, 120);
+      });
     </script>
   </body>
 </html>

@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Photo Stream | Minnong's blog</title>
-    <meta name="description" content="Welcome! Minnong's blog" />
+    <title>Photo Stream | My GitHub Blog</title>
+    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Photo Stream | Minnong's blog" />
-    <meta property="og:description" content="Welcome! Minnong's blog" />
-    <meta property="og:url" content="https://minnong511.github.io/photostream/" />
-    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/image.png" />
+    <meta property="og:title" content="Photo Stream | My GitHub Blog" />
+    <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta property="og:url" content="http://localhost:4000/photostream/" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/test_image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
   </head>
-  <body id="home" data-baseurl="">
+  <body id="home" class="page-transition is-preload photo-immersive" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
       <div class="container">
         <form action="/search/" method="get" class="search-form">
@@ -64,32 +64,91 @@
             <div class="page-content">
               
 <div id="photoArchiveApp" class="photo-archive-app">
+  <header class="photo-page-header">
+    <div class="container">
+      <div class="photo-page-header-tools">
+        <a class="photo-page-home" href="/" aria-label="Go Home">
+          <i class="ri-home-5-line"></i>
+        </a>
+      </div>
+      <h1 class="photo-page-header-title">MINNONG PHOTO</h1>
+    </div>
+  </header>
+
   <div class="photo-archive-view is-active" data-view="albums">
-    <header class="photo-archive-intro">
-      <h1>Photo Stream</h1>
-      <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
-    </header>
-    <div class="photo-archive-grid" id="photoAlbumGrid"></div>
+    <section class="photo-home-editorial">
+      <div class="photo-home-stage">
+        <button class="photo-home-nav is-prev" id="photoHomePrev" type="button" aria-label="Previous album">
+          <i class="ri-arrow-left-line"></i>
+        </button>
+
+        <div class="photo-home-split">
+          <button class="photo-home-frame" id="photoHomeFrameA" type="button" aria-label="Open first album">
+            <img id="photoHomeImageA" alt="" loading="lazy" />
+          </button>
+          <button class="photo-home-frame" id="photoHomeFrameB" type="button" aria-label="Open second album">
+            <img id="photoHomeImageB" alt="" loading="lazy" />
+          </button>
+        </div>
+
+        <button class="photo-home-nav is-next" id="photoHomeNext" type="button" aria-label="Next album">
+          <i class="ri-arrow-right-line"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="photo-home-list-wrap">
+      <header class="photo-archive-intro">
+        <h2>All Albums</h2>
+        <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
+      </header>
+      <div class="photo-archive-grid" id="photoAlbumGrid"></div>
+    </div>
   </div>
 
   <div class="photo-archive-view" data-view="album">
-    <button class="photo-back-button" id="photoBackButton" type="button" aria-label="Back to albums">
-      <i class="ri-arrow-left-s-line"></i>
-      <span>All Albums</span>
-    </button>
+    <section class="photo-editorial-detail">
+      <header class="photo-editorial-top">
+        <div class="photo-editorial-left">
+          <button class="photo-back-button" id="photoBackButton" type="button" aria-label="Back to albums">
+            <i class="ri-arrow-left-s-line"></i>
+            <span>All Albums</span>
+          </button>
+          <a class="photo-editorial-link" href="/">Home</a>
+        </div>
+        <div class="photo-editorial-right">
+          <span id="photoAlbumLocation"></span>
+          <span id="photoAlbumDate"></span>
+        </div>
+      </header>
 
-    <header class="photo-album-header">
-      <h2 id="photoAlbumTitle"></h2>
-      <div class="photo-album-meta">
-        <span id="photoAlbumLocation"></span>
-        <span class="dot"></span>
-        <span id="photoAlbumDate"></span>
-        <span class="dot"></span>
-        <span id="photoAlbumCount"></span>
+      <h2 class="photo-editorial-title" id="photoAlbumTitle"></h2>
+
+      <div class="photo-editorial-stage">
+        <button class="photo-editorial-nav is-prev" id="photoAlbumPrev" type="button" aria-label="Previous image">
+          <i class="ri-arrow-left-line"></i>
+        </button>
+
+        <div class="photo-editorial-split">
+          <button class="photo-editorial-frame" id="photoEditorialFrameA" type="button" aria-label="Open first image">
+            <img id="photoEditorialImageA" alt="" loading="lazy" />
+          </button>
+          <button class="photo-editorial-frame" id="photoEditorialFrameB" type="button" aria-label="Open second image">
+            <img id="photoEditorialImageB" alt="" loading="lazy" />
+          </button>
+        </div>
+
+        <button class="photo-editorial-nav is-next" id="photoAlbumNext" type="button" aria-label="Next image">
+          <i class="ri-arrow-right-line"></i>
+        </button>
       </div>
-    </header>
 
-    <div class="photo-album-grid" id="photoAlbumDetailGrid"></div>
+      <footer class="photo-editorial-meta">
+        <span id="photoAlbumCount"></span>
+        <span class="dot"></span>
+        <span id="photoAlbumCaption"></span>
+      </footer>
+    </section>
   </div>
 </div>
 
@@ -108,18 +167,18 @@
 <script id="photoArchiveData" type="application/json">
 [
 
-  { "id": 1, "url": "https://images.unsplash.com/photo-1431274172761-fca41d930114?auto=format&fit=crop&w=1400&q=80", "album": "Paris", "caption": "Eiffel Tower at sunset" },
-  { "id": 2, "url": "https://images.unsplash.com/photo-1695306812834-7f7ccc0e1140?auto=format&fit=crop&w=1400&q=80", "album": "Paris", "caption": "Cafe in Paris" },
-  { "id": 3, "url": "https://images.unsplash.com/photo-1707952189186-8694f03529f7?auto=format&fit=crop&w=1400&q=80", "album": "Paris", "caption": "Louvre details" },
-  { "id": 4, "url": "https://images.unsplash.com/photo-1617581219723-68d352f989e7?auto=format&fit=crop&w=1400&q=80", "album": "Tokyo", "caption": "Shibuya crossing" },
-  { "id": 5, "url": "https://images.unsplash.com/photo-1641385511718-d736d65e6d04?auto=format&fit=crop&w=1400&q=80", "album": "Tokyo", "caption": "Temple morning light" },
-  { "id": 6, "url": "https://images.unsplash.com/photo-1614932750312-440cdfc45fea?auto=format&fit=crop&w=1400&q=80", "album": "Tokyo", "caption": "Cherry blossom season" },
-  { "id": 7, "url": "https://images.unsplash.com/photo-1573481726566-9d98bb795fff?auto=format&fit=crop&w=1400&q=80", "album": "Santorini", "caption": "Blue domes and sea" },
-  { "id": 8, "url": "https://images.unsplash.com/photo-1656677476420-7159cac2366a?auto=format&fit=crop&w=1400&q=80", "album": "Santorini", "caption": "Sunset in Oia" },
-  { "id": 9, "url": "https://images.unsplash.com/photo-1536011251940-0f9e91890ec5?auto=format&fit=crop&w=1400&q=80", "album": "Santorini", "caption": "White-washed houses" },
-  { "id": 10, "url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1400&q=80", "album": "New York", "caption": "Skyline at dusk" },
-  { "id": 11, "url": "https://images.unsplash.com/photo-1595901688281-9cef114adb0b?auto=format&fit=crop&w=1400&q=80", "album": "New York", "caption": "Times Square neon" },
-  { "id": 12, "url": "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?auto=format&fit=crop&w=1400&q=80", "album": "New York", "caption": "Central Park autumn" }
+  { "id": 1, "url": "https://images.unsplash.com/photo-1431274172761-fca41d930114?auto=format&fit=crop&w=1400&q=80", "album": "Paris", "caption": "Eiffel Tower at sunset", "modified": 1734566400 },
+  { "id": 2, "url": "https://images.unsplash.com/photo-1695306812834-7f7ccc0e1140?auto=format&fit=crop&w=1400&q=80", "album": "Paris", "caption": "Cafe in Paris", "modified": 1734652800 },
+  { "id": 3, "url": "https://images.unsplash.com/photo-1707952189186-8694f03529f7?auto=format&fit=crop&w=1400&q=80", "album": "Paris", "caption": "Louvre details", "modified": 1734739200 },
+  { "id": 4, "url": "https://images.unsplash.com/photo-1617581219723-68d352f989e7?auto=format&fit=crop&w=1400&q=80", "album": "Tokyo", "caption": "Shibuya crossing", "modified": 1734825600 },
+  { "id": 5, "url": "https://images.unsplash.com/photo-1641385511718-d736d65e6d04?auto=format&fit=crop&w=1400&q=80", "album": "Tokyo", "caption": "Temple morning light", "modified": 1734912000 },
+  { "id": 6, "url": "https://images.unsplash.com/photo-1614932750312-440cdfc45fea?auto=format&fit=crop&w=1400&q=80", "album": "Tokyo", "caption": "Cherry blossom season", "modified": 1734998400 },
+  { "id": 7, "url": "https://images.unsplash.com/photo-1573481726566-9d98bb795fff?auto=format&fit=crop&w=1400&q=80", "album": "Santorini", "caption": "Blue domes and sea", "modified": 1735084800 },
+  { "id": 8, "url": "https://images.unsplash.com/photo-1656677476420-7159cac2366a?auto=format&fit=crop&w=1400&q=80", "album": "Santorini", "caption": "Sunset in Oia", "modified": 1735171200 },
+  { "id": 9, "url": "https://images.unsplash.com/photo-1536011251940-0f9e91890ec5?auto=format&fit=crop&w=1400&q=80", "album": "Santorini", "caption": "White-washed houses", "modified": 1735257600 },
+  { "id": 10, "url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1400&q=80", "album": "New York", "caption": "Skyline at dusk", "modified": 1735344000 },
+  { "id": 11, "url": "https://images.unsplash.com/photo-1595901688281-9cef114adb0b?auto=format&fit=crop&w=1400&q=80", "album": "New York", "caption": "Times Square neon", "modified": 1735430400 },
+  { "id": 12, "url": "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?auto=format&fit=crop&w=1400&q=80", "album": "New York", "caption": "Central Park autumn", "modified": 1735516800 }
 
 ]
 </script>
@@ -138,18 +197,75 @@
     }
 
     var albumGrid = document.getElementById("photoAlbumGrid");
-    var albumDetailGrid = document.getElementById("photoAlbumDetailGrid");
+    var homePrev = document.getElementById("photoHomePrev");
+    var homeNext = document.getElementById("photoHomeNext");
+    var homeFrameA = document.getElementById("photoHomeFrameA");
+    var homeFrameB = document.getElementById("photoHomeFrameB");
+    var homeImageA = document.getElementById("photoHomeImageA");
+    var homeImageB = document.getElementById("photoHomeImageB");
     var backButton = document.getElementById("photoBackButton");
     var albumTitle = document.getElementById("photoAlbumTitle");
     var albumLocation = document.getElementById("photoAlbumLocation");
     var albumDate = document.getElementById("photoAlbumDate");
     var albumCount = document.getElementById("photoAlbumCount");
+    var albumCaption = document.getElementById("photoAlbumCaption");
+    var albumPrev = document.getElementById("photoAlbumPrev");
+    var albumNext = document.getElementById("photoAlbumNext");
+    var frameA = document.getElementById("photoEditorialFrameA");
+    var frameB = document.getElementById("photoEditorialFrameB");
+    var imageA = document.getElementById("photoEditorialImageA");
+    var imageB = document.getElementById("photoEditorialImageB");
     var views = app.querySelectorAll(".photo-archive-view");
+    var currentAlbum = null;
+    var currentIndex = 0;
+    var homeIndex = 0;
 
     var lightbox = document.getElementById("photoArchiveLightbox");
     var lightboxClose = document.getElementById("photoArchiveLightboxClose");
     var lightboxImage = document.getElementById("photoArchiveLightboxImage");
     var lightboxCaption = document.getElementById("photoArchiveLightboxCaption");
+
+    function toTitleCase(text) {
+      return (text || "").replace(/\w\S*/g, function (word) {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      });
+    }
+
+    function parseAlbumMeta(albumName, albumPhotos) {
+      var raw = String(albumName || "");
+      var compact = raw.replace(/[_\s]+/g, "-");
+      var match = compact.match(/^(\d{4})[-.]?(\d{2})[-.]?(\d{2})-(.+)$/);
+      var latestTs = 0;
+
+      (albumPhotos || []).forEach(function (photo) {
+        var ts = parseInt(photo.modified, 10);
+        if (!isNaN(ts) && ts > latestTs) latestTs = ts;
+      });
+
+      if (match) {
+        var dateText = match[1] + "." + match[2] + "." + match[3];
+        var locationText = toTitleCase(match[4].replace(/[-_]+/g, " "));
+        return {
+          title: locationText,
+          location: locationText,
+          date: dateText,
+          timestamp: latestTs || Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])) / 1000
+        };
+      }
+
+      var location = toTitleCase(raw.replace(/[-_]+/g, " "));
+      var dateFallback = latestTs ? new Date(latestTs * 1000) : new Date();
+      var y = dateFallback.getFullYear();
+      var m = String(dateFallback.getMonth() + 1).padStart(2, "0");
+      var d = String(dateFallback.getDate()).padStart(2, "0");
+
+      return {
+        title: location,
+        location: location,
+        date: y + "." + m + "." + d,
+        timestamp: latestTs || 0
+      };
+    }
 
     var albums = Object.keys(
       photos.reduce(function (acc, photo) {
@@ -158,14 +274,18 @@
       }, {})
     ).map(function (albumName, index) {
       var albumPhotos = photos.filter(function (photo) { return photo.album === albumName; });
+      var meta = parseAlbumMeta(albumName, albumPhotos);
       return {
         id: index + 1,
-        title: albumName.replace(/[-_]/g, " "),
-        location: albumName.replace(/[-_]/g, " "),
-        date: "Archive",
+        title: meta.title,
+        location: meta.location,
+        date: meta.date,
+        timestamp: meta.timestamp,
         coverImage: albumPhotos[0].url,
         photos: albumPhotos
       };
+    }).sort(function (a, b) {
+      return (b.timestamp || 0) - (a.timestamp || 0);
     });
 
     function setView(name) {
@@ -174,6 +294,12 @@
         view.classList.toggle("is-active", isTarget);
         view.style.display = isTarget ? "block" : "none";
       });
+
+      if (name === "albums") {
+        document.body.classList.add("photo-home-mode");
+      } else {
+        document.body.classList.remove("photo-home-mode");
+      }
     }
 
     function openLightbox(photo) {
@@ -193,23 +319,45 @@
       if (lightboxCaption) lightboxCaption.textContent = "";
     }
 
+    function renderEditorialPair() {
+      if (!currentAlbum || !currentAlbum.photos.length || !imageA || !imageB) return;
+      var list = currentAlbum.photos;
+      var first = list[currentIndex % list.length];
+      var second = list[(currentIndex + 1) % list.length];
+
+      imageA.src = first.url;
+      imageA.alt = first.caption || currentAlbum.title;
+      imageB.src = second.url;
+      imageB.alt = second.caption || currentAlbum.title;
+
+      if (albumCaption) {
+        albumCaption.textContent = (first.caption || currentAlbum.title) + " / " + (second.caption || currentAlbum.title);
+      }
+    }
+
     function renderAlbumDetail(album) {
-      if (!albumDetailGrid || !albumTitle || !albumLocation || !albumDate || !albumCount) return;
+      if (!albumTitle || !albumLocation || !albumDate || !albumCount) return;
+      currentAlbum = album;
+      currentIndex = 0;
+
       albumTitle.textContent = album.title;
       albumLocation.textContent = album.location;
       albumDate.textContent = album.date;
       albumCount.textContent = album.photos.length + " Photos";
-
-      albumDetailGrid.innerHTML = "";
-      album.photos.forEach(function (photo) {
-        var card = document.createElement("button");
-        card.className = "photo-detail-card";
-        card.type = "button";
-        card.innerHTML = '<div class="photo-detail-image"><img loading="lazy" src="' + photo.url + '" alt="' + (photo.caption || "") + '"></div><p>' + (photo.caption || "") + "</p>";
-        card.addEventListener("click", function () { openLightbox(photo); });
-        albumDetailGrid.appendChild(card);
-      });
+      renderEditorialPair();
       setView("album");
+    }
+
+    function renderHomePair() {
+      if (!albums.length || !homeImageA || !homeImageB) return;
+
+      var firstAlbum = albums[homeIndex % albums.length];
+      var secondAlbum = albums[(homeIndex + 1) % albums.length];
+
+      homeImageA.src = firstAlbum.coverImage;
+      homeImageA.alt = firstAlbum.title;
+      homeImageB.src = secondAlbum.coverImage;
+      homeImageB.alt = secondAlbum.title;
     }
 
     function renderAlbums() {
@@ -219,7 +367,7 @@
         var card = document.createElement("button");
         card.className = "photo-album-card";
         card.type = "button";
-        card.innerHTML = '<div class="photo-album-cover"><img loading="lazy" src="' + album.coverImage + '" alt="' + album.title + '"></div><div class="photo-album-info"><h3>' + album.title + '</h3><div class="meta"><span>' + album.location + '</span><span class="dot"></span><span>' + album.date + '</span></div><p>' + album.photos.length + " Photos</p></div>";
+        card.innerHTML = '<div class="photo-album-cover"><img loading="lazy" src="' + album.coverImage + '" alt="' + album.title + '"><div class="photo-album-overlay"><span class="photo-album-region">' + album.location + '</span><span class="photo-album-date">' + album.date + '</span></div></div>';
         card.addEventListener("click", function () { renderAlbumDetail(album); });
         albumGrid.appendChild(card);
       });
@@ -228,6 +376,66 @@
     if (backButton) {
       backButton.addEventListener("click", function () {
         setView("albums");
+      });
+    }
+
+    if (homePrev) {
+      homePrev.addEventListener("click", function () {
+        if (!albums.length) return;
+        homeIndex = (homeIndex - 1 + albums.length) % albums.length;
+        renderHomePair();
+      });
+    }
+
+    if (homeNext) {
+      homeNext.addEventListener("click", function () {
+        if (!albums.length) return;
+        homeIndex = (homeIndex + 1) % albums.length;
+        renderHomePair();
+      });
+    }
+
+    if (homeFrameA) {
+      homeFrameA.addEventListener("click", function () {
+        if (!albums.length) return;
+        renderAlbumDetail(albums[homeIndex % albums.length]);
+      });
+    }
+
+    if (homeFrameB) {
+      homeFrameB.addEventListener("click", function () {
+        if (!albums.length) return;
+        renderAlbumDetail(albums[(homeIndex + 1) % albums.length]);
+      });
+    }
+
+    if (albumPrev) {
+      albumPrev.addEventListener("click", function () {
+        if (!currentAlbum || !currentAlbum.photos.length) return;
+        currentIndex = (currentIndex - 1 + currentAlbum.photos.length) % currentAlbum.photos.length;
+        renderEditorialPair();
+      });
+    }
+
+    if (albumNext) {
+      albumNext.addEventListener("click", function () {
+        if (!currentAlbum || !currentAlbum.photos.length) return;
+        currentIndex = (currentIndex + 1) % currentAlbum.photos.length;
+        renderEditorialPair();
+      });
+    }
+
+    if (frameA) {
+      frameA.addEventListener("click", function () {
+        if (!currentAlbum || !currentAlbum.photos.length) return;
+        openLightbox(currentAlbum.photos[currentIndex % currentAlbum.photos.length]);
+      });
+    }
+
+    if (frameB) {
+      frameB.addEventListener("click", function () {
+        if (!currentAlbum || !currentAlbum.photos.length) return;
+        openLightbox(currentAlbum.photos[(currentIndex + 1) % currentAlbum.photos.length]);
       });
     }
 
@@ -250,7 +458,15 @@
     });
 
     setView("albums");
+    renderHomePair();
     renderAlbums();
+
+    requestAnimationFrame(function () {
+      var homeEditorial = document.querySelector(".photo-home-editorial");
+      if (homeEditorial) {
+        homeEditorial.classList.add("is-ready");
+      }
+    });
   })();
 </script>
 
@@ -261,42 +477,9 @@
       </section>
     </main>
 
-    <footer class="footer">
-  <div class="container">
-    <div class="columns footer-columns">
-      <div class="column">
-        <div class="footer-logo">Minnong's blog</div>
-      </div>
-      <div class="column"></div>
-      <div class="column">
-        <ul class="list">
-          <li>운영자: Min Hyeong Lee</li>
-          <li>Based in Seoul</li>
-          <li>Contact: kzxx1234@gmail.com</li>
-        </ul>
-      </div>
-      <div class="column">
-        <ul class="list">
-          <li>개인 포트폴리오 &amp; 블로그</li>
-          <li>Photo / Travel / Engineering</li>
-        </ul>
-      </div>
-    </div>
-    <div class="columns footer-bottom">
-      <div class="column">
-        <p>© 2026 Minnong blog</p>
-      </div>
-      <div class="column social">
-        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-      </div>
-    </div>
-  </div>
-</footer>
+    
 
-
-    <script src="/assets/js/site-search.js?v=2"></script>
+    <script src="/assets/js/site-search.js?v=1"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -306,6 +489,56 @@
           menuLayer.classList.toggle('is-hidden');
         });
       }
+
+      function syncHeaderScrollState() {
+        var y = window.scrollY || window.pageYOffset || 0;
+        var isScrolled = document.body.classList.contains('is-scrolled');
+        var enterThreshold = 72;
+        var leaveThreshold = 36;
+
+        if (!isScrolled && y > enterThreshold) {
+          document.body.classList.add('is-scrolled');
+        } else if (isScrolled && y < leaveThreshold) {
+          document.body.classList.remove('is-scrolled');
+        }
+      }
+      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+      syncHeaderScrollState();
+
+      requestAnimationFrame(function () {
+        document.body.classList.remove('is-preload');
+      });
+
+      document.addEventListener('click', function (event) {
+        if (event.defaultPrevented) return;
+        if (event.button !== 0) return;
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        var link = event.target.closest('a[href]');
+        if (!link) return;
+        if (link.hasAttribute('download')) return;
+        if (link.target && link.target !== '_self') return;
+
+        var href = link.getAttribute('href');
+        if (!href || href.charAt(0) === '#') return;
+        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
+
+        var url;
+        try {
+          url = new URL(link.href, window.location.href);
+        } catch (e) {
+          return;
+        }
+
+        if (url.origin !== window.location.origin) return;
+        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+
+        event.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(function () {
+          window.location.href = url.href;
+        }, 120);
+      });
     </script>
   </body>
 </html>
