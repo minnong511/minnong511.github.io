@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Photo Stream | My GitHub Blog</title>
-    <meta name="description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <title>Photo Stream | Minnong's blog</title>
+    <meta name="description" content="Welcome! Minnong's blog" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Photo Stream | My GitHub Blog" />
-    <meta property="og:description" content="A simple Jekyll blog hosted on GitHub Pages." />
+    <meta property="og:title" content="Photo Stream | Minnong's blog" />
+    <meta property="og:description" content="Welcome! Minnong's blog" />
     <meta property="og:url" content="http://localhost:4000/photostream/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/test_image.png" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/image.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
   </head>
   <body id="home" class="page-transition is-preload photo-immersive" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
@@ -76,32 +76,7 @@
   </header>
 
   <div class="photo-archive-view is-active" data-view="albums">
-    <section class="photo-home-editorial">
-      <div class="photo-home-stage">
-        <button class="photo-home-nav is-prev" id="photoHomePrev" type="button" aria-label="Previous album">
-          <i class="ri-arrow-left-line"></i>
-        </button>
-
-        <div class="photo-home-split">
-          <button class="photo-home-frame" id="photoHomeFrameA" type="button" aria-label="Open first album">
-            <img id="photoHomeImageA" alt="" loading="lazy" />
-          </button>
-          <button class="photo-home-frame" id="photoHomeFrameB" type="button" aria-label="Open second album">
-            <img id="photoHomeImageB" alt="" loading="lazy" />
-          </button>
-        </div>
-
-        <button class="photo-home-nav is-next" id="photoHomeNext" type="button" aria-label="Next album">
-          <i class="ri-arrow-right-line"></i>
-        </button>
-      </div>
-    </section>
-
     <div class="photo-home-list-wrap">
-      <header class="photo-archive-intro">
-        <h2>All Albums</h2>
-        <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
-      </header>
       <div class="photo-archive-grid" id="photoAlbumGrid"></div>
     </div>
   </div>
@@ -161,8 +136,6 @@
     <p id="photoArchiveLightboxCaption"></p>
   </div>
 </div>
-
-<p class="empty-msg" style="margin-top: 0.8rem;">현재는 Unsplash 샘플 이미지로 렌더링 중입니다. `assets/photo_lib/`에 이미지를 추가하면 자동으로 대체됩니다.</p>
 
 <script id="photoArchiveData" type="application/json">
 [
@@ -231,6 +204,15 @@
       });
     }
 
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     function parseAlbumMeta(albumName, albumPhotos) {
       var raw = String(albumName || "");
       var compact = raw.replace(/[_\s]+/g, "-");
@@ -282,6 +264,7 @@
         date: meta.date,
         timestamp: meta.timestamp,
         coverImage: albumPhotos[0].url,
+        description: albumPhotos[0] && albumPhotos[0].caption ? albumPhotos[0].caption : "필름 사진 기록",
         photos: albumPhotos
       };
     }).sort(function (a, b) {
@@ -367,7 +350,14 @@
         var card = document.createElement("button");
         card.className = "photo-album-card";
         card.type = "button";
-        card.innerHTML = '<div class="photo-album-cover"><img loading="lazy" src="' + album.coverImage + '" alt="' + album.title + '"><div class="photo-album-overlay"><span class="photo-album-region">' + album.location + '</span><span class="photo-album-date">' + album.date + '</span></div></div>';
+        card.innerHTML =
+          '<div class="photo-album-cover"><img loading="lazy" src="' + album.coverImage + '" alt="' + escapeHtml(album.title) + '">' +
+          '<div class="photo-album-card-meta">' +
+            '<h3 class="photo-album-card-title">' + escapeHtml(album.title) + '</h3>' +
+            '<p class="photo-album-date">' + escapeHtml(album.date) + '</p>' +
+            '<p class="photo-album-card-description">' + escapeHtml(album.description) + '</p>' +
+          '</div>' +
+          '</div>';
         card.addEventListener("click", function () { renderAlbumDetail(album); });
         albumGrid.appendChild(card);
       });
@@ -478,8 +468,43 @@
     </main>
 
     
+      <footer class="footer">
+  <div class="container">
+    <div class="columns footer-columns">
+      <div class="column">
+        <div class="footer-logo">Minnong's blog</div>
+      </div>
+      <div class="column"></div>
+      <div class="column">
+        <ul class="list">
+          <li>운영자: Min Hyeong Lee</li>
+          <li>Based in Seoul</li>
+          <li>Contact: kzxx1234@gmail.com</li>
+        </ul>
+      </div>
+      <div class="column">
+        <ul class="list">
+          <li>개인 포트폴리오 &amp; 블로그</li>
+          <li>Photo / Travel / Engineering</li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns footer-bottom">
+      <div class="column">
+        <p>© 2026 Minnong blog</p>
+      </div>
+      <div class="column social">
+        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-    <script src="/assets/js/site-search.js?v=1"></script>
+    
+
+    <script src="/assets/js/site-search.js?v=2"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -493,8 +518,8 @@
       function syncHeaderScrollState() {
         var y = window.scrollY || window.pageYOffset || 0;
         var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 72;
-        var leaveThreshold = 36;
+        var enterThreshold = 180;
+        var leaveThreshold = 80;
 
         if (!isScrolled && y > enterThreshold) {
           document.body.classList.add('is-scrolled');

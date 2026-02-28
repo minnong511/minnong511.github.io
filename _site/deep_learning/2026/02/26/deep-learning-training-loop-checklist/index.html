@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>딥러닝 학습 루프 점검 체크리스트 | My GitHub Blog</title>
+    <title>딥러닝 학습 루프 점검 체크리스트 | Minnong's blog</title>
     <meta name="description" content="모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다." />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="딥러닝 학습 루프 점검 체크리스트 | My GitHub Blog" />
+    <meta property="og:title" content="딥러닝 학습 루프 점검 체크리스트 | Minnong's blog" />
     <meta property="og:description" content="모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다." />
     <meta property="og:url" content="http://localhost:4000/deep_learning/2026/02/26/deep-learning-training-loop-checklist/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80" />
@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
   </head>
   <body id="article" class="page-transition is-preload" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
@@ -431,7 +431,7 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
     </div>
     <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
 
-    <script src="/assets/js/site-search.js?v=1"></script>
+    <script src="/assets/js/site-search.js?v=2"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -457,8 +457,8 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
       function syncHeaderScrollState() {
         var y = window.scrollY || window.pageYOffset || 0;
         var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 72;
-        var leaveThreshold = 36;
+        var enterThreshold = 180;
+        var leaveThreshold = 80;
 
         if (!isScrolled && y > enterThreshold) {
           document.body.classList.add('is-scrolled');

@@ -4,7 +4,6 @@ title: Photo Stream
 permalink: /photostream/
 hide_page_title: true
 body_class: photo-immersive
-hide_footer: true
 ---
 
 {% assign photos = site.static_files | where_exp: "item", "item.path contains '/assets/photo_lib/'" %}
@@ -22,32 +21,7 @@ hide_footer: true
   </header>
 
   <div class="photo-archive-view is-active" data-view="albums">
-    <section class="photo-home-editorial">
-      <div class="photo-home-stage">
-        <button class="photo-home-nav is-prev" id="photoHomePrev" type="button" aria-label="Previous album">
-          <i class="ri-arrow-left-line"></i>
-        </button>
-
-        <div class="photo-home-split">
-          <button class="photo-home-frame" id="photoHomeFrameA" type="button" aria-label="Open first album">
-            <img id="photoHomeImageA" alt="" loading="lazy" />
-          </button>
-          <button class="photo-home-frame" id="photoHomeFrameB" type="button" aria-label="Open second album">
-            <img id="photoHomeImageB" alt="" loading="lazy" />
-          </button>
-        </div>
-
-        <button class="photo-home-nav is-next" id="photoHomeNext" type="button" aria-label="Next album">
-          <i class="ri-arrow-right-line"></i>
-        </button>
-      </div>
-    </section>
-
     <div class="photo-home-list-wrap">
-      <header class="photo-archive-intro">
-        <h2>All Albums</h2>
-        <p>필름 사진과 일상 기록을 모아두는 공간입니다.</p>
-      </header>
       <div class="photo-archive-grid" id="photoAlbumGrid"></div>
     </div>
   </div>
@@ -107,10 +81,6 @@ hide_footer: true
     <p id="photoArchiveLightboxCaption"></p>
   </div>
 </div>
-
-{% if photos.size == 0 %}
-<p class="empty-msg" style="margin-top: 0.8rem;">현재는 Unsplash 샘플 이미지로 렌더링 중입니다. `assets/photo_lib/`에 이미지를 추가하면 자동으로 대체됩니다.</p>
-{% endif %}
 
 <script id="photoArchiveData" type="application/json">
 [
@@ -192,6 +162,15 @@ hide_footer: true
       });
     }
 
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     function parseAlbumMeta(albumName, albumPhotos) {
       var raw = String(albumName || "");
       var compact = raw.replace(/[_\s]+/g, "-");
@@ -243,6 +222,7 @@ hide_footer: true
         date: meta.date,
         timestamp: meta.timestamp,
         coverImage: albumPhotos[0].url,
+        description: albumPhotos[0] && albumPhotos[0].caption ? albumPhotos[0].caption : "필름 사진 기록",
         photos: albumPhotos
       };
     }).sort(function (a, b) {
@@ -328,7 +308,14 @@ hide_footer: true
         var card = document.createElement("button");
         card.className = "photo-album-card";
         card.type = "button";
-        card.innerHTML = '<div class="photo-album-cover"><img loading="lazy" src="' + album.coverImage + '" alt="' + album.title + '"><div class="photo-album-overlay"><span class="photo-album-region">' + album.location + '</span><span class="photo-album-date">' + album.date + '</span></div></div>';
+        card.innerHTML =
+          '<div class="photo-album-cover"><img loading="lazy" src="' + album.coverImage + '" alt="' + escapeHtml(album.title) + '">' +
+          '<div class="photo-album-card-meta">' +
+            '<h3 class="photo-album-card-title">' + escapeHtml(album.title) + '</h3>' +
+            '<p class="photo-album-date">' + escapeHtml(album.date) + '</p>' +
+            '<p class="photo-album-card-description">' + escapeHtml(album.description) + '</p>' +
+          '</div>' +
+          '</div>';
         card.addEventListener("click", function () { renderAlbumDetail(album); });
         albumGrid.appendChild(card);
       });

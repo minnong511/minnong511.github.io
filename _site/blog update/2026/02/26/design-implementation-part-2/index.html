@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>2. 디자인 구현 | My GitHub Blog</title>
+    <title>2. 디자인 구현 | Minnong's blog</title>
     <meta name="description" content="" />
 
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="2. 디자인 구현 | My GitHub Blog" />
+    <meta property="og:title" content="2. 디자인 구현 | Minnong's blog" />
     <meta property="og:description" content="" />
     <meta property="og:url" content="http://localhost:4000/blog%20update/2026/02/26/design-implementation-part-2/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80" />
@@ -15,7 +15,7 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=1" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
   </head>
   <body id="article" class="page-transition is-preload" data-baseurl="">
     <div class="search is-hidden" id="searchLayer">
@@ -296,7 +296,7 @@
     </div>
     <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
 
-    <script src="/assets/js/site-search.js?v=1"></script>
+    <script src="/assets/js/site-search.js?v=2"></script>
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -322,8 +322,8 @@
       function syncHeaderScrollState() {
         var y = window.scrollY || window.pageYOffset || 0;
         var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 72;
-        var leaveThreshold = 36;
+        var enterThreshold = 180;
+        var leaveThreshold = 80;
 
         if (!isScrolled && y > enterThreshold) {
           document.body.classList.add('is-scrolled');
