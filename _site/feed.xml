@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-01T01:02:24+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s blog</title><subtitle>Welcome! Minnong&apos;s blog</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">5. 유지보수</title><link href="http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/" rel="alternate" type="text/html" title="5. 유지보수" /><published>2026-02-26T13:30:00+09:00</published><updated>2026-02-26T13:30:00+09:00</updated><id>http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5</id><content type="html" xml:base="http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/"><![CDATA[<p>이번 업데이트에서는 <strong>필요할 때만 캐시를 무효화</strong>할 수 있는 유지보수 기능을 추가했다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-01T15:53:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s blog</title><subtitle>Welcome! Minnong&apos;s blog</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">6. 포토앨범 제작</title><link href="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/" rel="alternate" type="text/html" title="6. 포토앨범 제작" /><published>2026-03-01T02:12:29+09:00</published><updated>2026-03-01T02:12:29+09:00</updated><id>http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference</id><content type="html" xml:base="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/"><![CDATA[<p>이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다.</p>
+
+<p>디자인 레퍼런스로는 아래 링크를 참고했고,
+해당 레퍼런스의 미니멀한 정보 구조와 이미지 중심 흐름을 바탕으로
+현재 블로그의 포토 앨범 페이지를 구성했다.</p>
+
+<p><a class="link-card" href="https://minimal.gallery/" target="_blank" rel="noreferrer noopener"><span class="link-card-main"><span class="link-card-title">minimal.gallery</span><span class="link-card-desc">포토 앨범 페이지 디자인 레퍼런스</span><span class="link-card-host">minimal.gallery</span></span><i class="ri-external-link-line" aria-hidden="true"></i></a></p>
+
+<p>주요 반영 내용은 아래와 같다.</p>
+
+<ul>
+  <li>포토 앨범 목록과 상세 흐름 분리</li>
+  <li>헤더 상태(축소/확장)에 따른 타이틀 및 날짜 표시 개선</li>
+  <li>앨범 클릭 시 상세 페이지 전환 흐름 정리</li>
+  <li>모바일 환경에서 텍스트/아이콘 비율 및 가독성 보정</li>
+</ul>
+
+<p>다음 업데이트에서는 서브 포스트 정보 밀도를 더 높이고,
+앨범 상세 화면의 탐색 경험을 추가로 다듬을 예정이다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Blog update" /><category term="blog update" /><summary type="html"><![CDATA[이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">5. 유지보수</title><link href="http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/" rel="alternate" type="text/html" title="5. 유지보수" /><published>2026-02-26T13:30:00+09:00</published><updated>2026-02-26T13:30:00+09:00</updated><id>http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5</id><content type="html" xml:base="http://localhost:4000/blog%20update/2026/02/26/maintenance-part-5/"><![CDATA[<p>이번 업데이트에서는 <strong>필요할 때만 캐시를 무효화</strong>할 수 있는 유지보수 기능을 추가했다.</p>
 
 <h2 id="기능">기능</h2>
 
@@ -992,8 +1010,4 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
       );
     }
   })();
-</script>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="deep-learning" /><category term="training" /><category term="checklist" /><summary type="html"><![CDATA[모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">알고리즘 복습: 정렬과 탐색 핵심 노트</title><link href="http://localhost:4000/computer_science/2026/02/26/computer-science-algorithm-notes/" rel="alternate" type="text/html" title="알고리즘 복습: 정렬과 탐색 핵심 노트" /><published>2026-02-26T09:00:00+09:00</published><updated>2026-02-26T09:00:00+09:00</updated><id>http://localhost:4000/computer_science/2026/02/26/computer-science-algorithm-notes</id><content type="html" xml:base="http://localhost:4000/computer_science/2026/02/26/computer-science-algorithm-notes/"><![CDATA[<p>자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.</p>
-
-<p>이번 글에서는 정렬 알고리즘의 시간복잡도 비교와 이진 탐색의 조건 처리 포인트를 다룬다.</p>
-
-<p>코딩 테스트에서는 구현 실수보다 경계 조건에서 점수를 잃는 경우가 많아서, 예외 케이스 체크리스트를 습관화하는 것이 중요하다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Computer_Science" /><category term="algorithm" /><category term="sorting" /><category term="cs" /><summary type="html"><![CDATA[자료구조와 알고리즘을 다시 정리하면서 자주 쓰는 패턴을 노트로 남겼다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+</script>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="deep-learning" /><category term="training" /><category term="checklist" /><summary type="html"><![CDATA[모델 성능이 오르지 않을 때는 아키텍처보다 학습 루프부터 점검하는 편이 효율적이다.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" /><media:content medium="image" url="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

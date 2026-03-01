@@ -18,43 +18,7 @@
     <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
   </head>
   <body id="home" class="page-transition is-preload photo-immersive" data-baseurl="">
-    <div class="search is-hidden" id="searchLayer">
-      <div class="container">
-        <form action="/search/" method="get" class="search-form">
-          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
-        </form>
-        <div class="search-live-results" id="searchLiveResults"></div>
-      </div>
-    </div>
-
-    <header class="header">
-      <div class="container">
-        <div class="columns header-row">
-          <div class="column left">
-            <a href="/" class="header-logo">Minnong's blog</a>
-          </div>
-          <div class="column right">
-            <nav class="header-nav">
-              <ul>
-                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
-                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-        <nav class="nav is-hidden" id="menuLayer">
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/photostream/">Photo</a></li>
-            <li><a href="/archive/">Archive</a></li>
-            <li><a href="/tags/">Tags</a></li>
-            <li><a href="/blog-update/">Blog update</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    
 
     <main class="main page-main">
       <section class="section">
@@ -67,73 +31,18 @@
   <header class="photo-page-header">
     <div class="container">
       <div class="photo-page-header-tools">
-        <a class="photo-page-home" href="/" aria-label="Go Home">
-          <i class="ri-home-5-line"></i>
-        </a>
+        <button class="photo-page-home" id="photoBackPageButton" type="button" aria-label="Back to home">
+          <i class="ri-arrow-left-line"></i>
+        </button>
       </div>
-      <h1 class="photo-page-header-title">MINNONG PHOTO</h1>
+      <h1 class="photo-page-header-title">
+        <button class="photo-page-title-button" id="photoTopButton" type="button" aria-label="Back to top">MINNONG PHOTO</button>
+      </h1>
     </div>
   </header>
 
-  <div class="photo-archive-view is-active" data-view="albums">
-    <div class="photo-home-list-wrap">
-      <div class="photo-archive-grid" id="photoAlbumGrid"></div>
-    </div>
-  </div>
-
-  <div class="photo-archive-view" data-view="album">
-    <section class="photo-editorial-detail">
-      <header class="photo-editorial-top">
-        <div class="photo-editorial-left">
-          <button class="photo-back-button" id="photoBackButton" type="button" aria-label="Back to albums">
-            <i class="ri-arrow-left-s-line"></i>
-            <span>All Albums</span>
-          </button>
-          <a class="photo-editorial-link" href="/">Home</a>
-        </div>
-        <div class="photo-editorial-right">
-          <span id="photoAlbumLocation"></span>
-          <span id="photoAlbumDate"></span>
-        </div>
-      </header>
-
-      <h2 class="photo-editorial-title" id="photoAlbumTitle"></h2>
-
-      <div class="photo-editorial-stage">
-        <button class="photo-editorial-nav is-prev" id="photoAlbumPrev" type="button" aria-label="Previous image">
-          <i class="ri-arrow-left-line"></i>
-        </button>
-
-        <div class="photo-editorial-split">
-          <button class="photo-editorial-frame" id="photoEditorialFrameA" type="button" aria-label="Open first image">
-            <img id="photoEditorialImageA" alt="" loading="lazy" />
-          </button>
-          <button class="photo-editorial-frame" id="photoEditorialFrameB" type="button" aria-label="Open second image">
-            <img id="photoEditorialImageB" alt="" loading="lazy" />
-          </button>
-        </div>
-
-        <button class="photo-editorial-nav is-next" id="photoAlbumNext" type="button" aria-label="Next image">
-          <i class="ri-arrow-right-line"></i>
-        </button>
-      </div>
-
-      <footer class="photo-editorial-meta">
-        <span id="photoAlbumCount"></span>
-        <span class="dot"></span>
-        <span id="photoAlbumCaption"></span>
-      </footer>
-    </section>
-  </div>
-</div>
-
-<div class="photo-archive-lightbox is-hidden" id="photoArchiveLightbox" aria-hidden="true">
-  <button class="photo-archive-lightbox-close" id="photoArchiveLightboxClose" type="button" aria-label="Close">
-    <i class="ri-close-line"></i>
-  </button>
-  <div class="photo-archive-lightbox-inner">
-    <img id="photoArchiveLightboxImage" alt="" />
-    <p id="photoArchiveLightboxCaption"></p>
+  <div class="photo-home-list-wrap">
+    <div class="photo-archive-grid" id="photoAlbumGrid"></div>
   </div>
 </div>
 
@@ -170,33 +79,9 @@
     }
 
     var albumGrid = document.getElementById("photoAlbumGrid");
-    var homePrev = document.getElementById("photoHomePrev");
-    var homeNext = document.getElementById("photoHomeNext");
-    var homeFrameA = document.getElementById("photoHomeFrameA");
-    var homeFrameB = document.getElementById("photoHomeFrameB");
-    var homeImageA = document.getElementById("photoHomeImageA");
-    var homeImageB = document.getElementById("photoHomeImageB");
-    var backButton = document.getElementById("photoBackButton");
-    var albumTitle = document.getElementById("photoAlbumTitle");
-    var albumLocation = document.getElementById("photoAlbumLocation");
-    var albumDate = document.getElementById("photoAlbumDate");
-    var albumCount = document.getElementById("photoAlbumCount");
-    var albumCaption = document.getElementById("photoAlbumCaption");
-    var albumPrev = document.getElementById("photoAlbumPrev");
-    var albumNext = document.getElementById("photoAlbumNext");
-    var frameA = document.getElementById("photoEditorialFrameA");
-    var frameB = document.getElementById("photoEditorialFrameB");
-    var imageA = document.getElementById("photoEditorialImageA");
-    var imageB = document.getElementById("photoEditorialImageB");
-    var views = app.querySelectorAll(".photo-archive-view");
-    var currentAlbum = null;
-    var currentIndex = 0;
-    var homeIndex = 0;
-
-    var lightbox = document.getElementById("photoArchiveLightbox");
-    var lightboxClose = document.getElementById("photoArchiveLightboxClose");
-    var lightboxImage = document.getElementById("photoArchiveLightboxImage");
-    var lightboxCaption = document.getElementById("photoArchiveLightboxCaption");
+    var backPageButton = document.getElementById("photoBackPageButton");
+    var topButton = document.getElementById("photoTopButton");
+    var detailRootUrl = "/photostream/post/";
 
     function toTitleCase(text) {
       return (text || "").replace(/\w\S*/g, function (word) {
@@ -209,8 +94,18 @@
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
+        .replace(/\"/g, "&quot;")
         .replace(/'/g, "&#39;");
+    }
+
+    function slugify(text) {
+      return String(text || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[_\s]+/g, "-")
+        .replace(/[^a-z0-9-]/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
     }
 
     function parseAlbumMeta(albumName, albumPhotos) {
@@ -229,21 +124,18 @@
         var locationText = toTitleCase(match[4].replace(/[-_]+/g, " "));
         return {
           title: locationText,
-          location: locationText,
           date: dateText,
           timestamp: latestTs || Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])) / 1000
         };
       }
 
-      var location = toTitleCase(raw.replace(/[-_]+/g, " "));
-      var dateFallback = latestTs ? new Date(latestTs * 1000) : new Date();
-      var y = dateFallback.getFullYear();
-      var m = String(dateFallback.getMonth() + 1).padStart(2, "0");
-      var d = String(dateFallback.getDate()).padStart(2, "0");
+      var fallback = latestTs ? new Date(latestTs * 1000) : new Date();
+      var y = fallback.getFullYear();
+      var m = String(fallback.getMonth() + 1).padStart(2, "0");
+      var d = String(fallback.getDate()).padStart(2, "0");
 
       return {
-        title: location,
-        location: location,
+        title: toTitleCase(raw.replace(/[-_]+/g, " ")),
         date: y + "." + m + "." + d,
         timestamp: latestTs || 0
       };
@@ -257,95 +149,24 @@
     ).map(function (albumName, index) {
       var albumPhotos = photos.filter(function (photo) { return photo.album === albumName; });
       var meta = parseAlbumMeta(albumName, albumPhotos);
+      var slug = slugify(albumName) || ("album-" + String(index + 1));
+      var displayDate = slug === "santorini" ? "12.27 ~ 12.31" : meta.date;
       return {
-        id: index + 1,
+        slug: slug,
         title: meta.title,
-        location: meta.location,
-        date: meta.date,
-        timestamp: meta.timestamp,
-        coverImage: albumPhotos[0].url,
+        date: displayDate,
+        coverImage: albumPhotos[0] ? albumPhotos[0].url : "",
         description: albumPhotos[0] && albumPhotos[0].caption ? albumPhotos[0].caption : "필름 사진 기록",
-        photos: albumPhotos
+        timestamp: meta.timestamp
       };
     }).sort(function (a, b) {
       return (b.timestamp || 0) - (a.timestamp || 0);
     });
 
-    function setView(name) {
-      views.forEach(function (view) {
-        var isTarget = view.getAttribute("data-view") === name;
-        view.classList.toggle("is-active", isTarget);
-        view.style.display = isTarget ? "block" : "none";
-      });
-
-      if (name === "albums") {
-        document.body.classList.add("photo-home-mode");
-      } else {
-        document.body.classList.remove("photo-home-mode");
-      }
-    }
-
-    function openLightbox(photo) {
-      if (!lightbox || !lightboxImage) return;
-      lightboxImage.src = photo.url;
-      lightboxImage.alt = photo.caption || "";
-      if (lightboxCaption) lightboxCaption.textContent = photo.caption || "";
-      lightbox.classList.remove("is-hidden");
-      lightbox.setAttribute("aria-hidden", "false");
-    }
-
-    function closeLightbox() {
-      if (!lightbox || !lightboxImage) return;
-      lightbox.classList.add("is-hidden");
-      lightbox.setAttribute("aria-hidden", "true");
-      lightboxImage.removeAttribute("src");
-      if (lightboxCaption) lightboxCaption.textContent = "";
-    }
-
-    function renderEditorialPair() {
-      if (!currentAlbum || !currentAlbum.photos.length || !imageA || !imageB) return;
-      var list = currentAlbum.photos;
-      var first = list[currentIndex % list.length];
-      var second = list[(currentIndex + 1) % list.length];
-
-      imageA.src = first.url;
-      imageA.alt = first.caption || currentAlbum.title;
-      imageB.src = second.url;
-      imageB.alt = second.caption || currentAlbum.title;
-
-      if (albumCaption) {
-        albumCaption.textContent = (first.caption || currentAlbum.title) + " / " + (second.caption || currentAlbum.title);
-      }
-    }
-
-    function renderAlbumDetail(album) {
-      if (!albumTitle || !albumLocation || !albumDate || !albumCount) return;
-      currentAlbum = album;
-      currentIndex = 0;
-
-      albumTitle.textContent = album.title;
-      albumLocation.textContent = album.location;
-      albumDate.textContent = album.date;
-      albumCount.textContent = album.photos.length + " Photos";
-      renderEditorialPair();
-      setView("album");
-    }
-
-    function renderHomePair() {
-      if (!albums.length || !homeImageA || !homeImageB) return;
-
-      var firstAlbum = albums[homeIndex % albums.length];
-      var secondAlbum = albums[(homeIndex + 1) % albums.length];
-
-      homeImageA.src = firstAlbum.coverImage;
-      homeImageA.alt = firstAlbum.title;
-      homeImageB.src = secondAlbum.coverImage;
-      homeImageB.alt = secondAlbum.title;
-    }
-
     function renderAlbums() {
       if (!albumGrid) return;
       albumGrid.innerHTML = "";
+
       albums.forEach(function (album) {
         var card = document.createElement("button");
         card.className = "photo-album-card";
@@ -358,105 +179,51 @@
             '<p class="photo-album-card-description">' + escapeHtml(album.description) + '</p>' +
           '</div>' +
           '</div>';
-        card.addEventListener("click", function () { renderAlbumDetail(album); });
+
+        card.addEventListener("click", function () {
+          try { sessionStorage.setItem("photo_album_list_scroll", String(window.scrollY || window.pageYOffset || 0)); } catch (e) {}
+          window.location.href = detailRootUrl + "?album=" + encodeURIComponent(album.slug);
+        });
         albumGrid.appendChild(card);
       });
     }
 
-    if (backButton) {
-      backButton.addEventListener("click", function () {
-        setView("albums");
-      });
-    }
+    function syncPhotoStreamHeaderState() {
+      var y = window.scrollY || window.pageYOffset || 0;
+      var isScrolled = document.body.classList.contains("is-scrolled");
+      var enterThreshold = 160;
+      var leaveThreshold = 72;
 
-    if (homePrev) {
-      homePrev.addEventListener("click", function () {
-        if (!albums.length) return;
-        homeIndex = (homeIndex - 1 + albums.length) % albums.length;
-        renderHomePair();
-      });
-    }
-
-    if (homeNext) {
-      homeNext.addEventListener("click", function () {
-        if (!albums.length) return;
-        homeIndex = (homeIndex + 1) % albums.length;
-        renderHomePair();
-      });
-    }
-
-    if (homeFrameA) {
-      homeFrameA.addEventListener("click", function () {
-        if (!albums.length) return;
-        renderAlbumDetail(albums[homeIndex % albums.length]);
-      });
-    }
-
-    if (homeFrameB) {
-      homeFrameB.addEventListener("click", function () {
-        if (!albums.length) return;
-        renderAlbumDetail(albums[(homeIndex + 1) % albums.length]);
-      });
-    }
-
-    if (albumPrev) {
-      albumPrev.addEventListener("click", function () {
-        if (!currentAlbum || !currentAlbum.photos.length) return;
-        currentIndex = (currentIndex - 1 + currentAlbum.photos.length) % currentAlbum.photos.length;
-        renderEditorialPair();
-      });
-    }
-
-    if (albumNext) {
-      albumNext.addEventListener("click", function () {
-        if (!currentAlbum || !currentAlbum.photos.length) return;
-        currentIndex = (currentIndex + 1) % currentAlbum.photos.length;
-        renderEditorialPair();
-      });
-    }
-
-    if (frameA) {
-      frameA.addEventListener("click", function () {
-        if (!currentAlbum || !currentAlbum.photos.length) return;
-        openLightbox(currentAlbum.photos[currentIndex % currentAlbum.photos.length]);
-      });
-    }
-
-    if (frameB) {
-      frameB.addEventListener("click", function () {
-        if (!currentAlbum || !currentAlbum.photos.length) return;
-        openLightbox(currentAlbum.photos[(currentIndex + 1) % currentAlbum.photos.length]);
-      });
-    }
-
-    if (lightboxClose) {
-      lightboxClose.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
-        closeLightbox();
-      });
-    }
-
-    if (lightbox) {
-      lightbox.addEventListener("click", function (event) {
-        if (event.target === lightbox) closeLightbox();
-      });
-    }
-
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") closeLightbox();
-    });
-
-    setView("albums");
-    renderHomePair();
-    renderAlbums();
-
-    requestAnimationFrame(function () {
-      var homeEditorial = document.querySelector(".photo-home-editorial");
-      if (homeEditorial) {
-        homeEditorial.classList.add("is-ready");
+      if (!isScrolled && y > enterThreshold) {
+        document.body.classList.add("is-scrolled");
+      } else if (isScrolled && y < leaveThreshold) {
+        document.body.classList.remove("is-scrolled");
       }
-    });
+    }
+
+    if (topButton) {
+      topButton.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    if (backPageButton) {
+      backPageButton.addEventListener("click", function () {
+        window.location.href = "/";
+      });
+    }
+
+    renderAlbums();
+    window.addEventListener("scroll", syncPhotoStreamHeaderState, { passive: true });
+    syncPhotoStreamHeaderState();
+
+    try {
+      var savedY = parseInt(sessionStorage.getItem("photo_album_list_scroll") || "", 10);
+      if (!isNaN(savedY) && savedY > 0) {
+        window.scrollTo(0, savedY);
+      }
+      sessionStorage.removeItem("photo_album_list_scroll");
+    } catch (e) {}
   })();
 </script>
 
@@ -504,7 +271,7 @@
 
     
 
-    <script src="/assets/js/site-search.js?v=2"></script>
+    
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -527,8 +294,7 @@
           document.body.classList.remove('is-scrolled');
         }
       }
-      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-      syncHeaderScrollState();
+      
 
       requestAnimationFrame(function () {
         document.body.classList.remove('is-preload');

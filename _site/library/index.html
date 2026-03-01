@@ -18,43 +18,45 @@
     <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
   </head>
   <body id="home" class="page-transition is-preload" data-baseurl="">
-    <div class="search is-hidden" id="searchLayer">
-      <div class="container">
-        <form action="/search/" method="get" class="search-form">
-          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
-        </form>
-        <div class="search-live-results" id="searchLiveResults"></div>
-      </div>
-    </div>
-
-    <header class="header">
-      <div class="container">
-        <div class="columns header-row">
-          <div class="column left">
-            <a href="/" class="header-logo">Minnong's blog</a>
-          </div>
-          <div class="column right">
-            <nav class="header-nav">
-              <ul>
-                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
-                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
-              </ul>
-            </nav>
-          </div>
+    
+      <div class="search is-hidden" id="searchLayer">
+        <div class="container">
+          <form action="/search/" method="get" class="search-form">
+            <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+          </form>
+          <div class="search-live-results" id="searchLiveResults"></div>
         </div>
-
-        <nav class="nav is-hidden" id="menuLayer">
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/photostream/">Photo</a></li>
-            <li><a href="/archive/">Archive</a></li>
-            <li><a href="/tags/">Tags</a></li>
-            <li><a href="/blog-update/">Blog update</a></li>
-          </ul>
-        </nav>
       </div>
-    </header>
+
+      <header class="header">
+        <div class="container">
+          <div class="columns header-row">
+            <div class="column left">
+              <a href="/" class="header-logo">Minnong's blog</a>
+            </div>
+            <div class="column right">
+              <nav class="header-nav">
+                <ul>
+                  <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
+                  <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <nav class="nav is-hidden" id="menuLayer">
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/photostream/">Photo</a></li>
+              <li><a href="/archive/">Archive</a></li>
+              <li><a href="/tags/">Tags</a></li>
+              <li><a href="/blog-update/">Blog update</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
 
     <main class="main page-main">
       <section class="section">
@@ -351,7 +353,9 @@ flowchart LR
 
     
 
-    <script src="/assets/js/site-search.js?v=2"></script>
+    
+      <script src="/assets/js/site-search.js?v=2"></script>
+    
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -374,8 +378,10 @@ flowchart LR
           document.body.classList.remove('is-scrolled');
         }
       }
-      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-      syncHeaderScrollState();
+      
+        window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+        syncHeaderScrollState();
+      
 
       requestAnimationFrame(function () {
         document.body.classList.remove('is-preload');

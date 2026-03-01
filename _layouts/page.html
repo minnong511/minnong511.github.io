@@ -20,43 +20,45 @@
     <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
   </head>
   <body id="home" class="page-transition is-preload{% if page.body_class %} {{ page.body_class }}{% endif %}" data-baseurl="{{ site.baseurl | default: '' }}">
-    <div class="search is-hidden" id="searchLayer">
-      <div class="container">
-        <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
-          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
-        </form>
-        <div class="search-live-results" id="searchLiveResults"></div>
-      </div>
-    </div>
-
-    <header class="header">
-      <div class="container">
-        <div class="columns header-row">
-          <div class="column left">
-            <a href="{{ '/' | relative_url }}" class="header-logo">Minnong's blog</a>
-          </div>
-          <div class="column right">
-            <nav class="header-nav">
-              <ul>
-                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
-                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
-              </ul>
-            </nav>
-          </div>
+    {% unless page.hide_global_header %}
+      <div class="search is-hidden" id="searchLayer">
+        <div class="container">
+          <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
+            <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+          </form>
+          <div class="search-live-results" id="searchLiveResults"></div>
         </div>
-
-        <nav class="nav is-hidden" id="menuLayer">
-          <ul>
-            <li><a href="{{ '/' | relative_url }}">Home</a></li>
-            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-            <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
-            <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
-            <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
-            <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
-          </ul>
-        </nav>
       </div>
-    </header>
+
+      <header class="header">
+        <div class="container">
+          <div class="columns header-row">
+            <div class="column left">
+              <a href="{{ '/' | relative_url }}" class="header-logo">Minnong's blog</a>
+            </div>
+            <div class="column right">
+              <nav class="header-nav">
+                <ul>
+                  <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
+                  <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <nav class="nav is-hidden" id="menuLayer">
+            <ul>
+              <li><a href="{{ '/' | relative_url }}">Home</a></li>
+              <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+              <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
+              <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
+              <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
+              <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    {% endunless %}
 
     <main class="main page-main">
       <section class="section">
@@ -77,7 +79,9 @@
       {% include site-footer.html %}
     {% endunless %}
 
-    <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+    {% unless page.hide_global_header %}
+      <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+    {% endunless %}
     <script>
       var menuLayer = document.getElementById('menuLayer');
       var menuButton = document.querySelector('.toggle-nav');
@@ -100,8 +104,10 @@
           document.body.classList.remove('is-scrolled');
         }
       }
-      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-      syncHeaderScrollState();
+      {% unless page.hide_global_header %}
+        window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
+        syncHeaderScrollState();
+      {% endunless %}
 
       requestAnimationFrame(function () {
         document.body.classList.remove('is-preload');
