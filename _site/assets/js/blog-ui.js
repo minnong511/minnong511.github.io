@@ -15,7 +15,7 @@
     root.dataset.theme = nextTheme;
 
     var themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeMeta) themeMeta.setAttribute("content", nextTheme === "light" ? "#f3f7f3" : "#07111f");
+    if (themeMeta) themeMeta.setAttribute("content", nextTheme === "light" ? "#ffffff" : "#0a0a0a");
 
     if (persist) {
       try { localStorage.setItem("minnong-theme", nextTheme); } catch (e) {}

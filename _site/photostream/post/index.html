@@ -1,25 +1,25 @@
 <!doctype html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Photo Post · Minnong's Study Log</title>
     <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
+
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Photo Post" />
     <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
-    <meta property="og:url" content="http://localhost:4000/photostream/post/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta property="og:url" content="https://minnong511.github.io/photostream/post/" />
+    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/og-study-blog.png" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script>
       (function () {
         try {
           var savedTheme = localStorage.getItem('minnong-theme');
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+          document.documentElement.dataset.theme = savedTheme || 'light';
         } catch (e) {}
       })();
     </script>
@@ -29,27 +29,34 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
-    
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=5" />
+
+    <link rel="stylesheet" href="/assets/css/museum-modern.css?v=5" />
   </head>
-  <body class="site-body photo-immersive photo-post-focus" data-baseurl="">
+  <body
+    class="site-body photo-immersive photo-post-focus"
+    data-baseurl=""
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
     <div id="study-space" class="study-space" aria-hidden="true"></div>
     <div class="site-noise" aria-hidden="true"></div>
 
-    
+
 
     <main id="main-content" class="site-main">
       <section class="page-hero page-hero-hidden">
   <div class="site-shell narrow-shell">
-    
+
   </div>
 </section>
 
 <section class="page-section">
   <div class="site-shell narrow-shell">
     <article class="page-card prose reveal">
-      
+
 <div id="photoPostApp" class="photo-post-focus-app">
   <div class="photo-post-hero" id="photoPostHero" aria-hidden="false">
     <div class="photo-post-hero-inner">
@@ -423,11 +430,13 @@
 
     </main>
 
-    
 
-    
-    <script src="/assets/js/blog-ui.js?v=4"></script>
-    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
-    
+
+
+    <script src="/assets/js/blog-ui.js?v=5"></script>
+
+      <script type="module" src="/assets/js/ambient-three.js?v=5"></script>
+
+
   </body>
 </html>

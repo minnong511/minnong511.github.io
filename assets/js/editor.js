@@ -23,6 +23,7 @@
   var clearButton = document.getElementById("writerClear");
   var copyButton = document.getElementById("writerCopyMarkdown");
   var exportButton = document.getElementById("writerExport");
+  var publishButton = document.getElementById("writerPublish");
   var saveState = document.getElementById("writerSaveState");
   var countState = document.getElementById("writerCount");
   var toast = document.getElementById("writerToast");
@@ -780,7 +781,7 @@
       if (youtubeId) {
         return '{% include library/youtube-embed.html title="임베드 영상" video_id="' + escapeYaml(youtubeId) + '" %}';
       }
-      return '<iframe src="' + escapeHtml(url) + '" title="임베드 콘텐츠" loading="lazy" width="100%" height="420"></iframe>';
+      return '<iframe src="' + escapeHtml(url) + '" title="임베드 콘텐츠" loading="lazy" width="100%" height="420" sandbox="allow-scripts allow-same-origin allow-presentation" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
     }
     if (type === "media") {
       var id = block.dataset.mediaId;
@@ -916,6 +917,38 @@
       exportButton.disabled = false;
       exportButton.innerHTML = '<i class="ri-download-cloud-2-line"></i><span>게시물 내보내기</span>';
     }
+  }
+
+  function publishToGitHub() {
+    if (!titleInput.value.trim()) {
+      showToast("먼저 글 제목을 입력해 주세요.");
+      titleInput.focus();
+      return;
+    }
+    if (!window.MinnongOwnerAuth || !window.MinnongOwnerAuth.isAuthenticated()) {
+      showToast("소유자 인증이 필요합니다.");
+      return;
+    }
+
+    var bundle = buildPostBundle();
+    publishButton.disabled = true;
+    publishButton.innerHTML = '<i class="ri-loader-4-line"></i><span>게시 중</span>';
+    setSaveState("saving", "GitHub에 게시 중");
+
+    window.MinnongOwnerAuth.publishBundle(bundle).then(function () {
+      setSaveState("saved", "GitHub에 게시됨");
+      showToast("게시했습니다. GitHub Pages 반영까지 잠시 기다려 주세요.");
+    }).catch(function (error) {
+      setSaveState("error", "게시 실패");
+      if (error && error.status === 422) {
+        showToast("동시에 변경된 내용이 있습니다. 잠시 후 다시 게시해 주세요.");
+      } else {
+        showToast((error && error.message) || "게시하지 못했습니다.");
+      }
+    }).finally(function () {
+      publishButton.disabled = false;
+      publishButton.innerHTML = '<i class="ri-git-commit-line"></i><span>GitHub에 게시</span>';
+    });
   }
 
   function copyMarkdown() {
@@ -1217,6 +1250,7 @@
   previewClose.addEventListener("click", function () { setPreview(false); });
   copyButton.addEventListener("click", copyMarkdown);
   exportButton.addEventListener("click", exportBundle);
+  if (publishButton) publishButton.addEventListener("click", publishToGitHub);
 
   clearButton.addEventListener("click", function () {
     if (!window.confirm("현재 초안과 첨부한 미디어를 모두 비울까요?")) return;

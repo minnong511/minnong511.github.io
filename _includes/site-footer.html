@@ -11,7 +11,8 @@
         <a href="{{ '/tags/' | relative_url }}">Topics</a>
         <a href="{{ '/archive/' | relative_url }}">Archive</a>
         <a href="{{ '/about/' | relative_url }}">About</a>
-        <a href="{{ '/write/' | relative_url }}">Write</a>
+        <a class="owner-only" data-owner-only href="{{ '/write/' | relative_url }}" hidden>Write</a>
+        <a class="footer-owner-entry" href="{{ '/write/' | relative_url }}"><i class="ri-lock-2-line"></i> Owner</a>
       </div>
       <div class="footer-nav">
         <span class="mono-label">CONNECT</span>

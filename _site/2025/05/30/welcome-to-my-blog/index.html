@@ -1,16 +1,17 @@
 <!doctype html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#ffffff" />
     <title>블로그에 오신 것을 환영합니다 · Minnong's Study Log</title>
     <meta name="description" content="첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다." />
     <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
+
     <meta property="og:type" content="article" />
     <meta property="og:title" content="블로그에 오신 것을 환영합니다" />
     <meta property="og:description" content="첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다." />
-    <meta property="og:url" content="http://localhost:4000/2025/05/30/welcome-to-my-blog/" />
+    <meta property="og:url" content="https://minnong511.github.io/2025/05/30/welcome-to-my-blog/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -18,8 +19,7 @@
       (function () {
         try {
           var savedTheme = localStorage.getItem('minnong-theme');
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+          document.documentElement.dataset.theme = savedTheme || 'light';
         } catch (e) {}
       })();
     </script>
@@ -29,15 +29,22 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
-    
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=5" />
+
+    <link rel="stylesheet" href="/assets/css/museum-modern.css?v=5" />
   </head>
-  <body class="site-body" data-baseurl="">
+  <body
+    class="site-body"
+    data-baseurl=""
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
     <div id="study-space" class="study-space" aria-hidden="true"></div>
     <div class="site-noise" aria-hidden="true"></div>
 
-    
+
       <div class="search-layer is-hidden" id="searchLayer" aria-label="사이트 검색">
         <div class="search-shell">
           <div class="search-topline">
@@ -56,10 +63,10 @@
       <header class="site-header" id="siteHeader">
         <div class="site-shell header-inner">
           <a class="brand" href="/" aria-label="Minnong's Study Log 홈">
-            <span class="brand-mark" aria-hidden="true">M<span>/</span></span>
+            <span class="brand-mark" aria-hidden="true">M/</span>
             <span class="brand-copy">
               <strong>MINNONG</strong>
-              <small>STUDY LOG</small>
+              <small>STUDY ARCHIVE</small>
             </span>
           </a>
 
@@ -69,10 +76,11 @@
             <a href="/archive/">Archive</a>
             <a href="/about/">About</a>
             <a href="/photostream/">Photo</a>
-            <a class="nav-write" href="/write/"><i class="ri-quill-pen-line"></i> Write</a>
+            <a class="nav-write owner-only" data-owner-only href="/write/" hidden><i class="ri-quill-pen-line"></i> Write</a>
           </nav>
 
           <div class="header-actions">
+            <a class="icon-button owner-entry" href="/write/" aria-label="소유자 로그인" title="Owner access"><i class="ri-lock-2-line"></i></a>
             <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경">
               <i class="ri-sun-line theme-icon-light"></i>
               <i class="ri-moon-clear-line theme-icon-dark"></i>
@@ -90,13 +98,14 @@
           <a href="/archive/"><span>03</span> Archive</a>
           <a href="/about/"><span>04</span> About</a>
           <a href="/photostream/"><span>05</span> Photo</a>
-          <a href="/write/"><span>06</span> Write</a>
+          <a class="mobile-owner-entry" href="/write/"><span>06</span> Owner</a>
+          <a class="owner-only" data-owner-only href="/write/" hidden><span>07</span> Write</a>
         </nav>
       </header>
-    
+
 
     <main id="main-content" class="site-main">
-      
+
 
 <article class="post-layout">
   <header class="post-hero">
@@ -109,18 +118,18 @@
           <span>1 MIN READ</span>
         </div>
         <h1>블로그에 오신 것을 환영합니다</h1>
-        
+
           <p class="post-deck">첫 번째 블로그 포스트입니다! 앞으로 많은 기술 글을 이곳에 작성할 예정입니다.
 </p>
-        
+
       </div>
 
-      
+
         <figure class="post-cover reveal" data-delay="1">
           <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1400&q=80" alt="블로그에 오신 것을 환영합니다 대표 이미지" />
           <figcaption><span>VISUAL NOTE</span><span>MINNONG ARCHIVE</span></figcaption>
         </figure>
-      
+
     </div>
   </header>
 
@@ -131,7 +140,7 @@
         <nav class="post-toc" id="postToc"><ol id="postTocList"></ol></nav>
         <div class="post-side-share">
           <span class="mono-label">SHARE</span>
-          <button class="copy-url" type="button" data-url="http://localhost:4000/2025/05/30/welcome-to-my-blog/"><i class="ri-link"></i> 링크 복사</button>
+          <button class="copy-url" type="button" data-url="https://minnong511.github.io/2025/05/30/welcome-to-my-blog/"><i class="ri-link"></i> 링크 복사</button>
         </div>
       </div>
     </aside>
@@ -142,23 +151,23 @@
 
       </div>
 
-      
+
         <div class="post-tags">
           <span class="mono-label">FILED UNDER</span>
           <div>
-            
-              
+
+
               <a href="/tags/#start">#start</a>
-            
-              
+
+
               <a href="/tags/#welcome">#welcome</a>
-            
-              
+
+
               <a href="/tags/#blog">#blog</a>
-            
+
           </div>
         </div>
-      
+
 
       <div class="post-author-card">
         <div class="author-monogram">MH</div>
@@ -170,7 +179,7 @@
         <a href="/about/">ABOUT <i class="ri-arrow-right-line"></i></a>
       </div>
 
-      
+
         <section class="comments-panel">
           <div class="comments-heading">
             <span class="section-index">+</span>
@@ -194,7 +203,7 @@
             async>
           </script>
         </section>
-      
+
     </div>
   </div>
 </article>
@@ -205,62 +214,62 @@
       <div><span class="section-index">+</span><h2>Keep Learning</h2></div>
     </header>
     <div class="related-grid">
-      
-      
-        
-          
+
+
+
+
             <a class="related-card" href="/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/">
               <span>Blog update</span>
               <h3>6. 포토앨범 제작</h3>
               <time>2026.03.01</time>
               <i class="ri-arrow-right-up-line"></i>
             </a>
-            
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
 </section>
@@ -269,7 +278,7 @@
 
     </main>
 
-    
+
       <footer class="site-footer">
   <div class="site-shell">
     <div class="footer-top">
@@ -283,7 +292,8 @@
         <a href="/tags/">Topics</a>
         <a href="/archive/">Archive</a>
         <a href="/about/">About</a>
-        <a href="/write/">Write</a>
+        <a class="owner-only" data-owner-only href="/write/" hidden>Write</a>
+        <a class="footer-owner-entry" href="/write/"><i class="ri-lock-2-line"></i> Owner</a>
       </div>
       <div class="footer-nav">
         <span class="mono-label">CONNECT</span>
@@ -305,13 +315,15 @@
   </div>
 </footer>
 
-    
 
-    
-      <script src="/assets/js/site-search.js?v=4"></script>
-    
-    <script src="/assets/js/blog-ui.js?v=4"></script>
-    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
-    
+
+
+      <script src="/assets/js/site-search.js?v=5"></script>
+
+    <script src="/assets/js/blog-ui.js?v=5"></script>
+
+      <script type="module" src="/assets/js/ambient-three.js?v=5"></script>
+
+
   </body>
 </html>

@@ -48,12 +48,12 @@ if (mount && !document.body.classList.contains("photo-immersive") && !document.b
     const pointGeometry = new THREE.BufferGeometry();
     pointGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     const pointMaterial = new THREE.PointsMaterial({
-      color: 0x78f2c1,
+      color: 0x0a0a0a,
       size: isMobile ? 0.035 : 0.028,
       transparent: true,
-      opacity: 0.48,
+      opacity: 0.22,
       depthWrite: false,
-      blending: THREE.AdditiveBlending
+      blending: THREE.NormalBlending
     });
     const pointCloud = new THREE.Points(pointGeometry, pointMaterial);
     group.add(pointCloud);
@@ -77,19 +77,19 @@ if (mount && !document.body.classList.contains("photo-immersive") && !document.b
     const lineGeometry = new THREE.BufferGeometry();
     lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x78a8ff,
+      color: 0xe1261c,
       transparent: true,
-      opacity: 0.11,
+      opacity: 0.14,
       depthWrite: false
     });
     group.add(new THREE.LineSegments(lineGeometry, lineMaterial));
 
     const wireGeometry = new THREE.IcosahedronGeometry(isMobile ? 1.25 : 1.55, 1);
     const wireMaterial = new THREE.MeshBasicMaterial({
-      color: 0x78f2c1,
+      color: 0x0a0a0a,
       wireframe: true,
       transparent: true,
-      opacity: 0.045,
+      opacity: 0.055,
       depthWrite: false
     });
     const wireShape = new THREE.Mesh(wireGeometry, wireMaterial);
@@ -107,11 +107,12 @@ if (mount && !document.body.classList.contains("photo-immersive") && !document.b
 
     function updateColors(theme) {
       const light = theme === "light";
-      pointMaterial.color.setHex(light ? 0x0c9b6d : 0x78f2c1);
-      pointMaterial.opacity = light ? 0.28 : 0.48;
-      lineMaterial.color.setHex(light ? 0x4268c9 : 0x78a8ff);
-      lineMaterial.opacity = light ? 0.08 : 0.11;
-      wireMaterial.color.setHex(light ? 0x0c9b6d : 0x78f2c1);
+      pointMaterial.color.setHex(light ? 0x0a0a0a : 0xf7f7f4);
+      pointMaterial.opacity = light ? 0.22 : 0.24;
+      lineMaterial.color.setHex(light ? 0xe1261c : 0xff4a3d);
+      lineMaterial.opacity = light ? 0.14 : 0.17;
+      wireMaterial.color.setHex(light ? 0x0a0a0a : 0xf7f7f4);
+      wireMaterial.opacity = light ? 0.055 : 0.065;
     }
 
     updateColors(document.documentElement.dataset.theme);

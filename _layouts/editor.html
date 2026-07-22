@@ -1,11 +1,57 @@
 ---
 layout: default
 ---
-<section class="writer-app" id="writerApp" aria-label="블로그 글쓰기 도구">
+<section class="owner-gate" id="ownerGate" aria-labelledby="ownerGateTitle">
+  <div class="owner-gate-grid">
+    <header class="owner-gate-brand">
+      <a href="{{ '/' | relative_url }}" aria-label="홈으로 돌아가기">MINNONG<span>/</span></a>
+      <p>PRIVATE STUDY STUDIO</p>
+    </header>
+
+    <div class="owner-gate-copy">
+      <span class="owner-gate-index">OWNER ACCESS · 01</span>
+      <h1 id="ownerGateTitle">기록은 공개하고,<br />작성 권한은 <em>한 사람에게.</em></h1>
+      <p>이 편집기는 GitHub가 <strong>@{{ site.owner_auth.github_login }}</strong> 계정과 저장소 쓰기 권한을 확인한 뒤에만 열립니다.</p>
+    </div>
+
+    <form class="owner-login-form" id="ownerLoginForm" novalidate>
+      <label for="ownerToken">
+        <span>GitHub fine-grained token</span>
+        <input
+          id="ownerToken"
+          name="token"
+          type="password"
+          inputmode="text"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="github_pat_..."
+          required
+        />
+      </label>
+      <button id="ownerLoginButton" type="submit">
+        <span>소유자 인증</span><i class="ri-arrow-right-line"></i>
+      </button>
+      <p class="owner-login-status" id="ownerLoginStatus" role="status" aria-live="polite"></p>
+      <div class="owner-token-help">
+        <p>토큰은 서버나 브라우저 저장소에 보관하지 않으며, 이 화면을 닫거나 새로고침하면 즉시 사라집니다.</p>
+        <a href="{{ site.owner_auth.token_url }}" target="_blank" rel="noreferrer">저장소 전용 토큰 만들기 <i class="ri-arrow-right-up-line"></i></a>
+        <small>Repository access: <strong>{{ site.owner_auth.repository }}</strong> · Permission: <strong>Contents — Read and write</strong></small>
+      </div>
+    </form>
+
+    <footer class="owner-gate-footer">
+      <span>AUTHORIZED WORKSPACE</span>
+      <span>SEOUL · {{ "now" | date: "%Y" }}</span>
+    </footer>
+  </div>
+</section>
+
+<section class="writer-app" id="writerApp" aria-label="블로그 글쓰기 도구" hidden inert>
   <header class="writer-topbar">
     <div class="writer-wide-shell writer-topbar-inner">
       <div class="writer-location">
-        <span class="writer-doc-icon"><i class="ri-draft-line"></i></span>
+        <a class="writer-doc-icon" href="{{ '/' | relative_url }}" aria-label="홈으로 돌아가기"><i class="ri-arrow-left-line"></i></a>
         <div>
           <strong>새 학습 노트</strong>
           <span class="writer-save-state" id="writerSaveState"><i class="ri-checkbox-circle-line"></i> 이 기기에 저장됨</span>
@@ -22,8 +68,14 @@ layout: default
         <button class="writer-action writer-action-quiet" id="writerCopyMarkdown" type="button">
           <i class="ri-file-copy-line"></i><span>Markdown 복사</span>
         </button>
-        <button class="writer-action writer-action-primary" id="writerExport" type="button">
+        <button class="writer-action writer-action-quiet" id="writerExport" type="button">
           <i class="ri-download-cloud-2-line"></i><span>게시물 내보내기</span>
+        </button>
+        <button class="writer-action writer-action-primary" id="writerPublish" type="button">
+          <i class="ri-git-commit-line"></i><span>GitHub에 게시</span>
+        </button>
+        <button class="writer-action writer-action-quiet writer-logout" id="writerLogout" type="button" aria-label="로그아웃">
+          <i class="ri-logout-box-r-line"></i><span>로그아웃</span>
         </button>
       </div>
     </div>

@@ -1,25 +1,25 @@
 <!doctype html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Minnong's Study Log</title>
     <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
+
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Minnong's Study Log" />
     <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
-    <meta property="og:url" content="http://localhost:4000/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta property="og:url" content="https://minnong511.github.io/" />
+    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/og-study-blog.png" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script>
       (function () {
         try {
           var savedTheme = localStorage.getItem('minnong-theme');
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+          document.documentElement.dataset.theme = savedTheme || 'light';
         } catch (e) {}
       })();
     </script>
@@ -29,15 +29,22 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
-    
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=5" />
+
+    <link rel="stylesheet" href="/assets/css/museum-modern.css?v=5" />
   </head>
-  <body class="site-body" data-baseurl="">
+  <body
+    class="site-body"
+    data-baseurl=""
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
     <div id="study-space" class="study-space" aria-hidden="true"></div>
     <div class="site-noise" aria-hidden="true"></div>
 
-    
+
       <div class="search-layer is-hidden" id="searchLayer" aria-label="사이트 검색">
         <div class="search-shell">
           <div class="search-topline">
@@ -56,10 +63,10 @@
       <header class="site-header" id="siteHeader">
         <div class="site-shell header-inner">
           <a class="brand" href="/" aria-label="Minnong's Study Log 홈">
-            <span class="brand-mark" aria-hidden="true">M<span>/</span></span>
+            <span class="brand-mark" aria-hidden="true">M/</span>
             <span class="brand-copy">
               <strong>MINNONG</strong>
-              <small>STUDY LOG</small>
+              <small>STUDY ARCHIVE</small>
             </span>
           </a>
 
@@ -69,10 +76,11 @@
             <a href="/archive/">Archive</a>
             <a href="/about/">About</a>
             <a href="/photostream/">Photo</a>
-            <a class="nav-write" href="/write/"><i class="ri-quill-pen-line"></i> Write</a>
+            <a class="nav-write owner-only" data-owner-only href="/write/" hidden><i class="ri-quill-pen-line"></i> Write</a>
           </nav>
 
           <div class="header-actions">
+            <a class="icon-button owner-entry" href="/write/" aria-label="소유자 로그인" title="Owner access"><i class="ri-lock-2-line"></i></a>
             <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경">
               <i class="ri-sun-line theme-icon-light"></i>
               <i class="ri-moon-clear-line theme-icon-dark"></i>
@@ -90,20 +98,21 @@
           <a href="/archive/"><span>03</span> Archive</a>
           <a href="/about/"><span>04</span> About</a>
           <a href="/photostream/"><span>05</span> Photo</a>
-          <a href="/write/"><span>06</span> Write</a>
+          <a class="mobile-owner-entry" href="/write/"><span>06</span> Owner</a>
+          <a class="owner-only" data-owner-only href="/write/" hidden><span>07</span> Write</a>
         </nav>
       </header>
-    
+
 
     <main id="main-content" class="site-main">
-      
+
 
 
 <section class="hero-section">
   <div class="site-shell hero-grid">
     <div class="hero-copy reveal">
-      <div class="eyebrow"><span class="status-dot"></span> LEARNING IN PUBLIC · SEOUL</div>
-      <h1>배운 것을 <em>연결하고,</em><br />이해한 것을 기록합니다.</h1>
+      <div class="eyebrow"><span class="status-dot"></span> INDEPENDENT STUDY ARCHIVE · SEOUL</div>
+      <h1>공부한 것을 <em>기록하고,</em><br />다시 꺼내 씁니다.</h1>
       <p class="hero-description">
         개발, 인공지능, 컴퓨터 과학을 공부하며 만난 개념과 시행착오를<br class="desktop-only" />
         다시 꺼내 쓸 수 있는 지식으로 정리하는 학습 로그입니다.
@@ -119,9 +128,9 @@
       <div class="visual-orbit orbit-two"><span>CS</span></div>
       <div class="visual-orbit orbit-three"><span>CODE</span></div>
       <div class="visual-core">
-        <span class="core-kicker">CURRENT MODE</span>
-        <strong>DEEP<br />FOCUS</strong>
-        <small>LEARN · BUILD · LOG</small>
+        <span class="core-kicker">ARCHIVE INDEX · 2026</span>
+        <strong>STUDY<br />LOG</strong>
+        <small>AI · CODE · RESEARCH</small>
       </div>
       <div class="coordinate coordinate-a">37.5665° N</div>
       <div class="coordinate coordinate-b">126.9780° E</div>
@@ -146,7 +155,7 @@
       <a href="/archive/">전체 기록 보기 <i class="ri-arrow-right-up-line"></i></a>
     </header>
 
-    
+
       <div class="latest-layout">
         <a class="featured-note reveal" href="/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/">
           <article>
@@ -167,7 +176,7 @@
         </a>
 
         <div class="recent-note-list">
-          
+
             <a class="compact-note reveal" data-delay="1" href="/blog%20update/2026/02/26/maintenance-part-5/">
               <span class="compact-number">02</span>
               <div>
@@ -182,7 +191,7 @@
               </div>
               <i class="ri-arrow-right-line"></i>
             </a>
-          
+
             <a class="compact-note reveal" data-delay="2" href="/blog%20update/2026/02/26/convenience-improvements-part-4/">
               <span class="compact-number">03</span>
               <div>
@@ -197,7 +206,7 @@
               </div>
               <i class="ri-arrow-right-line"></i>
             </a>
-          
+
             <a class="compact-note reveal" data-delay="3" href="/blog%20update/2026/02/26/library-module-build/">
               <span class="compact-number">04</span>
               <div>
@@ -213,7 +222,7 @@
               </div>
               <i class="ri-arrow-right-line"></i>
             </a>
-          
+
             <a class="compact-note reveal" data-delay="4" href="/blog%20update/2026/02/26/design-implementation-part-2/">
               <span class="compact-number">05</span>
               <div>
@@ -227,7 +236,7 @@
               </div>
               <i class="ri-arrow-right-line"></i>
             </a>
-          
+
             <a class="compact-note reveal" data-delay="5" href="/photo/2026/02/26/photo-film-scan-workflow/">
               <span class="compact-number">06</span>
               <div>
@@ -242,10 +251,10 @@
               </div>
               <i class="ri-arrow-right-line"></i>
             </a>
-          
+
         </div>
       </div>
-    
+
   </div>
 </section>
 
@@ -260,86 +269,86 @@
     </header>
 
     <div class="topic-grid">
-      
-      
-        
-        
+
+
+
+
         <a class="topic-card reveal" data-delay="1" href="/archive/">
           <span class="topic-number">01</span>
           <div class="topic-icon">
             <i class="ri-code-s-slash-line"></i>
-              
+
           </div>
           <h3>Computer Science</h3>
           <p>1개의 학습 기록</p>
           <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
         </a>
-      
-        
-        
+
+
+
         <a class="topic-card reveal" data-delay="2" href="/archive/">
           <span class="topic-number">02</span>
           <div class="topic-icon">
             <i class="ri-brain-line"></i>
-              
+
           </div>
           <h3>Deep Learning</h3>
           <p>1개의 학습 기록</p>
           <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
         </a>
-      
-        
-        
+
+
+
         <a class="topic-card reveal" data-delay="3" href="/archive/">
           <span class="topic-number">03</span>
           <div class="topic-icon">
             <i class="ri-terminal-box-line"></i>
-            
+
           </div>
           <h3>Matzip</h3>
           <p>1개의 학습 기록</p>
           <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
         </a>
-      
-        
-        
+
+
+
         <a class="topic-card reveal" data-delay="0" href="/archive/">
           <span class="topic-number">04</span>
           <div class="topic-icon">
             <i class="ri-terminal-box-line"></i>
-            
+
           </div>
           <h3>Blog update</h3>
           <p>6개의 학습 기록</p>
           <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
         </a>
-      
-        
-        
+
+
+
         <a class="topic-card reveal" data-delay="1" href="/archive/">
           <span class="topic-number">05</span>
           <div class="topic-icon">
             <i class="ri-file-search-line"></i>
-              
+
           </div>
           <h3>Paper Review</h3>
           <p>1개의 학습 기록</p>
           <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
         </a>
-      
-        
-        
+
+
+
         <a class="topic-card reveal" data-delay="2" href="/archive/">
           <span class="topic-number">06</span>
           <div class="topic-icon">
             <i class="ri-camera-lens-line"></i>
-              
+
           </div>
           <h3>Photo</h3>
           <p>1개의 학습 기록</p>
           <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
         </a>
-      
+
     </div>
   </div>
 </section>
@@ -364,7 +373,7 @@
 
     </main>
 
-    
+
       <footer class="site-footer">
   <div class="site-shell">
     <div class="footer-top">
@@ -378,7 +387,8 @@
         <a href="/tags/">Topics</a>
         <a href="/archive/">Archive</a>
         <a href="/about/">About</a>
-        <a href="/write/">Write</a>
+        <a class="owner-only" data-owner-only href="/write/" hidden>Write</a>
+        <a class="footer-owner-entry" href="/write/"><i class="ri-lock-2-line"></i> Owner</a>
       </div>
       <div class="footer-nav">
         <span class="mono-label">CONNECT</span>
@@ -400,13 +410,15 @@
   </div>
 </footer>
 
-    
 
-    
-      <script src="/assets/js/site-search.js?v=4"></script>
-    
-    <script src="/assets/js/blog-ui.js?v=4"></script>
-    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
-    
+
+
+      <script src="/assets/js/site-search.js?v=5"></script>
+
+    <script src="/assets/js/blog-ui.js?v=5"></script>
+
+      <script type="module" src="/assets/js/ambient-three.js?v=5"></script>
+
+
   </body>
 </html>

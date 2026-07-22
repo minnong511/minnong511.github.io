@@ -3,13 +3,19 @@ description: 개발과 AI를 배우고, 실험하고, 이해한 내용을 연결
 author: Min Hyeong Lee
 baseurl: ""
 url: "https://minnong511.github.io"
-assets_version: "4"
+assets_version: "5"
 og_image: "/assets/base_image/og-study-blog.png"
 theme: minima
 timezone: Asia/Seoul
 permalink: /:categories/:year/:month/:day/:title/
 plugins:
   - jekyll-feed
+
+owner_auth:
+  github_login: "minnong511"
+  repository: "minnong511.github.io"
+  branch: "master"
+  token_url: "https://github.com/settings/personal-access-tokens/new"
 defaults:
   - scope:
       path: ""

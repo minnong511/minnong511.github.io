@@ -1,25 +1,25 @@
 <!doctype html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#07111f" />
-    <title>Write · Minnong's Study Log</title>
+    <meta name="theme-color" content="#ffffff" />
+    <title>Owner Studio · Minnong's Study Log</title>
     <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Write" />
+    <meta property="og:title" content="Owner Studio" />
     <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
-    <meta property="og:url" content="http://localhost:4000/write/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta property="og:url" content="https://minnong511.github.io/write/" />
+    <meta property="og:image" content="https://minnong511.github.io/assets/base_image/og-study-blog.png" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script>
       (function () {
         try {
           var savedTheme = localStorage.getItem('minnong-theme');
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+          document.documentElement.dataset.theme = savedTheme || 'light';
         } catch (e) {}
       })();
     </script>
@@ -29,80 +29,77 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
-    
-      <link rel="stylesheet" href="/assets/css/editor.css?v=4" />
-    
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=5" />
+
+      <link rel="stylesheet" href="/assets/css/editor.css?v=5" />
+
+    <link rel="stylesheet" href="/assets/css/museum-modern.css?v=5" />
   </head>
-  <body class="site-body writer-page" data-baseurl="">
+  <body
+    class="site-body writer-page"
+    data-baseurl=""
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
     <div id="study-space" class="study-space" aria-hidden="true"></div>
     <div class="site-noise" aria-hidden="true"></div>
 
-    
-      <div class="search-layer is-hidden" id="searchLayer" aria-label="사이트 검색">
-        <div class="search-shell">
-          <div class="search-topline">
-            <span class="mono-label">QUICK SEARCH</span>
-            <button class="search-close" type="button" aria-label="검색 닫기"><i class="ri-close-line"></i></button>
-          </div>
-          <form action="/search/" method="get" class="search-form">
-            <i class="ri-search-line" aria-hidden="true"></i>
-            <input class="search-input" type="search" name="q" placeholder="무엇을 공부했는지 찾아보세요" autocomplete="off" />
-          </form>
-          <div class="search-live-results" id="searchLiveResults"></div>
-          <p class="search-hint"><kbd>ESC</kbd> 닫기 · 제목, 태그, 본문 검색</p>
-        </div>
-      </div>
 
-      <header class="site-header" id="siteHeader">
-        <div class="site-shell header-inner">
-          <a class="brand" href="/" aria-label="Minnong's Study Log 홈">
-            <span class="brand-mark" aria-hidden="true">M<span>/</span></span>
-            <span class="brand-copy">
-              <strong>MINNONG</strong>
-              <small>STUDY LOG</small>
-            </span>
-          </a>
-
-          <nav class="desktop-nav" aria-label="주요 메뉴">
-            <a href="/">Notes</a>
-            <a href="/tags/">Topics</a>
-            <a href="/archive/">Archive</a>
-            <a href="/about/">About</a>
-            <a href="/photostream/">Photo</a>
-            <a class="nav-write" href="/write/"><i class="ri-quill-pen-line"></i> Write</a>
-          </nav>
-
-          <div class="header-actions">
-            <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경">
-              <i class="ri-sun-line theme-icon-light"></i>
-              <i class="ri-moon-clear-line theme-icon-dark"></i>
-            </button>
-            <button class="icon-button toggle-search" type="button" aria-label="검색 열기"><i class="ri-search-line"></i></button>
-            <button class="icon-button menu-toggle" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" aria-controls="mobileNav">
-              <i class="ri-menu-3-line"></i>
-            </button>
-          </div>
-        </div>
-
-        <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴" hidden>
-          <a href="/"><span>01</span> Notes</a>
-          <a href="/tags/"><span>02</span> Topics</a>
-          <a href="/archive/"><span>03</span> Archive</a>
-          <a href="/about/"><span>04</span> About</a>
-          <a href="/photostream/"><span>05</span> Photo</a>
-          <a href="/write/"><span>06</span> Write</a>
-        </nav>
-      </header>
-    
 
     <main id="main-content" class="site-main">
-      <section class="writer-app" id="writerApp" aria-label="블로그 글쓰기 도구">
+      <section class="owner-gate" id="ownerGate" aria-labelledby="ownerGateTitle">
+  <div class="owner-gate-grid">
+    <header class="owner-gate-brand">
+      <a href="/" aria-label="홈으로 돌아가기">MINNONG<span>/</span></a>
+      <p>PRIVATE STUDY STUDIO</p>
+    </header>
+
+    <div class="owner-gate-copy">
+      <span class="owner-gate-index">OWNER ACCESS · 01</span>
+      <h1 id="ownerGateTitle">기록은 공개하고,<br />작성 권한은 <em>한 사람에게.</em></h1>
+      <p>이 편집기는 GitHub가 <strong>@minnong511</strong> 계정과 저장소 쓰기 권한을 확인한 뒤에만 열립니다.</p>
+    </div>
+
+    <form class="owner-login-form" id="ownerLoginForm" novalidate>
+      <label for="ownerToken">
+        <span>GitHub fine-grained token</span>
+        <input
+          id="ownerToken"
+          name="token"
+          type="password"
+          inputmode="text"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="github_pat_..."
+          required
+        />
+      </label>
+      <button id="ownerLoginButton" type="submit">
+        <span>소유자 인증</span><i class="ri-arrow-right-line"></i>
+      </button>
+      <p class="owner-login-status" id="ownerLoginStatus" role="status" aria-live="polite"></p>
+      <div class="owner-token-help">
+        <p>토큰은 서버나 브라우저 저장소에 보관하지 않으며, 이 화면을 닫거나 새로고침하면 즉시 사라집니다.</p>
+        <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noreferrer">저장소 전용 토큰 만들기 <i class="ri-arrow-right-up-line"></i></a>
+        <small>Repository access: <strong>minnong511.github.io</strong> · Permission: <strong>Contents — Read and write</strong></small>
+      </div>
+    </form>
+
+    <footer class="owner-gate-footer">
+      <span>AUTHORIZED WORKSPACE</span>
+      <span>SEOUL · 2026</span>
+    </footer>
+  </div>
+</section>
+
+<section class="writer-app" id="writerApp" aria-label="블로그 글쓰기 도구" hidden inert>
   <header class="writer-topbar">
     <div class="writer-wide-shell writer-topbar-inner">
       <div class="writer-location">
-        <span class="writer-doc-icon"><i class="ri-draft-line"></i></span>
+        <a class="writer-doc-icon" href="/" aria-label="홈으로 돌아가기"><i class="ri-arrow-left-line"></i></a>
         <div>
           <strong>새 학습 노트</strong>
           <span class="writer-save-state" id="writerSaveState"><i class="ri-checkbox-circle-line"></i> 이 기기에 저장됨</span>
@@ -119,8 +116,14 @@
         <button class="writer-action writer-action-quiet" id="writerCopyMarkdown" type="button">
           <i class="ri-file-copy-line"></i><span>Markdown 복사</span>
         </button>
-        <button class="writer-action writer-action-primary" id="writerExport" type="button">
+        <button class="writer-action writer-action-quiet" id="writerExport" type="button">
           <i class="ri-download-cloud-2-line"></i><span>게시물 내보내기</span>
+        </button>
+        <button class="writer-action writer-action-primary" id="writerPublish" type="button">
+          <i class="ri-git-commit-line"></i><span>GitHub에 게시</span>
+        </button>
+        <button class="writer-action writer-action-quiet writer-logout" id="writerLogout" type="button" aria-label="로그아웃">
+          <i class="ri-logout-box-r-line"></i><span>로그아웃</span>
         </button>
       </div>
     </div>
@@ -233,14 +236,13 @@
 
     </main>
 
-    
 
-    
-      <script src="/assets/js/site-search.js?v=4"></script>
-    
-    <script src="/assets/js/blog-ui.js?v=4"></script>
-    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
-    
+
+
+    <script src="/assets/js/blog-ui.js?v=5"></script>
+
+
+      <script defer src="/assets/js/owner-auth.js?v=5"></script>
       <script>
         window.MathJax = {
           tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
@@ -250,7 +252,7 @@
       </script>
       <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
       <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-      <script defer src="/assets/js/editor.js?v=4"></script>
-    
+      <script defer src="/assets/js/editor.js?v=5"></script>
+
   </body>
 </html>

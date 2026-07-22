@@ -1,16 +1,17 @@
 <!doctype html>
-<html lang="ko" data-theme="dark">
+<html lang="ko" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#ffffff" />
     <title>3.라이브러리 제작 · Minnong's Study Log</title>
     <meta name="description" content="오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다." />
     <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
+
     <meta property="og:type" content="article" />
     <meta property="og:title" content="3.라이브러리 제작" />
     <meta property="og:description" content="오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다." />
-    <meta property="og:url" content="http://localhost:4000/blog%20update/2026/02/26/library-module-build/" />
+    <meta property="og:url" content="https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -18,8 +19,7 @@
       (function () {
         try {
           var savedTheme = localStorage.getItem('minnong-theme');
-          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+          document.documentElement.dataset.theme = savedTheme || 'light';
         } catch (e) {}
       })();
     </script>
@@ -29,15 +29,22 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
-    
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=5" />
+
+    <link rel="stylesheet" href="/assets/css/museum-modern.css?v=5" />
   </head>
-  <body class="site-body" data-baseurl="">
+  <body
+    class="site-body"
+    data-baseurl=""
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
     <div id="study-space" class="study-space" aria-hidden="true"></div>
     <div class="site-noise" aria-hidden="true"></div>
 
-    
+
       <div class="search-layer is-hidden" id="searchLayer" aria-label="사이트 검색">
         <div class="search-shell">
           <div class="search-topline">
@@ -56,10 +63,10 @@
       <header class="site-header" id="siteHeader">
         <div class="site-shell header-inner">
           <a class="brand" href="/" aria-label="Minnong's Study Log 홈">
-            <span class="brand-mark" aria-hidden="true">M<span>/</span></span>
+            <span class="brand-mark" aria-hidden="true">M/</span>
             <span class="brand-copy">
               <strong>MINNONG</strong>
-              <small>STUDY LOG</small>
+              <small>STUDY ARCHIVE</small>
             </span>
           </a>
 
@@ -69,10 +76,11 @@
             <a href="/archive/">Archive</a>
             <a href="/about/">About</a>
             <a href="/photostream/">Photo</a>
-            <a class="nav-write" href="/write/"><i class="ri-quill-pen-line"></i> Write</a>
+            <a class="nav-write owner-only" data-owner-only href="/write/" hidden><i class="ri-quill-pen-line"></i> Write</a>
           </nav>
 
           <div class="header-actions">
+            <a class="icon-button owner-entry" href="/write/" aria-label="소유자 로그인" title="Owner access"><i class="ri-lock-2-line"></i></a>
             <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경">
               <i class="ri-sun-line theme-icon-light"></i>
               <i class="ri-moon-clear-line theme-icon-dark"></i>
@@ -90,13 +98,14 @@
           <a href="/archive/"><span>03</span> Archive</a>
           <a href="/about/"><span>04</span> About</a>
           <a href="/photostream/"><span>05</span> Photo</a>
-          <a href="/write/"><span>06</span> Write</a>
+          <a class="mobile-owner-entry" href="/write/"><span>06</span> Owner</a>
+          <a class="owner-only" data-owner-only href="/write/" hidden><span>07</span> Write</a>
         </nav>
       </header>
-    
+
 
     <main id="main-content" class="site-main">
-      
+
 
 <article class="post-layout">
   <header class="post-hero">
@@ -109,20 +118,20 @@
           <span>9 MIN READ</span>
         </div>
         <h1>3.라이브러리 제작</h1>
-        
+
           <p class="post-deck">오늘은 포스트 안에서 반복 사용하던 UI를 라이브러리 형태로 분리했다.
 컴포넌트 단위로 정리해두니 이후 글 작성 속도와 일관성이 확실히 좋아졌다.
 
 </p>
-        
+
       </div>
 
-      
+
         <figure class="post-cover reveal" data-delay="1">
           <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80" alt="3.라이브러리 제작 대표 이미지" />
           <figcaption><span>VISUAL NOTE</span><span>MINNONG ARCHIVE</span></figcaption>
         </figure>
-      
+
     </div>
   </header>
 
@@ -133,7 +142,7 @@
         <nav class="post-toc" id="postToc"><ol id="postTocList"></ol></nav>
         <div class="post-side-share">
           <span class="mono-label">SHARE</span>
-          <button class="copy-url" type="button" data-url="http://localhost:4000/blog%20update/2026/02/26/library-module-build/"><i class="ri-link"></i> 링크 복사</button>
+          <button class="copy-url" type="button" data-url="https://minnong511.github.io/blog%20update/2026/02/26/library-module-build/"><i class="ri-link"></i> 링크 복사</button>
         </div>
       </div>
     </aside>
@@ -292,12 +301,12 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
 <p>MathJax 기반 수식 카드 렌더.</p>
 
 <section class="latex-card js-latex-block">
-  
+
     <header class="latex-card-header">
       <span class="latex-card-title">선형회귀 예시 수식</span>
       <span class="latex-card-badge">LaTeX</span>
     </header>
-  
+
   <div class="latex-card-body">\[
 \hat{y} = wx + b,\quad
 \mathcal{L}(w,b)=\frac{1}{N}\sum_{i=1}^{N}(y_i-(wx_i+b))^2
@@ -366,75 +375,75 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
     <span class="callout-dot" aria-hidden="true"></span>
     <strong>Tip</strong>
   </div>
-  
+
     <p>모듈화를 해두면 포스트를 쓸 때 포맷 고민 없이 콘텐츠 작성에 집중할 수 있다.</p>
-  
+
 </section>
 
 <h2 id="7-table">7) table</h2>
 
 <section class="table-card">
-  
+
     <header class="table-card-header">
       <span>오늘 추가한 모듈 상태</span>
     </header>
-  
+
   <div class="table-card-scroll">
     <table class="table-card-table">
-      
+
         <thead>
           <tr>
-            
+
               <th>모듈</th>
-            
+
               <th>용도</th>
-            
+
               <th>상태</th>
-            
+
           </tr>
         </thead>
-      
+
       <tbody>
-        
-          
-          
+
+
+
             <tr>
-              
+
                 <td>callout</td>
-              
+
                 <td>중요 문구 강조</td>
-              
+
                 <td>완료</td>
-              
+
             </tr>
-          
-        
-          
-          
+
+
+
+
             <tr>
-              
+
                 <td>table</td>
-              
+
                 <td>데이터 비교/정리</td>
-              
+
                 <td>완료</td>
-              
+
             </tr>
-          
-        
-          
-          
+
+
+
+
             <tr>
-              
+
                 <td>image compare</td>
-              
+
                 <td>전후 이미지 비교</td>
-              
+
                 <td>완료</td>
-              
+
             </tr>
-          
-        
+
+
       </tbody>
     </table>
   </div>
@@ -443,11 +452,11 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
 <h2 id="8-image-compare">8) image compare</h2>
 
 <section class="image-compare-card js-image-compare" data-start="45">
-  
+
     <header class="image-compare-header">
       <span>Photo Tone Compare</span>
     </header>
-  
+
   <div class="image-compare-stage">
     <img class="image-compare-before" src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Before" loading="lazy" />
     <div class="image-compare-after-wrap">
@@ -515,34 +524,34 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
 
 <section class="tabs-card js-tabs" id="library-demo-tabs">
   <div class="tabs-nav" role="tablist" aria-label="Tabs">
-    
+
       <button class="tabs-btn is-active" type="button" role="tab" aria-selected="true" data-tab-index="0">
         개요
       </button>
-    
+
       <button class="tabs-btn" type="button" role="tab" aria-selected="false" data-tab-index="1">
         장점
       </button>
-    
+
       <button class="tabs-btn" type="button" role="tab" aria-selected="false" data-tab-index="2">
         주의사항
       </button>
-    
+
   </div>
   <div class="tabs-panels">
-    
+
       <div class="tabs-panel is-active" data-tab-panel="0">
         <p>라이브러리 컴포넌트를 주제별로 분리해 재사용성을 높였다.</p>
       </div>
-    
+
       <div class="tabs-panel" data-tab-panel="1">
         <p>포스트 작성 시간이 줄고, UI 일관성이 유지된다.</p>
       </div>
-    
+
       <div class="tabs-panel" data-tab-panel="2">
         <p>너무 많은 컴포넌트를 한 글에 넣으면 가독성이 떨어질 수 있다.</p>
       </div>
-    
+
   </div>
 </section>
 
@@ -597,27 +606,27 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
     <span>Library FAQ</span>
   </header>
   <div class="accordion-list">
-    
-      
-      
-      
+
+
+
+
       <details class="accordion-item" open="">
         <summary>어디에 정의되어 있나?</summary>
         <div class="accordion-body">
           <p>_includes/library 폴더에서 관리한다.</p>
         </div>
       </details>
-    
-      
-      
-      
+
+
+
+
       <details class="accordion-item">
         <summary>스타일은 어디서 바꾸나?</summary>
         <div class="accordion-body">
           <p>assets/css/home-mag.css에서 컴포넌트 클래스를 수정한다.</p>
         </div>
       </details>
-    
+
   </div>
 </section>
 
@@ -630,8 +639,8 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
     <span>모듈 제작 흐름</span>
   </header>
   <ul class="timeline-list">
-    
-      
+
+
       <li class="timeline-item">
         <div class="timeline-dot" aria-hidden="true"></div>
         <div class="timeline-content">
@@ -640,8 +649,8 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
           <p>link-card, code-snippet, latex-block 제작</p>
         </div>
       </li>
-    
-      
+
+
       <li class="timeline-item">
         <div class="timeline-dot" aria-hidden="true"></div>
         <div class="timeline-content">
@@ -650,8 +659,8 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
           <p>google-map, youtube, pdf 모듈 추가</p>
         </div>
       </li>
-    
-      
+
+
       <li class="timeline-item">
         <div class="timeline-dot" aria-hidden="true"></div>
         <div class="timeline-content">
@@ -660,7 +669,7 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
           <p>README 사용법 정리 완료</p>
         </div>
       </li>
-    
+
   </ul>
 </section>
 
@@ -673,27 +682,27 @@ print(&quot;weight:&quot;, model.weight.item(), &quot;bias:&quot;, model.bias.it
     <span>Masonry Demo</span>
   </header>
   <div class="masonry-grid">
-    
+
       <figure class="masonry-item">
         <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 1" loading="lazy" />
       </figure>
-    
+
       <figure class="masonry-item">
         <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 2" loading="lazy" />
       </figure>
-    
+
       <figure class="masonry-item">
         <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 3" loading="lazy" />
       </figure>
-    
+
       <figure class="masonry-item">
         <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 4" loading="lazy" />
       </figure>
-    
+
       <figure class="masonry-item">
         <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Gallery image 5" loading="lazy" />
       </figure>
-    
+
   </div>
 </section>
 
@@ -853,38 +862,38 @@ flowchart LR
     <span>References</span>
   </header>
   <ol class="footnotes-list">
-    
-      
-      
-      
+
+
+
+
       <li id="fn-1">
         Vaswani et al., Attention Is All You Need (2017), arXiv:1706.03762.
         <a class="footnote-back" href="#fnref-1">↩</a>
       </li>
-    
+
   </ol>
 </section>
 
 
       </div>
 
-      
+
         <div class="post-tags">
           <span class="mono-label">FILED UNDER</span>
           <div>
-            
-              
+
+
               <a href="/tags/#blog-update">#blog update</a>
-            
-              
+
+
               <a href="/tags/#library">#library</a>
-            
-              
+
+
               <a href="/tags/#jekyll">#jekyll</a>
-            
+
           </div>
         </div>
-      
+
 
       <div class="post-author-card">
         <div class="author-monogram">MH</div>
@@ -896,7 +905,7 @@ flowchart LR
         <a href="/about/">ABOUT <i class="ri-arrow-right-line"></i></a>
       </div>
 
-      
+
         <section class="comments-panel">
           <div class="comments-heading">
             <span class="section-index">+</span>
@@ -920,7 +929,7 @@ flowchart LR
             async>
           </script>
         </section>
-      
+
     </div>
   </div>
 </article>
@@ -931,62 +940,62 @@ flowchart LR
       <div><span class="section-index">+</span><h2>Keep Learning</h2></div>
     </header>
     <div class="related-grid">
-      
-      
-        
-          
+
+
+
+
             <a class="related-card" href="/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/">
               <span>Blog update</span>
               <h3>6. 포토앨범 제작</h3>
               <time>2026.03.01</time>
               <i class="ri-arrow-right-up-line"></i>
             </a>
-            
-          
-        
-      
-        
-          
+
+
+
+
+
+
             <a class="related-card" href="/blog%20update/2026/02/26/maintenance-part-5/">
               <span>Blog update</span>
               <h3>5. 유지보수</h3>
               <time>2026.02.26</time>
               <i class="ri-arrow-right-up-line"></i>
             </a>
-            
-          
-        
-      
-        
-          
+
+
+
+
+
+
             <a class="related-card" href="/blog%20update/2026/02/26/convenience-improvements-part-4/">
               <span>Blog update</span>
               <h3>4. 편의성 개선</h3>
               <time>2026.02.26</time>
               <i class="ri-arrow-right-up-line"></i>
             </a>
-            
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
 </section>
@@ -995,7 +1004,7 @@ flowchart LR
 
     </main>
 
-    
+
       <footer class="site-footer">
   <div class="site-shell">
     <div class="footer-top">
@@ -1009,7 +1018,8 @@ flowchart LR
         <a href="/tags/">Topics</a>
         <a href="/archive/">Archive</a>
         <a href="/about/">About</a>
-        <a href="/write/">Write</a>
+        <a class="owner-only" data-owner-only href="/write/" hidden>Write</a>
+        <a class="footer-owner-entry" href="/write/"><i class="ri-lock-2-line"></i> Owner</a>
       </div>
       <div class="footer-nav">
         <span class="mono-label">CONNECT</span>
@@ -1031,13 +1041,15 @@ flowchart LR
   </div>
 </footer>
 
-    
 
-    
-      <script src="/assets/js/site-search.js?v=4"></script>
-    
-    <script src="/assets/js/blog-ui.js?v=4"></script>
-    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
-    
+
+
+      <script src="/assets/js/site-search.js?v=5"></script>
+
+    <script src="/assets/js/blog-ui.js?v=5"></script>
+
+      <script type="module" src="/assets/js/ambient-three.js?v=5"></script>
+
+
   </body>
 </html>
