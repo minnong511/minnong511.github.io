@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-03-01T15:53:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s blog</title><subtitle>Welcome! Minnong&apos;s blog</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">6. 포토앨범 제작</title><link href="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/" rel="alternate" type="text/html" title="6. 포토앨범 제작" /><published>2026-03-01T02:12:29+09:00</published><updated>2026-03-01T02:12:29+09:00</updated><id>http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference</id><content type="html" xml:base="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/"><![CDATA[<p>이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-07-22T14:06:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">6. 포토앨범 제작</title><link href="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/" rel="alternate" type="text/html" title="6. 포토앨범 제작" /><published>2026-03-01T02:12:29+09:00</published><updated>2026-03-01T02:12:29+09:00</updated><id>http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference</id><content type="html" xml:base="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/"><![CDATA[<p>이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다.</p>
 
 <p>디자인 레퍼런스로는 아래 링크를 참고했고,
 해당 레퍼런스의 미니멀한 정보 구조와 이미지 중심 흐름을 바탕으로
@@ -20,7 +20,7 @@
 
 <h2 id="기능">기능</h2>
 
-<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">assets_version</code> 값을 두고, 템플릿의 CSS/JS 링크에 <code class="language-plaintext highlighter-rouge">?v=2</code>를 붙이는 방식이다.<br />
+<p><code class="language-plaintext highlighter-rouge">_config.yml</code>에 <code class="language-plaintext highlighter-rouge">assets_version</code> 값을 두고, 템플릿의 CSS/JS 링크에 <code class="language-plaintext highlighter-rouge">?v=4</code>를 붙이는 방식이다.<br />
 값을 바꾸지 않으면 기존 캐시를 유지하고, 값만 올리면 브라우저가 새 파일로 인식해 다시 받아온다.</p>
 
 <h2 id="넣는-이유">넣는 이유</h2>

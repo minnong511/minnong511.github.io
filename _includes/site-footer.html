@@ -1,33 +1,34 @@
-<footer class="footer">
-  <div class="container">
-    <div class="columns footer-columns">
-      <div class="column">
-        <div class="footer-logo">Minnong's blog</div>
+<footer class="site-footer">
+  <div class="site-shell">
+    <div class="footer-top">
+      <div>
+        <span class="brand-mark footer-mark" aria-hidden="true">M<span>/</span></span>
+        <p>오늘 배운 것을<br />내일의 기반으로.</p>
       </div>
-      <div class="column"></div>
-      <div class="column">
-        <ul class="list">
-          <li>운영자: {{ site.author }}</li>
-          <li>Based in Seoul</li>
-          <li>Contact: kzxx1234@gmail.com</li>
-        </ul>
+      <div class="footer-nav">
+        <span class="mono-label">NAVIGATE</span>
+        <a href="{{ '/' | relative_url }}">Notes</a>
+        <a href="{{ '/tags/' | relative_url }}">Topics</a>
+        <a href="{{ '/archive/' | relative_url }}">Archive</a>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/write/' | relative_url }}">Write</a>
       </div>
-      <div class="column">
-        <ul class="list">
-          <li>개인 포트폴리오 &amp; 블로그</li>
-          <li>Photo / Travel / Engineering</li>
-        </ul>
+      <div class="footer-nav">
+        <span class="mono-label">CONNECT</span>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub <i class="ri-arrow-right-up-line"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn <i class="ri-arrow-right-up-line"></i></a>
+        <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram <i class="ri-arrow-right-up-line"></i></a>
+      </div>
+      <div class="footer-status">
+        <span class="mono-label">STATUS</span>
+        <p><span class="status-dot"></span> Learning &amp; building</p>
+        <a href="mailto:kzxx1234@gmail.com">kzxx1234@gmail.com</a>
       </div>
     </div>
-    <div class="columns footer-bottom">
-      <div class="column">
-        <p>© {{ "now" | date: "%Y" }} Minnong blog</p>
-      </div>
-      <div class="column social">
-        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-      </div>
+    <div class="footer-bottom">
+      <span>© {{ "now" | date: "%Y" }} Min Hyeong Lee</span>
+      <span>BUILT WITH CURIOSITY · SEOUL</span>
+      <button class="back-to-top" type="button">TOP <i class="ri-arrow-up-line"></i></button>
     </div>
   </div>
 </footer>

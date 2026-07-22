@@ -1,251 +1,146 @@
 ---
+layout: default
 ---
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title | default: site.title }}</title>
-    <meta name="description" content="{{ site.description | default: 'Morning Calm style home' }}" />
-    <meta name="keywords" content="블로그, 여행, 포토, 에디토리얼" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ page.title | default: site.title }}" />
-    <meta property="og:description" content="{{ site.description | default: 'Morning Calm style home' }}" />
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:image" content="{{ site.og_image | default: '/assets/base_image/test_image.png' | absolute_url }}" />
+{% assign latest_post = site.posts | first %}
+{% assign recent_posts = site.posts | slice: 1, 5 %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" rel="stylesheet" />
-  </head>
-  <body id="home" class="page-transition is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
-    <div class="search is-hidden" id="searchLayer">
-      <div class="container">
-        <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
-          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
-        </form>
-        <div class="search-live-results" id="searchLiveResults"></div>
+<section class="hero-section">
+  <div class="site-shell hero-grid">
+    <div class="hero-copy reveal">
+      <div class="eyebrow"><span class="status-dot"></span> LEARNING IN PUBLIC · SEOUL</div>
+      <h1>배운 것을 <em>연결하고,</em><br />이해한 것을 기록합니다.</h1>
+      <p class="hero-description">
+        개발, 인공지능, 컴퓨터 과학을 공부하며 만난 개념과 시행착오를<br class="desktop-only" />
+        다시 꺼내 쓸 수 있는 지식으로 정리하는 학습 로그입니다.
+      </p>
+      <div class="hero-actions-row">
+        <a class="primary-button" href="#latest-notes">최근 노트 읽기 <i class="ri-arrow-right-line"></i></a>
+        <a class="text-button" href="{{ '/about/' | relative_url }}">이 블로그 소개</a>
       </div>
     </div>
 
-    <header class="header">
-      <div class="container">
-        <div class="columns header-row">
-          <div class="column left">
-            <a href="{{ '/' | relative_url }}" class="header-logo">Minnong's blog</a>
-          </div>
-          <div class="column right">
-            <nav class="header-nav">
-              <ul>
-                <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
-                <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
-        <nav class="nav is-hidden" id="menuLayer">
-          <ul>
-            <li><a href="{{ '/' | relative_url }}">Home</a></li>
-            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-            <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
-            <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
-            <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
-            <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
-          </ul>
-        </nav>
+    <div class="hero-visual reveal" data-delay="1" aria-label="공부 주제 시각화">
+      <div class="visual-orbit orbit-one"><span>AI</span></div>
+      <div class="visual-orbit orbit-two"><span>CS</span></div>
+      <div class="visual-orbit orbit-three"><span>CODE</span></div>
+      <div class="visual-core">
+        <span class="core-kicker">CURRENT MODE</span>
+        <strong>DEEP<br />FOCUS</strong>
+        <small>LEARN · BUILD · LOG</small>
       </div>
+      <div class="coordinate coordinate-a">37.5665° N</div>
+      <div class="coordinate coordinate-b">126.9780° E</div>
+    </div>
+  </div>
+
+  <div class="site-shell hero-stats reveal" data-delay="2">
+    <div><span>LOGS</span><strong>{{ site.posts | size | prepend: '0' | slice: -2, 2 }}</strong></div>
+    <div><span>TOPICS</span><strong>{{ site.categories | size | prepend: '0' | slice: -2, 2 }}</strong></div>
+    <div><span>UPDATED</span><strong>{% if latest_post %}{{ latest_post.date | date: "%m.%d" }}{% else %}--.--{% endif %}</strong></div>
+    <p>작은 개념도 직접 설명할 수 있을 때까지.</p>
+  </div>
+</section>
+
+<section class="content-section" id="latest-notes">
+  <div class="site-shell">
+    <header class="section-heading reveal">
+      <div>
+        <span class="section-index">01</span>
+        <h2>Latest Notes</h2>
+      </div>
+      <a href="{{ '/archive/' | relative_url }}">전체 기록 보기 <i class="ri-arrow-right-up-line"></i></a>
     </header>
 
-    <main class="main">
-      {% assign hero_posts = site.posts | slice: 0, 4 %}
-      {% assign grid_posts = site.posts | slice: 0, 6 %}
+    {% if latest_post %}
+      <div class="latest-layout">
+        <a class="featured-note reveal" href="{{ latest_post.url | relative_url }}">
+          <article>
+            <div class="featured-image">
+              <img src="{{ latest_post.image | default: '/assets/base_image/test_image.png' | relative_url }}" alt="" loading="eager" />
+              <span class="featured-badge">NEW LOG</span>
+              <span class="read-arrow"><i class="ri-arrow-right-up-line"></i></span>
+            </div>
+            <div class="note-meta">
+              <span>{{ latest_post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
+              <time datetime="{{ latest_post.date | date_to_xmlschema }}">{{ latest_post.date | date: "%Y.%m.%d" }}</time>
+            </div>
+            <h3>{{ latest_post.title }}</h3>
+            <p>{{ latest_post.excerpt | strip_html | truncate: 150 }}</p>
+          </article>
+        </a>
 
-      <section class="section">
-        <div class="container">
-          <header class="section-header">
-            <h1 class="title"><span id="home-issue-date">{{ "now" | date: "%B %Y" }}</span> Issue</h1>
-          </header>
-
-          {% if hero_posts.size > 0 %}
-            <div class="columns">
-              <div class="column">
-                <div class="carousel js-carousel" aria-label="Featured posts carousel">
-                  <div class="carousel-track">
-                    {% for post in hero_posts %}
-                      {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
-                      <div class="carousel-cell{% if forloop.first %} is-active{% endif %}">
-                        <a href="{{ post.url | relative_url }}">
-                          <div class="cover-image">
-                            <img src="{{ cover | relative_url }}" alt="{{ post.title }}" />
-                          </div>
-                        </a>
-                      </div>
-                    {% endfor %}
-                  </div>
-                  <button class="carousel-btn prev" type="button" aria-label="Previous slide">
-                    <i class="ri-arrow-left-s-line"></i>
-                  </button>
-                  <button class="carousel-btn next" type="button" aria-label="Next slide">
-                    <i class="ri-arrow-right-s-line"></i>
-                  </button>
+        <div class="recent-note-list">
+          {% for post in recent_posts %}
+            <a class="compact-note reveal" data-delay="{{ forloop.index }}" href="{{ post.url | relative_url }}">
+              <span class="compact-number">0{{ forloop.index | plus: 1 }}</span>
+              <div>
+                <div class="note-meta">
+                  <span>{{ post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
+                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
                 </div>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.excerpt | strip_html | truncate: 92 }}</p>
               </div>
-            </div>
-          {% else %}
-            <p class="empty">포스트를 추가하면 캐러셀이 표시됩니다.</p>
-          {% endif %}
-
-          {% if grid_posts.size > 0 %}
-            <div class="columns card-grid">
-              {% for post in grid_posts %}
-                {% assign cover = post.image | default: '/assets/base_image/test_image.png' %}
-                <div class="column card-column">
-                  <a href="{{ post.url | relative_url }}" class="card-link">
-                    <article class="card">
-                      <header class="card-header">
-                        <div class="title-small">{{ post.categories | first | default: "Feature" }}</div>
-                        <div class="title-small">{{ post.date | date: "%Y.%m.%d" }}</div>
-                      </header>
-                      <div class="card-columns">
-                        <div class="card-image-wrap">
-                          <img src="{{ cover | relative_url }}" alt="{{ post.title }}" />
-                        </div>
-                        <div class="card-content">
-                          <h2>{{ post.title }}</h2>
-                          <p>{{ post.excerpt | strip_html | truncate: 130 }}</p>
-                        </div>
-                      </div>
-                    </article>
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
+              <i class="ri-arrow-right-line"></i>
+            </a>
+          {% endfor %}
         </div>
-      </section>
-    </main>
+      </div>
+    {% else %}
+      <div class="empty-state">첫 번째 학습 노트를 기다리고 있어요.</div>
+    {% endif %}
+  </div>
+</section>
 
-    {% include site-footer.html %}
+<section class="content-section topic-section">
+  <div class="site-shell">
+    <header class="section-heading reveal">
+      <div>
+        <span class="section-index">02</span>
+        <h2>Study Topics</h2>
+      </div>
+      <p>관심 주제별로 학습 기록을 탐색하세요.</p>
+    </header>
 
-    <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
-    <script>
-      var menuLayer = document.getElementById('menuLayer');
-      var menuButton = document.querySelector('.toggle-nav');
-      var issueDate = document.getElementById('home-issue-date');
+    <div class="topic-grid">
+      {% assign sorted_categories = site.categories %}
+      {% for category in sorted_categories %}
+        {% assign category_name = category[0] %}
+        {% assign category_posts = category[1] %}
+        <a class="topic-card reveal" data-delay="{{ forloop.index | modulo: 4 }}" href="{{ '/archive/' | relative_url }}">
+          <span class="topic-number">0{{ forloop.index }}</span>
+          <div class="topic-icon">
+            {% case category_name %}
+              {% when 'Deep_Learning' %}<i class="ri-brain-line"></i>
+              {% when 'Computer_Science' %}<i class="ri-code-s-slash-line"></i>
+              {% when 'Paper_Review' %}<i class="ri-file-search-line"></i>
+              {% when 'Photo' %}<i class="ri-camera-lens-line"></i>
+              {% else %}<i class="ri-terminal-box-line"></i>
+            {% endcase %}
+          </div>
+          <h3>{{ category_name | replace: "_", " " }}</h3>
+          <p>{{ category_posts | size }}개의 학습 기록</p>
+          <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-      if (menuButton && menuLayer) {
-        menuButton.addEventListener('click', function () {
-          menuLayer.classList.toggle('is-hidden');
-        });
-      }
-
-      function syncHeaderScrollState() {
-        var y = window.scrollY || window.pageYOffset || 0;
-        var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 180;
-        var leaveThreshold = 80;
-
-        if (!isScrolled && y > enterThreshold) {
-          document.body.classList.add('is-scrolled');
-        } else if (isScrolled && y < leaveThreshold) {
-          document.body.classList.remove('is-scrolled');
-        }
-      }
-      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-      syncHeaderScrollState();
-
-      requestAnimationFrame(function () {
-        document.body.classList.remove('is-preload');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (event.defaultPrevented) return;
-        if (event.button !== 0) return;
-        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-        var link = event.target.closest('a[href]');
-        if (!link) return;
-        if (link.hasAttribute('download')) return;
-        if (link.target && link.target !== '_self') return;
-
-        var href = link.getAttribute('href');
-        if (!href || href.charAt(0) === '#') return;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
-
-        var url;
-        try {
-          url = new URL(link.href, window.location.href);
-        } catch (e) {
-          return;
-        }
-
-        if (url.origin !== window.location.origin) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-        event.preventDefault();
-        document.body.classList.add('is-leaving');
-        setTimeout(function () {
-          window.location.href = url.href;
-        }, 120);
-      });
-
-      if (issueDate) {
-        var now = new Date();
-        var monthYear = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(now);
-        issueDate.textContent = monthYear;
-      }
-
-      var carousel = document.querySelector('.js-carousel');
-      if (carousel) {
-        var track = carousel.querySelector('.carousel-track');
-        var cells = carousel.querySelectorAll('.carousel-cell');
-        var prevBtn = carousel.querySelector('.carousel-btn.prev');
-        var nextBtn = carousel.querySelector('.carousel-btn.next');
-        var currentIndex = 0;
-        var autoTimer = null;
-
-        function showSlide(index) {
-          if (!cells.length || !track) return;
-          currentIndex = (index + cells.length) % cells.length;
-          track.style.transform = 'translateX(' + (-currentIndex * 100) + '%)';
-        }
-
-        function startAutoSlide() {
-          stopAutoSlide();
-          autoTimer = setInterval(function () {
-            showSlide(currentIndex + 1);
-          }, 3400);
-        }
-
-        function stopAutoSlide() {
-          if (autoTimer) {
-            clearInterval(autoTimer);
-            autoTimer = null;
-          }
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', function () {
-            showSlide(currentIndex - 1);
-            startAutoSlide();
-          });
-        }
-        if (nextBtn) {
-          nextBtn.addEventListener('click', function () {
-            showSlide(currentIndex + 1);
-            startAutoSlide();
-          });
-        }
-
-        carousel.addEventListener('mouseenter', stopAutoSlide);
-        carousel.addEventListener('mouseleave', startAutoSlide);
-
-        showSlide(0);
-        startAutoSlide();
-      }
-    </script>
-  </body>
-</html>
+<section class="content-section profile-section">
+  <div class="site-shell profile-panel reveal">
+    <div class="profile-signal" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="profile-copy">
+      <span class="mono-label">WHO'S WRITING</span>
+      <h2>안녕하세요,<br />배운 것을 기록하는 <em>Min Hyeong</em>입니다.</h2>
+      <p>AI와 소프트웨어를 공부합니다. 완벽한 정답보다 이해에 도달한 과정과 다시 써먹을 수 있는 설명을 남기고 있습니다.</p>
+    </div>
+    <div class="profile-links">
+      <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i><span>GitHub</span><i class="ri-arrow-right-up-line"></i></a>
+      <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i><span>LinkedIn</span><i class="ri-arrow-right-up-line"></i></a>
+      <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer"><i class="ri-instagram-line"></i><span>Instagram</span><i class="ri-arrow-right-up-line"></i></a>
+    </div>
+  </div>
+</section>

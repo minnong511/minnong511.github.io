@@ -1,423 +1,123 @@
 ---
+layout: default
 ---
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
+{% assign category_name = page.categories | first | default: "Study" %}
 
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="{{ page.title }} | {{ site.title }}" />
-    <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
-    <meta property="og:url" content="{{ page.url | absolute_url }}" />
-    <meta property="og:image" content="{{ page.image | default: site.og_image | default: '/assets/base_image/test_image.png' | absolute_url }}" />
-
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
-  </head>
-  <body id="article" class="page-transition is-preload" data-baseurl="{{ site.baseurl | default: '' }}">
-    <div class="search is-hidden" id="searchLayer">
-      <div class="container">
-        <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
-          <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
-        </form>
-        <div class="search-live-results" id="searchLiveResults"></div>
+<article class="post-layout">
+  <header class="post-hero">
+    <div class="site-shell post-shell">
+      <a class="post-back reveal" href="{{ '/' | relative_url }}"><i class="ri-arrow-left-line"></i> 모든 노트</a>
+      <div class="post-heading reveal">
+        <div class="post-meta-line">
+          <span>{{ category_name | replace: "_", " " }}</span>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+          <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} MIN READ</span>
+        </div>
+        <h1>{{ page.title }}</h1>
+        {% if page.excerpt %}
+          <p class="post-deck">{{ page.excerpt | strip_html | truncate: 180 }}</p>
+        {% endif %}
       </div>
+
+      {% if page.image %}
+        <figure class="post-cover reveal" data-delay="1">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.title }} 대표 이미지" />
+          <figcaption><span>VISUAL NOTE</span><span>MINNONG ARCHIVE</span></figcaption>
+        </figure>
+      {% endif %}
     </div>
+  </header>
 
-    <header class="header">
-      <div class="container">
-        <div class="columns header-row">
-          <div class="column left">
-            <a class="header-logo" href="{{ '/' | relative_url }}">Minnong's blog</a>
-          </div>
-          <div class="column right">
-            <nav class="header-nav">
-              <ul>
-                <li><button class="toggle-search" type="button" aria-label="검색"><i class="ri-search-line"></i></button></li>
-                <li><button class="toggle-nav" type="button" aria-label="메뉴"><i class="ri-menu-line"></i></button></li>
-              </ul>
-            </nav>
-          </div>
+  <div class="site-shell post-body-grid">
+    <aside class="post-side" aria-label="글 정보">
+      <div class="post-side-inner">
+        <span class="mono-label">ON THIS PAGE</span>
+        <nav class="post-toc" id="postToc"><ol id="postTocList"></ol></nav>
+        <div class="post-side-share">
+          <span class="mono-label">SHARE</span>
+          <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}"><i class="ri-link"></i> 링크 복사</button>
         </div>
-        <nav class="nav is-hidden" id="menuLayer">
-          <ul>
-            <li><a href="{{ '/' | relative_url }}">Home</a></li>
-            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-            <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
-            <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
-            <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
-            <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
-          </ul>
-        </nav>
       </div>
-    </header>
+    </aside>
 
-    <main class="main page-main">
-      <section class="section">
-        <div class="container">
-          <header class="section-header">
-            <h1 class="title page-title">{{ page.title }}</h1>
-          </header>
+    <div class="post-main">
+      <div class="prose post-content" id="postContent">
+        {{ content }}
+      </div>
 
-          <article class="page-panel">
-            {% assign cover = page.image | default: '/assets/base_image/test_image.png' %}
-            <div class="cover-image">
-              <img src="{{ cover | relative_url }}" alt="{{ page.title }}" loading="lazy" />
-            </div>
-
-            <div class="page-content" style="margin-top: 0.9rem;">
-              <p style="margin: 0; font-size: 0.8rem;">{{ page.date | date: "%Y.%m.%d" }}</p>
-
-              {{ content }}
-            </div>
-
-            {% if page.tags and page.tags.size > 0 %}
-              <div class="tag-list">
-                {% for tag in page.tags %}
-                  {% assign tag_id = tag | slugify %}
-                  {% assign color_index = forloop.index0 | modulo: 5 %}
-                  {% case color_index %}
-                    {% when 0 %}
-                      {% assign color_class = "tag-chip--blue" %}
-                    {% when 1 %}
-                      {% assign color_class = "tag-chip--green" %}
-                    {% when 2 %}
-                      {% assign color_class = "tag-chip--purple" %}
-                    {% when 3 %}
-                      {% assign color_class = "tag-chip--orange" %}
-                    {% else %}
-                      {% assign color_class = "tag-chip--gray" %}
-                  {% endcase %}
-                  <a class="tag-chip tag-chip--minimal {{ color_class }}" href="{{ '/tags/#' | append: tag_id | relative_url }}">#{{ tag }}</a>
-                {% endfor %}
-              </div>
-            {% endif %}
-
-            <div class="page-content" style="margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-              <span>Share</span>
-              <a target="_blank" rel="noreferrer" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ page.url | absolute_url | uri_escape }}"><i class="ri-twitter-x-fill"></i></a>
-              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/sharer.php?u={{ page.url | absolute_url | uri_escape }}"><i class="ri-facebook-fill"></i></a>
-              <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}" style="border:0;background:transparent;color:inherit;cursor:pointer;"><i class="ri-links-fill"></i></button>
-            </div>
-
-            <section class="comments-panel">
-              <h2 class="comments-title">Comments</h2>
-              <script
-                src="https://giscus.app/client.js"
-                data-repo="{{ site.giscus.repo | default: 'minnong511/minnong511.github.io' }}"
-                data-repo-id="{{ site.giscus.repo_id | default: 'R_kgDONte4cw' }}"
-                data-category="{{ site.giscus.category | default: 'General' }}"
-                data-category-id="{{ site.giscus.category_id | default: 'DIC_kwDONte4c84C3PLr' }}"
-                data-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
-                data-strict="{{ site.giscus.strict | default: '0' }}"
-                data-reactions-enabled="{{ site.giscus.reactions_enabled | default: '1' }}"
-                data-emit-metadata="{{ site.giscus.emit_metadata | default: '0' }}"
-                data-input-position="{{ site.giscus.input_position | default: 'top' }}"
-                data-theme="{{ site.giscus.theme | default: 'light' }}"
-                data-lang="{{ site.giscus.lang | default: 'ko' }}"
-                data-loading="{{ site.giscus.loading | default: 'eager' }}"
-                crossorigin="anonymous"
-                async
-              ></script>
-              <p class="comments-help is-hidden" id="commentsFallback">
-                댓글 위젯이 보이지 않으면 광고차단/추적차단 설정을 확인하거나
-                <a href="https://github.com/{{ site.giscus.repo | default: 'minnong511/minnong511.github.io' }}/discussions/categories/general" target="_blank" rel="noreferrer">GitHub Discussions</a>에서 확인해 주세요.
-              </p>
-            </section>
-          </article>
-
-          <aside class="post-toc is-hidden is-collapsed" id="postToc" aria-label="Table of contents">
-            <button class="post-toc-fab" id="postTocToggle" type="button" aria-expanded="false" aria-controls="postTocNav" aria-label="목차 열기/닫기">
-              <i class="ri-list-unordered"></i>
-            </button>
-            <div class="post-toc-panel" id="postTocNav">
-              <div class="post-toc-head">
-                <h2 class="post-toc-title">Contents</h2>
-              </div>
-              <nav>
-                <ul id="postTocList"></ul>
-              </nav>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="container">
-          <header class="section-header">
-            <h2 class="title page-title">Related Posts</h2>
-          </header>
-          <div class="columns card-grid">
-            {% assign current_category = page.categories | first %}
-            {% assign related_count = 0 %}
-            {% for post in site.posts %}
-              {% if post.url != page.url and related_count < 3 %}
-                {% if current_category and post.categories contains current_category %}
-                  {% assign card_cover = post.image | default: '/assets/base_image/test_image.png' %}
-                  <div class="column card-column">
-                    <a href="{{ post.url | relative_url }}" class="card-link">
-                      <article class="card">
-                        <header class="card-header">
-                          <div class="title-small">{{ post.categories | first | default: "Post" }}</div>
-                          <div class="title-small">{{ post.date | date: "%Y.%m.%d" }}</div>
-                        </header>
-                        <div class="card-columns">
-                          <div class="card-image-wrap">
-                            <img src="{{ card_cover | relative_url }}" alt="{{ post.title }}" loading="lazy" />
-                          </div>
-                          <div class="card-content">
-                            <h2>{{ post.title }}</h2>
-                            <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
-                          </div>
-                        </div>
-                      </article>
-                    </a>
-                  </div>
-                  {% assign related_count = related_count | plus: 1 %}
-                {% endif %}
-              {% endif %}
+      {% if page.tags and page.tags.size > 0 %}
+        <div class="post-tags">
+          <span class="mono-label">FILED UNDER</span>
+          <div>
+            {% for tag in page.tags %}
+              {% assign tag_id = tag | slugify %}
+              <a href="{{ '/tags/#' | append: tag_id | relative_url }}">#{{ tag }}</a>
             {% endfor %}
           </div>
         </div>
-      </section>
-    </main>
+      {% endif %}
 
-    {% include site-footer.html %}
-
-    <div class="photo-archive-lightbox is-hidden" id="imageLightbox" aria-hidden="true">
-      <button class="photo-archive-lightbox-close" id="lightboxClose" type="button" aria-label="Close image">
-        <i class="ri-close-line"></i>
-      </button>
-      <div class="photo-archive-lightbox-inner">
-        <img id="lightboxImage" alt="" />
-        <p id="lightboxCaption"></p>
+      <div class="post-author-card">
+        <div class="author-monogram">MH</div>
+        <div>
+          <span class="mono-label">WRITTEN BY</span>
+          <h2>Min Hyeong Lee</h2>
+          <p>배운 것을 직접 설명할 수 있을 때까지 기록합니다.</p>
+        </div>
+        <a href="{{ '/about/' | relative_url }}">ABOUT <i class="ri-arrow-right-line"></i></a>
       </div>
+
+      {% if site.giscus.enabled %}
+        <section class="comments-panel">
+          <div class="comments-heading">
+            <span class="section-index">+</span>
+            <h2>Discussion</h2>
+          </div>
+          <script
+            src="https://giscus.app/client.js"
+            data-repo="{{ site.giscus.repo }}"
+            data-repo-id="{{ site.giscus.repo_id }}"
+            data-category="{{ site.giscus.category }}"
+            data-category-id="{{ site.giscus.category_id }}"
+            data-mapping="{{ site.giscus.mapping }}"
+            data-strict="{{ site.giscus.strict }}"
+            data-reactions-enabled="{{ site.giscus.reactions_enabled }}"
+            data-emit-metadata="{{ site.giscus.emit_metadata }}"
+            data-input-position="{{ site.giscus.input_position }}"
+            data-theme="transparent_dark"
+            data-lang="{{ site.giscus.lang }}"
+            data-loading="lazy"
+            crossorigin="anonymous"
+            async>
+          </script>
+        </section>
+      {% endif %}
     </div>
-    <div class="copy-toast" id="copyToast" role="status" aria-live="polite" aria-hidden="true">Link copied</div>
+  </div>
+</article>
 
-    <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
-    <script>
-      var menuLayer = document.getElementById('menuLayer');
-      var menuButton = document.querySelector('.toggle-nav');
-      var copyButton = document.querySelector('.copy-url');
-      var copyToast = document.getElementById('copyToast');
-      var postPanel = document.querySelector('.page-panel');
-      var lightbox = document.getElementById('imageLightbox');
-      var lightboxImage = document.getElementById('lightboxImage');
-      var lightboxClose = document.getElementById('lightboxClose');
-      var lightboxCaption = document.getElementById('lightboxCaption');
-      var commentsFallback = document.getElementById('commentsFallback');
-      var postToc = document.getElementById('postToc');
-      var postTocList = document.getElementById('postTocList');
-      var postTocToggle = document.getElementById('postTocToggle');
-      var copyToastTimer = null;
+<section class="related-section">
+  <div class="site-shell">
+    <header class="section-heading">
+      <div><span class="section-index">+</span><h2>Keep Learning</h2></div>
+    </header>
+    <div class="related-grid">
+      {% assign related_count = 0 %}
+      {% for post in site.posts %}
+        {% if post.url != page.url and related_count < 3 %}
+          {% if post.categories contains category_name or related_count == 0 %}
+            <a class="related-card" href="{{ post.url | relative_url }}">
+              <span>{{ post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
+              <h3>{{ post.title }}</h3>
+              <time>{{ post.date | date: "%Y.%m.%d" }}</time>
+              <i class="ri-arrow-right-up-line"></i>
+            </a>
+            {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-      if (menuButton && menuLayer) {
-        menuButton.addEventListener('click', function () {
-          menuLayer.classList.toggle('is-hidden');
-        });
-      }
-
-      function syncHeaderScrollState() {
-        var y = window.scrollY || window.pageYOffset || 0;
-        var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 180;
-        var leaveThreshold = 80;
-
-        if (!isScrolled && y > enterThreshold) {
-          document.body.classList.add('is-scrolled');
-        } else if (isScrolled && y < leaveThreshold) {
-          document.body.classList.remove('is-scrolled');
-        }
-      }
-      window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-      syncHeaderScrollState();
-
-      requestAnimationFrame(function () {
-        document.body.classList.remove('is-preload');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (event.defaultPrevented) return;
-        if (event.button !== 0) return;
-        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-        var link = event.target.closest('a[href]');
-        if (!link) return;
-        if (link.hasAttribute('download')) return;
-        if (link.target && link.target !== '_self') return;
-
-        var href = link.getAttribute('href');
-        if (!href || href.charAt(0) === '#') return;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
-
-        var url;
-        try {
-          url = new URL(link.href, window.location.href);
-        } catch (e) {
-          return;
-        }
-
-        if (url.origin !== window.location.origin) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-        event.preventDefault();
-        document.body.classList.add('is-leaving');
-        setTimeout(function () {
-          window.location.href = url.href;
-        }, 120);
-      });
-
-      function showCopyToast(message) {
-        if (!copyToast) return;
-        copyToast.textContent = message;
-        copyToast.classList.add('is-visible');
-        copyToast.setAttribute('aria-hidden', 'false');
-        if (copyToastTimer) clearTimeout(copyToastTimer);
-        copyToastTimer = setTimeout(function () {
-          copyToast.classList.remove('is-visible');
-          copyToast.setAttribute('aria-hidden', 'true');
-        }, 1400);
-      }
-
-      if (copyButton) {
-        copyButton.addEventListener('click', function () {
-          var url = copyButton.getAttribute('data-url');
-          if (!url) return;
-
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(url).then(function () {
-              showCopyToast('Link copied');
-            }).catch(function () {
-              showCopyToast('Copy failed');
-              alert('Copy failed');
-            });
-            return;
-          }
-
-          var tempInput = document.createElement('input');
-          tempInput.value = url;
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          try {
-            document.execCommand('copy');
-            showCopyToast('Link copied');
-          } catch (e) {
-            showCopyToast('Copy failed');
-            alert('Copy failed');
-          }
-          document.body.removeChild(tempInput);
-        });
-      }
-
-      function closeLightbox() {
-        if (!lightbox) return;
-        lightbox.classList.add('is-hidden');
-        lightbox.setAttribute('aria-hidden', 'true');
-        if (lightboxImage) {
-          lightboxImage.removeAttribute('src');
-          lightboxImage.removeAttribute('alt');
-        }
-        if (lightboxCaption) {
-          lightboxCaption.textContent = '';
-        }
-      }
-
-      if (postPanel && lightbox && lightboxImage) {
-        postPanel.querySelectorAll('.cover-image img, .page-content img').forEach(function (img) {
-          if (img.closest('a')) return;
-          if (img.closest('.image-compare-stage')) return;
-          img.classList.add('lightbox-target');
-          img.addEventListener('click', function () {
-            var src = img.getAttribute('src');
-            if (!src) return;
-            lightboxImage.setAttribute('src', src);
-            lightboxImage.setAttribute('alt', img.getAttribute('alt') || '');
-            if (lightboxCaption) {
-              lightboxCaption.textContent = img.getAttribute('alt') || '';
-            }
-            lightbox.classList.remove('is-hidden');
-            lightbox.setAttribute('aria-hidden', 'false');
-          });
-        });
-      }
-
-      if (lightboxClose) {
-        lightboxClose.addEventListener('click', function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          closeLightbox();
-        });
-      }
-
-      if (lightbox) {
-        lightbox.addEventListener('click', function (event) {
-          if (event.target === lightbox) closeLightbox();
-        });
-      }
-
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') closeLightbox();
-      });
-
-      function slugify(text) {
-        return (text || '')
-          .toLowerCase()
-          .trim()
-          .replace(/[^\w\s-가-힣]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-');
-      }
-
-      if (postPanel && postToc && postTocList) {
-        var headings = Array.prototype.slice.call(postPanel.querySelectorAll('.page-content h2, .page-content h3'));
-        var usedIds = {};
-
-        headings.forEach(function (heading, idx) {
-          var text = (heading.textContent || '').trim();
-          if (!text) return;
-
-          var id = heading.id || slugify(text) || ('section-' + (idx + 1));
-          if (usedIds[id]) {
-            id = id + '-' + (idx + 1);
-          }
-          usedIds[id] = true;
-          heading.id = id;
-
-          var item = document.createElement('li');
-          if (heading.tagName.toLowerCase() === 'h3') item.className = 'toc-depth-3';
-          var link = document.createElement('a');
-          link.href = '#' + id;
-          link.textContent = text;
-          item.appendChild(link);
-          postTocList.appendChild(item);
-        });
-
-        if (postTocList.children.length > 0) {
-          postToc.classList.remove('is-hidden');
-        }
-      }
-
-      if (postToc && postTocToggle) {
-        postTocToggle.addEventListener('click', function () {
-          var collapsed = postToc.classList.toggle('is-collapsed');
-          postTocToggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-        });
-      }
-
-      if (commentsFallback) {
-        setTimeout(function () {
-          var giscusFrame = document.querySelector('iframe.giscus-frame');
-          if (!giscusFrame) {
-            commentsFallback.classList.remove('is-hidden');
-          }
-        }, 2500);
-      }
-    </script>
-  </body>
-</html>
+<div class="copy-toast" id="copyToast" role="status" aria-live="polite">링크를 복사했습니다.</div>

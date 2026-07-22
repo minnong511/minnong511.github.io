@@ -1,0 +1,134 @@
+---
+layout: default
+---
+<section class="writer-app" id="writerApp" aria-label="블로그 글쓰기 도구">
+  <header class="writer-topbar">
+    <div class="writer-wide-shell writer-topbar-inner">
+      <div class="writer-location">
+        <span class="writer-doc-icon"><i class="ri-draft-line"></i></span>
+        <div>
+          <strong>새 학습 노트</strong>
+          <span class="writer-save-state" id="writerSaveState"><i class="ri-checkbox-circle-line"></i> 이 기기에 저장됨</span>
+        </div>
+      </div>
+      <div class="writer-document-actions">
+        <span class="writer-count" id="writerCount">0자 · 0블록</span>
+        <button class="writer-action writer-action-quiet" id="writerClear" type="button" aria-label="초안 비우기">
+          <i class="ri-delete-bin-6-line"></i><span>비우기</span>
+        </button>
+        <button class="writer-action writer-action-quiet" id="writerPreviewToggle" type="button" aria-pressed="false">
+          <i class="ri-eye-line"></i><span>미리보기</span>
+        </button>
+        <button class="writer-action writer-action-quiet" id="writerCopyMarkdown" type="button">
+          <i class="ri-file-copy-line"></i><span>Markdown 복사</span>
+        </button>
+        <button class="writer-action writer-action-primary" id="writerExport" type="button">
+          <i class="ri-download-cloud-2-line"></i><span>게시물 내보내기</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="writer-toolbar-wrap">
+    <div class="writer-wide-shell">
+      <div class="writer-toolbar" role="toolbar" aria-label="글자 및 블록 서식 도구">
+        <div class="writer-tool-group writer-tool-history">
+          <button class="writer-tool" type="button" data-command="undo" aria-label="실행 취소" title="실행 취소"><i class="ri-arrow-go-back-line"></i></button>
+          <button class="writer-tool" type="button" data-command="redo" aria-label="다시 실행" title="다시 실행"><i class="ri-arrow-go-forward-line"></i></button>
+        </div>
+        <span class="writer-tool-divider" aria-hidden="true"></span>
+        <label class="writer-size-control">
+          <span class="sr-only">글씨 크기</span>
+          <select id="writerFontSize" aria-label="글씨 크기">
+            <option value="">기본 크기</option>
+            <option value="0.875rem">작게</option>
+            <option value="1.125rem">크게</option>
+            <option value="1.4rem">아주 크게</option>
+          </select>
+        </label>
+        <button class="writer-tool" type="button" data-command="bold" aria-label="굵게" title="굵게"><i class="ri-bold"></i></button>
+        <button class="writer-tool" type="button" data-command="italic" aria-label="기울임" title="기울임"><i class="ri-italic"></i></button>
+        <button class="writer-tool" type="button" data-command="highlight" aria-label="형광펜 강조" title="형광펜 강조"><i class="ri-mark-pen-line"></i></button>
+        <button class="writer-tool writer-tool-code" type="button" data-command="inline-code" aria-label="인라인 코드" title="인라인 코드">&lt;/&gt;</button>
+        <button class="writer-tool" type="button" data-command="link" aria-label="링크" title="링크"><i class="ri-link"></i></button>
+        <span class="writer-tool-divider" aria-hidden="true"></span>
+        <div class="writer-tool-group writer-block-tools" aria-label="블록 추가">
+          <button class="writer-block-tool" type="button" data-insert="code"><i class="ri-code-box-line"></i><span>코드</span></button>
+          <button class="writer-block-tool" type="button" data-insert="math"><i class="ri-function-line"></i><span>수학</span></button>
+          <button class="writer-block-tool" type="button" data-insert="embed"><i class="ri-layout-masonry-line"></i><span>임베드</span></button>
+          <button class="writer-block-tool" type="button" data-insert="media"><i class="ri-image-add-line"></i><span>이미지·GIF</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="writer-wide-shell writer-workspace">
+    <main class="writer-paper" id="writerPaper">
+      <div class="writer-meta-fields">
+        <input class="writer-title-input" id="writerTitle" type="text" placeholder="글 제목" aria-label="글 제목" maxlength="120" />
+        <textarea class="writer-excerpt-input" id="writerExcerpt" placeholder="글을 한 문장으로 요약해보세요" aria-label="글 요약" rows="1" maxlength="220"></textarea>
+        <div class="writer-meta-row">
+          <label>
+            <span>카테고리</span>
+            <input id="writerCategory" type="text" list="writerCategoryList" placeholder="예: Deep_Learning" value="Computer_Science" />
+            <datalist id="writerCategoryList">
+              <option value="Computer_Science"></option>
+              <option value="Deep_Learning"></option>
+              <option value="Paper_Review"></option>
+              <option value="Blog update"></option>
+              <option value="Photo"></option>
+            </datalist>
+          </label>
+          <label>
+            <span>태그</span>
+            <input id="writerTags" type="text" placeholder="AI, python, study" />
+          </label>
+        </div>
+      </div>
+
+      <div class="writer-editor-wrap">
+        <div
+          class="writer-editor"
+          id="writerEditor"
+          contenteditable="true"
+          role="textbox"
+          aria-multiline="true"
+          aria-label="글 본문"
+          spellcheck="true"
+          data-placeholder="내용을 입력하세요. 빈 줄에서 / 를 누르면 블록 메뉴가 열립니다."
+        ><p data-block-type="paragraph"><br /></p></div>
+
+        <button class="writer-add-block" id="writerAddBlock" type="button">
+          <i class="ri-add-line"></i> 블록 추가
+        </button>
+      </div>
+
+      <div class="writer-drop-hint" id="writerDropHint" aria-hidden="true">
+        <i class="ri-upload-cloud-2-line"></i>
+        <strong>이미지 또는 GIF 놓기</strong>
+        <span>여러 파일을 한 번에 추가할 수 있어요.</span>
+      </div>
+    </main>
+
+    <aside class="writer-preview" id="writerPreview" aria-label="게시글 미리보기" hidden>
+      <div class="writer-preview-head">
+        <span class="mono-label">LIVE PREVIEW</span>
+        <button id="writerPreviewClose" type="button" aria-label="미리보기 닫기"><i class="ri-close-line"></i></button>
+      </div>
+      <article class="prose writer-preview-content" id="writerPreviewContent"></article>
+    </aside>
+  </div>
+
+  <div class="writer-slash-menu" id="writerSlashMenu" role="listbox" aria-label="블록 메뉴" hidden>
+    <div class="writer-slash-head">
+      <span>블록으로 전환</span>
+      <kbd>/</kbd>
+    </div>
+    <div class="writer-slash-options" id="writerSlashOptions"></div>
+  </div>
+
+  <input id="writerMediaInput" type="file" accept="image/*,.gif" multiple hidden />
+  <div class="writer-toast" id="writerToast" role="status" aria-live="polite"></div>
+</section>
+
+{{ content }}

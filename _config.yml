@@ -1,10 +1,10 @@
-title: Minnong's blog
-description: Welcome! Minnong's blog
+title: Minnong's Study Log
+description: 개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록
 author: Min Hyeong Lee
 baseurl: ""
 url: "https://minnong511.github.io"
-assets_version: "2"
-og_image: "/assets/base_image/image.png"
+assets_version: "4"
+og_image: "/assets/base_image/og-study-blog.png"
 theme: minima
 timezone: Asia/Seoul
 permalink: /:categories/:year/:month/:day/:title/

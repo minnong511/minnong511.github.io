@@ -1,110 +1,174 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About | Minnong's blog</title>
-    <meta name="description" content="Welcome! Minnong's blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07111f" />
+    <title>About · Minnong's Study Log</title>
+    <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
+    <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="About | Minnong's blog" />
-    <meta property="og:description" content="Welcome! Minnong's blog" />
+    <meta property="og:title" content="About" />
+    <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     <meta property="og:url" content="http://localhost:4000/about/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/image.png" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem('minnong-theme');
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
-  </head>
-  <body id="home" class="page-transition is-preload" data-baseurl="">
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
     
-      <div class="search is-hidden" id="searchLayer">
-        <div class="container">
+  </head>
+  <body class="site-body" data-baseurl="">
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+    <div id="study-space" class="study-space" aria-hidden="true"></div>
+    <div class="site-noise" aria-hidden="true"></div>
+
+    
+      <div class="search-layer is-hidden" id="searchLayer" aria-label="사이트 검색">
+        <div class="search-shell">
+          <div class="search-topline">
+            <span class="mono-label">QUICK SEARCH</span>
+            <button class="search-close" type="button" aria-label="검색 닫기"><i class="ri-close-line"></i></button>
+          </div>
           <form action="/search/" method="get" class="search-form">
-            <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
+            <i class="ri-search-line" aria-hidden="true"></i>
+            <input class="search-input" type="search" name="q" placeholder="무엇을 공부했는지 찾아보세요" autocomplete="off" />
           </form>
           <div class="search-live-results" id="searchLiveResults"></div>
+          <p class="search-hint"><kbd>ESC</kbd> 닫기 · 제목, 태그, 본문 검색</p>
         </div>
       </div>
 
-      <header class="header">
-        <div class="container">
-          <div class="columns header-row">
-            <div class="column left">
-              <a href="/" class="header-logo">Minnong's blog</a>
-            </div>
-            <div class="column right">
-              <nav class="header-nav">
-                <ul>
-                  <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
-                  <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+      <header class="site-header" id="siteHeader">
+        <div class="site-shell header-inner">
+          <a class="brand" href="/" aria-label="Minnong's Study Log 홈">
+            <span class="brand-mark" aria-hidden="true">M<span>/</span></span>
+            <span class="brand-copy">
+              <strong>MINNONG</strong>
+              <small>STUDY LOG</small>
+            </span>
+          </a>
 
-          <nav class="nav is-hidden" id="menuLayer">
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="/about/">About</a></li>
-              <li><a href="/photostream/">Photo</a></li>
-              <li><a href="/archive/">Archive</a></li>
-              <li><a href="/tags/">Tags</a></li>
-              <li><a href="/blog-update/">Blog update</a></li>
-            </ul>
+          <nav class="desktop-nav" aria-label="주요 메뉴">
+            <a href="/">Notes</a>
+            <a href="/tags/">Topics</a>
+            <a href="/archive/">Archive</a>
+            <a href="/about/">About</a>
+            <a href="/photostream/">Photo</a>
+            <a class="nav-write" href="/write/"><i class="ri-quill-pen-line"></i> Write</a>
           </nav>
+
+          <div class="header-actions">
+            <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경">
+              <i class="ri-sun-line theme-icon-light"></i>
+              <i class="ri-moon-clear-line theme-icon-dark"></i>
+            </button>
+            <button class="icon-button toggle-search" type="button" aria-label="검색 열기"><i class="ri-search-line"></i></button>
+            <button class="icon-button menu-toggle" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" aria-controls="mobileNav">
+              <i class="ri-menu-3-line"></i>
+            </button>
+          </div>
         </div>
+
+        <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴" hidden>
+          <a href="/"><span>01</span> Notes</a>
+          <a href="/tags/"><span>02</span> Topics</a>
+          <a href="/archive/"><span>03</span> Archive</a>
+          <a href="/about/"><span>04</span> About</a>
+          <a href="/photostream/"><span>05</span> Photo</a>
+          <a href="/write/"><span>06</span> Write</a>
+        </nav>
       </header>
     
 
-    <main class="main page-main">
-      <section class="section">
-        <div class="container">
-          <article class="page-panel">
-            
-              <h1 class="title page-title">About</h1>
-            
-            <div class="page-content">
-              <p>이 블로그는 Min Hyeong Lee가 만든 개인 기술 블로그입니다.</p>
+    <main id="main-content" class="site-main">
+      <section class="page-hero">
+  <div class="site-shell narrow-shell">
+    
+      <div class="eyebrow reveal">MINNONG'S STUDY LOG · PAGE</div>
+      <h1 class="page-title reveal">About</h1>
+    
+  </div>
+</section>
 
-            </div>
-          </article>
-        </div>
-      </section>
+<section class="page-section">
+  <div class="site-shell narrow-shell">
+    <article class="page-card prose reveal">
+      <p class="page-lead">배운 내용을 흘려보내지 않고, 다시 설명할 수 있는 지식으로 만드는 공간입니다.</p>
+
+<h2 id="about-me">About me</h2>
+
+<p>안녕하세요. AI와 소프트웨어를 공부하고 있는 <strong>Min Hyeong Lee</strong>입니다. 새로운 개념을 만났을 때 단순히 외우기보다 직접 실험하고, 제 언어로 다시 정리하는 과정을 좋아합니다.</p>
+
+<h2 id="what-i-log">What I log</h2>
+
+<ul>
+  <li><strong>Artificial Intelligence</strong> — 딥러닝, 멀티모달, 모델 학습과 평가</li>
+  <li><strong>Computer Science</strong> — 알고리즘, 자료구조, 개발 기초</li>
+  <li><strong>Paper Review</strong> — 읽은 논문의 핵심 아이디어와 재현 포인트</li>
+  <li><strong>Build Notes</strong> — 프로젝트에서 만난 문제와 해결 과정</li>
+</ul>
+
+<h2 id="connect">Connect</h2>
+
+<div class="about-link-grid">
+  <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i><strong>GitHub</strong><span>코드와 프로젝트 보기</span></a>
+  <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i><strong>LinkedIn</strong><span>프로필과 경력 보기</span></a>
+  <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer"><i class="ri-instagram-line"></i><strong>Instagram</strong><span>일상의 장면 보기</span></a>
+</div>
+
+    </article>
+  </div>
+</section>
+
     </main>
 
     
-      <footer class="footer">
-  <div class="container">
-    <div class="columns footer-columns">
-      <div class="column">
-        <div class="footer-logo">Minnong's blog</div>
+      <footer class="site-footer">
+  <div class="site-shell">
+    <div class="footer-top">
+      <div>
+        <span class="brand-mark footer-mark" aria-hidden="true">M<span>/</span></span>
+        <p>오늘 배운 것을<br />내일의 기반으로.</p>
       </div>
-      <div class="column"></div>
-      <div class="column">
-        <ul class="list">
-          <li>운영자: Min Hyeong Lee</li>
-          <li>Based in Seoul</li>
-          <li>Contact: kzxx1234@gmail.com</li>
-        </ul>
+      <div class="footer-nav">
+        <span class="mono-label">NAVIGATE</span>
+        <a href="/">Notes</a>
+        <a href="/tags/">Topics</a>
+        <a href="/archive/">Archive</a>
+        <a href="/about/">About</a>
+        <a href="/write/">Write</a>
       </div>
-      <div class="column">
-        <ul class="list">
-          <li>개인 포트폴리오 &amp; 블로그</li>
-          <li>Photo / Travel / Engineering</li>
-        </ul>
+      <div class="footer-nav">
+        <span class="mono-label">CONNECT</span>
+        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub <i class="ri-arrow-right-up-line"></i></a>
+        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn <i class="ri-arrow-right-up-line"></i></a>
+        <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram <i class="ri-arrow-right-up-line"></i></a>
+      </div>
+      <div class="footer-status">
+        <span class="mono-label">STATUS</span>
+        <p><span class="status-dot"></span> Learning &amp; building</p>
+        <a href="mailto:kzxx1234@gmail.com">kzxx1234@gmail.com</a>
       </div>
     </div>
-    <div class="columns footer-bottom">
-      <div class="column">
-        <p>© 2026 Minnong blog</p>
-      </div>
-      <div class="column social">
-        <a href="https://instagram.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-instagram-fill"></i></a>
-        <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i></a>
-        <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i></a>
-      </div>
+    <div class="footer-bottom">
+      <span>© 2026 Min Hyeong Lee</span>
+      <span>BUILT WITH CURIOSITY · SEOUL</span>
+      <button class="back-to-top" type="button">TOP <i class="ri-arrow-up-line"></i></button>
     </div>
   </div>
 </footer>
@@ -112,69 +176,10 @@
     
 
     
-      <script src="/assets/js/site-search.js?v=2"></script>
+      <script src="/assets/js/site-search.js?v=4"></script>
     
-    <script>
-      var menuLayer = document.getElementById('menuLayer');
-      var menuButton = document.querySelector('.toggle-nav');
-
-      if (menuButton && menuLayer) {
-        menuButton.addEventListener('click', function () {
-          menuLayer.classList.toggle('is-hidden');
-        });
-      }
-
-      function syncHeaderScrollState() {
-        var y = window.scrollY || window.pageYOffset || 0;
-        var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 180;
-        var leaveThreshold = 80;
-
-        if (!isScrolled && y > enterThreshold) {
-          document.body.classList.add('is-scrolled');
-        } else if (isScrolled && y < leaveThreshold) {
-          document.body.classList.remove('is-scrolled');
-        }
-      }
-      
-        window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-        syncHeaderScrollState();
-      
-
-      requestAnimationFrame(function () {
-        document.body.classList.remove('is-preload');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (event.defaultPrevented) return;
-        if (event.button !== 0) return;
-        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-        var link = event.target.closest('a[href]');
-        if (!link) return;
-        if (link.hasAttribute('download')) return;
-        if (link.target && link.target !== '_self') return;
-
-        var href = link.getAttribute('href');
-        if (!href || href.charAt(0) === '#') return;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
-
-        var url;
-        try {
-          url = new URL(link.href, window.location.href);
-        } catch (e) {
-          return;
-        }
-
-        if (url.origin !== window.location.origin) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-        event.preventDefault();
-        document.body.classList.add('is-leaving');
-        setTimeout(function () {
-          window.location.href = url.href;
-        }, 120);
-      });
-    </script>
+    <script src="/assets/js/blog-ui.js?v=4"></script>
+    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
+    
   </body>
 </html>

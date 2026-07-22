@@ -1,148 +1,19 @@
 ---
+layout: default
 ---
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ page.title }} | {{ site.title }}" />
-    <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
-    <meta property="og:url" content="{{ page.url | absolute_url }}" />
-    <meta property="og:image" content="{{ site.og_image | default: '/assets/base_image/test_image.png' | absolute_url }}" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
-  </head>
-  <body id="home" class="page-transition is-preload{% if page.body_class %} {{ page.body_class }}{% endif %}" data-baseurl="{{ site.baseurl | default: '' }}">
-    {% unless page.hide_global_header %}
-      <div class="search is-hidden" id="searchLayer">
-        <div class="container">
-          <form action="{{ '/search/' | relative_url }}" method="get" class="search-form">
-            <input class="search-input" type="text" name="q" placeholder="검색어를 입력하세요." />
-          </form>
-          <div class="search-live-results" id="searchLiveResults"></div>
-        </div>
-      </div>
-
-      <header class="header">
-        <div class="container">
-          <div class="columns header-row">
-            <div class="column left">
-              <a href="{{ '/' | relative_url }}" class="header-logo">Minnong's blog</a>
-            </div>
-            <div class="column right">
-              <nav class="header-nav">
-                <ul>
-                  <li><button class="toggle-search" type="button"><i class="ri-search-line"></i></button></li>
-                  <li><button class="toggle-nav" type="button"><i class="ri-menu-line"></i></button></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-          <nav class="nav is-hidden" id="menuLayer">
-            <ul>
-              <li><a href="{{ '/' | relative_url }}">Home</a></li>
-              <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-              <li><a href="{{ '/photostream/' | relative_url }}">Photo</a></li>
-              <li><a href="{{ '/archive/' | relative_url }}">Archive</a></li>
-              <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
-              <li><a href="{{ '/blog-update/' | relative_url }}">Blog update</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
+<section class="page-hero{% if page.hide_page_title %} page-hero-hidden{% endif %}">
+  <div class="site-shell narrow-shell">
+    {% unless page.hide_page_title %}
+      <div class="eyebrow reveal">MINNONG'S STUDY LOG · PAGE</div>
+      <h1 class="page-title reveal">{{ page.title }}</h1>
     {% endunless %}
+  </div>
+</section>
 
-    <main class="main page-main">
-      <section class="section">
-        <div class="container">
-          <article class="page-panel">
-            {% unless page.hide_page_title %}
-              <h1 class="title page-title">{{ page.title }}</h1>
-            {% endunless %}
-            <div class="page-content">
-              {{ content }}
-            </div>
-          </article>
-        </div>
-      </section>
-    </main>
-
-    {% unless page.hide_footer %}
-      {% include site-footer.html %}
-    {% endunless %}
-
-    {% unless page.hide_global_header %}
-      <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
-    {% endunless %}
-    <script>
-      var menuLayer = document.getElementById('menuLayer');
-      var menuButton = document.querySelector('.toggle-nav');
-
-      if (menuButton && menuLayer) {
-        menuButton.addEventListener('click', function () {
-          menuLayer.classList.toggle('is-hidden');
-        });
-      }
-
-      function syncHeaderScrollState() {
-        var y = window.scrollY || window.pageYOffset || 0;
-        var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 180;
-        var leaveThreshold = 80;
-
-        if (!isScrolled && y > enterThreshold) {
-          document.body.classList.add('is-scrolled');
-        } else if (isScrolled && y < leaveThreshold) {
-          document.body.classList.remove('is-scrolled');
-        }
-      }
-      {% unless page.hide_global_header %}
-        window.addEventListener('scroll', syncHeaderScrollState, { passive: true });
-        syncHeaderScrollState();
-      {% endunless %}
-
-      requestAnimationFrame(function () {
-        document.body.classList.remove('is-preload');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (event.defaultPrevented) return;
-        if (event.button !== 0) return;
-        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-        var link = event.target.closest('a[href]');
-        if (!link) return;
-        if (link.hasAttribute('download')) return;
-        if (link.target && link.target !== '_self') return;
-
-        var href = link.getAttribute('href');
-        if (!href || href.charAt(0) === '#') return;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
-
-        var url;
-        try {
-          url = new URL(link.href, window.location.href);
-        } catch (e) {
-          return;
-        }
-
-        if (url.origin !== window.location.origin) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-        event.preventDefault();
-        document.body.classList.add('is-leaving');
-        setTimeout(function () {
-          window.location.href = url.href;
-        }, 120);
-      });
-    </script>
-  </body>
-</html>
+<section class="page-section">
+  <div class="site-shell narrow-shell">
+    <article class="page-card prose reveal">
+      {{ content }}
+    </article>
+  </div>
+</section>

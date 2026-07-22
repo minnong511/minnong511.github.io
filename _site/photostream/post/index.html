@@ -1,32 +1,55 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Photo Post | Minnong's blog</title>
-    <meta name="description" content="Welcome! Minnong's blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07111f" />
+    <title>Photo Post · Minnong's Study Log</title>
+    <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
+    <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Photo Post | Minnong's blog" />
-    <meta property="og:description" content="Welcome! Minnong's blog" />
+    <meta property="og:title" content="Photo Post" />
+    <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     <meta property="og:url" content="http://localhost:4000/photostream/post/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/image.png" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
+    <script>
+      (function () {
+        try {
+          var savedTheme = localStorage.getItem('minnong-theme');
+          var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.dataset.theme = savedTheme || (prefersLight ? 'light' : 'dark');
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=2" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=4" />
+    
   </head>
-  <body id="home" class="page-transition is-preload photo-immersive photo-post-focus" data-baseurl="">
+  <body class="site-body photo-immersive photo-post-focus" data-baseurl="">
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+    <div id="study-space" class="study-space" aria-hidden="true"></div>
+    <div class="site-noise" aria-hidden="true"></div>
+
     
 
-    <main class="main page-main">
-      <section class="section">
-        <div class="container">
-          <article class="page-panel">
-            
-            <div class="page-content">
-              
+    <main id="main-content" class="site-main">
+      <section class="page-hero page-hero-hidden">
+  <div class="site-shell narrow-shell">
+    
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="site-shell narrow-shell">
+    <article class="page-card prose reveal">
+      
 <div id="photoPostApp" class="photo-post-focus-app">
   <div class="photo-post-hero" id="photoPostHero" aria-hidden="false">
     <div class="photo-post-hero-inner">
@@ -394,73 +417,17 @@
 </script>
 
 
-            </div>
-          </article>
-        </div>
-      </section>
+    </article>
+  </div>
+</section>
+
     </main>
 
     
 
     
-    <script>
-      var menuLayer = document.getElementById('menuLayer');
-      var menuButton = document.querySelector('.toggle-nav');
-
-      if (menuButton && menuLayer) {
-        menuButton.addEventListener('click', function () {
-          menuLayer.classList.toggle('is-hidden');
-        });
-      }
-
-      function syncHeaderScrollState() {
-        var y = window.scrollY || window.pageYOffset || 0;
-        var isScrolled = document.body.classList.contains('is-scrolled');
-        var enterThreshold = 180;
-        var leaveThreshold = 80;
-
-        if (!isScrolled && y > enterThreshold) {
-          document.body.classList.add('is-scrolled');
-        } else if (isScrolled && y < leaveThreshold) {
-          document.body.classList.remove('is-scrolled');
-        }
-      }
-      
-
-      requestAnimationFrame(function () {
-        document.body.classList.remove('is-preload');
-      });
-
-      document.addEventListener('click', function (event) {
-        if (event.defaultPrevented) return;
-        if (event.button !== 0) return;
-        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-        var link = event.target.closest('a[href]');
-        if (!link) return;
-        if (link.hasAttribute('download')) return;
-        if (link.target && link.target !== '_self') return;
-
-        var href = link.getAttribute('href');
-        if (!href || href.charAt(0) === '#') return;
-        if (/^(mailto:|tel:|javascript:)/i.test(href)) return;
-
-        var url;
-        try {
-          url = new URL(link.href, window.location.href);
-        } catch (e) {
-          return;
-        }
-
-        if (url.origin !== window.location.origin) return;
-        if (url.pathname === window.location.pathname && url.search === window.location.search) return;
-
-        event.preventDefault();
-        document.body.classList.add('is-leaving');
-        setTimeout(function () {
-          window.location.href = url.href;
-        }, 120);
-      });
-    </script>
+    <script src="/assets/js/blog-ui.js?v=4"></script>
+    <script type="module" src="/assets/js/ambient-three.js?v=4"></script>
+    
   </body>
 </html>
