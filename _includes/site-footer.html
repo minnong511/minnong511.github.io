@@ -1,35 +1,39 @@
 <footer class="site-footer">
-  <div class="site-shell">
-    <div class="footer-top">
-      <div>
-        <span class="brand-mark footer-mark" aria-hidden="true">M<span>/</span></span>
-        <p>오늘 배운 것을<br />내일의 기반으로.</p>
-      </div>
-      <div class="footer-nav">
-        <span class="mono-label">NAVIGATE</span>
+  <div class="site-shell footer-shell">
+    <div class="footer-heading">
+      <p>Keep learning.<br />Keep a record.</p>
+      <a class="footer-wordmark" href="{{ '/' | relative_url }}">MINNONG</a>
+    </div>
+
+    <div class="footer-link-grid">
+      <nav class="footer-nav" aria-label="푸터 메뉴">
+        <span class="footer-label">Explore</span>
         <a href="{{ '/' | relative_url }}">Notes</a>
         <a href="{{ '/tags/' | relative_url }}">Topics</a>
         <a href="{{ '/archive/' | relative_url }}">Archive</a>
         <a href="{{ '/about/' | relative_url }}">About</a>
-        <a class="owner-only" data-owner-only href="{{ '/write/' | relative_url }}" hidden>Write</a>
-        <a class="footer-owner-entry" href="{{ '/write/' | relative_url }}"><i class="ri-lock-2-line"></i> Owner</a>
-      </div>
-      <div class="footer-nav">
-        <span class="mono-label">CONNECT</span>
+        <a href="{{ '/photostream/' | relative_url }}">Photo</a>
+      </nav>
+
+      <nav class="footer-nav" aria-label="소셜 링크">
+        <span class="footer-label">Connect</span>
         <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub <i class="ri-arrow-right-up-line"></i></a>
         <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn <i class="ri-arrow-right-up-line"></i></a>
         <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram <i class="ri-arrow-right-up-line"></i></a>
-      </div>
-      <div class="footer-status">
-        <span class="mono-label">STATUS</span>
-        <p><span class="status-dot"></span> Learning &amp; building</p>
-        <a href="mailto:kzxx1234@gmail.com">kzxx1234@gmail.com</a>
+      </nav>
+
+      <div class="footer-nav footer-owner">
+        <span class="footer-label">Studio</span>
+        <a class="footer-owner-entry" href="{{ '/write/' | relative_url }}"><i class="ri-lock-2-line"></i> Owner</a>
+        <a class="owner-only" data-owner-only href="{{ '/write/' | relative_url }}" hidden>Write <i class="ri-arrow-right-line"></i></a>
+        <a href="mailto:kzxx1234@gmail.com">Email</a>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>© {{ "now" | date: "%Y" }} Min Hyeong Lee</span>
-      <span>BUILT WITH CURIOSITY · SEOUL</span>
-      <button class="back-to-top" type="button">TOP <i class="ri-arrow-up-line"></i></button>
+      <span>Independent study archive · Seoul</span>
+      <button class="back-to-top" type="button">Back to top <i class="ri-arrow-up-line"></i></button>
     </div>
   </div>
 </footer>

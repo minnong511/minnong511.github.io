@@ -2,145 +2,129 @@
 layout: default
 ---
 {% assign latest_post = site.posts | first %}
-{% assign recent_posts = site.posts | slice: 1, 5 %}
+{% assign home_posts = site.posts | slice: 0, 5 %}
 
-<section class="hero-section">
-  <div class="site-shell hero-grid">
-    <div class="hero-copy reveal">
-      <div class="eyebrow"><span class="status-dot"></span> INDEPENDENT STUDY ARCHIVE · SEOUL</div>
-      <h1>공부한 것을 <em>기록하고,</em><br />다시 꺼내 씁니다.</h1>
-      <p class="hero-description">
-        개발, 인공지능, 컴퓨터 과학을 공부하며 만난 개념과 시행착오를<br class="desktop-only" />
-        다시 꺼내 쓸 수 있는 지식으로 정리하는 학습 로그입니다.
-      </p>
-      <div class="hero-actions-row">
-        <a class="primary-button" href="#latest-notes">최근 노트 읽기 <i class="ri-arrow-right-line"></i></a>
-        <a class="text-button" href="{{ '/about/' | relative_url }}">이 블로그 소개</a>
-      </div>
+<section class="visual-hero" aria-labelledby="visualHeroTitle">
+  <div id="study-space" class="study-space" aria-hidden="true"></div>
+  <div class="site-shell visual-hero-frame">
+    <div class="visual-hero-topline">
+      <span>MINNONG STUDY INDEX</span>
+      <span>SEOUL · {{ "now" | date: "%Y" }}</span>
     </div>
-
-    <div class="hero-visual reveal" data-delay="1" aria-label="공부 주제 시각화">
-      <div class="visual-orbit orbit-one"><span>AI</span></div>
-      <div class="visual-orbit orbit-two"><span>CS</span></div>
-      <div class="visual-orbit orbit-three"><span>CODE</span></div>
-      <div class="visual-core">
-        <span class="core-kicker">ARCHIVE INDEX · {{ "now" | date: "%Y" }}</span>
-        <strong>STUDY<br />LOG</strong>
-        <small>AI · CODE · RESEARCH</small>
-      </div>
-      <div class="coordinate coordinate-a">37.5665° N</div>
-      <div class="coordinate coordinate-b">126.9780° E</div>
+    <h2 id="visualHeroTitle" class="sr-only">배움의 연결을 표현한 인터랙티브 그래픽</h2>
+    <div class="visual-hero-caption">
+      <p>Every note<br />connects forward.</p>
+      <span>Move your pointer to explore</span>
     </div>
-  </div>
-
-  <div class="site-shell hero-stats reveal" data-delay="2">
-    <div><span>LOGS</span><strong>{{ site.posts | size | prepend: '0' | slice: -2, 2 }}</strong></div>
-    <div><span>TOPICS</span><strong>{{ site.categories | size | prepend: '0' | slice: -2, 2 }}</strong></div>
-    <div><span>UPDATED</span><strong>{% if latest_post %}{{ latest_post.date | date: "%m.%d" }}{% else %}--.--{% endif %}</strong></div>
-    <p>작은 개념도 직접 설명할 수 있을 때까지.</p>
   </div>
 </section>
 
-<section class="content-section" id="latest-notes">
-  <div class="site-shell">
-    <header class="section-heading reveal">
-      <div>
-        <span class="section-index">01</span>
-        <h2>Latest Notes</h2>
+<section class="home-introduction">
+  <div class="site-shell home-introduction-grid">
+    <div class="home-introduction-title reveal">
+      <span class="section-kicker">WELCOME</span>
+      <h1>배움은 기록될 때<br />다시 시작됩니다.</h1>
+    </div>
+    <div class="home-introduction-copy reveal" data-delay="1">
+      <p>개발, 인공지능, 컴퓨터 과학을 공부하며 만난 개념과 시행착오를 다시 꺼내 쓸 수 있는 지식으로 정리합니다.</p>
+      <div class="home-introduction-links">
+        <a href="#latest-notes">최신 노트 보기 <i class="ri-arrow-down-line"></i></a>
+        <a href="{{ '/about/' | relative_url }}">블로그 소개 <i class="ri-arrow-right-up-line"></i></a>
       </div>
-      <a href="{{ '/archive/' | relative_url }}">전체 기록 보기 <i class="ri-arrow-right-up-line"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section latest-section" id="latest-notes">
+  <div class="site-shell">
+    <header class="editorial-heading reveal">
+      <div>
+        <span class="section-kicker">01 · NOTES</span>
+        <h2>Latest studies</h2>
+      </div>
+      <a href="{{ '/archive/' | relative_url }}">View all notes <i class="ri-arrow-right-line"></i></a>
     </header>
 
-    {% if latest_post %}
-      <div class="latest-layout">
-        <a class="featured-note reveal" href="{{ latest_post.url | relative_url }}">
-          <article>
-            <div class="featured-image">
-              <img src="{{ latest_post.image | default: '/assets/base_image/test_image.png' | relative_url }}" alt="" loading="eager" />
-              <span class="featured-badge">NEW LOG</span>
-              <span class="read-arrow"><i class="ri-arrow-right-up-line"></i></span>
-            </div>
-            <div class="note-meta">
-              <span>{{ latest_post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
-              <time datetime="{{ latest_post.date | date_to_xmlschema }}">{{ latest_post.date | date: "%Y.%m.%d" }}</time>
-            </div>
-            <h3>{{ latest_post.title }}</h3>
-            <p>{{ latest_post.excerpt | strip_html | truncate: 150 }}</p>
-          </article>
-        </a>
-
-        <div class="recent-note-list">
-          {% for post in recent_posts %}
-            <a class="compact-note reveal" data-delay="{{ forloop.index }}" href="{{ post.url | relative_url }}">
-              <span class="compact-number">0{{ forloop.index | plus: 1 }}</span>
-              <div>
-                <div class="note-meta">
-                  <span>{{ post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
-                  <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-                </div>
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.excerpt | strip_html | truncate: 92 }}</p>
-              </div>
-              <i class="ri-arrow-right-line"></i>
+    {% if home_posts.size > 0 %}
+      <div class="exhibition-grid">
+        {% for post in home_posts %}
+          <article class="exhibition-card exhibition-card--{{ forloop.index }} reveal" data-delay="{{ forloop.index | modulo: 3 }}">
+            <a class="exhibition-image" href="{{ post.url | relative_url }}">
+              <img src="{{ post.image | default: '/assets/base_image/test_image.png' | relative_url | escape }}" alt="" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %} />
             </a>
-          {% endfor %}
-        </div>
+            <div class="exhibition-meta">
+              <span>{{ post.categories | first | default: "Study" | replace: "_", " " }}</span>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+            </div>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          </article>
+        {% endfor %}
       </div>
     {% else %}
-      <div class="empty-state">첫 번째 학습 노트를 기다리고 있어요.</div>
+      <p class="empty-state">첫 번째 학습 노트를 기다리고 있어요.</p>
     {% endif %}
   </div>
 </section>
 
-<section class="content-section topic-section">
+<section class="home-section topic-section">
   <div class="site-shell">
-    <header class="section-heading reveal">
+    <header class="editorial-heading reveal">
       <div>
-        <span class="section-index">02</span>
-        <h2>Study Topics</h2>
+        <span class="section-kicker">02 · INDEX</span>
+        <h2>Study topics</h2>
       </div>
-      <p>관심 주제별로 학습 기록을 탐색하세요.</p>
+      <p>관심 주제별로 기록을 탐색하세요.</p>
     </header>
 
-    <div class="topic-grid">
-      {% assign sorted_categories = site.categories %}
-      {% for category in sorted_categories %}
+    <div class="topic-index">
+      {% for category in site.categories %}
         {% assign category_name = category[0] %}
         {% assign category_posts = category[1] %}
-        <a class="topic-card reveal" data-delay="{{ forloop.index | modulo: 4 }}" href="{{ '/archive/' | relative_url }}">
-          <span class="topic-number">0{{ forloop.index }}</span>
-          <div class="topic-icon">
-            {% case category_name %}
-              {% when 'Deep_Learning' %}<i class="ri-brain-line"></i>
-              {% when 'Computer_Science' %}<i class="ri-code-s-slash-line"></i>
-              {% when 'Paper_Review' %}<i class="ri-file-search-line"></i>
-              {% when 'Photo' %}<i class="ri-camera-lens-line"></i>
-              {% else %}<i class="ri-terminal-box-line"></i>
-            {% endcase %}
-          </div>
-          <h3>{{ category_name | replace: "_", " " }}</h3>
-          <p>{{ category_posts | size }}개의 학습 기록</p>
-          <span class="topic-link">EXPLORE <i class="ri-arrow-right-line"></i></span>
+        <a class="topic-index-row reveal" href="{{ '/archive/' | relative_url }}">
+          <span class="topic-index-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <strong>{{ category_name | replace: "_", " " }}</strong>
+          <span>{{ category_posts | size }} notes</span>
+          <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
         </a>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<section class="content-section profile-section">
-  <div class="site-shell profile-panel reveal">
-    <div class="profile-signal" aria-hidden="true">
-      <span></span><span></span><span></span><span></span><span></span>
+<section class="home-section archive-preview-section">
+  <div class="site-shell archive-preview-grid">
+    <header class="archive-preview-title reveal">
+      <span class="section-kicker">03 · ARCHIVE</span>
+      <h2>Learning,<br />in sequence.</h2>
+      <a href="{{ '/archive/' | relative_url }}">전체 아카이브 <i class="ri-arrow-right-line"></i></a>
+    </header>
+    <div class="archive-preview-list">
+      {% for post in site.posts limit: 4 %}
+        <a href="{{ post.url | relative_url }}" class="archive-preview-row reveal">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+          <strong>{{ post.title }}</strong>
+          <span>{{ post.categories | first | default: "Study" | replace: "_", " " }}</span>
+          <i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="home-section profile-section">
+  <div class="site-shell profile-grid reveal">
+    <div class="profile-portrait">
+      <img src="{{ '/assets/base_image/image.png' | relative_url }}" alt="Min Hyeong Lee 일러스트 프로필" loading="lazy" />
     </div>
     <div class="profile-copy">
-      <span class="mono-label">WHO'S WRITING</span>
-      <h2>안녕하세요,<br />배운 것을 기록하는 <em>Min Hyeong</em>입니다.</h2>
-      <p>AI와 소프트웨어를 공부합니다. 완벽한 정답보다 이해에 도달한 과정과 다시 써먹을 수 있는 설명을 남기고 있습니다.</p>
+      <span class="section-kicker">04 · ABOUT</span>
+      <h2>안녕하세요.<br />배운 것을 오래 남기는<br />Min Hyeong입니다.</h2>
+      <p>완벽한 정답보다 이해에 도달한 과정과, 다시 써먹을 수 있는 설명을 기록합니다.</p>
     </div>
     <div class="profile-links">
-      <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i><span>GitHub</span><i class="ri-arrow-right-up-line"></i></a>
-      <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i><span>LinkedIn</span><i class="ri-arrow-right-up-line"></i></a>
-      <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer"><i class="ri-instagram-line"></i><span>Instagram</span><i class="ri-arrow-right-up-line"></i></a>
+      <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><span>GitHub</span><i class="ri-arrow-right-up-line"></i></a>
+      <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><span>LinkedIn</span><i class="ri-arrow-right-up-line"></i></a>
+      <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer"><span>Instagram</span><i class="ri-arrow-right-up-line"></i></a>
     </div>
   </div>
 </section>

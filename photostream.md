@@ -4,7 +4,6 @@ title: Photo Stream
 permalink: /photostream/
 hide_page_title: true
 body_class: photo-immersive
-hide_global_header: true
 ---
 
 {% assign photos = site.static_files | where_exp: "item", "item.path contains '/assets/photo_lib/'" %}

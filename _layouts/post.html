@@ -6,7 +6,7 @@ layout: default
 <article class="post-layout">
   <header class="post-hero">
     <div class="site-shell post-shell">
-      <a class="post-back reveal" href="{{ '/' | relative_url }}"><i class="ri-arrow-left-line"></i> 모든 노트</a>
+      <a class="post-back reveal" href="{{ '/' | relative_url }}"><i class="ri-arrow-left-line" aria-hidden="true"></i> 모든 노트</a>
       <div class="post-heading reveal">
         <div class="post-meta-line">
           <span>{{ category_name | replace: "_", " " }}</span>
@@ -21,7 +21,7 @@ layout: default
 
       {% if page.image %}
         <figure class="post-cover reveal" data-delay="1">
-          <img src="{{ page.image | relative_url }}" alt="{{ page.title }} 대표 이미지" />
+          <img src="{{ page.image | relative_url | escape }}" alt="{{ page.image_alt | default: page.title | escape }}" />
           <figcaption><span>VISUAL NOTE</span><span>MINNONG ARCHIVE</span></figcaption>
         </figure>
       {% endif %}
@@ -32,10 +32,10 @@ layout: default
     <aside class="post-side" aria-label="글 정보">
       <div class="post-side-inner">
         <span class="mono-label">ON THIS PAGE</span>
-        <nav class="post-toc" id="postToc"><ol id="postTocList"></ol></nav>
+        <nav class="post-toc" id="postToc" aria-label="이 글의 목차"><ol id="postTocList"></ol></nav>
         <div class="post-side-share">
           <span class="mono-label">SHARE</span>
-          <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}"><i class="ri-link"></i> 링크 복사</button>
+          <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}"><i class="ri-link" aria-hidden="true"></i> 링크 복사</button>
         </div>
       </div>
     </aside>
@@ -64,7 +64,7 @@ layout: default
           <h2>Min Hyeong Lee</h2>
           <p>배운 것을 직접 설명할 수 있을 때까지 기록합니다.</p>
         </div>
-        <a href="{{ '/about/' | relative_url }}">ABOUT <i class="ri-arrow-right-line"></i></a>
+        <a href="{{ '/about/' | relative_url }}">ABOUT <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
 
       {% if site.giscus.enabled %}
@@ -84,7 +84,7 @@ layout: default
             data-reactions-enabled="{{ site.giscus.reactions_enabled }}"
             data-emit-metadata="{{ site.giscus.emit_metadata }}"
             data-input-position="{{ site.giscus.input_position }}"
-            data-theme="transparent_dark"
+            data-theme="light"
             data-lang="{{ site.giscus.lang }}"
             data-loading="lazy"
             crossorigin="anonymous"
@@ -109,8 +109,8 @@ layout: default
             <a class="related-card" href="{{ post.url | relative_url }}">
               <span>{{ post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
               <h3>{{ post.title }}</h3>
-              <time>{{ post.date | date: "%Y.%m.%d" }}</time>
-              <i class="ri-arrow-right-up-line"></i>
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+              <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
             </a>
             {% assign related_count = related_count | plus: 1 %}
           {% endif %}

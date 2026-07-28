@@ -6,27 +6,32 @@
   var menuButton = document.querySelector(".menu-toggle");
   var mobileNav = document.getElementById("mobileNav");
   var themeButton = document.querySelector(".theme-toggle");
-  var searchLayer = document.getElementById("searchLayer");
-  var searchClose = document.querySelector(".search-close");
-  var searchInput = document.querySelector(".search-input");
+
+  function syncGiscusTheme() {
+    var giscusFrame = document.querySelector("iframe.giscus-frame");
+    if (!giscusFrame || !giscusFrame.contentWindow) return;
+    giscusFrame.contentWindow.postMessage({
+      giscus: { setConfig: { theme: root.dataset.theme === "light" ? "light" : "transparent_dark" } }
+    }, "https://giscus.app");
+  }
 
   function setTheme(theme, persist) {
-    var nextTheme = theme === "light" ? "light" : "dark";
+    var nextTheme = theme === "dark" ? "dark" : "light";
     root.dataset.theme = nextTheme;
 
     var themeMeta = document.querySelector('meta[name="theme-color"]');
-    if (themeMeta) themeMeta.setAttribute("content", nextTheme === "light" ? "#ffffff" : "#0a0a0a");
+    if (themeMeta) themeMeta.setAttribute("content", nextTheme === "light" ? "#ffffff" : "#050505");
+
+    if (themeButton) {
+      themeButton.setAttribute("aria-pressed", String(nextTheme === "dark"));
+      themeButton.setAttribute("title", nextTheme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환");
+    }
 
     if (persist) {
-      try { localStorage.setItem("minnong-theme", nextTheme); } catch (e) {}
+      try { localStorage.setItem("minnong-theme", nextTheme); } catch (error) {}
     }
 
-    var giscusFrame = document.querySelector("iframe.giscus-frame");
-    if (giscusFrame && giscusFrame.contentWindow) {
-      giscusFrame.contentWindow.postMessage({
-        giscus: { setConfig: { theme: nextTheme === "light" ? "light" : "transparent_dark" } }
-      }, "https://giscus.app");
-    }
+    syncGiscusTheme();
 
     window.dispatchEvent(new CustomEvent("study-theme-change", { detail: { theme: nextTheme } }));
   }
@@ -37,53 +42,88 @@
     });
   }
 
-  setTheme(root.dataset.theme || "dark", false);
+  setTheme(root.dataset.theme || "light", false);
 
-  function setMenu(open) {
+  if ("MutationObserver" in window) {
+    var giscusObserver = new MutationObserver(function () {
+      var frame = document.querySelector("iframe.giscus-frame");
+      if (!frame || frame.dataset.minnongThemeReady) return;
+      frame.dataset.minnongThemeReady = "true";
+      frame.addEventListener("load", syncGiscusTheme);
+      syncGiscusTheme();
+    });
+    giscusObserver.observe(body, { childList: true, subtree: true });
+  }
+
+  function setPageInert(open) {
+    Array.prototype.slice.call(document.querySelectorAll(".site-main, .site-footer")).forEach(function (element) {
+      element.inert = Boolean(open || body.classList.contains("search-open"));
+    });
+  }
+
+  function setMenu(open, restoreFocus) {
     if (!menuButton || !mobileNav) return;
     mobileNav.hidden = !open;
     menuButton.setAttribute("aria-expanded", String(open));
     menuButton.setAttribute("aria-label", open ? "모바일 메뉴 닫기" : "모바일 메뉴 열기");
-    menuButton.innerHTML = open ? '<i class="ri-close-line"></i>' : '<i class="ri-menu-3-line"></i>';
+    menuButton.innerHTML = open
+      ? '<i class="ri-close-line" aria-hidden="true"></i>'
+      : '<i class="ri-menu-3-line" aria-hidden="true"></i>';
     body.classList.toggle("menu-open", open);
+    setPageInert(open);
+
+    if (open) {
+      window.requestAnimationFrame(function () {
+        var firstLink = mobileNav.querySelector("a, button");
+        if (firstLink) firstLink.focus();
+      });
+    } else if (restoreFocus && typeof menuButton.focus === "function") {
+      menuButton.focus();
+    }
   }
 
   if (menuButton && mobileNav) {
     menuButton.addEventListener("click", function () {
-      setMenu(mobileNav.hidden);
+      setMenu(mobileNav.hidden, false);
     });
 
     mobileNav.addEventListener("click", function (event) {
-      if (event.target.closest("a")) setMenu(false);
+      if (event.target.closest("a") && !event.target.closest(".toggle-search")) setMenu(false, false);
+    });
+
+    window.addEventListener("minnong-search-open", function () { setMenu(false, false); });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 767 && !mobileNav.hidden) setMenu(false, false);
+    }, { passive: true });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !mobileNav.hidden) {
+        event.preventDefault();
+        setMenu(false, true);
+        return;
+      }
+
+      if (event.key !== "Tab" || mobileNav.hidden) return;
+      var focusable = Array.prototype.slice.call(mobileNav.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        menuButton.focus();
+      } else if (event.shiftKey && document.activeElement === menuButton) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        menuButton.focus();
+      } else if (!event.shiftKey && document.activeElement === menuButton) {
+        event.preventDefault();
+        first.focus();
+      }
     });
   }
-
-  function closeSearch() {
-    if (!searchLayer) return;
-    searchLayer.classList.add("is-hidden");
-    body.classList.remove("search-open");
-  }
-
-  if (searchClose) searchClose.addEventListener("click", closeSearch);
-  if (searchLayer) {
-    searchLayer.addEventListener("click", function (event) {
-      if (event.target === searchLayer) closeSearch();
-    });
-  }
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeSearch();
-      setMenu(false);
-    }
-
-    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k" && searchLayer) {
-      event.preventDefault();
-      searchLayer.classList.remove("is-hidden");
-      body.classList.add("search-open");
-      if (searchInput) searchInput.focus();
-    }
-  });
 
   var revealItems = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -103,7 +143,7 @@
   var backToTop = document.querySelector(".back-to-top");
   if (backToTop) {
     backToTop.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     });
   }
 
@@ -116,36 +156,33 @@
     copyToast.textContent = message;
     copyToast.classList.add("is-visible");
     clearTimeout(copyTimer);
-    copyTimer = window.setTimeout(function () {
-      copyToast.classList.remove("is-visible");
-    }, 1600);
+    copyTimer = window.setTimeout(function () { copyToast.classList.remove("is-visible"); }, 1600);
   }
 
   if (copyButton) {
     copyButton.addEventListener("click", function () {
       var url = copyButton.getAttribute("data-url") || window.location.href;
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(url).then(function () {
-          showCopyToast("링크를 복사했습니다.");
-        }).catch(function () {
-          showCopyToast("주소창의 링크를 복사해 주세요.");
-        });
-      } else {
-        var input = document.createElement("textarea");
-        input.value = url;
-        input.setAttribute("readonly", "");
-        input.style.position = "fixed";
-        input.style.opacity = "0";
-        document.body.appendChild(input);
-        input.select();
-        try {
-          document.execCommand("copy");
-          showCopyToast("링크를 복사했습니다.");
-        } catch (e) {
-          showCopyToast("주소창의 링크를 복사해 주세요.");
-        }
-        input.remove();
+        navigator.clipboard.writeText(url)
+          .then(function () { showCopyToast("링크를 복사했습니다."); })
+          .catch(function () { showCopyToast("주소창의 링크를 복사해 주세요."); });
+        return;
       }
+
+      var input = document.createElement("textarea");
+      input.value = url;
+      input.setAttribute("readonly", "");
+      input.style.position = "fixed";
+      input.style.opacity = "0";
+      document.body.appendChild(input);
+      input.select();
+      try {
+        document.execCommand("copy");
+        showCopyToast("링크를 복사했습니다.");
+      } catch (error) {
+        showCopyToast("주소창의 링크를 복사해 주세요.");
+      }
+      input.remove();
     });
   }
 
@@ -189,7 +226,6 @@
           });
         });
       }, { rootMargin: "-20% 0px -70%", threshold: 0 });
-
       headings.forEach(function (heading) { headingObserver.observe(heading); });
     }
   }
@@ -202,13 +238,20 @@
       lightbox.setAttribute("role", "dialog");
       lightbox.setAttribute("aria-modal", "true");
       lightbox.setAttribute("aria-label", "이미지 크게 보기");
-      lightbox.innerHTML = '<button type="button" aria-label="닫기"><i class="ri-close-line"></i></button><img alt="" />';
+      lightbox.setAttribute("aria-hidden", "true");
+      lightbox.innerHTML = '<button type="button" aria-label="닫기"><i class="ri-close-line" aria-hidden="true"></i></button><img alt="" />';
       document.body.appendChild(lightbox);
 
       var lightboxImage = lightbox.querySelector("img");
+      var lightboxClose = lightbox.querySelector("button");
+      var sourceImage = null;
+
       function closeLightbox() {
+        if (lightbox.classList.contains("is-hidden")) return;
         lightbox.classList.add("is-hidden");
+        lightbox.setAttribute("aria-hidden", "true");
         body.classList.remove("lightbox-open");
+        if (sourceImage) sourceImage.focus();
       }
 
       contentImages.forEach(function (image) {
@@ -216,10 +259,13 @@
         image.setAttribute("role", "button");
         image.setAttribute("aria-label", (image.alt || "본문 이미지") + " 크게 보기");
         function openImage() {
+          sourceImage = image;
           lightboxImage.src = image.currentSrc || image.src;
           lightboxImage.alt = image.alt || "";
           lightbox.classList.remove("is-hidden");
+          lightbox.setAttribute("aria-hidden", "false");
           body.classList.add("lightbox-open");
+          lightboxClose.focus();
         }
         image.addEventListener("click", openImage);
         image.addEventListener("keydown", function (event) {
@@ -230,7 +276,7 @@
         });
       });
 
-      lightbox.querySelector("button").addEventListener("click", closeLightbox);
+      lightboxClose.addEventListener("click", closeLightbox);
       lightbox.addEventListener("click", function (event) {
         if (event.target === lightbox) closeLightbox();
       });

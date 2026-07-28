@@ -2,16 +2,17 @@
 layout: default
 ---
 <section class="page-hero{% if page.hide_page_title %} page-hero-hidden{% endif %}">
-  <div class="site-shell narrow-shell">
+  <div class="site-shell page-hero-grid">
     {% unless page.hide_page_title %}
-      <div class="eyebrow reveal">MINNONG'S STUDY LOG · PAGE</div>
-      <h1 class="page-title reveal">{{ page.title }}</h1>
+      <span class="page-index reveal">MINNONG · INDEX</span>
+      <h1 class="page-title reveal" data-delay="1">{{ page.title }}</h1>
+      <p class="page-hero-note reveal" data-delay="2">Study notes, references and records.</p>
     {% endunless %}
   </div>
 </section>
 
 <section class="page-section">
-  <div class="site-shell narrow-shell">
+  <div class="site-shell page-content-grid">
     <article class="page-card prose reveal">
       {{ content }}
     </article>
