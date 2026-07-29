@@ -202,34 +202,23 @@ html.js .reveal.is-visible {
 .masthead-row {
   position: relative;
   display: flex;
-  min-height: 158px;
-  align-items: flex-end;
+  min-height: 108px;
+  align-items: center;
   justify-content: space-between;
-  padding-top: 26px;
-  padding-bottom: 14px;
+  padding-block: 27px;
 }
 
 .masthead-brand {
-  display: flex;
+  display: block;
   min-width: 0;
-  align-items: flex-end;
-  gap: 16px;
-  letter-spacing: -.075em;
-  line-height: .76;
+  line-height: 0;
 }
 
-.masthead-brand > span {
-  font-size: clamp(82px, 10.2vw, 138px);
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.masthead-brand small {
-  padding-bottom: 5px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: .06em;
-  line-height: 1;
+.masthead-logo {
+  display: block;
+  width: 209px;
+  height: 53px;
+  color: var(--ink);
 }
 
 .header-actions {
@@ -251,6 +240,10 @@ html.js .reveal.is-visible {
   color: var(--ink);
   cursor: pointer;
   font-size: 20px;
+}
+
+.site-header .owner-entry {
+  border: 0;
 }
 
 .icon-button:hover {
@@ -452,6 +445,10 @@ html[data-theme="dark"] .theme-icon-dark {
   word-break: keep-all;
 }
 
+.archive-item strong {
+  line-height: 1.3;
+}
+
 .search-result-item time,
 .archive-item time {
   color: var(--muted);
@@ -466,6 +463,10 @@ html[data-theme="dark"] .theme-icon-dark {
   font-size: 15px;
   overflow-wrap: anywhere;
   word-break: keep-all;
+}
+
+.archive-item span {
+  line-height: 1.55;
 }
 
 .search-hint,
@@ -1948,11 +1949,12 @@ html[data-theme="dark"] .site-footer {
 /* Tablet */
 @media (max-width: 1023px) {
   .masthead-row {
-    min-height: 132px;
+    min-height: 100px;
   }
 
-  .masthead-brand > span {
-    font-size: clamp(70px, 10vw, 104px);
+  .masthead-logo {
+    width: 174px;
+    height: auto;
   }
 
   .home-introduction-title {
@@ -2041,19 +2043,12 @@ html[data-theme="dark"] .site-footer {
   }
 
   .masthead-brand {
-    gap: 8px;
-    align-items: baseline;
-    line-height: 1;
+    line-height: 0;
   }
 
-  .masthead-brand > span {
-    font-size: 28px;
-    letter-spacing: -.055em;
-  }
-
-  .masthead-brand small {
-    padding: 0;
-    font-size: 8px;
+  .masthead-logo {
+    width: 138px;
+    height: auto;
   }
 
   .header-actions {
@@ -2590,7 +2585,6 @@ html[data-theme="dark"] .site-footer {
     --page-gutter: 20px;
   }
 
-  .masthead-brand small,
   .theme-toggle {
     display: none;
   }
