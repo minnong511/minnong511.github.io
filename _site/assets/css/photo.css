@@ -1,0 +1,443 @@
+/* Photo archive — isolated fullscreen layouts */
+.photo-immersive .site-main,
+.photo-immersive .page-section {
+  padding: 0;
+}
+
+.photo-immersive .page-content-grid {
+  display: block;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+.photo-immersive .page-card {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.photo-immersive .page-card > p:empty {
+  display: none;
+}
+
+.photo-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: var(--rule-strong);
+}
+
+.photo-page-header .container {
+  position: relative;
+  width: min(100%, calc(var(--site-max) + (var(--page-gutter) * 2)));
+  min-height: 142px;
+  margin-inline: auto;
+  padding: 24px var(--page-gutter) 16px;
+}
+
+.photo-page-header-tools {
+  position: absolute;
+  top: 22px;
+  right: var(--page-gutter);
+}
+
+.photo-page-home,
+.photo-page-title-button,
+.photo-post-focus-back,
+.photo-post-hero-fade-btn {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.photo-page-home,
+.photo-post-focus-back {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: var(--rule);
+  font-size: 22px;
+}
+
+.photo-page-home:hover,
+.photo-post-focus-back:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.photo-page-header-title {
+  margin: 0;
+  line-height: .75;
+}
+
+.photo-page-title-button {
+  padding: 0;
+  font-size: clamp(64px, 9vw, 122px);
+  font-weight: 500;
+  letter-spacing: -.075em;
+  line-height: .78;
+  text-align: left;
+}
+
+.photo-home-list-wrap {
+  width: min(100%, calc(var(--site-max) + (var(--page-gutter) * 2)));
+  margin-inline: auto;
+  padding: 64px var(--page-gutter) 112px;
+}
+
+.photo-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 72px 24px;
+}
+
+.photo-album-card {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.photo-album-cover {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.photo-album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: filter .25s ease, transform .35s ease;
+}
+
+.photo-album-card:hover .photo-album-cover img,
+.photo-album-card:focus-visible .photo-album-cover img {
+  filter: grayscale(0%);
+  transform: scale(1.015);
+}
+
+.photo-album-card-meta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 18px;
+  padding-top: 13px;
+  border-top: var(--rule);
+}
+
+.photo-album-card-title {
+  margin: 0;
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: 1;
+}
+
+.photo-album-date,
+.photo-album-card-description {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.photo-album-date {
+  text-align: right;
+}
+
+.photo-album-card-description {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+/* Fullscreen photo detail */
+.photo-post-focus {
+  overflow: hidden;
+}
+
+.photo-post-focus .site-main {
+  height: 100dvh;
+}
+
+.photo-post-focus-app {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.photo-post-focus-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(240px, 3fr);
+  gap: 32px;
+  width: 100%;
+  height: 100dvh;
+  padding: 74px 48px 48px;
+}
+
+.photo-post-focus-center {
+  display: grid;
+  min-width: 0;
+  place-items: center;
+}
+
+.photo-post-focus-image-frame {
+  display: grid;
+  width: 100%;
+  height: calc(100dvh - 122px);
+  place-items: center;
+  overflow: hidden;
+}
+
+.photo-post-focus-image {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity .36s ease, transform .36s ease;
+}
+
+.photo-post-focus-image.is-leaving {
+  transform: translateY(-18px);
+  opacity: 0;
+}
+
+.photo-post-focus-image.is-entering {
+  animation: photo-enter .62s ease both;
+}
+
+@keyframes photo-enter {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.photo-post-focus-right {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 6px;
+  border-bottom: var(--rule-strong);
+}
+
+.photo-post-focus-title {
+  margin: 0 0 8px;
+  font-size: clamp(30px, 3vw, 45px);
+  letter-spacing: -.04em;
+  line-height: 1;
+}
+
+.photo-post-focus-meta,
+.photo-post-focus-extra,
+.photo-post-focus-counter,
+.photo-post-focus-location {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.photo-post-focus-extra {
+  margin-top: 3px;
+}
+
+.photo-post-focus-counter {
+  margin-top: 32px;
+  padding-top: 10px;
+  border-top: var(--rule);
+}
+
+.photo-post-focus-top-right,
+.photo-post-focus-location-top-left {
+  position: fixed;
+  top: 18px;
+  z-index: 12;
+}
+
+.photo-post-focus-top-right {
+  right: 24px;
+}
+
+.photo-post-focus-location-top-left {
+  top: 30px;
+  left: 48px;
+}
+
+.photo-post-hero {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+  color: var(--ink);
+  transition: opacity .7s ease, visibility .7s ease;
+}
+
+.photo-post-hero.is-faded {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.photo-post-hero-inner {
+  width: min(760px, calc(100% - 48px));
+  text-align: center;
+}
+
+.photo-post-hero-title {
+  margin: 0;
+  font-size: clamp(62px, 10vw, 132px);
+  font-weight: 400;
+  letter-spacing: -.07em;
+  line-height: .84;
+}
+
+.photo-post-hero-date {
+  margin: 18px 0 0;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.photo-post-hero-fade-btn {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin: 38px auto 0;
+  place-items: center;
+  border: var(--rule);
+  font-size: 28px;
+}
+
+.photo-post-hero-fade-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.photo-post-hero-flag {
+  display: none;
+  width: 60px;
+  margin: 0 auto 24px;
+}
+
+.photo-post-hero-flag.is-visible {
+  display: block;
+}
+
+.photo-post-hero-flag-image {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+}
+
+@media (max-width: 767px) {
+  .photo-immersive:not(.photo-post-focus) .site-main {
+    padding-top: var(--header-mobile);
+  }
+
+  .photo-immersive:not(.photo-post-focus) .photo-page-header {
+    top: var(--header-mobile);
+  }
+
+  .photo-page-header .container {
+    min-height: 90px;
+    padding-top: 18px;
+    padding-bottom: 12px;
+  }
+
+  .photo-page-header-tools {
+    top: 14px;
+  }
+
+  .photo-page-title-button {
+    padding-top: 36px;
+    font-size: clamp(44px, 14vw, 66px);
+  }
+
+  .photo-home-list-wrap {
+    padding-top: 40px;
+    padding-bottom: 72px;
+  }
+
+  .photo-archive-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .photo-album-card-title {
+    font-size: 31px;
+  }
+
+  .photo-post-focus-layout {
+    display: flex;
+    height: 100dvh;
+    flex-direction: column;
+    gap: 20px;
+    padding: 70px var(--page-gutter) 22px;
+  }
+
+  .photo-post-focus-center {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .photo-post-focus-image-frame {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .photo-post-focus-right {
+    flex: 0 0 auto;
+    padding-bottom: 12px;
+  }
+
+  .photo-post-focus-location-top-left {
+    top: 27px;
+    left: var(--page-gutter);
+    max-width: calc(100% - 100px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .photo-post-focus-top-right {
+    top: 12px;
+    right: var(--page-gutter);
+  }
+
+  .photo-post-focus-title {
+    font-size: 27px;
+  }
+
+  .photo-post-focus-counter {
+    margin-top: 16px;
+  }
+
+  .photo-post-hero-title {
+    font-size: clamp(56px, 18vw, 82px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-post-focus-image,
+  .photo-post-hero {
+    animation: none !important;
+    transition: none !important;
+  }
+}

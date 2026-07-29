@@ -2,11 +2,13 @@
 layout: default
 ---
 <section class="page-hero{% if page.hide_page_title %} page-hero-hidden{% endif %}">
-  <div class="site-shell page-hero-grid">
+  <div class="site-shell page-hero-grid{% if page.hide_page_index %} page-hero-grid-simple{% endif %}">
     {% unless page.hide_page_title %}
-      <span class="page-index reveal">MINNONG · INDEX</span>
+      {% unless page.hide_page_index %}
+        <span class="page-index reveal">MINNONG · INDEX</span>
+      {% endunless %}
       <h1 class="page-title reveal" data-delay="1">{{ page.title }}</h1>
-      <p class="page-hero-note reveal" data-delay="2">Study notes, references and records.</p>
+      <p class="page-hero-note reveal" data-delay="2">{{ page.page_hero_note | default: "Study notes, references and records." }}</p>
     {% endunless %}
   </div>
 </section>

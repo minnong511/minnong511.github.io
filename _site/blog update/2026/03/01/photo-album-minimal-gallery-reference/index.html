@@ -7,16 +7,17 @@
     <title>6. 포토앨범 제작 · Minnong's Study Log</title>
     <meta name="description" content="이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다." />
     <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
-
+    
     <meta property="og:type" content="article" />
     <meta property="og:title" content="6. 포토앨범 제작" />
     <meta property="og:description" content="이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다." />
-    <meta property="og:url" content="https://minnong511.github.io/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/" />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1400&q=80" />
+    <meta property="og:url" content="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <script>
       (function () {
+        document.documentElement.classList.add('js');
         try {
           var savedTheme = localStorage.getItem('minnong-theme');
           document.documentElement.dataset.theme = savedTheme || 'light';
@@ -27,11 +28,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=5" />
-
-    <link rel="stylesheet" href="/assets/css/museum-modern.css?v=5" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=6" />
+    
+    
   </head>
   <body
     class="site-body"
@@ -41,76 +42,80 @@
     data-owner-branch="master"
   >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
-    <div id="study-space" class="study-space" aria-hidden="true"></div>
-    <div class="site-noise" aria-hidden="true"></div>
-
-
-      <div class="search-layer is-hidden" id="searchLayer" aria-label="사이트 검색">
-        <div class="search-shell">
+    
+      <div class="search-layer is-hidden" id="searchLayer" role="dialog" aria-modal="true" aria-labelledby="searchTitle" aria-hidden="true">
+        <div class="site-shell search-shell">
           <div class="search-topline">
-            <span class="mono-label">QUICK SEARCH</span>
-            <button class="search-close" type="button" aria-label="검색 닫기"><i class="ri-close-line"></i></button>
+            <p class="search-wordmark" id="searchTitle">Search Minnong</p>
+            <button class="search-close" type="button" aria-label="검색 닫기"><span aria-hidden="true">Close</span><i class="ri-close-line" aria-hidden="true"></i></button>
           </div>
-          <form action="/search/" method="get" class="search-form">
-            <i class="ri-search-line" aria-hidden="true"></i>
-            <input class="search-input" type="search" name="q" placeholder="무엇을 공부했는지 찾아보세요" autocomplete="off" />
+          <form action="/search/" method="get" class="search-form" role="search">
+            <label class="sr-only" for="globalSearchInput">사이트 검색</label>
+            <input id="globalSearchInput" class="search-input" type="search" name="q" placeholder="검색어를 입력하세요" autocomplete="off" />
+            <button type="submit" aria-label="검색"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
           </form>
-          <div class="search-live-results" id="searchLiveResults"></div>
-          <p class="search-hint"><kbd>ESC</kbd> 닫기 · 제목, 태그, 본문 검색</p>
+          <div class="search-live-results" id="searchLiveResults" aria-live="polite"></div>
+          <p class="search-hint">제목, 태그, 본문에서 검색합니다. <kbd>ESC</kbd>로 닫기</p>
         </div>
       </div>
 
       <header class="site-header" id="siteHeader">
-        <div class="site-shell header-inner">
-          <a class="brand" href="/" aria-label="Minnong's Study Log 홈">
-            <span class="brand-mark" aria-hidden="true">M/</span>
-            <span class="brand-copy">
-              <strong>MINNONG</strong>
-              <small>STUDY ARCHIVE</small>
-            </span>
+        <div class="site-shell masthead-row">
+          <a class="masthead-brand" href="/" aria-label="Minnong Study Log 홈">
+            <span>MINNONG</span>
+            <small>STUDY LOG</small>
           </a>
+          <div class="header-actions">
+            <a class="icon-button owner-entry" href="/write/" aria-label="소유자 로그인" title="Owner access"><i class="ri-lock-2-line" aria-hidden="true"></i></a>
+            <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경" aria-pressed="false">
+              <i class="ri-sun-line theme-icon-light" aria-hidden="true"></i>
+              <i class="ri-moon-clear-line theme-icon-dark" aria-hidden="true"></i>
+            </button>
+            <button class="icon-button toggle-search" type="button" aria-label="검색 열기" aria-controls="searchLayer" aria-expanded="false"><i class="ri-search-line" aria-hidden="true"></i></button>
+            <button class="icon-button menu-toggle" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" aria-controls="mobileNav">
+              <i class="ri-menu-3-line" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
 
+        <div class="site-shell nav-row">
           <nav class="desktop-nav" aria-label="주요 메뉴">
             <a href="/">Notes</a>
             <a href="/tags/">Topics</a>
             <a href="/archive/">Archive</a>
             <a href="/about/">About</a>
             <a href="/photostream/">Photo</a>
-            <a class="nav-write owner-only" data-owner-only href="/write/" hidden><i class="ri-quill-pen-line"></i> Write</a>
+            <a class="nav-write owner-only" data-owner-only href="/write/" hidden>Write</a>
           </nav>
-
-          <div class="header-actions">
-            <a class="icon-button owner-entry" href="/write/" aria-label="소유자 로그인" title="Owner access"><i class="ri-lock-2-line"></i></a>
-            <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경">
-              <i class="ri-sun-line theme-icon-light"></i>
-              <i class="ri-moon-clear-line theme-icon-dark"></i>
-            </button>
-            <button class="icon-button toggle-search" type="button" aria-label="검색 열기"><i class="ri-search-line"></i></button>
-            <button class="icon-button menu-toggle" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" aria-controls="mobileNav">
-              <i class="ri-menu-3-line"></i>
-            </button>
-          </div>
         </div>
 
-        <nav class="mobile-nav" id="mobileNav" aria-label="모바일 메뉴" hidden>
-          <a href="/"><span>01</span> Notes</a>
-          <a href="/tags/"><span>02</span> Topics</a>
-          <a href="/archive/"><span>03</span> Archive</a>
-          <a href="/about/"><span>04</span> About</a>
-          <a href="/photostream/"><span>05</span> Photo</a>
-          <a class="mobile-owner-entry" href="/write/"><span>06</span> Owner</a>
-          <a class="owner-only" data-owner-only href="/write/" hidden><span>07</span> Write</a>
-        </nav>
+        <div class="mobile-nav" id="mobileNav" hidden>
+          <div class="site-shell mobile-nav-inner">
+            <nav class="mobile-nav-primary" aria-label="모바일 주요 메뉴">
+              <a href="/"><span>01</span><strong>Notes</strong></a>
+              <a href="/tags/"><span>02</span><strong>Topics</strong></a>
+              <a href="/archive/"><span>03</span><strong>Archive</strong></a>
+              <a href="/about/"><span>04</span><strong>About</strong></a>
+              <a href="/photostream/"><span>05</span><strong>Photo</strong></a>
+            </nav>
+            <div class="mobile-nav-utility">
+              <button class="mobile-search-trigger toggle-search" type="button" aria-controls="searchLayer" aria-expanded="false"><i class="ri-search-line" aria-hidden="true"></i> Search</button>
+              <a class="mobile-owner-entry" href="/write/"><i class="ri-lock-2-line" aria-hidden="true"></i> Owner</a>
+              <a class="owner-only" data-owner-only href="/write/" hidden><i class="ri-quill-pen-line" aria-hidden="true"></i> Write</a>
+            </div>
+            <p class="mobile-nav-note">Development, AI, computer science<br />and everything learned in between.</p>
+          </div>
+        </div>
       </header>
-
+    
 
     <main id="main-content" class="site-main">
-
+      
 
 <article class="post-layout">
   <header class="post-hero">
     <div class="site-shell post-shell">
-      <a class="post-back reveal" href="/"><i class="ri-arrow-left-line"></i> 모든 노트</a>
+      <a class="post-back reveal" href="/"><i class="ri-arrow-left-line" aria-hidden="true"></i> 모든 노트</a>
       <div class="post-heading reveal">
         <div class="post-meta-line">
           <span>Blog update</span>
@@ -118,19 +123,19 @@
           <span>1 MIN READ</span>
         </div>
         <h1>6. 포토앨범 제작</h1>
-
+        
           <p class="post-deck">이번 업데이트에서는 포토 앨범 사이트를 새롭게 제작했다.
 
 </p>
-
+        
       </div>
 
-
+      
         <figure class="post-cover reveal" data-delay="1">
-          <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=1400&q=80" alt="6. 포토앨범 제작 대표 이미지" />
+          <img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="6. 포토앨범 제작" />
           <figcaption><span>VISUAL NOTE</span><span>MINNONG ARCHIVE</span></figcaption>
         </figure>
-
+      
     </div>
   </header>
 
@@ -138,10 +143,10 @@
     <aside class="post-side" aria-label="글 정보">
       <div class="post-side-inner">
         <span class="mono-label">ON THIS PAGE</span>
-        <nav class="post-toc" id="postToc"><ol id="postTocList"></ol></nav>
+        <nav class="post-toc" id="postToc" aria-label="이 글의 목차"><ol id="postTocList"></ol></nav>
         <div class="post-side-share">
           <span class="mono-label">SHARE</span>
-          <button class="copy-url" type="button" data-url="https://minnong511.github.io/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/"><i class="ri-link"></i> 링크 복사</button>
+          <button class="copy-url" type="button" data-url="http://localhost:4000/blog%20update/2026/03/01/photo-album-minimal-gallery-reference/"><i class="ri-link" aria-hidden="true"></i> 링크 복사</button>
         </div>
       </div>
     </aside>
@@ -170,17 +175,17 @@
 
       </div>
 
-
+      
         <div class="post-tags">
           <span class="mono-label">FILED UNDER</span>
           <div>
-
-
+            
+              
               <a href="/tags/#blog-update">#blog update</a>
-
+            
           </div>
         </div>
-
+      
 
       <div class="post-author-card">
         <div class="author-monogram">MH</div>
@@ -189,10 +194,10 @@
           <h2>Min Hyeong Lee</h2>
           <p>배운 것을 직접 설명할 수 있을 때까지 기록합니다.</p>
         </div>
-        <a href="/about/">ABOUT <i class="ri-arrow-right-line"></i></a>
+        <a href="/about/">ABOUT <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       </div>
 
-
+      
         <section class="comments-panel">
           <div class="comments-heading">
             <span class="section-index">+</span>
@@ -209,14 +214,14 @@
             data-reactions-enabled="1"
             data-emit-metadata="0"
             data-input-position="top"
-            data-theme="transparent_dark"
+            data-theme="light"
             data-lang="ko"
             data-loading="lazy"
             crossorigin="anonymous"
             async>
           </script>
         </section>
-
+      
     </div>
   </div>
 </article>
@@ -227,62 +232,62 @@
       <div><span class="section-index">+</span><h2>Keep Learning</h2></div>
     </header>
     <div class="related-grid">
-
-
-
-
-
-
+      
+      
+        
+      
+        
+          
             <a class="related-card" href="/blog%20update/2026/02/26/maintenance-part-5/">
               <span>Blog update</span>
               <h3>5. 유지보수</h3>
-              <time>2026.02.26</time>
-              <i class="ri-arrow-right-up-line"></i>
+              <time datetime="2026-02-26T13:30:00+09:00">2026.02.26</time>
+              <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
             </a>
-
-
-
-
-
-
+            
+          
+        
+      
+        
+          
             <a class="related-card" href="/blog%20update/2026/02/26/convenience-improvements-part-4/">
               <span>Blog update</span>
               <h3>4. 편의성 개선</h3>
-              <time>2026.02.26</time>
-              <i class="ri-arrow-right-up-line"></i>
+              <time datetime="2026-02-26T12:30:00+09:00">2026.02.26</time>
+              <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
             </a>
-
-
-
-
-
-
+            
+          
+        
+      
+        
+          
             <a class="related-card" href="/blog%20update/2026/02/26/library-module-build/">
               <span>Blog update</span>
               <h3>3.라이브러리 제작</h3>
-              <time>2026.02.26</time>
-              <i class="ri-arrow-right-up-line"></i>
+              <time datetime="2026-02-26T11:30:00+09:00">2026.02.26</time>
+              <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
             </a>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
   </div>
 </section>
@@ -291,52 +296,48 @@
 
     </main>
 
-
+    
       <footer class="site-footer">
-  <div class="site-shell">
-    <div class="footer-top">
-      <div>
-        <span class="brand-mark footer-mark" aria-hidden="true">M<span>/</span></span>
-        <p>오늘 배운 것을<br />내일의 기반으로.</p>
-      </div>
-      <div class="footer-nav">
-        <span class="mono-label">NAVIGATE</span>
+  <div class="site-shell footer-shell">
+    <div class="footer-link-grid">
+      <nav class="footer-nav" aria-label="푸터 메뉴">
+        <span class="footer-label">Explore</span>
         <a href="/">Notes</a>
         <a href="/tags/">Topics</a>
         <a href="/archive/">Archive</a>
         <a href="/about/">About</a>
-        <a class="owner-only" data-owner-only href="/write/" hidden>Write</a>
-        <a class="footer-owner-entry" href="/write/"><i class="ri-lock-2-line"></i> Owner</a>
-      </div>
-      <div class="footer-nav">
-        <span class="mono-label">CONNECT</span>
+        <a href="/photostream/">Photo</a>
+      </nav>
+
+      <nav class="footer-nav" aria-label="소셜 링크">
+        <span class="footer-label">Connect</span>
         <a href="https://github.com/minnong511" target="_blank" rel="noreferrer">GitHub <i class="ri-arrow-right-up-line"></i></a>
         <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer">LinkedIn <i class="ri-arrow-right-up-line"></i></a>
         <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer">Instagram <i class="ri-arrow-right-up-line"></i></a>
-      </div>
-      <div class="footer-status">
-        <span class="mono-label">STATUS</span>
-        <p><span class="status-dot"></span> Learning &amp; building</p>
-        <a href="mailto:kzxx1234@gmail.com">kzxx1234@gmail.com</a>
+      </nav>
+
+      <div class="footer-nav footer-owner">
+        <span class="footer-label">Studio</span>
+        <a class="footer-owner-entry" href="/write/"><i class="ri-lock-2-line"></i> Owner</a>
+        <a class="owner-only" data-owner-only href="/write/" hidden>Write <i class="ri-arrow-right-line"></i></a>
+        <a href="mailto:kzxx1234@gmail.com">Email</a>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>© 2026 Min Hyeong Lee</span>
-      <span>BUILT WITH CURIOSITY · SEOUL</span>
-      <button class="back-to-top" type="button">TOP <i class="ri-arrow-up-line"></i></button>
+      <button class="back-to-top" type="button">Back to top <i class="ri-arrow-up-line"></i></button>
     </div>
   </div>
 </footer>
 
+    
 
-
-
-      <script src="/assets/js/site-search.js?v=5"></script>
-
-    <script src="/assets/js/blog-ui.js?v=5"></script>
-
-      <script type="module" src="/assets/js/ambient-three.js?v=5"></script>
-
-
+    
+      <script src="/assets/js/site-search.js?v=6"></script>
+    
+    <script src="/assets/js/blog-ui.js?v=6"></script>
+    
+    
   </body>
 </html>
