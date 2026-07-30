@@ -16,4 +16,5 @@ layout: default
     {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>PREVIOUS</span><strong>{{ page.previous.title }}</strong></a>{% endif %}
     {% if page.next %}<a href="{{ page.next.url | relative_url }}"><span>NEXT</span><strong>{{ page.next.title }}</strong></a>{% endif %}
   </nav>
+  {% include comments.html %}
 </article>

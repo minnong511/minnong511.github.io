@@ -4,6 +4,9 @@
   if (!app) return;
   var contextPanel = document.getElementById("contextPanel");
   var contextToggle = document.getElementById("ideContextToggle");
+  var mobileMenu = document.getElementById("ideMobileMenu");
+  var explorerBackdrop = document.getElementById("explorerBackdrop");
+  var mobileViewport = window.matchMedia("(max-width: 767px)");
   var contextVisible = true;
   try { contextVisible = localStorage.getItem("ide-context-visible") !== "false"; } catch (error) {}
 
@@ -24,13 +27,54 @@
   }
   setContextVisible(contextVisible);
 
-  var mobileMenu = document.getElementById("ideMobileMenu");
+  function syncExplorerState(open, restoreFocus) {
+    var isMobile = mobileViewport.matches;
+    var isOpen = Boolean(open) && isMobile;
+    if (isMobile) {
+      app.classList.toggle("sidebar-collapsed", !isOpen);
+      app.classList.toggle("explorer-open", isOpen);
+    }
+    if (mobileMenu) mobileMenu.setAttribute("aria-expanded", String(isOpen));
+    if (explorerBackdrop) explorerBackdrop.hidden = !isOpen;
+    document.body.classList.toggle("ide-explorer-lock", isOpen);
+    if (!isOpen && restoreFocus && isMobile && mobileMenu) mobileMenu.focus();
+  }
+
+  function syncViewportState() {
+    if (mobileViewport.matches) {
+      syncExplorerState(false, false);
+      return;
+    }
+    app.classList.remove("sidebar-collapsed", "explorer-open");
+    if (mobileMenu) mobileMenu.setAttribute("aria-expanded", "false");
+    if (explorerBackdrop) explorerBackdrop.hidden = true;
+    document.body.classList.remove("ide-explorer-lock");
+  }
+
   if (mobileMenu) mobileMenu.addEventListener("click", function () {
-    var open = app.classList.contains("sidebar-collapsed") || !app.classList.contains("explorer-open");
-    app.classList.toggle("sidebar-collapsed", !open);
-    app.classList.toggle("explorer-open", open);
-    mobileMenu.setAttribute("aria-expanded", String(open));
+    var open = !app.classList.contains("explorer-open");
+    syncExplorerState(open, false);
   });
+  if (explorerBackdrop) explorerBackdrop.addEventListener("click", function () { syncExplorerState(false, true); });
+  document.addEventListener("click", function (event) {
+    if (mobileViewport.matches && app.classList.contains("explorer-open") && event.target.closest(".ide-tree-post, .ide-sidebar-result")) {
+      syncExplorerState(false, true);
+    }
+  });
+  document.addEventListener("ide:sidebar-state", function (event) {
+    var open = event.detail && event.detail.open;
+    syncExplorerState(open, !open);
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && mobileViewport.matches && app.classList.contains("explorer-open")) {
+      event.preventDefault();
+      syncExplorerState(false, true);
+    }
+  });
+  var handleViewportChange = function () { syncViewportState(); };
+  if (mobileViewport.addEventListener) mobileViewport.addEventListener("change", handleViewportChange);
+  else if (mobileViewport.addListener) mobileViewport.addListener(handleViewportChange);
+  syncViewportState();
   document.querySelectorAll("[data-toggle-theme]").forEach(function (button) {
     button.addEventListener("click", function () { var themeButton = document.getElementById("ideThemeToggle"); if (themeButton) themeButton.click(); });
   });

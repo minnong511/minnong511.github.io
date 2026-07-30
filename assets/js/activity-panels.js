@@ -13,6 +13,7 @@
   function setOpen(open) {
     app.classList.toggle("sidebar-collapsed", !open);
     app.classList.toggle("explorer-open", open);
+    document.dispatchEvent(new CustomEvent("ide:sidebar-state", { detail: { open: Boolean(open) } }));
   }
 
   function showPanel(name, open) {

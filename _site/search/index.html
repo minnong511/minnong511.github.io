@@ -57,7 +57,6 @@
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <a class="ide-icon-button" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noreferrer" aria-label="GitHub 저장소" title="GitHub"><i class="ri-github-line" aria-hidden="true"></i></a>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -75,6 +74,7 @@
   </nav>
   <nav aria-label="계정 및 저장소">
     <button class="ide-activity-item" type="button" data-activity-panel="about" aria-controls="explorerPanel" aria-pressed="false" aria-label="소개와 바로가기" title="소개와 바로가기"><i class="ri-settings-3-line" aria-hidden="true"></i><span>Manage</span></button>
+    <a class="ide-activity-item ide-activity-linkedin" href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="ri-linkedin-box-fill" aria-hidden="true"></i><span>LinkedIn</span></a>
     <a class="ide-activity-item ide-activity-github" href="https://github.com/minnong511" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub</span></a>
   </nav>
 </aside>
@@ -104,6 +104,54 @@
     </div>
     <div class="ide-tree" id="explorerTree" role="tree" aria-label="카테고리와 게시물">
       <div class="ide-tree-root"><i class="ri-folder-open-line" aria-hidden="true"></i><strong>BLOG</strong></div>
+      
+        
+        <section class="ide-tree-folder is-open" data-category="cs" data-folder-name="cs" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="CS 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>CS</span><small>1</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/cs/2026/07/30/cs-test/" role="treeitem" data-date="1785369600" data-title="cs 테스트" data-search="cs 테스트 &lt;p&gt;가&lt;/p&gt;
+ []" title="CS 테스트">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CS 테스트</span>
+              </a>
+            
+            
+          </div>
+        </section>
+      
+        
+        <section class="ide-tree-folder is-open" data-category="deep-learning" data-folder-name="deep_learning" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="Deep_Learning 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>1</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/deep_learning/2026/07/30/deep-learning-test/" role="treeitem" data-date="1785369660" data-title="deep learning 테스트" data-search="deep learning 테스트 &lt;p&gt;가&lt;/p&gt;
+ []" title="Deep Learning 테스트">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span>
+              </a>
+            
+            
+          </div>
+        </section>
+      
+        
+        <section class="ide-tree-folder is-open" data-category="db" data-folder-name="db" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="DB 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DB</span><small>1</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/db/2026/07/30/db-test/" role="treeitem" data-date="1785369720" data-title="db 테스트" data-search="db 테스트 &lt;p&gt;가&lt;/p&gt;
+ []" title="DB 테스트">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>DB 테스트</span>
+              </a>
+            
+            
+          </div>
+        </section>
       
     </div>
     <p class="ide-explorer-empty" id="explorerEmpty" hidden>검색 결과가 없습니다.</p>
@@ -176,6 +224,7 @@
   </section>
 </aside>
 
+        <button class="ide-explorer-backdrop" id="explorerBackdrop" type="button" aria-label="탐색기 닫기" hidden></button>
         <main id="main-content" class="ide-main">
           <div class="ide-tabs" id="editorTabs" role="tablist" aria-label="최근 게시물">
   <div class="ide-tabs-empty" id="tabsEmpty">열린 문서가 없습니다.</div>
@@ -272,6 +321,7 @@
       <script defer src="/assets/js/panel-resize.js?v=6"></script>
       <script defer src="/assets/js/command-palette.js?v=6"></script>
       <script defer src="/assets/js/ide-shell.js?v=6"></script>
+      <script defer src="/assets/js/comments.js?v=6"></script>
       
     
     

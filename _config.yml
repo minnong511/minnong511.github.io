@@ -17,6 +17,7 @@ plugins:
 
 owner_auth:
   github_login: "minnong511"
+  linkedin_url: "https://www.linkedin.com/in/min-hyeong-lee-225294270/"
   repository: "minnong511.github.io"
   branch: "master"
   token_url: "https://github.com/settings/personal-access-tokens/new"

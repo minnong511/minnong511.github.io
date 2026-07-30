@@ -7,7 +7,7 @@
   var body = document.body;
   var currentUrl = normalizeUrl(body.dataset.pageUrl || window.location.pathname);
   var currentTitle = body.dataset.pageTitle || "workspace";
-  var key = "minnong-tabs";
+  var key = "minnong-tabs-v2";
   var tabs = [];
 
   try { tabs = JSON.parse(localStorage.getItem(key) || "[]"); } catch (error) { tabs = []; }
@@ -49,6 +49,7 @@
   function render() {
     root.querySelectorAll(".ide-tab").forEach(function (tab) { tab.remove(); });
     if (empty) empty.hidden = tabs.length > 0;
+    root.classList.toggle("is-empty", tabs.length === 0);
     tabs.forEach(function (tab) {
       var item = document.createElement("div");
       var active = normalizeUrl(tab.url) === currentUrl;
@@ -107,10 +108,10 @@
       .then(function (response) { if (!response.ok) throw new Error("문서를 불러오지 못했습니다."); return response.text(); })
       .then(function (html) {
         var parsed = new DOMParser().parseFromString(html, "text/html");
+        if (pushHistory) window.history.pushState({ ideDocument: true }, "", targetUrl);
         updateDocument(parsed, targetUrl);
         var savedTab = addTab({ url: targetUrl, title: (parsed.body && parsed.body.dataset.pageTitle) || tab.title });
         if (savedTab && savedTab.title) currentTitle = savedTab.title;
-        if (pushHistory) window.history.pushState({ ideDocument: true }, "", targetUrl);
         render();
       })
       .catch(function () {
@@ -128,7 +129,6 @@
     else render();
   }
 
-  if (body.dataset.pageLayout === "post") addTab({ url: currentUrl, title: currentTitle });
   document.addEventListener("click", function (event) {
     var link = event.target.closest("a.ide-tree-post, a.ide-archive-row, a.ide-related-list a, a.ide-sidebar-result, a.ide-document-navigation a");
     if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target === "_blank") return;

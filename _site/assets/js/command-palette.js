@@ -46,7 +46,7 @@
     if (!recentRoot) return;
     var recent = [{ title: "Minnong's Study Log", detail: window.location.host || "workspace", icon: "ri-global-line", url: "/" }];
     try {
-      JSON.parse(localStorage.getItem("minnong-tabs") || "[]").forEach(function (item) { recent.push({ title: item.title, detail: "recently opened", icon: "ri-markdown-line", url: item.url }); });
+      JSON.parse(localStorage.getItem("minnong-tabs-v2") || "[]").forEach(function (item) { recent.push({ title: item.title, detail: "recently opened", icon: "ri-markdown-line", url: item.url }); });
     } catch (error) {}
     var unique = [];
     recent.forEach(function (item) { if (!unique.some(function (saved) { return saved.url === item.url; })) unique.push(item); });
