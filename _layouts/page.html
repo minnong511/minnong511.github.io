@@ -1,22 +1,7 @@
 ---
 layout: default
 ---
-<section class="page-hero{% if page.hide_page_title %} page-hero-hidden{% endif %}">
-  <div class="site-shell page-hero-grid{% if page.hide_page_index %} page-hero-grid-simple{% endif %}">
-    {% unless page.hide_page_title %}
-      {% unless page.hide_page_index %}
-        <span class="page-index reveal">MINNONG · INDEX</span>
-      {% endunless %}
-      <h1 class="page-title reveal" data-delay="1">{{ page.title }}</h1>
-      <p class="page-hero-note reveal" data-delay="2">{{ page.page_hero_note | default: "Study notes, references and records." }}</p>
-    {% endunless %}
-  </div>
-</section>
-
-<section class="page-section">
-  <div class="site-shell page-content-grid">
-    <article class="page-card prose reveal">
-      {{ content }}
-    </article>
-  </div>
+<section class="ide-page" aria-labelledby="pageTitle">
+  {% unless page.hide_page_title %}<header class="ide-document-header"><div class="ide-document-meta"><strong>PAGE</strong><span>MINNONG WORKSPACE</span></div><h1 id="pageTitle">{{ page.title }}</h1>{% if page.page_hero_note %}<p class="ide-document-deck">{{ page.page_hero_note }}</p>{% endif %}</header>{% endunless %}
+  <article class="ide-document-content prose">{{ content }}</article>
 </section>

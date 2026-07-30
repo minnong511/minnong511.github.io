@@ -8,9 +8,9 @@ page_hero_note: Browse by subject and keyword.
 
 {% if site.tags.size > 0 %}
   {% assign sorted_tags = site.tags | sort %}
-  {% assign primary_topic_names = "AI|Computer Science|Web & Blog|Photo|Places" | split: "|" %}
-  {% assign primary_topic_descriptions = "모델, 검색, 학습|알고리즘과 컴퓨터 과학|블로그를 만들고 다듬은 기록|사진, 필름, 이미지 작업|맛집과 서울의 주말 기록" | split: "|" %}
-  {% assign primary_topic_tags = "deep-learning,multimodal,retrieval,training|algorithm,sorting,cs|blog-update,design,ui,reference,library,jekyll|photo,film,workflow|food,seoul,weekend" | split: "|" %}
+  {% assign primary_topic_names = "AI|Computer Science|Web & Blog|Places" | split: "|" %}
+  {% assign primary_topic_descriptions = "모델, 검색, 학습|알고리즘과 컴퓨터 과학|블로그를 만들고 다듬은 기록|맛집과 서울의 주말 기록" | split: "|" %}
+  {% assign primary_topic_tags = "deep-learning,multimodal,retrieval,training|algorithm,sorting,cs|design,ui,reference,library,jekyll|food,seoul,weekend" | split: "|" %}
   <div class="tag-hub" id="tagHub">
     <section class="primary-topic-section" aria-labelledby="primaryTopicsTitle">
       <div class="topic-section-heading">

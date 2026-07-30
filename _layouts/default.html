@@ -1,14 +1,13 @@
 ---
 ---
 <!doctype html>
-<html lang="ko" data-theme="light">
+<html lang="ko" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#090a0c" />
     <title>{% if page.title and page.title != site.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 180 }}" />
-    <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
     {% if page.robots %}<meta name="robots" content="{{ page.robots }}" />{% endif %}
     <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
     <meta property="og:title" content="{{ page.title | default: site.title }}" />
@@ -16,129 +15,68 @@
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
     <meta property="og:image" content="{{ page.image | default: site.og_image | absolute_url | escape }}" />
     <meta name="twitter:card" content="summary_large_image" />
-
     <script>
       (function () {
-        document.documentElement.classList.add('js');
-        try {
-          var savedTheme = localStorage.getItem('minnong-theme');
-          document.documentElement.dataset.theme = savedTheme || 'light';
-        } catch (e) {}
+        document.documentElement.classList.add("js");
+        try { document.documentElement.dataset.theme = localStorage.getItem("minnong-theme") || "dark"; } catch (error) {}
       })();
     </script>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ '/assets/css/home-mag.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
-    {% if page.body_class contains 'photo-immersive' %}
-      <link rel="stylesheet" href="{{ '/assets/css/photo.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
-    {% endif %}
-    {% if page.editor %}
-      <link rel="stylesheet" href="{{ '/assets/css/editor.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
-    {% endif %}
+    <link rel="stylesheet" href="{{ '/assets/css/tokens.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/ide.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />
+    {% if page.editor %}<link rel="stylesheet" href="{{ '/assets/css/editor.css' | relative_url }}?v={{ site.assets_version | default: '1' }}" />{% endif %}
   </head>
   <body
     class="site-body{% if page.body_class %} {{ page.body_class }}{% endif %}"
     data-baseurl="{{ site.baseurl | default: '' }}"
+    data-page-url="{{ page.url | default: '/' }}"
+    data-page-title="{{ page.title | default: 'workspace' | escape }}"
+    data-page-layout="{{ page.layout | default: 'page' }}"
     data-owner-login="{{ site.owner_auth.github_login }}"
     data-owner-repository="{{ site.owner_auth.repository }}"
     data-owner-branch="{{ site.owner_auth.branch | default: 'master' }}"
   >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
-    {% unless page.hide_global_header %}
-      <div class="search-layer is-hidden" id="searchLayer" role="dialog" aria-modal="true" aria-labelledby="searchTitle" aria-hidden="true">
-        <div class="site-shell search-shell">
-          <div class="search-topline">
-            <p class="search-wordmark" id="searchTitle">Search Minnong</p>
-            <button class="search-close" type="button" aria-label="검색 닫기"><span aria-hidden="true">Close</span><i class="ri-close-line" aria-hidden="true"></i></button>
-          </div>
-          <form action="{{ '/search/' | relative_url }}" method="get" class="search-form" role="search">
-            <label class="sr-only" for="globalSearchInput">사이트 검색</label>
-            <input id="globalSearchInput" class="search-input" type="search" name="q" placeholder="검색어를 입력하세요" autocomplete="off" />
-            <button type="submit" aria-label="검색"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
-          </form>
-          <div class="search-live-results" id="searchLiveResults" aria-live="polite"></div>
-          <p class="search-hint">제목, 태그, 본문에서 검색합니다. <kbd>ESC</kbd>로 닫기</p>
-        </div>
+    {% if page.hide_global_header %}
+      <main id="main-content" class="site-main ide-standalone">{{ content }}</main>
+    {% else %}
+      <div class="ide-app" id="ideApp">
+        {% include titlebar.html %}
+        {% include activity-bar.html %}
+        {% include explorer.html %}
+        <main id="main-content" class="ide-main">
+          {% include editor-tabs.html %}
+          {% include breadcrumbs.html %}
+          <div class="ide-document-area">{{ content }}</div>
+        </main>
+        {% include context-panel.html %}
+        {% include status-bar.html %}
       </div>
-
-      <header class="site-header" id="siteHeader">
-        <div class="site-shell masthead-row">
-          <a class="masthead-brand" href="{{ '/' | relative_url }}" aria-label="Minnong Study Log 홈">
-            <svg class="masthead-logo" xmlns="http://www.w3.org/2000/svg" width="209" height="53" viewBox="0 0 209 53" role="img" aria-label="minnong's blog">
-              <text x="0" y="36" fill="currentColor" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="27" font-weight="500" letter-spacing="-1.2">minnong's blog</text>
-            </svg>
-          </a>
-          <div class="header-actions">
-            <a class="icon-button owner-entry" href="{{ '/write/' | relative_url }}" aria-label="소유자 로그인" title="Owner access"><i class="ri-lock-2-line" aria-hidden="true"></i></a>
-            <button class="icon-button theme-toggle" type="button" aria-label="색상 모드 변경" aria-pressed="false">
-              <i class="ri-sun-line theme-icon-light" aria-hidden="true"></i>
-              <i class="ri-moon-clear-line theme-icon-dark" aria-hidden="true"></i>
-            </button>
-            <button class="icon-button toggle-search" type="button" aria-label="검색 열기" aria-controls="searchLayer" aria-expanded="false"><i class="ri-search-line" aria-hidden="true"></i></button>
-            <button class="icon-button menu-toggle" type="button" aria-label="모바일 메뉴 열기" aria-expanded="false" aria-controls="mobileNav">
-              <i class="ri-menu-3-line" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="site-shell nav-row">
-          <nav class="desktop-nav" aria-label="주요 메뉴">
-            <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Notes</a>
-            <a href="{{ '/tags/' | relative_url }}"{% if page.url == '/tags/' %} aria-current="page"{% endif %}>Topics</a>
-            <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}>Archive</a>
-            <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>About</a>
-            <a href="{{ '/photostream/' | relative_url }}"{% if page.url contains '/photostream/' %} aria-current="page"{% endif %}>Photo</a>
-            <a class="nav-write owner-only" data-owner-only href="{{ '/write/' | relative_url }}" hidden>Write</a>
-          </nav>
-        </div>
-
-        <div class="mobile-nav" id="mobileNav" hidden>
-          <div class="site-shell mobile-nav-inner">
-            <nav class="mobile-nav-primary" aria-label="모바일 주요 메뉴">
-              <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}><span>01</span><strong>Notes</strong></a>
-              <a href="{{ '/tags/' | relative_url }}"{% if page.url == '/tags/' %} aria-current="page"{% endif %}><span>02</span><strong>Topics</strong></a>
-              <a href="{{ '/archive/' | relative_url }}"{% if page.url == '/archive/' %} aria-current="page"{% endif %}><span>03</span><strong>Archive</strong></a>
-              <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}><span>04</span><strong>About</strong></a>
-              <a href="{{ '/photostream/' | relative_url }}"{% if page.url contains '/photostream/' %} aria-current="page"{% endif %}><span>05</span><strong>Photo</strong></a>
-            </nav>
-            <div class="mobile-nav-utility">
-              <button class="mobile-search-trigger toggle-search" type="button" aria-controls="searchLayer" aria-expanded="false"><i class="ri-search-line" aria-hidden="true"></i> Search</button>
-              <a class="mobile-owner-entry" href="{{ '/write/' | relative_url }}"><i class="ri-lock-2-line" aria-hidden="true"></i> Owner</a>
-              <a class="owner-only" data-owner-only href="{{ '/write/' | relative_url }}" hidden><i class="ri-quill-pen-line" aria-hidden="true"></i> Write</a>
-            </div>
-            <p class="mobile-nav-note">Development, AI, computer science<br />and everything learned in between.</p>
-          </div>
-        </div>
-      </header>
-    {% endunless %}
-
-    <main id="main-content" class="site-main">
-      {{ content }}
-    </main>
-
-    {% unless page.hide_footer %}
-      {% include site-footer.html %}
-    {% endunless %}
-
-    {% unless page.hide_global_header %}
-      <script src="{{ '/assets/js/site-search.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
-    {% endunless %}
-    <script src="{{ '/assets/js/blog-ui.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
-    {% if page.layout == 'home' %}
-      <script type="module" src="{{ '/assets/js/ambient-three.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      {% include command-palette.html %}
     {% endif %}
+
+    <script defer src="{{ '/assets/js/blog-ui.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+    {% unless page.hide_global_header %}
+      <script defer src="{{ '/assets/js/preferences.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/explorer.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/activity-panels.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/tabs.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/outline.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/panel-resize.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/command-palette.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/ide-shell.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      {% if page.layout == 'archive' %}<script defer src="{{ '/assets/js/archive.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>{% endif %}
+    {% endunless %}
     {% if page.editor %}
       <script defer src="{{ '/assets/js/owner-auth.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
       <script>
-        window.MathJax = {
-          tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
-          svg: { fontCache: 'global' },
-          startup: { typeset: false }
-        };
+        window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }, svg: { fontCache: 'global' }, startup: { typeset: false } };
       </script>
       <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
       <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>

@@ -8,6 +8,10 @@ og_image: "/assets/base_image/og-study-blog.png"
 theme: minima
 timezone: Asia/Seoul
 permalink: /:categories/:year/:month/:day/:title/
+study_categories:
+  - CS
+  - Deep_Learning
+  - DB
 plugins:
   - jekyll-feed
 

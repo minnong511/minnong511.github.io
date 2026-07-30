@@ -1,0 +1,11 @@
+<nav class="ide-breadcrumbs" aria-label="현재 경로">
+  <a href="{{ '/' | relative_url }}">workspace</a><span>&gt;</span>
+  {% if page.layout == 'post' %}
+    <a href="{{ '/archive/' | relative_url }}">posts</a><span>&gt;</span>
+    {% assign breadcrumb_category = page.categories | first | default: 'study' %}
+    <a href="{{ '/archive/' | relative_url }}?category={{ breadcrumb_category | slugify }}">{{ breadcrumb_category | replace: "_", " " | downcase }}</a><span>&gt;</span>
+    <span aria-current="page">{{ page.title | slugify }}.md</span>
+  {% else %}
+    <span aria-current="page">{{ page.title | default: 'workspace' | slugify }}</span>
+  {% endif %}
+</nav>

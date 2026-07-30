@@ -2,122 +2,18 @@
 layout: default
 ---
 {% assign category_name = page.categories | first | default: "Study" %}
-
-<article class="post-layout">
-  <header class="post-hero">
-    <div class="site-shell post-shell">
-      <a class="post-back reveal" href="{{ '/' | relative_url }}"><i class="ri-arrow-left-line" aria-hidden="true"></i> 모든 노트</a>
-      <div class="post-heading reveal">
-        <div class="post-meta-line">
-          <span>{{ category_name | replace: "_", " " }}</span>
-          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
-          <span>{{ content | number_of_words | divided_by: 200 | plus: 1 }} MIN READ</span>
-        </div>
-        <h1>{{ page.title }}</h1>
-        {% if page.excerpt %}
-          <p class="post-deck">{{ page.excerpt | strip_html | truncate: 180 }}</p>
-        {% endif %}
-      </div>
-
-      {% if page.image %}
-        <figure class="post-cover reveal" data-delay="1">
-          <img src="{{ page.image | relative_url | escape }}" alt="{{ page.image_alt | default: page.title | escape }}" />
-          <figcaption><span>VISUAL NOTE</span><span>MINNONG ARCHIVE</span></figcaption>
-        </figure>
-      {% endif %}
-    </div>
+<article class="ide-document" data-document="post">
+  <header class="ide-document-header">
+    <div class="ide-document-meta"><strong>{{ category_name | replace: "_", " " }}</strong><span>{{ page.date | date: "%Y.%m.%d" }}</span><span data-reading-time>—</span><span>{{ page.tags | size }} tags</span></div>
+    <h1>{{ page.title }}</h1>
+    {% if page.excerpt %}<p class="ide-document-deck">{{ page.excerpt | strip_html | strip_newlines | truncate: 220 }}</p>{% endif %}
   </header>
-
-  <div class="site-shell post-body-grid">
-    <aside class="post-side" aria-label="글 정보">
-      <div class="post-side-inner">
-        <span class="mono-label">ON THIS PAGE</span>
-        <nav class="post-toc" id="postToc" aria-label="이 글의 목차"><ol id="postTocList"></ol></nav>
-        <div class="post-side-share">
-          <span class="mono-label">SHARE</span>
-          <button class="copy-url" type="button" data-url="{{ page.url | absolute_url }}"><i class="ri-link" aria-hidden="true"></i> 링크 복사</button>
-        </div>
-      </div>
-    </aside>
-
-    <div class="post-main">
-      <div class="prose post-content" id="postContent">
-        {{ content }}
-      </div>
-
-      {% if page.tags and page.tags.size > 0 %}
-        <div class="post-tags">
-          <span class="mono-label">FILED UNDER</span>
-          <div>
-            {% for tag in page.tags %}
-              {% assign tag_id = tag | slugify %}
-              <a href="{{ '/tags/#' | append: tag_id | relative_url }}">#{{ tag }}</a>
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-
-      <div class="post-author-card">
-        <div class="author-monogram">MH</div>
-        <div>
-          <span class="mono-label">WRITTEN BY</span>
-          <h2>Min Hyeong Lee</h2>
-          <p>배운 것을 직접 설명할 수 있을 때까지 기록합니다.</p>
-        </div>
-        <a href="{{ '/about/' | relative_url }}">ABOUT <i class="ri-arrow-right-line" aria-hidden="true"></i></a>
-      </div>
-
-      {% if site.giscus.enabled %}
-        <section class="comments-panel">
-          <div class="comments-heading">
-            <span class="section-index">+</span>
-            <h2>Discussion</h2>
-          </div>
-          <script
-            src="https://giscus.app/client.js"
-            data-repo="{{ site.giscus.repo }}"
-            data-repo-id="{{ site.giscus.repo_id }}"
-            data-category="{{ site.giscus.category }}"
-            data-category-id="{{ site.giscus.category_id }}"
-            data-mapping="{{ site.giscus.mapping }}"
-            data-strict="{{ site.giscus.strict }}"
-            data-reactions-enabled="{{ site.giscus.reactions_enabled }}"
-            data-emit-metadata="{{ site.giscus.emit_metadata }}"
-            data-input-position="{{ site.giscus.input_position }}"
-            data-theme="light"
-            data-lang="{{ site.giscus.lang }}"
-            data-loading="lazy"
-            crossorigin="anonymous"
-            async>
-          </script>
-        </section>
-      {% endif %}
-    </div>
-  </div>
+  <div class="ide-document-content prose" id="postContent">{{ content }}</div>
+  {% if page.tags and page.tags.size > 0 %}
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span>{% for tag in page.tags %}<a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">#{{ tag }}</a>{% endfor %}</footer>
+  {% endif %}
+  <nav class="ide-document-navigation" aria-label="게시물 이동">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>PREVIOUS</span><strong>{{ page.previous.title }}</strong></a>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}"><span>NEXT</span><strong>{{ page.next.title }}</strong></a>{% endif %}
+  </nav>
 </article>
-
-<section class="related-section">
-  <div class="site-shell">
-    <header class="section-heading">
-      <div><span class="section-index">+</span><h2>Keep Learning</h2></div>
-    </header>
-    <div class="related-grid">
-      {% assign related_count = 0 %}
-      {% for post in site.posts %}
-        {% if post.url != page.url and related_count < 3 %}
-          {% if post.categories contains category_name or related_count == 0 %}
-            <a class="related-card" href="{{ post.url | relative_url }}">
-              <span>{{ post.categories | first | default: "STUDY" | replace: "_", " " }}</span>
-              <h3>{{ post.title }}</h3>
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-              <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
-            </a>
-            {% assign related_count = related_count | plus: 1 %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<div class="copy-toast" id="copyToast" role="status" aria-live="polite">링크를 복사했습니다.</div>

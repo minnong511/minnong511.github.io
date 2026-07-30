@@ -6,6 +6,36 @@
   var menuButton = document.querySelector(".menu-toggle");
   var mobileNav = document.getElementById("mobileNav");
   var themeButton = document.querySelector(".theme-toggle");
+  var siteHeader = document.querySelector(".site-header");
+  var topicsToggle = document.getElementById("topicsToggle");
+  var topicsPanel = document.getElementById("topicsPanel");
+
+  function setTopics(open) {
+    if (!siteHeader || !topicsToggle || !topicsPanel) return;
+    siteHeader.classList.toggle("topics-open", open);
+    topicsToggle.setAttribute("aria-expanded", String(open));
+    topicsPanel.setAttribute("aria-hidden", String(!open));
+    topicsPanel.inert = !open;
+  }
+
+  if (topicsToggle && topicsPanel && siteHeader) {
+    setTopics(false);
+    topicsToggle.addEventListener("click", function () {
+      setTopics(!siteHeader.classList.contains("topics-open"));
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!siteHeader.classList.contains("topics-open") || siteHeader.contains(event.target)) return;
+      setTopics(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && siteHeader.classList.contains("topics-open")) {
+        setTopics(false);
+        topicsToggle.focus();
+      }
+    });
+  }
 
   function syncGiscusTheme() {
     var giscusFrame = document.querySelector("iframe.giscus-frame");

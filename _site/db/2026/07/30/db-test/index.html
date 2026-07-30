@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090a0c" />
+    <title>DB 테스트 · Minnong's Study Log</title>
+    <meta name="description" content="가" />
+    
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="DB 테스트" />
+    <meta property="og:description" content="가" />
+    <meta property="og:url" content="http://localhost:4000/db/2026/07/30/db-test/" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      (function () {
+        document.documentElement.classList.add("js");
+        try { document.documentElement.dataset.theme = localStorage.getItem("minnong-theme") || "dark"; } catch (error) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=6" />
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=6" />
+    <link rel="stylesheet" href="/assets/css/ide.css?v=6" />
+    
+  </head>
+  <body
+    class="site-body"
+    data-baseurl=""
+    data-page-url="/db/2026/07/30/db-test/"
+    data-page-title="DB 테스트"
+    data-page-layout="post"
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+    
+      <div class="ide-app" id="ideApp">
+        <header class="ide-titlebar" aria-label="사이트 도구 모음">
+  <div class="ide-window-controls" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="ide-history-controls">
+    <button type="button" class="ide-icon-button" data-history="back" aria-label="이전 페이지" title="이전 페이지"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+    <button type="button" class="ide-icon-button" data-history="forward" aria-label="다음 페이지" title="다음 페이지"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+  </div>
+  <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
+    <i class="ri-terminal-box-line" aria-hidden="true"></i>
+    <span>http://localhost:4000 / posts / db-테스트</span>
+    <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
+  </button>
+  <div class="ide-titlebar-actions">
+    <a class="ide-icon-button" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noreferrer" aria-label="GitHub 저장소" title="GitHub"><i class="ri-github-line" aria-hidden="true"></i></a>
+    <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
+    <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
+    <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
+    <button class="ide-icon-button ide-mobile-menu" id="ideMobileMenu" type="button" aria-label="탐색 메뉴 열기" aria-expanded="false" aria-controls="explorerPanel"><i class="ri-menu-line" aria-hidden="true"></i></button>
+  </div>
+</header>
+
+        <aside class="ide-activity" aria-label="주요 탐색">
+  <nav aria-label="작업 영역">
+    <button class="ide-activity-item is-active" type="button" data-activity-panel="explorer" aria-controls="explorerPanel" aria-pressed="true" aria-label="탐색기" title="탐색기"><i class="ri-folder-3-line" aria-hidden="true"></i><span>Explorer</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="search" aria-controls="explorerPanel" aria-pressed="false" aria-label="검색" title="검색"><i class="ri-search-line" aria-hidden="true"></i><span>Search</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="source" aria-controls="explorerPanel" aria-pressed="false" aria-label="소스 제어" title="소스 제어"><i class="ri-git-branch-line" aria-hidden="true"></i><span>Source Control</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="run" aria-controls="explorerPanel" aria-pressed="false" aria-label="실행 및 디버그" title="실행 및 디버그"><i class="ri-bug-line" aria-hidden="true"></i><span>Run and Debug</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="extensions" aria-controls="explorerPanel" aria-pressed="false" aria-label="확장" title="확장"><i class="ri-puzzle-line" aria-hidden="true"></i><span>Extensions</span></button>
+  </nav>
+  <nav aria-label="계정 및 저장소">
+    <button class="ide-activity-item" type="button" data-activity-panel="about" aria-controls="explorerPanel" aria-pressed="false" aria-label="소개와 바로가기" title="소개와 바로가기"><i class="ri-settings-3-line" aria-hidden="true"></i><span>Manage</span></button>
+    <a class="ide-activity-item ide-activity-github" href="https://github.com/minnong511" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub</span></a>
+  </nav>
+</aside>
+
+        <aside class="ide-explorer" id="explorerPanel" aria-label="작업 영역">
+  <section class="ide-sidebar-panel is-active" data-sidebar-panel="explorer" aria-labelledby="explorerHeading">
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE</span><h2 id="explorerHeading">EXPLORER</h2></div>
+      <div class="ide-panel-actions">
+        <button type="button" class="ide-panel-button" data-explorer-action="refresh" aria-label="탐색기 새로고침" title="새로고침"><i class="ri-refresh-line" aria-hidden="true"></i></button>
+        <button type="button" class="ide-panel-button" data-toggle-panel="explorer" aria-label="탐색기 접기" title="탐색기 접기"><i class="ri-layout-left-line" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <label class="ide-explorer-search">
+      <i class="ri-search-line" aria-hidden="true"></i>
+      <input id="explorerSearch" type="search" placeholder="게시물 필터" autocomplete="off" />
+      <kbd>ESC</kbd>
+    </label>
+    <div class="ide-explorer-toolbar">
+      <span id="explorerCount">3 POSTS</span>
+      <label for="explorerSort" class="sr-only">게시물 정렬</label>
+      <select id="explorerSort" aria-label="게시물 정렬">
+        <option value="newest">최신순</option>
+        <option value="oldest">오래된순</option>
+        <option value="title">제목순</option>
+      </select>
+    </div>
+    <div class="ide-tree" id="explorerTree" role="tree" aria-label="카테고리와 게시물">
+      <div class="ide-tree-root"><i class="ri-folder-open-line" aria-hidden="true"></i><strong>BLOG</strong></div>
+      
+    </div>
+    <p class="ide-explorer-empty" id="explorerEmpty" hidden>검색 결과가 없습니다.</p>
+    <button class="ide-resize-handle ide-resize-explorer" type="button" data-resize-panel="explorer" aria-label="Explorer 너비 조절"></button>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="search" aria-labelledby="sidebarSearchHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE</span><h2 id="sidebarSearchHeading">SEARCH</h2></div>
+      <button type="button" class="ide-panel-button" data-open-palette="search" aria-label="검색 팝업 열기" title="검색 팝업"><i class="ri-command-line" aria-hidden="true"></i></button>
+    </div>
+    <label class="ide-explorer-search">
+      <i class="ri-search-line" aria-hidden="true"></i>
+      <input id="sidebarSearchInput" type="search" placeholder="게시물 검색" autocomplete="off" />
+      <kbd>ESC</kbd>
+    </label>
+    <div class="ide-sidebar-results" id="sidebarSearchResults" aria-live="polite">
+      <p class="ide-panel-empty">제목, 카테고리, 본문으로 검색하세요.</p>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="source" aria-labelledby="sourceHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">REPOSITORY</span><h2 id="sourceHeading">SOURCE CONTROL</h2></div>
+      <i class="ri-git-branch-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <div class="ide-source-status"><i class="ri-git-branch-line" aria-hidden="true"></i><strong>master</strong><span>clean</span></div>
+      <p class="ide-panel-empty">현재 작업 공간의 GitHub 저장소입니다.</p>
+      <a class="ide-sidebar-action" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>저장소 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="run" aria-labelledby="runHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE TASKS</span><h2 id="runHeading">RUN AND DEBUG</h2></div>
+      <i class="ri-bug-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <p class="ide-panel-empty">학습 공간의 주요 화면을 실행합니다.</p>
+      <a class="ide-sidebar-action" href="/"><i class="ri-home-5-line" aria-hidden="true"></i><span>홈 열기</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      <a class="ide-sidebar-action" href="/archive/"><i class="ri-file-list-3-line" aria-hidden="true"></i><span>전체 게시물</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      <a class="ide-sidebar-action" href="/write/"><i class="ri-edit-line" aria-hidden="true"></i><span>새 문서 작성</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="extensions" aria-labelledby="extensionsHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE MODULES</span><h2 id="extensionsHeading">EXTENSIONS</h2></div>
+      <i class="ri-puzzle-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <div class="ide-extension-item"><i class="ri-markdown-line" aria-hidden="true"></i><span><strong>Markdown</strong><small>문서 렌더링</small></span><b>enabled</b></div>
+      <div class="ide-extension-item"><i class="ri-search-eye-line" aria-hidden="true"></i><span><strong>Search Index</strong><small>게시물 검색</small></span><b>enabled</b></div>
+      <div class="ide-extension-item"><i class="ri-moon-line" aria-hidden="true"></i><span><strong>Theme</strong><small>다크 / 라이트</small></span><b>enabled</b></div>
+      <a class="ide-sidebar-action" href="/tags/"><i class="ri-price-tag-3-line" aria-hidden="true"></i><span>태그 탐색</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="about" aria-labelledby="aboutHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">MINNONG.DEV</span><h2 id="aboutHeading">MANAGE</h2></div>
+      <i class="ri-settings-3-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <a class="ide-sidebar-action" href="/about/"><i class="ri-information-line" aria-hidden="true"></i><span>블로그 소개</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      <button class="ide-sidebar-action" type="button" data-open-palette="bookmarks"><i class="ri-bookmark-3-line" aria-hidden="true"></i><span>북마크 검색</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+      <button class="ide-sidebar-action" type="button" data-toggle-theme><i class="ri-contrast-2-line" aria-hidden="true"></i><span>테마 전환</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+    </div>
+  </section>
+</aside>
+
+        <main id="main-content" class="ide-main">
+          <div class="ide-tabs" id="editorTabs" role="tablist" aria-label="최근 게시물">
+  <div class="ide-tabs-empty" id="tabsEmpty">열린 문서가 없습니다.</div>
+</div>
+
+          <nav class="ide-breadcrumbs" aria-label="현재 경로">
+  <a href="/">workspace</a><span>&gt;</span>
+  
+    <a href="/archive/">posts</a><span>&gt;</span>
+    
+    <a href="/archive/?category=db">db</a><span>&gt;</span>
+    <span aria-current="page">db-테스트.md</span>
+  
+</nav>
+
+          <div class="ide-document-area">
+<article class="ide-document" data-document="post">
+  <header class="ide-document-header">
+    <div class="ide-document-meta"><strong>DB</strong><span>2026.07.30</span><span data-reading-time>—</span><span>0 tags</span></div>
+    <h1>DB 테스트</h1>
+    <p class="ide-document-deck">가</p>
+  </header>
+  <div class="ide-document-content prose" id="postContent"><p>가</p>
+</div>
+  
+  <nav class="ide-document-navigation" aria-label="게시물 이동">
+    <a href="/deep_learning/2026/07/30/deep-learning-test/"><span>PREVIOUS</span><strong>Deep Learning 테스트</strong></a>
+    
+  </nav>
+</article>
+</div>
+        </main>
+        <aside class="ide-context" id="contextPanel" aria-label="문서 컨텍스트">
+  <div class="ide-context-tabs" role="tablist" aria-label="문서 패널">
+    <button class="is-active" type="button" role="tab" aria-selected="true" data-context-tab="outline">OUTLINE</button>
+    <button type="button" role="tab" aria-selected="false" data-context-tab="info">INFO</button>
+    <button type="button" role="tab" aria-selected="false" data-context-tab="related">RELATED</button>
+    <button class="ide-context-collapse" type="button" data-toggle-context-panel aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
+  </div>
+  <section class="ide-context-view is-active" data-context-view="outline"><span class="ide-panel-label">DOCUMENT STRUCTURE</span><nav class="ide-outline-list" id="postOutline" aria-label="게시물 목차">
+  <p class="ide-panel-empty">이 문서에는 목차가 없습니다.</p>
+</nav>
+</section>
+  <section class="ide-context-view" data-context-view="info" hidden>
+    <span class="ide-panel-label">DOCUMENT INFO</span>
+    <dl class="ide-info-list">
+      <div><dt>TYPE</dt><dd>Markdown</dd></div>
+      <div><dt>DATE</dt><dd>2026.07.30</dd></div>
+      <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
+      <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
+      <div><dt>CATEGORY</dt><dd>DB</dd></div>
+    </dl>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/db/2026/07/30/db-test/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/db/2026/07/30/db-test/" data-bookmark-title="DB 테스트"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+  </section>
+  <section class="ide-context-view" data-context-view="related" hidden>
+    <span class="ide-panel-label">RELATED DOCUMENTS</span>
+    <div class="ide-related-list">
+      
+      
+        
+      
+        
+          <a href="/deep_learning/2026/07/30/deep-learning-test/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span></a>
+        
+      
+        
+          <a href="/cs/2026/07/30/cs-test/"><i class="ri-markdown-line" aria-hidden="true"></i><span>CS 테스트</span></a>
+        
+      
+      
+    </div>
+  </section>
+  <div class="ide-minimap" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+  <button class="ide-resize-handle ide-resize-context" type="button" data-resize-panel="context" aria-label="Context 패널 너비 조절"></button>
+</aside>
+
+        <footer class="ide-statusbar" aria-label="문서 상태">
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> DB</span><span>3 posts</span></div>
+  <div><button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button><span data-status-reading>—</span><span>UTF-8</span><span>Markdown</span><button type="button" data-scroll-top aria-label="맨 위로 이동">↑ TOP</button></div>
+</footer>
+
+      </div>
+      <div class="ide-palette" id="commandPalette" role="dialog" aria-modal="true" aria-labelledby="paletteTitle" hidden>
+  <div class="ide-palette-card">
+    <div class="ide-palette-input-wrap"><i class="ri-search-line" aria-hidden="true"></i><label class="sr-only" for="paletteInput">파일, 게시물 또는 명령 검색</label><input id="paletteInput" type="search" placeholder="Search files by name (append : to go to line or @ to go to symbol)" autocomplete="off" /><kbd>ESC</kbd></div>
+    <div class="ide-palette-results" id="paletteResults" role="listbox"></div>
+    <div class="ide-palette-recent">
+      <div class="ide-palette-recent-heading"><span id="paletteTitle">RECENTLY OPENED</span><span>최근 열림</span></div>
+      <div id="paletteRecent"></div>
+    </div>
+  </div>
+</div>
+
+    
+
+    <script defer src="/assets/js/blog-ui.js?v=6"></script>
+    
+      <script defer src="/assets/js/preferences.js?v=6"></script>
+      <script defer src="/assets/js/explorer.js?v=6"></script>
+      <script defer src="/assets/js/activity-panels.js?v=6"></script>
+      <script defer src="/assets/js/tabs.js?v=6"></script>
+      <script defer src="/assets/js/outline.js?v=6"></script>
+      <script defer src="/assets/js/panel-resize.js?v=6"></script>
+      <script defer src="/assets/js/command-palette.js?v=6"></script>
+      <script defer src="/assets/js/ide-shell.js?v=6"></script>
+      
+    
+    
+  </body>
+</html>

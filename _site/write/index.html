@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="ko" data-theme="light">
+<html lang="ko" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#090a0c" />
     <title>Owner Studio · Minnong's Study Log</title>
     <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
-    <meta name="keywords" content="개발 블로그, 공부 기록, AI, 딥러닝, 컴퓨터 과학, 논문 리뷰" />
     <meta name="robots" content="noindex,nofollow,noarchive" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Owner Studio" />
@@ -14,40 +13,36 @@
     <meta property="og:url" content="http://localhost:4000/write/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="twitter:card" content="summary_large_image" />
-
     <script>
       (function () {
-        document.documentElement.classList.add('js');
-        try {
-          var savedTheme = localStorage.getItem('minnong-theme');
-          document.documentElement.dataset.theme = savedTheme || 'light';
-        } catch (e) {}
+        document.documentElement.classList.add("js");
+        try { document.documentElement.dataset.theme = localStorage.getItem("minnong-theme") || "dark"; } catch (error) {}
       })();
     </script>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/css/home-mag.css?v=6" />
-    
-    
-      <link rel="stylesheet" href="/assets/css/editor.css?v=6" />
-    
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=6" />
+    <link rel="stylesheet" href="/assets/css/ide.css?v=6" />
+    <link rel="stylesheet" href="/assets/css/editor.css?v=6" />
   </head>
   <body
     class="site-body writer-page"
     data-baseurl=""
+    data-page-url="/write/"
+    data-page-title="Owner Studio"
+    data-page-layout="editor"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
     data-owner-branch="master"
   >
     <a class="skip-link" href="#main-content">본문으로 바로가기</a>
     
-
-    <main id="main-content" class="site-main">
-      <section class="owner-gate" id="ownerGate" aria-labelledby="ownerGateTitle">
+      <main id="main-content" class="site-main ide-standalone"><section class="owner-gate" id="ownerGate" aria-labelledby="ownerGateTitle">
   <div class="owner-gate-grid">
     <header class="owner-gate-brand">
       <a href="/" aria-label="홈으로 돌아가기">MINNONG<span>/</span></a>
@@ -168,13 +163,11 @@
         <div class="writer-meta-row">
           <label>
             <span>카테고리</span>
-            <input id="writerCategory" type="text" list="writerCategoryList" placeholder="예: Deep_Learning" value="Computer_Science" />
+            <input id="writerCategory" type="text" list="writerCategoryList" placeholder="예: Deep_Learning" value="CS" />
             <datalist id="writerCategoryList">
-              <option value="Computer_Science"></option>
+              <option value="CS"></option>
               <option value="Deep_Learning"></option>
-              <option value="Paper_Review"></option>
-              <option value="Blog update"></option>
-              <option value="Photo"></option>
+              <option value="DB"></option>
             </datalist>
           </label>
           <label>
@@ -231,22 +224,15 @@
 
 
 
-
-    </main>
-
+</main>
     
 
-    
-    <script src="/assets/js/blog-ui.js?v=6"></script>
+    <script defer src="/assets/js/blog-ui.js?v=6"></script>
     
     
       <script defer src="/assets/js/owner-auth.js?v=6"></script>
       <script>
-        window.MathJax = {
-          tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] },
-          svg: { fontCache: 'global' },
-          startup: { typeset: false }
-        };
+        window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }, svg: { fontCache: 'global' }, startup: { typeset: false } };
       </script>
       <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
       <script defer src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>

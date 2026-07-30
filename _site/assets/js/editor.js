@@ -1057,7 +1057,7 @@
   function resetEditor() {
     titleInput.value = "";
     excerptInput.value = "";
-    categoryInput.value = "Computer_Science";
+    categoryInput.value = "CS";
     tagsInput.value = "";
     editor.innerHTML = "";
     editor.appendChild(createParagraph());
@@ -1279,7 +1279,7 @@
     if (draft) {
       titleInput.value = draft.title || "";
       excerptInput.value = draft.excerpt || "";
-      categoryInput.value = draft.category || "Computer_Science";
+      categoryInput.value = draft.category || "CS";
       tagsInput.value = draft.tags || "";
       if (draft.html) editor.innerHTML = draft.html;
       normalizeEditorBlocks();

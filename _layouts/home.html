@@ -1,106 +1,40 @@
 ---
 layout: default
 ---
-{% assign latest_post = site.posts | first %}
-{% assign home_posts = site.posts | slice: 0, 5 %}
-
-<section class="visual-hero" aria-labelledby="visualHeroTitle">
-  <div id="study-space" class="study-space" aria-hidden="true"></div>
-  <div class="site-shell visual-hero-frame">
-    <div class="visual-hero-topline">
-      <span>MINNONG STUDY INDEX</span>
-      <span>SEOUL · {{ "now" | date: "%Y" }}</span>
-    </div>
-    <h2 id="visualHeroTitle" class="sr-only">배움의 연결을 표현한 인터랙티브 그래픽</h2>
-    <div class="visual-hero-caption">
-      <span>Move your pointer to explore</span>
-    </div>
+<section class="ide-home" aria-labelledby="homeTitle">
+  <span class="ide-home-kicker">MINNONG.DEV / WORKSPACE</span>
+  <h1 id="homeTitle">MINNONG'S<br />STUDY LOG</h1>
+  <p class="ide-home-intro">개발과 AI를 공부하며 다시 설명할 수 있을 때까지 정리하는 기술 문서 작업 공간입니다.</p>
+  <div class="ide-home-actions" aria-label="빠른 작업">
+    <a class="ide-home-action" href="{{ '/archive/' | relative_url }}"><i class="ri-file-search-line" aria-hidden="true"></i> 전체 게시물</a>
+    <button class="ide-home-action" type="button" data-open-palette="search"><i class="ri-search-line" aria-hidden="true"></i> 게시물 검색 <kbd>⌘K</kbd></button>
+    <a class="ide-home-action" href="{{ '/about/' | relative_url }}"><i class="ri-information-line" aria-hidden="true"></i> 소개 보기</a>
   </div>
-</section>
 
-<section class="home-introduction">
-  <div class="site-shell home-introduction-grid">
-    <div class="home-introduction-copy reveal" data-delay="1">
-      <div class="home-introduction-links">
-        <a href="#latest-notes">최신 노트 보기 <i class="ri-arrow-down-line"></i></a>
-        <a href="{{ '/about/' | relative_url }}">블로그 소개 <i class="ri-arrow-right-up-line"></i></a>
-      </div>
+  <section aria-labelledby="homeCategoriesTitle">
+    <header class="ide-section-heading"><h2 id="homeCategoriesTitle">CATEGORIES</h2><span>{{ site.study_categories.size }} folders</span></header>
+    <div class="ide-category-list">
+      {% for category_name in site.study_categories %}
+        {% assign category_posts = site.posts | where_exp: "post", "post.categories contains category_name" %}
+        <a class="ide-category-row" href="{{ '/archive/' | relative_url }}?category={{ category_name | slugify }}">
+          <span>{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <strong><i class="ri-folder-3-line" aria-hidden="true"></i> {{ category_name | replace: "_", " " }}</strong>
+          <small>{{ category_posts.size }} posts</small><i class="ri-arrow-right-line" aria-hidden="true"></i>
+        </a>
+      {% endfor %}
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="home-section latest-section" id="latest-notes">
-  <div class="site-shell">
-    <header class="editorial-heading reveal">
-      <div>
-        <span class="section-kicker">01 · NOTES</span>
-        <h2>Latest studies</h2>
-      </div>
-      <a href="{{ '/archive/' | relative_url }}">View all notes <i class="ri-arrow-right-line"></i></a>
-    </header>
-
-    {% if home_posts.size > 0 %}
-      <div class="exhibition-grid">
-        {% for post in home_posts %}
-          <article class="exhibition-card exhibition-card--{{ forloop.index }} reveal" data-delay="{{ forloop.index | modulo: 3 }}">
-            <a class="exhibition-image" href="{{ post.url | relative_url }}">
-              <img src="{{ post.image | default: '/assets/base_image/test_image.png' | relative_url | escape }}" alt="" {% if forloop.first %}loading="eager"{% else %}loading="lazy"{% endif %} />
-            </a>
-            <div class="exhibition-meta">
-              <span>{{ post.categories | first | default: "Study" | replace: "_", " " }}</span>
-              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-            </div>
-            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          </article>
+  <section aria-labelledby="recentTitle">
+    <header class="ide-section-heading"><h2 id="recentTitle">RECENT DOCUMENTS</h2><span>{{ site.posts.size }} indexed</span></header>
+    {% if site.posts.size > 0 %}
+      <div class="ide-archive-list">
+        {% for post in site.posts limit: 6 %}
+          <a class="ide-archive-row" href="{{ post.url | relative_url }}"><time>{{ post.date | date: "%Y.%m.%d" }}</time><strong>{{ post.title }}</strong><span>{{ post.categories | first | default: "workspace" | replace: "_", " " }}</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
         {% endfor %}
       </div>
     {% else %}
-      <p class="empty-state">첫 번째 학습 노트를 기다리고 있어요.</p>
+      <p class="ide-empty">아직 게시물이 없습니다. Explorer에서 카테고리를 선택하거나 글쓰기 공간을 열어 새 문서를 시작하세요.</p>
     {% endif %}
-  </div>
-</section>
-
-<section class="home-section topic-section">
-  <div class="site-shell">
-    <header class="editorial-heading reveal">
-      <div>
-        <span class="section-kicker">02 · INDEX</span>
-        <h2>Study topics</h2>
-      </div>
-      <p>관심 주제별로 기록을 탐색하세요.</p>
-    </header>
-
-    <div class="topic-index">
-      {% for category in site.categories %}
-        {% assign category_name = category[0] %}
-        {% assign category_posts = category[1] %}
-        <a class="topic-index-row reveal" href="{{ '/archive/' | relative_url }}">
-          <span class="topic-index-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
-          <strong>{{ category_name | replace: "_", " " }}</strong>
-          <span>{{ category_posts | size }} notes</span>
-          <i class="ri-arrow-right-up-line" aria-hidden="true"></i>
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="home-section archive-preview-section">
-  <div class="site-shell archive-preview-grid">
-    <header class="archive-preview-title reveal">
-      <span class="section-kicker">03 · ARCHIVE</span>
-      <h2>Learning,<br />in sequence.</h2>
-      <a href="{{ '/archive/' | relative_url }}">전체 아카이브 <i class="ri-arrow-right-line"></i></a>
-    </header>
-    <div class="archive-preview-list">
-      {% for post in site.posts limit: 4 %}
-        <a href="{{ post.url | relative_url }}" class="archive-preview-row reveal">
-          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
-          <strong>{{ post.title }}</strong>
-          <span>{{ post.categories | first | default: "Study" | replace: "_", " " }}</span>
-          <i class="ri-arrow-right-line" aria-hidden="true"></i>
-        </a>
-      {% endfor %}
-    </div>
-  </div>
+  </section>
 </section>
