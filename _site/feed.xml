@@ -1,1 +1,1613 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-07-30T14:24:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">DB 테스트</title><link href="http://localhost:4000/db/2026/07/30/db-test/" rel="alternate" type="text/html" title="DB 테스트" /><published>2026-07-30T09:02:00+09:00</published><updated>2026-07-30T09:02:00+09:00</updated><id>http://localhost:4000/db/2026/07/30/db-test</id><content type="html" xml:base="http://localhost:4000/db/2026/07/30/db-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><summary type="html"><![CDATA[가]]></summary></entry><entry><title type="html">Deep Learning 테스트</title><link href="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" rel="alternate" type="text/html" title="Deep Learning 테스트" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>http://localhost:4000/deep_learning/2026/07/30/deep-learning-test</id><content type="html" xml:base="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><summary type="html"><![CDATA[가]]></summary></entry><entry><title type="html">CS 테스트</title><link href="http://localhost:4000/cs/2026/07/30/cs-test/" rel="alternate" type="text/html" title="CS 테스트" /><published>2026-07-30T09:00:00+09:00</published><updated>2026-07-30T09:00:00+09:00</updated><id>http://localhost:4000/cs/2026/07/30/cs-test</id><content type="html" xml:base="http://localhost:4000/cs/2026/07/30/cs-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="CS" /><summary type="html"><![CDATA[가]]></summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-07-31T14:40:57+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Psql JSONB, 행 잠금, 멱등성</title><link href="http://localhost:4000/db/postgresql/2026/07/31/psql2/" rel="alternate" type="text/html" title="Psql JSONB, 행 잠금, 멱등성" /><published>2026-07-31T09:00:00+09:00</published><updated>2026-07-31T09:00:00+09:00</updated><id>http://localhost:4000/db/postgresql/2026/07/31/psql2</id><content type="html" xml:base="http://localhost:4000/db/postgresql/2026/07/31/psql2/"><![CDATA[<h1 id="jsonb">JSONB</h1>
+<h2 id="jsonb-객체-생성">JSONB 객체 생성</h2>
+<h2 id="중첩-json-반환">중첩 JSON 반환</h2>
+<h2 id="jsonb_pretty와-to_jsonb">jsonb_pretty와 to_jsonb</h2>
+
+<h1 id="행-잠금">행 잠금</h1>
+<h2 id="동시성-문제">동시성 문제</h2>
+<h2 id="select-for-update">SELECT FOR UPDATE</h2>
+<h2 id="안전한-재고-처리-순서">안전한 재고 처리 순서</h2>
+
+<h1 id="멱등성idempotency">멱등성(Idempotency)</h1>
+<h2 id="멱등성-개념">멱등성 개념</h2>
+<h2 id="batch_key">batch_key</h2>
+<h2 id="on-conflict-do-nothing">ON CONFLICT DO NOTHING</h2>
+<h2 id="get-diagnostics와-row_count">GET DIAGNOSTICS와 ROW_COUNT</h2>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><category term="PostgreSQL" /><category term="PostgreSQL" /><summary type="html"><![CDATA[JSONB JSONB 객체 생성 중첩 JSON 반환 jsonb_pretty와 to_jsonb]]></summary></entry><entry><title type="html">Psql 함수,프로시져,트리거</title><link href="http://localhost:4000/db/postgresql/2026/07/31/psql1/" rel="alternate" type="text/html" title="Psql 함수,프로시져,트리거" /><published>2026-07-31T08:00:00+09:00</published><updated>2026-07-31T08:00:00+09:00</updated><id>http://localhost:4000/db/postgresql/2026/07/31/psql1</id><content type="html" xml:base="http://localhost:4000/db/postgresql/2026/07/31/psql1/"><![CDATA[<h1 id="함수function">함수(Function)</h1>
+
+<p>psql에서 함수의 기본 구조는 다음과 같다.</p>
+
+<h3 id="함수-기본-구조">함수 기본 구조</h3>
+
+<p>’'’sql
+CREATE OR REPLACE FUNCTION 스키마명.함수명(
+    매개변수명 데이터타입
+)
+RETURNS 반환타입
+LANGUAGE 언어
+AS \(함수 본문\);
+‘’’</p>
+
+<h3 id="예시-함수-작성">예시 함수 작성</h3>
+
+<p>예를 들어 고객 등급에 따른 할인율 반환하는 함수는 다음과 같이 작성할 수 있다.</p>
+
+<p>’'’sql
+CREATE OR REPLACE FUNCTION proc_lab.fn_grade_discount_rate(
+    p_grade text
+)
+RETURNS numeric
+LANGUAGE sql
+AS \(SELECT CASE UPPER(TRIM(p_grade))
+        WHEN 'BASIC' THEN 0
+        WHEN 'SILVER' THEN 0.05
+        WHEN 'GOLD' THEN 0.10
+        WHEN 'VIP' THEN 0.15
+        ELSE 0
+    END;\);
+‘’’</p>
+
+<ul>
+  <li>함수 호출</li>
+</ul>
+
+<p>’'’sql 
+SELECT proc_lab.fn_grade_discount_rate(‘ gold ‘);
+‘’’</p>
+
+<h2 id="sql-함수와-plpgsql-함수">SQL 함수와 PL/pgSQL 함수</h2>
+
+<p>PostgreSQL 함수는 본문을 어떤 언어로 작성하는지에 따라 실행 방식이 달라지는데요, 이번에는 LANGUAGE sql 과 LANGAUGE plpgsql을 사용했습니다.</p>
+
+<h2 id="sql-함수">SQL 함수</h2>
+
+<p>LANGUAGE sql 함수는 일반적으로 하나의 SQL 문장이나 비교적 단순한 조회 로직을 작성할 때 사용합니다</p>
+
+<p>’'’sql 
+create or replace function proc_lab.fn_grade_discount_rate(
+    p_grade text
+)
+returns numeric 
+LANGUAGE sql 
+AS \(SELECT CASE UPPER(TRIM(p_grade))
+        WHEN 'GOLD' THEN 0.10 
+        ELSE 0 
+    END;\); 
+‘’’
+SQL 함수는 다음과 같은 경우에 적합합니다.</p>
+<ul>
+  <li>단순 값 계산</li>
+  <li>조건에 따른 값 반환</li>
+  <li>테이블 조회 결과 반화</li>
+  <li>복잡한 데이터 제어가 필요하지 않은 경우</li>
+</ul>
+
+<h3 id="plpgsql-함수">PL/pgSQL 함수</h3>
+<p>LANGUAGE plpgsql 함수는 PostgreSQL의 절차형 언어를 사용한다. 
+변수 선언, 조건문, 예외 처리처럼 일반 SQL으로 표현하기 어려운 로직을 작성할 수 있다.</p>
+
+<p>’’’ 
+CREATE OR REPLACE FUNCTION proc_lab.fn_customer_order_summary_json(
+    p_customer_id bigint
+)
+returns jsonb 
+LANGUAGE plpgsql 
+AS $$ 
+DECLARE 
+    v_customer jsonb; 
+Begin 
+    select jsonb_build_object(
+        ‘customer_id’, c.customer_id, 
+        ‘name’, c.customer_name 
+    )
+    into v_customer 
+    from proc_lab.customer c
+    where c.customer_id = p_customer_id;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if v_customer is null then
+    raise exception 'Customer ID % does not exist', p_customer_id; 
+end if; 
+
+return v_customer;  end;  $$; 
+</code></pre></div></div>
+
+<p>’’’</p>
+
+<p>PL/pgSQL은 다음과 같은 경우에 적합하다.</p>
+<ul>
+  <li>DECLARE를 이용한 변수 선언</li>
+  <li>IF, CASE 를 이용한 조건 처리</li>
+  <li>여러 SQL 문장 순차 실행</li>
+  <li>RAISE EXCEPTION을 이용한 예외 처리</li>
+  <li>조회 결과를 변수에 저장하는 SELECT INTO</li>
+</ul>
+
+<p>정리하자면 단순 조회와 계산에는 SQL 함수가 적합하고, 제어 흐름이나 예외 처리가 필요하다면 PL/pgSQL 함수가 적합하다.</p>
+
+<h2 id="단일-값테이블jsonb-반환">단일 값·테이블·JSONB 반환</h2>
+
+<h2 id="함수-속성과-주요-문법">함수 속성과 주요 문법</h2>
+
+<h1 id="프로시저procedure">프로시저(Procedure)</h1>
+
+<h2 id="함수와-프로시저의-차이">함수와 프로시저의 차이</h2>
+
+<h2 id="in-out-inout-매개변수">IN, OUT, INOUT 매개변수</h2>
+
+<h2 id="주문-생성-프로시저">주문 생성 프로시저</h2>
+
+<h2 id="returning-into">RETURNING INTO</h2>
+
+<h2 id="트랜잭션-기반-테스트">트랜잭션 기반 테스트</h2>
+
+<h1 id="트리거trigger">트리거(Trigger)</h1>
+
+<h2 id="트리거의-기본-구조">트리거의 기본 구조</h2>
+
+<h2 id="oldnewtg_op">OLD·NEW·TG_OP</h2>
+
+<h2 id="감사-로그-트리거">감사 로그 트리거</h2>
+
+<h2 id="주문-총액-자동-갱신">주문 총액 자동 갱신</h2>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><category term="PostgreSQL" /><category term="PostgreSQL" /><summary type="html"><![CDATA[함수(Function)]]></summary></entry><entry><title type="html">DB 테스트</title><link href="http://localhost:4000/db/2026/07/30/db-test/" rel="alternate" type="text/html" title="DB 테스트" /><published>2026-07-30T09:02:00+09:00</published><updated>2026-07-30T09:02:00+09:00</updated><id>http://localhost:4000/db/2026/07/30/db-test</id><content type="html" xml:base="http://localhost:4000/db/2026/07/30/db-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><summary type="html"><![CDATA[가]]></summary></entry><entry><title type="html">Deep Learning 테스트</title><link href="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" rel="alternate" type="text/html" title="Deep Learning 테스트" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>http://localhost:4000/deep_learning/2026/07/30/deep-learning-test</id><content type="html" xml:base="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><summary type="html"><![CDATA[가]]></summary></entry><entry><title type="html">Vue1</title><link href="http://localhost:4000/frontend/2026/07/30/vue_1/" rel="alternate" type="text/html" title="Vue1" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>http://localhost:4000/frontend/2026/07/30/vue_1</id><content type="html" xml:base="http://localhost:4000/frontend/2026/07/30/vue_1/"><![CDATA[<h1 id="vue-프로젝트-디렉터리-구조">Vue 프로젝트 디렉터리 구조</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>파일 또는 폴더</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">index.html</code></td>
+      <td>애플리케이션의 진입점입니다. 브라우저가 처음 읽는 HTML 파일이며, Vue 앱이 들어갈 <code class="language-plaintext highlighter-rouge">&lt;div id="app"&gt;</code>를 포함합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">package.json</code></td>
+      <td>프로젝트 이름, 버전, 실행 스크립트, 설치된 의존성 라이브러리를 기록합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">vite.config.js</code></td>
+      <td>Vite 개발 서버와 빌드 엔진의 설정 파일입니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.gitignore</code></td>
+      <td>Git에 저장하지 않을 파일과 폴더를 지정합니다. 예: <code class="language-plaintext highlighter-rouge">node_modules</code>, <code class="language-plaintext highlighter-rouge">dist</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">public/</code></td>
+      <td>브라우저에 그대로 제공되는 정적 파일 폴더입니다. Vite가 파일을 컴파일하거나 최적화하지 않습니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/</code></td>
+      <td>Vue 애플리케이션의 실제 소스 코드가 들어 있는 폴더입니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/main.js</code></td>
+      <td>Vue 애플리케이션을 시작하는 진입 JavaScript 파일입니다. <code class="language-plaintext highlighter-rouge">index.html</code>에서 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/App.vue</code></td>
+      <td>애플리케이션의 최상위 루트 컴포넌트입니다. 다른 화면이 표시될 기본 영역을 제공합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/style.css</code></td>
+      <td>애플리케이션 전체에 적용되는 CSS 파일입니다. 프로젝트 설정에 따라 <code class="language-plaintext highlighter-rouge">src/assets/main.css</code>로 존재할 수도 있습니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/assets/</code></td>
+      <td>CSS, 이미지, 로고, 폰트 등 Vite가 컴파일하고 최적화할 소스 자원을 보관합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/components/</code></td>
+      <td>여러 화면에서 재사용할 작은 Vue 컴포넌트를 보관합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">HelloWorld.vue</code></td>
+      <td>Vue 프로젝트 생성 시 제공되는 예시 컴포넌트입니다. 보통 <code class="language-plaintext highlighter-rouge">App.vue</code>에서 호출됩니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/router/</code></td>
+      <td>SPA의 페이지 이동 경로를 정의합니다. URL에 따라 어떤 화면을 보여줄지 결정합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/stores/</code></td>
+      <td>Pinia를 이용한 전역 상태 저장소를 보관합니다. 여러 컴포넌트가 함께 사용할 데이터를 관리합니다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/views/</code></td>
+      <td>여러 컴포넌트를 조립해 만든 완성된 페이지 단위 화면을 보관합니다. 예: <code class="language-plaintext highlighter-rouge">HomeView.vue</code>, <code class="language-plaintext highlighter-rouge">AboutView.vue</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="vue-애플리케이션-작동-구조">Vue 애플리케이션 작동 구조</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>브라우저가 http://localhost:5173 접속
+                ↓
+          index.html 로드
+                ↓
+       &lt;div id="app"&gt; 확인
+                ↓
+          src/main.js 실행
+                ↓
+      createApp(App)으로 Vue 시작
+                ↓
+          src/App.vue 표시
+                ↓
+      &lt;RouterView /&gt;가 현재 URL 확인
+                ↓
+    router/index.js에서 경로와 화면 연결
+                ↓
+      해당 views 화면을 브라우저에 표시
+</code></pre></div></div>
+
+<h2 id="파일-간-호출-관계">파일 간 호출 관계</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.html
+   └── src/main.js
+          └── App.vue
+                 └── RouterView
+                        └── router/index.js
+                               └── views/AboutView.vue
+                                      └── components 재사용
+</code></pre></div></div>
+
+<h2 id="예시-about-페이지가-표시되는-과정">예시: <code class="language-plaintext highlighter-rouge">/about</code> 페이지가 표시되는 과정</h2>
+
+<ol>
+  <li>사용자가 <code class="language-plaintext highlighter-rouge">http://localhost:5173/about</code>에 접속합니다.</li>
+  <li>브라우저가 <code class="language-plaintext highlighter-rouge">index.html</code>을 읽습니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">index.html</code>이 <code class="language-plaintext highlighter-rouge">src/main.js</code>를 실행합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">main.js</code>가 Vue 앱과 Router를 등록합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">App.vue</code>의 <code class="language-plaintext highlighter-rouge">&lt;RouterView /&gt;</code>가 화면을 표시할 자리를 만듭니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">router/index.js</code>가 <code class="language-plaintext highlighter-rouge">/about</code> 경로를 확인합니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">/about</code>에 연결된 <code class="language-plaintext highlighter-rouge">AboutView.vue</code>를 불러옵니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">AboutView.vue</code>의 템플릿이 브라우저 화면에 표시됩니다.</li>
+</ol>
+
+<h2 id="spa와-vue의-역할">SPA와 Vue의 역할</h2>
+
+<p>Vue 애플리케이션은 보통 하나의 <code class="language-plaintext highlighter-rouge">index.html</code>을 기본 틀로 사용합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.html
+└── &lt;div id="app"&gt;
+       └── App.vue
+              └── RouterView
+                     └── 현재 경로에 맞는 View
+</code></pre></div></div>
+
+<p>페이지를 이동할 때마다 HTML 전체를 다시 불러오는 대신, Router가 필요한 화면만 교체합니다. 따라서 전체 페이지 새로고침을 줄이고, 화면 전환을 빠르고 자연스럽게 만들 수 있습니다.</p>
+
+<h2 id="각-폴더의-역할-정리">각 폴더의 역할 정리</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>components = 화면을 구성하는 작은 부품
+views      = 부품을 조립한 완성 페이지
+router     = 페이지 이동 규칙
+stores     = 여러 화면이 함께 사용하는 데이터
+assets     = Vite가 처리할 이미지, CSS, 폰트
+public     = 그대로 제공할 정적 파일
+</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><summary type="html"><![CDATA[Vue 프로젝트 디렉터리 구조]]></summary></entry><entry><title type="html">Vue 기초 디렉토리 구조</title><link href="http://localhost:4000/frontend/2026/07/30/vue_%EA%B8%B0%EC%B4%88%EA%B5%AC%EC%A1%B0/" rel="alternate" type="text/html" title="Vue 기초 디렉토리 구조" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>http://localhost:4000/frontend/2026/07/30/vue_%EA%B8%B0%EC%B4%88%EA%B5%AC%EC%A1%B0</id><content type="html" xml:base="http://localhost:4000/frontend/2026/07/30/vue_%EA%B8%B0%EC%B4%88%EA%B5%AC%EC%A1%B0/"><![CDATA[<p>V_bind, V_model,</p>
+
+<h1 id="vue-프로젝트">Vue 프로젝트</h1>
+
+<p>Vue 3 + Vite 프로젝트는 보통 아래 구조로 되어 있습니다. 핵심은 <strong><code class="language-plaintext highlighter-rouge">src</code>가 실제 개발 공간이고, 그 안에서 페이지·컴포넌트·라우터·상태를 분리한다</strong>는 것입니다.</p>
+
+<h1 id="기본-프로젝트-구조">기본 프로젝트 구조</h1>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>skala-vue/
+├── .vscode/
+├── node_modules/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── views/
+│   ├── router/
+│   ├── stores/
+│   ├── App.vue
+│   ├── main.js
+│   └── style.css
+├── .env
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+└── README.md
+</code></pre></div></div>
+
+<h1 id="1-indexhtml">1. <code class="language-plaintext highlighter-rouge">index.html</code></h1>
+
+<p>브라우저가 가장 먼저 읽는 <strong>실제 HTML 파일</strong>입니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span> <span class="na">src=</span><span class="s">"/src/main.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>Vue가 만드는 모든 화면은 최종적으로 다음 영역에 들어갑니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>실행 흐름은 다음과 같습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.html
+→ main.js 실행
+→ Vue 앱 생성
+→ App.vue를 #app에 연결
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="2-srcmainjs">2. <code class="language-plaintext highlighter-rouge">src/main.js</code></h1>
+
+<p>Vue 애플리케이션을 초기화하는 <strong>JavaScript 진입점</strong>입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">./style.css</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createPinia</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">pinia</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">createPinia</span><span class="p">())</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>주요 역할은 다음과 같습니다.</p>
+
+<ul>
+  <li>Vue 앱 생성</li>
+  <li>최상위 컴포넌트인 <code class="language-plaintext highlighter-rouge">App.vue</code> 등록</li>
+  <li>Vue Router 등록</li>
+  <li>Pinia 등록</li>
+  <li>전역 CSS 등록</li>
+  <li><code class="language-plaintext highlighter-rouge">index.html</code>의 <code class="language-plaintext highlighter-rouge">#app</code>에 Vue 앱 부착</li>
+</ul>
+
+<p>즉, <code class="language-plaintext highlighter-rouge">main.js</code>는 Vue 애플리케이션의 <strong>조립 및 시동 담당 파일</strong>입니다.</p>
+
+<hr />
+
+<h1 id="3-srcappvue">3. <code class="language-plaintext highlighter-rouge">src/App.vue</code></h1>
+
+<p>애플리케이션의 <strong>최상위 Root Component</strong>입니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">RouterLink</span><span class="p">,</span> <span class="nx">RouterView</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;RouterLink</span> <span class="na">to=</span><span class="s">"/"</span><span class="nt">&gt;</span>홈<span class="nt">&lt;/RouterLink&gt;</span>
+    <span class="nt">&lt;RouterLink</span> <span class="na">to=</span><span class="s">"/about"</span><span class="nt">&gt;</span>소개<span class="nt">&lt;/RouterLink&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+
+  <span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;RouterView</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>보통 다음 내용을 배치합니다.</p>
+
+<ul>
+  <li>공통 Header</li>
+  <li>Navigation</li>
+  <li>Footer</li>
+  <li><code class="language-plaintext highlighter-rouge">RouterView</code></li>
+  <li>앱 전체 레이아웃</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">App.vue</code>가 모든 화면 내용을 직접 가지기보다, 전체 골격만 담당하는 것이 좋습니다.</p>
+
+<hr />
+
+<h1 id="4-srccomponents">4. <code class="language-plaintext highlighter-rouge">src/components</code></h1>
+
+<p>여러 페이지에서 재사용할 수 있는 <strong>작은 UI 부품</strong>을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>components/
+├── BaseButton.vue
+├── SearchBar.vue
+├── WeatherCard.vue
+├── AppHeader.vue
+└── AppModal.vue
+</code></pre></div></div>
+
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">WeatherCard.vue</code>는 날씨 카드 하나만 담당합니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="nx">defineProps</span><span class="p">({</span>
+  <span class="na">cityName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+  <span class="na">temperature</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"weather-card"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;&lt;/h2&gt;</span>
+    <span class="nt">&lt;p&gt;</span>℃<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/article&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>컴포넌트는 다음 기준으로 분리합니다.</p>
+
+<ul>
+  <li>독립된 역할이 있는가?</li>
+  <li>다른 화면에서도 재사용할 수 있는가?</li>
+  <li>하나의 파일이 너무 커졌는가?</li>
+  <li>반복되는 UI인가?</li>
+</ul>
+
+<hr />
+
+<h1 id="5-srcviews">5. <code class="language-plaintext highlighter-rouge">src/views</code></h1>
+
+<p>URL 하나에 대응하는 <strong>페이지 단위 컴포넌트</strong>를 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>views/
+├── HomeView.vue
+├── AboutView.vue
+├── WeatherDetailView.vue
+├── LoginView.vue
+└── NotFoundView.vue
+</code></pre></div></div>
+
+<p>예를 들어 다음 URL이 있다면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/                 → HomeView.vue
+/about            → AboutView.vue
+/weather/city_01  → WeatherDetailView.vue
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">views</code>는 페이지 전체를 담당하고, 내부에서 여러 <code class="language-plaintext highlighter-rouge">components</code>를 조립합니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">SearchBar</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/components/SearchBar.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">WeatherCard</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/components/WeatherCard.vue</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;SearchBar</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;section&gt;</span>
+      <span class="nt">&lt;WeatherCard</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;WeatherCard</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="views와-components-차이"><code class="language-plaintext highlighter-rouge">views</code>와 <code class="language-plaintext highlighter-rouge">components</code> 차이</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">views</code></th>
+      <th><code class="language-plaintext highlighter-rouge">components</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>역할</td>
+      <td>페이지 단위 화면</td>
+      <td>재사용 가능한 UI 부품</td>
+    </tr>
+    <tr>
+      <td>Router 연결</td>
+      <td>직접 연결</td>
+      <td>보통 직접 연결하지 않음</td>
+    </tr>
+    <tr>
+      <td>재사용성</td>
+      <td>비교적 낮음</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td><code class="language-plaintext highlighter-rouge">HomeView.vue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WeatherCard.vue</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="6-srcrouter">6. <code class="language-plaintext highlighter-rouge">src/router</code></h1>
+
+<p>URL과 페이지 컴포넌트를 연결하는 <strong>Vue Router 설정</strong>을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>router/
+└── index.js
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="nx">HomeView</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/views/HomeView.vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
+  <span class="na">history</span><span class="p">:</span> <span class="nx">createWebHistory</span><span class="p">(),</span>
+
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">home</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="nx">HomeView</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/about</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">about</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">@/views/AboutView.vue</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/weather/:cityId</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">weather-detail</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">@/views/WeatherDetailView.vue</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/:pathMatch(.*)*</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">not-found</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">@/views/NotFoundView.vue</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">},</span>
+  <span class="p">],</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">component: () =&gt; import(...)</code> 방식은 해당 페이지가 필요할 때 불러오는 <strong>Lazy Loading</strong>입니다.</p>
+
+<hr />
+
+<h1 id="7-srcstores">7. <code class="language-plaintext highlighter-rouge">src/stores</code></h1>
+
+<p>Pinia를 사용하는 경우, 여러 컴포넌트가 공유할 <strong>전역 상태</strong>를 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stores/
+├── authStore.js
+├── configStore.js
+└── weatherStore.js
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">defineStore</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">pinia</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">useConfigStore</span> <span class="o">=</span> <span class="nx">defineStore</span><span class="p">(</span><span class="dl">'</span><span class="s1">config</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">unit</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="nx">unitSymbol</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">unit</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">℃</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">℉</span><span class="dl">'</span>
+  <span class="p">})</span>
+
+  <span class="kd">const</span> <span class="nx">toggleUnit</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">unit</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span>
+      <span class="nx">unit</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span>
+        <span class="p">?</span> <span class="dl">'</span><span class="s1">fahrenheit</span><span class="dl">'</span>
+        <span class="p">:</span> <span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">unit</span><span class="p">,</span>
+    <span class="nx">unitSymbol</span><span class="p">,</span>
+    <span class="nx">toggleUnit</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Store는 보통 다음 세 요소로 구성됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>State   → 원본 데이터
+Getter  → 계산된 데이터
+Action  → 데이터를 변경하는 함수
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="8-srcassets">8. <code class="language-plaintext highlighter-rouge">src/assets</code></h1>
+
+<p>Vite가 빌드 과정에서 처리하고 최적화할 자원을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assets/
+├── images/
+│   ├── logo.png
+│   └── background.jpg
+├── styles/
+│   ├── reset.css
+│   └── variables.css
+└── fonts/
+</code></pre></div></div>
+
+<p>컴포넌트에서 다음처럼 가져옵니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">logoUrl</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/assets/images/logo.png</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;img</span> <span class="na">:src=</span><span class="s">"logoUrl"</span> <span class="na">alt=</span><span class="s">"로고"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@</code>는 보통 <code class="language-plaintext highlighter-rouge">src</code> 폴더를 의미합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@/components
+→ src/components
+
+@/assets
+→ src/assets
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="9-public">9. <code class="language-plaintext highlighter-rouge">public</code></h1>
+
+<p>Vite가 가공하지 않고 <strong>원본 그대로 배포할 정적 파일</strong>을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public/
+├── favicon.ico
+├── robots.txt
+└── sample-data.json
+</code></pre></div></div>
+
+<p>사용할 때는 <code class="language-plaintext highlighter-rouge">/</code>부터 시작합니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/favicon.ico"</span> <span class="na">alt=</span><span class="s">"아이콘"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h2 id="public과-assets-차이"><code class="language-plaintext highlighter-rouge">public</code>과 <code class="language-plaintext highlighter-rouge">assets</code> 차이</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">public</code></th>
+      <th><code class="language-plaintext highlighter-rouge">src/assets</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>빌드 처리</td>
+      <td>하지 않음</td>
+      <td>Vite가 처리</td>
+    </tr>
+    <tr>
+      <td>파일명 해시</td>
+      <td>없음</td>
+      <td>생성될 수 있음</td>
+    </tr>
+    <tr>
+      <td>import</td>
+      <td>보통 하지 않음</td>
+      <td>import해서 사용</td>
+    </tr>
+    <tr>
+      <td>용도</td>
+      <td>고정된 정적 파일</td>
+      <td>컴포넌트가 사용하는 이미지·CSS</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>일반적인 이미지와 CSS는 <code class="language-plaintext highlighter-rouge">assets</code>를 우선 사용하고, 반드시 고정된 경로가 필요한 파일만 <code class="language-plaintext highlighter-rouge">public</code>에 넣는 편이 좋습니다.</p>
+
+<hr />
+
+<h1 id="10-packagejson">10. <code class="language-plaintext highlighter-rouge">package.json</code></h1>
+
+<p>프로젝트의 이름, 명령어, 의존성 패키지를 기록합니다.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skala-vue"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"module"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"dev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vite"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vite build"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vite preview"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eslint ."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prettier --write src/"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"axios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pinia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vue-router"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.0.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"vite"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^7.0.0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>주요 명령어:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install
+</span>npm run dev
+npm run build
+npm run lint
+npm run format
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="11-node_modules">11. <code class="language-plaintext highlighter-rouge">node_modules</code></h1>
+
+<p><code class="language-plaintext highlighter-rouge">npm install</code>로 설치된 라이브러리의 실제 파일이 저장됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node_modules/
+├── vue/
+├── vue-router/
+├── pinia/
+├── axios/
+└── ...
+</code></pre></div></div>
+
+<p>직접 수정하지 않습니다.</p>
+
+<p>Git에도 올리지 않습니다.</p>
+
+<pre><code class="language-gitignore">node_modules/
+</code></pre>
+
+<p>다른 개발자는 <code class="language-plaintext highlighter-rouge">package.json</code>을 기준으로 다시 설치합니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="12-viteconfigjs">12. <code class="language-plaintext highlighter-rouge">vite.config.js</code></h1>
+
+<p>Vite 개발 서버와 빌드 방식을 설정합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">fileURLToPath</span><span class="p">,</span> <span class="nx">URL</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">node:url</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vite</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">vue</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@vitejs/plugin-vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="nx">vue</span><span class="p">()],</span>
+
+  <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">alias</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">@</span><span class="dl">'</span><span class="p">:</span> <span class="nx">fileURLToPath</span><span class="p">(</span>
+        <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="dl">'</span><span class="s1">./src</span><span class="dl">'</span><span class="p">,</span> <span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">url</span><span class="p">),</span>
+      <span class="p">),</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+
+  <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">port</span><span class="p">:</span> <span class="mi">5173</span><span class="p">,</span>
+    <span class="na">open</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+
+  <span class="na">build</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">outDir</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dist</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>주요 설정:</p>
+
+<ul>
+  <li>Vue 플러그인 등록</li>
+  <li><code class="language-plaintext highlighter-rouge">@</code> 경로 별칭</li>
+  <li>개발 서버 포트</li>
+  <li>Proxy</li>
+  <li>빌드 출력 폴더</li>
+</ul>
+
+<hr />
+
+<h1 id="13-env">13. <code class="language-plaintext highlighter-rouge">.env</code></h1>
+
+<p>환경별 설정값을 저장합니다.</p>
+
+<pre><code class="language-env">VITE_API_URL=https://api.example.com
+VITE_APP_NAME=Weather Dashboard
+</code></pre>
+
+<p>Vue에서 사용:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">apiUrl</span> <span class="o">=</span> <span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VITE_API_URL</span>
+</code></pre></div></div>
+
+<p>환경별로 나눌 수도 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.env
+.env.development
+.env.staging
+.env.production
+</code></pre></div></div>
+
+<p>주의할 점은 <code class="language-plaintext highlighter-rouge">VITE_</code> 환경 변수도 최종 프론트엔드 JavaScript에 포함되므로, 비밀번호나 비공개 API Secret을 저장하면 안 된다는 것입니다.</p>
+
+<hr />
+
+<h1 id="실무형-권장-구조">실무형 권장 구조</h1>
+
+<p>프로젝트가 커지면 다음처럼 도메인별로 더 세분화할 수 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
+├── api/
+│   ├── axiosInstance.js
+│   ├── weatherApi.js
+│   └── userApi.js
+│
+├── assets/
+│   ├── images/
+│   └── styles/
+│
+├── components/
+│   ├── common/
+│   │   ├── BaseButton.vue
+│   │   └── BaseModal.vue
+│   └── weather/
+│       ├── SearchBar.vue
+│       └── WeatherCard.vue
+│
+├── composables/
+│   ├── useWeather.js
+│   └── usePagination.js
+│
+├── layouts/
+│   ├── DefaultLayout.vue
+│   └── AuthLayout.vue
+│
+├── router/
+│   └── index.js
+│
+├── stores/
+│   ├── authStore.js
+│   └── configStore.js
+│
+├── utils/
+│   ├── date.js
+│   └── validation.js
+│
+├── views/
+│   ├── HomeView.vue
+│   ├── LoginView.vue
+│   └── WeatherDetailView.vue
+│
+├── App.vue
+└── main.js
+</code></pre></div></div>
+
+<p>추가 폴더의 역할:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>폴더</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">api</code></td>
+      <td>Axios와 API 요청 함수</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">composables</code></td>
+      <td>재사용 가능한 반응형 로직</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">layouts</code></td>
+      <td>공통 페이지 레이아웃</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">utils</code></td>
+      <td>일반 유틸리티 함수</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">components/common</code></td>
+      <td>프로젝트 공통 UI</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">components/weather</code></td>
+      <td>날씨 도메인 전용 컴포넌트</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="핵심-실행-흐름">핵심 실행 흐름</h1>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 브라우저가 index.html을 읽는다.
+2. index.html이 src/main.js를 실행한다.
+3. main.js가 Vue 앱과 Router, Pinia를 생성한다.
+4. App.vue를 #app에 mount한다.
+5. Router가 URL에 맞는 View 컴포넌트를 선택한다.
+6. View가 필요한 Components를 조립한다.
+7. Components는 Props와 Emits로 통신한다.
+8. 공통 상태는 Pinia Store에서 가져온다.
+9. 서버 데이터는 api 또는 Axios를 통해 가져온다.
+</code></pre></div></div>
+
+<p>가장 중요한 구분은 다음입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>views      = 페이지
+components = 재사용 부품
+router     = URL 연결
+stores     = 전역 상태
+api        = 서버 통신
+assets     = 이미지와 스타일
+main.js    = 앱 시작
+App.vue    = 앱 전체 골격
+</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><summary type="html"><![CDATA[V_bind, V_model,]]></summary></entry><entry><title type="html">Vue Directive</title><link href="http://localhost:4000/frontend/2026/07/30/vue_directive/" rel="alternate" type="text/html" title="Vue Directive" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>http://localhost:4000/frontend/2026/07/30/vue_directive</id><content type="html" xml:base="http://localhost:4000/frontend/2026/07/30/vue_directive/"><![CDATA[<p>V_bind, V_model, V_on</p>
+
+<h1 id="vue-프로젝트">Vue 프로젝트</h1>
+
+<p>Vue 3 + Vite 프로젝트는 보통 아래 구조로 되어 있습니다. 핵심은 <strong><code class="language-plaintext highlighter-rouge">src</code>가 실제 개발 공간이고, 그 안에서 페이지·컴포넌트·라우터·상태를 분리한다</strong>는 것입니다.</p>
+
+<h1 id="기본-프로젝트-구조">기본 프로젝트 구조</h1>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>skala-vue/
+├── .vscode/
+├── node_modules/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── views/
+│   ├── router/
+│   ├── stores/
+│   ├── App.vue
+│   ├── main.js
+│   └── style.css
+├── .env
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+└── README.md
+</code></pre></div></div>
+
+<h1 id="1-indexhtml">1. <code class="language-plaintext highlighter-rouge">index.html</code></h1>
+
+<p>브라우저가 가장 먼저 읽는 <strong>실제 HTML 파일</strong>입니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"module"</span> <span class="na">src=</span><span class="s">"/src/main.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p>Vue가 만드는 모든 화면은 최종적으로 다음 영역에 들어갑니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>실행 흐름은 다음과 같습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>index.html
+→ main.js 실행
+→ Vue 앱 생성
+→ App.vue를 #app에 연결
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="2-srcmainjs">2. <code class="language-plaintext highlighter-rouge">src/main.js</code></h1>
+
+<p>Vue 애플리케이션을 초기화하는 <strong>JavaScript 진입점</strong>입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="dl">'</span><span class="s1">./style.css</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">createPinia</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">pinia</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">router</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./router</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">createPinia</span><span class="p">())</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">router</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>주요 역할은 다음과 같습니다.</p>
+
+<ul>
+  <li>Vue 앱 생성</li>
+  <li>최상위 컴포넌트인 <code class="language-plaintext highlighter-rouge">App.vue</code> 등록</li>
+  <li>Vue Router 등록</li>
+  <li>Pinia 등록</li>
+  <li>전역 CSS 등록</li>
+  <li><code class="language-plaintext highlighter-rouge">index.html</code>의 <code class="language-plaintext highlighter-rouge">#app</code>에 Vue 앱 부착</li>
+</ul>
+
+<p>즉, <code class="language-plaintext highlighter-rouge">main.js</code>는 Vue 애플리케이션의 <strong>조립 및 시동 담당 파일</strong>입니다.</p>
+
+<hr />
+
+<h1 id="3-srcappvue">3. <code class="language-plaintext highlighter-rouge">src/App.vue</code></h1>
+
+<p>애플리케이션의 <strong>최상위 Root Component</strong>입니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">RouterLink</span><span class="p">,</span> <span class="nx">RouterView</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;header&gt;</span>
+    <span class="nt">&lt;RouterLink</span> <span class="na">to=</span><span class="s">"/"</span><span class="nt">&gt;</span>홈<span class="nt">&lt;/RouterLink&gt;</span>
+    <span class="nt">&lt;RouterLink</span> <span class="na">to=</span><span class="s">"/about"</span><span class="nt">&gt;</span>소개<span class="nt">&lt;/RouterLink&gt;</span>
+  <span class="nt">&lt;/header&gt;</span>
+
+  <span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;RouterView</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>보통 다음 내용을 배치합니다.</p>
+
+<ul>
+  <li>공통 Header</li>
+  <li>Navigation</li>
+  <li>Footer</li>
+  <li><code class="language-plaintext highlighter-rouge">RouterView</code></li>
+  <li>앱 전체 레이아웃</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">App.vue</code>가 모든 화면 내용을 직접 가지기보다, 전체 골격만 담당하는 것이 좋습니다.</p>
+
+<hr />
+
+<h1 id="4-srccomponents">4. <code class="language-plaintext highlighter-rouge">src/components</code></h1>
+
+<p>여러 페이지에서 재사용할 수 있는 <strong>작은 UI 부품</strong>을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>components/
+├── BaseButton.vue
+├── SearchBar.vue
+├── WeatherCard.vue
+├── AppHeader.vue
+└── AppModal.vue
+</code></pre></div></div>
+
+<p>예를 들어 <code class="language-plaintext highlighter-rouge">WeatherCard.vue</code>는 날씨 카드 하나만 담당합니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="nx">defineProps</span><span class="p">({</span>
+  <span class="na">cityName</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+  <span class="na">temperature</span><span class="p">:</span> <span class="nb">Number</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;article</span> <span class="na">class=</span><span class="s">"weather-card"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;&lt;/h2&gt;</span>
+    <span class="nt">&lt;p&gt;</span>℃<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/article&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>컴포넌트는 다음 기준으로 분리합니다.</p>
+
+<ul>
+  <li>독립된 역할이 있는가?</li>
+  <li>다른 화면에서도 재사용할 수 있는가?</li>
+  <li>하나의 파일이 너무 커졌는가?</li>
+  <li>반복되는 UI인가?</li>
+</ul>
+
+<hr />
+
+<h1 id="5-srcviews">5. <code class="language-plaintext highlighter-rouge">src/views</code></h1>
+
+<p>URL 하나에 대응하는 <strong>페이지 단위 컴포넌트</strong>를 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>views/
+├── HomeView.vue
+├── AboutView.vue
+├── WeatherDetailView.vue
+├── LoginView.vue
+└── NotFoundView.vue
+</code></pre></div></div>
+
+<p>예를 들어 다음 URL이 있다면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/                 → HomeView.vue
+/about            → AboutView.vue
+/weather/city_01  → WeatherDetailView.vue
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">views</code>는 페이지 전체를 담당하고, 내부에서 여러 <code class="language-plaintext highlighter-rouge">components</code>를 조립합니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">SearchBar</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/components/SearchBar.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">WeatherCard</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/components/WeatherCard.vue</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;main&gt;</span>
+    <span class="nt">&lt;SearchBar</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;section&gt;</span>
+      <span class="nt">&lt;WeatherCard</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;WeatherCard</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/section&gt;</span>
+  <span class="nt">&lt;/main&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="views와-components-차이"><code class="language-plaintext highlighter-rouge">views</code>와 <code class="language-plaintext highlighter-rouge">components</code> 차이</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">views</code></th>
+      <th><code class="language-plaintext highlighter-rouge">components</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>역할</td>
+      <td>페이지 단위 화면</td>
+      <td>재사용 가능한 UI 부품</td>
+    </tr>
+    <tr>
+      <td>Router 연결</td>
+      <td>직접 연결</td>
+      <td>보통 직접 연결하지 않음</td>
+    </tr>
+    <tr>
+      <td>재사용성</td>
+      <td>비교적 낮음</td>
+      <td>높음</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td><code class="language-plaintext highlighter-rouge">HomeView.vue</code></td>
+      <td><code class="language-plaintext highlighter-rouge">WeatherCard.vue</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="6-srcrouter">6. <code class="language-plaintext highlighter-rouge">src/router</code></h1>
+
+<p>URL과 페이지 컴포넌트를 연결하는 <strong>Vue Router 설정</strong>을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>router/
+└── index.js
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createRouter</span><span class="p">,</span> <span class="nx">createWebHistory</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue-router</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="nx">HomeView</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/views/HomeView.vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">createRouter</span><span class="p">({</span>
+  <span class="na">history</span><span class="p">:</span> <span class="nx">createWebHistory</span><span class="p">(),</span>
+
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">home</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="nx">HomeView</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/about</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">about</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">@/views/AboutView.vue</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/weather/:cityId</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">weather-detail</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">@/views/WeatherDetailView.vue</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/:pathMatch(.*)*</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">not-found</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">import</span><span class="p">(</span><span class="dl">'</span><span class="s1">@/views/NotFoundView.vue</span><span class="dl">'</span><span class="p">),</span>
+    <span class="p">},</span>
+  <span class="p">],</span>
+<span class="p">})</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">component: () =&gt; import(...)</code> 방식은 해당 페이지가 필요할 때 불러오는 <strong>Lazy Loading</strong>입니다.</p>
+
+<hr />
+
+<h1 id="7-srcstores">7. <code class="language-plaintext highlighter-rouge">src/stores</code></h1>
+
+<p>Pinia를 사용하는 경우, 여러 컴포넌트가 공유할 <strong>전역 상태</strong>를 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stores/
+├── authStore.js
+├── configStore.js
+└── weatherStore.js
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">defineStore</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">pinia</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">useConfigStore</span> <span class="o">=</span> <span class="nx">defineStore</span><span class="p">(</span><span class="dl">'</span><span class="s1">config</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">unit</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="nx">unitSymbol</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">unit</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">℃</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">℉</span><span class="dl">'</span>
+  <span class="p">})</span>
+
+  <span class="kd">const</span> <span class="nx">toggleUnit</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">unit</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span>
+      <span class="nx">unit</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span>
+        <span class="p">?</span> <span class="dl">'</span><span class="s1">fahrenheit</span><span class="dl">'</span>
+        <span class="p">:</span> <span class="dl">'</span><span class="s1">celsius</span><span class="dl">'</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">unit</span><span class="p">,</span>
+    <span class="nx">unitSymbol</span><span class="p">,</span>
+    <span class="nx">toggleUnit</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>Store는 보통 다음 세 요소로 구성됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>State   → 원본 데이터
+Getter  → 계산된 데이터
+Action  → 데이터를 변경하는 함수
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="8-srcassets">8. <code class="language-plaintext highlighter-rouge">src/assets</code></h1>
+
+<p>Vite가 빌드 과정에서 처리하고 최적화할 자원을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assets/
+├── images/
+│   ├── logo.png
+│   └── background.jpg
+├── styles/
+│   ├── reset.css
+│   └── variables.css
+└── fonts/
+</code></pre></div></div>
+
+<p>컴포넌트에서 다음처럼 가져옵니다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">logoUrl</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@/assets/images/logo.png</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;img</span> <span class="na">:src=</span><span class="s">"logoUrl"</span> <span class="na">alt=</span><span class="s">"로고"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@</code>는 보통 <code class="language-plaintext highlighter-rouge">src</code> 폴더를 의미합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@/components
+→ src/components
+
+@/assets
+→ src/assets
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="9-public">9. <code class="language-plaintext highlighter-rouge">public</code></h1>
+
+<p>Vite가 가공하지 않고 <strong>원본 그대로 배포할 정적 파일</strong>을 저장합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public/
+├── favicon.ico
+├── robots.txt
+└── sample-data.json
+</code></pre></div></div>
+
+<p>사용할 때는 <code class="language-plaintext highlighter-rouge">/</code>부터 시작합니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"/favicon.ico"</span> <span class="na">alt=</span><span class="s">"아이콘"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<h2 id="public과-assets-차이"><code class="language-plaintext highlighter-rouge">public</code>과 <code class="language-plaintext highlighter-rouge">assets</code> 차이</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">public</code></th>
+      <th><code class="language-plaintext highlighter-rouge">src/assets</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>빌드 처리</td>
+      <td>하지 않음</td>
+      <td>Vite가 처리</td>
+    </tr>
+    <tr>
+      <td>파일명 해시</td>
+      <td>없음</td>
+      <td>생성될 수 있음</td>
+    </tr>
+    <tr>
+      <td>import</td>
+      <td>보통 하지 않음</td>
+      <td>import해서 사용</td>
+    </tr>
+    <tr>
+      <td>용도</td>
+      <td>고정된 정적 파일</td>
+      <td>컴포넌트가 사용하는 이미지·CSS</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>일반적인 이미지와 CSS는 <code class="language-plaintext highlighter-rouge">assets</code>를 우선 사용하고, 반드시 고정된 경로가 필요한 파일만 <code class="language-plaintext highlighter-rouge">public</code>에 넣는 편이 좋습니다.</p>
+
+<hr />
+
+<h1 id="10-packagejson">10. <code class="language-plaintext highlighter-rouge">package.json</code></h1>
+
+<p>프로젝트의 이름, 명령어, 의존성 패키지를 기록합니다.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"skala-vue"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"module"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scripts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"dev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vite"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"build"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vite build"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"preview"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vite preview"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eslint ."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prettier --write src/"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"dependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"axios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^1.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pinia"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^3.0.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vue-router"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^4.0.0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"devDependencies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"vite"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^7.0.0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>주요 명령어:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install
+</span>npm run dev
+npm run build
+npm run lint
+npm run format
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="11-node_modules">11. <code class="language-plaintext highlighter-rouge">node_modules</code></h1>
+
+<p><code class="language-plaintext highlighter-rouge">npm install</code>로 설치된 라이브러리의 실제 파일이 저장됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node_modules/
+├── vue/
+├── vue-router/
+├── pinia/
+├── axios/
+└── ...
+</code></pre></div></div>
+
+<p>직접 수정하지 않습니다.</p>
+
+<p>Git에도 올리지 않습니다.</p>
+
+<pre><code class="language-gitignore">node_modules/
+</code></pre>
+
+<p>다른 개발자는 <code class="language-plaintext highlighter-rouge">package.json</code>을 기준으로 다시 설치합니다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="12-viteconfigjs">12. <code class="language-plaintext highlighter-rouge">vite.config.js</code></h1>
+
+<p>Vite 개발 서버와 빌드 방식을 설정합니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">fileURLToPath</span><span class="p">,</span> <span class="nx">URL</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">node:url</span><span class="dl">'</span>
+
+<span class="k">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vite</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">vue</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@vitejs/plugin-vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
+  <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="nx">vue</span><span class="p">()],</span>
+
+  <span class="na">resolve</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">alias</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">@</span><span class="dl">'</span><span class="p">:</span> <span class="nx">fileURLToPath</span><span class="p">(</span>
+        <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="dl">'</span><span class="s1">./src</span><span class="dl">'</span><span class="p">,</span> <span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">url</span><span class="p">),</span>
+      <span class="p">),</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+
+  <span class="na">server</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">port</span><span class="p">:</span> <span class="mi">5173</span><span class="p">,</span>
+    <span class="na">open</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="p">},</span>
+
+  <span class="na">build</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">outDir</span><span class="p">:</span> <span class="dl">'</span><span class="s1">dist</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>주요 설정:</p>
+
+<ul>
+  <li>Vue 플러그인 등록</li>
+  <li><code class="language-plaintext highlighter-rouge">@</code> 경로 별칭</li>
+  <li>개발 서버 포트</li>
+  <li>Proxy</li>
+  <li>빌드 출력 폴더</li>
+</ul>
+
+<hr />
+
+<h1 id="13-env">13. <code class="language-plaintext highlighter-rouge">.env</code></h1>
+
+<p>환경별 설정값을 저장합니다.</p>
+
+<pre><code class="language-env">VITE_API_URL=https://api.example.com
+VITE_APP_NAME=Weather Dashboard
+</code></pre>
+
+<p>Vue에서 사용:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">apiUrl</span> <span class="o">=</span> <span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VITE_API_URL</span>
+</code></pre></div></div>
+
+<p>환경별로 나눌 수도 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.env
+.env.development
+.env.staging
+.env.production
+</code></pre></div></div>
+
+<p>주의할 점은 <code class="language-plaintext highlighter-rouge">VITE_</code> 환경 변수도 최종 프론트엔드 JavaScript에 포함되므로, 비밀번호나 비공개 API Secret을 저장하면 안 된다는 것입니다.</p>
+
+<hr />
+
+<h1 id="실무형-권장-구조">실무형 권장 구조</h1>
+
+<p>프로젝트가 커지면 다음처럼 도메인별로 더 세분화할 수 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>src/
+├── api/
+│   ├── axiosInstance.js
+│   ├── weatherApi.js
+│   └── userApi.js
+│
+├── assets/
+│   ├── images/
+│   └── styles/
+│
+├── components/
+│   ├── common/
+│   │   ├── BaseButton.vue
+│   │   └── BaseModal.vue
+│   └── weather/
+│       ├── SearchBar.vue
+│       └── WeatherCard.vue
+│
+├── composables/
+│   ├── useWeather.js
+│   └── usePagination.js
+│
+├── layouts/
+│   ├── DefaultLayout.vue
+│   └── AuthLayout.vue
+│
+├── router/
+│   └── index.js
+│
+├── stores/
+│   ├── authStore.js
+│   └── configStore.js
+│
+├── utils/
+│   ├── date.js
+│   └── validation.js
+│
+├── views/
+│   ├── HomeView.vue
+│   ├── LoginView.vue
+│   └── WeatherDetailView.vue
+│
+├── App.vue
+└── main.js
+</code></pre></div></div>
+
+<p>추가 폴더의 역할:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>폴더</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">api</code></td>
+      <td>Axios와 API 요청 함수</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">composables</code></td>
+      <td>재사용 가능한 반응형 로직</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">layouts</code></td>
+      <td>공통 페이지 레이아웃</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">utils</code></td>
+      <td>일반 유틸리티 함수</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">components/common</code></td>
+      <td>프로젝트 공통 UI</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">components/weather</code></td>
+      <td>날씨 도메인 전용 컴포넌트</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="핵심-실행-흐름">핵심 실행 흐름</h1>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 브라우저가 index.html을 읽는다.
+2. index.html이 src/main.js를 실행한다.
+3. main.js가 Vue 앱과 Router, Pinia를 생성한다.
+4. App.vue를 #app에 mount한다.
+5. Router가 URL에 맞는 View 컴포넌트를 선택한다.
+6. View가 필요한 Components를 조립한다.
+7. Components는 Props와 Emits로 통신한다.
+8. 공통 상태는 Pinia Store에서 가져온다.
+9. 서버 데이터는 api 또는 Axios를 통해 가져온다.
+</code></pre></div></div>
+
+<p>가장 중요한 구분은 다음입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>views      = 페이지
+components = 재사용 부품
+router     = URL 연결
+stores     = 전역 상태
+api        = 서버 통신
+assets     = 이미지와 스타일
+main.js    = 앱 시작
+App.vue    = 앱 전체 골격
+</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><summary type="html"><![CDATA[V_bind, V_model, V_on]]></summary></entry><entry><title type="html">CS 테스트</title><link href="http://localhost:4000/cs/2026/07/30/cs-test/" rel="alternate" type="text/html" title="CS 테스트" /><published>2026-07-30T09:00:00+09:00</published><updated>2026-07-30T09:00:00+09:00</updated><id>http://localhost:4000/cs/2026/07/30/cs-test</id><content type="html" xml:base="http://localhost:4000/cs/2026/07/30/cs-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="CS" /><summary type="html"><![CDATA[가]]></summary></entry></feed>

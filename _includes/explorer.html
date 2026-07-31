@@ -23,17 +23,53 @@
     </div>
     <div class="ide-tree" id="explorerTree" role="tree" aria-label="카테고리와 게시물">
       <div class="ide-tree-root"><i class="ri-folder-open-line" aria-hidden="true"></i><strong>BLOG</strong></div>
-      {% for category_name in site.study_categories %}
+      {% assign discovered_categories = "" | split: "|" %}
+      {% for post in site.posts %}
+        {% assign discovered_category = post.categories | first %}
+        {% if discovered_category %}{% assign discovered_categories = discovered_categories | push: discovered_category %}{% endif %}
+      {% endfor %}
+      {% assign category_names = site.study_categories | concat: discovered_categories | uniq %}
+      {% for category_name in category_names %}
         {% assign category_posts = site.posts | where_exp: "post", "post.categories contains category_name" %}
-        <section class="ide-tree-folder is-open" data-category="{{ category_name | slugify }}" data-folder-name="{{ category_name | downcase }}" role="treeitem" aria-expanded="true">
+        {% assign root_posts = category_posts | where_exp: "post", "post.categories.size == 1" %}
+        {% assign category_children = "" | split: "|" %}
+        {% for category_post in category_posts %}
+          {% assign post_children = category_post.categories | slice: 1, 10 %}
+          {% for child_name in post_children %}{% assign category_children = category_children | push: child_name %}{% endfor %}
+          {% assign source_parts = category_post.path | split: "/" %}
+          {% if source_parts.size > 3 %}
+            {% assign source_child = source_parts[2] %}
+            {% if source_child %}{% assign category_children = category_children | push: source_child %}{% endif %}
+          {% endif %}
+        {% endfor %}
+        {% assign category_children = category_children | uniq %}
+        <section class="ide-tree-folder{% unless page.layout == 'home' %} is-open{% endunless %}" data-category="{{ category_name | slugify }}" data-folder-name="{{ category_name | downcase }}" role="treeitem" aria-expanded="{% if page.layout == 'home' %}false{% else %}true{% endif %}">
           <button class="ide-tree-folder-toggle" type="button" aria-label="{{ category_name }} 폴더 열기/닫기">
             <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>{{ category_name | replace: "_", " " }}</span><small>{{ category_posts.size }}</small>
           </button>
           <div class="ide-tree-children" role="group">
-            {% for post in category_posts %}
+            {% for post in root_posts %}
               <a class="ide-tree-post{% if page.url == post.url %} is-current{% endif %}" href="{{ post.url | relative_url }}" role="treeitem" data-date="{{ post.date | date: '%s' }}" data-title="{{ post.title | downcase | escape }}" data-search="{{ post.title | append: ' ' | append: post.excerpt | append: ' ' | append: post.tags | join: ' ' | downcase | escape }}" title="{{ post.title | escape }}">
                 <i class="ri-markdown-line" aria-hidden="true"></i><span>{{ post.title }}</span>
               </a>
+            {% endfor %}
+            {% for child in category_children %}
+              {% assign child_name = child %}
+              {% if child.name %}{% assign child_name = child.name %}{% endif %}
+              {% assign child_posts = category_posts | where_exp: "post", "post.categories contains child_name" %}
+              <section class="ide-tree-folder{% unless page.layout == 'home' %} is-open{% endunless %}" data-category="{{ category_name | append: '-' | append: child_name | slugify }}" data-folder-name="{{ category_name | append: ' ' | append: child_name | downcase }}" role="treeitem" aria-expanded="{% if page.layout == 'home' %}false{% else %}true{% endif %}">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="{{ child_name }} 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>{{ child_name | replace: "_", " " }}</span><small>{{ child_posts.size }}</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  {% for post in child_posts %}
+                    <a class="ide-tree-post{% if page.url == post.url %} is-current{% endif %}" href="{{ post.url | relative_url }}" role="treeitem" data-date="{{ post.date | date: '%s' }}" data-title="{{ post.title | downcase | escape }}" data-search="{{ post.title | append: ' ' | append: post.excerpt | append: ' ' | append: post.tags | join: ' ' | downcase | escape }}" title="{{ post.title | escape }}">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>{{ post.title }}</span>
+                    </a>
+                  {% endfor %}
+                  {% if child_posts.size == 0 %}<p class="ide-tree-empty">폴더가 비어 있습니다.</p>{% endif %}
+                </div>
+              </section>
             {% endfor %}
             {% if category_posts.size == 0 %}<p class="ide-tree-empty">폴더가 비어 있습니다.</p>{% endif %}
           </div>
@@ -81,19 +117,6 @@
       <a class="ide-sidebar-action" href="{{ '/' | relative_url }}"><i class="ri-home-5-line" aria-hidden="true"></i><span>홈 열기</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       <a class="ide-sidebar-action" href="{{ '/archive/' | relative_url }}"><i class="ri-file-list-3-line" aria-hidden="true"></i><span>전체 게시물</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       <a class="ide-sidebar-action" href="{{ '/write/' | relative_url }}"><i class="ri-edit-line" aria-hidden="true"></i><span>새 문서 작성</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
-    </div>
-  </section>
-
-  <section class="ide-sidebar-panel" data-sidebar-panel="extensions" aria-labelledby="extensionsHeading" hidden>
-    <div class="ide-panel-heading">
-      <div><span class="ide-panel-label">WORKSPACE MODULES</span><h2 id="extensionsHeading">EXTENSIONS</h2></div>
-      <i class="ri-puzzle-line ide-panel-heading-icon" aria-hidden="true"></i>
-    </div>
-    <div class="ide-sidebar-content">
-      <div class="ide-extension-item"><i class="ri-markdown-line" aria-hidden="true"></i><span><strong>Markdown</strong><small>문서 렌더링</small></span><b>enabled</b></div>
-      <div class="ide-extension-item"><i class="ri-search-eye-line" aria-hidden="true"></i><span><strong>Search Index</strong><small>게시물 검색</small></span><b>enabled</b></div>
-      <div class="ide-extension-item"><i class="ri-moon-line" aria-hidden="true"></i><span><strong>Theme</strong><small>다크 / 라이트</small></span><b>enabled</b></div>
-      <a class="ide-sidebar-action" href="{{ '/tags/' | relative_url }}"><i class="ri-price-tag-3-line" aria-hidden="true"></i><span>태그 탐색</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
     </div>
   </section>
 

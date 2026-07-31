@@ -70,7 +70,6 @@
     <button class="ide-activity-item" type="button" data-activity-panel="search" aria-controls="explorerPanel" aria-pressed="false" aria-label="검색" title="검색"><i class="ri-search-line" aria-hidden="true"></i><span>Search</span></button>
     <button class="ide-activity-item" type="button" data-activity-panel="source" aria-controls="explorerPanel" aria-pressed="false" aria-label="소스 제어" title="소스 제어"><i class="ri-git-branch-line" aria-hidden="true"></i><span>Source Control</span></button>
     <button class="ide-activity-item" type="button" data-activity-panel="run" aria-controls="explorerPanel" aria-pressed="false" aria-label="실행 및 디버그" title="실행 및 디버그"><i class="ri-bug-line" aria-hidden="true"></i><span>Run and Debug</span></button>
-    <button class="ide-activity-item" type="button" data-activity-panel="extensions" aria-controls="explorerPanel" aria-pressed="false" aria-label="확장" title="확장"><i class="ri-puzzle-line" aria-hidden="true"></i><span>Extensions</span></button>
   </nav>
   <nav aria-label="계정 및 저장소">
     <button class="ide-activity-item" type="button" data-activity-panel="about" aria-controls="explorerPanel" aria-pressed="false" aria-label="소개와 바로가기" title="소개와 바로가기"><i class="ri-settings-3-line" aria-hidden="true"></i><span>Manage</span></button>
@@ -94,7 +93,7 @@
       <kbd>ESC</kbd>
     </label>
     <div class="ide-explorer-toolbar">
-      <span id="explorerCount">3 POSTS</span>
+      <span id="explorerCount">8 POSTS</span>
       <label for="explorerSort" class="sr-only">게시물 정렬</label>
       <select id="explorerSort" aria-label="게시물 정렬">
         <option value="newest">최신순</option>
@@ -105,6 +104,13 @@
     <div class="ide-tree" id="explorerTree" role="tree" aria-label="카테고리와 게시물">
       <div class="ide-tree-root"><i class="ri-folder-open-line" aria-hidden="true"></i><strong>BLOG</strong></div>
       
+      
+      
+      
+        
+        
+        
+        
         
         <section class="ide-tree-folder is-open" data-category="cs" data-folder-name="cs" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="CS 폴더 열기/닫기">
@@ -118,9 +124,14 @@
               </a>
             
             
+            
           </div>
         </section>
       
+        
+        
+        
+        
         
         <section class="ide-tree-folder is-open" data-category="deep-learning" data-folder-name="deep_learning" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Deep_Learning 폴더 열기/닫기">
@@ -134,13 +145,18 @@
               </a>
             
             
+            
           </div>
         </section>
       
         
+        
+        
+        
+        
         <section class="ide-tree-folder is-open" data-category="db" data-folder-name="db" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="DB 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DB</span><small>1</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DB</span><small>3</small>
           </button>
           <div class="ide-tree-children" role="group">
             
@@ -148,6 +164,69 @@
  []" title="DB 테스트">
                 <i class="ri-markdown-line" aria-hidden="true"></i><span>DB 테스트</span>
               </a>
+            
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="db-postgresql" data-folder-name="db postgresql" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="PostgreSQL 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>PostgreSQL</span><small>2</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post" href="/db/postgresql/2026/07/31/psql2/" role="treeitem" data-date="1785456000" data-title="psql jsonb, 행 잠금, 멱등성" data-search="psql jsonb, 행 잠금, 멱등성 &lt;h1 id=&quot;jsonb&quot;&gt;jsonb&lt;/h1&gt;
+&lt;h2 id=&quot;jsonb-객체-생성&quot;&gt;jsonb 객체 생성&lt;/h2&gt;
+&lt;h2 id=&quot;중첩-json-반환&quot;&gt;중첩 json 반환&lt;/h2&gt;
+&lt;h2 id=&quot;jsonb_pretty와-to_jsonb&quot;&gt;jsonb_pretty와 to_jsonb&lt;/h2&gt;
+
+ [&quot;postgresql&quot;]" title="Psql JSONB, 행 잠금, 멱등성">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Psql JSONB, 행 잠금, 멱등성</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/db/postgresql/2026/07/31/psql1/" role="treeitem" data-date="1785452400" data-title="psql 함수,프로시져,트리거" data-search="psql 함수,프로시져,트리거 &lt;h1 id=&quot;함수function&quot;&gt;함수(function)&lt;/h1&gt;
+
+ [&quot;postgresql&quot;]" title="Psql 함수,프로시져,트리거">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Psql 함수,프로시져,트리거</span>
+                    </a>
+                  
+                  
+                </div>
+              </section>
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
+        <section class="ide-tree-folder is-open" data-category="frontend" data-folder-name="frontend" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="Frontend 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Frontend</span><small>3</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/frontend/2026/07/30/vue_%EA%B8%B0%EC%B4%88%EA%B5%AC%EC%A1%B0/" role="treeitem" data-date="1785369660" data-title="vue 기초 디렉토리 구조" data-search="vue 기초 디렉토리 구조 &lt;p&gt;v_bind, v_model,&lt;/p&gt;
+
+ []" title="Vue 기초 디렉토리 구조">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue 기초 디렉토리 구조</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/frontend/2026/07/30/vue_directive/" role="treeitem" data-date="1785369660" data-title="vue directive" data-search="vue directive &lt;p&gt;v_bind, v_model, v_on&lt;/p&gt;
+
+ []" title="Vue Directive">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Directive</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/frontend/2026/07/30/vue_1/" role="treeitem" data-date="1785369660" data-title="vue1" data-search="vue1 &lt;h1 id=&quot;vue-프로젝트-디렉터리-구조&quot;&gt;vue 프로젝트 디렉터리 구조&lt;/h1&gt;
+
+ []" title="Vue1">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue1</span>
+              </a>
+            
             
             
           </div>
@@ -195,19 +274,6 @@
       <a class="ide-sidebar-action" href="/"><i class="ri-home-5-line" aria-hidden="true"></i><span>홈 열기</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       <a class="ide-sidebar-action" href="/archive/"><i class="ri-file-list-3-line" aria-hidden="true"></i><span>전체 게시물</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
       <a class="ide-sidebar-action" href="/write/"><i class="ri-edit-line" aria-hidden="true"></i><span>새 문서 작성</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
-    </div>
-  </section>
-
-  <section class="ide-sidebar-panel" data-sidebar-panel="extensions" aria-labelledby="extensionsHeading" hidden>
-    <div class="ide-panel-heading">
-      <div><span class="ide-panel-label">WORKSPACE MODULES</span><h2 id="extensionsHeading">EXTENSIONS</h2></div>
-      <i class="ri-puzzle-line ide-panel-heading-icon" aria-hidden="true"></i>
-    </div>
-    <div class="ide-sidebar-content">
-      <div class="ide-extension-item"><i class="ri-markdown-line" aria-hidden="true"></i><span><strong>Markdown</strong><small>문서 렌더링</small></span><b>enabled</b></div>
-      <div class="ide-extension-item"><i class="ri-search-eye-line" aria-hidden="true"></i><span><strong>Search Index</strong><small>게시물 검색</small></span><b>enabled</b></div>
-      <div class="ide-extension-item"><i class="ri-moon-line" aria-hidden="true"></i><span><strong>Theme</strong><small>다크 / 라이트</small></span><b>enabled</b></div>
-      <a class="ide-sidebar-action" href="/tags/"><i class="ri-price-tag-3-line" aria-hidden="true"></i><span>태그 탐색</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
     </div>
   </section>
 
@@ -313,13 +379,27 @@
       
       
         
+          <a href="/db/postgresql/2026/07/31/psql2/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Psql JSONB, 행 잠금, 멱등성</span></a>
+        
+      
+        
+          <a href="/db/postgresql/2026/07/31/psql1/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Psql 함수,프로시져,트리거</span></a>
+        
+      
+        
           <a href="/db/2026/07/30/db-test/"><i class="ri-markdown-line" aria-hidden="true"></i><span>DB 테스트</span></a>
         
       
         
-          <a href="/deep_learning/2026/07/30/deep-learning-test/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span></a>
+          <a href="/frontend/2026/07/30/vue_%EA%B8%B0%EC%B4%88%EA%B5%AC%EC%A1%B0/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue 기초 디렉토리 구조</span></a>
         
       
+        
+          <a href="/frontend/2026/07/30/vue_directive/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Directive</span></a>
+        
+      
+        
+          <a href="/frontend/2026/07/30/vue_1/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue1</span></a>
         
       
       
@@ -330,7 +410,7 @@
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> CS</span><span>3 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> CS</span><span>8 posts</span></div>
   <div><button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button><span data-status-reading>—</span><span>UTF-8</span><span>Markdown</span><button type="button" data-scroll-top aria-label="맨 위로 이동">↑ TOP</button></div>
 </footer>
 

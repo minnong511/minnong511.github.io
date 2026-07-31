@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#090a0c" />
-    <title>About · Minnong's Study Log</title>
+    <title>PostgreSQL 인덱스 학습 기록 · Minnong's Study Log</title>
     <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="About" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="PostgreSQL 인덱스 학습 기록" />
     <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
-    <meta property="og:url" content="http://localhost:4000/about/" />
-    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta property="og:url" content="http://localhost:4000/blog-writer/sample/example-post/" />
+    <meta property="og:image" content="http://localhost:4000/assets/images/example.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <script>
       (function () {
@@ -33,9 +33,9 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/about/"
-    data-page-title="About"
-    data-page-layout="page"
+    data-page-url="/blog-writer/sample/example-post/"
+    data-page-title="PostgreSQL 인덱스 학습 기록"
+    data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
     data-owner-branch="master"
@@ -53,7 +53,7 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / about</span>
+    <span>http://localhost:4000 / posts / postgresql-인덱스-학습-기록</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
@@ -299,36 +299,94 @@
           <nav class="ide-breadcrumbs" aria-label="현재 경로">
   <a href="/">workspace</a><span>&gt;</span>
   
-    <span aria-current="page">about</span>
+    <a href="/archive/">posts</a><span>&gt;</span>
+    
+    <a href="/archive/?category=database">database</a><span>&gt;</span>
+    <span aria-current="page">postgresql-인덱스-학습-기록.md</span>
   
 </nav>
 
-          <div class="ide-document-area"><section class="ide-page" aria-labelledby="pageTitle">
-  <header class="ide-document-header"><div class="ide-document-meta"><strong>PAGE</strong><span>MINNONG WORKSPACE</span></div><h1 id="pageTitle">About</h1></header>
-  <article class="ide-document-content prose"><p class="page-lead">배운 내용을 흘려보내지 않고, 다시 설명할 수 있는 지식으로 만드는 공간입니다.</p>
+          <div class="ide-document-area">
+<article class="ide-document" data-document="post">
+  <header class="ide-document-header">
+    <div class="ide-document-meta"><strong>Database</strong><span>2026.07.30</span><span data-reading-time>—</span><span>3 tags</span></div>
+    <h1>PostgreSQL 인덱스 학습 기록</h1>
+    
+  </header>
+  <div class="ide-document-content prose" id="postContent"><h1 id="postgresql-인덱스-학습-기록">PostgreSQL 인덱스 학습 기록</h1>
 
-<h2 id="about-me">About me</h2>
+<p>오늘은 <code class="language-plaintext highlighter-rouge">EXPLAIN</code>으로 실행 계획을 확인하고, 쿼리의 조건과 인덱스의 선두 컬럼이 어떻게 연결되는지 정리했다.</p>
 
-<p>안녕하세요. AI와 소프트웨어를 공부하고 있는 <strong>Min Hyeong Lee</strong>입니다. 새로운 개념을 만났을 때 단순히 외우기보다 직접 실험하고, 제 언어로 다시 정리하는 과정을 좋아합니다.</p>
+<blockquote>
+  <p>미리보기에서 지원하는 Markdown 문법을 확인하기 위한 샘플 글입니다.</p>
+</blockquote>
 
-<h2 id="what-i-log">What I log</h2>
+<h2 id="체크리스트">체크리스트</h2>
 
 <ul>
-  <li><strong>Artificial Intelligence</strong> — 딥러닝, 멀티모달, 모델 학습과 평가</li>
-  <li><strong>Computer Science</strong> — 알고리즘, 자료구조, 개발 기초</li>
-  <li><strong>Paper Review</strong> — 읽은 논문의 핵심 아이디어와 재현 포인트</li>
-  <li><strong>Build Notes</strong> — 프로젝트에서 만난 문제와 해결 과정</li>
+  <li>실행 계획을 읽을 때는 아래 노드부터 확인한다.</li>
+  <li>예상 행 수와 실제 행 수를 비교한다.</li>
+  <li>이미지와 코드는 저장소에 별도로 추가한다.</li>
 </ul>
 
-<h2 id="connect">Connect</h2>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">EXPLAIN</span> <span class="p">(</span><span class="k">ANALYZE</span><span class="p">,</span> <span class="n">BUFFERS</span><span class="p">,</span> <span class="n">TIMING</span> <span class="k">OFF</span><span class="p">)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">posts</span> <span class="k">WHERE</span> <span class="n">category</span> <span class="o">=</span> <span class="s1">'Database'</span><span class="p">;</span>
+</code></pre></div></div>
 
-<div class="about-link-grid">
-  <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i><strong>GitHub</strong><span>코드와 프로젝트 보기</span></a>
-  <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i><strong>LinkedIn</strong><span>프로필과 경력 보기</span></a>
-  <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer"><i class="ri-instagram-line"></i><strong>Instagram</strong><span>일상의 장면 보기</span></a>
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>파일 위치</td>
+      <td><code class="language-plaintext highlighter-rouge">_posts/YYYY-MM-DD-slug.md</code></td>
+    </tr>
+    <tr>
+      <td>이미지 위치</td>
+      <td><code class="language-plaintext highlighter-rouge">assets/images/</code></td>
+    </tr>
+  </tbody>
+</table>
 </div>
-</article>
+  
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#postgresql">#PostgreSQL</a><a href="/tags/#index">#Index</a><a href="/tags/#til">#TIL</a></footer>
+  
+  <nav class="ide-document-navigation" aria-label="게시물 이동">
+    
+    
+  </nav>
+  
+<section
+  class="ide-comments"
+  id="commentsSection"
+  aria-labelledby="commentsTitle"
+  data-giscus-repo="minnong511/minnong511.github.io"
+  data-giscus-repo-id="R_kgDONte4cw"
+  data-giscus-category="General"
+  data-giscus-category-id="DIC_kwDONte4c84C3PLr"
+  data-giscus-mapping="pathname"
+  data-giscus-strict="0"
+  data-giscus-reactions="1"
+  data-giscus-emit="0"
+  data-giscus-input="top"
+  data-giscus-theme="light"
+  data-giscus-lang="ko"
+  data-giscus-loading="eager"
+>
+  <header class="ide-comments-heading">
+    <span class="ide-panel-label">DISCUSSION</span>
+    <h2 id="commentsTitle">COMMENTS</h2>
+    <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다.</p>
+  </header>
+  <div class="giscus" aria-label="댓글"></div>
 </section>
+
+
+</article>
 </div>
         </main>
         <aside class="ide-context" id="contextPanel" aria-label="문서 컨텍스트">
@@ -346,13 +404,13 @@
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>—</dd></div>
+      <div><dt>DATE</dt><dd>2026.07.30</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>workspace</dd></div>
+      <div><dt>CATEGORY</dt><dd>Database</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/about/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/blog-writer/sample/example-post/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/blog-writer/sample/example-post/" data-bookmark-title="PostgreSQL 인덱스 학습 기록"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -391,7 +449,7 @@
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> workspace</span><span>8 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Database</span><span>8 posts</span></div>
   <div><button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button><span data-status-reading>—</span><span>UTF-8</span><span>Markdown</span><button type="button" data-scroll-top aria-label="맨 위로 이동">↑ TOP</button></div>
 </footer>
 

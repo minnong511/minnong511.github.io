@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GitHub Pages와 Jekyll용 Markdown 글쓰기 도구">
+  <title>GitHub Blog Writer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="blog-writer-app" id="blogWriterApp">
+    <header class="blog-writer-topbar">
+      <div class="blog-writer-brand">
+        <span class="blog-writer-brand-mark">✦</span>
+        <div>
+          <p class="blog-writer-eyebrow">STATIC AUTHORING TOOL</p>
+          <h1>GitHub Blog Writer</h1>
+        </div>
+      </div>
+      <div class="blog-writer-top-actions">
+        <span class="blog-writer-save-state" id="saveState" role="status">새 글을 준비했습니다</span>
+        <button class="blog-writer-button blog-writer-button-quiet" type="button" data-action="toggleDrafts">글 목록</button>
+        <button class="blog-writer-button blog-writer-button-quiet" type="button" data-action="openSettings">설정</button>
+        <button class="blog-writer-button blog-writer-button-primary" type="button" data-action="saveDraft">임시 저장</button>
+      </div>
+    </header>
+
+    <main class="blog-writer-layout">
+      <aside class="blog-writer-drafts-panel" id="draftsPanel" aria-label="초안 목록">
+        <div class="blog-writer-panel-heading">
+          <div>
+            <p class="blog-writer-eyebrow">YOUR NOTES</p>
+            <h2>글 목록</h2>
+          </div>
+          <button class="blog-writer-icon-button" type="button" data-action="newDraft" aria-label="새 글 작성" title="새 글 작성">＋</button>
+        </div>
+        <label class="blog-writer-search-field">
+          <span class="blog-writer-sr-only">초안 검색</span>
+          <span aria-hidden="true">⌕</span>
+          <input id="draftSearch" type="search" placeholder="제목 또는 태그 검색">
+        </label>
+        <div class="blog-writer-filter-row">
+          <label>
+            <span class="blog-writer-sr-only">카테고리 필터</span>
+            <select id="categoryFilter"><option value="">모든 카테고리</option></select>
+          </label>
+          <label>
+            <span class="blog-writer-sr-only">정렬 기준</span>
+            <select id="sortField">
+              <option value="updatedAt">수정일</option>
+              <option value="date">작성일</option>
+              <option value="title">제목</option>
+            </select>
+          </label>
+          <button class="blog-writer-icon-button blog-writer-sort-button" type="button" data-action="toggleSortOrder" id="sortOrderButton" aria-label="오래된 순으로 정렬">↓</button>
+        </div>
+        <div class="blog-writer-draft-count" id="draftCount">초안 0개</div>
+        <div class="blog-writer-draft-list" id="draftList"></div>
+        <div class="blog-writer-empty-state" id="draftEmptyState">
+          <span class="blog-writer-empty-icon">⌁</span>
+          <strong>아직 저장된 초안이 없습니다.</strong>
+          <span>제목과 본문을 작성하면 자동으로 보관됩니다.</span>
+        </div>
+      </aside>
+
+      <section class="blog-writer-editor-panel" id="editorPanel" aria-label="글 편집 영역">
+        <div class="blog-writer-editor-heading">
+          <div>
+            <p class="blog-writer-eyebrow">NEW POST / <span id="draftIdentifier">UNSAVED</span></p>
+            <h2>글 작성</h2>
+          </div>
+          <div class="blog-writer-view-tabs" role="tablist" aria-label="편집 화면 전환">
+            <button class="blog-writer-view-tab blog-writer-view-tab-active" type="button" role="tab" aria-selected="true" data-view="editor">편집</button>
+            <button class="blog-writer-view-tab" type="button" role="tab" aria-selected="false" data-view="preview">미리보기</button>
+            <button class="blog-writer-button blog-writer-button-quiet blog-writer-new-window" type="button" data-action="openPreviewWindow">새 창 ↗</button>
+          </div>
+        </div>
+
+        <div class="blog-writer-editor-scroll">
+          <form id="postForm" novalidate>
+            <div class="blog-writer-title-block">
+              <label class="blog-writer-sr-only" for="postTitle">제목</label>
+              <input class="blog-writer-title-input" id="postTitle" type="text" placeholder="제목을 입력하세요" autocomplete="off">
+              <div class="blog-writer-slug-row">
+                <span class="blog-writer-slug-prefix" id="filenamePrefix">YYYY-MM-DD-</span>
+                <label class="blog-writer-sr-only" for="postSlug">파일명용 slug</label>
+                <input id="postSlug" type="text" placeholder="파일명용-slug" autocomplete="off" spellcheck="false">
+                <span class="blog-writer-slug-suffix">.md</span>
+              </div>
+              <p class="blog-writer-field-error" id="formError" role="alert"></p>
+            </div>
+
+            <fieldset class="blog-writer-metadata-grid">
+              <legend class="blog-writer-sr-only">글 메타데이터</legend>
+              <label class="blog-writer-field">
+                <span>작성일</span>
+                <input id="postDate" type="date">
+              </label>
+              <label class="blog-writer-field">
+                <span>작성 시간</span>
+                <input id="postTime" type="time" step="1">
+              </label>
+              <label class="blog-writer-field">
+                <span>작성자</span>
+                <input id="postAuthor" type="text" placeholder="작성자">
+              </label>
+              <label class="blog-writer-field">
+                <span>카테고리</span>
+                <input id="postCategory" type="text" placeholder="예: Database">
+              </label>
+              <label class="blog-writer-field blog-writer-field-wide">
+                <span>태그 <small>쉼표로 구분</small></span>
+                <input id="postTags" type="text" placeholder="PostgreSQL, Jekyll, TIL">
+              </label>
+              <label class="blog-writer-field blog-writer-field-wide">
+                <span>대표 이미지 경로</span>
+                <input id="postImage" type="text" placeholder="/assets/images/example.png">
+              </label>
+              <label class="blog-writer-published-toggle">
+                <input id="postPublished" type="checkbox" checked>
+                <span class="blog-writer-toggle-track" aria-hidden="true"><i></i></span>
+                <span>공개 글로 표시</span>
+              </label>
+            </fieldset>
+
+            <div class="blog-writer-writing-area">
+              <div class="blog-writer-writing-toolbar" role="toolbar" aria-label="Markdown 문법 삽입">
+                <span class="blog-writer-toolbar-label">MARKDOWN</span>
+                <button type="button" data-insert="heading" title="제목">H</button>
+                <button type="button" data-insert="bold" title="굵게"><strong>B</strong></button>
+                <button type="button" data-insert="italic" title="기울임"><em>I</em></button>
+                <button type="button" data-insert="quote" title="인용문">❝</button>
+                <button type="button" data-insert="ul" title="순서 없는 목록">☷</button>
+                <button type="button" data-insert="ol" title="순서 있는 목록">≡</button>
+                <button type="button" data-insert="link" title="링크">↗</button>
+                <button type="button" data-insert="image" title="이미지">▧</button>
+                <button type="button" data-insert="code" title="코드">&lt;/&gt;</button>
+                <button type="button" data-insert="table" title="표">▦</button>
+                <button type="button" data-insert="hr" title="수평선">―</button>
+              </div>
+              <textarea id="postBody" class="blog-writer-body-input" placeholder="Markdown으로 글을 작성하세요...\n\n# 오늘 배운 것\n\n내용을 입력하면 오른쪽 미리보기에 바로 표시됩니다." spellcheck="false"></textarea>
+              <div class="blog-writer-preview blog-writer-hidden" id="postPreview" aria-live="polite"></div>
+              <div class="blog-writer-editor-footer">
+                <span id="cursorPosition">줄 1, 열 1</span>
+                <span id="wordCount">0자 · 0단어</span>
+                <span>Tab = 들여쓰기</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <aside class="blog-writer-inspector-panel" id="inspectorPanel" aria-label="내보내기와 설정">
+        <div class="blog-writer-inspector-heading">
+          <span class="blog-writer-eyebrow">PUBLISHING KIT</span>
+          <button class="blog-writer-icon-button blog-writer-inspector-close" type="button" data-action="closeInspector" aria-label="옵션 닫기">×</button>
+        </div>
+        <section class="blog-writer-card blog-writer-export-card">
+          <div class="blog-writer-card-title"><span>내보내기</span><span class="blog-writer-card-icon">↓</span></div>
+          <label class="blog-writer-check-row"><input id="includeFrontMatter" type="checkbox" checked><span>Jekyll Front Matter 포함</span></label>
+          <div class="blog-writer-file-preview" id="filePreview">파일명을 입력하면 표시됩니다.</div>
+          <button class="blog-writer-button blog-writer-button-primary blog-writer-full-button" type="button" data-action="downloadMarkdown">Markdown 다운로드</button>
+          <div class="blog-writer-button-row">
+            <button class="blog-writer-button blog-writer-button-secondary" type="button" data-action="saveToFolder">폴더에 저장</button>
+            <button class="blog-writer-button blog-writer-button-secondary" type="button" data-action="copyMarkdown">전체 복사</button>
+          </div>
+          <button class="blog-writer-text-button" type="button" data-action="downloadHtml">HTML 미리보기 저장 ↗</button>
+        </section>
+
+        <section class="blog-writer-card">
+          <div class="blog-writer-card-title"><span>이미지 도우미</span><span class="blog-writer-card-icon">▧</span></div>
+          <p class="blog-writer-card-description">저장소 경로를 입력하거나 이미지 파일을 선택해 본문에 문법을 삽입하세요.</p>
+          <button class="blog-writer-button blog-writer-button-secondary blog-writer-full-button" type="button" data-action="openImageHelper">이미지 추가</button>
+          <div class="blog-writer-image-note" id="imagePathHint">권장 경로: /assets/images/</div>
+        </section>
+
+        <section class="blog-writer-card blog-writer-tips-card">
+          <div class="blog-writer-card-title"><span>Jekyll 체크리스트</span><span class="blog-writer-card-icon">✓</span></div>
+          <ul>
+            <li>파일을 <code>_posts</code> 폴더에 넣으세요.</li>
+            <li>이미지는 <code>assets/images</code>에 복사하세요.</li>
+            <li>내보내기 전 제목, 날짜, slug를 확인하세요.</li>
+          </ul>
+        </section>
+
+        <section class="blog-writer-card blog-writer-danger-card">
+          <button class="blog-writer-text-button blog-writer-danger-button" type="button" data-action="resetDraft">현재 글 초기화</button>
+          <button class="blog-writer-text-button" type="button" data-action="deleteCurrentDraft">현재 초안 삭제</button>
+        </section>
+      </aside>
+    </main>
+
+    <nav class="blog-writer-mobile-nav" aria-label="모바일 화면 전환">
+      <button type="button" data-mobile-panel="drafts">☷<span>목록</span></button>
+      <button class="blog-writer-mobile-nav-active" type="button" data-mobile-panel="editor">✎<span>작성</span></button>
+      <button type="button" data-mobile-panel="inspector">⚙<span>옵션</span></button>
+    </nav>
+    <div class="blog-writer-toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <dialog class="blog-writer-dialog" id="settingsDialog">
+    <form method="dialog" id="settingsForm">
+      <div class="blog-writer-dialog-heading"><div><p class="blog-writer-eyebrow">PREFERENCES</p><h2>설정</h2></div><button class="blog-writer-dialog-close" value="cancel" aria-label="설정 닫기">×</button></div>
+      <div class="blog-writer-settings-grid">
+        <label class="blog-writer-field"><span>기본 layout</span><input name="defaultLayout" type="text"></label>
+        <label class="blog-writer-field"><span>기본 작성자</span><input name="defaultAuthor" type="text"></label>
+        <label class="blog-writer-field"><span>기본 카테고리</span><input name="defaultCategory" type="text"></label>
+        <label class="blog-writer-field"><span>기본 태그</span><input name="defaultTags" type="text" placeholder="태그1, 태그2"></label>
+        <label class="blog-writer-field"><span>날짜 형식</span><select name="dateFormat"><option value="YYYY-MM-DD HH:mm:ss">YYYY-MM-DD HH:mm:ss</option><option value="YYYY-MM-DD">YYYY-MM-DD</option><option value="YYYY/MM/DD HH:mm:ss">YYYY/MM/DD HH:mm:ss</option></select></label>
+        <label class="blog-writer-field"><span>시간대</span><input name="timezone" type="text" placeholder="+0900"></label>
+        <label class="blog-writer-field blog-writer-field-wide"><span>기본 이미지 경로</span><input name="defaultImagePath" type="text" placeholder="/assets/images/"></label>
+        <label class="blog-writer-field"><span>에디터 테마</span><select name="editorTheme"><option value="paper">Paper</option><option value="midnight">Midnight</option></select></label>
+        <label class="blog-writer-field"><span>미리보기 너비</span><select name="previewWidth"><option value="standard">표준</option><option value="wide">넓게</option><option value="narrow">좁게</option></select></label>
+        <label class="blog-writer-field"><span>자동 저장 주기</span><select name="autosaveInterval"><option value="1000">1초</option><option value="3000">3초</option><option value="5000">5초</option><option value="10000">10초</option></select></label>
+      </div>
+      <details class="blog-writer-frontmatter-settings"><summary>Front Matter 키 이름 변경</summary><div class="blog-writer-settings-grid blog-writer-settings-key-grid"><label class="blog-writer-field"><span>layout</span><input name="keyLayout"></label><label class="blog-writer-field"><span>title</span><input name="keyTitle"></label><label class="blog-writer-field"><span>date</span><input name="keyDate"></label><label class="blog-writer-field"><span>author</span><input name="keyAuthor"></label><label class="blog-writer-field"><span>categories</span><input name="keyCategories"></label><label class="blog-writer-field"><span>tags</span><input name="keyTags"></label><label class="blog-writer-field"><span>image</span><input name="keyImage"></label><label class="blog-writer-field"><span>published</span><input name="keyPublished"></label></div></details>
+      <div class="blog-writer-dialog-actions"><button class="blog-writer-button blog-writer-button-secondary" value="cancel">취소</button><button class="blog-writer-button blog-writer-button-primary" value="default" data-action="saveSettings">설정 저장</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="blog-writer-dialog blog-writer-image-dialog" id="imageDialog">
+    <form method="dialog" id="imageForm">
+      <div class="blog-writer-dialog-heading"><div><p class="blog-writer-eyebrow">MEDIA HELPER</p><h2>이미지 추가</h2></div><button class="blog-writer-dialog-close" value="cancel" aria-label="이미지 도우미 닫기">×</button></div>
+      <div class="blog-writer-image-grid">
+        <label class="blog-writer-field blog-writer-field-wide"><span>이미지 설명 (alt)</span><input name="alt" type="text" placeholder="이미지를 설명하세요"></label>
+        <label class="blog-writer-field blog-writer-field-wide"><span>저장소 이미지 경로</span><input name="path" type="text" placeholder="/assets/images/example.png"></label>
+        <label class="blog-writer-field"><span>파일명</span><input name="filename" type="text" placeholder="example.png"></label>
+        <label class="blog-writer-file-input blog-writer-field"><span>로컬 파일 선택</span><input name="file" id="imageFile" type="file" accept="image/*"></label>
+      </div>
+      <div class="blog-writer-image-preview-box" id="imagePreviewBox"><span>선택한 이미지 미리보기</span></div>
+      <p class="blog-writer-image-helper-text" id="imageHelperText">GitHub 저장소에 업로드하려면 이미지 파일을 직접 <code>assets/images</code> 폴더에 복사한 뒤 경로를 사용하세요.</p>
+      <div class="blog-writer-dialog-actions"><button class="blog-writer-button blog-writer-button-secondary" value="cancel">취소</button><button class="blog-writer-button blog-writer-button-secondary" type="button" data-action="downloadImage">이미지 별도 다운로드</button><button class="blog-writer-button blog-writer-button-primary" value="default" data-action="insertImage">본문에 삽입</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

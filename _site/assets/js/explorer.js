@@ -8,8 +8,34 @@
   if (!tree) return;
   var folders = Array.prototype.slice.call(tree.querySelectorAll(".ide-tree-folder"));
   var posts = Array.prototype.slice.call(tree.querySelectorAll(".ide-tree-post"));
+  var defaultFolderOpen = !document.body || document.body.dataset.pageLayout !== "home";
   var folderState = {};
-  try { folderState = JSON.parse(localStorage.getItem("ide-folders") || "{}"); } catch (error) {}
+  try { folderState = JSON.parse(localStorage.getItem("ide-folders-v2") || "{}"); } catch (error) {}
+
+  function normalizeUrl(url) {
+    try {
+      var parsed = new URL(url, window.location.href);
+      return parsed.pathname + parsed.search + parsed.hash;
+    } catch (error) {
+      return String(url || "/");
+    }
+  }
+
+  function syncCurrentPost(url) {
+    var currentUrl = normalizeUrl(url || window.location.pathname);
+    posts.forEach(function (post) {
+      var active = normalizeUrl(post.getAttribute("href")) === currentUrl;
+      post.classList.toggle("is-current", active);
+      post.setAttribute("aria-current", active ? "page" : "false");
+      if (active) {
+        var folder = post.closest(".ide-tree-folder");
+        while (folder) {
+          applyFolder(folder, true);
+          folder = folder.parentElement ? folder.parentElement.closest(".ide-tree-folder") : null;
+        }
+      }
+    });
+  }
 
   function applyFolder(folder, open) {
     folder.classList.toggle("is-open", open);
@@ -18,10 +44,10 @@
   }
   folders.forEach(function (folder) {
     var stored = folderState[folder.dataset.category];
-    applyFolder(folder, stored === undefined ? true : Boolean(stored));
+    applyFolder(folder, stored === undefined ? defaultFolderOpen : Boolean(stored));
     folder.querySelector(".ide-tree-folder-toggle").addEventListener("click", function () {
       applyFolder(folder, !folder.classList.contains("is-open"));
-      try { localStorage.setItem("ide-folders", JSON.stringify(folderState)); } catch (error) {}
+      try { localStorage.setItem("ide-folders-v2", JSON.stringify(folderState)); } catch (error) {}
     });
   });
 
@@ -52,8 +78,9 @@
 
   function sortPosts(mode) {
     folders.forEach(function (folder) {
-      var group = folder.querySelector(".ide-tree-children");
-      var items = Array.prototype.slice.call(group.querySelectorAll(".ide-tree-post"));
+      var group = folder.querySelector(":scope > .ide-tree-children");
+      if (!group) return;
+      var items = Array.prototype.slice.call(group.querySelectorAll(":scope > .ide-tree-post"));
       items.sort(function (a, b) {
         var aTitle = a.dataset.title || "";
         var bTitle = b.dataset.title || "";
@@ -70,7 +97,7 @@
     if (search) { search.value = ""; filter(""); }
     if (sort) { sort.value = "newest"; sortPosts("newest"); }
     folders.forEach(function (folder) { applyFolder(folder, true); });
-    try { localStorage.setItem("ide-folders", JSON.stringify(folderState)); } catch (error) {}
+    try { localStorage.setItem("ide-folders-v2", JSON.stringify(folderState)); } catch (error) {}
   });
 
   tree.addEventListener("keydown", function (event) {
@@ -88,4 +115,8 @@
     }
   });
   if (count) count.textContent = posts.length + " POSTS";
+  syncCurrentPost(document.body && document.body.dataset.pageUrl);
+  document.addEventListener("ide:document-change", function (event) {
+    syncCurrentPost(event.detail && event.detail.url);
+  });
 })();
