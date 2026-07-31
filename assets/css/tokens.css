@@ -8,8 +8,8 @@
   --tab-bg: #111318;
   --tab-active-bg: #0d0f12;
   --text-primary: #d7dce2;
-  --text-secondary: #9aa1aa;
-  --text-muted: #686f79;
+  --text-secondary: #b1bac4;
+  --text-muted: #8e98a3;
   --border: #292e36;
   --border-strong: #3a414c;
   --accent-orange: #f59e0b;
@@ -38,8 +38,8 @@ html[data-theme="light"] {
   --tab-bg: #e4e9ed;
   --tab-active-bg: #f7f9fa;
   --text-primary: #1b232c;
-  --text-secondary: #52606d;
-  --text-muted: #7d8994;
+  --text-secondary: #44515d;
+  --text-muted: #5e6b78;
   --border: #cbd3da;
   --border-strong: #aeb9c3;
   --selection: rgba(0, 127, 190, .14);

@@ -1,4 +1,25 @@
 <footer class="ide-statusbar" aria-label="문서 상태">
   <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> {{ page.categories | first | default: "workspace" | replace: "_", " " }}</span><span>{{ site.posts.size }} posts</span></div>
-  <div><button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button><span data-status-reading>—</span><span>UTF-8</span><span>Markdown</span><button type="button" data-scroll-top aria-label="맨 위로 이동">↑ TOP</button></div>
+  <div>
+    <button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button>
+    <span data-status-reading>—</span>
+    <span>UTF-8</span>
+    <span>Markdown</span>
+    <fieldset class="ide-font-size-control">
+      <legend class="sr-only">본문 글씨 크기</legend>
+      <label class="ide-font-size-option" title="본문 글씨 작게">
+        <input type="radio" name="ide-font-size" value="small" data-font-size-option="small" />
+        <span aria-hidden="true">A−</span><span class="sr-only">작게</span>
+      </label>
+      <label class="ide-font-size-option" title="본문 글씨 기본">
+        <input type="radio" name="ide-font-size" value="medium" data-font-size-option="medium" />
+        <span aria-hidden="true">A</span><span class="sr-only">기본</span>
+      </label>
+      <label class="ide-font-size-option" title="본문 글씨 크게">
+        <input type="radio" name="ide-font-size" value="large" data-font-size-option="large" />
+        <span aria-hidden="true">A＋</span><span class="sr-only">크게</span>
+      </label>
+    </fieldset>
+    <button type="button" data-scroll-top aria-label="맨 위로 이동">↑ TOP</button>
+  </div>
 </footer>

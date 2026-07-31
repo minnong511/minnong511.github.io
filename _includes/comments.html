@@ -3,23 +3,23 @@
   class="ide-comments"
   id="commentsSection"
   aria-labelledby="commentsTitle"
-  data-giscus-repo="{{ site.giscus.repo }}"
-  data-giscus-repo-id="{{ site.giscus.repo_id }}"
-  data-giscus-category="{{ site.giscus.category }}"
-  data-giscus-category-id="{{ site.giscus.category_id }}"
-  data-giscus-mapping="{{ site.giscus.mapping | default: 'pathname' }}"
-  data-giscus-strict="{{ site.giscus.strict | default: '0' }}"
-  data-giscus-reactions="{{ site.giscus.reactions_enabled | default: '1' }}"
-  data-giscus-emit="{{ site.giscus.emit_metadata | default: '0' }}"
-  data-giscus-input="{{ site.giscus.input_position | default: 'bottom' }}"
-  data-giscus-theme="{{ site.giscus.theme | default: 'preferred_color_scheme' }}"
-  data-giscus-lang="{{ site.giscus.lang | default: 'ko' }}"
-  data-giscus-loading="{{ site.giscus.loading | default: 'lazy' }}"
+  data-giscus-repo="{{ site.giscus.repo | escape }}"
+  data-giscus-repo-id="{{ site.giscus.repo_id | escape }}"
+  data-giscus-category="{{ site.giscus.category | escape }}"
+  data-giscus-category-id="{{ site.giscus.category_id | escape }}"
+  data-giscus-mapping="{{ site.giscus.mapping | default: 'pathname' | escape }}"
+  data-giscus-strict="{{ site.giscus.strict | default: '0' | escape }}"
+  data-giscus-reactions="{{ site.giscus.reactions_enabled | default: '1' | escape }}"
+  data-giscus-emit="{{ site.giscus.emit_metadata | default: '0' | escape }}"
+  data-giscus-input="{{ site.giscus.input_position | default: 'bottom' | escape }}"
+  data-giscus-theme="{{ site.giscus.theme | default: 'preferred_color_scheme' | escape }}"
+  data-giscus-lang="{{ site.giscus.lang | default: 'ko' | escape }}"
+  data-giscus-loading="{{ site.giscus.loading | default: 'lazy' | escape }}"
 >
   <header class="ide-comments-heading">
     <span class="ide-panel-label">DISCUSSION</span>
     <h2 id="commentsTitle">COMMENTS</h2>
-    <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다.</p>
+    <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
   </header>
   <div class="giscus" aria-label="댓글"></div>
 </section>

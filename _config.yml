@@ -3,7 +3,7 @@ description: 개발과 AI를 배우고, 실험하고, 이해한 내용을 연결
 author: Min Hyeong Lee
 baseurl: ""
 url: "https://minnong511.github.io"
-assets_version: "6"
+assets_version: "7"
 og_image: "/assets/base_image/og-study-blog.png"
 theme: minima
 timezone: Asia/Seoul
@@ -39,6 +39,6 @@ giscus:
   reactions_enabled: "1"
   emit_metadata: "0"
   input_position: "top"
-  theme: "light"
+  theme: "transparent_dark"
   lang: "ko"
-  loading: "eager"
+  loading: "lazy"
