@@ -2,7 +2,7 @@
 layout: post
 title: "Vue Directive"
 date: 2026-07-30 09:01:00 +0900
-categories: [Frontend]
+categories: [Frontend, Vue]
 tags: []
 ---
 

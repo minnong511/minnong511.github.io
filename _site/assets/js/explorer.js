@@ -30,17 +30,17 @@
       if (active) {
         var folder = post.closest(".ide-tree-folder");
         while (folder) {
-          applyFolder(folder, true);
+          applyFolder(folder, true, false);
           folder = folder.parentElement ? folder.parentElement.closest(".ide-tree-folder") : null;
         }
       }
     });
   }
 
-  function applyFolder(folder, open) {
+  function applyFolder(folder, open, remember) {
     folder.classList.toggle("is-open", open);
     folder.setAttribute("aria-expanded", String(open));
-    folderState[folder.dataset.category] = open;
+    if (remember !== false) folderState[folder.dataset.category] = open;
   }
   folders.forEach(function (folder) {
     var stored = folderState[folder.dataset.category];
@@ -65,7 +65,7 @@
       });
       folder.hidden = Boolean(query && !folderMatch && !shown);
       if (!folder.hidden) visible += shown;
-      if (query && (folderMatch || shown)) applyFolder(folder, true);
+      if (query && (folderMatch || shown)) applyFolder(folder, true, false);
     });
     if (empty) empty.hidden = !query || visible > 0;
   }
@@ -96,7 +96,10 @@
   if (refresh) refresh.addEventListener("click", function () {
     if (search) { search.value = ""; filter(""); }
     if (sort) { sort.value = "newest"; sortPosts("newest"); }
-    folders.forEach(function (folder) { applyFolder(folder, true); });
+    folders.forEach(function (folder) {
+      var stored = folderState[folder.dataset.category];
+      applyFolder(folder, stored === undefined ? defaultFolderOpen : Boolean(stored), false);
+    });
     try { localStorage.setItem("ide-folders-v2", JSON.stringify(folderState)); } catch (error) {}
   });
 

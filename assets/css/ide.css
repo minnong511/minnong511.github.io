@@ -677,6 +677,7 @@ select {
 .ide-outline-list a:hover,
 .ide-outline-list a.is-current { color: var(--accent-cyan); }
 .ide-outline-list a.is-h3 { padding-left: 14px; color: var(--text-muted); }
+.ide-outline-list a.is-h3.is-current { color: var(--accent-cyan); }
 .ide-panel-empty { color: var(--text-muted); font-family: var(--ui-font); font-size: 11px; }
 .ide-info-list { margin: 14px 0 20px; font-family: var(--ui-font); font-size: 11px; }
 .ide-info-list div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--border); }

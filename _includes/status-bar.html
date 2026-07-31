@@ -1,5 +1,5 @@
 <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> {{ page.categories | first | default: "workspace" | replace: "_", " " }}</span><span>{{ site.posts.size }} posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> {{ page.categories | join: " / " | default: "workspace" | replace: "_", " " }}</span><span>{{ site.posts.size }} posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button>
     <span data-status-reading>—</span>

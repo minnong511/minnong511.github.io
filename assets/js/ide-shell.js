@@ -79,10 +79,31 @@
     button.addEventListener("click", function () { var themeButton = document.getElementById("ideThemeToggle"); if (themeButton) themeButton.click(); });
   });
   document.querySelectorAll("[data-history]").forEach(function (button) {
-    button.addEventListener("click", function () { window.history[button.dataset.history === "back" ? "back" : "forward"](); });
+    button.addEventListener("click", function () {
+      var direction = button.dataset.history === "back" ? "back" : "forward";
+      if (typeof window.history[direction] === "function") window.history[direction]();
+    });
   });
   var fullscreen = document.getElementById("ideFullscreen");
-  if (fullscreen) fullscreen.addEventListener("click", function () { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {}); else document.exitFullscreen(); });
+  function syncFullscreenState() {
+    if (!fullscreen) return;
+    var active = Boolean(document.fullscreenElement);
+    fullscreen.setAttribute("aria-label", active ? "전체 화면 닫기" : "전체 화면");
+    fullscreen.title = active ? "전체 화면 닫기" : "전체 화면";
+    fullscreen.innerHTML = '<i class="' + (active ? "ri-fullscreen-exit-line" : "ri-fullscreen-line") + '" aria-hidden="true"></i>';
+  }
+  if (fullscreen) {
+    var fullscreenSupported = Boolean(document.fullscreenEnabled && document.documentElement.requestFullscreen && document.exitFullscreen);
+    fullscreen.hidden = !fullscreenSupported;
+    if (fullscreenSupported) {
+      fullscreen.addEventListener("click", function () {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () {});
+        else document.exitFullscreen().catch(function () {});
+      });
+      document.addEventListener("fullscreenchange", syncFullscreenState);
+      syncFullscreenState();
+    }
+  }
   if (contextToggle) contextToggle.addEventListener("click", function () { setContextVisible(!contextVisible); });
   document.addEventListener("ide:document-change", function () { setContextVisible(contextVisible); });
 

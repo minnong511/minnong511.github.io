@@ -217,49 +217,6 @@
   }
 
   var postContent = document.getElementById("postContent");
-  var tocList = document.getElementById("postTocList");
-
-  if (postContent && tocList) {
-    var headings = Array.prototype.slice.call(postContent.querySelectorAll("h2, h3"));
-    var usedIds = {};
-
-    headings.forEach(function (heading, index) {
-      var baseId = heading.id || heading.textContent.trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9가-힣\s-]/g, "")
-        .replace(/\s+/g, "-") || ("section-" + (index + 1));
-      var id = baseId;
-      var duplicate = 2;
-      while (usedIds[id]) {
-        id = baseId + "-" + duplicate;
-        duplicate += 1;
-      }
-      usedIds[id] = true;
-      heading.id = id;
-
-      var item = document.createElement("li");
-      item.className = heading.tagName === "H3" ? "toc-h3" : "toc-h2";
-      var link = document.createElement("a");
-      link.href = "#" + id;
-      link.textContent = heading.textContent;
-      item.appendChild(link);
-      tocList.appendChild(item);
-    });
-
-    if (headings.length && "IntersectionObserver" in window) {
-      var tocLinks = Array.prototype.slice.call(tocList.querySelectorAll("a"));
-      var headingObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          tocLinks.forEach(function (link) {
-            link.classList.toggle("is-active", link.getAttribute("href") === "#" + entry.target.id);
-          });
-        });
-      }, { rootMargin: "-20% 0px -70%", threshold: 0 });
-      headings.forEach(function (heading) { headingObserver.observe(heading); });
-    }
-  }
-
   if (postContent) {
     var contentImages = postContent.querySelectorAll("img");
     if (contentImages.length) {

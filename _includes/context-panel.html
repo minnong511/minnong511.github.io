@@ -13,7 +13,7 @@
       <div><dt>DATE</dt><dd>{% if page.date %}{{ page.date | date: "%Y.%m.%d" }}{% else %}—{% endif %}</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>{{ page.categories | first | default: "workspace" | replace: "_", " " }}</dd></div>
+      <div><dt>CATEGORY</dt><dd>{{ page.categories | join: " / " | default: "workspace" | replace: "_", " " }}</dd></div>
     </dl>
     {% if page.url %}<button class="ide-context-link" type="button" data-copy-link="{{ page.url | absolute_url }}"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>{% endif %}
     {% if page.layout == 'post' %}<button class="ide-context-link" type="button" data-bookmark-page="{{ page.url | relative_url }}" data-bookmark-title="{{ page.title | escape }}"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>{% endif %}

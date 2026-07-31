@@ -2,9 +2,9 @@
   "use strict";
 
   var scriptUrl = "https://giscus.app/client.js";
+  var commentObserver = null;
 
-  function initComments() {
-    var section = document.getElementById("commentsSection");
+  function loadComments(section) {
     if (!section) return;
 
     var mount = section.querySelector(".giscus");
@@ -35,6 +35,22 @@
 
     mount.dataset.loaded = "true";
     mount.appendChild(script);
+  }
+
+  function initComments() {
+    if (commentObserver) { commentObserver.disconnect(); commentObserver = null; }
+    var section = document.getElementById("commentsSection");
+    if (!section) return;
+    if (!("IntersectionObserver" in window)) { loadComments(section); return; }
+    commentObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        loadComments(section);
+        commentObserver.disconnect();
+        commentObserver = null;
+      });
+    }, { root: document.querySelector(".ide-main"), rootMargin: "0px 0px 240px" });
+    commentObserver.observe(section);
   }
 
   initComments();

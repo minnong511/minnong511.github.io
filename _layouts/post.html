@@ -1,13 +1,11 @@
 ---
 layout: default
 ---
-{% assign category_name = page.categories | first | default: "Study" %}
-{% assign post_description = page.description | default: page.excerpt | default: site.description %}
+{% assign category_name = page.categories | join: " / " | default: "Study" %}
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
     <div class="ide-document-meta"><strong>{{ category_name | replace: "_", " " }}</strong><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>{% if page.last_modified_at %}<span>UPDATED <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%Y.%m.%d" }}</time></span>{% endif %}<span data-reading-time>—</span><span>{{ page.tags | size }} tags</span></div>
     <h1>{{ page.title }}</h1>
-    {% if post_description %}<p class="ide-document-deck">{{ post_description | strip_html | strip_newlines | truncate: 220 }}</p>{% endif %}
   </header>
   <div class="ide-document-content prose" id="postContent">{{ content }}</div>
   {% if page.tags and page.tags.size > 0 %}

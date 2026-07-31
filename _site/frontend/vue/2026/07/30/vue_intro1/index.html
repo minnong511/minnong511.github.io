@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="ko" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090a0c" />
+    
+    
+    
+    
+    <title>Vue Intro · Minnong's Study Log</title>
+    <meta name="description" content="Vue.js" />
+    
+    <link rel="canonical" href="http://localhost:4000/frontend/vue/2026/07/30/vue_intro1/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Vue Intro" />
+    <meta property="og:description" content="Vue.js" />
+    <meta property="og:url" content="http://localhost:4000/frontend/vue/2026/07/30/vue_intro1/" />
+    <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    
+      <meta property="article:published_time" content="2026-07-30T20:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-07-30T20:00:00+09:00" />
+      <meta property="article:section" content="Frontend" />
+      <meta property="article:tag" content="Frontend" /><meta property="article:tag" content="Vue.js" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vue Intro" />
+    <meta name="twitter:description" content="Vue.js" />
+    <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <script src="/assets/js/theme-init.js?v=7"></script>
+    
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/frontend/vue/2026/07/30/vue_intro1/" },
+          "headline": "Vue Intro",
+          "description": "Vue.js",
+          "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
+          "datePublished": "2026-07-30T20:00:00+09:00",
+          "dateModified": "2026-07-30T20:00:00+09:00",
+          "author": { "@type": "Person", "name": "Min Hyeong Lee" },
+          "articleSection": "Frontend",
+          "keywords": ["Frontend", "Vue.js"]
+        }
+      </script>
+    
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=7" />
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=7" />
+    <link rel="stylesheet" href="/assets/css/ide.css?v=7" />
+    
+  </head>
+  <body
+    class="site-body"
+    data-baseurl=""
+    data-page-url="/frontend/vue/2026/07/30/vue_intro1/"
+    data-page-title="Vue Intro"
+    data-page-layout="post"
+    data-owner-login="minnong511"
+    data-owner-repository="minnong511.github.io"
+    data-owner-branch="master"
+  >
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+    
+      <div class="ide-app" id="ideApp">
+        <header class="ide-titlebar" aria-label="사이트 도구 모음">
+  <div class="ide-window-controls" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="ide-history-controls">
+    <button type="button" class="ide-icon-button" data-history="back" aria-label="이전 페이지" title="이전 페이지"><i class="ri-arrow-left-line" aria-hidden="true"></i></button>
+    <button type="button" class="ide-icon-button" data-history="forward" aria-label="다음 페이지" title="다음 페이지"><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+  </div>
+  <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
+    <i class="ri-terminal-box-line" aria-hidden="true"></i>
+    <span>http://localhost:4000 / posts / vue-intro</span>
+    <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
+  </button>
+  <div class="ide-titlebar-actions">
+    <span class="ide-mobile-title">Vue Intro</span>
+    <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
+    <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
+    <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
+    <button class="ide-icon-button ide-mobile-menu" id="ideMobileMenu" type="button" aria-label="탐색 메뉴 열기" aria-expanded="false" aria-controls="explorerPanel"><i class="ri-menu-line" aria-hidden="true"></i></button>
+  </div>
+</header>
+
+        <aside class="ide-activity" aria-label="주요 탐색">
+  <nav aria-label="작업 영역">
+    <button class="ide-activity-item is-active" type="button" data-activity-panel="explorer" aria-controls="explorerPanel" aria-pressed="true" aria-label="탐색기" title="탐색기"><i class="ri-folder-3-line" aria-hidden="true"></i><span>Explorer</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="search" aria-controls="explorerPanel" aria-pressed="false" aria-label="검색" title="검색"><i class="ri-search-line" aria-hidden="true"></i><span>Search</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="source" aria-controls="explorerPanel" aria-pressed="false" aria-label="소스 제어" title="소스 제어"><i class="ri-git-branch-line" aria-hidden="true"></i><span>Source Control</span></button>
+    <button class="ide-activity-item" type="button" data-activity-panel="run" aria-controls="explorerPanel" aria-pressed="false" aria-label="실행 및 디버그" title="실행 및 디버그"><i class="ri-bug-line" aria-hidden="true"></i><span>Run and Debug</span></button>
+  </nav>
+  <nav aria-label="계정 및 저장소">
+    <button class="ide-activity-item" type="button" data-activity-panel="about" aria-controls="explorerPanel" aria-pressed="false" aria-label="소개와 바로가기" title="소개와 바로가기"><i class="ri-settings-3-line" aria-hidden="true"></i><span>Manage</span></button>
+    <a class="ide-activity-item ide-activity-linkedin" href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="ri-linkedin-box-fill" aria-hidden="true"></i><span>LinkedIn</span></a>
+    <a class="ide-activity-item ide-activity-github" href="https://github.com/minnong511" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub</span></a>
+  </nav>
+</aside>
+
+        <aside class="ide-explorer" id="explorerPanel" aria-label="작업 영역">
+  <section class="ide-sidebar-panel is-active" data-sidebar-panel="explorer" aria-labelledby="explorerHeading">
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE</span><h2 id="explorerHeading">EXPLORER</h2></div>
+      <div class="ide-panel-actions">
+        <button type="button" class="ide-panel-button" data-explorer-action="refresh" aria-label="탐색기 새로고침" title="새로고침"><i class="ri-refresh-line" aria-hidden="true"></i></button>
+        <button type="button" class="ide-panel-button" data-toggle-panel="explorer" aria-label="탐색기 접기" title="탐색기 접기"><i class="ri-layout-left-line" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <label class="ide-explorer-search">
+      <i class="ri-search-line" aria-hidden="true"></i>
+      <input id="explorerSearch" type="search" placeholder="게시물 필터" autocomplete="off" />
+      <kbd>ESC</kbd>
+    </label>
+    <div class="ide-explorer-toolbar">
+      <span id="explorerCount">6 POSTS</span>
+      <label for="explorerSort" class="sr-only">게시물 정렬</label>
+      <select id="explorerSort" aria-label="게시물 정렬">
+        <option value="newest">최신순</option>
+        <option value="oldest">오래된순</option>
+        <option value="title">제목순</option>
+      </select>
+    </div>
+    <div class="ide-tree" id="explorerTree" role="tree" aria-label="카테고리와 게시물">
+      <div class="ide-tree-root"><i class="ri-folder-open-line" aria-hidden="true"></i><strong>BLOG</strong></div>
+      
+      
+      
+      
+        
+        
+        
+        
+        
+        <section class="ide-tree-folder is-open" data-category="cs" data-folder-name="cs" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="CS 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>CS</span><small>1</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/cs/2026/07/30/cs-test/" role="treeitem" data-date="1785369600" data-title="cs 테스트" data-search="cs 테스트 &lt;p&gt;가&lt;/p&gt;
+ []" title="CS 테스트">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CS 테스트</span>
+              </a>
+            
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
+        <section class="ide-tree-folder is-open" data-category="deep-learning" data-folder-name="deep_learning" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="Deep_Learning 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>1</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/deep_learning/2026/07/30/deep-learning-test/" role="treeitem" data-date="1785369660" data-title="deep learning 테스트" data-search="deep learning 테스트 &lt;p&gt;가&lt;/p&gt;
+ []" title="Deep Learning 테스트">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span>
+              </a>
+            
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
+        <section class="ide-tree-folder is-open" data-category="db" data-folder-name="db" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="DB 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DB</span><small>2</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="db-postgresql" data-folder-name="db postgresql" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="PostgreSQL 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>PostgreSQL</span><small>2</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post" href="/db/postgresql/2026/07/31/psql2/" role="treeitem" data-date="1785456000" data-title="psql jsonb, 행 잠금, 멱등성" data-search="psql jsonb, 행 잠금, 멱등성 &lt;h1 id=&quot;jsonb&quot;&gt;jsonb&lt;/h1&gt;
+&lt;h2 id=&quot;jsonb-객체-생성&quot;&gt;jsonb 객체 생성&lt;/h2&gt;
+&lt;h2 id=&quot;중첩-json-반환&quot;&gt;중첩 json 반환&lt;/h2&gt;
+&lt;h2 id=&quot;jsonb_pretty와-to_jsonb&quot;&gt;jsonb_pretty와 to_jsonb&lt;/h2&gt;
+
+ [&quot;postgresql&quot;]" title="Psql JSONB, 행 잠금, 멱등성">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Psql JSONB, 행 잠금, 멱등성</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/db/postgresql/2026/07/31/psql1/" role="treeitem" data-date="1785452400" data-title="psql 함수,프로시져,트리거" data-search="psql 함수,프로시져,트리거 &lt;h1 id=&quot;함수function&quot;&gt;함수(function)&lt;/h1&gt;
+
+ [&quot;postgresql&quot;]" title="Psql 함수,프로시져,트리거">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Psql 함수,프로시져,트리거</span>
+                    </a>
+                  
+                  
+                </div>
+              </section>
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
+        <section class="ide-tree-folder is-open" data-category="frontend" data-folder-name="frontend" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="Frontend 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Frontend</span><small>2</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="frontend-vue" data-folder-name="frontend vue" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="Vue 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Vue</span><small>2</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post is-current" href="/frontend/vue/2026/07/30/vue_intro1/" role="treeitem" data-date="1785409200" data-title="vue intro" data-search="vue intro &lt;h1 id=&quot;vuejs&quot;&gt;vue.js&lt;/h1&gt;
+
+ [&quot;frontend&quot;, &quot;vue.js&quot;]" title="Vue Intro">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Intro</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/frontend/vue/2026/07/30/vue_directive/" role="treeitem" data-date="1785369660" data-title="vue directive" data-search="vue directive &lt;p&gt;v_bind, v_model, v_on&lt;/p&gt;
+
+ []" title="Vue Directive">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Directive</span>
+                    </a>
+                  
+                  
+                </div>
+              </section>
+            
+            
+          </div>
+        </section>
+      
+    </div>
+    <p class="ide-explorer-empty" id="explorerEmpty" hidden>검색 결과가 없습니다.</p>
+    <button class="ide-resize-handle ide-resize-explorer" type="button" data-resize-panel="explorer" aria-label="Explorer 너비 조절"></button>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="search" aria-labelledby="sidebarSearchHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE</span><h2 id="sidebarSearchHeading">SEARCH</h2></div>
+      <button type="button" class="ide-panel-button" data-open-palette="search" aria-label="검색 팝업 열기" title="검색 팝업"><i class="ri-command-line" aria-hidden="true"></i></button>
+    </div>
+    <label class="ide-explorer-search">
+      <i class="ri-search-line" aria-hidden="true"></i>
+      <input id="sidebarSearchInput" type="search" placeholder="게시물 검색" autocomplete="off" />
+      <kbd>ESC</kbd>
+    </label>
+    <div class="ide-sidebar-results" id="sidebarSearchResults" aria-live="polite">
+      <p class="ide-panel-empty">제목, 카테고리, 본문으로 검색하세요.</p>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="source" aria-labelledby="sourceHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">REPOSITORY</span><h2 id="sourceHeading">SOURCE CONTROL</h2></div>
+      <i class="ri-git-branch-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <div class="ide-source-status"><i class="ri-git-branch-line" aria-hidden="true"></i><strong>master</strong><span>clean</span></div>
+      <p class="ide-panel-empty">현재 작업 공간의 GitHub 저장소입니다.</p>
+    <a class="ide-sidebar-action" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>저장소 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="run" aria-labelledby="runHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">WORKSPACE TASKS</span><h2 id="runHeading">RUN AND DEBUG</h2></div>
+      <i class="ri-bug-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <p class="ide-panel-empty">학습 공간의 주요 화면을 실행합니다.</p>
+      <a class="ide-sidebar-action" href="/"><i class="ri-home-5-line" aria-hidden="true"></i><span>홈 열기</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      <a class="ide-sidebar-action" href="/archive/"><i class="ri-file-list-3-line" aria-hidden="true"></i><span>전체 게시물</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      <a class="ide-sidebar-action" href="/write/"><i class="ri-edit-line" aria-hidden="true"></i><span>새 문서 작성</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+    </div>
+  </section>
+
+  <section class="ide-sidebar-panel" data-sidebar-panel="about" aria-labelledby="aboutHeading" hidden>
+    <div class="ide-panel-heading">
+      <div><span class="ide-panel-label">MINNONG.DEV</span><h2 id="aboutHeading">MANAGE</h2></div>
+      <i class="ri-settings-3-line ide-panel-heading-icon" aria-hidden="true"></i>
+    </div>
+    <div class="ide-sidebar-content">
+      <a class="ide-sidebar-action" href="/about/"><i class="ri-information-line" aria-hidden="true"></i><span>블로그 소개</span><i class="ri-arrow-right-line" aria-hidden="true"></i></a>
+      <button class="ide-sidebar-action" type="button" data-open-palette="bookmarks"><i class="ri-bookmark-3-line" aria-hidden="true"></i><span>북마크 검색</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+      <button class="ide-sidebar-action" type="button" data-toggle-theme><i class="ri-contrast-2-line" aria-hidden="true"></i><span>테마 전환</span><i class="ri-arrow-right-line" aria-hidden="true"></i></button>
+    </div>
+  </section>
+</aside>
+
+        <button class="ide-explorer-backdrop" id="explorerBackdrop" type="button" aria-label="탐색기 닫기" hidden></button>
+        <main id="main-content" class="ide-main">
+          <div class="ide-tabs" id="editorTabs" role="tablist" aria-label="최근 게시물">
+  <div class="ide-tabs-empty" id="tabsEmpty">열린 문서가 없습니다.</div>
+</div>
+
+          <nav class="ide-breadcrumbs" aria-label="현재 경로">
+  <a href="/">workspace</a><span>&gt;</span>
+  
+    <a href="/archive/">posts</a><span>&gt;</span>
+    
+    <a href="/archive/?category=frontend">frontend</a><span>&gt;</span>
+    
+      <span>vue</span><span>&gt;</span>
+    
+    <span aria-current="page">vue-intro.md</span>
+  
+</nav>
+
+          <div class="ide-document-area">
+<article class="ide-document" data-document="post">
+  <header class="ide-document-header">
+    <div class="ide-document-meta"><strong>Frontend / Vue</strong><time datetime="2026-07-30T20:00:00+09:00">2026.07.30</time><span data-reading-time>—</span><span>2 tags</span></div>
+    <h1>Vue Intro</h1>
+  </header>
+  <div class="ide-document-content prose" id="postContent"><h1 id="vuejs">Vue.js</h1>
+
+<p>자자! 오늘은 Vue.js라는 것을 들고 왔다. (프론트엔드 첨해봄 ㅎ)</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[오늘의 주제]
+      ↓
+   [Vue.js]
+</code></pre></div></div>
+
+<p>Vue.js는 Front-end JavaScript Framework이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
+   ↓
+[사용자 인터페이스 구축]
+</code></pre></div></div>
+
+<p>즉, 사용자 인터페이스 구축을 위한 프레임워크이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
+   ↓
+┌──────────────────────┐
+│ 사용자 인터페이스 구축 │
+└──────────────────────┘
+</code></pre></div></div>
+
+<p>이걸로 무엇을 할 수 있을까?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
+ ├─ 간결한 문법
+ ├─ 반응형 데이터 바인딩
+ ├─ 컴포넌트
+ ├─ 가상 DOM
+ └─ 트랜지션 효과
+</code></pre></div></div>
+
+<p>Vue.js를 이용해서 간결한 문법, 반응형 데이터 바인딩, 컴포넌트, 가상 DOM, 트랜지션 효과가 가능하다. (노가다 멈춰!)</p>
+
+<h1 id="왜-만들어졌을까">왜 만들어졌을까?</h1>
+
+<ul>
+  <li>이유는 간단하다… 
+그야.. 기존의 것이 불편하니까… (귀찮은 건 질색이야! 딩기리딩딩~~~)</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[기존 방식의 불편함]
+          ↓
+ [더 간결한 개발 방식]
+</code></pre></div></div>
+
+<p>Vue.js는 “기존 프레임워크들의 장점만 흡수하여 더 가볍고 쓰기 쉽게 만들자”는 아이디어에서 시작했다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[기존 프레임워크의 장점]
+            +
+      [가벼운 사용성]
+            ↓
+         [Vue.js]
+</code></pre></div></div>
+
+<p>근데 기존의 HTML과 JavaScript와 뭐가 다른 걸까?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML + JavaScript]
+          ↕ 비교
+       [Vue.js]
+</code></pre></div></div>
+
+<p>지금부터 알아보도록 하자.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[다음 순서]
+    ↓
+[Vue.js의 핵심 특징]
+</code></pre></div></div>
+
+<h1 id="vuejs의-특징-1---mvvm-architecture">Vue.js의 특징 1 - MVVM Architecture</h1>
+
+<p>Vue.js의 설계는 MVVM(Model-View-ViewModel) Architecture Pattern에서 영감을 받았지만, MVVM을 엄격하게 따르는 것은 아니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model] ⇄ [ViewModel] ⇄ [View]
+              ↑
+       Vue의 반응형 연결
+</code></pre></div></div>
+
+<p>이게 뭐냐고요? 잘 따라와 보십쇼.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[궁금증]
+   ↓
+[MVVM 구조 살펴보기]
+</code></pre></div></div>
+
+<h2 id="then-what-is-mvvm">Then, what is MVVM?</h2>
+
+<p>MVVM Architecture Pattern은 데이터를 보여주는 View와 데이터를 처리하는 Model 사이에 데이터를 중개하는 ViewModel을 두어 UI를 그리는 부분과 Data 처리 로직을 분리하는 Architecture Pattern이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model: 데이터]
+       ↕
+[ViewModel: 연결·상태]
+       ↕
+[View: 화면]
+</code></pre></div></div>
+
+<h3 id="model">model</h3>
+
+<ul>
+  <li>애플리케이션에서 사용하는 데이터와 상태. Vue에서는 보통 <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> 내부에 정의한 반응형 JavaScript 상태가 이에 해당한다.</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[애플리케이션 데이터]
+          ↓
+ [반응형 JavaScript 상태]
+</code></pre></div></div>
+
+<h3 id="view">View</h3>
+
+<ul>
+  <li>사용자에게 실제로 보여지는 화면 인터페이스와 DOM 구조, 시각적 스타일링을 담당</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[View]
+  ├─ 화면 인터페이스
+  ├─ DOM 구조
+  └─ 시각적 스타일링
+</code></pre></div></div>
+
+<h3 id="viewmodel">ViewModel</h3>
+
+<ul>
+  <li>View와 Model 사이를 연결해주는 중간 다리. Vue의 반응형 상태·템플릿 연결 로직과 런타임이 ViewModel에 가까운 역할을 수행</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[View] ⇄ [반응형 상태·템플릿 로직] ⇄ [Model]
+</code></pre></div></div>
+
+<h3 id="그러면-어떻게-생긴-걸까">그러면 어떻게 생긴 걸까?</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model]
+   ⇅
+[ViewModel]
+   ⇅
+[View]
+</code></pre></div></div>
+
+<h2 id="mvvm-구조는-왜-나온-걸까">MVVM 구조는 왜 나온 걸까?</h2>
+
+<p>근데 대충 어떻게 생겼는지 다들 알았을 것이라 생각한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model] → [ViewModel] → [View]
+</code></pre></div></div>
+
+<p>그러면 이게 왜 만들어진 것일까?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[분리된 역할]
+      ↓
+[변경 관리가 쉬운 구조]
+</code></pre></div></div>
+
+<ol>
+  <li>기존 브라우저의 Real DOM을 자주 직접 조작하면 렌더링 비용이 커질 수 있다.
+    <ul>
+      <li>DOM: Browser가 HTML을 인식하여 Tree 구조로 만든 Object Model</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML]
+  ↓ 파싱
+[DOM Tree]
+  ↓ 렌더링 계산
+[화면]
+</code></pre></div></div>
+
+<p>기존 브라우저에서는 실제 DOM이 수정되면 Browser는 Layout을 다시 계산(Reflow)하고 화면을 다시 색칠하는 Repaint 연산을 수행할 수 있다. 이러면 연속적인 상태 변경으로 인해 노드를 재구성하는 작업이 반복되고, Layout/Paint 연산 부하로 화면이 느려질 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[DOM 수정]
+    ↓
+[Layout/Reflow]
+    ↓
+[Paint/Repaint]
+    ↓
+[화면 갱신]
+</code></pre></div></div>
+
+<p>뭐 예시를 간단하게 들어보자면..</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[추상적인 설명]
+        ↓
+   [생활 속 예시]
+</code></pre></div></div>
+
+<p>브라우저의 상태가 변경될 때마다 직접 Real DOM을 연속해서 조작하므로, 만약 10번의 데이터 변화가 일어나면 브라우저가 매번 DOM 변경을 처리하고 그 결과에 따라 여러 번의 스타일 계산·Layout·Paint가 발생할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터 변화 1 ─┐
+데이터 변화 2 ─┤
+데이터 변화 … ─┼→ DOM 처리 → Layout/Paint 가능
+데이터 변화 10 ─┘
+</code></pre></div></div>
+
+<p>실생활에서의 예를 들자면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[데이터 변경]
+      ↓ 비유
+[마트를 여러 번 방문]
+</code></pre></div></div>
+
+<p>감자 10개를 환불하고 고구마 5개를 사야하는데, 감자 환불 하러 10번 마트가고 고구마 사러 마트 5번 가는 느낌이랄까? 그렇게 예를 들 수 있을 거 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[감자 환불 10번] + [고구마 구매 5번]
+                 ↓
+          [마트 방문 반복]
+</code></pre></div></div>
+
+<ol>
+  <li>Vue.js는 Virtual DOM과 렌더러를 통해 필요한 DOM 변경만 적용한다.</li>
+</ol>
+
+<ul>
+  <li>Virtual DOM: 실제 브라우저의 DOM과 동기화되는 메모리상의 UI 표현</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 변화]
+    ↓
+[Virtual DOM 비교]
+    ↓
+[필요한 Real DOM만 업데이트]
+</code></pre></div></div>
+
+<p>아무튼 이런 문제를 줄이기 위해서 Vue.js에서는 Virtual DOM과 렌더러로 변경 사항을 비교한 뒤 필요한 DOM 업데이트를 적용한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[이전 Virtual DOM] ⇄ [새 Virtual DOM]
+          ↓ 차이 계산
+    [필요한 DOM 업데이트]
+</code></pre></div></div>
+
+<p>10번 변경할 것을 여러 번의 상태 변경으로 모아서 한 번의 업데이트 사이클에 처리할 수 있게 해준다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 변경 1]
+[상태 변경 2] ─┐
+[상태 변경 …] ─┼→ [업데이트 사이클 1회]
+[상태 변경 10] ┘
+</code></pre></div></div>
+
+<p>개발자가 직접 DOM을 일일이 제어하는 번거로움 없이, 상태 변화만 선언해도 Vue가 반응형 의존성을 추적하고 변경된 Virtual DOM을 이전 것과 비교해 필요한 DOM 업데이트를 계산한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 선언]
+    ↓
+[반응형 의존성 추적]
+    ↓
+[Virtual DOM 비교]
+    ↓
+[필요한 DOM 업데이트 계산]
+</code></pre></div></div>
+
+<p>Batch 처리를 통한 렌더링 횟수 최적화를 통해 Vue는 한 업데이트 사이클 안에 여러 번 데이터가 바뀌어도 변경 사항을 모아서 실제 DOM에 한 번 반영할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[여러 상태 변경]
+        ↓ Batch
+[한 번의 업데이트 사이클]
+        ↓
+   [Real DOM 반영]
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 변경]
+    ↓
+[Vue 반응성 + Virtual DOM]
+    ↓
+[필요한 화면만 갱신]
+</code></pre></div></div>
+
+<h1 id="vuejs-특징-2---two-way-data-binding">Vue.js 특징 2 - Two-Way Data Binding</h1>
+
+<p>Vue.js에서 <code class="language-plaintext highlighter-rouge">v-model</code>을 사용하면 양방향 데이터 바인딩 (Two-Way Data Binding)을 구현할 수 있다. “Model(JavaScript Data)이 바뀌면 View(화면)가 바뀌고, 반대로 View(화면 입력)가 바뀌면 Model도 동시에 바뀐다”는 것을 의미한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model: JavaScript Data]
+          ⇅
+ [v-model 양방향 연결]
+          ⇅
+      [View: 입력 화면]
+</code></pre></div></div>
+
+<h1 id="vuejs-특징-3---component-based-architecture">Vue.js 특징 3 - Component Based Architecture</h1>
+
+<p>웹페이지를 통째로 만들지 않는다!</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[큰 웹페이지 하나]
+        ↓ 분리
+[여러 개의 컴포넌트]
+</code></pre></div></div>
+
+<p>이제는 조각조각 하나씩 만들고 각각을 조립하는 시스템을 채택한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Header] + [Content] + [Footer]
+              ↓ 조립
+          [웹페이지]
+</code></pre></div></div>
+
+<ul>
+  <li>이 방식을 Component(독립 요소) Based Architecture라고 한다.</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Component Based Architecture]
+              ↓
+ [독립적인 요소를 조립해 화면 구성]
+</code></pre></div></div>
+
+<p>세 가지 특징을 가진다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Component]
+ ├─ Encapsulation
+ ├─ Reusability
+ └─ Tree Structure
+</code></pre></div></div>
+
+<ul>
+  <li>Encapsulation : Single-File Component(SFC)로 작성하면 컴포넌트의 HTML(구조), JavaScript(로직), CSS(스타일)를 하나의 파일(.vue) 안에 응집시켜 놓는다.</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Component.vue]
+ ├─ &lt;template&gt;  구조
+ ├─ &lt;script&gt;    로직
+ └─ &lt;style&gt;     스타일
+</code></pre></div></div>
+
+<ul>
+  <li>Reusability: 잘 만든 Component는 여러 곳에서 다시 가져다 쓸 수 있어 중복 코드가 제거된다. (재탕이 최고!)</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       [재사용]
+          ↑
+[Component] ─┬→ [화면 A]
+             └→ [화면 B]
+</code></pre></div></div>
+
+<ul>
+  <li>Tree Structure: Component들은 부모-자식 관계를 가지며 부모는 자식에게 데이터를 내려주고(Props Down), 자식은 부모에게 상태 변경을 알려준다(Event Up = Emit).</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        [Parent]
+        ↙      ↘
+ [Child A]   [Child B]
+    ↑ Props Down / Event Up ↑
+</code></pre></div></div>
+
+<h1 id="vuejs-특징-4---rendering">Vue.js 특징 4 - Rendering</h1>
+
+<p>근데 이러면 화면은 어떻게 표시되는 걸까?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue 상태·템플릿]
+        ↓ 렌더링
+      [화면]
+</code></pre></div></div>
+
+<p>HTML은 조상님이 렌더해주시는 걸까?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML]
+  ?
+[조상님 렌더링?]
+</code></pre></div></div>
+
+<p>그럴 리는 없겠지…?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[조상님]
+   ✕
+[렌더링 담당 아님]
+</code></pre></div></div>
+
+<p>아쉽게도 조상님 대신 콤퓨타가 렌더해준다..</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue + Browser + JavaScript]
+             ↓
+          [렌더링]
+</code></pre></div></div>
+
+<p>화면을 구성하는 대표적인 방식은 2가지이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          [렌더링 방식]
+             ↙   ↘
+          [CSR] [SSR]
+</code></pre></div></div>
+
+<ol>
+  <li>CSR(Client-Side-Rendering)
+    <ul>
+      <li>브라우저(Client)가 JavaScript를 실행하여 화면을 직접 그린다(rendering).</li>
+    </ul>
+  </li>
+  <li>SSR(Server-Side-Rendering)
+    <ul>
+      <li>서버(Server)에서 Vue 컴포넌트를 HTML로 렌더링해 브라우저에 내려주는 방식이다. 데이터는 서버에서 미리 주입할 수도 있고, Vue의 SSR API나 Nuxt.js 같은 프레임워크를 이용해서 구현한다.</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[CSR] 브라우저에서 JavaScript 실행 → 화면 렌더링
+[SSR] 서버에서 HTML 렌더링       → 브라우저 전달
+</code></pre></div></div>
+
+<h1 id="vuejs로-구현하는-spa-single-page-application">Vue.js로 구현하는 SPA (Single Page Application)</h1>
+
+<p>자자 아직 할 것이 많으니 다음으로 넘어가자.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue 특징 1~4]
+        ↓
+[SPA 방식 살펴보기]
+</code></pre></div></div>
+
+<p>Vue.js로 구현할 수 있는 SPA(Single Page Application)에 대해서 알아보자?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
+    ↓ 구현
+[SPA]
+</code></pre></div></div>
+
+<h3 id="기존--mpa">기존 : MPA</h3>
+
+<p>기존에는 사용자가 메뉴를 클릭할 때마다 새 HTML을 새로 요청해서 렌더했다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[메뉴 클릭]
+    ↓
+[새 HTML 요청]
+    ↓
+[전체 페이지 렌더링]
+</code></pre></div></div>
+
+<p>그래서 페이지 전환마다 HTML과 리소스를 다시 요청할 수 있어 네트워크 비용과 처리 시간이 늘어날 수 있었다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[페이지 전환]
+      ↓
+[HTML·리소스 재요청 가능]
+      ↓
+[네트워크·처리 비용 증가 가능]
+</code></pre></div></div>
+
+<h3 id="신규--spa">신규 : SPA</h3>
+
+<p>다행히도! Vue.js로 SPA (Single Page Application)를 구현하면 HTML 문서를 처음에 불러온 뒤, 클라이언트 측 JavaScript가 필요한 데이터와 화면만 업데이트하는 방식으로 변경을 처리할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML 문서 최초 로드]
+          ↓
+[클라이언트 JavaScript]
+          ↓
+ [변경된 화면만 업데이트]
+</code></pre></div></div>
+
+<h2 id="어떻게-구현-그리고-뭐가-장단점일까">어떻게 구현? 그리고 뭐가 장단점일까?</h2>
+
+<p>구현은 초기 로딩 시 하나의 HTML과 초기 화면에 필요한 JavaScript를 로딩하는 방식으로 이루어진다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[초기 로딩]
+ ├─ HTML
+ └─ 초기 화면에 필요한 JavaScript
+</code></pre></div></div>
+
+<p>이제 뭔가 변경이 필요하다면 클라이언트에서 JS로 필요한 부분만 변경(부분 렌더링)하는 방식으로 이루어진다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[변경 요청]
+    ↓
+[클라이언트 JS]
+    ↓
+[필요한 부분만 변경]
+</code></pre></div></div>
+
+<p>데이터 전송도 필요한 데이터만 주고받고, 클라이언트의 JS로 필요한 부분만 변경(부분 렌더링)한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[서버] ⇄ [필요한 데이터]
+              ↓
+        [클라이언트 JS]
+              ↓
+       [부분 렌더링]
+</code></pre></div></div>
+
+<p>그래서 여러 가지 장점을 제공한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA]
+ ├─ 빠른 페이지 전환
+ ├─ 네트워크 효율성
+ └─ 역할 분리
+</code></pre></div></div>
+
+<ol>
+  <li>페이지 전환 시 전체 문서를 다시 로드하지 않아 빠른 사용자 경험을 제공할 수 있다.</li>
+  <li>네트워크 효율성 : 한 번 로딩된 리소스 (CSS, JS 등)를 재사용하고 필요한 데이터만 요청할 수 있어 전체적인 네트워크 트래픽을 줄일 수 있다. (엄마가 끓여주신 사골국으로 온갖 요리를 해먹는 것을 생각해보자, 본인은 일주일동안 사골로 사골라면, 사골된장찌개…부터 시작해서 약 10가지 요리를 해봤다..OTL)</li>
+  <li>프론트/백엔드 분리: 프론트엔드는 Vue 화면과 로직을 담당하고, 백엔드는 API로 데이터를 제공하는 식으로 역할을 나눌 수 있어 개발 팀 간 협업과 서버 구성이 명확해질 수 있다.</li>
+</ol>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue 프론트엔드] ⇄ [API 서버]
+   화면·로직          데이터 제공
+</code></pre></div></div>
+
+<p>근데 이 방식 장점만 있는 것은 아니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA 장점]
+    +
+[SPA 단점]
+    ↓
+[상황에 맞는 선택]
+</code></pre></div></div>
+
+<p>여러 가지 문제가 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[주의할 점]
+ ├─ 초기 로딩
+ ├─ 새로고침
+ └─ SEO
+</code></pre></div></div>
+
+<ol>
+  <li>초기 로딩이 느려질 수 있다.
+    <ul>
+      <li>첫 로딩 시 초기 화면에 필요한 JavaScript를 내려받고 실행해야 해서 초기에 느리게 로딩될 수 있다.</li>
+    </ul>
+  </li>
+  <li>새로고침 시 전체 앱이 다시 로딩된다.
+    <ul>
+      <li>이로 인해 상태가 초기화될 수 있다.</li>
+    </ul>
+  </li>
+  <li>JS 기반 렌더링만 사용하는 경우 SEO에 불리할 수 있다.
+    <ul>
+      <li>로봇이 들어와도 JavaScript 실행 전에는 알맹이를 못 볼 수 있다.</li>
+      <li>그래서 검색 노출에 불리할 수 있다.</li>
+    </ul>
+  </li>
+  <li>별도 기술 조합이 필요할 수 있다. 예를 들어 Vue.js + REST API (ex: Spring Boot)를 함께 구성해야 한다.</li>
+</ol>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA 단점]
+ ├─ 초기 JavaScript 로딩·실행
+ ├─ 새로고침 시 앱 재로딩
+ └─ CSR 환경에서 SEO 불리할 수 있음
+</code></pre></div></div>
+
+<h3 id="vuejs로-spa를-만들-때-자주-쓰는-추가-기술-요소">Vue.js로 SPA를 만들 때 자주 쓰는 추가 기술 요소</h3>
+
+<ul>
+  <li>Vite: Frontend Build Tool로 개발자가 작성한 수많은 .vue, .js, .css 파일들을 개발 중에는 빠르게 제공하고, 배포 시에는 브라우저가 읽을 수 있는 최적화된 정적 파일로 변환·번들링하며 개발 서버도 띄워주는 빌드 도구이다.</li>
+  <li>Vue Router: 브라우저의 URL 주소와 Vue 컴포넌트를 연결해 주는 공식 라우팅 라이브러리</li>
+  <li>Pinia: 전역 상태 관리 라이브러리로 필요한 컴포넌트가 접근할 수 있는 중앙 집중식 데이터 저장소(Store)를 메모리 상에 개설한다.</li>
+  <li>Axios: 백엔드 서버(API 서버)와 JSON 등을 주고받는 HTTP 통신 창구.</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vite]
+   ↓ 빌드
+[Vue 앱 정적 파일]
+   ↓ 라우팅·상태·통신
+[Vue Router] + [Pinia] + [Axios]
+</code></pre></div></div>
+
+<h3 id="spa의-장점">SPA의 장점</h3>
+<ul>
+  <li>압도적인 사용자 경험(UX)</li>
+  <li>네트워크 효율성</li>
+  <li>프론트 / 백엔드 분리</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA 장점]
+ ├─ 사용자 경험
+ ├─ 네트워크 효율성
+ └─ 프론트 / 백엔드 분리
+</code></pre></div></div>
+
+<h3 id="spa-단점">SPA 단점</h3>
+<ul>
+  <li>초기 로딩 속도: 초기 화면에 필요한 JavaScript가 한꺼번에 다운로드·실행되면 첫 접속 시 대기 시간이 발생할 수 있다. 코드 분할을 적용하면 필요한 코드만 먼저 불러올 수도 있다.</li>
+  <li>SEO 취약: 순수 CSR에서는 검색 로봇이 JavaScript를 실행하기 전 알맹이가 적은 <code class="language-plaintext highlighter-rouge">index.html</code>을 먼저 보게 될 수 있어 검색 노출에 불리할 수 있다.</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[초기 JS 다운로드·실행]
+          ↓
+   [첫 화면 대기 시간]
+
+[SSR/SSG 또는 코드 분할]
+          ↓
+   [초기 부담 완화 가능]
+</code></pre></div></div>
+</div>
+  
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#frontend">#Frontend</a><a href="/tags/#vue-js">#Vue.js</a></footer>
+  
+  <nav class="ide-document-navigation" aria-label="게시물 이동">
+    <a href="/frontend/vue/2026/07/30/vue_directive/"><span>PREVIOUS</span><strong>Vue Directive</strong></a>
+    <a href="/db/postgresql/2026/07/31/psql1/"><span>NEXT</span><strong>Psql 함수,프로시져,트리거</strong></a>
+  </nav>
+  
+<section
+  class="ide-comments"
+  id="commentsSection"
+  aria-labelledby="commentsTitle"
+  data-giscus-repo="minnong511/minnong511.github.io"
+  data-giscus-repo-id="R_kgDONte4cw"
+  data-giscus-category="General"
+  data-giscus-category-id="DIC_kwDONte4c84C3PLr"
+  data-giscus-mapping="pathname"
+  data-giscus-strict="0"
+  data-giscus-reactions="1"
+  data-giscus-emit="0"
+  data-giscus-input="top"
+  data-giscus-theme="transparent_dark"
+  data-giscus-lang="ko"
+  data-giscus-loading="lazy"
+>
+  <header class="ide-comments-heading">
+    <span class="ide-panel-label">DISCUSSION</span>
+    <h2 id="commentsTitle">COMMENTS</h2>
+    <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
+  </header>
+  <div class="giscus" aria-label="댓글"></div>
+</section>
+
+
+</article>
+</div>
+        </main>
+        <aside class="ide-context" id="contextPanel" aria-label="문서 컨텍스트">
+  <div class="ide-context-tabs" role="tablist" aria-label="문서 패널">
+    <button class="is-active" type="button" role="tab" aria-selected="true" data-context-tab="outline">OUTLINE</button>
+    <button type="button" role="tab" aria-selected="false" data-context-tab="info">INFO</button>
+    <button type="button" role="tab" aria-selected="false" data-context-tab="related">RELATED</button>
+    <button class="ide-context-collapse" type="button" data-toggle-context-panel aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
+  </div>
+  <section class="ide-context-view is-active" data-context-view="outline"><span class="ide-panel-label">DOCUMENT STRUCTURE</span><nav class="ide-outline-list" id="postOutline" aria-label="게시물 목차">
+  <p class="ide-panel-empty">이 문서에는 목차가 없습니다.</p>
+</nav>
+</section>
+  <section class="ide-context-view" data-context-view="info" hidden>
+    <span class="ide-panel-label">DOCUMENT INFO</span>
+    <dl class="ide-info-list">
+      <div><dt>TYPE</dt><dd>Markdown</dd></div>
+      <div><dt>DATE</dt><dd>2026.07.30</dd></div>
+      <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
+      <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
+      <div><dt>CATEGORY</dt><dd>Frontend / Vue</dd></div>
+    </dl>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/frontend/vue/2026/07/30/vue_intro1/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/frontend/vue/2026/07/30/vue_intro1/" data-bookmark-title="Vue Intro"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+  </section>
+  <section class="ide-context-view" data-context-view="related" hidden>
+    <span class="ide-panel-label">RELATED DOCUMENTS</span>
+    <div class="ide-related-list">
+      
+      
+        
+          <a href="/db/postgresql/2026/07/31/psql2/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Psql JSONB, 행 잠금, 멱등성</span></a>
+        
+      
+        
+          <a href="/db/postgresql/2026/07/31/psql1/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Psql 함수,프로시져,트리거</span></a>
+        
+      
+        
+      
+        
+          <a href="/frontend/vue/2026/07/30/vue_directive/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Directive</span></a>
+        
+      
+        
+          <a href="/deep_learning/2026/07/30/deep-learning-test/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span></a>
+        
+      
+        
+          <a href="/cs/2026/07/30/cs-test/"><i class="ri-markdown-line" aria-hidden="true"></i><span>CS 테스트</span></a>
+        
+      
+      
+    </div>
+  </section>
+  <div class="ide-minimap" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
+  <button class="ide-resize-handle ide-resize-context" type="button" data-resize-panel="context" aria-label="Context 패널 너비 조절"></button>
+</aside>
+
+        <footer class="ide-statusbar" aria-label="문서 상태">
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Frontend / Vue</span><span>6 posts</span></div>
+  <div>
+    <button class="ide-mobile-context" type="button" data-toggle-context aria-label="목차 열기">목차</button>
+    <span data-status-reading>—</span>
+    <span>UTF-8</span>
+    <span>Markdown</span>
+    <fieldset class="ide-font-size-control">
+      <legend class="sr-only">본문 글씨 크기</legend>
+      <label class="ide-font-size-option" title="본문 글씨 작게">
+        <input type="radio" name="ide-font-size" value="small" data-font-size-option="small" />
+        <span aria-hidden="true">A−</span><span class="sr-only">작게</span>
+      </label>
+      <label class="ide-font-size-option" title="본문 글씨 기본">
+        <input type="radio" name="ide-font-size" value="medium" data-font-size-option="medium" />
+        <span aria-hidden="true">A</span><span class="sr-only">기본</span>
+      </label>
+      <label class="ide-font-size-option" title="본문 글씨 크게">
+        <input type="radio" name="ide-font-size" value="large" data-font-size-option="large" />
+        <span aria-hidden="true">A＋</span><span class="sr-only">크게</span>
+      </label>
+    </fieldset>
+    <button type="button" data-scroll-top aria-label="맨 위로 이동">↑ TOP</button>
+  </div>
+</footer>
+
+      </div>
+      <div class="ide-palette" id="commandPalette" role="dialog" aria-modal="true" aria-labelledby="paletteTitle" hidden>
+  <div class="ide-palette-card">
+    <div class="ide-palette-input-wrap"><i class="ri-search-line" aria-hidden="true"></i><label class="sr-only" for="paletteInput">파일, 게시물 또는 명령 검색</label><input id="paletteInput" type="search" placeholder="Search files by name (append : to go to line or @ to go to symbol)" autocomplete="off" /><kbd>ESC</kbd></div>
+    <div class="ide-palette-results" id="paletteResults" role="listbox"></div>
+    <div class="ide-palette-recent">
+      <div class="ide-palette-recent-heading"><span id="paletteTitle">RECENTLY OPENED</span><span>최근 열림</span></div>
+      <div id="paletteRecent"></div>
+    </div>
+  </div>
+</div>
+
+    
+    <script defer src="/assets/js/blog-ui.js?v=7"></script>
+    
+      <script defer src="/assets/js/preferences.js?v=7"></script>
+      <script defer src="/assets/js/explorer.js?v=7"></script>
+      <script defer src="/assets/js/activity-panels.js?v=7"></script>
+      <script defer src="/assets/js/tabs.js?v=7"></script>
+      <script defer src="/assets/js/outline.js?v=7"></script>
+      <script defer src="/assets/js/panel-resize.js?v=7"></script>
+      <script defer src="/assets/js/command-palette.js?v=7"></script>
+      <script defer src="/assets/js/ide-shell.js?v=7"></script>
+      <script defer src="/assets/js/comments.js?v=7"></script>
+      
+    
+    
+  </body>
+</html>
