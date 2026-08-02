@@ -78,6 +78,7 @@
         {% include activity-bar.html %}
         {% include explorer.html %}
         <button class="ide-explorer-backdrop" id="explorerBackdrop" type="button" aria-label="탐색기 닫기" hidden></button>
+        <button class="ide-context-backdrop" id="contextBackdrop" type="button" aria-label="목차 패널 닫기" hidden></button>
         <main id="main-content" class="ide-main">
           {% include editor-tabs.html %}
           {% include breadcrumbs.html %}
@@ -95,6 +96,7 @@
       <script defer src="{{ '/assets/js/activity-panels.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
       <script defer src="{{ '/assets/js/tabs.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
       <script defer src="{{ '/assets/js/outline.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
+      <script defer src="{{ '/assets/js/code-blocks.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
       <script defer src="{{ '/assets/js/panel-resize.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
       <script defer src="{{ '/assets/js/command-palette.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>
       <script defer src="{{ '/assets/js/ide-shell.js' | relative_url }}?v={{ site.assets_version | default: '1' }}"></script>

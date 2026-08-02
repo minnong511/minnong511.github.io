@@ -8,22 +8,43 @@
     
     
     
-    <title>About · Minnong's Study Log</title>
-    <meta name="description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
+    <title>Vue Composition API 정리 · Minnong's Study Log</title>
+    <meta name="description" content="Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다." />
     
-    <link rel="canonical" href="https://minnong511.github.io/about/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="About" />
-    <meta property="og:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
-    <meta property="og:url" content="https://minnong511.github.io/about/" />
+    <link rel="canonical" href="https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Vue Composition API 정리" />
+    <meta property="og:description" content="Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다." />
+    <meta property="og:url" content="https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/" />
     <meta property="og:image" content="https://minnong511.github.io/assets/base_image/og-study-blog.png" />
     
+      <meta property="article:published_time" content="2026-08-02T09:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-02T09:00:00+09:00" />
+      <meta property="article:section" content="Frontend" />
+      <meta property="article:tag" content="Frontend" /><meta property="article:tag" content="Vue.js" /><meta property="article:tag" content="Composition API" /><meta property="article:tag" content="ref" /><meta property="article:tag" content="reactive" /><meta property="article:tag" content="computed" /><meta property="article:tag" content="watch" />
+    
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="About" />
-    <meta name="twitter:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
+    <meta name="twitter:title" content="Vue Composition API 정리" />
+    <meta name="twitter:description" content="Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다." />
     <meta name="twitter:image" content="https://minnong511.github.io/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=8"></script>
+    
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/" },
+          "headline": "Vue Composition API 정리",
+          "description": "Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다.",
+          "image": ["https://minnong511.github.io/assets/base_image/og-study-blog.png"],
+          "datePublished": "2026-08-02T09:00:00+09:00",
+          "dateModified": "2026-08-02T09:00:00+09:00",
+          "author": { "@type": "Person", "name": "Min Hyeong Lee" },
+          "articleSection": "Frontend",
+          "keywords": ["Frontend", "Vue.js", "Composition API", "ref", "reactive", "computed", "watch"]
+        }
+      </script>
     
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,9 +60,9 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/about/"
-    data-page-title="About"
-    data-page-layout="page"
+    data-page-url="/frontend/vue/2026/08/02/vue-composition-api/"
+    data-page-title="Vue Composition API 정리"
+    data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
     data-owner-branch="master"
@@ -59,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>minnong511.github.io / about</span>
+    <span>minnong511.github.io / posts / vue-composition-api-정리</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">About</span>
+    <span class="ide-mobile-title">Vue Composition API 정리</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -221,7 +242,7 @@
                 </button>
                 <div class="ide-tree-children" role="group">
                   
-                    <a class="ide-tree-post" href="/frontend/vue/2026/08/02/vue-composition-api/" role="treeitem" data-date="1785628800" data-title="vue composition api 정리" data-search="vue composition api 정리 
+                    <a class="ide-tree-post is-current" href="/frontend/vue/2026/08/02/vue-composition-api/" role="treeitem" data-date="1785628800" data-title="vue composition api 정리" data-search="vue composition api 정리 
  [&quot;frontend&quot;, &quot;vue.js&quot;, &quot;composition api&quot;, &quot;ref&quot;, &quot;reactive&quot;, &quot;computed&quot;, &quot;watch&quot;]" title="Vue Composition API 정리">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Composition API 정리</span>
                     </a>
@@ -997,36 +1018,712 @@ vue가 화면을 갱신
           <nav class="ide-breadcrumbs" aria-label="현재 경로">
   <a href="/">workspace</a><span>&gt;</span>
   
-    <span aria-current="page">about</span>
+    <a href="/archive/">posts</a><span>&gt;</span>
+    
+    <a href="/archive/?category=frontend">frontend</a><span>&gt;</span>
+    
+      <span>vue</span><span>&gt;</span>
+    
+    <span aria-current="page">vue-composition-api-정리.md</span>
   
 </nav>
 
-          <div class="ide-document-area"><section class="ide-page" aria-labelledby="pageTitle">
-  <header class="ide-document-header"><div class="ide-document-meta"><strong>PAGE</strong><span>MINNONG WORKSPACE</span></div><h1 id="pageTitle">About</h1></header>
-  <article class="ide-document-content prose"><p class="page-lead">배운 내용을 흘려보내지 않고, 다시 설명할 수 있는 지식으로 만드는 공간입니다.</p>
+          <div class="ide-document-area">
+<article class="ide-document" data-document="post">
+  <header class="ide-document-header">
+    <div class="ide-document-meta"><strong>Frontend / Vue</strong><time datetime="2026-08-02T09:00:00+09:00">2026.08.02</time><span data-reading-time>—</span><span>7 tags</span></div>
+    <h1>Vue Composition API 정리</h1>
+  </header>
+  
+    <aside class="ide-reading-summary" aria-labelledby="readingSummaryTitle">
+      
+        <section class="ide-summary-card ide-summary-card-primary reveal" aria-labelledby="readingSummaryTitle">
+          <span class="ide-panel-label">QUICK SUMMARY</span>
+          <h2 id="readingSummaryTitle">핵심 요약</h2>
+          <p>Composition API는 컴포넌트의 상태와 로직을 기능별로 모아 작성하는 Vue 3의 코드 작성 방식이다.</p>
+        </section>
+      
+      
+        <section class="ide-summary-card reveal" aria-labelledby="keyConceptsTitle">
+          <span class="ide-panel-label">KEY CONCEPTS</span>
+          <h2 id="keyConceptsTitle">핵심 개념</h2>
+          <ul><li>ref와 reactive로 반응형 상태를 만든다.</li><li>computed는 상태에서 파생된 값을 계산하고, watch는 변경 후 작업을 처리한다.</li><li>watchEffect는 함수 내부에서 사용하는 반응형 값을 자동으로 추적한다.</li></ul>
+        </section>
+      
+      
+        <section class="ide-summary-card ide-summary-card-split reveal" aria-labelledby="tradeoffsTitle">
+          <span class="ide-panel-label">TRADE-OFFS</span>
+          <h2 id="tradeoffsTitle">장단점 빠르게 보기</h2>
+          <div class="ide-summary-columns">
+            <div><h3>장점</h3><ul><li>기능 단위로 상태와 함수를 묶어 큰 컴포넌트도 정리하기 좋다.</li><li>재사용할 로직을 composable로 분리하기 쉽다.</li></ul></div>
+            <div><h3>살펴볼 점</h3><ul><li>반응성 연결과 실행 시점을 이해하지 않으면 코드 흐름이 복잡해질 수 있다.</li><li>Options API보다 자유로운 만큼 팀의 작성 규칙이 필요하다.</li></ul></div>
+          </div>
+        </section>
+      
+    </aside>
+  
+  <div class="ide-document-content prose" id="postContent">
+<h2 id="composition-api란">Composition API란?</h2>
 
-<h2 id="about-me">About me</h2>
+<p>자자, 이번에는 Vue의 <strong>Composition API</strong>를 정리해보자.</p>
 
-<p>안녕하세요. AI와 소프트웨어를 공부하고 있는 <strong>Min Hyeong Lee</strong>입니다. 새로운 개념을 만났을 때 단순히 외우기보다 직접 실험하고, 제 언어로 다시 정리하는 과정을 좋아합니다.</p>
-
-<h2 id="what-i-log">What I log</h2>
+<p>Vue 컴포넌트에는 보통 다음과 같은 로직이 들어간다.</p>
 
 <ul>
-  <li><strong>Artificial Intelligence</strong> — 딥러닝, 멀티모달, 모델 학습과 평가</li>
-  <li><strong>Computer Science</strong> — 알고리즘, 자료구조, 개발 기초</li>
-  <li><strong>Paper Review</strong> — 읽은 논문의 핵심 아이디어와 재현 포인트</li>
-  <li><strong>Build Notes</strong> — 프로젝트에서 만난 문제와 해결 과정</li>
+  <li>화면에서 사용하는 상태</li>
+  <li>상태를 변경하는 함수</li>
+  <li>상태에서 계산되는 값</li>
+  <li>서버 요청이나 이벤트 감시</li>
+  <li>컴포넌트 생명주기에 맞춰 실행할 작업</li>
 </ul>
 
-<h2 id="connect">Connect</h2>
+<p>Composition API는 이런 로직을 옵션별로 흩어놓기보다, 기능 단위로 가까이 모아서 작성하는 방식이다. 그래서 컴포넌트가 커질수록 어떤 상태와 함수가 한 기능을 이루는지 파악하기 쉬워진다.</p>
 
-<div class="about-link-grid">
-  <a href="https://github.com/minnong511" target="_blank" rel="noreferrer"><i class="ri-github-fill"></i><strong>GitHub</strong><span>코드와 프로젝트 보기</span></a>
-  <a href="https://www.linkedin.com/in/min-hyeong-lee-225294270/" target="_blank" rel="noreferrer"><i class="ri-linkedin-box-fill"></i><strong>LinkedIn</strong><span>프로필과 경력 보기</span></a>
-  <a href="https://www.instagram.com/minnong511/" target="_blank" rel="noreferrer"><i class="ri-instagram-line"></i><strong>Instagram</strong><span>일상의 장면 보기</span></a>
+<!--more-->
+
+<p>Vue 3에서는 <code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code>과 함께 Composition API를 많이 사용한다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">doubleCount</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span>현재 값: <span class="si">{{</span> <span class="nx">count</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>두 배 값: <span class="si">{{</span> <span class="nx">doubleCount</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increase"</span><span class="nt">&gt;</span>증가<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>이 코드에서는 <code class="language-plaintext highlighter-rouge">count</code> 상태, <code class="language-plaintext highlighter-rouge">doubleCount</code> 계산값, <code class="language-plaintext highlighter-rouge">increase</code> 함수가 한곳에 모여 있다. 화면과 연결되는 템플릿도 아래에서 바로 확인할 수 있다.</p>
+
+<h2 id="composition-api에서-자주-쓰는-함수">Composition API에서 자주 쓰는 함수</h2>
+
+<p>처음부터 모든 함수를 외울 필요는 없다. 우선 아래 함수들의 역할을 구분하면 된다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>분류</th>
+      <th>주요 함수</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>반응형 상태</td>
+      <td><code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">reactive</code></td>
+      <td>변경을 추적하는 상태를 만든다.</td>
+    </tr>
+    <tr>
+      <td>계산과 감시</td>
+      <td><code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>, <code class="language-plaintext highlighter-rouge">watchEffect</code></td>
+      <td>상태에서 값을 계산하거나 변경 후 작업을 실행한다.</td>
+    </tr>
+    <tr>
+      <td>생명주기</td>
+      <td><code class="language-plaintext highlighter-rouge">onMounted</code>, <code class="language-plaintext highlighter-rouge">onUpdated</code>, <code class="language-plaintext highlighter-rouge">onUnmounted</code></td>
+      <td>컴포넌트의 생성·수정·제거 시점에 코드를 실행한다.</td>
+    </tr>
+    <tr>
+      <td>컴포넌트 통신</td>
+      <td><code class="language-plaintext highlighter-rouge">defineProps</code>, <code class="language-plaintext highlighter-rouge">defineEmits</code></td>
+      <td>부모와 자식 컴포넌트 사이의 데이터를 연결한다.</td>
+    </tr>
+    <tr>
+      <td>반응성 변환</td>
+      <td><code class="language-plaintext highlighter-rouge">toRef</code>, <code class="language-plaintext highlighter-rouge">toRefs</code>, <code class="language-plaintext highlighter-rouge">unref</code></td>
+      <td>반응형 객체의 속성을 ref로 연결하거나 값을 꺼낸다.</td>
+    </tr>
+    <tr>
+      <td>의존성 주입</td>
+      <td><code class="language-plaintext highlighter-rouge">provide</code>, <code class="language-plaintext highlighter-rouge">inject</code></td>
+      <td>깊은 컴포넌트 트리에서 값을 공유한다.</td>
+    </tr>
+    <tr>
+      <td>DOM·렌더링</td>
+      <td><code class="language-plaintext highlighter-rouge">nextTick</code>, <code class="language-plaintext highlighter-rouge">h</code></td>
+      <td>DOM 반영 시점을 기다리거나 렌더링을 직접 제어한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이번 글에서는 그중에서도 <code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">reactive</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>, <code class="language-plaintext highlighter-rouge">watchEffect</code>를 중심으로 살펴보자.</p>
+
+<h2 id="ref로-반응형-상태-만들기"><code class="language-plaintext highlighter-rouge">ref()</code>로 반응형 상태 만들기</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ref()</code>는 원시 값과 객체·배열을 반응형 상태로 감싸는 함수다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">isActive</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span><span class="dl">'</span><span class="s1">사과</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">배</span><span class="dl">'</span><span class="p">])</span>
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">이순신</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">30</span>
+<span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">changeUserName</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">장보고</span><span class="dl">'</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span>카운트: <span class="si">{{</span> <span class="nx">count</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>이름: <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"name"</span> <span class="nt">/&gt;&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>활성 상태: <span class="si">{{</span> <span class="nx">isActive</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">활성</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">비활성</span><span class="dl">'</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>과일 목록: <span class="si">{{</span> <span class="nx">items</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>사용자: <span class="si">{{</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span> / <span class="si">{{</span> <span class="nx">user</span><span class="p">.</span><span class="nx">age</span> <span class="si">}}</span>세<span class="nt">&lt;/p&gt;</span>
+
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increase"</span><span class="nt">&gt;</span>카운트 증가<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"isActive = !isActive"</span><span class="nt">&gt;</span>상태 토글<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"items.push('귤')"</span><span class="nt">&gt;</span>과일 추가<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"changeUserName"</span><span class="nt">&gt;</span>이름 변경<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code> 안의 JavaScript에서는 <code class="language-plaintext highlighter-rouge">.value</code>를 사용하고, 템플릿에서는 Vue가 자동으로 언래핑해주므로 <code class="language-plaintext highlighter-rouge">.value</code>를 생략한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1">// JavaScript</span>
+<span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- template --&gt;</span>
+<span class="nt">&lt;p&gt;</span>{{ count }}<span class="nt">&lt;/p&gt;</span>
+</code></pre></div></div>
+
+<h3 id="ref를-사용할-때-기억할-점"><code class="language-plaintext highlighter-rouge">ref</code>를 사용할 때 기억할 점</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ref</code>를 사용하려면 <code class="language-plaintext highlighter-rouge">vue</code>에서 import해야 한다.</li>
+  <li>JavaScript에서 값을 읽거나 변경할 때는 <code class="language-plaintext highlighter-rouge">.value</code>를 사용한다.</li>
+  <li>템플릿에서는 <code class="language-plaintext highlighter-rouge">.value</code>를 생략한다.</li>
+  <li>객체나 배열을 <code class="language-plaintext highlighter-rouge">ref</code>로 만들면 내부 값에도 반응성이 연결된다.</li>
+</ul>
+
+<h2 id="reactive로-객체와-배열-다루기"><code class="language-plaintext highlighter-rouge">reactive()</code>로 객체와 배열 다루기</h2>
+
+<p><code class="language-plaintext highlighter-rouge">reactive()</code>는 객체나 배열 자체를 반응형 객체로 만든다. <code class="language-plaintext highlighter-rouge">ref</code>와 달리 <code class="language-plaintext highlighter-rouge">.value</code> 없이 속성에 접근한다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">reactive</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">이순신</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">30</span>
+<span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">items</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">([</span><span class="dl">'</span><span class="s1">사과</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">바나나</span><span class="dl">'</span><span class="p">])</span>
+
+<span class="kd">const</span> <span class="nx">celebrate</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">addItem</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`과일 </span><span class="p">${</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">removeItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">items</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="si">{{</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span> / <span class="si">{{</span> <span class="nx">user</span><span class="p">.</span><span class="nx">age</span> <span class="si">}}</span>세<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"celebrate"</span><span class="nt">&gt;</span>나이 한 살 추가<span class="nt">&lt;/button&gt;</span>
+
+  <span class="nt">&lt;ul&gt;</span>
+    <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"(item, index) in items"</span> <span class="na">:key=</span><span class="s">"item"</span><span class="nt">&gt;</span>
+      <span class="si">{{</span> <span class="nx">item</span> <span class="si">}}</span>
+      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"removeItem(index)"</span><span class="nt">&gt;</span>삭제<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addItem"</span><span class="nt">&gt;</span>과일 추가<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h3 id="reactive의-주의점"><code class="language-plaintext highlighter-rouge">reactive</code>의 주의점</h3>
+
+<p>반응형으로 만든 객체를 통째로 다른 객체로 교체하면 기존 반응성 연결이 끊긴다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">({</span> <span class="na">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">})</span>
+
+<span class="c1">// 잘못된 사용: 반응형 객체 자체를 교체함</span>
+<span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="mi">5</span> <span class="p">}</span>
+
+<span class="c1">// 올바른 사용: 기존 객체의 속성을 변경함</span>
+<span class="nx">state</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<p>객체를 통째로 교체해야 하거나 <code class="language-plaintext highlighter-rouge">.value</code>를 사용하는 방식이 더 명확하다 싶으면 <code class="language-plaintext highlighter-rouge">ref</code>를 선택하면 된다. 무조건 어느 한쪽이 정답이라기보다는 데이터의 형태와 팀의 작성 규칙에 맞춰 선택하는 것이 중요하다.</p>
+
+<h3 id="ref와-reactive-비교"><code class="language-plaintext highlighter-rouge">ref</code>와 <code class="language-plaintext highlighter-rouge">reactive</code> 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">ref</code></th>
+      <th><code class="language-plaintext highlighter-rouge">reactive</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>대상</td>
+      <td>원시 값, 객체, 배열</td>
+      <td>객체, 배열, Map, Set</td>
+    </tr>
+    <tr>
+      <td>JavaScript 접근</td>
+      <td><code class="language-plaintext highlighter-rouge">.value</code> 필요</td>
+      <td>속성에 바로 접근</td>
+    </tr>
+    <tr>
+      <td>객체 교체</td>
+      <td><code class="language-plaintext highlighter-rouge">.value = 새 객체</code>로 가능</td>
+      <td>연결이 끊길 수 있음</td>
+    </tr>
+    <tr>
+      <td>사용 예</td>
+      <td>단일 값, 교체 가능한 상태</td>
+      <td>여러 속성을 묶은 객체</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="반응성-연결을-유지하는-보조-함수">반응성 연결을 유지하는 보조 함수</h3>
+
+<p><code class="language-plaintext highlighter-rouge">reactive</code> 객체를 구조 분해하면 반응성 연결이 끊길 수 있다. 이때 <code class="language-plaintext highlighter-rouge">toRef</code>나 <code class="language-plaintext highlighter-rouge">toRefs</code>를 사용하면 원본 객체와 연결된 ref를 만들 수 있다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">reactive</span><span class="p">,</span> <span class="nx">toRefs</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">})</span>
+
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">toRefs</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span>
+
+<span class="nx">age</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="c1">// state.age도 함께 변경됨</span>
+</code></pre></div></div>
+
+<p>그 밖의 반응성 보조 함수는 필요할 때 찾아서 사용하면 된다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>함수</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">readonly</code></td>
+      <td>반응형 값을 읽기 전용으로 만든다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">shallowRef</code></td>
+      <td>최상위 ref 값의 변경만 추적한다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">shallowReactive</code></td>
+      <td>객체의 최상위 속성만 반응형으로 만든다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unref</code></td>
+      <td>ref라면 <code class="language-plaintext highlighter-rouge">.value</code>, 일반 값이면 원래 값을 반환한다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">toRaw</code></td>
+      <td>반응형 프록시의 원본 객체를 가져온다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">markRaw</code></td>
+      <td>특정 객체가 반응형으로 변환되지 않게 한다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">isRef</code>, <code class="language-plaintext highlighter-rouge">isReactive</code>, <code class="language-plaintext highlighter-rouge">isReadonly</code></td>
+      <td>반응형 여부를 확인한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="computed로-계산된-값-만들기"><code class="language-plaintext highlighter-rouge">computed()</code>로 계산된 값 만들기</h2>
+
+<p><code class="language-plaintext highlighter-rouge">computed()</code>는 기존 반응형 상태를 바탕으로 새로운 값을 계산한다. 계산에 사용한 의존성이 변경될 때 다시 계산하고, 같은 값이 필요할 때는 이전 결과를 재사용한다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">dummy</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">doubleCount</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="p">})</span>
+
+<span class="kd">const</span> <span class="nx">increaseCount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">increaseDummy</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">dummy</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+<span class="p">}</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span>count: <span class="si">{{</span> <span class="nx">count</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>dummy: <span class="si">{{</span> <span class="nx">dummy</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;p&gt;</span>두 배 값: <span class="si">{{</span> <span class="nx">doubleCount</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increaseCount"</span><span class="nt">&gt;</span>count 증가<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increaseDummy"</span><span class="nt">&gt;</span>dummy 증가<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">dummy</code>가 변경되어 컴포넌트가 다시 렌더링되어도 <code class="language-plaintext highlighter-rouge">doubleCount</code>의 계산에 <code class="language-plaintext highlighter-rouge">dummy</code>가 사용되지 않았다면 다시 계산할 필요가 없다. 이것이 일반 함수와 <code class="language-plaintext highlighter-rouge">computed</code>의 중요한 차이다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">products</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span>
+  <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">computed</code>는 계산된 값이므로 템플릿에서 함수처럼 호출하지 않는다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 올바른 사용 --&gt;</span>
+<span class="nt">&lt;p&gt;</span>총가격: {{ totalPrice }}원<span class="nt">&lt;/p&gt;</span>
+
+<span class="c">&lt;!-- 잘못된 사용 --&gt;</span>
+<span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"totalPrice(products)"</span><span class="nt">&gt;</span>총가격<span class="nt">&lt;/button&gt;</span>
+</code></pre></div></div>
+
+<h3 id="일반-함수와-computed-구분">일반 함수와 <code class="language-plaintext highlighter-rouge">computed</code> 구분</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 사용자 행동을 처리하는 일반 함수</span>
+<span class="kd">const</span> <span class="nx">save</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">저장되었습니다.</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 상태에서 값을 계산하는 computed</span>
+<span class="kd">const</span> <span class="nx">completedCount</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">todos</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">done</span><span class="p">).</span><span class="nx">length</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자가 행동한다 → 일반 함수
+상태에서 값이 나온다 → computed
+</code></pre></div></div>
+
+<h2 id="watch로-변경-후-작업-실행하기"><code class="language-plaintext highlighter-rouge">watch()</code>로 변경 후 작업 실행하기</h2>
+
+<p><code class="language-plaintext highlighter-rouge">watch()</code>는 특정 반응형 값의 변경을 감시하고, 값이 바뀐 뒤 후속 작업을 실행한다.</p>
+
+<ul>
+  <li>서버 요청</li>
+  <li>로컬 스토리지 저장</li>
+  <li>로그 기록</li>
+  <li>다른 상태 변경</li>
+  <li>외부 라이브러리와 동기화</li>
+</ul>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">currentCity</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">logMessage</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">아직 감시 시스템이 작동하지 않았습니다.</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">watch</span><span class="p">(</span><span class="nx">currentCity</span><span class="p">,</span> <span class="p">(</span><span class="nx">newValue</span><span class="p">,</span> <span class="nx">oldValue</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">logMessage</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">oldValue</span><span class="p">}</span><span class="s2">에서 </span><span class="p">${</span><span class="nx">newValue</span><span class="p">}</span><span class="s2">(으)로 변경됨.`</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">newValue</span><span class="p">}</span><span class="s2">의 날씨 API를 다시 조회합니다.`</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span>현재 도시: <span class="si">{{</span> <span class="nx">currentCity</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"currentCity = '서울'"</span><span class="nt">&gt;</span>서울<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"currentCity = '수원'"</span><span class="nt">&gt;</span>수원<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"currentCity = '부산'"</span><span class="nt">&gt;</span>부산<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="si">{{</span> <span class="nx">logMessage</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>콜백에는 새 값과 이전 값이 순서대로 전달된다.</p>
+
+<h3 id="여러-값-감시하기">여러 값 감시하기</h3>
+
+<p>첫 번째 인자에 감시할 ref를 배열로 전달하면 여러 값을 한 번에 감시할 수 있다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">city</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">dateType</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">오늘</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">apiStatus</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">대기 중...</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="nx">watch</span><span class="p">(</span>
+  <span class="p">[</span><span class="nx">city</span><span class="p">,</span> <span class="nx">dateType</span><span class="p">],</span>
+  <span class="p">([</span><span class="nx">newCity</span><span class="p">,</span> <span class="nx">newDate</span><span class="p">],</span> <span class="p">[</span><span class="nx">oldCity</span><span class="p">,</span> <span class="nx">oldDate</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">apiStatus</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">oldCity</span><span class="p">}</span><span class="s2">(</span><span class="p">${</span><span class="nx">oldDate</span><span class="p">}</span><span class="s2">) → </span><span class="p">${</span><span class="nx">newCity</span><span class="p">}</span><span class="s2">(</span><span class="p">${</span><span class="nx">newDate</span><span class="p">}</span><span class="s2">)`</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>감시 대상 배열의 순서와 콜백의 새 값·이전 값 배열 순서는 서로 대응한다.</p>
+
+<h3 id="객체와-배열-깊이-감시하기">객체와 배열 깊이 감시하기</h3>
+
+<p>객체나 배열 내부의 변경까지 감시하려면 <code class="language-plaintext highlighter-rouge">deep: true</code>를 사용할 수 있다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">watch</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">홍길동</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">})</span>
+
+<span class="nx">watch</span><span class="p">(</span>
+  <span class="nx">user</span><span class="p">,</span>
+  <span class="p">(</span><span class="nx">newUser</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`현재 이름: </span><span class="p">${</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+  <span class="p">},</span>
+  <span class="p">{</span> <span class="na">deep</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>다만 깊은 감시는 객체 전체를 재귀적으로 확인하므로 꼭 필요한 경우에 사용하는 것이 좋다. 내부 속성의 변경을 감시하면서 이전 값도 정확하게 비교하고 싶다면 특정 속성만 감시한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">watch</span><span class="p">(</span>
+  <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">age</span><span class="p">,</span>
+  <span class="p">(</span><span class="nx">newAge</span><span class="p">,</span> <span class="nx">oldAge</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="nx">oldAge</span><span class="p">}</span><span class="s2">세에서 </span><span class="p">${</span><span class="nx">newAge</span><span class="p">}</span><span class="s2">세로 변경됨.`</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">reactive</code> 객체 자체를 감시하면 내부 변경을 감지할 수 있지만, 중첩 속성 변경에서는 새 값과 이전 값이 같은 객체를 가리킬 수 있다. 이전 값 비교가 필요하면 위처럼 감시할 속성을 함수로 지정하는 편이 명확하다.</p>
+
+<h2 id="watcheffect로-자동-감시하기"><code class="language-plaintext highlighter-rouge">watchEffect()</code>로 자동 감시하기</h2>
+
+<p><code class="language-plaintext highlighter-rouge">watchEffect()</code>는 감시할 대상을 따로 적지 않는다. 함수 내부에서 사용하는 반응형 값을 자동으로 추적하고, 값이 변경될 때 다시 실행한다.</p>
+
+<ul>
+  <li>컴포넌트가 처음 생성될 때 즉시 한 번 실행된다.</li>
+  <li>함수 내부에서 읽은 반응형 값만 추적한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">oldValue</code>를 제공하지 않는다.</li>
+  <li>이전 값과 비교해야 하면 <code class="language-plaintext highlighter-rouge">watch</code>를 사용한다.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span><span class="p">,</span> <span class="nx">watchEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">city</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
+
+<span class="nx">watchEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">message</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">city</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span><span class="s2">의 날씨를 조회합니다.`</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="watch-watcheffect-비교"><code class="language-plaintext highlighter-rouge">watch</code>, <code class="language-plaintext highlighter-rouge">watchEffect</code> 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">watch</code></th>
+      <th><code class="language-plaintext highlighter-rouge">watchEffect</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>감시 대상</td>
+      <td>직접 지정</td>
+      <td>함수 안에서 자동 추적</td>
+    </tr>
+    <tr>
+      <td>최초 실행</td>
+      <td>기본적으로 변경 후 실행</td>
+      <td>생성 직후 즉시 실행</td>
+    </tr>
+    <tr>
+      <td>이전 값</td>
+      <td>제공</td>
+      <td>제공하지 않음</td>
+    </tr>
+    <tr>
+      <td>적합한 상황</td>
+      <td>특정 값의 변경 전후 비교</td>
+      <td>여러 의존성을 간단히 동기화</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>DOM 업데이트가 끝난 뒤 실행해야 하면 <code class="language-plaintext highlighter-rouge">watchPostEffect</code>, 값이 바뀌는 즉시 동기적으로 실행해야 하면 <code class="language-plaintext highlighter-rouge">watchSyncEffect</code>를 검토할 수 있다. 다만 실행 타이밍을 세밀하게 제어해야 하는 경우에만 사용하자.</p>
+
+<h2 id="생명주기-훅-맛보기">생명주기 훅 맛보기</h2>
+
+<p>Composition API에서는 컴포넌트의 생명주기 훅도 함수로 사용한다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">onMounted</span><span class="p">,</span> <span class="nx">onUnmounted</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">handleResize</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">onUnmounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">onMounted</code>: 컴포넌트가 DOM에 마운트된 뒤 실행한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">onUpdated</code>: 반응형 상태 변경으로 업데이트된 뒤 실행한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">onUnmounted</code>: 컴포넌트가 제거된 뒤 실행한다. 이벤트 리스너나 타이머 정리에 사용한다.</li>
+</ul>
+
+<p>특히 <code class="language-plaintext highlighter-rouge">onMounted</code>에서 등록한 이벤트나 타이머는 <code class="language-plaintext highlighter-rouge">onUnmounted</code>에서 정리하는 습관을 들이는 것이 좋다.</p>
+
+<h2 id="composition-api를-composable로-확장하기">Composition API를 composable로 확장하기</h2>
+
+<p>Composition API의 장점은 반복되는 로직을 함수로 분리해 여러 컴포넌트에서 재사용할 수 있다는 점이다. 이런 재사용 함수를 보통 <strong>composable</strong>이라고 부른다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// useCounter.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">useCounter</span><span class="p">(</span><span class="nx">initialValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">doubleCount</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">count</span><span class="p">.</span><span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+  <span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+  <span class="p">}</span>
+
+  <span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">count</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">initialValue</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">count</span><span class="p">,</span>
+    <span class="nx">doubleCount</span><span class="p">,</span>
+    <span class="nx">increase</span><span class="p">,</span>
+    <span class="nx">reset</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">useCounter</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./useCounter</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">doubleCount</span><span class="p">,</span> <span class="nx">increase</span><span class="p">,</span> <span class="nx">reset</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;p&gt;</span><span class="si">{{</span> <span class="nx">count</span> <span class="si">}}</span> / <span class="si">{{</span> <span class="nx">doubleCount</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increase"</span><span class="nt">&gt;</span>증가<span class="nt">&lt;/button&gt;</span>
+  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"reset"</span><span class="nt">&gt;</span>초기화<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p>상태와 함수가 특정 기능을 중심으로 묶여 있으니, 컴포넌트가 커져도 로직을 분리해서 관리할 수 있다. 나중에 <code class="language-plaintext highlighter-rouge">useFetch</code>, <code class="language-plaintext highlighter-rouge">useTodo</code>, <code class="language-plaintext highlighter-rouge">useAuth</code> 같은 형태로 확장하는 흐름이다.</p>
+
+<h2 id="최종-정리">최종 정리</h2>
+
+<p>Composition API는 단순히 함수 몇 개를 새로 사용하는 문법이 아니다. 컴포넌트의 로직을 기능 단위로 구성하고, 필요한 반응형 흐름을 조합하는 방식이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ref / reactive
+      ↓
+반응형 상태 생성
+      ↓
+computed로 파생 값 계산
+      ↓
+watch 또는 watchEffect로 변경 감지
+      ↓
+함수와 템플릿으로 화면 연결
+      ↓
+composable로 재사용
+</code></pre></div></div>
+
+<p>기억할 것만 다시 적어보자.</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">ref</code>는 원시 값과 객체·배열을 반응형으로 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">reactive</code>는 객체나 배열 자체를 반응형으로 만든다.</li>
+  <li>JavaScript에서 <code class="language-plaintext highlighter-rouge">ref</code>는 <code class="language-plaintext highlighter-rouge">.value</code>, 템플릿에서는 <code class="language-plaintext highlighter-rouge">.value</code>를 생략한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">computed</code>는 상태에서 파생된 값을 계산한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">watch</code>는 특정 값의 변경 후 작업을 실행한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">watchEffect</code>는 함수 내부에서 사용하는 반응형 값을 자동으로 추적한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">onUnmounted</code>에서 이벤트와 타이머를 정리한다.</li>
+  <li>반복되는 로직은 composable로 분리한다.</li>
+</ol>
+
+<p>처음에는 <code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>만으로도 충분하다. 나머지는 실제로 필요한 상황이 왔을 때 하나씩 살펴보면 된다. 현업에 가서 빨리 써보고 싶다. 일단은 여기까지!</p>
+
 </div>
-</article>
+  
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#frontend">#Frontend</a><a href="/tags/#vue-js">#Vue.js</a><a href="/tags/#composition-api">#Composition API</a><a href="/tags/#ref">#ref</a><a href="/tags/#reactive">#reactive</a><a href="/tags/#computed">#computed</a><a href="/tags/#watch">#watch</a></footer>
+  
+  <nav class="ide-document-navigation" aria-label="게시물 이동">
+    <a href="/db/postgresql/2026/07/31/psql2/"><span>PREVIOUS</span><strong>Psql JSONB, 행 잠금, 멱등성</strong></a>
+    
+  </nav>
+  
+<section
+  class="ide-comments"
+  id="commentsSection"
+  aria-labelledby="commentsTitle"
+  data-giscus-repo="minnong511/minnong511.github.io"
+  data-giscus-repo-id="R_kgDONte4cw"
+  data-giscus-category="General"
+  data-giscus-category-id="DIC_kwDONte4c84C3PLr"
+  data-giscus-mapping="pathname"
+  data-giscus-strict="0"
+  data-giscus-reactions="1"
+  data-giscus-emit="0"
+  data-giscus-input="top"
+  data-giscus-theme="transparent_dark"
+  data-giscus-lang="ko"
+  data-giscus-loading="lazy"
+>
+  <header class="ide-comments-heading">
+    <span class="ide-panel-label">DISCUSSION</span>
+    <h2 id="commentsTitle">COMMENTS</h2>
+    <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
+    <div class="ide-comments-actions">
+      <a class="ide-comments-action" href="https://github.com/login?return_to=https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+    </div>
+  </header>
+  <div class="giscus" aria-label="댓글"></div>
 </section>
+
+
+</article>
 </div>
         </main>
         <aside class="ide-context" id="contextPanel" aria-label="문서 컨텍스트">
@@ -1044,21 +1741,19 @@ vue가 화면을 갱신
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>—</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.02</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>workspace</dd></div>
+      <div><dt>CATEGORY</dt><dd>Frontend / Vue</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="https://minnong511.github.io/about/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    
+    <button class="ide-context-link" type="button" data-copy-link="https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/frontend/vue/2026/08/02/vue-composition-api/" data-bookmark-title="Vue Composition API 정리"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
     <div class="ide-related-list">
       
       
-        
-          <a href="/frontend/vue/2026/08/02/vue-composition-api/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue Composition API 정리</span></a>
         
       
         
@@ -1089,7 +1784,7 @@ vue가 화면을 갱신
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> workspace</span><span>7 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Frontend / Vue</span><span>7 posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>

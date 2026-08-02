@@ -8,6 +8,7 @@
     root.dataset.theme = next;
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = next === "light" ? "#f2f4f6" : "#090a0c";
+    if (toggle) toggle.setAttribute("aria-pressed", String(next === "dark"));
     if (persist) { try { localStorage.setItem("minnong-theme", next); } catch (error) {} }
   }
   if (toggle) toggle.addEventListener("click", function () { setTheme(root.dataset.theme === "dark" ? "light" : "dark", true); });

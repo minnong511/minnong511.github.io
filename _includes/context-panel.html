@@ -1,12 +1,12 @@
 <aside class="ide-context" id="contextPanel" aria-label="문서 컨텍스트">
   <div class="ide-context-tabs" role="tablist" aria-label="문서 패널">
-    <button class="is-active" type="button" role="tab" aria-selected="true" data-context-tab="outline">OUTLINE</button>
-    <button type="button" role="tab" aria-selected="false" data-context-tab="info">INFO</button>
-    <button type="button" role="tab" aria-selected="false" data-context-tab="related">RELATED</button>
+    <button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="contextOutline" data-context-tab="outline">OUTLINE</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="contextInfo" data-context-tab="info">INFO</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="contextRelated" data-context-tab="related">RELATED</button>
     <button class="ide-context-collapse" type="button" data-toggle-context-panel aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
   </div>
-  <section class="ide-context-view is-active" data-context-view="outline"><span class="ide-panel-label">DOCUMENT STRUCTURE</span>{% include post-outline.html %}</section>
-  <section class="ide-context-view" data-context-view="info" hidden>
+  <section class="ide-context-view is-active" id="contextOutline" role="tabpanel" data-context-view="outline"><span class="ide-panel-label">DOCUMENT STRUCTURE</span>{% include post-outline.html %}</section>
+  <section class="ide-context-view" id="contextInfo" role="tabpanel" data-context-view="info" hidden>
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
@@ -18,7 +18,7 @@
     {% if page.url %}<button class="ide-context-link" type="button" data-copy-link="{{ page.url | absolute_url }}"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>{% endif %}
     {% if page.layout == 'post' %}<button class="ide-context-link" type="button" data-bookmark-page="{{ page.url | relative_url }}" data-bookmark-title="{{ page.title | escape }}"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>{% endif %}
   </section>
-  <section class="ide-context-view" data-context-view="related" hidden>
+  <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
     <div class="ide-related-list">
       {% assign related_visible = false %}

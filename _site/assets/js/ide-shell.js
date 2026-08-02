@@ -4,6 +4,8 @@
   if (!app) return;
   var contextPanel = document.getElementById("contextPanel");
   var contextToggle = document.getElementById("ideContextToggle");
+  var mobileContextToggle = document.querySelector("[data-toggle-context]");
+  var contextBackdrop = document.getElementById("contextBackdrop");
   var mobileMenu = document.getElementById("ideMobileMenu");
   var explorerBackdrop = document.getElementById("explorerBackdrop");
   var mobileViewport = window.matchMedia("(max-width: 767px)");
@@ -14,6 +16,7 @@
     contextVisible = Boolean(visible);
     app.classList.toggle("context-collapsed", !contextVisible);
     if (contextPanel && !contextVisible) contextPanel.classList.remove("mobile-open");
+    if (contextBackdrop && !contextVisible) contextBackdrop.hidden = true;
     if (contextToggle) {
       contextToggle.setAttribute("aria-expanded", String(contextVisible));
       contextToggle.setAttribute("aria-label", contextVisible ? "목차 패널 숨기기" : "목차 패널 보이기");
@@ -26,6 +29,18 @@
     try { localStorage.setItem("ide-context-visible", String(contextVisible)); } catch (error) {}
   }
   setContextVisible(contextVisible);
+
+  function setMobileContext(open, restoreFocus) {
+    var isOpen = Boolean(open) && mobileViewport.matches;
+    if (isOpen && !contextVisible) setContextVisible(true);
+    if (contextPanel) contextPanel.classList.toggle("mobile-open", isOpen);
+    if (contextBackdrop) contextBackdrop.hidden = !isOpen;
+    if (mobileContextToggle) {
+      mobileContextToggle.setAttribute("aria-expanded", String(isOpen));
+      mobileContextToggle.setAttribute("aria-label", isOpen ? "목차 닫기" : "목차 열기");
+    }
+    if (!isOpen && restoreFocus && mobileViewport.matches && mobileContextToggle) mobileContextToggle.focus();
+  }
 
   function syncExplorerState(open, restoreFocus) {
     var isMobile = mobileViewport.matches;
@@ -43,11 +58,13 @@
   function syncViewportState() {
     if (mobileViewport.matches) {
       syncExplorerState(false, false);
+      setMobileContext(false, false);
       return;
     }
     app.classList.remove("sidebar-collapsed", "explorer-open");
     if (mobileMenu) mobileMenu.setAttribute("aria-expanded", "false");
     if (explorerBackdrop) explorerBackdrop.hidden = true;
+    setMobileContext(false, false);
     document.body.classList.remove("ide-explorer-lock");
   }
 
@@ -56,6 +73,7 @@
     syncExplorerState(open, false);
   });
   if (explorerBackdrop) explorerBackdrop.addEventListener("click", function () { syncExplorerState(false, true); });
+  if (contextBackdrop) contextBackdrop.addEventListener("click", function () { setMobileContext(false, true); });
   document.addEventListener("click", function (event) {
     if (mobileViewport.matches && app.classList.contains("explorer-open") && event.target.closest(".ide-tree-post, .ide-sidebar-result")) {
       syncExplorerState(false, true);
@@ -66,6 +84,11 @@
     syncExplorerState(open, !open);
   });
   document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && mobileViewport.matches && contextPanel && contextPanel.classList.contains("mobile-open")) {
+      event.preventDefault();
+      setMobileContext(false, true);
+      return;
+    }
     if (event.key === "Escape" && mobileViewport.matches && app.classList.contains("explorer-open")) {
       event.preventDefault();
       syncExplorerState(false, true);
@@ -105,7 +128,7 @@
     }
   }
   if (contextToggle) contextToggle.addEventListener("click", function () { setContextVisible(!contextVisible); });
-  document.addEventListener("ide:document-change", function () { setContextVisible(contextVisible); });
+  document.addEventListener("ide:document-change", function () { setContextVisible(contextVisible); setMobileContext(false, false); });
 
   document.addEventListener("click", function (event) {
     var contextTab = event.target.closest("[data-context-tab]");
@@ -118,7 +141,14 @@
     var contextCollapse = event.target.closest("[data-toggle-context-panel]");
     if (contextCollapse) { setContextVisible(!contextVisible); return; }
     var mobileContext = event.target.closest("[data-toggle-context]");
-    if (mobileContext && contextPanel) { contextPanel.classList.toggle("mobile-open"); return; }
+    if (mobileContext && contextPanel) {
+      setMobileContext(!contextPanel.classList.contains("mobile-open"), false);
+      return;
+    }
+    if (mobileViewport.matches && contextPanel && contextPanel.classList.contains("mobile-open")) {
+      if (event.target.closest("#postOutline a")) setMobileContext(false, false);
+      else if (!event.target.closest("#contextPanel")) setMobileContext(false, true);
+    }
     var themeControl = event.target.closest("[data-toggle-theme]");
     if (themeControl) return;
     var copyButton = event.target.closest("[data-copy-link]");
