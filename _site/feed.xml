@@ -1,4 +1,1732 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://minnong511.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://minnong511.github.io/" rel="alternate" type="text/html" /><updated>2026-08-02T11:06:12+09:00</updated><id>https://minnong511.github.io/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Vue Composition API 정리</title><link href="https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/" rel="alternate" type="text/html" title="Vue Composition API 정리" /><published>2026-08-02T09:00:00+09:00</published><updated>2026-08-02T09:00:00+09:00</updated><id>https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api</id><content type="html" xml:base="https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/"><![CDATA[<h2 id="composition-api란">Composition API란?</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-05T17:49:13+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Vue DOM</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-dom/" rel="alternate" type="text/html" title="Vue DOM" /><published>2026-08-03T09:00:00+09:00</published><updated>2026-08-03T09:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-dom</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-dom/"><![CDATA[<h1 id="domdocument-object-model이란">DOM(Document Object Model)이란?</h1>
+
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p><strong>HTML 문서를 JavaScript가 조작할 수 있도록 브라우저가 메모리에 만든 객체 구조(Tree 구조)</strong></p>
+</blockquote>
+
+<p>입니다.</p>
+
+<p>쉽게 말하면:</p>
+
+<p><strong>HTML 파일 → 브라우저가 읽음 → DOM이라는 객체 형태로 변환 → JavaScript가 조작</strong></p>
+
+<p>하는 과정입니다.</p>
+
+<hr />
+
+<p>예를 들어 HTML이 있습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Hello<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Vue 공부<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>브라우저는 이것을:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Document
+│
+└── html
+    │
+    └── body
+        │
+        ├── h1
+        │    └── "Hello"
+        │
+        └── p
+             └── "Vue 공부"
+</code></pre></div></div>
+
+<p>이런 <strong>트리 구조 객체</strong>로 만듭니다.</p>
+
+<p>이게 DOM입니다.</p>
+
+<hr />
+
+<h1 id="왜-dom이-필요한가">왜 DOM이 필요한가?</h1>
+
+<p>HTML은 원래 정적인 문서입니다.</p>
+
+<p>예:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Hello<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>브라우저가 화면에 보여주는 것까지는 가능합니다.</p>
+
+<p>하지만:</p>
+
+<p>“버튼 클릭하면 글자가 바뀌게 해줘”</p>
+
+<p>같은 동적인 동작은 HTML만으로 어렵습니다.</p>
+
+<p>그래서 JavaScript가 DOM을 조작합니다.</p>
+
+<hr />
+
+<h1 id="javascript로-dom-조작-예시">JavaScript로 DOM 조작 예시</h1>
+
+<p>HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1</span> <span class="na">id=</span><span class="s">"title"</span><span class="nt">&gt;</span>
+Hello
+<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>JavaScript:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">title</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#title</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">title</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello Vue</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>결과:</p>
+
+<p>화면:</p>
+
+<p>변경 전:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello
+</code></pre></div></div>
+
+<p>변경 후:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hello Vue
+</code></pre></div></div>
+
+<hr />
+
+<p>흐름:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTML
+ ↓
+브라우저
+ ↓
+DOM 생성
+ ↓
+JavaScript가 DOM 수정
+ ↓
+화면 변경
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="dom은-그냥-html인가">DOM은 그냥 HTML인가?</h1>
+
+<p>아닙니다.</p>
+
+<p>중요한 차이:</p>
+
+<p>HTML:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Hello<span class="nt">&lt;/h1&gt;</span>
+</code></pre></div></div>
+
+<p>문자열(텍스트 문서)</p>
+
+<hr />
+
+<p>DOM:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+ <span class="nl">tag</span><span class="p">:</span><span class="dl">"</span><span class="s2">h1</span><span class="dl">"</span><span class="p">,</span>
+ <span class="nx">children</span><span class="p">:[</span>
+   <span class="dl">"</span><span class="s2">Hello</span><span class="dl">"</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>객체 구조</p>
+
+<hr />
+
+<p>즉:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>HTML</th>
+      <th>DOM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>형태</td>
+      <td>문서</td>
+      <td>객체</td>
+    </tr>
+    <tr>
+      <td>목적</td>
+      <td>내용 표현</td>
+      <td>프로그램 조작</td>
+    </tr>
+    <tr>
+      <td>관리 주체</td>
+      <td>파일</td>
+      <td>브라우저 메모리</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="그런데-dom-조작이-왜-문제가-됨">그런데 DOM 조작이 왜 문제가 됨?</h1>
+
+<p>여기서 Vue가 등장합니다.</p>
+
+<p>예:</p>
+
+<p>게시판에 글 10,000개가 있다고 생각해봅시다.</p>
+
+<p>사용자가 좋아요 버튼 클릭:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>좋아요 10
+↓
+좋아요 11
+</code></pre></div></div>
+
+<p>변경해야 합니다.</p>
+
+<p>순수 JavaScript:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">element</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="mi">11</span>
+</code></pre></div></div>
+
+<p>직접 DOM 수정</p>
+
+<hr />
+
+<p>문제:</p>
+
+<p>개발자가 직접:</p>
+
+<ul>
+  <li>어떤 DOM을 바꿀지</li>
+  <li>언제 바꿀지</li>
+  <li>어떤 순서로 바꿀지</li>
+</ul>
+
+<p>관리해야 합니다.</p>
+
+<p>프로젝트가 커지면:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터
+ ↓
+DOM
+ ↓
+다른 DOM
+ ↓
+이벤트
+ ↓
+다른 데이터
+</code></pre></div></div>
+
+<p>관리가 복잡해집니다.</p>
+
+<hr />
+
+<h1 id="vue의-방식">Vue의 방식</h1>
+
+<p>Vue는:</p>
+
+<p>“DOM을 직접 만지지 말고 데이터만 변경해”</p>
+
+<p>라는 철학입니다.</p>
+
+<p>예:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
+</code></pre></div></div>
+
+<p>개발자는:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터 변경
+</code></pre></div></div>
+
+<p>만 합니다.</p>
+
+<p>Vue가:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터 변경
+ ↓
+반응성 시스템 감지
+ ↓
+Virtual DOM 생성
+ ↓
+기존 DOM과 비교
+ ↓
+필요한 부분만 수정
+</code></pre></div></div>
+
+<p>합니다.</p>
+
+<hr />
+
+<h1 id="real-dom-vs-virtual-dom">Real DOM vs Virtual DOM</h1>
+
+<h2 id="real-dom">Real DOM</h2>
+
+<p>실제 브라우저 화면을 구성하는 DOM</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Browser Memory
+
+&lt;html&gt;
+ └── body
+      └── div
+           └── button
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="virtual-dom">Virtual DOM</h2>
+
+<p>Vue가 메모리에 따로 가지고 있는 가상 DOM</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JavaScript Memory
+
+{
+ type:"button",
+ text:"Click"
+}
+</code></pre></div></div>
+
+<hr />
+
+<p>변경 발생:</p>
+
+<p>기존:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Virtual DOM A
+
+&lt;button&gt;
+Count:0
+&lt;/button&gt;
+</code></pre></div></div>
+
+<p>변경:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Virtual DOM B
+
+&lt;button&gt;
+Count:1
+&lt;/button&gt;
+</code></pre></div></div>
+
+<p>Vue가 비교:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A와 B 비교
+
+Count 부분만 변경 필요
+</code></pre></div></div>
+
+<p>실제 DOM:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Count:1
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="vue-관점에서-dom-이해-흐름">Vue 관점에서 DOM 이해 흐름</h1>
+
+<p>가장 중요한 흐름:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자 행동
+      ↓
+데이터 변경
+      ↓
+ref/reactive
+      ↓
+Vue 반응성 시스템
+      ↓
+Virtual DOM 비교
+      ↓
+Real DOM 업데이트
+      ↓
+화면 변경
+</code></pre></div></div>
+
+<hr />
+
+<p>지금까지 배운 개념을 연결하면:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ref/reactive
+      ↓
+상태(state)
+      ↓
+변경 감지
+      ↓
+Virtual DOM
+      ↓
+DOM 업데이트
+      ↓
+화면
+</code></pre></div></div>
+
+<p>입니다.</p>
+
+<p>다음으로 <strong>“브라우저 렌더링 과정(Critical Rendering Path) → DOM 생성 → Vue 렌더링 과정”</strong>을 공부해야함</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Composition API" /><category term="ref" /><category term="reactive" /><category term="computed" /><category term="watch" /><summary type="html"><![CDATA[DOM(Document Object Model)이란?]]></summary></entry><entry><title type="html">Axios 정리</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-axios/" rel="alternate" type="text/html" title="Axios 정리" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-axios</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-axios/"><![CDATA[<h1 id="axios-정리">Axios 정리</h1>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Axios" /><summary type="html"><![CDATA[Axios 정리]]></summary></entry><entry><title type="html">Vue 컴포넌트의 구조와 생명주기</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-component/" rel="alternate" type="text/html" title="Vue 컴포넌트의 구조와 생명주기" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-component</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-component/"><![CDATA[<h1 id="vue-컴포넌트의-구조와-생명주기">Vue 컴포넌트의 구조와 생명주기</h1>
+
+<h2 id="1-component란">1. Component란?</h2>
+
+<p>소프트웨어 공학에서 컴포넌트(Component)는 독립적인 기능을 수행하고, 필요할 때 다른 부품으로 교체하거나 다른 프로그램과 연결할 수 있는 표준화된 소프트웨어 모듈을 말한다.</p>
+
+<p>컴포넌트의 핵심 특징은 다음과 같다.</p>
+
+<ul>
+  <li><strong>독립성(Independence)</strong>: 기능과 책임이 하나의 단위로 분리된다.</li>
+  <li><strong>교체 가능성(Replaceability)</strong>: 같은 역할을 수행하는 다른 컴포넌트로 교체할 수 있다.</li>
+  <li><strong>재사용성(Reusability)</strong>: 여러 화면이나 프로젝트에서 반복해서 사용할 수 있다.</li>
+</ul>
+
+<h2 id="2-vue-component란">2. Vue Component란?</h2>
+
+<p>Vue 컴포넌트는 웹 페이지를 구성하는 독립적이고 재사용 가능한 블록이다.</p>
+
+<p>Vue에서는 HTML, CSS, JavaScript를 하나의 <code class="language-plaintext highlighter-rouge">.vue</code> 파일에 모아 작성하는 방식을 SFC(Single-File Component)라고 한다.</p>
+
+<p>하나의 애플리케이션은 여러 컴포넌트를 조립해 완성하며, 컴포넌트들은 트리 구조로 연결된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>App
+├── Header
+├── Main
+│   ├── UserProfile
+│   └── ProductList
+└── Footer
+</code></pre></div></div>
+
+<h2 id="3-component-hierarchy">3. Component Hierarchy</h2>
+
+<p>컴포넌트 계층 구조에서 자주 사용하는 관계는 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>관계</th>
+      <th>의미</th>
+      <th>데이터 전달 방식</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Parent-Child</td>
+      <td>부모가 자식을 포함하는 관계</td>
+      <td>부모에서 자식으로 <code class="language-plaintext highlighter-rouge">props</code>, 자식에서 부모로 <code class="language-plaintext highlighter-rouge">emit</code></td>
+    </tr>
+    <tr>
+      <td>Sibling</td>
+      <td>같은 부모 아래에 나란히 있는 형제 관계</td>
+      <td>부모를 통해 상태를 공유하거나 공통 저장소 사용</td>
+    </tr>
+    <tr>
+      <td>Ancestor-Descendant</td>
+      <td>자식의 자식까지 이어지는 다층 계층 관계</td>
+      <td><code class="language-plaintext highlighter-rouge">provide</code>와 <code class="language-plaintext highlighter-rouge">inject</code>, 공통 저장소 등을 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>부모와 자식은 서로 독립된 컴포넌트다. 자식은 부모의 상태를 직접 수정하지 않고 <code class="language-plaintext highlighter-rouge">props</code>로 전달받으며, 부모에게 필요한 이벤트는 <code class="language-plaintext highlighter-rouge">emit</code>으로 알린다.</p>
+
+<h2 id="4-component-지역-등록">4. Component 지역 등록</h2>
+
+<p>지역 등록은 특정 부모 컴포넌트에서만 자식 컴포넌트를 사용하는 방식이다.</p>
+
+<ul>
+  <li>부모 컴포넌트에서 자식 컴포넌트를 import한다.</li>
+  <li>등록한 자식 컴포넌트는 <code class="language-plaintext highlighter-rouge">&lt;template&gt;</code> 영역에서 컴포넌트 태그처럼 사용할 수 있다.</li>
+  <li>컴포넌트 이름은 일반적으로 PascalCase를 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code>에서는 import한 컴포넌트가 자동으로 등록된다.</li>
+</ul>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">BaseButton</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BaseButton.vue</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h3&gt;</span>컴포넌트 조립 테스트<span class="nt">&lt;/h3&gt;</span>
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="nt">&lt;BaseButton</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="5-component-전역-등록">5. Component 전역 등록</h2>
+
+<p>전역 등록한 컴포넌트는 Vue 애플리케이션의 여러 컴포넌트에서 별도의 import 없이 사용할 수 있다.</p>
+
+<p>전역 등록은 보통 <code class="language-plaintext highlighter-rouge">main.js</code>에서 수행한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">BaseButton</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BaseButton.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">BaseInput</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BaseInput.vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">BaseButton</span><span class="dl">'</span><span class="p">,</span> <span class="nx">BaseButton</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">BaseInput</span><span class="dl">'</span><span class="p">,</span> <span class="nx">BaseInput</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">app.component()</code>의 첫 번째 인자는 템플릿에서 사용할 컴포넌트 이름이고, 두 번째 인자는 import한 컴포넌트 변수다.</p>
+
+<h2 id="6-vue-주요-내장-함수">6. Vue 주요 내장 함수</h2>
+
+<p>Vue는 애플리케이션 생성, 반응형 상태 관리, 계산과 감시, 컴포넌트 조립 등을 위한 함수를 제공한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>카테고리</th>
+      <th>주요 함수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>애플리케이션(Application)</td>
+      <td><code class="language-plaintext highlighter-rouge">createApp</code>, <code class="language-plaintext highlighter-rouge">createSSRApp</code>, <code class="language-plaintext highlighter-rouge">app.*</code>, <code class="language-plaintext highlighter-rouge">app.config.*</code></td>
+    </tr>
+    <tr>
+      <td>반응형 상태(Reactive State)</td>
+      <td><code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">reactive</code>, <code class="language-plaintext highlighter-rouge">readonly</code>, <code class="language-plaintext highlighter-rouge">shallowRef</code>, <code class="language-plaintext highlighter-rouge">shallowReactive</code>, <code class="language-plaintext highlighter-rouge">shallowReadonly</code>, <code class="language-plaintext highlighter-rouge">toRef</code>, <code class="language-plaintext highlighter-rouge">toRefs</code>, <code class="language-plaintext highlighter-rouge">customRef</code>, <code class="language-plaintext highlighter-rouge">unref</code>, <code class="language-plaintext highlighter-rouge">toRaw</code>, <code class="language-plaintext highlighter-rouge">markRaw</code>, <code class="language-plaintext highlighter-rouge">isRef</code>, <code class="language-plaintext highlighter-rouge">isReactive</code>, <code class="language-plaintext highlighter-rouge">isReadonly</code></td>
+    </tr>
+    <tr>
+      <td>계산 및 감시(Computed &amp; Watchers)</td>
+      <td><code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>, <code class="language-plaintext highlighter-rouge">watchEffect</code></td>
+    </tr>
+    <tr>
+      <td>라이프사이클 훅(Lifecycle Hooks)</td>
+      <td><code class="language-plaintext highlighter-rouge">onBeforeMount</code>, <code class="language-plaintext highlighter-rouge">onMounted</code>, <code class="language-plaintext highlighter-rouge">onBeforeUpdate</code>, <code class="language-plaintext highlighter-rouge">onUpdated</code>, <code class="language-plaintext highlighter-rouge">onBeforeUnmount</code>, <code class="language-plaintext highlighter-rouge">onUnmounted</code>, <code class="language-plaintext highlighter-rouge">onActivated</code>, <code class="language-plaintext highlighter-rouge">onDeactivated</code>, <code class="language-plaintext highlighter-rouge">onErrorCaptured</code>, <code class="language-plaintext highlighter-rouge">onRenderTracked</code>, <code class="language-plaintext highlighter-rouge">onRenderTriggered</code></td>
+    </tr>
+    <tr>
+      <td>컴포넌트 구성(Component Composition)</td>
+      <td><code class="language-plaintext highlighter-rouge">defineComponent</code>, <code class="language-plaintext highlighter-rouge">defineProps</code>, <code class="language-plaintext highlighter-rouge">defineEmits</code>, <code class="language-plaintext highlighter-rouge">useAttrs</code>, <code class="language-plaintext highlighter-rouge">defineExpose</code>, <code class="language-plaintext highlighter-rouge">useSlots</code>, <code class="language-plaintext highlighter-rouge">withDefaults</code>, <code class="language-plaintext highlighter-rouge">getCurrentInstance</code></td>
+    </tr>
+    <tr>
+      <td>렌더링 제어(Rendering &amp; DOM)</td>
+      <td><code class="language-plaintext highlighter-rouge">h</code>, <code class="language-plaintext highlighter-rouge">resolveComponent</code>, <code class="language-plaintext highlighter-rouge">withDirectives</code>, <code class="language-plaintext highlighter-rouge">renderList</code>, <code class="language-plaintext highlighter-rouge">renderSlot</code>, <code class="language-plaintext highlighter-rouge">mergeProps</code>, <code class="language-plaintext highlighter-rouge">nextTick</code>, <code class="language-plaintext highlighter-rouge">useCssModule</code>, <code class="language-plaintext highlighter-rouge">useCssVars</code></td>
+    </tr>
+    <tr>
+      <td>의존성 주입(Dependency Injection)</td>
+      <td><code class="language-plaintext highlighter-rouge">provide</code>, <code class="language-plaintext highlighter-rouge">inject</code>, <code class="language-plaintext highlighter-rouge">hasInjectionContext</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="7-component-lifecycle">7. Component Lifecycle</h2>
+
+<p>컴포넌트 생명주기는 컴포넌트가 생성되고, 화면에 연결되고, 갱신된 뒤 제거되는 흐름이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>단계</th>
+      <th>컴포넌트의 상태</th>
+      <th>주요 작업과 훅</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>생성 및 설정(Creation &amp; Setup)</td>
+      <td>컴포넌트 인스턴스가 만들어지고 JavaScript에서 사용할 준비를 하는 단계</td>
+      <td><code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">reactive</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code> 등을 초기화한다.</td>
+    </tr>
+    <tr>
+      <td>부착(Mounting)</td>
+      <td>가상으로 구성한 화면을 실제 DOM에 연결하는 단계</td>
+      <td>DOM에 접근하거나 초기 데이터를 요청한다. <code class="language-plaintext highlighter-rouge">onMounted</code>를 사용한다.</td>
+    </tr>
+    <tr>
+      <td>갱신(Updating)</td>
+      <td>반응형 데이터가 변경되어 화면을 다시 그리는 단계</td>
+      <td>업데이트된 DOM을 확인하거나 크기와 스크롤 위치를 다시 계산한다. <code class="language-plaintext highlighter-rouge">onUpdated</code>를 사용한다.</td>
+    </tr>
+    <tr>
+      <td>소멸(Unmounting)</td>
+      <td><code class="language-plaintext highlighter-rouge">v-if="false"</code> 등의 조건으로 컴포넌트가 화면에서 제거되는 단계</td>
+      <td>타이머와 이벤트 리스너를 정리해 메모리 누수를 방지한다. <code class="language-plaintext highlighter-rouge">onUnmounted</code>를 사용한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>라이프사이클 훅을 사용한 간단한 예시는 다음과 같다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">onMounted</span><span class="p">,</span> <span class="nx">onUnmounted</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">handleResize</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">onUnmounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">onMounted</code>에서 등록한 이벤트 리스너는 <code class="language-plaintext highlighter-rouge">onUnmounted</code>에서 제거해야 컴포넌트가 사라진 뒤에도 불필요한 동작이 남지 않는다.</p>
+
+<h1 id="props--emits">Props &amp; Emits</h1>
+
+<p>Component 연동</p>
+<ul>
+  <li>Vue 3의 모든 컴포넌트 연동은”데이터는 위에서 아래로 물려주고, 이벤트는 아래에서 위로 쏘아 올린다”는 구조를 따른다.</li>
+</ul>
+
+<p>분류 🔽 Props (하행선) 🔼 Emits (상행선)
+개념 정의 부모가 자식에게 주는 반응형 데이터 값 자식이 부모에게 보고하는 이벤트
+흐름 방향 부모 → 자식 (위에서 아래로) 자식 → 부모 (아래에서 위로)
+데이터 권한 읽기 전용. 자식은 수정 불가 부모에게 변경 요청 및 값 전달 가능
+Compiler Macro defineProps({ … }) defineEmits([ … ])
+Parent Binding 자식 태그 속성에 콜론(:)으로 주입 자식 태그 이벤트에 골뱅이(@)로 청취</p>
+
+<p>Compiler Macro란 Runtime 시점이 아닌 Build 시점에 Vue Compiler가 코드를 변환하는 특수 예약어로 defineProps(),
+defineEmits(), defineExpose() 같은 함수들은 <script setup="">에서만 사용이 가능</script></p>
+
+<p>defineProps() - 속성 정의</p>
+
+<p>자식 컴포넌트 내부에서”부모가 넘겨줄 데이터(속성)의 이름과 규격”을 선언하는 Vue 3 내장 컴파일러 매크로 함수</p>
+<ul>
+  <li>Compiler Macro이기 때문에 상단에 import할 필요 없이 <script setup=""> 안에서 즉시 호출할 수 있다</script></li>
+  <li>간단한 배열 표기법과, 강력한 객체 표기법이 있다</li>
+</ul>
+
+<p>[배열 형식]
+const props = defineProps([‘title’, ‘count’])</p>
+
+<p>[객체 형식– 기본값 지정]
+defineProps({
+// 1. 타입만 간단히 지정하는 경우
+title: String,
+// 2. 필수 값과 기본값까지 꼼꼼하게 지정하는 경우
+likes: {
+type: Number,
+required: true // 부모가 이 값을 안 넘기면 에러발생.
+},
+status: {
+type: String,
+default: ＇대기 중＇ // 부모가 값을 안 주면 이 값이 기본으로 세팅.
+}
+})</p>
+
+<p>▪ <template> 에서 사용하기
+• 정의된 변수를 그대로 사용하면 된다.</template></p>
+<template>
+<h1></h1>
+<p>좋아요: </p>
+</template>
+<p>▪ <script setup=""> 에서 사용하기
+• defineProps가 반환하는 객체를 변수(보통 props라는 이름)에 받아서.점 문법으로 접근해야 한다.
+<script setup="">
+// 변수에 결과를 할당합니다.
+const props = defineProps({
+title: String,
+likes: Number
+})
+// 내부 함수에서 쓸 때는 props.을 앞에 꼭 붙여야 합니다.
+const checkPopularity = () =&gt; {
+if (props.likes &gt; 100) {
+console.log(`${props.title}은 인기 게시글입니다.`)
+}
+}
+</script></script></p>
+
+<p>Readonly
+• defineProps로 Parent에서 전달된 값은 읽기 전용(ReadOnly)이다.
+• Child Component에서 이 값을 직접 바꾸려고 하면 에러가 발생된다.</p>
+
+<p>const props = defineProps([‘likes’])
+const brokenFunction = () =&gt; {
+// ❌ 절대 금지! 콘솔에 ReadOnly 에러 발생.
+props.likes = 999
+}</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Component" /><category term="SFC" /><category term="Lifecycle" /><summary type="html"><![CDATA[소프트웨어 컴포넌트의 개념부터 Vue 컴포넌트의 계층 구조, 지역·전역 등록, 내장 함수, 생명주기까지 정리한다.]]></summary></entry><entry><title type="html">JavaScript ES6 핵심 문법</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-es6/" rel="alternate" type="text/html" title="JavaScript ES6 핵심 문법" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-es6</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-es6/"><![CDATA[<h1 id="javascript-es6-핵심-문법">JavaScript ES6 핵심 문법</h1>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="JavaScript" /><category term="ES6" /><category term="Vue.js" /><summary type="html"><![CDATA[JavaScript ES6 핵심 문법]]></summary></entry><entry><title type="html">Vue 라이브러리 정리</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-library/" rel="alternate" type="text/html" title="Vue 라이브러리 정리" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-library</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-library/"><![CDATA[<h1 id="vue-라이브러리-정리">Vue 라이브러리 정리</h1>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Library" /><summary type="html"><![CDATA[Vue 라이브러리 정리]]></summary></entry><entry><title type="html">Vue Router Navigation Guard 정리</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-router-navigation-guard/" rel="alternate" type="text/html" title="Vue Router Navigation Guard 정리" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-router-navigation-guard</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-router-navigation-guard/"><![CDATA[<h1 id="vue-router-navigation-guard-정리">Vue Router Navigation Guard 정리</h1>
+
+<p>Vue Router의 Navigation Guard</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Vue Router" /><category term="Navigation Guard" /><summary type="html"><![CDATA[Vue Router Navigation Guard 정리]]></summary></entry><entry><title type="html">JavaScript &amp;amp; Vue 기본 단어 정의</title><link href="http://localhost:4000/frontend/vue/2026/08/03/vue-word/" rel="alternate" type="text/html" title="JavaScript &amp;amp; Vue 기본 단어 정의" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/vue-word</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/vue-word/"><![CDATA[<h1 id="javascript-데이터-타입과-vue-반응형-데이터-구조">JavaScript 데이터 타입과 Vue 반응형 데이터 구조</h1>
+
+<h2 id="1-데이터-타입의-큰-분류">1. 데이터 타입의 큰 분류</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터
+│
+├── 원시값(Primitive Type)
+│
+└── 참조값(Reference Type)
+</code></pre></div></div>
+
+<h2 id="2-원시값primitive-value">2. 원시값(Primitive Value)</h2>
+
+<h3 id="정의">정의</h3>
+
+<p>원시값은 하나의 값 자체를 저장하는 가장 기본적인 데이터 형태다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string
+number
+boolean
+null
+undefined
+symbol
+bigint
+</code></pre></div></div>
+
+<h3 id="예시">예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span>
+<span class="kd">const</span> <span class="nx">isLogin</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<h3 id="메모리-구조">메모리 구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age
+ |
+ ↓
+20
+</code></pre></div></div>
+
+<p>원시값은 값 자체를 저장한다.</p>
+
+<h3 id="값-복사">값 복사</h3>
+
+<p>원시값을 복사하면 메모리 주소가 아니라 값 자체가 복사된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span>
+
+<span class="nx">b</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="c1">// 10</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a
+↓
+10
+
+b
+↓
+10
+</code></pre></div></div>
+
+<p>처음에는 같은 값이지만, 값을 복사한 뒤에는 서로 독립적으로 동작한다.</p>
+
+<h2 id="3-객체object">3. 객체(Object)</h2>
+
+<h3 id="정의-1">정의</h3>
+
+<p>객체는 여러 개의 데이터를 하나로 묶어서 저장하는 자료 구조다.</p>
+
+<h3 id="예시-1">예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Seoul</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="구조">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user
+ |
+ ↓
+객체
+ |
+ ├── name: Kim
+ ├── age: 20
+ └── city: Seoul
+</code></pre></div></div>
+
+<p>객체는 속성(property)을 가진다.</p>
+
+<h3 id="속성-접근">속성 접근</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">user</span><span class="p">.</span><span class="nx">name</span>
+<span class="c1">// 'Kim'</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">user.name</code>은 <code class="language-plaintext highlighter-rouge">user</code> 객체 안에 있는 <code class="language-plaintext highlighter-rouge">name</code> 값을 가져온다.</p>
+
+<h2 id="4-배열array">4. 배열(Array)</h2>
+
+<h3 id="정의-2">정의</h3>
+
+<p>배열은 여러 개의 값을 순서대로 저장하는 객체다.</p>
+
+<p>배열도 객체의 한 종류이지만, 일반적으로 순서가 있는 여러 데이터를 저장할 때 사용한다.</p>
+
+<h3 id="예시-2">예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="구조-1">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fruits
+ |
+ ↓
+Array
+ |
+ ├── 0: apple
+ ├── 1: banana
+ └── 2: orange
+</code></pre></div></div>
+
+<p>배열은 index(순서)로 접근한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">// 'apple'</span>
+</code></pre></div></div>
+
+<h2 id="5-객체와-배열의-차이">5. 객체와 배열의 차이</h2>
+
+<p>둘 다 여러 데이터를 저장하지만 목적이 다르다.</p>
+
+<h3 id="객체">객체</h3>
+
+<p>객체는 하나의 대상을 표현할 때 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 객체는 사용자 1명의 정보를 표현한다.</p>
+
+<h3 id="배열">배열</h3>
+
+<p>배열은 여러 데이터의 목록을 표현할 때 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Lee</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>위 배열은 사용자 목록을 표현한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>객체</th>
+      <th>배열</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>하나의 대상 표현</td>
+      <td>여러 데이터 목록</td>
+    </tr>
+    <tr>
+      <td>접근</td>
+      <td>이름(key)</td>
+      <td>순서(index)</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td><code class="language-plaintext highlighter-rouge">user</code></td>
+      <td><code class="language-plaintext highlighter-rouge">users</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="6-객체-안에-객체를-넣을-수-있다">6. 객체 안에 객체를 넣을 수 있다</h2>
+
+<p>객체 안에 다른 객체를 넣는 구조는 실무에서 자주 사용된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">address</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">city</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Seoul</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">zip</span><span class="p">:</span> <span class="dl">'</span><span class="s1">12345</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="구조-2">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user
+├── name
+│
+└── address
+    |
+    ├── city
+    └── zip
+</code></pre></div></div>
+
+<h3 id="접근">접근</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">user</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">city</span>
+<span class="c1">// 'Seoul'</span>
+</code></pre></div></div>
+
+<h2 id="7-배열-안에-객체를-넣을-수-있다">7. 배열 안에 객체를 넣을 수 있다</h2>
+
+<p>Vue에서 자주 볼 수 있는 형태다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Vue 공부</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">JavaScript 공부</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="구조-3">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todos 배열
+
+0
+ |
+ └── 객체
+      ├── id
+      └── text
+
+1
+ |
+ └── 객체
+      ├── id
+      └── text
+</code></pre></div></div>
+
+<h3 id="접근-1">접근</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">todos</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">text</span>
+<span class="c1">// 'Vue 공부'</span>
+</code></pre></div></div>
+
+<h2 id="8-vue에서-객체와-배열이-중요한-이유">8. Vue에서 객체와 배열이 중요한 이유</h2>
+
+<p>Vue에서는 객체를 <code class="language-plaintext highlighter-rouge">ref</code>로 감싸서 반응형 상태로 만들 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="데이터-구조">데이터 구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ref
+ |
+ ↓
+객체
+ |
+ ├── name
+ └── age
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ref</code>로 만든 객체의 값에 접근할 때는 <code class="language-plaintext highlighter-rouge">.value</code>를 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">age</span>
+</code></pre></div></div>
+
+<h3 id="데이터-접근-흐름">데이터 접근 흐름</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user
+ ↓
+ref 객체
+ ↓
+value
+ ↓
+일반 객체
+ ↓
+age
+</code></pre></div></div>
+
+<h2 id="9-배열도-같은-원리로-접근한다">9. 배열도 같은 원리로 접근한다</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">공부</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<p>배열 안의 객체에 접근할 때는 <code class="language-plaintext highlighter-rouge">.value</code>와 index를 함께 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">todos</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">text</span>
+<span class="c1">// '공부'</span>
+</code></pre></div></div>
+
+<h3 id="데이터-접근-흐름-1">데이터 접근 흐름</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todos
+ ↓
+ref 객체
+ ↓
+value
+ ↓
+배열
+ ↓
+0번째 객체
+ ↓
+text
+</code></pre></div></div>
+
+<h2 id="10-결론">10. 결론</h2>
+
+<p>개발할 때는 데이터가 다음과 같은 구조로 감싸져 있다고 생각하면 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">weatherList</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">temp</span><span class="p">:</span> <span class="mi">30</span>
+  <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>weatherList
+ |
+ ↓
+ref
+ |
+ ↓
+value
+ |
+ ↓
+Array
+ |
+ ↓
+Object
+ |
+ ├── id
+ ├── name
+ └── temp
+</code></pre></div></div>
+
+<p>따라서 다음과 같은 방식으로 데이터를 추출할 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">weatherList</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">temp</span>
+<span class="c1">// 30</span>
+</code></pre></div></div>
+
+<h2 id="11-vue-공부에서-꼭-구분해야-하는-용어">11. Vue 공부에서 꼭 구분해야 하는 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>값(value)</td>
+      <td><code class="language-plaintext highlighter-rouge">20</code>, <code class="language-plaintext highlighter-rouge">'hello'</code>, <code class="language-plaintext highlighter-rouge">true</code> 같은 단일 데이터</td>
+    </tr>
+    <tr>
+      <td>변수(variable)</td>
+      <td>값을 저장하는 이름</td>
+    </tr>
+    <tr>
+      <td>객체(object)</td>
+      <td>key를 사용해 데이터를 저장하는 자료 구조</td>
+    </tr>
+    <tr>
+      <td>속성(property)</td>
+      <td>객체 내부에 저장된 데이터</td>
+    </tr>
+    <tr>
+      <td>배열(array)</td>
+      <td>데이터를 순서대로 저장하는 자료 구조</td>
+    </tr>
+    <tr>
+      <td>원소(element)</td>
+      <td>배열 안에 있는 하나의 데이터</td>
+    </tr>
+    <tr>
+      <td>참조(reference)</td>
+      <td>객체의 주소를 가리키는 것</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="1-vuejs-기본-용어">1. Vue.js 기본 용어</h1>
+
+<h2 id="1-component">1) component</h2>
+
+<p>화면을 구성하는 독립적인 UI 부품</p>
+
+<p>WeatherParent.vue
+├── SearchBar.vue
+├── WeatherCard.vue
+└── WeatherForecast.vue</p>
+
+<p>Vue 컴포넌트는 일반적으로 세 부분으로 구성한다.</p>
+
+<script setup="">
+// JavaScript 로직
+</script>
+
+<template>
+  <!-- 화면 구조 -->
+</template>
+
+<style scoped="">
+/* CSS 디자인 */
+</style>
+
+<h2 id="2-template">2) Template</h2>
+
+<p>브라우저에 표시한 HTML 구조를 작성하는 영역</p>
+
+<template>
+  <h1></h1>
+</template>
+
+<p>는 JavaScript 값을 화면에 출력하는 문자열 보간법</p>
+
+<h1 id="3-directive">3) Directive</h1>
+
+<p>HTML 태그에 Vue 기능을 추가하는 문법, 대부분 V- 시작함.</p>
+
+<p v-if="isVisible">보이는 문장</p>
+<p>&lt;button @click=”increase”&gt;증가&lt;/button&gt;
+<input v-model="name" /></p>
+
+<p>대표적인 Directive</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>문법</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-if</code></td>
+      <td>조건에 따라 요소 생성·제거</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-show</code></td>
+      <td>조건에 따라 CSS로 숨김</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-for</code></td>
+      <td>배열을 반복 출력</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-model</code></td>
+      <td>입력값과 상태를 양방향 연결</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-bind</code> 또는 <code class="language-plaintext highlighter-rouge">:</code></td>
+      <td>속성에 JavaScript 값 연결</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-on</code> 또는 <code class="language-plaintext highlighter-rouge">@</code></td>
+      <td>이벤트 연결</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="4-reactive-state">4) Reactive State</h1>
+
+<p>값이 변경되었을 때, Vue가 이를 감지하고 화면을 자동으로 다시 갱신하는 상태</p>
+
+<script setup="">
+import { ref } from 'vue'
+
+const count = ref(0)
+</script>
+
+<template>
+  <p>8</p>
+</template>
+
+<p>count가 변경되면 화면의 숫자도 자동으로 변경된다.</p>
+
+<h1 id="5-ref">5) ref</h1>
+
+<p>숫자, 문자열, 불리언, 객체, 배열 등을 반응형으로 만드는 함수.</p>
+
+<p>const count = ref(0)
+const name = ref(‘민형’)
+const user = ref({
+  age: 25,
+})</p>
+
+<p>JavaScript 영역에서는 .value가 필요하다.</p>
+
+<p>count.value++
+user.value.age++</p>
+
+<p>그러나 tempalte에서는 .value를 사용하지 않는다.</p>
+
+<p>8</p>
+<p></p>
+
+<h1 id="6-reactive">6) reactive</h1>
+
+<p>주로 객체를 반응형으로 만드는 함수</p>
+
+<p>import { reactive } from ‘vue’</p>
+
+<p>const user = reactive({
+  name: ‘민형’,
+  age: 25,
+})</p>
+
+<p>user.age++</p>
+
+<p>reactive에서는 .value를 사용하지 않습니다.</p>
+
+<p>ref와 reactive 비교</p>
+
+<p>const count = ref(0)
+count.value++</p>
+
+<p>const user = reactive({ age: 25 })
+user.age++</p>
+<h1 id="7-computed">7. Computed</h1>
+
+<p>기존 반응형 상태를 이용해 새로운 계산 결과를 만드는 값.</p>
+
+<p>const price = ref(10000)
+const quantity = ref(3)</p>
+
+<p>const totalPrice = computed(() =&gt; {
+  return price.value * quantity.value
+})</p>
+
+<p>총 가격: 원</p>
+
+<p>특징 :</p>
+<ul>
+  <li>의존하는 값이 바뀌면 자동으로 다시 계산</li>
+  <li>계산결과를 캐싱</li>
+  <li>기본적으로 읽기 전용</li>
+  <li>화면에 보여줄 파생 값을 만들 때 사용</li>
+</ul>
+
+<p>const filteredUsers = computed(() =&gt; {
+  return users.value.filter((user) =&gt;
+    user.name.includes(searchQuery.value)
+  )
+})</p>
+
+<h1 id="8-method--function">8) Method / Function</h1>
+
+<ul>
+  <li>버튼 클릭이나 특정 동작이 발생했을 떄 실행하는 함수</li>
+</ul>
+
+<p>const count = ref(0)</p>
+
+<p>const increase = () =&gt; {
+  count.value++
+}</p>
+
+<p>&lt;button @click=”increase”&gt;증가&lt;/button&gt;</p>
+
+<p>computed는 값을 계산하고, 함수는 행동을 실행한다고 생각하면 쉽다.</p>
+
+<h1 id="화면-제어-용어">화면 제어 용어</h1>
+
+<h2 id="9-v-if">9) v-if</h2>
+
+<p>조건이 참일 때만 HTML 요소를 생성합니다.</p>
+<p v-if="isLoggedIn">로그인되었습니다.</p>
+<p v-else="">로그인이 필요합니다.</p>
+
+<p>조건이 거짓이면 실제 DOM에서 요소가 제거됨</p>
+
+<h2 id="10-v-show">10) v-show</h2>
+
+<p>요소는 그대로 두고 CSS의 display: none으로 숨긴다.</p>
+
+<p v-show="isVisible">내용</p>
+
+<p>v-if와 v-show</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">v-if</code></th>
+      <th><code class="language-plaintext highlighter-rouge">v-show</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>거짓일 때</td>
+      <td>DOM에서 제거</td>
+      <td>CSS로 숨김</td>
+    </tr>
+    <tr>
+      <td>전환 비용</td>
+      <td>큼</td>
+      <td>작음</td>
+    </tr>
+    <tr>
+      <td>자주 열고 닫기</td>
+      <td>부적합</td>
+      <td>적합</td>
+    </tr>
+    <tr>
+      <td>처음부터 조건이 중요</td>
+      <td>적합</td>
+      <td>부적합</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>모달이나 드롭다운처럼 자구 열고 닫는 요소는 v-show가 유리</p>
+
+<h2 id="11-v-for">11) v-for</h2>
+
+<p>배열 데이터를 반복해서 화면에 표시</p>
+
+<p>const cities = ref([
+  { id: 1, name: ‘서울’ },
+  { id: 2, name: ‘부산’ },
+])</p>
+
+<p>&lt;div
+  v-for=”city in cities”
+  :key=”city.id”</p>
+<blockquote>
+
+</blockquote>
+
+<p>&lt;/div&gt;</p>
+
+<h2 id="12-key">12) Key</h2>
+
+<p>Vue가 반복된 각 요소를 구분하도록 제공하는 고유 식별자</p>
+
+<p>&lt;div v-for=”city in cities” :key=”city.id”</p>
+
+<p>일반적으로 DB ID처럼 변하지 않는 값을 사용</p>
+
+<p>:key=”city.id”</p>
+
+<h2 id="13-v-model">13) v-model</h2>
+
+<p>입력창의 값과 반응형 상태를 양방향으로 연결합니다.</p>
+
+<p>const searchQuery = ref(‘’)</p>
+
+<p><input v-model="searchQuery" /></p>
+<p> </p>
+
+<h2 id="14-event">14) Event</h2>
+
+<p>클릭, 입력, 제출처럼 사용자가 발생시키는 동작</p>
+
+<p>&lt;button @click=”handleClick”&gt;클릭&lt;/button&gt;</p>
+
+<p>&lt;input @input=”handleInput” /&gt;</p>
+
+<p>&lt;form @submit.prevent=”handleSubmit”&gt;</p>
+
+<p>대표 이벤트 :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>이벤트</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">click</code></td>
+      <td>클릭</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">input</code></td>
+      <td>입력값 변경</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">change</code></td>
+      <td>입력 확정 또는 선택 변경</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">submit</code></td>
+      <td>폼 제출</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">keydown</code></td>
+      <td>키보드 누름</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="15-event-modifier">15) Event Modifier</h2>
+
+<p>이벤트 동작을 간단히 제어하는 수식어</p>
+
+<p>&lt;a @click.prevent = “handelLink”&gt; 링크 &lt;/a&gt; 
+&lt;button @click.stop = “handleClick”&gt; 버튼 &lt;/button&gt;</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>수식어</th>
+      <th>기능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.prevent</code></td>
+      <td>기본 동작 방지</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.stop</code></td>
+      <td>이벤트 버블링 방지</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.once</code></td>
+      <td>한 번만 실행</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.self</code></td>
+      <td>자신을 직접 클릭한 경우만 실행</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="3-컴포넌트-통신-용어">3. 컴포넌트 통신 용어</h1>
+
+<h2 id="16-props">16) Props</h2>
+
+<p>부모 컴포넌트가 자식 컴포넌트에 데이터를 전달하는 방법</p>
+
+<p>부모</p>
+
+<p>&lt;WeatherCard 
+    :city = “selectedCity”
+    title = “현재 날씨”
+/&gt;</p>
+
+<p>자식</p>
+
+<script setup="">
+const props = defineProps({
+  city: {
+    type: Object,
+    required: true,
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+})
+</script>
+
+<template>
+  <h2></h2>
+  <p></p>
+</template>
+
+<p>데이터 흐름:</p>
+
+<p>부모  -&gt; props -&gt; 자식</p>
+
+<p>Props는 자식에서 직접 수정하지 않는 것이 원칙</p>
+
+<h2 id="17-emit">17) Emit</h2>
+
+<p>자식 컴포넌트가 부모 컴포넌트에 이벤트나 데이터를 전달하는 방법</p>
+
+<p>자식</p>
+
+<script setup="">
+const emit = defineEmits(['select-city'])
+
+const handleClick = () => {
+  emit('select-city', '서울')
+}
+</script>
+
+<template>
+  &lt;button @click="handleClick"&gt;서울 선택&lt;/button&gt;
+</template>
+
+<p>부모</p>
+
+<p>&lt;WeatherCard @select-city=”handleSelectCity” /&gt;
+const handleSelectCity = (cityName) =&gt; {
+    console.log(cityName)
+}</p>
+
+<p>데이터 흐름:</p>
+
+<p>자식 -&gt; emit -&gt; 부모</p>
+
+<p>정리하면:</p>
+
+<p>부모가 자식에게 데이터 전달: Props
+자식이 부모에게 알림 전달: Emit</p>
+
+<h2 id="18-slot">18) Slot</h2>
+
+<p>부모가 자식 컴포넌트의 특정 위치에 HTML 내용을 삽입하는 기능</p>
+
+<p>자식</p>
+
+<template>
+  <div class="card">
+    <slot />
+  </div>
+</template>
+
+<p>부모</p>
+
+<BaseCard>
+    <h2> 서울 날씨 </h2>
+    <p> 현재 기온 28도 </p>
+</BaseCard>
+
+<p>BaseCard는 공통 틀을 만들고, 내부 콘텐츠는 부모가 결정</p>
+
+<h1 id="4상태-변화-감시">4.상태 변화 감시</h1>
+
+<h2 id="19-watch">19) watch</h2>
+
+<p>특정 상태의 변경을 감지한 후 부수 효과를 실행한 이유</p>
+
+<p>watch(searchQuery, (newValue, oldValue) =&gt; {
+  console.log(‘새 값:’, newValue)
+  console.log(‘이전 값:’, oldValue)
+})</p>
+
+<p>다음과 같은 작업에 적합</p>
+
+<ul>
+  <li>API 요청</li>
+  <li>localStroage 저장</li>
+  <li>로그 기록</li>
+  <li>특정 값 변경 시 별도 처리</li>
+</ul>
+
+<p>객체의 특정 속성을 감시할 수 있다.</p>
+
+<p>watch(
+    () =&gt; user.value.age, 
+    (newAge, oldAge) =&gt; {
+        console.log(newAge,oldAge)
+    }
+)</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="JavaScript" /><category term="ES6" /><category term="Vue.js" /><category term="Data Type" /><category term="ref" /><summary type="html"><![CDATA[JavaScript의 원시값, 객체, 배열을 비교하고 Vue의 ref 안에서 데이터가 어떻게 구성되는지 정리한다.]]></summary></entry><entry><title type="html">Pinia 상태 관리 정리</title><link href="http://localhost:4000/frontend/vue/2026/08/03/pinia/" rel="alternate" type="text/html" title="Pinia 상태 관리 정리" /><published>2026-08-03T00:00:00+09:00</published><updated>2026-08-03T00:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/03/pinia</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/03/pinia/"><![CDATA[<h1 id="pinia-상태-관리-정리">Pinia 상태 관리 정리</h1>
+
+<h2 id="1-pinia가-필요한-이유">1. Pinia가 필요한 이유</h2>
+
+<p>App.vue</p>
+
+<p>├── Header.vue
+ │      └── 로그인 사용자 이름 표시
+ │
+ ├── ProductList.vue
+ │      └── 상품 목록
+ │
+ └── Cart.vue
+        └── 장바구니 개수 표시</p>
+
+<p>로그인 정보 :</p>
+
+<p>const user = {
+  name:”Kim”,
+  role:”admin”
+}</p>
+
+<p>방법.1</p>
+
+<p>App.vue
+ |
+ props
+ ↓
+Header.vue</p>
+
+<p>App.vue
+ |
+ props
+ ↓
+Cart.vue</p>
+
+<p>문제 : 중간 컴포넌트를 계속 거쳐야 한다.</p>
+
+<p>-&gt; Props Drilling</p>
+
+<p>A
+ |
+props
+ ↓
+B
+ |
+props
+ ↓
+C
+ |
+props
+ ↓
+D</p>
+
+<p>깊어질수록 관리가 어렵다.</p>
+
+<p># 2. Pinia</p>
+
+<p>Pinia는 Vue 어플리케이션에서 전역 상태 (Global State)를 관리하기 위한 공식 상태 라이브러리</p>
+
+<p>쉽게…</p>
+
+<p>여러 컴포넌트가 공유해야하는 데이터를 한 곳에서 관리하는 저장소</p>
+
+<p>구조.</p>
+
+<p>Component A
+      |
+      props
+      |
+Component B
+      |
+      props
+      |
+Component C</p>
+
+<p>-&gt; Pinia를 통해서 한번에 전달하도록 개선할 수 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Pinia Store
+
+   user
+   cart
+   product
+
+
+  ↑       ↑       ↑
+</code></pre></div></div>
+
+<p>Component Component Component</p>
+
+<p># 3. State</p>
+
+<p>먼저 State 개념</p>
+
+<h3 id="state">State</h3>
+
+<p>애플리케이션이 현재 가지고 있는 데이터</p>
+
+<p>const count = ref(0)</p>
+
+<p>이것이 State</p>
+
+<p>쇼핑몰 :</p>
+
+<p>state:</p>
+
+<p>user
+cartItems
+products
+isLogin</p>
+
+<p># 4. Store</p>
+
+<h3 id="store-정의">Store 정의</h3>
+
+<p>State, Getter, Action을 하나로 묶어서 관리하는 저장하는 공간</p>
+
+<p>Pinia의 기본 구조 .</p>
+
+<p>Store</p>
+
+<p>├── State
+ │
+ ├── Getter
+ │
+ └── Action</p>
+
+<p># Pinia 사용법</p>
+
+<p>npm install pinia</p>
+
+<p>import {createApp} from ‘vue’
+import {createPinia} from ‘pinia’</p>
+
+<p>import APP from ‘./App.vue’</p>
+
+<p>const app = create(App)</p>
+
+<p>app.use(createPinai())</p>
+
+<p>app.mount(‘#app’)</p>
+
+<p>의미 :</p>
+
+<p>Vue App
+ |
+ Pinia 연결
+ |
+ 모든 Component에서 사용 가능</p>
+
+<p># 7.Store 만들기</p>
+
+<p>stores/user.js</p>
+
+<p>import { defineStore } from ‘pinia’</p>
+
+<p>export const useUserStore = defineStore(
+‘user’,
+{</p>
+
+<p>state:()=&gt;({</p>
+
+<p>name:””,
+  isLogin:false</p>
+
+<p>})</p>
+
+<p>})</p>
+
+<p>–</p>
+
+<p>Component
+    |
+    ↓
+useUserStore()
+    |
+    ↓
+Pinia Store
+    |
+    ↓
+state 사용</p>
+
+<p># 9.State 변경</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Pinia" /><category term="State Management" /><summary type="html"><![CDATA[Pinia 상태 관리 정리]]></summary></entry><entry><title type="html">Vue Composition API 정리</title><link href="http://localhost:4000/frontend/vue/2026/08/02/vue-composition-api/" rel="alternate" type="text/html" title="Vue Composition API 정리" /><published>2026-08-02T09:00:00+09:00</published><updated>2026-08-02T09:00:00+09:00</updated><id>http://localhost:4000/frontend/vue/2026/08/02/vue-composition-api</id><content type="html" xml:base="http://localhost:4000/frontend/vue/2026/08/02/vue-composition-api/"><![CDATA[<h2 id="composition-api란">Composition API란?</h2>
 
 <p>자자, 이번에는 Vue의 <strong>Composition API</strong>를 정리해보자.</p>
 
@@ -617,7 +2345,7 @@ composable로 재사용
   <li>반복되는 로직은 composable로 분리한다.</li>
 </ol>
 
-<p>처음에는 <code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>만으로도 충분하다. 나머지는 실제로 필요한 상황이 왔을 때 하나씩 살펴보면 된다. 현업에 가서 빨리 써보고 싶다. 일단은 여기까지!</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Composition API" /><category term="ref" /><category term="reactive" /><category term="computed" /><category term="watch" /><summary type="html"><![CDATA[Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다.]]></summary></entry><entry><title type="html">Psql JSONB, 행 잠금, 멱등성</title><link href="https://minnong511.github.io/db/postgresql/2026/07/31/psql2/" rel="alternate" type="text/html" title="Psql JSONB, 행 잠금, 멱등성" /><published>2026-07-31T09:00:00+09:00</published><updated>2026-07-31T09:00:00+09:00</updated><id>https://minnong511.github.io/db/postgresql/2026/07/31/psql2</id><content type="html" xml:base="https://minnong511.github.io/db/postgresql/2026/07/31/psql2/"><![CDATA[<h1 id="jsonb">JSONB</h1>
+<p>처음에는 <code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>만으로도 충분하다. 나머지는 실제로 필요한 상황이 왔을 때 하나씩 살펴보면 된다. 현업에 가서 빨리 써보고 싶다. 일단은 여기까지!</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><category term="Composition API" /><category term="ref" /><category term="reactive" /><category term="computed" /><category term="watch" /><summary type="html"><![CDATA[Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다.]]></summary></entry><entry><title type="html">Psql JSONB, 행 잠금, 멱등성</title><link href="http://localhost:4000/db/postgresql/2026/07/31/psql2/" rel="alternate" type="text/html" title="Psql JSONB, 행 잠금, 멱등성" /><published>2026-07-31T09:00:00+09:00</published><updated>2026-07-31T09:00:00+09:00</updated><id>http://localhost:4000/db/postgresql/2026/07/31/psql2</id><content type="html" xml:base="http://localhost:4000/db/postgresql/2026/07/31/psql2/"><![CDATA[<h1 id="jsonb">JSONB</h1>
 <h2 id="jsonb-객체-생성">JSONB 객체 생성</h2>
 <h2 id="중첩-json-반환">중첩 JSON 반환</h2>
 <h2 id="jsonb_pretty와-to_jsonb">jsonb_pretty와 to_jsonb</h2>
@@ -631,1392 +2359,4 @@ composable로 재사용
 <h2 id="멱등성-개념">멱등성 개념</h2>
 <h2 id="batch_key">batch_key</h2>
 <h2 id="on-conflict-do-nothing">ON CONFLICT DO NOTHING</h2>
-<h2 id="get-diagnostics와-row_count">GET DIAGNOSTICS와 ROW_COUNT</h2>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><category term="PostgreSQL" /><category term="PostgreSQL" /><summary type="html"><![CDATA[JSONB JSONB 객체 생성 중첩 JSON 반환 jsonb_pretty와 to_jsonb]]></summary></entry><entry><title type="html">Psql 함수,프로시져,트리거</title><link href="https://minnong511.github.io/db/postgresql/2026/07/31/psql1/" rel="alternate" type="text/html" title="Psql 함수,프로시져,트리거" /><published>2026-07-31T08:00:00+09:00</published><updated>2026-07-31T08:00:00+09:00</updated><id>https://minnong511.github.io/db/postgresql/2026/07/31/psql1</id><content type="html" xml:base="https://minnong511.github.io/db/postgresql/2026/07/31/psql1/"><![CDATA[<h1 id="함수function">함수(Function)</h1>
-
-<p>psql에서 함수의 기본 구조는 다음과 같다.</p>
-
-<h3 id="함수-기본-구조">함수 기본 구조</h3>
-
-<p>’'’sql
-CREATE OR REPLACE FUNCTION 스키마명.함수명(
-    매개변수명 데이터타입
-)
-RETURNS 반환타입
-LANGUAGE 언어
-AS \(함수 본문\);
-‘’’</p>
-
-<h3 id="예시-함수-작성">예시 함수 작성</h3>
-
-<p>예를 들어 고객 등급에 따른 할인율 반환하는 함수는 다음과 같이 작성할 수 있다.</p>
-
-<p>’'’sql
-CREATE OR REPLACE FUNCTION proc_lab.fn_grade_discount_rate(
-    p_grade text
-)
-RETURNS numeric
-LANGUAGE sql
-AS \(SELECT CASE UPPER(TRIM(p_grade))
-        WHEN 'BASIC' THEN 0
-        WHEN 'SILVER' THEN 0.05
-        WHEN 'GOLD' THEN 0.10
-        WHEN 'VIP' THEN 0.15
-        ELSE 0
-    END;\);
-‘’’</p>
-
-<ul>
-  <li>함수 호출</li>
-</ul>
-
-<p>’'’sql 
-SELECT proc_lab.fn_grade_discount_rate(‘ gold ‘);
-‘’’</p>
-
-<h2 id="sql-함수와-plpgsql-함수">SQL 함수와 PL/pgSQL 함수</h2>
-
-<p>PostgreSQL 함수는 본문을 어떤 언어로 작성하는지에 따라 실행 방식이 달라지는데요, 이번에는 LANGUAGE sql 과 LANGAUGE plpgsql을 사용했습니다.</p>
-
-<h2 id="sql-함수">SQL 함수</h2>
-
-<p>LANGUAGE sql 함수는 일반적으로 하나의 SQL 문장이나 비교적 단순한 조회 로직을 작성할 때 사용합니다</p>
-
-<p>’'’sql 
-create or replace function proc_lab.fn_grade_discount_rate(
-    p_grade text
-)
-returns numeric 
-LANGUAGE sql 
-AS \(SELECT CASE UPPER(TRIM(p_grade))
-        WHEN 'GOLD' THEN 0.10 
-        ELSE 0 
-    END;\); 
-‘’’
-SQL 함수는 다음과 같은 경우에 적합합니다.</p>
-<ul>
-  <li>단순 값 계산</li>
-  <li>조건에 따른 값 반환</li>
-  <li>테이블 조회 결과 반화</li>
-  <li>복잡한 데이터 제어가 필요하지 않은 경우</li>
-</ul>
-
-<h3 id="plpgsql-함수">PL/pgSQL 함수</h3>
-<p>LANGUAGE plpgsql 함수는 PostgreSQL의 절차형 언어를 사용한다. 
-변수 선언, 조건문, 예외 처리처럼 일반 SQL으로 표현하기 어려운 로직을 작성할 수 있다.</p>
-
-<p>’’’ 
-CREATE OR REPLACE FUNCTION proc_lab.fn_customer_order_summary_json(
-    p_customer_id bigint
-)
-returns jsonb 
-LANGUAGE plpgsql 
-AS $$ 
-DECLARE 
-    v_customer jsonb; 
-Begin 
-    select jsonb_build_object(
-        ‘customer_id’, c.customer_id, 
-        ‘name’, c.customer_name 
-    )
-    into v_customer 
-    from proc_lab.customer c
-    where c.customer_id = p_customer_id;</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if v_customer is null then
-    raise exception 'Customer ID % does not exist', p_customer_id; 
-end if; 
-
-return v_customer;  end;  $$; 
-</code></pre></div></div>
-
-<p>’’’</p>
-
-<p>PL/pgSQL은 다음과 같은 경우에 적합하다.</p>
-<ul>
-  <li>DECLARE를 이용한 변수 선언</li>
-  <li>IF, CASE 를 이용한 조건 처리</li>
-  <li>여러 SQL 문장 순차 실행</li>
-  <li>RAISE EXCEPTION을 이용한 예외 처리</li>
-  <li>조회 결과를 변수에 저장하는 SELECT INTO</li>
-</ul>
-
-<p>정리하자면 단순 조회와 계산에는 SQL 함수가 적합하고, 제어 흐름이나 예외 처리가 필요하다면 PL/pgSQL 함수가 적합하다.</p>
-
-<h2 id="단일-값테이블jsonb-반환">단일 값·테이블·JSONB 반환</h2>
-
-<h2 id="함수-속성과-주요-문법">함수 속성과 주요 문법</h2>
-
-<h1 id="프로시저procedure">프로시저(Procedure)</h1>
-
-<h2 id="함수와-프로시저의-차이">함수와 프로시저의 차이</h2>
-
-<h2 id="in-out-inout-매개변수">IN, OUT, INOUT 매개변수</h2>
-
-<h2 id="주문-생성-프로시저">주문 생성 프로시저</h2>
-
-<h2 id="returning-into">RETURNING INTO</h2>
-
-<h2 id="트랜잭션-기반-테스트">트랜잭션 기반 테스트</h2>
-
-<h1 id="트리거trigger">트리거(Trigger)</h1>
-
-<h2 id="트리거의-기본-구조">트리거의 기본 구조</h2>
-
-<h2 id="oldnewtg_op">OLD·NEW·TG_OP</h2>
-
-<h2 id="감사-로그-트리거">감사 로그 트리거</h2>
-
-<h2 id="주문-총액-자동-갱신">주문 총액 자동 갱신</h2>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><category term="PostgreSQL" /><category term="PostgreSQL" /><summary type="html"><![CDATA[함수(Function)]]></summary></entry><entry><title type="html">Vue Intro -</title><link href="https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro1/" rel="alternate" type="text/html" title="Vue Intro -" /><published>2026-07-30T20:00:00+09:00</published><updated>2026-07-30T20:00:00+09:00</updated><id>https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro1</id><content type="html" xml:base="https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro1/"><![CDATA[<h2 id="vuejs">Vue.js</h2>
-
-<p>자자! 오늘은 Vue.js라는 것을 들고 왔다. (프론트엔드 첨해봄 ㅎ)</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[오늘의 주제]
-      ↓
-   [Vue.js]
-</code></pre></div></div>
-
-<p>Vue.js는 Front-end JavaScript Framework이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
-   ↓
-[사용자 인터페이스 구축]
-</code></pre></div></div>
-
-<p>즉, 사용자 인터페이스 구축을 위한 프레임워크이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
-   ↓
-┌──────────────────────┐
-│ 사용자 인터페이스 구축 │
-└──────────────────────┘
-</code></pre></div></div>
-
-<p>이걸로 무엇을 할 수 있을까?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
- ├─ 간결한 문법
- ├─ 반응형 데이터 바인딩
- ├─ 컴포넌트
- ├─ 가상 DOM
- └─ 트랜지션 효과
-</code></pre></div></div>
-
-<p>Vue.js를 이용해서 간결한 문법, 반응형 데이터 바인딩, 컴포넌트, 가상 DOM, 트랜지션 효과가 가능하다. (노가다 멈춰!)</p>
-
-<h2 id="왜-만들어졌을까">왜 만들어졌을까?</h2>
-
-<ul>
-  <li>이유는 간단하다… 
-그야.. 기존의 것이 불편하니까… (귀찮은 건 질색이야! 딩기리딩딩~~~)</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[기존 방식의 불편함]
-          ↓
- [더 간결한 개발 방식]
-</code></pre></div></div>
-
-<p>Vue.js는 “기존 프레임워크들의 장점만 흡수하여 더 가볍고 쓰기 쉽게 만들자”는 아이디어에서 시작했다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[기존 프레임워크의 장점]
-            +
-      [가벼운 사용성]
-            ↓
-         [Vue.js]
-</code></pre></div></div>
-
-<p>근데 기존의 HTML과 JavaScript와 뭐가 다른 걸까?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML + JavaScript]
-          ↕ 비교
-       [Vue.js]
-</code></pre></div></div>
-
-<p>지금부터 알아보도록 하자.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[다음 순서]
-    ↓
-[Vue.js의 핵심 특징]
-</code></pre></div></div>
-
-<h2 id="vuejs의-특징-1---mvvm-architecture">Vue.js의 특징 1 - MVVM Architecture</h2>
-
-<p>Vue.js의 설계는 MVVM(Model-View-ViewModel) Architecture Pattern에서 영감을 받았지만, MVVM을 엄격하게 따르는 것은 아니다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model] ⇄ [ViewModel] ⇄ [View]
-              ↑
-       Vue의 반응형 연결
-</code></pre></div></div>
-
-<p>이게 뭐냐고요? 잘 따라와 보십쇼.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[궁금증]
-   ↓
-[MVVM 구조 살펴보기]
-</code></pre></div></div>
-
-<h3 id="then-what-is-mvvm">Then, what is MVVM?</h3>
-
-<p>MVVM Architecture Pattern은 데이터를 보여주는 View와 데이터를 처리하는 Model 사이에 데이터를 중개하는 ViewModel을 두어 UI를 그리는 부분과 Data 처리 로직을 분리하는 Architecture Pattern이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model: 데이터]
-       ↕
-[ViewModel: 연결·상태]
-       ↕
-[View: 화면]
-</code></pre></div></div>
-
-<h3 id="model">model</h3>
-
-<ul>
-  <li>애플리케이션에서 사용하는 데이터와 상태. Vue에서는 보통 <code class="language-plaintext highlighter-rouge">&lt;script&gt;</code> 내부에 정의한 반응형 JavaScript 상태가 이에 해당한다.</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[애플리케이션 데이터]
-          ↓
- [반응형 JavaScript 상태]
-</code></pre></div></div>
-
-<h3 id="view">View</h3>
-
-<ul>
-  <li>사용자에게 실제로 보여지는 화면 인터페이스와 DOM 구조, 시각적 스타일링을 담당</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[View]
-  ├─ 화면 인터페이스
-  ├─ DOM 구조
-  └─ 시각적 스타일링
-</code></pre></div></div>
-
-<h3 id="viewmodel">ViewModel</h3>
-
-<ul>
-  <li>View와 Model 사이를 연결해주는 중간 다리. Vue의 반응형 상태·템플릿 연결 로직과 런타임이 ViewModel에 가까운 역할을 수행</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[View] ⇄ [반응형 상태·템플릿 로직] ⇄ [Model]
-</code></pre></div></div>
-
-<h3 id="그러면-어떻게-생긴-걸까">그러면 어떻게 생긴 걸까?</h3>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model]
-   ⇅
-[ViewModel]
-   ⇅
-[View]
-</code></pre></div></div>
-
-<h3 id="mvvm-구조는-왜-나온-걸까">MVVM 구조는 왜 나온 걸까?</h3>
-
-<p>근데 대충 어떻게 생겼는지 다들 알았을 것이라 생각한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model] → [ViewModel] → [View]
-</code></pre></div></div>
-
-<p>그러면 이게 왜 만들어진 것일까?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[분리된 역할]
-      ↓
-[변경 관리가 쉬운 구조]
-</code></pre></div></div>
-
-<ol>
-  <li>기존 브라우저의 Real DOM을 자주 직접 조작하면 렌더링 비용이 커질 수 있다.
-    <ul>
-      <li>DOM: Browser가 HTML을 인식하여 Tree 구조로 만든 Object Model</li>
-    </ul>
-  </li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML]
-  ↓ 파싱
-[DOM Tree]
-  ↓ 렌더링 계산
-[화면]
-</code></pre></div></div>
-
-<p>기존 브라우저에서는 실제 DOM이 수정되면 Browser는 Layout을 다시 계산(Reflow)하고 화면을 다시 색칠하는 Repaint 연산을 수행할 수 있다. 이러면 연속적인 상태 변경으로 인해 노드를 재구성하는 작업이 반복되고, Layout/Paint 연산 부하로 화면이 느려질 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[DOM 수정]
-    ↓
-[Layout/Reflow]
-    ↓
-[Paint/Repaint]
-    ↓
-[화면 갱신]
-</code></pre></div></div>
-
-<p>뭐 예시를 간단하게 들어보자면..</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[추상적인 설명]
-        ↓
-   [생활 속 예시]
-</code></pre></div></div>
-
-<p>브라우저의 상태가 변경될 때마다 직접 Real DOM을 연속해서 조작하므로, 만약 10번의 데이터 변화가 일어나면 브라우저가 매번 DOM 변경을 처리하고 그 결과에 따라 여러 번의 스타일 계산·Layout·Paint가 발생할 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터 변화 1 ─┐
-데이터 변화 2 ─┤
-데이터 변화 … ─┼→ DOM 처리 → Layout/Paint 가능
-데이터 변화 10 ─┘
-</code></pre></div></div>
-
-<p>실생활에서의 예를 들자면</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[데이터 변경]
-      ↓ 비유
-[마트를 여러 번 방문]
-</code></pre></div></div>
-
-<p>감자 10개를 환불하고 고구마 5개를 사야하는데, 감자 환불 하러 10번 마트가고 고구마 사러 마트 5번 가는 느낌이랄까? 그렇게 예를 들 수 있을 거 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[감자 환불 10번] + [고구마 구매 5번]
-                 ↓
-          [마트 방문 반복]
-</code></pre></div></div>
-
-<ol>
-  <li>Vue.js는 Virtual DOM과 렌더러를 통해 필요한 DOM 변경만 적용한다.</li>
-</ol>
-
-<ul>
-  <li>Virtual DOM: 실제 브라우저의 DOM과 동기화되는 메모리상의 UI 표현</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 변화]
-    ↓
-[Virtual DOM 비교]
-    ↓
-[필요한 Real DOM만 업데이트]
-</code></pre></div></div>
-
-<p>아무튼 이런 문제를 줄이기 위해서 Vue.js에서는 Virtual DOM과 렌더러로 변경 사항을 비교한 뒤 필요한 DOM 업데이트를 적용한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[이전 Virtual DOM] ⇄ [새 Virtual DOM]
-          ↓ 차이 계산
-    [필요한 DOM 업데이트]
-</code></pre></div></div>
-
-<p>10번 변경할 것을 여러 번의 상태 변경으로 모아서 한 번의 업데이트 사이클에 처리할 수 있게 해준다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 변경 1]
-[상태 변경 2] ─┐
-[상태 변경 …] ─┼→ [업데이트 사이클 1회]
-[상태 변경 10] ┘
-</code></pre></div></div>
-
-<p>개발자가 직접 DOM을 일일이 제어하는 번거로움 없이, 상태 변화만 선언해도 Vue가 반응형 의존성을 추적하고 변경된 Virtual DOM을 이전 것과 비교해 필요한 DOM 업데이트를 계산한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 선언]
-    ↓
-[반응형 의존성 추적]
-    ↓
-[Virtual DOM 비교]
-    ↓
-[필요한 DOM 업데이트 계산]
-</code></pre></div></div>
-
-<p>Batch 처리를 통한 렌더링 횟수 최적화를 통해 Vue는 한 업데이트 사이클 안에 여러 번 데이터가 바뀌어도 변경 사항을 모아서 실제 DOM에 한 번 반영할 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[여러 상태 변경]
-        ↓ Batch
-[한 번의 업데이트 사이클]
-        ↓
-   [Real DOM 반영]
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[상태 변경]
-    ↓
-[Vue 반응성 + Virtual DOM]
-    ↓
-[필요한 화면만 갱신]
-</code></pre></div></div>
-
-<h2 id="vuejs-특징-2---two-way-data-binding">Vue.js 특징 2 - Two-Way Data Binding</h2>
-
-<p>Vue.js에서 <code class="language-plaintext highlighter-rouge">v-model</code>을 사용하면 양방향 데이터 바인딩 (Two-Way Data Binding)을 구현할 수 있다. “Model(JavaScript Data)이 바뀌면 View(화면)가 바뀌고, 반대로 View(화면 입력)가 바뀌면 Model도 동시에 바뀐다”는 것을 의미한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Model: JavaScript Data]
-          ⇅
- [v-model 양방향 연결]
-          ⇅
-      [View: 입력 화면]
-</code></pre></div></div>
-
-<h2 id="vuejs-특징-3---component-based-architecture">Vue.js 특징 3 - Component Based Architecture</h2>
-
-<p>웹페이지를 통째로 만들지 않는다!</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[큰 웹페이지 하나]
-        ↓ 분리
-[여러 개의 컴포넌트]
-</code></pre></div></div>
-
-<p>이제는 조각조각 하나씩 만들고 각각을 조립하는 시스템을 채택한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Header] + [Content] + [Footer]
-              ↓ 조립
-          [웹페이지]
-</code></pre></div></div>
-
-<ul>
-  <li>이 방식을 Component(독립 요소) Based Architecture라고 한다.</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Component Based Architecture]
-              ↓
- [독립적인 요소를 조립해 화면 구성]
-</code></pre></div></div>
-
-<p>세 가지 특징을 가진다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Component]
- ├─ Encapsulation
- ├─ Reusability
- └─ Tree Structure
-</code></pre></div></div>
-
-<ul>
-  <li>Encapsulation : Single-File Component(SFC)로 작성하면 컴포넌트의 HTML(구조), JavaScript(로직), CSS(스타일)를 하나의 파일(.vue) 안에 응집시켜 놓는다.</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Component.vue]
- ├─ &lt;template&gt;  구조
- ├─ &lt;script&gt;    로직
- └─ &lt;style&gt;     스타일
-</code></pre></div></div>
-
-<ul>
-  <li>Reusability: 잘 만든 Component는 여러 곳에서 다시 가져다 쓸 수 있어 중복 코드가 제거된다. (재탕이 최고!)</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       [재사용]
-          ↑
-[Component] ─┬→ [화면 A]
-             └→ [화면 B]
-</code></pre></div></div>
-
-<ul>
-  <li>Tree Structure: Component들은 부모-자식 관계를 가지며 부모는 자식에게 데이터를 내려주고(Props Down), 자식은 부모에게 상태 변경을 알려준다(Event Up = Emit).</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        [Parent]
-        ↙      ↘
- [Child A]   [Child B]
-    ↑ Props Down / Event Up ↑
-</code></pre></div></div>
-
-<h2 id="vuejs-특징-4---rendering">Vue.js 특징 4 - Rendering</h2>
-
-<p>근데 이러면 화면은 어떻게 표시되는 걸까?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue 상태·템플릿]
-        ↓ 렌더링
-      [화면]
-</code></pre></div></div>
-
-<p>HTML은 조상님이 렌더해주시는 걸까?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML]
-  ?
-[조상님 렌더링?]
-</code></pre></div></div>
-
-<p>그럴 리는 없겠지…?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[조상님]
-   ✕
-[렌더링 담당 아님]
-</code></pre></div></div>
-
-<p>아쉽게도 조상님 대신 콤퓨타가 렌더해준다..</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue + Browser + JavaScript]
-             ↓
-          [렌더링]
-</code></pre></div></div>
-
-<p>화면을 구성하는 대표적인 방식은 2가지이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          [렌더링 방식]
-             ↙   ↘
-          [CSR] [SSR]
-</code></pre></div></div>
-
-<ol>
-  <li>CSR(Client-Side-Rendering)
-    <ul>
-      <li>브라우저(Client)가 JavaScript를 실행하여 화면을 직접 그린다(rendering).</li>
-    </ul>
-  </li>
-  <li>SSR(Server-Side-Rendering)
-    <ul>
-      <li>서버(Server)에서 Vue 컴포넌트를 HTML로 렌더링해 브라우저에 내려주는 방식이다. 데이터는 서버에서 미리 주입할 수도 있고, Vue의 SSR API나 Nuxt.js 같은 프레임워크를 이용해서 구현한다.</li>
-    </ul>
-  </li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[CSR] 브라우저에서 JavaScript 실행 → 화면 렌더링
-[SSR] 서버에서 HTML 렌더링       → 브라우저 전달
-</code></pre></div></div>
-
-<h2 id="vuejs로-구현하는-spa-single-page-application">Vue.js로 구현하는 SPA (Single Page Application)</h2>
-
-<p>자자 아직 할 것이 많으니 다음으로 넘어가자.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue 특징 1~4]
-        ↓
-[SPA 방식 살펴보기]
-</code></pre></div></div>
-
-<p>Vue.js로 구현할 수 있는 SPA(Single Page Application)에 대해서 알아보자?</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue.js]
-    ↓ 구현
-[SPA]
-</code></pre></div></div>
-
-<h3 id="기존--mpa">기존 : MPA</h3>
-
-<p>기존에는 사용자가 메뉴를 클릭할 때마다 새 HTML을 새로 요청해서 렌더했다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[메뉴 클릭]
-    ↓
-[새 HTML 요청]
-    ↓
-[전체 페이지 렌더링]
-</code></pre></div></div>
-
-<p>그래서 페이지 전환마다 HTML과 리소스를 다시 요청할 수 있어 네트워크 비용과 처리 시간이 늘어날 수 있었다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[페이지 전환]
-      ↓
-[HTML·리소스 재요청 가능]
-      ↓
-[네트워크·처리 비용 증가 가능]
-</code></pre></div></div>
-
-<h3 id="신규--spa">신규 : SPA</h3>
-
-<p>다행히도! Vue.js로 SPA (Single Page Application)를 구현하면 HTML 문서를 처음에 불러온 뒤, 클라이언트 측 JavaScript가 필요한 데이터와 화면만 업데이트하는 방식으로 변경을 처리할 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[HTML 문서 최초 로드]
-          ↓
-[클라이언트 JavaScript]
-          ↓
- [변경된 화면만 업데이트]
-</code></pre></div></div>
-
-<h3 id="어떻게-구현-그리고-뭐가-장단점일까">어떻게 구현? 그리고 뭐가 장단점일까?</h3>
-
-<p>구현은 초기 로딩 시 하나의 HTML과 초기 화면에 필요한 JavaScript를 로딩하는 방식으로 이루어진다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[초기 로딩]
- ├─ HTML
- └─ 초기 화면에 필요한 JavaScript
-</code></pre></div></div>
-
-<p>이제 뭔가 변경이 필요하다면 클라이언트에서 JS로 필요한 부분만 변경(부분 렌더링)하는 방식으로 이루어진다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[변경 요청]
-    ↓
-[클라이언트 JS]
-    ↓
-[필요한 부분만 변경]
-</code></pre></div></div>
-
-<p>데이터 전송도 필요한 데이터만 주고받고, 클라이언트의 JS로 필요한 부분만 변경(부분 렌더링)한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[서버] ⇄ [필요한 데이터]
-              ↓
-        [클라이언트 JS]
-              ↓
-       [부분 렌더링]
-</code></pre></div></div>
-
-<p>그래서 여러 가지 장점을 제공한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA]
- ├─ 빠른 페이지 전환
- ├─ 네트워크 효율성
- └─ 역할 분리
-</code></pre></div></div>
-
-<ol>
-  <li>페이지 전환 시 전체 문서를 다시 로드하지 않아 빠른 사용자 경험을 제공할 수 있다.</li>
-  <li>네트워크 효율성 : 한 번 로딩된 리소스 (CSS, JS 등)를 재사용하고 필요한 데이터만 요청할 수 있어 전체적인 네트워크 트래픽을 줄일 수 있다. (엄마가 끓여주신 사골국으로 온갖 요리를 해먹는 것을 생각해보자, 본인은 일주일동안 사골로 사골라면, 사골된장찌개…부터 시작해서 약 10가지 요리를 해봤다..OTL)</li>
-  <li>프론트/백엔드 분리: 프론트엔드는 Vue 화면과 로직을 담당하고, 백엔드는 API로 데이터를 제공하는 식으로 역할을 나눌 수 있어 개발 팀 간 협업과 서버 구성이 명확해질 수 있다.</li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vue 프론트엔드] ⇄ [API 서버]
-   화면·로직          데이터 제공
-</code></pre></div></div>
-
-<p>근데 이 방식 장점만 있는 것은 아니다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA 장점]
-    +
-[SPA 단점]
-    ↓
-[상황에 맞는 선택]
-</code></pre></div></div>
-
-<p>여러 가지 문제가 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[주의할 점]
- ├─ 초기 로딩
- ├─ 새로고침
- └─ SEO
-</code></pre></div></div>
-
-<ol>
-  <li>초기 로딩이 느려질 수 있다.
-    <ul>
-      <li>첫 로딩 시 초기 화면에 필요한 JavaScript를 내려받고 실행해야 해서 초기에 느리게 로딩될 수 있다.</li>
-    </ul>
-  </li>
-  <li>새로고침 시 전체 앱이 다시 로딩된다.
-    <ul>
-      <li>이로 인해 상태가 초기화될 수 있다.</li>
-    </ul>
-  </li>
-  <li>JS 기반 렌더링만 사용하는 경우 SEO에 불리할 수 있다.
-    <ul>
-      <li>로봇이 들어와도 JavaScript 실행 전에는 알맹이를 못 볼 수 있다.</li>
-      <li>그래서 검색 노출에 불리할 수 있다.</li>
-    </ul>
-  </li>
-  <li>별도 기술 조합이 필요할 수 있다. 예를 들어 Vue.js + REST API (ex: Spring Boot)를 함께 구성해야 한다.</li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA 단점]
- ├─ 초기 JavaScript 로딩·실행
- ├─ 새로고침 시 앱 재로딩
- └─ CSR 환경에서 SEO 불리할 수 있음
-</code></pre></div></div>
-
-<h3 id="vuejs로-spa를-만들-때-자주-쓰는-추가-기술-요소">Vue.js로 SPA를 만들 때 자주 쓰는 추가 기술 요소</h3>
-
-<ul>
-  <li>Vite: Frontend Build Tool로 개발자가 작성한 수많은 .vue, .js, .css 파일들을 개발 중에는 빠르게 제공하고, 배포 시에는 브라우저가 읽을 수 있는 최적화된 정적 파일로 변환·번들링하며 개발 서버도 띄워주는 빌드 도구이다.</li>
-  <li>Vue Router: 브라우저의 URL 주소와 Vue 컴포넌트를 연결해 주는 공식 라우팅 라이브러리</li>
-  <li>Pinia: 전역 상태 관리 라이브러리로 필요한 컴포넌트가 접근할 수 있는 중앙 집중식 데이터 저장소(Store)를 메모리 상에 개설한다.</li>
-  <li>Axios: 백엔드 서버(API 서버)와 JSON 등을 주고받는 HTTP 통신 창구.</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Vite]
-   ↓ 빌드
-[Vue 앱 정적 파일]
-   ↓ 라우팅·상태·통신
-[Vue Router] + [Pinia] + [Axios]
-</code></pre></div></div>
-
-<h3 id="spa의-장점">SPA의 장점</h3>
-<ul>
-  <li>압도적인 사용자 경험(UX)</li>
-  <li>네트워크 효율성</li>
-  <li>프론트 / 백엔드 분리</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[SPA 장점]
- ├─ 사용자 경험
- ├─ 네트워크 효율성
- └─ 프론트 / 백엔드 분리
-</code></pre></div></div>
-
-<h3 id="spa-단점">SPA 단점</h3>
-<ul>
-  <li>초기 로딩 속도: 초기 화면에 필요한 JavaScript가 한꺼번에 다운로드·실행되면 첫 접속 시 대기 시간이 발생할 수 있다. 코드 분할을 적용하면 필요한 코드만 먼저 불러올 수도 있다.</li>
-  <li>SEO 취약: 순수 CSR에서는 검색 로봇이 JavaScript를 실행하기 전 알맹이가 적은 <code class="language-plaintext highlighter-rouge">index.html</code>을 먼저 보게 될 수 있어 검색 노출에 불리할 수 있다.</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[초기 JS 다운로드·실행]
-          ↓
-   [첫 화면 대기 시간]
-
-[SSR/SSG 또는 코드 분할]
-          ↓
-   [초기 부담 완화 가능]
-</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Frontend" /><category term="Vue.js" /><summary type="html"><![CDATA[Vue.js]]></summary></entry><entry><title type="html">Deep Learning 테스트</title><link href="https://minnong511.github.io/deep_learning/2026/07/30/deep-learning-test/" rel="alternate" type="text/html" title="Deep Learning 테스트" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>https://minnong511.github.io/deep_learning/2026/07/30/deep-learning-test</id><content type="html" xml:base="https://minnong511.github.io/deep_learning/2026/07/30/deep-learning-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><summary type="html"><![CDATA[가]]></summary></entry><entry><title type="html">[번외] Vue 개념 점검</title><link href="https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro2/" rel="alternate" type="text/html" title="[번외] Vue 개념 점검" /><published>2026-07-30T09:01:00+09:00</published><updated>2026-07-30T09:01:00+09:00</updated><id>https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro2</id><content type="html" xml:base="https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro2/"><![CDATA[<h2 id="vue에서-반드시-알아야-하는-javascript">Vue에서 반드시 알아야 하는 JavaScript</h2>
-
-<p>Vue를 시작하기 전에 진짜~ 기본적인 JavaScript를 알아보고 가자.</p>
-
-<p>전부 외울 필요는 없고, 아래 문법을 읽고 간단하게 사용할 수 있으면 된다.</p>
-
-<ul>
-  <li>객체와 배열</li>
-  <li>함수와 화살표 함수</li>
-  <li>구조 분해와 스프레드 문법</li>
-  <li><code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code>, <code class="language-plaintext highlighter-rouge">find</code>, <code class="language-plaintext highlighter-rouge">reduce</code></li>
-  <li><code class="language-plaintext highlighter-rouge">import</code>와 <code class="language-plaintext highlighter-rouge">export</code></li>
-  <li><code class="language-plaintext highlighter-rouge">async</code>와 <code class="language-plaintext highlighter-rouge">await</code></li>
-</ul>
-
-<h3 id="변수-객체-배열">변수, 객체, 배열</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Lee</span><span class="dl">'</span>
-<span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Lee</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">active</span><span class="p">:</span> <span class="kc">true</span>
-<span class="p">}</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Lee</span><span class="dl">'</span><span class="p">,</span> <span class="na">active</span><span class="p">:</span> <span class="kc">true</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span> <span class="na">active</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
-<span class="p">]</span>
-</code></pre></div></div>
-
-<h3 id="함수와-구조-분해">함수와 구조 분해</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span> <span class="p">}</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Lee</span><span class="dl">'</span><span class="p">,</span>
-  <span class="na">age</span><span class="p">:</span> <span class="mi">25</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="배열-함수와-자주-쓰는-문법">배열 함수와 자주 쓰는 문법</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">names</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">activeUsers</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">firstUser</span> <span class="o">=</span> <span class="nx">users</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="p">...</span><span class="nx">users</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-  <span class="na">active</span><span class="p">:</span> <span class="kc">false</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">isLoggedIn</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">환영합니다</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">로그인하세요</span><span class="dl">'</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">map</code>은 배열을 변환하고, <code class="language-plaintext highlighter-rouge">filter</code>는 조건에 맞는 항목만 남기며, <code class="language-plaintext highlighter-rouge">find</code>는 조건에 맞는 첫 번째 항목을 찾는다. 상품 총합처럼 여러 값을 하나로 합칠 때는 <code class="language-plaintext highlighter-rouge">reduce</code>를 사용한다.</p>
-
-<h3 id="비동기-처리">비동기 처리</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">loadUsers</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/users</span><span class="dl">'</span><span class="p">)</span>
-  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
-
-  <span class="k">return</span> <span class="nx">data</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="vue-코드를-읽는-방법">Vue 코드를 읽는 방법</h2>
-
-<p>Vue 코드는 먼저 상태를 찾고, 그 상태를 바꾸는 함수와 템플릿의 연결을 확인하면 된다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">products</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">키보드</span><span class="dl">'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">50000</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">마우스</span><span class="dl">'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">30000</span> <span class="p">}</span>
-<span class="p">])</span>
-
-<span class="kd">const</span> <span class="nx">selectedProduct</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">products</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span>
-  <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">})</span>
-
-<span class="kd">const</span> <span class="nx">selectProduct</span> <span class="o">=</span> <span class="p">(</span><span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">selectedProduct</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">product</span>
-<span class="p">}</span>
-<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
-
-<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"product in products"</span> <span class="na">:key=</span><span class="s">"product.id"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectProduct(product)"</span><span class="nt">&gt;</span>
-      <span class="si">{{</span> <span class="nx">product</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span>
-    <span class="nt">&lt;/button&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-
-  <span class="nt">&lt;p&gt;</span>총가격: <span class="si">{{</span> <span class="nx">totalPrice</span> <span class="si">}}</span>원<span class="nt">&lt;/p&gt;</span>
-
-  <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"selectedProduct"</span><span class="nt">&gt;</span>
-    선택 상품: <span class="si">{{</span> <span class="nx">selectedProduct</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span>
-  <span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<p>읽는 순서는 다음과 같다.</p>
-
-<ol>
-  <li>어떤 반응형 상태가 있는가? → <code class="language-plaintext highlighter-rouge">products</code>, <code class="language-plaintext highlighter-rouge">selectedProduct</code></li>
-  <li>어떤 계산된 값이 있는가? → <code class="language-plaintext highlighter-rouge">totalPrice</code></li>
-  <li>어떤 함수가 상태를 바꾸는가? → <code class="language-plaintext highlighter-rouge">selectProduct</code></li>
-  <li>템플릿에서 무엇을 반복하는가? → <code class="language-plaintext highlighter-rouge">products</code></li>
-  <li>어떤 이벤트가 함수를 호출하는가? → <code class="language-plaintext highlighter-rouge">@click</code></li>
-  <li>어떤 조건에서 화면이 나타나는가? → <code class="language-plaintext highlighter-rouge">v-if="selectedProduct"</code></li>
-</ol>
-
-<p>결국 Vue 코드는 <strong>상태 → 함수 → 템플릿 연결</strong> 순서로 분석하면 된다.</p>
-
-<h2 id="기본-개념">기본 개념</h2>
-
-<h3 id="1-일반-변수와-ref">1. 일반 변수와 <code class="language-plaintext highlighter-rouge">ref</code></h3>
-
-<p>일반 변수도 값을 변경할 수 있지만, Vue가 그 변경을 반응형 상태로 추적하지는 않는다.</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="nx">count</span><span class="o">++</span>
-</code></pre></div></div>
-
-<p>Vue가 값을 추적하고 화면까지 갱신하게 하려면 <code class="language-plaintext highlighter-rouge">ref</code>를 사용한다.</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
-</code></pre></div></div>
-
-<p>정리하면 다음과 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>값 변경</th>
-      <th>Vue의 변경 추적</th>
-      <th>화면 갱신</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>일반 변수</td>
-      <td>가능</td>
-      <td>하지 않음</td>
-      <td>보장하지 않음</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ref</code></td>
-      <td>가능</td>
-      <td>함</td>
-      <td>반응형으로 갱신</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="2-javascript에서는-value-템플릿에서는-생략">2. JavaScript에서는 <code class="language-plaintext highlighter-rouge">.value</code>, 템플릿에서는 생략</h3>
-
-<p><code class="language-plaintext highlighter-rouge">ref(0)</code>은 내부적으로 값을 감싸는 반응형 객체를 만든다.</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1">// JavaScript에서는</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-<span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
-</code></pre></div></div>
-
-<p>템플릿에서는 Vue가 <code class="language-plaintext highlighter-rouge">.value</code>를 자동으로 처리하므로 생략할 수 있다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>{{ count }}<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<p>이것을 <strong>자동 ref 언래핑</strong>이라고 한다.</p>
-
-<h3 id="3-v-bindsrc와-src">3. <code class="language-plaintext highlighter-rouge">v-bind:src</code>와 <code class="language-plaintext highlighter-rouge">:src</code></h3>
-
-<p>둘은 같은 문법이다. <code class="language-plaintext highlighter-rouge">:</code>는 <code class="language-plaintext highlighter-rouge">v-bind:</code>의 줄임말이다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;img</span> <span class="na">v-bind:src=</span><span class="s">"imageUrl"</span> <span class="na">alt=</span><span class="s">"프로필"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;img</span> <span class="na">:src=</span><span class="s">"imageUrl"</span> <span class="na">alt=</span><span class="s">"프로필"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<h3 id="4-clickincrease와-clickincrease">4. <code class="language-plaintext highlighter-rouge">@click="increase"</code>와 <code class="language-plaintext highlighter-rouge">@click="increase()"</code></h3>
-
-<p>인자가 없는 단순한 이벤트라면 함수 이름을 바로 전달하는 방식이 읽기 좋다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increase"</span><span class="nt">&gt;</span>증가<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>인자를 전달해야 할 때는 괄호를 사용한다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectCity(city)"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<p>함수 이름만 전달하면 Vue가 이벤트 객체를 함수에 전달할 수도 있다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"handleClick"</span><span class="nt">&gt;</span>클릭<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="5-v-if와-v-show">5. <code class="language-plaintext highlighter-rouge">v-if</code>와 <code class="language-plaintext highlighter-rouge">v-show</code></h3>
-
-<p>둘 다 조건에 따라 화면을 보이거나 숨기지만 동작이 다르다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"isVisible"</span><span class="nt">&gt;</span>내용<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">v-show=</span><span class="s">"isVisible"</span><span class="nt">&gt;</span>내용<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">v-if</code>: 조건에 따라 DOM 요소를 생성하거나 제거한다.</li>
-  <li><code class="language-plaintext highlighter-rouge">v-show</code>: DOM 요소를 유지하고 CSS의 <code class="language-plaintext highlighter-rouge">display</code>로 보이거나 숨긴다.</li>
-</ul>
-
-<p><code class="language-plaintext highlighter-rouge">v-if</code>는 조건 변경 비용이 있지만 처음부터 렌더링하지 않을 수 있다. <code class="language-plaintext highlighter-rouge">v-show</code>는 자주 보였다 숨겨지는 요소에 적합하다.</p>
-
-<h3 id="6-v-for와-key">6. <code class="language-plaintext highlighter-rouge">v-for</code>와 <code class="language-plaintext highlighter-rouge">key</code></h3>
-
-<p><code class="language-plaintext highlighter-rouge">v-for</code>가 만든 반복 변수는 해당 요소와 자식 요소 안에서만 사용할 수 있다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"city in cities"</span> <span class="na">:key=</span><span class="s">"city.id"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;span&gt;</span>{{ city.name }}: {{ city.temp }}℃<span class="nt">&lt;/span&gt;</span>
-  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectCity(city)"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">city</code>는 반복문 밖에서는 존재하지 않는다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"city in cities"</span> <span class="na">:key=</span><span class="s">"city.id"</span><span class="nt">&gt;</span>
-  {{ city.name }}
-<span class="nt">&lt;/div&gt;</span>
-
-<span class="c">&lt;!-- 오류: city는 v-for 바깥에서 사용할 수 없음 --&gt;</span>
-<span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectCity(city)"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">key</code>는 각 항목의 고유한 정체성을 Vue에 알려준다. 목록의 순서가 바뀌거나 항목이 삭제될 때 Vue가 어떤 DOM을 재사용하고 제거할지 정확하게 판단할 수 있다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"user in users"</span> <span class="na">:key=</span><span class="s">"user.id"</span><span class="nt">&gt;</span>
-  {{ user.name }}
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<h3 id="7-computed와-일반-함수">7. <code class="language-plaintext highlighter-rouge">computed</code>와 일반 함수</h3>
-
-<p>상태에서 새로운 값을 계산하면 <code class="language-plaintext highlighter-rouge">computed</code>, 사용자 행동을 처리하면 일반 함수를 사용한다.</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">products</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span>
-  <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">})</span>
-
-<span class="kd">const</span> <span class="nx">save</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">저장되었습니다.</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span>총가격: {{ totalPrice }}원<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"save"</span><span class="nt">&gt;</span>저장<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">computed</code>는 계산된 값이므로 템플릿에서 함수처럼 호출하지 않는다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 잘못된 사용 --&gt;</span>
-<span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"totalPrice(products)"</span><span class="nt">&gt;</span>총가격<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<p>기억법은 간단하다.</p>
-
-<ul>
-  <li>증가, 삭제, 선택, 저장 → 일반 함수</li>
-  <li>총합, 개수, 평균, 필터 결과 → <code class="language-plaintext highlighter-rouge">computed</code></li>
-</ul>
-
-<h3 id="8-v-model은-입력-요소에-사용">8. <code class="language-plaintext highlighter-rouge">v-model</code>은 입력 요소에 사용</h3>
-
-<p><code class="language-plaintext highlighter-rouge">v-model</code>은 사용자가 값을 입력하거나 선택하는 요소에 연결한다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"name"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;textarea</span> <span class="na">v-model=</span><span class="s">"content"</span><span class="nt">&gt;&lt;/textarea&gt;</span>
-
-<span class="nt">&lt;select</span> <span class="na">v-model=</span><span class="s">"selectedCity"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"서울"</span><span class="nt">&gt;</span>서울<span class="nt">&lt;/option&gt;</span>
-<span class="nt">&lt;/select&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">p</code>는 값을 입력받는 요소가 아니라 결과를 보여주는 요소다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 잘못된 사용 --&gt;</span>
-<span class="nt">&lt;p</span> <span class="na">input</span> <span class="na">v-model=</span><span class="s">"name"</span><span class="nt">&gt;</span>{{ name }}<span class="nt">&lt;/p&gt;</span>
-
-<span class="c">&lt;!-- 올바른 사용 --&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"name"</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;p&gt;</span>{{ name }}<span class="nt">&lt;/p&gt;</span>
-</code></pre></div></div>
-
-<p>입력과 출력의 흐름은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자가 input에 입력
-        ↓
-v-model이 name 상태를 변경
-        ↓
-실제로는 name.value가 변경
-        ↓
-{{ name }}을 사용하는 화면이 갱신
-</code></pre></div></div>
-
-<h3 id="9-부모와-자식-컴포넌트-통신">9. 부모와 자식 컴포넌트 통신</h3>
-
-<p>부모에서 자식으로는 <code class="language-plaintext highlighter-rouge">props</code>, 자식에서 부모로는 <code class="language-plaintext highlighter-rouge">emit</code>을 사용한다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 부모 컴포넌트 --&gt;</span>
-<span class="nt">&lt;UserCard</span> <span class="na">:name=</span><span class="s">"userName"</span> <span class="err">@</span><span class="na">select=</span><span class="s">"handleSelect"</span> <span class="nt">/&gt;</span>
-</code></pre></div></div>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 자식 컴포넌트 --&gt;</span>
-<span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
-<span class="nx">defineProps</span><span class="p">({</span>
-  <span class="na">name</span><span class="p">:</span> <span class="nb">String</span>
-<span class="p">})</span>
-
-<span class="kd">const</span> <span class="nx">emit</span> <span class="o">=</span> <span class="nx">defineEmits</span><span class="p">([</span><span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">])</span>
-
-<span class="kd">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">emit</span><span class="p">(</span><span class="dl">'</span><span class="s1">select</span><span class="dl">'</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
-
-<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="si">{{</span> <span class="nx">name</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"handleClick"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<p>흐름은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>부모 → 자식: props
-자식 → 부모: emit
-</code></pre></div></div>
-
-<h3 id="10-버튼-클릭부터-화면-변경까지">10. 버튼 클릭부터 화면 변경까지</h3>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
-<span class="p">}</span>
-<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
-
-<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;p&gt;</span><span class="si">{{</span> <span class="nx">count</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increase"</span><span class="nt">&gt;</span>증가<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자가 버튼을 클릭
-        ↓
-@click이 increase 실행
-        ↓
-count.value 변경
-        ↓
-Vue가 변경을 감지
-        ↓
-{{ count }}를 사용하는 화면 갱신
-</code></pre></div></div>
-
-<h2 id="코드-따라치기-작은-관리-화면-만들기">코드 따라치기: 작은 관리 화면 만들기</h2>
-
-<p>앞에서 배운 <code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">v-model</code>, <code class="language-plaintext highlighter-rouge">v-if</code>, <code class="language-plaintext highlighter-rouge">v-for</code>, 이벤트를 한 번에 연습해보자.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">computed</span><span class="p">,</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
-
-<span class="c1">// 1. 카운터</span>
-<span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">decrease</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">--</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">reset</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="p">}</span>
-
-<span class="c1">// 2. 이름 입력</span>
-<span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
-
-<span class="c1">// 3. 도시 목록</span>
-<span class="kd">const</span> <span class="nx">cities</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span><span class="p">,</span> <span class="na">temp</span><span class="p">:</span> <span class="mi">28</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">수원</span><span class="dl">'</span><span class="p">,</span> <span class="na">temp</span><span class="p">:</span> <span class="mi">27</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">부산</span><span class="dl">'</span><span class="p">,</span> <span class="na">temp</span><span class="p">:</span> <span class="mi">26</span> <span class="p">}</span>
-<span class="p">])</span>
-
-<span class="kd">const</span> <span class="nx">selectedCity</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">selectCity</span> <span class="o">=</span> <span class="p">(</span><span class="nx">city</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">selectedCity</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">city</span>
-<span class="p">}</span>
-
-<span class="c1">// 4. 상품 목록</span>
-<span class="kd">const</span> <span class="nx">products</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">키보드</span><span class="dl">'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">50000</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">마우스</span><span class="dl">'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">30000</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">모니터</span><span class="dl">'</span><span class="p">,</span> <span class="na">price</span><span class="p">:</span> <span class="mi">250000</span> <span class="p">}</span>
-<span class="p">])</span>
-
-<span class="kd">const</span> <span class="nx">totalPrice</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">products</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">product</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span>
-  <span class="p">},</span> <span class="mi">0</span><span class="p">)</span>
-<span class="p">})</span>
-
-<span class="c1">// 5. 할 일 목록</span>
-<span class="kd">const</span> <span class="nx">newTodo</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Vue 공부하기</span><span class="dl">'</span> <span class="p">}</span>
-<span class="p">])</span>
-
-<span class="kd">const</span> <span class="nx">addTodo</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">newTodo</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="nx">text</span> <span class="o">===</span> <span class="dl">''</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span>
-  <span class="p">}</span>
-
-  <span class="nx">todos</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-    <span class="na">id</span><span class="p">:</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span>
-    <span class="nx">text</span>
-  <span class="p">})</span>
-
-  <span class="nx">newTodo</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="dl">''</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">deleteTodo</span> <span class="o">=</span> <span class="p">(</span><span class="nx">todoId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">todos</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">todos</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">todo</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">id</span> <span class="o">!==</span> <span class="nx">todoId</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-
-<span class="kd">const</span> <span class="nx">todoCount</span> <span class="o">=</span> <span class="nx">computed</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">todos</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span>
-<span class="p">})</span>
-<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
-
-<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;main&gt;</span>
-    <span class="nt">&lt;section&gt;</span>
-      <span class="nt">&lt;h2&gt;</span>1. 카운터<span class="nt">&lt;/h2&gt;</span>
-
-      <span class="nt">&lt;p&gt;</span>현재 숫자: <span class="si">{{</span> <span class="nx">count</span> <span class="si">}}</span><span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"increase"</span><span class="nt">&gt;</span>증가<span class="nt">&lt;/button&gt;</span>
-      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"decrease"</span><span class="nt">&gt;</span>감소<span class="nt">&lt;/button&gt;</span>
-      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"reset"</span><span class="nt">&gt;</span>초기화<span class="nt">&lt;/button&gt;</span>
-
-      <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"count &gt; 0"</span><span class="nt">&gt;</span>양수입니다.<span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;p</span> <span class="na">v-else-if=</span><span class="s">"count === 0"</span><span class="nt">&gt;</span>0입니다.<span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;p</span> <span class="na">v-else</span><span class="nt">&gt;</span>음수입니다.<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/section&gt;</span>
-
-    <span class="nt">&lt;section&gt;</span>
-      <span class="nt">&lt;h2&gt;</span>2. 이름 입력<span class="nt">&lt;/h2&gt;</span>
-
-      <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"name"</span> <span class="na">placeholder=</span><span class="s">"이름을 입력하세요"</span> <span class="nt">/&gt;</span>
-      <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"name.trim() === ''"</span><span class="nt">&gt;</span>이름을 입력하세요.<span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;p</span> <span class="na">v-else</span><span class="nt">&gt;</span>안녕하세요, <span class="si">{{</span> <span class="nx">name</span> <span class="si">}}</span>님!<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/section&gt;</span>
-
-    <span class="nt">&lt;section&gt;</span>
-      <span class="nt">&lt;h2&gt;</span>3. 도시 목록<span class="nt">&lt;/h2&gt;</span>
-
-      <span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"city in cities"</span> <span class="na">:key=</span><span class="s">"city.id"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;span&gt;</span><span class="si">{{</span> <span class="nx">city</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span>: <span class="si">{{</span> <span class="nx">city</span><span class="p">.</span><span class="nx">temp</span> <span class="si">}}</span>℃<span class="nt">&lt;/span&gt;</span>
-        <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectCity(city)"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-
-      <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"selectedCity"</span><span class="nt">&gt;</span>
-        선택된 도시: <span class="si">{{</span> <span class="nx">selectedCity</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span>
-      <span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;p</span> <span class="na">v-else</span><span class="nt">&gt;</span>선택된 도시가 없습니다.<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/section&gt;</span>
-
-    <span class="nt">&lt;section&gt;</span>
-      <span class="nt">&lt;h2&gt;</span>4. 상품 목록<span class="nt">&lt;/h2&gt;</span>
-
-      <span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"product in products"</span> <span class="na">:key=</span><span class="s">"product.id"</span><span class="nt">&gt;</span>
-        <span class="si">{{</span> <span class="nx">product</span><span class="p">.</span><span class="nx">name</span> <span class="si">}}</span>: <span class="si">{{</span> <span class="nx">product</span><span class="p">.</span><span class="nx">price</span> <span class="si">}}</span>원
-      <span class="nt">&lt;/div&gt;</span>
-
-      <span class="nt">&lt;p&gt;</span>총가격: <span class="si">{{</span> <span class="nx">totalPrice</span> <span class="si">}}</span>원<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/section&gt;</span>
-
-    <span class="nt">&lt;section&gt;</span>
-      <span class="nt">&lt;h2&gt;</span>5. 할 일 목록<span class="nt">&lt;/h2&gt;</span>
-
-      <span class="nt">&lt;input</span>
-        <span class="na">v-model=</span><span class="s">"newTodo"</span>
-        <span class="na">placeholder=</span><span class="s">"할 일을 입력하세요"</span>
-        <span class="err">@</span><span class="na">keyup.enter=</span><span class="s">"addTodo"</span>
-      <span class="nt">/&gt;</span>
-      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addTodo"</span><span class="nt">&gt;</span>추가<span class="nt">&lt;/button&gt;</span>
-
-      <span class="nt">&lt;p&gt;</span>현재 할 일: <span class="si">{{</span> <span class="nx">todoCount</span> <span class="si">}}</span>개<span class="nt">&lt;/p&gt;</span>
-
-      <span class="nt">&lt;p</span> <span class="na">v-if=</span><span class="s">"todos.length === 0"</span><span class="nt">&gt;</span>등록된 할 일이 없습니다.<span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;ul</span> <span class="na">v-else</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"todo in todos"</span> <span class="na">:key=</span><span class="s">"todo.id"</span><span class="nt">&gt;</span>
-          <span class="si">{{</span> <span class="nx">todo</span><span class="p">.</span><span class="nx">text</span> <span class="si">}}</span>
-          <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"deleteTodo(todo.id)"</span><span class="nt">&gt;</span>삭제<span class="nt">&lt;/button&gt;</span>
-        <span class="nt">&lt;/li&gt;</span>
-      <span class="nt">&lt;/ul&gt;</span>
-    <span class="nt">&lt;/section&gt;</span>
-  <span class="nt">&lt;/main&gt;</span>
-<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<h2 id="자주-발생하는-문법-오류">자주 발생하는 문법 오류</h2>
-
-<h3 id="1-ref-값을-value-없이-변경">1. <code class="language-plaintext highlighter-rouge">ref</code> 값을 <code class="language-plaintext highlighter-rouge">.value</code> 없이 변경</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1">// 잘못된 사용</span>
-<span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="o">++</span>
-<span class="p">}</span>
-
-<span class="c1">// 올바른 사용</span>
-<span class="kd">const</span> <span class="nx">increase</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h3 id="2-화살표-함수-문법-오류">2. 화살표 함수 문법 오류</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 잘못된 사용</span>
-<span class="kd">const</span> <span class="nx">handleClick</span><span class="p">()</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">클릭</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// 올바른 사용 1</span>
-<span class="kd">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">클릭</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="c1">// 올바른 사용 2</span>
-<span class="kd">function</span> <span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="dl">'</span><span class="s1">클릭</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>화살표 함수와 일반 함수 문법을 섞으면 안 된다.</p>
-
-<h3 id="3-배열-객체-사이의-쉼표-누락">3. 배열 객체 사이의 쉼표 누락</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 잘못된 사용</span>
-<span class="kd">const</span> <span class="nx">cities</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span> <span class="p">}</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">부산</span><span class="dl">'</span> <span class="p">}</span>
-<span class="p">])</span>
-
-<span class="c1">// 올바른 사용</span>
-<span class="kd">const</span> <span class="nx">cities</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">부산</span><span class="dl">'</span> <span class="p">}</span>
-<span class="p">])</span>
-</code></pre></div></div>
-
-<h3 id="4-v-for-변수의-범위-착각">4. <code class="language-plaintext highlighter-rouge">v-for</code> 변수의 범위 착각</h3>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"city in cities"</span> <span class="na">:key=</span><span class="s">"city.id"</span><span class="nt">&gt;</span>
-  {{ city.name }}
-<span class="nt">&lt;/div&gt;</span>
-
-<span class="c">&lt;!-- city는 이 위치에 없음 --&gt;</span>
-<span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectCity(city)"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-</code></pre></div></div>
-
-<p>반복 중인 항목을 사용하려면 버튼도 반복 범위 안에 넣어야 한다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">v-for=</span><span class="s">"city in cities"</span> <span class="na">:key=</span><span class="s">"city.id"</span><span class="nt">&gt;</span>
-  {{ city.name }}
-  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"selectCity(city)"</span><span class="nt">&gt;</span>선택<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre></div></div>
-
-<h3 id="5-ref-import와-value-누락">5. <code class="language-plaintext highlighter-rouge">ref</code> import와 <code class="language-plaintext highlighter-rouge">.value</code> 누락</h3>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
-<span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
-
-<span class="kd">const</span> <span class="nx">selectedCity</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
-
-<span class="kd">const</span> <span class="nx">selectCity</span> <span class="o">=</span> <span class="p">(</span><span class="nx">city</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">selectedCity</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">city</span>
-<span class="p">}</span>
-<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">ref</code>를 사용하면 import가 필요하고, JavaScript에서 값을 변경할 때는 <code class="language-plaintext highlighter-rouge">.value</code>를 사용한다.</p>
-
-<h3 id="6-html-부모자식-구조-오류">6. HTML 부모·자식 구조 오류</h3>
-
-<p>목록 전체를 버튼 안에 넣기보다, 입력·버튼·목록을 자연스러운 형제로 구성한다.</p>
-
-<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- 잘못된 구조 --&gt;</span>
-<span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addTodo"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;li&gt;</span>Vue 공부<span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/button&gt;</span>
-
-<span class="c">&lt;!-- 올바른 구조 --&gt;</span>
-<span class="nt">&lt;section&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">v-model=</span><span class="s">"newTodo"</span> <span class="nt">/&gt;</span>
-  <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"addTodo"</span><span class="nt">&gt;</span>추가<span class="nt">&lt;/button&gt;</span>
-
-  <span class="nt">&lt;ul&gt;</span>
-    <span class="nt">&lt;li</span> <span class="na">v-for=</span><span class="s">"todo in todos"</span> <span class="na">:key=</span><span class="s">"todo.id"</span><span class="nt">&gt;</span>
-      {{ todo.text }}
-      <span class="nt">&lt;button</span> <span class="err">@</span><span class="na">click=</span><span class="s">"deleteTodo(todo.id)"</span><span class="nt">&gt;</span>삭제<span class="nt">&lt;/button&gt;</span>
-    <span class="nt">&lt;/li&gt;</span>
-  <span class="nt">&lt;/ul&gt;</span>
-<span class="nt">&lt;/section&gt;</span>
-</code></pre></div></div>
-
-<h2 id="최종-점검">최종 점검</h2>
-
-<p>아래 질문에 답할 수 있으면 Vue 기초 흐름은 잘 잡힌 것이다.</p>
-
-<ol>
-  <li><code class="language-plaintext highlighter-rouge">ref</code> 값은 JavaScript에서 어떻게 읽고 변경하는가? → <code class="language-plaintext highlighter-rouge">.value</code></li>
-  <li>템플릿에서 <code class="language-plaintext highlighter-rouge">ref</code>의 <code class="language-plaintext highlighter-rouge">.value</code>를 생략할 수 있는 이유는? → 자동 ref 언래핑</li>
-  <li>이벤트가 함수를 실행하고 함수가 상태를 변경하는 흐름을 설명할 수 있는가?</li>
-  <li><code class="language-plaintext highlighter-rouge">v-for</code>로 만든 변수는 어느 범위에서 사용할 수 있는가? → 반복 요소와 자식 요소 안</li>
-  <li><code class="language-plaintext highlighter-rouge">computed</code>와 일반 함수의 차이는 무엇인가? → 계산된 값과 사용자 행동 처리</li>
-  <li><code class="language-plaintext highlighter-rouge">v-model</code>은 어떤 요소에 사용하는가? → 값을 입력하거나 선택하는 요소</li>
-  <li>부모에서 자식으로, 자식에서 부모로 데이터를 전달할 때 무엇을 사용하는가? → <code class="language-plaintext highlighter-rouge">props</code>, <code class="language-plaintext highlighter-rouge">emit</code></li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ref 선언
-  ↓
-템플릿과 v-model·이벤트 연결
-  ↓
-함수가 상태 변경
-  ↓
-computed가 필요한 값을 계산
-  ↓
-Vue가 화면을 갱신
-</code></pre></div></div>
-
-<p>여기까지 이해했으면 이제부터는 문법 자체보다, 어떤 상태를 만들고 어떤 흐름으로 화면에 연결할지 생각하면 된다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Frontend" /><category term="Vue" /><category term="Vue" /><summary type="html"><![CDATA[Vue에서 반드시 알아야 하는 JavaScript Vue를 시작하기 전에 진짜~ 기본적인 JavaScript를 알아보고 가자. 전부 외울 필요는 없고, 아래 문법을 읽고 간단하게 사용할 수 있으면 된다. 객체와 배열 함수와 화살표 함수 구조 분해와 스프레드 문법 map, filter, find, reduce import와 export async와 await 변수, 객체, 배열 const name = 'Lee' let count = 0 const user = { id: 1, name: 'Lee', active: true } console.log(user.name) console.log(user.active) const users = [ { id: 1, name: 'Lee', active: true }, { id: 2, name: 'Kim', active: false } ] 함수와 구조 분해 const add = (a, b) =&gt; { return a + b } const { name, age } = { name: 'Lee', age: 25 } 배열 함수와 자주 쓰는 문법 const names = users.map((user) =&gt; user.name) const activeUsers = users.filter((user) =&gt; user.active) const firstUser = users.find((user) =&gt; user.id === 1) const newUser = { ...users[0], active: false } const message = isLoggedIn ? '환영합니다' : '로그인하세요' map은 배열을 변환하고, filter는 조건에 맞는 항목만 남기며, find는 조건에 맞는 첫 번째 항목을 찾는다. 상품 총합처럼 여러 값을 하나로 합칠 때는 reduce를 사용한다. 비동기 처리 const loadUsers = async () =&gt; { const response = await fetch('/api/users') const data = await response.json() return data } Vue 코드를 읽는 방법 Vue 코드는 먼저 상태를 찾고, 그 상태를 바꾸는 함수와 템플릿의 연결을 확인하면 된다. &lt;script setup&gt; import { computed, ref } from 'vue' const products = ref([ { id: 1, name: '키보드', price: 50000 }, { id: 2, name: '마우스', price: 30000 } ]) const selectedProduct = ref(null) const totalPrice = computed(() =&gt; { return products.value.reduce((sum, product) =&gt; { return sum + product.price }, 0) }) const selectProduct = (product) =&gt; { selectedProduct.value = product } &lt;/script&gt; &lt;template&gt; &lt;div v-for="product in products" :key="product.id"&gt; &lt;button @click="selectProduct(product)"&gt; {{ product.name }} &lt;/button&gt; &lt;/div&gt; &lt;p&gt;총가격: {{ totalPrice }}원&lt;/p&gt; &lt;p v-if="selectedProduct"&gt; 선택 상품: {{ selectedProduct.name }} &lt;/p&gt; &lt;/template&gt; 읽는 순서는 다음과 같다. 어떤 반응형 상태가 있는가? → products, selectedProduct 어떤 계산된 값이 있는가? → totalPrice 어떤 함수가 상태를 바꾸는가? → selectProduct 템플릿에서 무엇을 반복하는가? → products 어떤 이벤트가 함수를 호출하는가? → @click 어떤 조건에서 화면이 나타나는가? → v-if="selectedProduct" 결국 Vue 코드는 상태 → 함수 → 템플릿 연결 순서로 분석하면 된다. 기본 개념 1. 일반 변수와 ref 일반 변수도 값을 변경할 수 있지만, Vue가 그 변경을 반응형 상태로 추적하지는 않는다. let count = 0 count++ Vue가 값을 추적하고 화면까지 갱신하게 하려면 ref를 사용한다. import { ref } from 'vue' const count = ref(0) count.value++ 정리하면 다음과 같다. 구분 값 변경 Vue의 변경 추적 화면 갱신 일반 변수 가능 하지 않음 보장하지 않음 ref 가능 함 반응형으로 갱신 2. JavaScript에서는 .value, 템플릿에서는 생략 ref(0)은 내부적으로 값을 감싸는 반응형 객체를 만든다. const count = ref(0) // JavaScript에서는 console.log(count.value) count.value++ 템플릿에서는 Vue가 .value를 자동으로 처리하므로 생략할 수 있다. &lt;p&gt;{{ count }}&lt;/p&gt; 이것을 자동 ref 언래핑이라고 한다. 3. v-bind:src와 :src 둘은 같은 문법이다. :는 v-bind:의 줄임말이다. &lt;img v-bind:src="imageUrl" alt="프로필" /&gt; &lt;img :src="imageUrl" alt="프로필" /&gt; 4. @click="increase"와 @click="increase()" 인자가 없는 단순한 이벤트라면 함수 이름을 바로 전달하는 방식이 읽기 좋다. &lt;button @click="increase"&gt;증가&lt;/button&gt; const increase = () =&gt; { count.value++ } 인자를 전달해야 할 때는 괄호를 사용한다. &lt;button @click="selectCity(city)"&gt;선택&lt;/button&gt; 함수 이름만 전달하면 Vue가 이벤트 객체를 함수에 전달할 수도 있다. &lt;button @click="handleClick"&gt;클릭&lt;/button&gt; const handleClick = (event) =&gt; { console.log(event) } 5. v-if와 v-show 둘 다 조건에 따라 화면을 보이거나 숨기지만 동작이 다르다. &lt;p v-if="isVisible"&gt;내용&lt;/p&gt; &lt;p v-show="isVisible"&gt;내용&lt;/p&gt; v-if: 조건에 따라 DOM 요소를 생성하거나 제거한다. v-show: DOM 요소를 유지하고 CSS의 display로 보이거나 숨긴다. v-if는 조건 변경 비용이 있지만 처음부터 렌더링하지 않을 수 있다. v-show는 자주 보였다 숨겨지는 요소에 적합하다. 6. v-for와 key v-for가 만든 반복 변수는 해당 요소와 자식 요소 안에서만 사용할 수 있다. &lt;div v-for="city in cities" :key="city.id"&gt; &lt;span&gt;{{ city.name }}: {{ city.temp }}℃&lt;/span&gt; &lt;button @click="selectCity(city)"&gt;선택&lt;/button&gt; &lt;/div&gt; city는 반복문 밖에서는 존재하지 않는다. &lt;div v-for="city in cities" :key="city.id"&gt; {{ city.name }} &lt;/div&gt; &lt;!-- 오류: city는 v-for 바깥에서 사용할 수 없음 --&gt; &lt;button @click="selectCity(city)"&gt;선택&lt;/button&gt; key는 각 항목의 고유한 정체성을 Vue에 알려준다. 목록의 순서가 바뀌거나 항목이 삭제될 때 Vue가 어떤 DOM을 재사용하고 제거할지 정확하게 판단할 수 있다. &lt;div v-for="user in users" :key="user.id"&gt; {{ user.name }} &lt;/div&gt; 7. computed와 일반 함수 상태에서 새로운 값을 계산하면 computed, 사용자 행동을 처리하면 일반 함수를 사용한다. const totalPrice = computed(() =&gt; { return products.value.reduce((sum, product) =&gt; { return sum + product.price }, 0) }) const save = () =&gt; { alert('저장되었습니다.') } &lt;p&gt;총가격: {{ totalPrice }}원&lt;/p&gt; &lt;button @click="save"&gt;저장&lt;/button&gt; computed는 계산된 값이므로 템플릿에서 함수처럼 호출하지 않는다. &lt;!-- 잘못된 사용 --&gt; &lt;button @click="totalPrice(products)"&gt;총가격&lt;/button&gt; 기억법은 간단하다. 증가, 삭제, 선택, 저장 → 일반 함수 총합, 개수, 평균, 필터 결과 → computed 8. v-model은 입력 요소에 사용 v-model은 사용자가 값을 입력하거나 선택하는 요소에 연결한다. &lt;input v-model="name" /&gt; &lt;textarea v-model="content"&gt;&lt;/textarea&gt; &lt;select v-model="selectedCity"&gt; &lt;option value="서울"&gt;서울&lt;/option&gt; &lt;/select&gt; p는 값을 입력받는 요소가 아니라 결과를 보여주는 요소다. &lt;!-- 잘못된 사용 --&gt; &lt;p input v-model="name"&gt;{{ name }}&lt;/p&gt; &lt;!-- 올바른 사용 --&gt; &lt;input v-model="name" /&gt; &lt;p&gt;{{ name }}&lt;/p&gt; 입력과 출력의 흐름은 다음과 같다. 사용자가 input에 입력 ↓ v-model이 name 상태를 변경 ↓ 실제로는 name.value가 변경 ↓ {{ name }}을 사용하는 화면이 갱신 9. 부모와 자식 컴포넌트 통신 부모에서 자식으로는 props, 자식에서 부모로는 emit을 사용한다. &lt;!-- 부모 컴포넌트 --&gt; &lt;UserCard :name="userName" @select="handleSelect" /&gt; &lt;!-- 자식 컴포넌트 --&gt; &lt;script setup&gt; defineProps({ name: String }) const emit = defineEmits(['select']) const handleClick = () =&gt; { emit('select', 10) } &lt;/script&gt; &lt;template&gt; &lt;p&gt;{{ name }}&lt;/p&gt; &lt;button @click="handleClick"&gt;선택&lt;/button&gt; &lt;/template&gt; 흐름은 다음과 같다. 부모 → 자식: props 자식 → 부모: emit 10. 버튼 클릭부터 화면 변경까지 &lt;script setup&gt; import { ref } from 'vue' const count = ref(0) const increase = () =&gt; { count.value++ } &lt;/script&gt; &lt;template&gt; &lt;p&gt;{{ count }}&lt;/p&gt; &lt;button @click="increase"&gt;증가&lt;/button&gt; &lt;/template&gt; 사용자가 버튼을 클릭 ↓ @click이 increase 실행 ↓ count.value 변경 ↓ Vue가 변경을 감지 ↓ {{ count }}를 사용하는 화면 갱신 코드 따라치기: 작은 관리 화면 만들기 앞에서 배운 ref, computed, v-model, v-if, v-for, 이벤트를 한 번에 연습해보자. &lt;script setup&gt; import { computed, ref } from 'vue' // 1. 카운터 const count = ref(0) const increase = () =&gt; { count.value++ } const decrease = () =&gt; { count.value-- } const reset = () =&gt; { count.value = 0 } // 2. 이름 입력 const name = ref('') // 3. 도시 목록 const cities = ref([ { id: 1, name: '서울', temp: 28 }, { id: 2, name: '수원', temp: 27 }, { id: 3, name: '부산', temp: 26 } ]) const selectedCity = ref(null) const selectCity = (city) =&gt; { selectedCity.value = city } // 4. 상품 목록 const products = ref([ { id: 1, name: '키보드', price: 50000 }, { id: 2, name: '마우스', price: 30000 }, { id: 3, name: '모니터', price: 250000 } ]) const totalPrice = computed(() =&gt; { return products.value.reduce((sum, product) =&gt; { return sum + product.price }, 0) }) // 5. 할 일 목록 const newTodo = ref('') const todos = ref([ { id: 1, text: 'Vue 공부하기' } ]) const addTodo = () =&gt; { const text = newTodo.value.trim() if (text === '') { return } todos.value.push({ id: Date.now(), text }) newTodo.value = '' } const deleteTodo = (todoId) =&gt; { todos.value = todos.value.filter((todo) =&gt; { return todo.id !== todoId }) } const todoCount = computed(() =&gt; { return todos.value.length }) &lt;/script&gt; &lt;template&gt; &lt;main&gt; &lt;section&gt; &lt;h2&gt;1. 카운터&lt;/h2&gt; &lt;p&gt;현재 숫자: {{ count }}&lt;/p&gt; &lt;button @click="increase"&gt;증가&lt;/button&gt; &lt;button @click="decrease"&gt;감소&lt;/button&gt; &lt;button @click="reset"&gt;초기화&lt;/button&gt; &lt;p v-if="count &gt; 0"&gt;양수입니다.&lt;/p&gt; &lt;p v-else-if="count === 0"&gt;0입니다.&lt;/p&gt; &lt;p v-else&gt;음수입니다.&lt;/p&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;2. 이름 입력&lt;/h2&gt; &lt;input v-model="name" placeholder="이름을 입력하세요" /&gt; &lt;p v-if="name.trim() === ''"&gt;이름을 입력하세요.&lt;/p&gt; &lt;p v-else&gt;안녕하세요, {{ name }}님!&lt;/p&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;3. 도시 목록&lt;/h2&gt; &lt;div v-for="city in cities" :key="city.id"&gt; &lt;span&gt;{{ city.name }}: {{ city.temp }}℃&lt;/span&gt; &lt;button @click="selectCity(city)"&gt;선택&lt;/button&gt; &lt;/div&gt; &lt;p v-if="selectedCity"&gt; 선택된 도시: {{ selectedCity.name }} &lt;/p&gt; &lt;p v-else&gt;선택된 도시가 없습니다.&lt;/p&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;4. 상품 목록&lt;/h2&gt; &lt;div v-for="product in products" :key="product.id"&gt; {{ product.name }}: {{ product.price }}원 &lt;/div&gt; &lt;p&gt;총가격: {{ totalPrice }}원&lt;/p&gt; &lt;/section&gt; &lt;section&gt; &lt;h2&gt;5. 할 일 목록&lt;/h2&gt; &lt;input v-model="newTodo" placeholder="할 일을 입력하세요" @keyup.enter="addTodo" /&gt; &lt;button @click="addTodo"&gt;추가&lt;/button&gt; &lt;p&gt;현재 할 일: {{ todoCount }}개&lt;/p&gt; &lt;p v-if="todos.length === 0"&gt;등록된 할 일이 없습니다.&lt;/p&gt; &lt;ul v-else&gt; &lt;li v-for="todo in todos" :key="todo.id"&gt; {{ todo.text }} &lt;button @click="deleteTodo(todo.id)"&gt;삭제&lt;/button&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/section&gt; &lt;/main&gt; &lt;/template&gt; 자주 발생하는 문법 오류 1. ref 값을 .value 없이 변경 const count = ref(0) // 잘못된 사용 const increase = () =&gt; { count++ } // 올바른 사용 const increase = () =&gt; { count.value++ } 2. 화살표 함수 문법 오류 // 잘못된 사용 const handleClick() = () =&gt; { alert('클릭') } // 올바른 사용 1 const handleClick = () =&gt; { alert('클릭') } // 올바른 사용 2 function handleClick() { alert('클릭') } 화살표 함수와 일반 함수 문법을 섞으면 안 된다. 3. 배열 객체 사이의 쉼표 누락 // 잘못된 사용 const cities = ref([ { id: 1, name: '서울' } { id: 2, name: '부산' } ]) // 올바른 사용 const cities = ref([ { id: 1, name: '서울' }, { id: 2, name: '부산' } ]) 4. v-for 변수의 범위 착각 &lt;div v-for="city in cities" :key="city.id"&gt; {{ city.name }} &lt;/div&gt; &lt;!-- city는 이 위치에 없음 --&gt; &lt;button @click="selectCity(city)"&gt;선택&lt;/button&gt; 반복 중인 항목을 사용하려면 버튼도 반복 범위 안에 넣어야 한다. &lt;div v-for="city in cities" :key="city.id"&gt; {{ city.name }} &lt;button @click="selectCity(city)"&gt;선택&lt;/button&gt; &lt;/div&gt; 5. ref import와 .value 누락 &lt;script setup&gt; import { ref } from 'vue' const selectedCity = ref(null) const selectCity = (city) =&gt; { selectedCity.value = city } &lt;/script&gt; ref를 사용하면 import가 필요하고, JavaScript에서 값을 변경할 때는 .value를 사용한다. 6. HTML 부모·자식 구조 오류 목록 전체를 버튼 안에 넣기보다, 입력·버튼·목록을 자연스러운 형제로 구성한다. &lt;!-- 잘못된 구조 --&gt; &lt;button @click="addTodo"&gt; &lt;ul&gt; &lt;li&gt;Vue 공부&lt;/li&gt; &lt;/ul&gt; &lt;/button&gt; &lt;!-- 올바른 구조 --&gt; &lt;section&gt; &lt;input v-model="newTodo" /&gt; &lt;button @click="addTodo"&gt;추가&lt;/button&gt; &lt;ul&gt; &lt;li v-for="todo in todos" :key="todo.id"&gt; {{ todo.text }} &lt;button @click="deleteTodo(todo.id)"&gt;삭제&lt;/button&gt; &lt;/li&gt; &lt;/ul&gt; &lt;/section&gt; 최종 점검 아래 질문에 답할 수 있으면 Vue 기초 흐름은 잘 잡힌 것이다. ref 값은 JavaScript에서 어떻게 읽고 변경하는가? → .value 템플릿에서 ref의 .value를 생략할 수 있는 이유는? → 자동 ref 언래핑 이벤트가 함수를 실행하고 함수가 상태를 변경하는 흐름을 설명할 수 있는가? v-for로 만든 변수는 어느 범위에서 사용할 수 있는가? → 반복 요소와 자식 요소 안 computed와 일반 함수의 차이는 무엇인가? → 계산된 값과 사용자 행동 처리 v-model은 어떤 요소에 사용하는가? → 값을 입력하거나 선택하는 요소 부모에서 자식으로, 자식에서 부모로 데이터를 전달할 때 무엇을 사용하는가? → props, emit ref 선언 ↓ 템플릿과 v-model·이벤트 연결 ↓ 함수가 상태 변경 ↓ computed가 필요한 값을 계산 ↓ Vue가 화면을 갱신 여기까지 이해했으면 이제부터는 문법 자체보다, 어떤 상태를 만들고 어떤 흐름으로 화면에 연결할지 생각하면 된다.]]></summary></entry><entry><title type="html">CS 테스트</title><link href="https://minnong511.github.io/cs/2026/07/30/cs-test/" rel="alternate" type="text/html" title="CS 테스트" /><published>2026-07-30T09:00:00+09:00</published><updated>2026-07-30T09:00:00+09:00</updated><id>https://minnong511.github.io/cs/2026/07/30/cs-test</id><content type="html" xml:base="https://minnong511.github.io/cs/2026/07/30/cs-test/"><![CDATA[<p>가</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="CS" /><summary type="html"><![CDATA[가]]></summary></entry></feed>
+<h2 id="get-diagnostics와-row_count">GET DIAGNOSTICS와 ROW_COUNT</h2>]]></content><author><name>Min Hyeong Lee</name></author><category term="DB" /><category term="PostgreSQL" /><category term="PostgreSQL" /><summary type="html"><![CDATA[JSONB JSONB 객체 생성 중첩 JSON 반환 jsonb_pretty와 to_jsonb]]></summary></entry></feed>

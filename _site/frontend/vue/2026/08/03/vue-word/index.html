@@ -8,24 +8,24 @@
     
     
     
-    <title>Deep Learning 테스트 · Minnong's Study Log</title>
-    <meta name="description" content="가" />
+    <title>JavaScript & Vue 기본 단어 정의  · Minnong's Study Log</title>
+    <meta name="description" content="JavaScript의 원시값, 객체, 배열을 비교하고 Vue의 ref 안에서 데이터가 어떻게 구성되는지 정리한다." />
     
-    <link rel="canonical" href="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" />
+    <link rel="canonical" href="http://localhost:4000/frontend/vue/2026/08/03/vue-word/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Deep Learning 테스트" />
-    <meta property="og:description" content="가" />
-    <meta property="og:url" content="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" />
+    <meta property="og:title" content="JavaScript &amp; Vue 기본 단어 정의 " />
+    <meta property="og:description" content="JavaScript의 원시값, 객체, 배열을 비교하고 Vue의 ref 안에서 데이터가 어떻게 구성되는지 정리한다." />
+    <meta property="og:url" content="http://localhost:4000/frontend/vue/2026/08/03/vue-word/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
-      <meta property="article:published_time" content="2026-07-30T09:01:00+09:00" />
-      <meta property="article:modified_time" content="2026-07-30T09:01:00+09:00" />
-      <meta property="article:section" content="Deep_Learning" />
-      
+      <meta property="article:published_time" content="2026-08-03T00:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-03T00:00:00+09:00" />
+      <meta property="article:section" content="Frontend" />
+      <meta property="article:tag" content="Frontend" /><meta property="article:tag" content="JavaScript" /><meta property="article:tag" content="ES6" /><meta property="article:tag" content="Vue.js" /><meta property="article:tag" content="Data Type" /><meta property="article:tag" content="ref" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Deep Learning 테스트" />
-    <meta name="twitter:description" content="가" />
+    <meta name="twitter:title" content="JavaScript &amp; Vue 기본 단어 정의 " />
+    <meta name="twitter:description" content="JavaScript의 원시값, 객체, 배열을 비교하고 Vue의 ref 안에서 데이터가 어떻게 구성되는지 정리한다." />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=8"></script>
@@ -34,15 +34,15 @@
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" },
-          "headline": "Deep Learning 테스트",
-          "description": "가",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/frontend/vue/2026/08/03/vue-word/" },
+          "headline": "JavaScript & Vue 기본 단어 정의 ",
+          "description": "JavaScript의 원시값, 객체, 배열을 비교하고 Vue의 ref 안에서 데이터가 어떻게 구성되는지 정리한다.",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
-          "datePublished": "2026-07-30T09:01:00+09:00",
-          "dateModified": "2026-07-30T09:01:00+09:00",
+          "datePublished": "2026-08-03T00:00:00+09:00",
+          "dateModified": "2026-08-03T00:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
-          "articleSection": "Deep_Learning",
-          "keywords": []
+          "articleSection": "Frontend",
+          "keywords": ["Frontend", "JavaScript", "ES6", "Vue.js", "Data Type", "ref"]
         }
       </script>
     
@@ -60,8 +60,8 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/deep_learning/2026/07/30/deep-learning-test/"
-    data-page-title="Deep Learning 테스트"
+    data-page-url="/frontend/vue/2026/08/03/vue-word/"
+    data-page-title="JavaScript &amp; Vue 기본 단어 정의 "
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / deep-learning-테스트</span>
+    <span>http://localhost:4000 / posts / javascript-vue-기본-단어-정의</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Deep Learning 테스트</span>
+    <span class="ide-mobile-title">JavaScript & Vue 기본 단어 정의 </span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -167,7 +167,7 @@
           </button>
           <div class="ide-tree-children" role="group">
             
-              <a class="ide-tree-post is-current" href="/deep_learning/2026/07/30/deep-learning-test/" role="treeitem" data-date="1785369660" data-title="deep learning 테스트" data-search="deep learning 테스트 &lt;p&gt;가&lt;/p&gt;
+              <a class="ide-tree-post" href="/deep_learning/2026/07/30/deep-learning-test/" role="treeitem" data-date="1785369660" data-title="deep learning 테스트" data-search="deep learning 테스트 &lt;p&gt;가&lt;/p&gt;
  []" title="Deep Learning 테스트">
                 <i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span>
               </a>
@@ -248,7 +248,7 @@
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue DOM</span>
                     </a>
                   
-                    <a class="ide-tree-post" href="/frontend/vue/2026/08/03/vue-word/" role="treeitem" data-date="1785682800" data-title="javascript &amp; vue 기본 단어 정의 " data-search="javascript &amp; vue 기본 단어 정의  &lt;h1 id=&quot;javascript-데이터-타입과-vue-반응형-데이터-구조&quot;&gt;javascript 데이터 타입과 vue 반응형 데이터 구조&lt;/h1&gt;
+                    <a class="ide-tree-post is-current" href="/frontend/vue/2026/08/03/vue-word/" role="treeitem" data-date="1785682800" data-title="javascript &amp; vue 기본 단어 정의 " data-search="javascript &amp; vue 기본 단어 정의  &lt;h1 id=&quot;javascript-데이터-타입과-vue-반응형-데이터-구조&quot;&gt;javascript 데이터 타입과 vue 반응형 데이터 구조&lt;/h1&gt;
 
  [&quot;frontend&quot;, &quot;javascript&quot;, &quot;es6&quot;, &quot;vue.js&quot;, &quot;data type&quot;, &quot;ref&quot;]" title="JavaScript &amp; Vue 기본 단어 정의 ">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>JavaScript & Vue 기본 단어 정의 </span>
@@ -1065,25 +1065,931 @@ vue가 화면을 갱신
   
     <a href="/archive/">posts</a><span>&gt;</span>
     
-    <a href="/archive/?category=deep-learning">deep learning</a><span>&gt;</span>
+    <a href="/archive/?category=frontend">frontend</a><span>&gt;</span>
     
-    <span aria-current="page">deep-learning-테스트.md</span>
+      <span>vue</span><span>&gt;</span>
+    
+    <span aria-current="page">javascript-vue-기본-단어-정의.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>Deep Learning</strong><time datetime="2026-07-30T09:01:00+09:00">2026.07.30</time><span data-reading-time>—</span><span>0 tags</span></div>
-    <h1>Deep Learning 테스트</h1>
+    <div class="ide-document-meta"><strong>Frontend / Vue</strong><time datetime="2026-08-03T00:00:00+09:00">2026.08.03</time><span data-reading-time>—</span><span>6 tags</span></div>
+    <h1>JavaScript & Vue 기본 단어 정의 </h1>
   </header>
   
-  <div class="ide-document-content prose" id="postContent"><p>가</p>
+    <aside class="ide-reading-summary" aria-labelledby="readingSummaryTitle">
+      
+        <section class="ide-summary-card ide-summary-card-primary reveal" aria-labelledby="readingSummaryTitle">
+          <span class="ide-panel-label">QUICK SUMMARY</span>
+          <h2 id="readingSummaryTitle">핵심 요약</h2>
+          <p>JavaScript의 원시값, 객체, 배열과 Vue의 ref 데이터 구조를 예제로 정리한다.</p>
+        </section>
+      
+      
+      
+    </aside>
+  
+  <div class="ide-document-content prose" id="postContent"><h1 id="javascript-데이터-타입과-vue-반응형-데이터-구조">JavaScript 데이터 타입과 Vue 반응형 데이터 구조</h1>
+
+<h2 id="1-데이터-타입의-큰-분류">1. 데이터 타입의 큰 분류</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터
+│
+├── 원시값(Primitive Type)
+│
+└── 참조값(Reference Type)
+</code></pre></div></div>
+
+<h2 id="2-원시값primitive-value">2. 원시값(Primitive Value)</h2>
+
+<h3 id="정의">정의</h3>
+
+<p>원시값은 하나의 값 자체를 저장하는 가장 기본적인 데이터 형태다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string
+number
+boolean
+null
+undefined
+symbol
+bigint
+</code></pre></div></div>
+
+<h3 id="예시">예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">age</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span>
+<span class="kd">const</span> <span class="nx">isLogin</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<h3 id="메모리-구조">메모리 구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>age
+ |
+ ↓
+20
+</code></pre></div></div>
+
+<p>원시값은 값 자체를 저장한다.</p>
+
+<h3 id="값-복사">값 복사</h3>
+
+<p>원시값을 복사하면 메모리 주소가 아니라 값 자체가 복사된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="kd">let</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span>
+
+<span class="nx">b</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="c1">// 10</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a
+↓
+10
+
+b
+↓
+10
+</code></pre></div></div>
+
+<p>처음에는 같은 값이지만, 값을 복사한 뒤에는 서로 독립적으로 동작한다.</p>
+
+<h2 id="3-객체object">3. 객체(Object)</h2>
+
+<h3 id="정의-1">정의</h3>
+
+<p>객체는 여러 개의 데이터를 하나로 묶어서 저장하는 자료 구조다.</p>
+
+<h3 id="예시-1">예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="na">city</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Seoul</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="구조">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user
+ |
+ ↓
+객체
+ |
+ ├── name: Kim
+ ├── age: 20
+ └── city: Seoul
+</code></pre></div></div>
+
+<p>객체는 속성(property)을 가진다.</p>
+
+<h3 id="속성-접근">속성 접근</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">user</span><span class="p">.</span><span class="nx">name</span>
+<span class="c1">// 'Kim'</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">user.name</code>은 <code class="language-plaintext highlighter-rouge">user</code> 객체 안에 있는 <code class="language-plaintext highlighter-rouge">name</code> 값을 가져온다.</p>
+
+<h2 id="4-배열array">4. 배열(Array)</h2>
+
+<h3 id="정의-2">정의</h3>
+
+<p>배열은 여러 개의 값을 순서대로 저장하는 객체다.</p>
+
+<p>배열도 객체의 한 종류이지만, 일반적으로 순서가 있는 여러 데이터를 저장할 때 사용한다.</p>
+
+<h3 id="예시-2">예시</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fruits</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="dl">'</span><span class="s1">apple</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">banana</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">orange</span><span class="dl">'</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="구조-1">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fruits
+ |
+ ↓
+Array
+ |
+ ├── 0: apple
+ ├── 1: banana
+ └── 2: orange
+</code></pre></div></div>
+
+<p>배열은 index(순서)로 접근한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1">// 'apple'</span>
+</code></pre></div></div>
+
+<h2 id="5-객체와-배열의-차이">5. 객체와 배열의 차이</h2>
+
+<p>둘 다 여러 데이터를 저장하지만 목적이 다르다.</p>
+
+<h3 id="객체">객체</h3>
+
+<p>객체는 하나의 대상을 표현할 때 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 객체는 사용자 1명의 정보를 표현한다.</p>
+
+<h3 id="배열">배열</h3>
+
+<p>배열은 여러 데이터의 목록을 표현할 때 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Lee</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>위 배열은 사용자 목록을 표현한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>객체</th>
+      <th>배열</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목적</td>
+      <td>하나의 대상 표현</td>
+      <td>여러 데이터 목록</td>
+    </tr>
+    <tr>
+      <td>접근</td>
+      <td>이름(key)</td>
+      <td>순서(index)</td>
+    </tr>
+    <tr>
+      <td>예시</td>
+      <td><code class="language-plaintext highlighter-rouge">user</code></td>
+      <td><code class="language-plaintext highlighter-rouge">users</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="6-객체-안에-객체를-넣을-수-있다">6. 객체 안에 객체를 넣을 수 있다</h2>
+
+<p>객체 안에 다른 객체를 넣는 구조는 실무에서 자주 사용된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">address</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">city</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Seoul</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">zip</span><span class="p">:</span> <span class="dl">'</span><span class="s1">12345</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="구조-2">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user
+├── name
+│
+└── address
+    |
+    ├── city
+    └── zip
+</code></pre></div></div>
+
+<h3 id="접근">접근</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">user</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">city</span>
+<span class="c1">// 'Seoul'</span>
+</code></pre></div></div>
+
+<h2 id="7-배열-안에-객체를-넣을-수-있다">7. 배열 안에 객체를 넣을 수 있다</h2>
+
+<p>Vue에서 자주 볼 수 있는 형태다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Vue 공부</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">JavaScript 공부</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="구조-3">구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todos 배열
+
+0
+ |
+ └── 객체
+      ├── id
+      └── text
+
+1
+ |
+ └── 객체
+      ├── id
+      └── text
+</code></pre></div></div>
+
+<h3 id="접근-1">접근</h3>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">todos</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">text</span>
+<span class="c1">// 'Vue 공부'</span>
+</code></pre></div></div>
+
+<h2 id="8-vue에서-객체와-배열이-중요한-이유">8. Vue에서 객체와 배열이 중요한 이유</h2>
+
+<p>Vue에서는 객체를 <code class="language-plaintext highlighter-rouge">ref</code>로 감싸서 반응형 상태로 만들 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">({</span>
+  <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Kim</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">age</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="데이터-구조">데이터 구조</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ref
+ |
+ ↓
+객체
+ |
+ ├── name
+ └── age
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ref</code>로 만든 객체의 값에 접근할 때는 <code class="language-plaintext highlighter-rouge">.value</code>를 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">age</span>
+</code></pre></div></div>
+
+<h3 id="데이터-접근-흐름">데이터 접근 흐름</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user
+ ↓
+ref 객체
+ ↓
+value
+ ↓
+일반 객체
+ ↓
+age
+</code></pre></div></div>
+
+<h2 id="9-배열도-같은-원리로-접근한다">9. 배열도 같은 원리로 접근한다</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">todos</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">공부</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<p>배열 안의 객체에 접근할 때는 <code class="language-plaintext highlighter-rouge">.value</code>와 index를 함께 사용한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">todos</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">text</span>
+<span class="c1">// '공부'</span>
+</code></pre></div></div>
+
+<h3 id="데이터-접근-흐름-1">데이터 접근 흐름</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>todos
+ ↓
+ref 객체
+ ↓
+value
+ ↓
+배열
+ ↓
+0번째 객체
+ ↓
+text
+</code></pre></div></div>
+
+<h2 id="10-결론">10. 결론</h2>
+
+<p>개발할 때는 데이터가 다음과 같은 구조로 감싸져 있다고 생각하면 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">weatherList</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">([</span>
+  <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">서울</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">temp</span><span class="p">:</span> <span class="mi">30</span>
+  <span class="p">}</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>weatherList
+ |
+ ↓
+ref
+ |
+ ↓
+value
+ |
+ ↓
+Array
+ |
+ ↓
+Object
+ |
+ ├── id
+ ├── name
+ └── temp
+</code></pre></div></div>
+
+<p>따라서 다음과 같은 방식으로 데이터를 추출할 수 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">weatherList</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">temp</span>
+<span class="c1">// 30</span>
+</code></pre></div></div>
+
+<h2 id="11-vue-공부에서-꼭-구분해야-하는-용어">11. Vue 공부에서 꼭 구분해야 하는 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>값(value)</td>
+      <td><code class="language-plaintext highlighter-rouge">20</code>, <code class="language-plaintext highlighter-rouge">'hello'</code>, <code class="language-plaintext highlighter-rouge">true</code> 같은 단일 데이터</td>
+    </tr>
+    <tr>
+      <td>변수(variable)</td>
+      <td>값을 저장하는 이름</td>
+    </tr>
+    <tr>
+      <td>객체(object)</td>
+      <td>key를 사용해 데이터를 저장하는 자료 구조</td>
+    </tr>
+    <tr>
+      <td>속성(property)</td>
+      <td>객체 내부에 저장된 데이터</td>
+    </tr>
+    <tr>
+      <td>배열(array)</td>
+      <td>데이터를 순서대로 저장하는 자료 구조</td>
+    </tr>
+    <tr>
+      <td>원소(element)</td>
+      <td>배열 안에 있는 하나의 데이터</td>
+    </tr>
+    <tr>
+      <td>참조(reference)</td>
+      <td>객체의 주소를 가리키는 것</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="1-vuejs-기본-용어">1. Vue.js 기본 용어</h1>
+
+<h2 id="1-component">1) component</h2>
+
+<p>화면을 구성하는 독립적인 UI 부품</p>
+
+<p>WeatherParent.vue
+├── SearchBar.vue
+├── WeatherCard.vue
+└── WeatherForecast.vue</p>
+
+<p>Vue 컴포넌트는 일반적으로 세 부분으로 구성한다.</p>
+
+<script setup="">
+// JavaScript 로직
+</script>
+
+<template>
+  <!-- 화면 구조 -->
+</template>
+
+<style scoped="">
+/* CSS 디자인 */
+</style>
+
+<h2 id="2-template">2) Template</h2>
+
+<p>브라우저에 표시한 HTML 구조를 작성하는 영역</p>
+
+<template>
+  <h1></h1>
+</template>
+
+<p>는 JavaScript 값을 화면에 출력하는 문자열 보간법</p>
+
+<h1 id="3-directive">3) Directive</h1>
+
+<p>HTML 태그에 Vue 기능을 추가하는 문법, 대부분 V- 시작함.</p>
+
+<p v-if="isVisible">보이는 문장</p>
+<p>&lt;button @click=”increase”&gt;증가&lt;/button&gt;
+<input v-model="name" /></p>
+
+<p>대표적인 Directive</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>문법</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-if</code></td>
+      <td>조건에 따라 요소 생성·제거</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-show</code></td>
+      <td>조건에 따라 CSS로 숨김</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-for</code></td>
+      <td>배열을 반복 출력</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-model</code></td>
+      <td>입력값과 상태를 양방향 연결</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-bind</code> 또는 <code class="language-plaintext highlighter-rouge">:</code></td>
+      <td>속성에 JavaScript 값 연결</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">v-on</code> 또는 <code class="language-plaintext highlighter-rouge">@</code></td>
+      <td>이벤트 연결</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="4-reactive-state">4) Reactive State</h1>
+
+<p>값이 변경되었을 때, Vue가 이를 감지하고 화면을 자동으로 다시 갱신하는 상태</p>
+
+<script setup="">
+import { ref } from 'vue'
+
+const count = ref(0)
+</script>
+
+<template>
+  <p>8</p>
+</template>
+
+<p>count가 변경되면 화면의 숫자도 자동으로 변경된다.</p>
+
+<h1 id="5-ref">5) ref</h1>
+
+<p>숫자, 문자열, 불리언, 객체, 배열 등을 반응형으로 만드는 함수.</p>
+
+<p>const count = ref(0)
+const name = ref(‘민형’)
+const user = ref({
+  age: 25,
+})</p>
+
+<p>JavaScript 영역에서는 .value가 필요하다.</p>
+
+<p>count.value++
+user.value.age++</p>
+
+<p>그러나 tempalte에서는 .value를 사용하지 않는다.</p>
+
+<p>8</p>
+<p></p>
+
+<h1 id="6-reactive">6) reactive</h1>
+
+<p>주로 객체를 반응형으로 만드는 함수</p>
+
+<p>import { reactive } from ‘vue’</p>
+
+<p>const user = reactive({
+  name: ‘민형’,
+  age: 25,
+})</p>
+
+<p>user.age++</p>
+
+<p>reactive에서는 .value를 사용하지 않습니다.</p>
+
+<p>ref와 reactive 비교</p>
+
+<p>const count = ref(0)
+count.value++</p>
+
+<p>const user = reactive({ age: 25 })
+user.age++</p>
+<h1 id="7-computed">7. Computed</h1>
+
+<p>기존 반응형 상태를 이용해 새로운 계산 결과를 만드는 값.</p>
+
+<p>const price = ref(10000)
+const quantity = ref(3)</p>
+
+<p>const totalPrice = computed(() =&gt; {
+  return price.value * quantity.value
+})</p>
+
+<p>총 가격: 원</p>
+
+<p>특징 :</p>
+<ul>
+  <li>의존하는 값이 바뀌면 자동으로 다시 계산</li>
+  <li>계산결과를 캐싱</li>
+  <li>기본적으로 읽기 전용</li>
+  <li>화면에 보여줄 파생 값을 만들 때 사용</li>
+</ul>
+
+<p>const filteredUsers = computed(() =&gt; {
+  return users.value.filter((user) =&gt;
+    user.name.includes(searchQuery.value)
+  )
+})</p>
+
+<h1 id="8-method--function">8) Method / Function</h1>
+
+<ul>
+  <li>버튼 클릭이나 특정 동작이 발생했을 떄 실행하는 함수</li>
+</ul>
+
+<p>const count = ref(0)</p>
+
+<p>const increase = () =&gt; {
+  count.value++
+}</p>
+
+<p>&lt;button @click=”increase”&gt;증가&lt;/button&gt;</p>
+
+<p>computed는 값을 계산하고, 함수는 행동을 실행한다고 생각하면 쉽다.</p>
+
+<h1 id="화면-제어-용어">화면 제어 용어</h1>
+
+<h2 id="9-v-if">9) v-if</h2>
+
+<p>조건이 참일 때만 HTML 요소를 생성합니다.</p>
+<p v-if="isLoggedIn">로그인되었습니다.</p>
+<p v-else="">로그인이 필요합니다.</p>
+
+<p>조건이 거짓이면 실제 DOM에서 요소가 제거됨</p>
+
+<h2 id="10-v-show">10) v-show</h2>
+
+<p>요소는 그대로 두고 CSS의 display: none으로 숨긴다.</p>
+
+<p v-show="isVisible">내용</p>
+
+<p>v-if와 v-show</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">v-if</code></th>
+      <th><code class="language-plaintext highlighter-rouge">v-show</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>거짓일 때</td>
+      <td>DOM에서 제거</td>
+      <td>CSS로 숨김</td>
+    </tr>
+    <tr>
+      <td>전환 비용</td>
+      <td>큼</td>
+      <td>작음</td>
+    </tr>
+    <tr>
+      <td>자주 열고 닫기</td>
+      <td>부적합</td>
+      <td>적합</td>
+    </tr>
+    <tr>
+      <td>처음부터 조건이 중요</td>
+      <td>적합</td>
+      <td>부적합</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>모달이나 드롭다운처럼 자구 열고 닫는 요소는 v-show가 유리</p>
+
+<h2 id="11-v-for">11) v-for</h2>
+
+<p>배열 데이터를 반복해서 화면에 표시</p>
+
+<p>const cities = ref([
+  { id: 1, name: ‘서울’ },
+  { id: 2, name: ‘부산’ },
+])</p>
+
+<p>&lt;div
+  v-for=”city in cities”
+  :key=”city.id”</p>
+<blockquote>
+
+</blockquote>
+
+<p>&lt;/div&gt;</p>
+
+<h2 id="12-key">12) Key</h2>
+
+<p>Vue가 반복된 각 요소를 구분하도록 제공하는 고유 식별자</p>
+
+<p>&lt;div v-for=”city in cities” :key=”city.id”</p>
+
+<p>일반적으로 DB ID처럼 변하지 않는 값을 사용</p>
+
+<p>:key=”city.id”</p>
+
+<h2 id="13-v-model">13) v-model</h2>
+
+<p>입력창의 값과 반응형 상태를 양방향으로 연결합니다.</p>
+
+<p>const searchQuery = ref(‘’)</p>
+
+<p><input v-model="searchQuery" /></p>
+<p> </p>
+
+<h2 id="14-event">14) Event</h2>
+
+<p>클릭, 입력, 제출처럼 사용자가 발생시키는 동작</p>
+
+<p>&lt;button @click=”handleClick”&gt;클릭&lt;/button&gt;</p>
+
+<p>&lt;input @input=”handleInput” /&gt;</p>
+
+<p>&lt;form @submit.prevent=”handleSubmit”&gt;</p>
+
+<p>대표 이벤트 :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>이벤트</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">click</code></td>
+      <td>클릭</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">input</code></td>
+      <td>입력값 변경</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">change</code></td>
+      <td>입력 확정 또는 선택 변경</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">submit</code></td>
+      <td>폼 제출</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">keydown</code></td>
+      <td>키보드 누름</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="15-event-modifier">15) Event Modifier</h2>
+
+<p>이벤트 동작을 간단히 제어하는 수식어</p>
+
+<p>&lt;a @click.prevent = “handelLink”&gt; 링크 &lt;/a&gt; 
+&lt;button @click.stop = “handleClick”&gt; 버튼 &lt;/button&gt;</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>수식어</th>
+      <th>기능</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.prevent</code></td>
+      <td>기본 동작 방지</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.stop</code></td>
+      <td>이벤트 버블링 방지</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.once</code></td>
+      <td>한 번만 실행</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.self</code></td>
+      <td>자신을 직접 클릭한 경우만 실행</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="3-컴포넌트-통신-용어">3. 컴포넌트 통신 용어</h1>
+
+<h2 id="16-props">16) Props</h2>
+
+<p>부모 컴포넌트가 자식 컴포넌트에 데이터를 전달하는 방법</p>
+
+<p>부모</p>
+
+<p>&lt;WeatherCard 
+    :city = “selectedCity”
+    title = “현재 날씨”
+/&gt;</p>
+
+<p>자식</p>
+
+<script setup="">
+const props = defineProps({
+  city: {
+    type: Object,
+    required: true,
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+})
+</script>
+
+<template>
+  <h2></h2>
+  <p></p>
+</template>
+
+<p>데이터 흐름:</p>
+
+<p>부모  -&gt; props -&gt; 자식</p>
+
+<p>Props는 자식에서 직접 수정하지 않는 것이 원칙</p>
+
+<h2 id="17-emit">17) Emit</h2>
+
+<p>자식 컴포넌트가 부모 컴포넌트에 이벤트나 데이터를 전달하는 방법</p>
+
+<p>자식</p>
+
+<script setup="">
+const emit = defineEmits(['select-city'])
+
+const handleClick = () => {
+  emit('select-city', '서울')
+}
+</script>
+
+<template>
+  &lt;button @click="handleClick"&gt;서울 선택&lt;/button&gt;
+</template>
+
+<p>부모</p>
+
+<p>&lt;WeatherCard @select-city=”handleSelectCity” /&gt;
+const handleSelectCity = (cityName) =&gt; {
+    console.log(cityName)
+}</p>
+
+<p>데이터 흐름:</p>
+
+<p>자식 -&gt; emit -&gt; 부모</p>
+
+<p>정리하면:</p>
+
+<p>부모가 자식에게 데이터 전달: Props
+자식이 부모에게 알림 전달: Emit</p>
+
+<h2 id="18-slot">18) Slot</h2>
+
+<p>부모가 자식 컴포넌트의 특정 위치에 HTML 내용을 삽입하는 기능</p>
+
+<p>자식</p>
+
+<template>
+  <div class="card">
+    <slot />
+  </div>
+</template>
+
+<p>부모</p>
+
+<BaseCard>
+    <h2> 서울 날씨 </h2>
+    <p> 현재 기온 28도 </p>
+</BaseCard>
+
+<p>BaseCard는 공통 틀을 만들고, 내부 콘텐츠는 부모가 결정</p>
+
+<h1 id="4상태-변화-감시">4.상태 변화 감시</h1>
+
+<h2 id="19-watch">19) watch</h2>
+
+<p>특정 상태의 변경을 감지한 후 부수 효과를 실행한 이유</p>
+
+<p>watch(searchQuery, (newValue, oldValue) =&gt; {
+  console.log(‘새 값:’, newValue)
+  console.log(‘이전 값:’, oldValue)
+})</p>
+
+<p>다음과 같은 작업에 적합</p>
+
+<ul>
+  <li>API 요청</li>
+  <li>localStroage 저장</li>
+  <li>로그 기록</li>
+  <li>특정 값 변경 시 별도 처리</li>
+</ul>
+
+<p>객체의 특정 속성을 감시할 수 있다.</p>
+
+<p>watch(
+    () =&gt; user.value.age, 
+    (newAge, oldAge) =&gt; {
+        console.log(newAge,oldAge)
+    }
+)</p>
 </div>
   
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#frontend">#Frontend</a><a href="/tags/#javascript">#JavaScript</a><a href="/tags/#es6">#ES6</a><a href="/tags/#vue-js">#Vue.js</a><a href="/tags/#data-type">#Data Type</a><a href="/tags/#ref">#ref</a></footer>
+  
   <nav class="ide-document-navigation" aria-label="게시물 이동">
-    <a href="/cs/2026/07/30/cs-test/"><span>PREVIOUS</span><strong>CS 테스트</strong></a>
-    <a href="/frontend/vue/2026/07/30/vue_intro2/"><span>NEXT</span><strong>[번외] Vue 개념 점검</strong></a>
+    <a href="/frontend/vue/2026/08/03/vue-router-navigation-guard/"><span>PREVIOUS</span><strong>Vue Router Navigation Guard 정리</strong></a>
+    <a href="/frontend/vue/2026/08/03/vue-dom/"><span>NEXT</span><strong>Vue DOM</strong></a>
   </nav>
   
 <section
@@ -1108,7 +2014,7 @@ vue가 화면을 갱신
     <h2 id="commentsTitle">COMMENTS</h2>
     <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
     <div class="ide-comments-actions">
-      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/frontend/vue/2026/08/03/vue-word/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
       <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
   </header>
@@ -1134,13 +2040,13 @@ vue가 화면을 갱신
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>2026.07.30</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.03</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>Deep Learning</dd></div>
+      <div><dt>CATEGORY</dt><dd>Frontend / Vue</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/deep_learning/2026/07/30/deep-learning-test/" data-bookmark-title="Deep Learning 테스트"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/frontend/vue/2026/08/03/vue-word/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/frontend/vue/2026/08/03/vue-word/" data-bookmark-title="JavaScript &amp; Vue 기본 단어 정의 "><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -1151,8 +2057,6 @@ vue가 화면을 갱신
           <a href="/frontend/vue/2026/08/03/vue-dom/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue DOM</span></a>
         
       
-        
-          <a href="/frontend/vue/2026/08/03/vue-word/"><i class="ri-markdown-line" aria-hidden="true"></i><span>JavaScript & Vue 기본 단어 정의 </span></a>
         
       
         
@@ -1179,7 +2083,7 @@ vue가 화면을 갱신
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Deep Learning</span><span>15 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Frontend / Vue</span><span>15 posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>

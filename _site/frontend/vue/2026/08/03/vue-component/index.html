@@ -8,24 +8,24 @@
     
     
     
-    <title>Deep Learning 테스트 · Minnong's Study Log</title>
-    <meta name="description" content="가" />
+    <title>Vue 컴포넌트의 구조와 생명주기 · Minnong's Study Log</title>
+    <meta name="description" content="소프트웨어 컴포넌트의 개념부터 Vue 컴포넌트의 계층 구조, 지역·전역 등록, 내장 함수, 생명주기까지 정리한다." />
     
-    <link rel="canonical" href="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" />
+    <link rel="canonical" href="http://localhost:4000/frontend/vue/2026/08/03/vue-component/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Deep Learning 테스트" />
-    <meta property="og:description" content="가" />
-    <meta property="og:url" content="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" />
+    <meta property="og:title" content="Vue 컴포넌트의 구조와 생명주기" />
+    <meta property="og:description" content="소프트웨어 컴포넌트의 개념부터 Vue 컴포넌트의 계층 구조, 지역·전역 등록, 내장 함수, 생명주기까지 정리한다." />
+    <meta property="og:url" content="http://localhost:4000/frontend/vue/2026/08/03/vue-component/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
-      <meta property="article:published_time" content="2026-07-30T09:01:00+09:00" />
-      <meta property="article:modified_time" content="2026-07-30T09:01:00+09:00" />
-      <meta property="article:section" content="Deep_Learning" />
-      
+      <meta property="article:published_time" content="2026-08-03T00:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-03T00:00:00+09:00" />
+      <meta property="article:section" content="Frontend" />
+      <meta property="article:tag" content="Frontend" /><meta property="article:tag" content="Vue.js" /><meta property="article:tag" content="Component" /><meta property="article:tag" content="SFC" /><meta property="article:tag" content="Lifecycle" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Deep Learning 테스트" />
-    <meta name="twitter:description" content="가" />
+    <meta name="twitter:title" content="Vue 컴포넌트의 구조와 생명주기" />
+    <meta name="twitter:description" content="소프트웨어 컴포넌트의 개념부터 Vue 컴포넌트의 계층 구조, 지역·전역 등록, 내장 함수, 생명주기까지 정리한다." />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=8"></script>
@@ -34,15 +34,15 @@
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" },
-          "headline": "Deep Learning 테스트",
-          "description": "가",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/frontend/vue/2026/08/03/vue-component/" },
+          "headline": "Vue 컴포넌트의 구조와 생명주기",
+          "description": "소프트웨어 컴포넌트의 개념부터 Vue 컴포넌트의 계층 구조, 지역·전역 등록, 내장 함수, 생명주기까지 정리한다.",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
-          "datePublished": "2026-07-30T09:01:00+09:00",
-          "dateModified": "2026-07-30T09:01:00+09:00",
+          "datePublished": "2026-08-03T00:00:00+09:00",
+          "dateModified": "2026-08-03T00:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
-          "articleSection": "Deep_Learning",
-          "keywords": []
+          "articleSection": "Frontend",
+          "keywords": ["Frontend", "Vue.js", "Component", "SFC", "Lifecycle"]
         }
       </script>
     
@@ -60,8 +60,8 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/deep_learning/2026/07/30/deep-learning-test/"
-    data-page-title="Deep Learning 테스트"
+    data-page-url="/frontend/vue/2026/08/03/vue-component/"
+    data-page-title="Vue 컴포넌트의 구조와 생명주기"
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / deep-learning-테스트</span>
+    <span>http://localhost:4000 / posts / vue-컴포넌트의-구조와-생명주기</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Deep Learning 테스트</span>
+    <span class="ide-mobile-title">Vue 컴포넌트의 구조와 생명주기</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -167,7 +167,7 @@
           </button>
           <div class="ide-tree-children" role="group">
             
-              <a class="ide-tree-post is-current" href="/deep_learning/2026/07/30/deep-learning-test/" role="treeitem" data-date="1785369660" data-title="deep learning 테스트" data-search="deep learning 테스트 &lt;p&gt;가&lt;/p&gt;
+              <a class="ide-tree-post" href="/deep_learning/2026/07/30/deep-learning-test/" role="treeitem" data-date="1785369660" data-title="deep learning 테스트" data-search="deep learning 테스트 &lt;p&gt;가&lt;/p&gt;
  []" title="Deep Learning 테스트">
                 <i class="ri-markdown-line" aria-hidden="true"></i><span>Deep Learning 테스트</span>
               </a>
@@ -270,7 +270,7 @@
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>JavaScript ES6 핵심 문법</span>
                     </a>
                   
-                    <a class="ide-tree-post" href="/frontend/vue/2026/08/03/vue-component/" role="treeitem" data-date="1785682800" data-title="vue 컴포넌트의 구조와 생명주기" data-search="vue 컴포넌트의 구조와 생명주기 &lt;h1 id=&quot;vue-컴포넌트의-구조와-생명주기&quot;&gt;vue 컴포넌트의 구조와 생명주기&lt;/h1&gt;
+                    <a class="ide-tree-post is-current" href="/frontend/vue/2026/08/03/vue-component/" role="treeitem" data-date="1785682800" data-title="vue 컴포넌트의 구조와 생명주기" data-search="vue 컴포넌트의 구조와 생명주기 &lt;h1 id=&quot;vue-컴포넌트의-구조와-생명주기&quot;&gt;vue 컴포넌트의 구조와 생명주기&lt;/h1&gt;
 
  [&quot;frontend&quot;, &quot;vue.js&quot;, &quot;component&quot;, &quot;sfc&quot;, &quot;lifecycle&quot;]" title="Vue 컴포넌트의 구조와 생명주기">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Vue 컴포넌트의 구조와 생명주기</span>
@@ -1065,25 +1065,322 @@ vue가 화면을 갱신
   
     <a href="/archive/">posts</a><span>&gt;</span>
     
-    <a href="/archive/?category=deep-learning">deep learning</a><span>&gt;</span>
+    <a href="/archive/?category=frontend">frontend</a><span>&gt;</span>
     
-    <span aria-current="page">deep-learning-테스트.md</span>
+      <span>vue</span><span>&gt;</span>
+    
+    <span aria-current="page">vue-컴포넌트의-구조와-생명주기.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>Deep Learning</strong><time datetime="2026-07-30T09:01:00+09:00">2026.07.30</time><span data-reading-time>—</span><span>0 tags</span></div>
-    <h1>Deep Learning 테스트</h1>
+    <div class="ide-document-meta"><strong>Frontend / Vue</strong><time datetime="2026-08-03T00:00:00+09:00">2026.08.03</time><span data-reading-time>—</span><span>5 tags</span></div>
+    <h1>Vue 컴포넌트의 구조와 생명주기</h1>
   </header>
   
-  <div class="ide-document-content prose" id="postContent"><p>가</p>
+    <aside class="ide-reading-summary" aria-labelledby="readingSummaryTitle">
+      
+        <section class="ide-summary-card ide-summary-card-primary reveal" aria-labelledby="readingSummaryTitle">
+          <span class="ide-panel-label">QUICK SUMMARY</span>
+          <h2 id="readingSummaryTitle">핵심 요약</h2>
+          <p>Vue 컴포넌트의 기본 개념과 등록 방법, 주요 내장 함수, 생명주기를 예제와 표로 정리한다.</p>
+        </section>
+      
+      
+      
+    </aside>
+  
+  <div class="ide-document-content prose" id="postContent"><h1 id="vue-컴포넌트의-구조와-생명주기">Vue 컴포넌트의 구조와 생명주기</h1>
+
+<h2 id="1-component란">1. Component란?</h2>
+
+<p>소프트웨어 공학에서 컴포넌트(Component)는 독립적인 기능을 수행하고, 필요할 때 다른 부품으로 교체하거나 다른 프로그램과 연결할 수 있는 표준화된 소프트웨어 모듈을 말한다.</p>
+
+<p>컴포넌트의 핵심 특징은 다음과 같다.</p>
+
+<ul>
+  <li><strong>독립성(Independence)</strong>: 기능과 책임이 하나의 단위로 분리된다.</li>
+  <li><strong>교체 가능성(Replaceability)</strong>: 같은 역할을 수행하는 다른 컴포넌트로 교체할 수 있다.</li>
+  <li><strong>재사용성(Reusability)</strong>: 여러 화면이나 프로젝트에서 반복해서 사용할 수 있다.</li>
+</ul>
+
+<h2 id="2-vue-component란">2. Vue Component란?</h2>
+
+<p>Vue 컴포넌트는 웹 페이지를 구성하는 독립적이고 재사용 가능한 블록이다.</p>
+
+<p>Vue에서는 HTML, CSS, JavaScript를 하나의 <code class="language-plaintext highlighter-rouge">.vue</code> 파일에 모아 작성하는 방식을 SFC(Single-File Component)라고 한다.</p>
+
+<p>하나의 애플리케이션은 여러 컴포넌트를 조립해 완성하며, 컴포넌트들은 트리 구조로 연결된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>App
+├── Header
+├── Main
+│   ├── UserProfile
+│   └── ProductList
+└── Footer
+</code></pre></div></div>
+
+<h2 id="3-component-hierarchy">3. Component Hierarchy</h2>
+
+<p>컴포넌트 계층 구조에서 자주 사용하는 관계는 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>관계</th>
+      <th>의미</th>
+      <th>데이터 전달 방식</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Parent-Child</td>
+      <td>부모가 자식을 포함하는 관계</td>
+      <td>부모에서 자식으로 <code class="language-plaintext highlighter-rouge">props</code>, 자식에서 부모로 <code class="language-plaintext highlighter-rouge">emit</code></td>
+    </tr>
+    <tr>
+      <td>Sibling</td>
+      <td>같은 부모 아래에 나란히 있는 형제 관계</td>
+      <td>부모를 통해 상태를 공유하거나 공통 저장소 사용</td>
+    </tr>
+    <tr>
+      <td>Ancestor-Descendant</td>
+      <td>자식의 자식까지 이어지는 다층 계층 관계</td>
+      <td><code class="language-plaintext highlighter-rouge">provide</code>와 <code class="language-plaintext highlighter-rouge">inject</code>, 공통 저장소 등을 사용</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>부모와 자식은 서로 독립된 컴포넌트다. 자식은 부모의 상태를 직접 수정하지 않고 <code class="language-plaintext highlighter-rouge">props</code>로 전달받으며, 부모에게 필요한 이벤트는 <code class="language-plaintext highlighter-rouge">emit</code>으로 알린다.</p>
+
+<h2 id="4-component-지역-등록">4. Component 지역 등록</h2>
+
+<p>지역 등록은 특정 부모 컴포넌트에서만 자식 컴포넌트를 사용하는 방식이다.</p>
+
+<ul>
+  <li>부모 컴포넌트에서 자식 컴포넌트를 import한다.</li>
+  <li>등록한 자식 컴포넌트는 <code class="language-plaintext highlighter-rouge">&lt;template&gt;</code> 영역에서 컴포넌트 태그처럼 사용할 수 있다.</li>
+  <li>컴포넌트 이름은 일반적으로 PascalCase를 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">&lt;script setup&gt;</code>에서는 import한 컴포넌트가 자동으로 등록된다.</li>
+</ul>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="nx">BaseButton</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BaseButton.vue</span><span class="dl">'</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;</span><span class="k">template</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"box"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h3&gt;</span>컴포넌트 조립 테스트<span class="nt">&lt;/h3&gt;</span>
+    <span class="nt">&lt;hr&gt;</span>
+    <span class="nt">&lt;BaseButton</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/</span><span class="k">template</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<h2 id="5-component-전역-등록">5. Component 전역 등록</h2>
+
+<p>전역 등록한 컴포넌트는 Vue 애플리케이션의 여러 컴포넌트에서 별도의 import 없이 사용할 수 있다.</p>
+
+<p>전역 등록은 보통 <code class="language-plaintext highlighter-rouge">main.js</code>에서 수행한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">createApp</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./App.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">BaseButton</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BaseButton.vue</span><span class="dl">'</span>
+<span class="k">import</span> <span class="nx">BaseInput</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/BaseInput.vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">BaseButton</span><span class="dl">'</span><span class="p">,</span> <span class="nx">BaseButton</span><span class="p">)</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="dl">'</span><span class="s1">BaseInput</span><span class="dl">'</span><span class="p">,</span> <span class="nx">BaseInput</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">mount</span><span class="p">(</span><span class="dl">'</span><span class="s1">#app</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">app.component()</code>의 첫 번째 인자는 템플릿에서 사용할 컴포넌트 이름이고, 두 번째 인자는 import한 컴포넌트 변수다.</p>
+
+<h2 id="6-vue-주요-내장-함수">6. Vue 주요 내장 함수</h2>
+
+<p>Vue는 애플리케이션 생성, 반응형 상태 관리, 계산과 감시, 컴포넌트 조립 등을 위한 함수를 제공한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>카테고리</th>
+      <th>주요 함수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>애플리케이션(Application)</td>
+      <td><code class="language-plaintext highlighter-rouge">createApp</code>, <code class="language-plaintext highlighter-rouge">createSSRApp</code>, <code class="language-plaintext highlighter-rouge">app.*</code>, <code class="language-plaintext highlighter-rouge">app.config.*</code></td>
+    </tr>
+    <tr>
+      <td>반응형 상태(Reactive State)</td>
+      <td><code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">reactive</code>, <code class="language-plaintext highlighter-rouge">readonly</code>, <code class="language-plaintext highlighter-rouge">shallowRef</code>, <code class="language-plaintext highlighter-rouge">shallowReactive</code>, <code class="language-plaintext highlighter-rouge">shallowReadonly</code>, <code class="language-plaintext highlighter-rouge">toRef</code>, <code class="language-plaintext highlighter-rouge">toRefs</code>, <code class="language-plaintext highlighter-rouge">customRef</code>, <code class="language-plaintext highlighter-rouge">unref</code>, <code class="language-plaintext highlighter-rouge">toRaw</code>, <code class="language-plaintext highlighter-rouge">markRaw</code>, <code class="language-plaintext highlighter-rouge">isRef</code>, <code class="language-plaintext highlighter-rouge">isReactive</code>, <code class="language-plaintext highlighter-rouge">isReadonly</code></td>
+    </tr>
+    <tr>
+      <td>계산 및 감시(Computed &amp; Watchers)</td>
+      <td><code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code>, <code class="language-plaintext highlighter-rouge">watchEffect</code></td>
+    </tr>
+    <tr>
+      <td>라이프사이클 훅(Lifecycle Hooks)</td>
+      <td><code class="language-plaintext highlighter-rouge">onBeforeMount</code>, <code class="language-plaintext highlighter-rouge">onMounted</code>, <code class="language-plaintext highlighter-rouge">onBeforeUpdate</code>, <code class="language-plaintext highlighter-rouge">onUpdated</code>, <code class="language-plaintext highlighter-rouge">onBeforeUnmount</code>, <code class="language-plaintext highlighter-rouge">onUnmounted</code>, <code class="language-plaintext highlighter-rouge">onActivated</code>, <code class="language-plaintext highlighter-rouge">onDeactivated</code>, <code class="language-plaintext highlighter-rouge">onErrorCaptured</code>, <code class="language-plaintext highlighter-rouge">onRenderTracked</code>, <code class="language-plaintext highlighter-rouge">onRenderTriggered</code></td>
+    </tr>
+    <tr>
+      <td>컴포넌트 구성(Component Composition)</td>
+      <td><code class="language-plaintext highlighter-rouge">defineComponent</code>, <code class="language-plaintext highlighter-rouge">defineProps</code>, <code class="language-plaintext highlighter-rouge">defineEmits</code>, <code class="language-plaintext highlighter-rouge">useAttrs</code>, <code class="language-plaintext highlighter-rouge">defineExpose</code>, <code class="language-plaintext highlighter-rouge">useSlots</code>, <code class="language-plaintext highlighter-rouge">withDefaults</code>, <code class="language-plaintext highlighter-rouge">getCurrentInstance</code></td>
+    </tr>
+    <tr>
+      <td>렌더링 제어(Rendering &amp; DOM)</td>
+      <td><code class="language-plaintext highlighter-rouge">h</code>, <code class="language-plaintext highlighter-rouge">resolveComponent</code>, <code class="language-plaintext highlighter-rouge">withDirectives</code>, <code class="language-plaintext highlighter-rouge">renderList</code>, <code class="language-plaintext highlighter-rouge">renderSlot</code>, <code class="language-plaintext highlighter-rouge">mergeProps</code>, <code class="language-plaintext highlighter-rouge">nextTick</code>, <code class="language-plaintext highlighter-rouge">useCssModule</code>, <code class="language-plaintext highlighter-rouge">useCssVars</code></td>
+    </tr>
+    <tr>
+      <td>의존성 주입(Dependency Injection)</td>
+      <td><code class="language-plaintext highlighter-rouge">provide</code>, <code class="language-plaintext highlighter-rouge">inject</code>, <code class="language-plaintext highlighter-rouge">hasInjectionContext</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="7-component-lifecycle">7. Component Lifecycle</h2>
+
+<p>컴포넌트 생명주기는 컴포넌트가 생성되고, 화면에 연결되고, 갱신된 뒤 제거되는 흐름이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>단계</th>
+      <th>컴포넌트의 상태</th>
+      <th>주요 작업과 훅</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>생성 및 설정(Creation &amp; Setup)</td>
+      <td>컴포넌트 인스턴스가 만들어지고 JavaScript에서 사용할 준비를 하는 단계</td>
+      <td><code class="language-plaintext highlighter-rouge">ref</code>, <code class="language-plaintext highlighter-rouge">reactive</code>, <code class="language-plaintext highlighter-rouge">computed</code>, <code class="language-plaintext highlighter-rouge">watch</code> 등을 초기화한다.</td>
+    </tr>
+    <tr>
+      <td>부착(Mounting)</td>
+      <td>가상으로 구성한 화면을 실제 DOM에 연결하는 단계</td>
+      <td>DOM에 접근하거나 초기 데이터를 요청한다. <code class="language-plaintext highlighter-rouge">onMounted</code>를 사용한다.</td>
+    </tr>
+    <tr>
+      <td>갱신(Updating)</td>
+      <td>반응형 데이터가 변경되어 화면을 다시 그리는 단계</td>
+      <td>업데이트된 DOM을 확인하거나 크기와 스크롤 위치를 다시 계산한다. <code class="language-plaintext highlighter-rouge">onUpdated</code>를 사용한다.</td>
+    </tr>
+    <tr>
+      <td>소멸(Unmounting)</td>
+      <td><code class="language-plaintext highlighter-rouge">v-if="false"</code> 등의 조건으로 컴포넌트가 화면에서 제거되는 단계</td>
+      <td>타이머와 이벤트 리스너를 정리해 메모리 누수를 방지한다. <code class="language-plaintext highlighter-rouge">onUnmounted</code>를 사용한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>라이프사이클 훅을 사용한 간단한 예시는 다음과 같다.</p>
+
+<div class="language-vue highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;</span><span class="k">script</span> <span class="na">setup</span><span class="nt">&gt;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">onMounted</span><span class="p">,</span> <span class="nx">onUnmounted</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vue</span><span class="dl">'</span>
+
+<span class="kd">const</span> <span class="nx">handleResize</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">onMounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">onUnmounted</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">resize</span><span class="dl">'</span><span class="p">,</span> <span class="nx">handleResize</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="nt">&lt;/</span><span class="k">script</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">onMounted</code>에서 등록한 이벤트 리스너는 <code class="language-plaintext highlighter-rouge">onUnmounted</code>에서 제거해야 컴포넌트가 사라진 뒤에도 불필요한 동작이 남지 않는다.</p>
+
+<h1 id="props--emits">Props &amp; Emits</h1>
+
+<p>Component 연동</p>
+<ul>
+  <li>Vue 3의 모든 컴포넌트 연동은”데이터는 위에서 아래로 물려주고, 이벤트는 아래에서 위로 쏘아 올린다”는 구조를 따른다.</li>
+</ul>
+
+<p>분류 🔽 Props (하행선) 🔼 Emits (상행선)
+개념 정의 부모가 자식에게 주는 반응형 데이터 값 자식이 부모에게 보고하는 이벤트
+흐름 방향 부모 → 자식 (위에서 아래로) 자식 → 부모 (아래에서 위로)
+데이터 권한 읽기 전용. 자식은 수정 불가 부모에게 변경 요청 및 값 전달 가능
+Compiler Macro defineProps({ … }) defineEmits([ … ])
+Parent Binding 자식 태그 속성에 콜론(:)으로 주입 자식 태그 이벤트에 골뱅이(@)로 청취</p>
+
+<p>Compiler Macro란 Runtime 시점이 아닌 Build 시점에 Vue Compiler가 코드를 변환하는 특수 예약어로 defineProps(),
+defineEmits(), defineExpose() 같은 함수들은 <script setup="">에서만 사용이 가능</script></p>
+
+<p>defineProps() - 속성 정의</p>
+
+<p>자식 컴포넌트 내부에서”부모가 넘겨줄 데이터(속성)의 이름과 규격”을 선언하는 Vue 3 내장 컴파일러 매크로 함수</p>
+<ul>
+  <li>Compiler Macro이기 때문에 상단에 import할 필요 없이 <script setup=""> 안에서 즉시 호출할 수 있다</script></li>
+  <li>간단한 배열 표기법과, 강력한 객체 표기법이 있다</li>
+</ul>
+
+<p>[배열 형식]
+const props = defineProps([‘title’, ‘count’])</p>
+
+<p>[객체 형식– 기본값 지정]
+defineProps({
+// 1. 타입만 간단히 지정하는 경우
+title: String,
+// 2. 필수 값과 기본값까지 꼼꼼하게 지정하는 경우
+likes: {
+type: Number,
+required: true // 부모가 이 값을 안 넘기면 에러발생.
+},
+status: {
+type: String,
+default: ＇대기 중＇ // 부모가 값을 안 주면 이 값이 기본으로 세팅.
+}
+})</p>
+
+<p>▪ <template> 에서 사용하기
+• 정의된 변수를 그대로 사용하면 된다.</template></p>
+<template>
+<h1></h1>
+<p>좋아요: </p>
+</template>
+<p>▪ <script setup=""> 에서 사용하기
+• defineProps가 반환하는 객체를 변수(보통 props라는 이름)에 받아서.점 문법으로 접근해야 한다.
+<script setup="">
+// 변수에 결과를 할당합니다.
+const props = defineProps({
+title: String,
+likes: Number
+})
+// 내부 함수에서 쓸 때는 props.을 앞에 꼭 붙여야 합니다.
+const checkPopularity = () =&gt; {
+if (props.likes &gt; 100) {
+console.log(`${props.title}은 인기 게시글입니다.`)
+}
+}
+</script></script></p>
+
+<p>Readonly
+• defineProps로 Parent에서 전달된 값은 읽기 전용(ReadOnly)이다.
+• Child Component에서 이 값을 직접 바꾸려고 하면 에러가 발생된다.</p>
+
+<p>const props = defineProps([‘likes’])
+const brokenFunction = () =&gt; {
+// ❌ 절대 금지! 콘솔에 ReadOnly 에러 발생.
+props.likes = 999
+}</p>
 </div>
   
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#frontend">#Frontend</a><a href="/tags/#vue-js">#Vue.js</a><a href="/tags/#component">#Component</a><a href="/tags/#sfc">#SFC</a><a href="/tags/#lifecycle">#Lifecycle</a></footer>
+  
   <nav class="ide-document-navigation" aria-label="게시물 이동">
-    <a href="/cs/2026/07/30/cs-test/"><span>PREVIOUS</span><strong>CS 테스트</strong></a>
-    <a href="/frontend/vue/2026/07/30/vue_intro2/"><span>NEXT</span><strong>[번외] Vue 개념 점검</strong></a>
+    <a href="/frontend/vue/2026/08/03/vue-axios/"><span>PREVIOUS</span><strong>Axios 정리</strong></a>
+    <a href="/frontend/vue/2026/08/03/vue-es6/"><span>NEXT</span><strong>JavaScript ES6 핵심 문법</strong></a>
   </nav>
   
 <section
@@ -1108,7 +1405,7 @@ vue가 화면을 갱신
     <h2 id="commentsTitle">COMMENTS</h2>
     <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
     <div class="ide-comments-actions">
-      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/frontend/vue/2026/08/03/vue-component/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
       <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
   </header>
@@ -1134,13 +1431,13 @@ vue가 화면을 갱신
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>2026.07.30</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.03</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>Deep Learning</dd></div>
+      <div><dt>CATEGORY</dt><dd>Frontend / Vue</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/deep_learning/2026/07/30/deep-learning-test/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/deep_learning/2026/07/30/deep-learning-test/" data-bookmark-title="Deep Learning 테스트"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/frontend/vue/2026/08/03/vue-component/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/frontend/vue/2026/08/03/vue-component/" data-bookmark-title="Vue 컴포넌트의 구조와 생명주기"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -1168,8 +1465,6 @@ vue가 화면을 갱신
         
       
         
-          <a href="/frontend/vue/2026/08/03/vue-component/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Vue 컴포넌트의 구조와 생명주기</span></a>
-        
       
       
     </div>
@@ -1179,7 +1474,7 @@ vue가 화면을 갱신
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Deep Learning</span><span>15 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Frontend / Vue</span><span>15 posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>
