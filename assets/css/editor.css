@@ -1041,7 +1041,7 @@ html[data-theme="dark"] .writer-page {
   background: var(--writer-inverse);
   color: var(--writer-inverse-text);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   white-space: pre;
 }
 

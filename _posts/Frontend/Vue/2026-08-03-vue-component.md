@@ -1,62 +1,57 @@
 ---
 layout: post
-title: "Vue 컴포넌트의 구조와 생명주기"
-date: 2026-08-03 00:00:00 +0900
+title: "04. Vue 컴포넌트 설계: props, emit, slot과 생명주기"
+date: 2026-08-03 01:00:00 +0900
 categories: [Frontend, Vue]
-tags: [Frontend, Vue.js, Component, SFC, Lifecycle]
-description: "소프트웨어 컴포넌트의 개념부터 Vue 컴포넌트의 계층 구조, 지역·전역 등록, 내장 함수, 생명주기까지 정리한다."
-summary: "Vue 컴포넌트의 기본 개념과 등록 방법, 주요 내장 함수, 생명주기를 예제와 표로 정리한다."
+tags: [Frontend, Vue.js, Component, Props, Emits, Slots, Lifecycle]
+description: "Vue 컴포넌트의 구조와 데이터 흐름, 상태 위치를 결정하는 기준, 생명주기 훅을 예제로 정리."
+summary: "Vue 컴포넌트의 입력과 출력, 콘텐츠 확장, 상태 공유 범위와 생명주기 정리 방법을 살펴본다."
+key_concepts:
+  - "부모는 props로 데이터를 전달하고 자식은 emit으로 변경 의도를 알림."
+  - "slot은 공통 구조를 유지하면서 내부 콘텐츠를 교체."
+  - "상태는 필요한 컴포넌트 범위 중 가장 작은 곳에 둠."
+excerpt_separator: "<!--more-->"
 ---
 
-# Vue 컴포넌트의 구조와 생명주기
+## 컴포넌트란?
 
-## 1. Component란?
-
-소프트웨어 공학에서 컴포넌트(Component)는 독립적인 기능을 수행하고, 필요할 때 다른 부품으로 교체하거나 다른 프로그램과 연결할 수 있는 표준화된 소프트웨어 모듈을 말한다.
-
-컴포넌트의 핵심 특징은 다음과 같다.
-
-- **독립성(Independence)**: 기능과 책임이 하나의 단위로 분리된다.
-- **교체 가능성(Replaceability)**: 같은 역할을 수행하는 다른 컴포넌트로 교체할 수 있다.
-- **재사용성(Reusability)**: 여러 화면이나 프로젝트에서 반복해서 사용할 수 있다.
-
-## 2. Vue Component란?
-
-Vue 컴포넌트는 웹 페이지를 구성하는 독립적이고 재사용 가능한 블록이다.
-
-Vue에서는 HTML, CSS, JavaScript를 하나의 `.vue` 파일에 모아 작성하는 방식을 SFC(Single-File Component)라고 한다.
-
-하나의 애플리케이션은 여러 컴포넌트를 조립해 완성하며, 컴포넌트들은 트리 구조로 연결된다.
+Vue 컴포넌트는 화면과 동작을 독립적이고 재사용 가능한 단위로 나눈 것이다. 한 컴포넌트가 하나의 명확한 책임을 가지면 테스트와 변경이 쉬워진다.
 
 ```text
 App
-├── Header
-├── Main
-│   ├── UserProfile
-│   └── ProductList
-└── Footer
+├── AppHeader
+├── ProductList
+│   └── ProductCard
+└── ShoppingCart
 ```
 
-## 3. Component Hierarchy
+Vue에서는 보통 `.vue` 파일 하나에 템플릿, 로직, 스타일을 작성한다. 이를 SFC(Single-File Component)라고 한다.
 
-컴포넌트 계층 구조에서 자주 사용하는 관계는 다음과 같다.
+<!--more-->
 
-| 관계 | 의미 | 데이터 전달 방식 |
-| --- | --- | --- |
-| Parent-Child | 부모가 자식을 포함하는 관계 | 부모에서 자식으로 `props`, 자식에서 부모로 `emit` |
-| Sibling | 같은 부모 아래에 나란히 있는 형제 관계 | 부모를 통해 상태를 공유하거나 공통 저장소 사용 |
-| Ancestor-Descendant | 자식의 자식까지 이어지는 다층 계층 관계 | `provide`와 `inject`, 공통 저장소 등을 사용 |
+{% raw %}
 
-부모와 자식은 서로 독립된 컴포넌트다. 자식은 부모의 상태를 직접 수정하지 않고 `props`로 전달받으며, 부모에게 필요한 이벤트는 `emit`으로 알린다.
+```vue
+<script setup>
+const title = '상품 목록'
+</script>
 
-## 4. Component 지역 등록
+<template>
+  <section class="product-list">
+    <h2>{{ title }}</h2>
+  </section>
+</template>
 
-지역 등록은 특정 부모 컴포넌트에서만 자식 컴포넌트를 사용하는 방식이다.
+<style scoped>
+.product-list {
+  padding: 1rem;
+}
+</style>
+```
 
-- 부모 컴포넌트에서 자식 컴포넌트를 import한다.
-- 등록한 자식 컴포넌트는 `<template>` 영역에서 컴포넌트 태그처럼 사용할 수 있다.
-- 컴포넌트 이름은 일반적으로 PascalCase를 사용한다.
-- `<script setup>`에서는 import한 컴포넌트가 자동으로 등록된다.
+## 지역 등록과 전역 등록
+
+`<script setup>`에서 컴포넌트를 import하면 현재 컴포넌트의 템플릿에서 바로 사용할 수 있다.
 
 ```vue
 <script setup>
@@ -64,62 +59,205 @@ import BaseButton from './components/BaseButton.vue'
 </script>
 
 <template>
-  <div class="box">
-    <h3>컴포넌트 조립 테스트</h3>
-    <hr>
-    <BaseButton />
-  </div>
+  <BaseButton />
 </template>
 ```
 
-## 5. Component 전역 등록
+이런 **지역 등록**을 기본으로 사용하면 의존성이 파일에 드러나고, 사용하지 않는 컴포넌트를 빌드 도구가 제거하기 쉽다.
 
-전역 등록한 컴포넌트는 Vue 애플리케이션의 여러 컴포넌트에서 별도의 import 없이 사용할 수 있다.
+앱 전체에서 반복하는 매우 기본적인 컴포넌트는 전역 등록할 수도 있다.
 
-전역 등록은 보통 `main.js`에서 수행한다.
-
-```javascript
+```js
 import { createApp } from 'vue'
 import App from './App.vue'
 import BaseButton from './components/BaseButton.vue'
-import BaseInput from './components/BaseInput.vue'
 
 const app = createApp(App)
 
 app.component('BaseButton', BaseButton)
-app.component('BaseInput', BaseInput)
-
 app.mount('#app')
 ```
 
-`app.component()`의 첫 번째 인자는 템플릿에서 사용할 컴포넌트 이름이고, 두 번째 인자는 import한 컴포넌트 변수다.
+전역 등록이 많아지면 어디에서 컴포넌트가 왔는지 찾기 어려워지므로 제한적으로 사용한다.
 
-## 6. Vue 주요 내장 함수
+## 컴포넌트의 공개 인터페이스
 
-Vue는 애플리케이션 생성, 반응형 상태 관리, 계산과 감시, 컴포넌트 조립 등을 위한 함수를 제공한다.
+재사용 가능한 컴포넌트는 입력과 출력을 명확하게 만든다.
 
-| 카테고리 | 주요 함수 |
-| --- | --- |
-| 애플리케이션(Application) | `createApp`, `createSSRApp`, `app.*`, `app.config.*` |
-| 반응형 상태(Reactive State) | `ref`, `reactive`, `readonly`, `shallowRef`, `shallowReactive`, `shallowReadonly`, `toRef`, `toRefs`, `customRef`, `unref`, `toRaw`, `markRaw`, `isRef`, `isReactive`, `isReadonly` |
-| 계산 및 감시(Computed & Watchers) | `computed`, `watch`, `watchEffect` |
-| 라이프사이클 훅(Lifecycle Hooks) | `onBeforeMount`, `onMounted`, `onBeforeUpdate`, `onUpdated`, `onBeforeUnmount`, `onUnmounted`, `onActivated`, `onDeactivated`, `onErrorCaptured`, `onRenderTracked`, `onRenderTriggered` |
-| 컴포넌트 구성(Component Composition) | `defineComponent`, `defineProps`, `defineEmits`, `useAttrs`, `defineExpose`, `useSlots`, `withDefaults`, `getCurrentInstance` |
-| 렌더링 제어(Rendering & DOM) | `h`, `resolveComponent`, `withDirectives`, `renderList`, `renderSlot`, `mergeProps`, `nextTick`, `useCssModule`, `useCssVars` |
-| 의존성 주입(Dependency Injection) | `provide`, `inject`, `hasInjectionContext` |
-
-## 7. Component Lifecycle
-
-컴포넌트 생명주기는 컴포넌트가 생성되고, 화면에 연결되고, 갱신된 뒤 제거되는 흐름이다.
-
-| 단계 | 컴포넌트의 상태 | 주요 작업과 훅 |
+| 기능 | 방향 | 역할 |
 | --- | --- | --- |
-| 생성 및 설정(Creation & Setup) | 컴포넌트 인스턴스가 만들어지고 JavaScript에서 사용할 준비를 하는 단계 | `ref`, `reactive`, `computed`, `watch` 등을 초기화한다. |
-| 부착(Mounting) | 가상으로 구성한 화면을 실제 DOM에 연결하는 단계 | DOM에 접근하거나 초기 데이터를 요청한다. `onMounted`를 사용한다. |
-| 갱신(Updating) | 반응형 데이터가 변경되어 화면을 다시 그리는 단계 | 업데이트된 DOM을 확인하거나 크기와 스크롤 위치를 다시 계산한다. `onUpdated`를 사용한다. |
-| 소멸(Unmounting) | `v-if="false"` 등의 조건으로 컴포넌트가 화면에서 제거되는 단계 | 타이머와 이벤트 리스너를 정리해 메모리 누수를 방지한다. `onUnmounted`를 사용한다. |
+| `props` | 부모 → 자식 | 데이터와 설정을 전달 |
+| `emit` | 자식 → 부모 | 사용자 행동과 변경 의도를 알림 |
+| `slot` | 부모 → 자식 내부 | 자식의 특정 위치에 콘텐츠를 넣음 |
 
-라이프사이클 훅을 사용한 간단한 예시는 다음과 같다.
+### props: 부모가 데이터를 전달
+
+`ProductCard`는 어떤 상품을 보여줄지 직접 찾지 않고 `props`로 받는다. 그래야 같은 컴포넌트로 여러 상품을 표현할 수 있다.
+
+```vue
+<!-- ProductCard.vue -->
+<script setup>
+const props = defineProps({
+  product: {
+    type: Object,
+    required: true
+  }
+})
+
+const logProduct = () => {
+  console.log(props.product.id)
+}
+</script>
+
+<template>
+  <article>
+    <h3>{{ product.name }}</h3>
+    <p>{{ product.price.toLocaleString() }}원</p>
+    <button @click="logProduct">확인</button>
+  </article>
+</template>
+```
+
+```vue
+<!-- 부모 컴포넌트 -->
+<ProductCard :product="selectedProduct" />
+```
+
+`defineProps()`와 `defineEmits()`는 `<script setup>`에서 사용하는 컴파일러 매크로이므로 import하지 않는다. props는 읽기 전용이며 자식이 직접 수정하지 않는다.
+
+### emit: 자식이 변경 의도를 알린다
+
+자식은 부모의 상태를 직접 바꾸는 대신 이벤트를 발생시킨다.
+
+```vue
+<!-- ProductCard.vue -->
+<script setup>
+defineProps({
+  product: {
+    type: Object,
+    required: true
+  }
+})
+
+const emit = defineEmits(['add-to-cart'])
+</script>
+
+<template>
+  <button @click="emit('add-to-cart', product.id)">
+    장바구니에 담기
+  </button>
+</template>
+```
+
+```vue
+<!-- 부모 컴포넌트 -->
+<script setup>
+const addToCart = (productId) => {
+  console.log('추가할 상품:', productId)
+}
+</script>
+
+<template>
+  <ProductCard
+    :product="selectedProduct"
+    @add-to-cart="addToCart"
+  />
+</template>
+```
+
+데이터 흐름을 한 방향으로 유지하면 상태를 누가 소유하고 변경하는지 추적하기 쉽다.
+
+```text
+부모 상태 ──props──> 자식 화면
+부모 함수 <──emit── 자식 행동
+```
+
+### slot: 구조는 자식이, 콘텐츠는 부모가 정한다
+
+~~자 재탕해보자, 어머니의 사골국이 떠오른다. 연속으로 12일동안 먹어봤다~~
+
+카드의 테두리와 간격은 같지만 내부 콘텐츠가 달라진다면,
+
+**slot이 적합하다**. 
+
+```vue
+<!-- BaseCard.vue -->
+<template>
+  <article class="card">
+    <header><slot name="header" /></header>
+    <div><slot /></div>
+  </article>
+</template>
+```
+
+```vue
+<!-- 부모 컴포넌트 -->
+<BaseCard>
+  <template #header>
+    <h2>서울 날씨</h2>
+  </template>
+
+  <p>현재 기온은 28도입니다.</p>
+</BaseCard>
+```
+
+## 상태는 어디에 둘까?
+
+가장 중요한 기준은 **상태를 실제로 필요한 범위 중 가장 작은 곳에 두는 것**
+
+| 상황 | 우선 선택 |
+| --- | --- |
+| 한 컴포넌트만 사용하는 상태 | `ref`, `reactive` |
+| 부모와 자식이 함께 사용하는 상태 | 부모가 소유하고 `props` / `emit` 사용 |
+| 여러 컴포넌트에서 같은 로직을 재사용 | composable |
+| 가까운 하위 트리에 공통 의존성을 제공 | `provide` / `inject` |
+| 멀리 떨어진 화면이 같은 상태를 공유 | Pinia |
+
+드롭다운 열림 여부, 입력 중인 값, hover 상태처럼 해당 컴포넌트가 사라질 때 함께 없어져도 되는 값은 전역 저장소에 둘 이유가 없다.
+
+```js
+const isDropdownOpen = ref(false)
+const inputValue = ref('')
+```
+
+반대로 로그인 사용자나 장바구니처럼 서로 먼 화면이 함께 읽고 바꾸는 상태는 Pinia 같은 저장소가 유용하다.
+
+## composable로 로직 재사용하기
+
+UI가 아니라 상태와 동작이 반복된다면 컴포넌트를 복사하지 말고 composable로 분리
+
+```js
+// composables/useToggle.js
+import { ref } from 'vue'
+
+export function useToggle(initialValue = false) {
+  const value = ref(initialValue)
+
+  const toggle = () => {
+    value.value = !value.value
+  }
+
+  return { value, toggle }
+}
+```
+
+```vue
+<script setup>
+import { useToggle } from './composables/useToggle'
+
+const { value: isOpen, toggle } = useToggle()
+</script>
+```
+
+## 컴포넌트 생명주기
+
+컴포넌트는 설정되고, DOM에 연결되고, 상태 변경에 따라 갱신된 뒤 제거된다.
+
+| 단계 | 대표 훅 | 자주 하는 작업 |
+| --- | --- | --- |
+| 마운트 전후 | `onBeforeMount`, `onMounted` | DOM 접근, 브라우저 API 연결 |
+| 업데이트 전후 | `onBeforeUpdate`, `onUpdated` | 갱신된 DOM 측정 |
+| 언마운트 전후 | `onBeforeUnmount`, `onUnmounted` | 타이머와 이벤트 리스너 정리 |
 
 ```vue
 <script setup>
@@ -139,76 +277,28 @@ onUnmounted(() => {
 </script>
 ```
 
-`onMounted`에서 등록한 이벤트 리스너는 `onUnmounted`에서 제거해야 컴포넌트가 사라진 뒤에도 불필요한 동작이 남지 않는다.
+`onMounted()`에서 등록한 외부 이벤트와 타이머는 `onUnmounted()`에서 해제한다. 단순한 파생 값은 `onUpdated()`보다 `computed()`로 표현하는 편이 명확하다.
 
+## 설계 점검표
 
-# Props & Emits 
+컴포넌트를 나눌 때 아래 질문을 확인하자
 
-Component 연동
-- Vue 3의 모든 컴포넌트 연동은"데이터는 위에서 아래로 물려주고, 이벤트는 아래에서 위로 쏘아 올린다"는 구조를 따른다.
+1. 이 컴포넌트의 책임을 한 문장으로 설명할 수 있는가?
+2. 입력은 props, 출력은 emit으로 드러나는가?
+3. props를 자식에서 직접 수정하고 있지는 않은가?
+4. 반복되는 UI는 컴포넌트, 반복되는 로직은 composable로 분리했는가?
+5. 지역 상태를 불필요하게 Pinia로 올리지 않았는가?
+6. 외부 이벤트와 타이머를 언마운트 시점에 정리하는가?
 
-분류 🔽 Props (하행선) 🔼 Emits (상행선)
-개념 정의 부모가 자식에게 주는 반응형 데이터 값 자식이 부모에게 보고하는 이벤트
-흐름 방향 부모 → 자식 (위에서 아래로) 자식 → 부모 (아래에서 위로)
-데이터 권한 읽기 전용. 자식은 수정 불가 부모에게 변경 요청 및 값 전달 가능
-Compiler Macro defineProps({ ... }) defineEmits([ ... ])
-Parent Binding 자식 태그 속성에 콜론(:)으로 주입 자식 태그 이벤트에 골뱅이(@)로 청취
+컴포넌트 설계의 목표는 파일 수를 늘리는 것이 아니다. 상태의 소유자와 컴포넌트 사이의 계약을 분명하게 만드는 것이다.
 
-Compiler Macro란 Runtime 시점이 아닌 Build 시점에 Vue Compiler가 코드를 변환하는 특수 예약어로 defineProps(),
-defineEmits(), defineExpose() 같은 함수들은 <script setup>에서만 사용이 가능
+## 참고 자료
 
-defineProps() - 속성 정의
+- [Vue 공식 문서: Components Basics](https://vuejs.org/guide/essentials/component-basics.html)
+- [Vue 공식 문서: Component Events](https://vuejs.org/guide/components/events.html)
+- [Vue 공식 문서: Slots](https://vuejs.org/guide/components/slots.html)
+- [Vue 공식 문서: Lifecycle Hooks](https://vuejs.org/guide/essentials/lifecycle.html)
 
-자식 컴포넌트 내부에서"부모가 넘겨줄 데이터(속성)의 이름과 규격"을 선언하는 Vue 3 내장 컴파일러 매크로 함수
-- Compiler Macro이기 때문에 상단에 import할 필요 없이 <script setup> 안에서 즉시 호출할 수 있다
-- 간단한 배열 표기법과, 강력한 객체 표기법이 있다
+--- 
 
-[배열 형식]
-const props = defineProps(['title', 'count'])
-
-[객체 형식– 기본값 지정]
-defineProps({
-// 1. 타입만 간단히 지정하는 경우
-title: String,
-// 2. 필수 값과 기본값까지 꼼꼼하게 지정하는 경우
-likes: {
-type: Number,
-required: true // 부모가 이 값을 안 넘기면 에러발생.
-},
-status: {
-type: String,
-default: ＇대기 중＇ // 부모가 값을 안 주면 이 값이 기본으로 세팅.
-}
-})
-
-▪ <template> 에서 사용하기
-• 정의된 변수를 그대로 사용하면 된다.
-<template>
-<h1>{{ title }}</h1>
-<p>좋아요: {{ likes }}</p>
-</template>
-▪ <script setup> 에서 사용하기
-• defineProps가 반환하는 객체를 변수(보통 props라는 이름)에 받아서.점 문법으로 접근해야 한다.
-<script setup>
-// 변수에 결과를 할당합니다.
-const props = defineProps({
-title: String,
-likes: Number
-})
-// 내부 함수에서 쓸 때는 props.을 앞에 꼭 붙여야 합니다.
-const checkPopularity = () => {
-if (props.likes > 100) {
-console.log(`${props.title}은 인기 게시글입니다.`)
-}
-}
-</script>
-
-Readonly
-• defineProps로 Parent에서 전달된 값은 읽기 전용(ReadOnly)이다.
-• Child Component에서 이 값을 직접 바꾸려고 하면 에러가 발생된다.
-
-const props = defineProps(['likes'])
-const brokenFunction = () => {
-// ❌ 절대 금지! 콘솔에 ReadOnly 에러 발생.
-props.likes = 999
-}
+{% endraw %}
