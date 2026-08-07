@@ -8,24 +8,24 @@
     
     
     
-    <title>Python_디버깅 · Minnong's Study Log</title>
-    <meta name="description" content="" />
+    <title>코드 품질과 기초 테스트 · Minnong's Study Log</title>
+    <meta name="description" content="layout: posttitle: “Python 코드 품질: 디버깅부터 테스트와 자동화까지”date: 2026-08-07 09:00:00 +0900categories: [Python]tags: [Python, Debugging, Pytest, Ruff, Pre-commit, CI]—" />
     
     <link rel="canonical" href="http://localhost:4000/python/2026/07/30/python_2/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Python_디버깅" />
-    <meta property="og:description" content="" />
+    <meta property="og:title" content="코드 품질과 기초 테스트" />
+    <meta property="og:description" content="layout: posttitle: “Python 코드 품질: 디버깅부터 테스트와 자동화까지”date: 2026-08-07 09:00:00 +0900categories: [Python]tags: [Python, Debugging, Pytest, Ruff, Pre-commit, CI]—" />
     <meta property="og:url" content="http://localhost:4000/python/2026/07/30/python_2/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
       <meta property="article:published_time" content="2026-07-30T09:00:00+09:00" />
       <meta property="article:modified_time" content="2026-07-30T09:00:00+09:00" />
       <meta property="article:section" content="Python" />
-      <meta property="article:tag" content="Python" />
+      <meta property="article:tag" content="Python" /><meta property="article:tag" content="Debugging" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Python_디버깅" />
-    <meta name="twitter:description" content="" />
+    <meta name="twitter:title" content="코드 품질과 기초 테스트" />
+    <meta name="twitter:description" content="layout: posttitle: “Python 코드 품질: 디버깅부터 테스트와 자동화까지”date: 2026-08-07 09:00:00 +0900categories: [Python]tags: [Python, Debugging, Pytest, Ruff, Pre-commit, CI]—" />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=10"></script>
@@ -35,14 +35,14 @@
           "@context": "https://schema.org",
           "@type": "Article",
           "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/python/2026/07/30/python_2/" },
-          "headline": "Python_디버깅",
-          "description": "",
+          "headline": "코드 품질과 기초 테스트",
+          "description": "layout: posttitle: “Python 코드 품질: 디버깅부터 테스트와 자동화까지”date: 2026-08-07 09:00:00 +0900categories: [Python]tags: [Python, Debugging, Pytest, Ruff, Pre-commit, CI]—",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
           "datePublished": "2026-07-30T09:00:00+09:00",
           "dateModified": "2026-07-30T09:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
           "articleSection": "Python",
-          "keywords": ["Python"]
+          "keywords": ["Python", "Debugging"]
         }
       </script>
     
@@ -61,7 +61,7 @@
     class="site-body"
     data-baseurl=""
     data-page-url="/python/2026/07/30/python_2/"
-    data-page-title="Python_디버깅"
+    data-page-title="코드 품질과 기초 테스트"
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / python-디버깅</span>
+    <span>http://localhost:4000 / posts / 코드-품질과-기초-테스트</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Python_디버깅</span>
+    <span class="ide-mobile-title">코드 품질과 기초 테스트</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -121,7 +121,7 @@
       <kbd>ESC</kbd>
     </label>
     <div class="ide-explorer-toolbar">
-      <span id="explorerCount">24 POSTS</span>
+      <span id="explorerCount">31 POSTS</span>
       <label for="explorerSort" class="sr-only">게시물 정렬</label>
       <select id="explorerSort" aria-label="게시물 정렬">
         <option value="newest">최신순</option>
@@ -158,7 +158,7 @@
         
         <section class="ide-tree-folder is-open" data-category="deep-learning" data-folder-name="deep_learning" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Deep_Learning 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>14</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>17</small>
           </button>
           <div class="ide-tree-children" role="group">
             
@@ -480,7 +480,7 @@ convnext가 cnn을 현대화한 방법&lt;/p&gt;
               
               <section class="ide-tree-folder is-open" data-category="deep-learning-basic" data-folder-name="deep_learning basic" role="treeitem" aria-expanded="true">
                 <button class="ide-tree-folder-toggle" type="button" aria-label="Basic 하위 폴더 열기/닫기">
-                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Basic</span><small>1</small>
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Basic</span><small>4</small>
                 </button>
                 <div class="ide-tree-children" role="group">
                   
@@ -496,6 +496,30 @@ fine-tuning과 transfer learning 차이
 inference와 training의 차이&lt;/p&gt;
  [&quot;deep learning&quot;, &quot;machine learning&quot;, &quot;training basics&quot;]" title="딥러닝 학습 기본 개념">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>딥러닝 학습 기본 개념</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/deep_learning/basic/2026/08/06/ML_Pipeline2/" role="treeitem" data-date="1785942000" data-title="분석 자동화와 파이프라인 설계" data-search="분석 자동화와 파이프라인 설계 &lt;blockquote&gt;
+  &lt;h1 id=&quot;기술-중심이-아닌-문제-해결-중심&quot;&gt;기술 중심이 아닌 문제 해결 중심&lt;/h1&gt;
+  &lt;h2 id=&quot;좋은-분석은-올바른-문제-정의에서-시작&quot;&gt;좋은 분석은 올바른 문제 정의에서 시작&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+ [&quot;deep learning&quot;, &quot;pipeline&quot;]" title="분석 자동화와 파이프라인 설계">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>분석 자동화와 파이프라인 설계</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/deep_learning/basic/2026/08/06/ML_Pipeline/" role="treeitem" data-date="1785942000" data-title="기초 통계와 ml 파이프라인 연결" data-search="기초 통계와 ml 파이프라인 연결 &lt;blockquote&gt;
+  &lt;h1 id=&quot;기술-중심이-아닌-문제-해결-중심&quot;&gt;기술 중심이 아닌 문제 해결 중심&lt;/h1&gt;
+  &lt;h2 id=&quot;좋은-분석은-올바른-문제-정의에서-시작&quot;&gt;좋은 분석은 올바른 문제 정의에서 시작&lt;/h2&gt;
+&lt;/blockquote&gt;
+
+ [&quot;deep learning&quot;, &quot;pipeline&quot;]" title="기초 통계와 ML 파이프라인 연결">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>기초 통계와 ML 파이프라인 연결</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/deep_learning/basic/2026/08/06/EDA-copy/" role="treeitem" data-date="1785942000" data-title="데이터 시각화" data-search="데이터 시각화 &lt;h1 id=&quot;왜-데이터-시각화를-하는가&quot;&gt;왜 데이터 시각화를 하는가?&lt;/h1&gt;
+
+ [&quot;deep learning&quot;, &quot;eda&quot;]" title="데이터 시각화">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>데이터 시각화</span>
                     </a>
                   
                   
@@ -714,9 +738,64 @@ vue의 반응성 시스템
         
         
         
+        <section class="ide-tree-folder is-open" data-category="mlops" data-folder-name="mlops" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="MlOps 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>MlOps</span><small>1</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/mlops/2026/08/07/Devops_1/" role="treeitem" data-date="1786060800" data-title="mlops" data-search="mlops 
+ [&quot;mlops&quot;]" title="MLops">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>MLops</span>
+              </a>
+            
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
+        <section class="ide-tree-folder is-open" data-category="devops" data-folder-name="devops" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="DevOps 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DevOps</span><small>2</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/devops/2026/08/07/Devops_2/" role="treeitem" data-date="1786060800" data-title="devops_기초_2편" data-search="devops_기초_2편 &lt;p&gt;자 이어서! 다시 devops에 관해서 공부해보자&lt;/p&gt;
+
+ [&quot;devops&quot;]" title="Devops_기초_2편">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Devops_기초_2편</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/07/Devops_1/" role="treeitem" data-date="1786060800" data-title="devops_기초_1편" data-search="devops_기초_1편 &lt;hr /&gt;
+&lt;p&gt;layout: post
+title: “devops 기초 1편”
+date: 2026-08-07 09:00:00 +0900
+categories: [devops]
+tags: [devops]
+—&lt;/p&gt;
+
+ [&quot;devops&quot;]" title="Devops_기초_1편">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Devops_기초_1편</span>
+              </a>
+            
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
         <section class="ide-tree-folder is-open" data-category="python" data-folder-name="python" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Python 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Python</span><small>3</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Python</span><small>4</small>
           </button>
           <div class="ide-tree-children" role="group">
             
@@ -725,9 +804,21 @@ vue의 반응성 시스템
                 <i class="ri-markdown-line" aria-hidden="true"></i><span>Python_01</span>
               </a>
             
-              <a class="ide-tree-post is-current" href="/python/2026/07/30/python_2/" role="treeitem" data-date="1785369600" data-title="python_디버깅" data-search="python_디버깅 
- [&quot;python&quot;]" title="Python_디버깅">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>Python_디버깅</span>
+              <a class="ide-tree-post" href="/python/2026/07/30/python_3-copy/" role="treeitem" data-date="1785369600" data-title="python_01" data-search="python_01 
+ [&quot;python&quot;]" title="Python_01">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Python_01</span>
+              </a>
+            
+              <a class="ide-tree-post is-current" href="/python/2026/07/30/python_2/" role="treeitem" data-date="1785369600" data-title="코드 품질과 기초 테스트" data-search="코드 품질과 기초 테스트 &lt;hr /&gt;
+&lt;p&gt;layout: post
+title: “python 코드 품질: 디버깅부터 테스트와 자동화까지”
+date: 2026-08-07 09:00:00 +0900
+categories: [python]
+tags: [python, debugging, pytest, ruff, pre-commit, ci]
+—&lt;/p&gt;
+
+ [&quot;python&quot;, &quot;debugging&quot;]" title="코드 품질과 기초 테스트">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>코드 품질과 기초 테스트</span>
               </a>
             
               <a class="ide-tree-post" href="/python/2026/07/30/python/" role="treeitem" data-date="1785369600" data-title="python_01" data-search="python_01 &lt;hr /&gt;
@@ -839,25 +930,1026 @@ tags: [python, cpython, datastructure, logging, typehint]
     
     <a href="/archive/?category=python">python</a><span>&gt;</span>
     
-    <span aria-current="page">python-디버깅.md</span>
+    <span aria-current="page">코드-품질과-기초-테스트.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>Python</strong><time datetime="2026-07-30T09:00:00+09:00">2026.07.30</time><span data-reading-time>—</span><span>1 tags</span></div>
-    <h1>Python_디버깅</h1>
+    <div class="ide-document-meta"><strong>Python</strong><time datetime="2026-07-30T09:00:00+09:00">2026.07.30</time><span data-reading-time>—</span><span>2 tags</span></div>
+    <h1>코드 품질과 기초 테스트</h1>
   </header>
   
-  <div class="ide-document-content prose" id="postContent">
+  <div class="ide-document-content prose" id="postContent"><hr />
+<p>layout: post
+title: “Python 코드 품질: 디버깅부터 테스트와 자동화까지”
+date: 2026-08-07 09:00:00 +0900
+categories: [Python]
+tags: [Python, Debugging, Pytest, Ruff, Pre-commit, CI]
+—</p>
+
+<p>Python 코드를 작성할 때 중요한 것은 단순히 <strong>실행되는 코드</strong>를 만드는 것이 아니다.</p>
+
+<p>좋은 코드는 다음 조건을 만족해야 한다.</p>
+
+<ul>
+  <li>문제가 발생했을 때 원인을 빠르게 찾을 수 있어야 한다.</li>
+  <li>코드 변경 후 기존 기능이 깨지지 않았음을 확인할 수 있어야 한다.</li>
+  <li>팀원이 작성해도 일정한 코드 스타일을 유지해야 한다.</li>
+  <li>Git에 잘못된 코드가 들어가기 전에 문제를 발견할 수 있어야 한다.</li>
+  <li>서버나 CI 환경에서도 자동으로 품질을 검증할 수 있어야 한다.</li>
+</ul>
+
+<p>이를 위해 사용되는 대표적인 도구가 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Debugger / logging
+        ↓
+      pytest
+        ↓
+   pytest-cov
+        ↓
+      Ruff
+        ↓
+   pre-commit
+        ↓
+ GitHub Actions
+</code></pre></div></div>
+
+<p>결국 코드 품질 관리의 핵심은</p>
+
+<blockquote>
+  <p>사람이 직접 확인하던 작업을 최대한 자동화하는 것</p>
+</blockquote>
+
+<p>이라고 볼 수 있다.</p>
+
+<p><del>코드 품질과 기능을 자동으로 검증해야 한다. 아직 프로젝트를 제대로 해본적이 없어서 크게 와닿지는 않는 걸</del></p>
+
+<hr />
+
+<h1 id="1-디버깅">1. 디버깅</h1>
+
+<h2 id="버그란">버그란?</h2>
+
+<p>버그(Bug)는 프로그램이 의도한 대로 동작하지 않게 만드는 문제를 의미한다.</p>
+
+<p>대표적으로 다음과 같은 문제가 있다.</p>
+
+<ul>
+  <li>입력 데이터 오류</li>
+  <li>논리 오류</li>
+  <li>문법 오류</li>
+  <li>타입 오류</li>
+  <li>실행 중 발생하는 예외</li>
+</ul>
+
+<p>일반적인 디버깅 과정은 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>문제 재현
+   ↓
+원인 분석
+   ↓
+수정
+   ↓
+재실행
+   ↓
+정상 동작 확인
+</code></pre></div></div>
+
+<p>중요한 것은 단순히 에러를 없애는 것이 아니라 <strong>왜 문제가 발생했는지 확인하는 것</strong>이다.</p>
+
+<p><del>CODEX야 도와줘</del></p>
+
+<hr />
+
+<h1 id="2-자주-만나는-python-오류">2. 자주 만나는 Python 오류</h1>
+
+<p><del>안 만나고 싶다.. 오류..</del></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>오류</th>
+      <th>의미</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SyntaxError</code></td>
+      <td>Python 문법 오류</td>
+      <td>괄호 또는 콜론 누락</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">NameError</code></td>
+      <td>정의되지 않은 변수 사용</td>
+      <td><code class="language-plaintext highlighter-rouge">print(x)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TypeError</code></td>
+      <td>서로 맞지 않는 타입 연산</td>
+      <td><code class="language-plaintext highlighter-rouge">"2" + 2</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">IndexError</code></td>
+      <td>리스트 범위를 벗어난 접근</td>
+      <td><code class="language-plaintext highlighter-rouge">items[10]</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">KeyError</code></td>
+      <td>존재하지 않는 딕셔너리 키 접근</td>
+      <td><code class="language-plaintext highlighter-rouge">data["name"]</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ValueError</code></td>
+      <td>값의 형식이 잘못됨</td>
+      <td><code class="language-plaintext highlighter-rouge">int("hello")</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">AttributeError</code></td>
+      <td>존재하지 않는 메서드나 속성 사용</td>
+      <td><code class="language-plaintext highlighter-rouge">"hello".push()</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ZeroDivisionError</code></td>
+      <td>0으로 나누기</td>
+      <td><code class="language-plaintext highlighter-rouge">10 / 0</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>에러가 발생하면 가장 먼저 <strong>Traceback의 마지막 줄</strong>을 확인하는 것이 좋다.</p>
+
+<p><del>원래도 마지막 줄만 본다</del></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback (most recent call last):
+  ...
+ZeroDivisionError: division by zero
+</code></pre></div></div>
+
+<p>마지막 줄에는 일반적으로</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>예외 종류 : 문제 내용
+</code></pre></div></div>
+
+<p>이 표시된다.</p>
+
+<p>그 다음 위쪽으로 올라가면서 <strong>어느 파일의 몇 번째 줄에서 문제가 시작되었는지</strong> 추적한다.</p>
+
+<hr />
+
+<h1 id="3-print-디버깅">3. print() 디버깅</h1>
+
+<p><del>개발자의 시간복잡도를 줄여준다. 알고리즘의 시간복잡도만 중요한게 아니라고</del></p>
+
+<p>가장 간단한 디버깅 방법은 변수 값을 직접 출력하는 것이다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"DEBUG: a=</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s">, b=</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="n">add_numbers</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>출력:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEBUG: a=3, b=5
+8
+</code></pre></div></div>
+
+<h2 id="왜-사용하는가">왜 사용하는가?</h2>
+
+<p>프로그램이 실제로 어떤 값을 가지고 실행되는지 빠르게 확인할 수 있다.</p>
+
+<p>특히 작은 프로그램에서는 매우 간단하고 효과적이다!</p>
+
+<h2 id="한계">한계</h2>
+
+<p>프로그램이 커지면 다음과 같은 문제가 생긴다.</p>
+
+<p><del>다 읽어낼 자신 있으면 써보던가 ㅋ</del></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"여기 실행됨"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>어떤 출력이 실제 결과이고 어떤 출력이 디버깅용인지 구분하기 어려워진다.</p>
+
+<p>따라서 간단한 확인은 <code class="language-plaintext highlighter-rouge">print()</code>로 할 수 있지만 규모가 커지면 <strong>Debugger와 logging을 사용하는 것이 좋다.</strong></p>
+
+<hr />
+
+<h1 id="4-logging">4. logging</h1>
+
+<p>실무 프로그램에서는 <code class="language-plaintext highlighter-rouge">print()</code> 대신 <code class="language-plaintext highlighter-rouge">logging</code>을 많이 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+<span class="n">logging</span><span class="p">.</span><span class="n">debug</span><span class="p">(</span><span class="s">"디버깅 메시지"</span><span class="p">)</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"프로그램 실행"</span><span class="p">)</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"주의가 필요한 상태"</span><span class="p">)</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"오류 발생"</span><span class="p">)</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="s">"심각한 오류 발생"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>로그 레벨은 다음과 같이 구분된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DEBUG
+  ↓
+INFO
+  ↓
+WARNING
+  ↓
+ERROR
+  ↓
+CRITICAL
+</code></pre></div></div>
+
+<h2 id="왜-사용하는가-1">왜 사용하는가?</h2>
+
+<p>환경에 따라 필요한 로그만 출력할 수 있기 때문이다.</p>
+
+<p>개발 환경에서는</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span>
+</code></pre></div></div>
+
+<p>까지 확인하고,</p>
+
+<p>운영 환경에서는</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span>
+</code></pre></div></div>
+
+<p>또는</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="p">.</span><span class="n">WARNING</span>
+</code></pre></div></div>
+
+<p>이상만 기록하는 방식으로 사용할 수 있다.</p>
+
+<p>파일에 저장하는 것도 가능하다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s">"app.log"</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s">"%(asctime)s - %(levelname)s - %(message)s"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"프로그램 시작"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>결과:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2026-08-07 09:00:01 - INFO - 프로그램 시작
+</code></pre></div></div>
+
+<h3 id="효과">효과</h3>
+
+<p><code class="language-plaintext highlighter-rouge">logging</code>을 사용하면</p>
+
+<ul>
+  <li>오류 발생 시간</li>
+  <li>프로그램 실행 흐름</li>
+  <li>API 요청 결과</li>
+  <li>처리한 데이터 수</li>
+  <li>비정상 상황</li>
+</ul>
+
+<p>등을 기록할 수 있다.</p>
+
+<p>운영 중 문제가 발생했을 때 원인을 추적하기 훨씬 쉬워진다.</p>
+
+<hr />
+
+<h1 id="5-traceback">5. traceback</h1>
+
+<p>예외가 발생한 위치와 호출 흐름을 자세히 확인하고 싶다면 <code class="language-plaintext highlighter-rouge">traceback</code>을 사용할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+
+<span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"에러 발생:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+    <span class="n">traceback</span><span class="p">.</span><span class="n">print_exc</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>단순히</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>division by zero
+</code></pre></div></div>
+
+<p>만 보는 것이 아니라,</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>어떤 함수
+→ 어떤 파일
+→ 몇 번째 줄
+→ 어떤 예외
+</code></pre></div></div>
+
+<p>에서 문제가 발생했는지 확인할 수 있다.</p>
+
+<p>다만 대부분의 경우 처리되지 않은 예외는 Python이 기본적으로 traceback을 출력하기 때문에, <code class="language-plaintext highlighter-rouge">traceback</code> 모듈은 <strong>예외를 잡은 뒤에도 전체 호출 정보를 기록해야 할 때</strong> 특히 유용하다.</p>
+
+<hr />
+
+<h1 id="6-assert">6. assert</h1>
+
+<p><code class="language-plaintext highlighter-rouge">assert</code>는 개발 중 “이 조건은 반드시 참이어야 한다”라는 가정을 검사할 때 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"b는 0이 될 수 없습니다."</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>는 정상 실행된다.</p>
+
+<p>하지만</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">divide</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>을 실행하면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AssertionError: b는 0이 될 수 없습니다.
+</code></pre></div></div>
+
+<p>가 발생한다.</p>
+
+<h2 id="주의">주의</h2>
+
+<p><code class="language-plaintext highlighter-rouge">assert</code>를 사용자 입력 검증이나 중요한 비즈니스 로직에 사용하는 것은 적절하지 않다.</p>
+
+<p>Python은 최적화 옵션으로 실행할 경우 <code class="language-plaintext highlighter-rouge">assert</code>가 제거될 수 있기 때문이다.</p>
+
+<p>따라서 실제 입력 검증은 다음과 같이 작성하는 것이 좋다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">divide</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"b는 0이 될 수 없습니다."</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>정리하면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assert
+→ 개발자가 가정한 내부 상태 검사
+
+if + raise
+→ 실제 프로그램 입력과 예외 검증
+</code></pre></div></div>
+
+<p>으로 생각하면 된다.</p>
+
+<hr />
+
+<h1 id="7-vs-code-debugger">7. VS Code Debugger</h1>
+
+<p>프로그램이 커지면 <code class="language-plaintext highlighter-rouge">print()</code>를 계속 추가하는 것보다 Debugger를 사용하는 것이 효율적이다.</p>
+
+<p>VS Code에서는 코드 왼쪽에 <strong>Breakpoint</strong>를 설정할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">calculate_total</span><span class="p">(</span><span class="n">prices</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">total</span>
+
+
+<span class="n">prices</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">3000</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">calculate_total</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">total = sum(prices)</code> 부분에 Breakpoint를 걸면 실행이 해당 지점에서 멈춘다.</p>
+
+<p>이때 다음 값을 직접 확인할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>prices
+total
+result
+</code></pre></div></div>
+
+<p>뿐만 아니라</p>
+
+<ul>
+  <li>변수 타입</li>
+  <li>객체 내부 값</li>
+  <li>리스트 내용</li>
+  <li>DataFrame</li>
+  <li>함수 호출 흐름</li>
+</ul>
+
+<p>등도 확인할 수 있다.</p>
+
+<h2 id="데이터-분석에서-특히-유용한-이유">데이터 분석에서 특히 유용한 이유</h2>
+
+<p>예를 들어 Pandas DataFrame을 다룰 때마다</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">dtypes</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>를 작성하는 것보다 Breakpoint에서 객체를 직접 확인하는 것이 훨씬 편하다.</p>
+
+<p>즉,</p>
+
+<blockquote>
+  <p>복잡한 프로그램일수록 <code class="language-plaintext highlighter-rouge">print()</code>보다 Debugger가 효율적이다.</p>
+</blockquote>
+
+<hr />
+
+<h1 id="8-pytest">8. pytest</h1>
+
+<p>코드를 수정할 때 가장 무서운 문제는</p>
+
+<blockquote>
+  <p>새로운 기능을 고쳤는데 기존 기능이 망가지는 것</p>
+</blockquote>
+
+<p>이다.</p>
+
+<p>이를 방지하기 위해 자동화 테스트를 작성한다.</p>
+
+<p>Python에서 가장 많이 사용하는 테스트 도구 중 하나가 <code class="language-plaintext highlighter-rouge">pytest</code>이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pytest
+</code></pre></div></div>
+
+<p>예를 들어 다음 함수가 있다고 하자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># src/calculator.py
+</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>테스트 코드는 다음과 같이 작성한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># tests/test_calculator.py
+</span>
+<span class="kn">from</span> <span class="nn">src.calculator</span> <span class="kn">import</span> <span class="n">add</span>
+
+
+<span class="k">def</span> <span class="nf">test_add</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+</code></pre></div></div>
+
+<p>실행:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest
+</code></pre></div></div>
+
+<p>pytest가 테스트 파일을 자동으로 찾아 실행한다.</p>
+
+<hr />
+
+<h1 id="9-pytest-테스트-탐색-규칙">9. pytest 테스트 탐색 규칙</h1>
+
+<p>pytest는 기본적으로 다음 이름을 테스트로 인식한다.</p>
+
+<h3 id="파일">파일</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test_*.py
+*_test.py
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>test_user.py
+user_test.py
+</code></pre></div></div>
+
+<h3 id="함수">함수</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_login</span><span class="p">():</span>
+    <span class="p">...</span>
+</code></pre></div></div>
+
+<p>즉 함수 이름이 <code class="language-plaintext highlighter-rouge">test_</code>로 시작해야 한다.</p>
+
+<p>특정 테스트만 실행할 수도 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tests/
+</code></pre></div></div>
+
+<p>특정 파일:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tests/test_calculator.py
+</code></pre></div></div>
+
+<p>특정 함수:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tests/test_calculator.py::test_add
+</code></pre></div></div>
+
+<p>상세 결과:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest <span class="nt">-v</span>
+</code></pre></div></div>
+
+<p>첫 번째 실패에서 중단:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest <span class="nt">-x</span>
+</code></pre></div></div>
+
+<hr />
+
+<h1 id="10-pytest를-사용하는-효과">10. pytest를 사용하는 효과</h1>
+
+<p>테스트를 작성해두면 코드 수정 후</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest
+</code></pre></div></div>
+
+<p>한 번으로 기존 기능이 정상인지 확인할 수 있다.</p>
+
+<p>예를 들어 다음 기능이 있다고 하자.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>데이터 로딩
+데이터 검증
+데이터 변환
+CSV 저장
+API 호출
+</code></pre></div></div>
+
+<p>각 기능에 테스트를 만들어 두면 프로그램을 수정할 때마다 전체 기능을 사람이 직접 실행해볼 필요가 줄어든다.</p>
+
+<p>즉,</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 수정
+   ↓
+pytest 실행
+   ↓
+기존 기능 정상 여부 확인
+</code></pre></div></div>
+
+<p>이 가능해진다.</p>
+
+<p>이것이 자동화 테스트의 가장 큰 장점이다.</p>
+
+<hr />
+
+<h1 id="11-pytest-cov">11. pytest-cov</h1>
+
+<p>테스트가 존재한다고 해서 모든 코드가 테스트되고 있다는 의미는 아니다.</p>
+
+<p>어떤 코드가 실제 테스트를 거쳤는지 확인하기 위해 <strong>Coverage</strong>를 사용한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pytest-cov
+</code></pre></div></div>
+
+<p>실행:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest tests/ <span class="nt">--cov</span><span class="o">=</span>src <span class="nt">--cov-report</span><span class="o">=</span>term-missing
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Name                 Stmts   Miss   Cover
+-----------------------------------------
+src/clean.py            25      3     88%
+src/features.py         38      0    100%
+-----------------------------------------
+TOTAL                   63      3     95%
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Miss</code>는 테스트되지 않은 코드 수를 의미한다.</p>
+
+<p>따라서 Coverage는 단순히 숫자를 높이는 도구라기보다</p>
+
+<blockquote>
+  <p>어떤 코드 경로에 테스트가 부족한지 찾는 도구</p>
+</blockquote>
+
+<p>로 사용하는 것이 좋다.</p>
+
+<hr />
+
+<h1 id="12-ruff-이걸를-잘-기억하자">12. Ruff (이걸를 잘 기억하자!)</h1>
+
+<p>Python 프로젝트에서는 코드 스타일과 잠재적인 오류를 자동으로 검사하는 Linter를 사용한다.</p>
+
+<p>최근 Python 프로젝트에서는 <strong>Ruff</strong>가 많이 사용된다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>ruff
+</code></pre></div></div>
+
+<p>검사:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruff check <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>자동 수정:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruff check <span class="nb">.</span> <span class="nt">--fix</span>
+</code></pre></div></div>
+
+<p>포매팅:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruff format <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Ruff는 다음과 같은 작업을 하나의 도구에서 처리할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lint
+Import 정리
+일부 오류 자동 수정
+Python 코드 Formatting
+</code></pre></div></div>
+
+<p>예를 들어 다음 코드가 있다고 하자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">x</span><span class="o">=</span><span class="mi">10</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">os</code>, <code class="language-plaintext highlighter-rouge">sys</code>를 사용하지 않는다면 Ruff가 불필요한 import를 탐지할 수 있다.</p>
+
+<p>Formatting 역시</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+ <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</code></pre></div></div>
+
+<p>같은 코드를</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>처럼 일관된 형태로 정리할 수 있다.</p>
+
+<h2 id="효과-1">효과</h2>
+
+<p>사람이 직접</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>공백이 이상하다
+import 순서가 이상하다
+사용하지 않는 변수가 있다
+스타일이 다르다
+</code></pre></div></div>
+
+<p>같은 문제를 찾을 필요가 줄어든다.</p>
+
+<hr />
+
+<h1 id="13-black은-언제-사용하는가">13. Black은 언제 사용하는가?</h1>
+
+<p>Black은 대표적인 Python 코드 Formatter다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>black
+</code></pre></div></div>
+
+<p>실행:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>black <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>검사만 할 경우:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>black <span class="nt">--check</span> <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Black의 가장 큰 특징은 설정 자유도를 줄이는 대신 <strong>누가 실행해도 거의 동일한 형태의 코드가 나온다는 것</strong>이다.</p>
+
+<p>다만 Ruff 자체에도 Formatter가 있기 때문에 새로운 프로젝트라면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Ruff lint
++
+Ruff format
+</code></pre></div></div>
+
+<p>구성만 사용하는 것도 가능하다.</p>
+
+<p>기존 프로젝트에서 이미 Black을 사용하고 있다면 굳이 변경할 필요는 없다.</p>
+
+<hr />
+
+<h1 id="14-pre-commit">14. pre-commit</h1>
+
+<p>문제가 있는 코드가 Git에 커밋되기 전에 자동으로 검사하고 싶다면 <code class="language-plaintext highlighter-rouge">pre-commit</code>을 사용할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pre-commit
+</code></pre></div></div>
+
+<p>프로젝트 루트에</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.pre-commit-config.yaml
+</code></pre></div></div>
+
+<p>파일을 작성한다.</p>
+
+<p>예:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">repos</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">repo</span><span class="pi">:</span> <span class="s">https://github.com/astral-sh/ruff-pre-commit</span>
+    <span class="na">rev</span><span class="pi">:</span> <span class="s">v0.12.0</span>
+    <span class="na">hooks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">ruff-check</span>
+        <span class="na">args</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">--fix</span><span class="pi">]</span>
+
+      <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">ruff-format</span>
+
+  <span class="pi">-</span> <span class="na">repo</span><span class="pi">:</span> <span class="s">https://github.com/pre-commit/pre-commit-hooks</span>
+    <span class="na">rev</span><span class="pi">:</span> <span class="s">v5.0.0</span>
+    <span class="na">hooks</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">check-yaml</span>
+      <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">check-merge-conflict</span>
+      <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">check-added-large-files</span>
+      <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">debug-statements</span>
+</code></pre></div></div>
+
+<p>설치:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pre-commit <span class="nb">install</span>
+</code></pre></div></div>
+
+<p>전체 파일 검사:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pre-commit run <span class="nt">--all-files</span>
+</code></pre></div></div>
+
+<p>이후</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit
+</code></pre></div></div>
+
+<p>을 실행하면 커밋 전에 자동 검사가 실행된다.</p>
+
+<p>검사를 통과하지 못하면 커밋이 중단된다.</p>
+
+<p>참고로 <code class="language-plaintext highlighter-rouge">debug-statements</code>는 <code class="language-plaintext highlighter-rouge">breakpoint()</code>, <code class="language-plaintext highlighter-rouge">pdb</code> 같은 디버거 코드가 남아 있는지 검사하는 Hook이며 일반적인 모든 <code class="language-plaintext highlighter-rouge">print()</code>를 차단하는 기능은 아니다.</p>
+
+<hr />
+
+<h1 id="15-github-actions-ci">15. GitHub Actions CI</h1>
+
+<p><code class="language-plaintext highlighter-rouge">pre-commit</code>은 개발자의 컴퓨터에서 실행된다.</p>
+
+<p>하지만 개발자가 검사를 실행하지 않거나 설정이 다른 경우도 있다.</p>
+
+<p>따라서 GitHub에서도 다시 테스트를 실행하는 것이 좋다.</p>
+
+<p>이것이 <strong>CI(Continuous Integration)</strong>다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Developer
+   ↓
+git push
+   ↓
+GitHub
+   ↓
+Ruff
+   ↓
+pytest
+   ↓
+통과 / 실패
+</code></pre></div></div>
+
+<p>간단한 GitHub Actions 예시는 다음과 같다.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Python CI</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+  <span class="na">pull_request</span><span class="pi">:</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">test</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up Python</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v5</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.11"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install dependencies</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install -r requirements.txt</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Ruff</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">ruff check .</span>
+          <span class="s">ruff format --check .</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Pytest</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">pytest</span>
+</code></pre></div></div>
+
+<p>GitHub에 코드를 Push하거나 Pull Request를 만들 때마다 자동으로</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lint
+Formatting
+Test
+</code></pre></div></div>
+
+<p>를 검사할 수 있다.</p>
+
+<hr />
+
+<h1 id="16-추천-프로젝트-구조">16. 추천 프로젝트 구조</h1>
+
+<p>작은 프로젝트라도 코드를 다음처럼 분리해두면 관리하기 편하다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>my_project/
+│
+├── src/
+│   └── mymodule/
+│       ├── __init__.py
+│       └── core.py
+│
+├── tests/
+│   └── test_core.py
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── .pre-commit-config.yaml
+├── pyproject.toml
+├── requirements.txt
+└── README.md
+</code></pre></div></div>
+
+<p>역할을 나누면 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>경로</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">src/</code></td>
+      <td>실제 프로그램 코드</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">tests/</code></td>
+      <td>테스트 코드</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.github/workflows/</code></td>
+      <td>GitHub Actions</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pyproject.toml</code></td>
+      <td>Python 도구 설정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.pre-commit-config.yaml</code></td>
+      <td>커밋 전 자동 검사</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">requirements.txt</code></td>
+      <td>의존성 관리</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="17-실제-개발-흐름">17. 실제 개발 흐름</h1>
+
+<p>코드 품질 도구를 각각 따로 외우기보다는 하나의 개발 과정으로 이해하는 것이 좋다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 코드 작성
+        ↓
+2. VS Code Debugger로 문제 확인
+        ↓
+3. pytest로 기능 검증
+        ↓
+4. Ruff로 코드 검사 및 Formatting
+        ↓
+5. pre-commit 자동 검사
+        ↓
+6. git commit
+        ↓
+7. git push
+        ↓
+8. GitHub Actions에서 다시 검증
+</code></pre></div></div>
+
+<p>각 도구의 역할도 명확하다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>도구</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Debugger</td>
+      <td>실행 중 문제 원인 분석</td>
+    </tr>
+    <tr>
+      <td>logging</td>
+      <td>프로그램 실행 기록</td>
+    </tr>
+    <tr>
+      <td>pytest</td>
+      <td>기능이 정상인지 검증</td>
+    </tr>
+    <tr>
+      <td>pytest-cov</td>
+      <td>테스트하지 않은 코드 확인</td>
+    </tr>
+    <tr>
+      <td>Ruff</td>
+      <td>코드 스타일 및 오류 검사</td>
+    </tr>
+    <tr>
+      <td>pre-commit</td>
+      <td>잘못된 코드의 커밋 방지</td>
+    </tr>
+    <tr>
+      <td>GitHub Actions</td>
+      <td>서버에서 최종 자동 검증</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h1 id="정리">정리</h1>
+
+<p>처음 Python을 배울 때는</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>만으로도 대부분의 문제를 해결할 수 있다.</p>
+
+<p>하지만 프로젝트 규모가 커지고 다른 사람과 코드를 공유하기 시작하면 코드 품질을 사람이 직접 관리하기 어렵다.</p>
+
+<p>따라서 점차 다음 구조로 발전시키는 것이 좋다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print
+ ↓
+Debugger / logging
+ ↓
+pytest
+ ↓
+Ruff
+ ↓
+pre-commit
+ ↓
+CI
+</code></pre></div></div>
+
+<p>특히 데이터 분석이나 머신러닝 코드도 예외가 아니다.</p>
+
+<p>좋은 코드의 기준은 단순히</p>
+
+<blockquote>
+  <p>지금 실행되는가?</p>
+</blockquote>
+
+<p>에서 끝나는 것이 아니라,</p>
+
+<blockquote>
+  <p>나중에 수정해도 정상적으로 동작하는지 검증할 수 있는가?</p>
+</blockquote>
+
+<p>까지 포함한다.</p>
+
+<p>결국 테스트와 코드 품질 자동화의 목적은 하나</p>
+
+<blockquote>
+  <p><strong>코드를 변경해도 신뢰할 수 있는 개발 환경을 만드는 것!.</strong></p>
+</blockquote>
+
+<p><del>Devops, MLops애서 더 소개해야지</del></p>
 </div>
   
-    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#python">#Python</a></footer>
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#python">#Python</a><a href="/tags/#debugging">#Debugging</a></footer>
   
   <nav class="ide-document-navigation" aria-label="게시물 이동">
     <a href="/python/2026/07/30/python/"><span>PREVIOUS</span><strong>Python_01</strong></a>
-    <a href="/python/2026/07/30/python_3/"><span>NEXT</span><strong>Python_01</strong></a>
+    <a href="/python/2026/07/30/python_3-copy/"><span>NEXT</span><strong>Python_01</strong></a>
   </nav>
   
 <section
@@ -914,12 +2006,24 @@ tags: [python, cpython, datastructure, logging, typehint]
       <div><dt>CATEGORY</dt><dd>Python</dd></div>
     </dl>
     <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/python/2026/07/30/python_2/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/python/2026/07/30/python_2/" data-bookmark-title="Python_디버깅"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/python/2026/07/30/python_2/" data-bookmark-title="코드 품질과 기초 테스트"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
     <div class="ide-related-list">
       
+      
+        
+          <a href="/mlops/2026/08/07/Devops_1/"><i class="ri-markdown-line" aria-hidden="true"></i><span>MLops</span></a>
+        
+      
+        
+          <a href="/devops/2026/08/07/Devops_2/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Devops_기초_2편</span></a>
+        
+      
+        
+          <a href="/devops/2026/08/07/Devops_1/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Devops_기초_1편</span></a>
+        
       
         
           <a href="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Transformer와 Vision Transformer</span></a>
@@ -933,18 +2037,6 @@ tags: [python, cpython, datastructure, logging, typehint]
           <a href="/deep_learning/transformer/2026/08/06/multimodal-foundation-models/"><i class="ri-markdown-line" aria-hidden="true"></i><span>멀티모달 파운데이션 모델 핵심 개념</span></a>
         
       
-        
-          <a href="/deep_learning/transformer/2026/08/06/mixture-of-experts/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Mixture of Experts(MoE) 핵심 개념</span></a>
-        
-      
-        
-          <a href="/deep_learning/technics/2026/08/06/training-techniques-intermediate/"><i class="ri-markdown-line" aria-hidden="true"></i><span>딥러닝 중급 학습 테크닉</span></a>
-        
-      
-        
-          <a href="/deep_learning/technics/2026/08/06/training-techniques-basics/"><i class="ri-markdown-line" aria-hidden="true"></i><span>딥러닝 기본 학습 테크닉</span></a>
-        
-      
       
     </div>
   </section>
@@ -953,7 +2045,7 @@ tags: [python, cpython, datastructure, logging, typehint]
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Python</span><span>24 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Python</span><span>31 posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>

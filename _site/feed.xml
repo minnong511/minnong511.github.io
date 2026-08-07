@@ -1,4 +1,716 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-06T16:18:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">딥러닝 데이터셋 엔지니어링</title><link href="http://localhost:4000/deep_learning/data/2026/08/06/dataset-engineering/" rel="alternate" type="text/html" title="딥러닝 데이터셋 엔지니어링" /><published>2026-08-06T00:00:00+09:00</published><updated>2026-08-06T00:00:00+09:00</updated><id>http://localhost:4000/deep_learning/data/2026/08/06/dataset-engineering</id><content type="html" xml:base="http://localhost:4000/deep_learning/data/2026/08/06/dataset-engineering/"><![CDATA[<p>좋은 데이터셋의 조건
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-07T15:11:56+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Devops_기초_2편</title><link href="http://localhost:4000/devops/2026/08/07/Devops_2/" rel="alternate" type="text/html" title="Devops_기초_2편" /><published>2026-08-07T09:00:00+09:00</published><updated>2026-08-07T09:00:00+09:00</updated><id>http://localhost:4000/devops/2026/08/07/Devops_2</id><content type="html" xml:base="http://localhost:4000/devops/2026/08/07/Devops_2/"><![CDATA[<p>자 이어서! 다시 DevOps에 관해서 공부해보자</p>
+
+<h1 id="docker">Docker</h1>
+
+<p>일반적으로 프로그램은 아래와 같이 작동한다</p>
+
+<p>Frontend
+Backend
+Database
+Redis</p>
+
+<h1 id="docker-compose">Docker Compose</h1>
+
+<p>Docker Compose를 사용하면 이를 한 번에 실행할 수 있다.</p>
+
+<p>docker compose up</p>
+
+<p>예</p>
+
+<p>Vue</p>
+
+<p>-&gt; FastAPI 
+-&gt; PostgerSQL</p>
+
+<p>를 하나의 개발환경으로 묶을 수있다</p>
+
+<p>예:</p>
+
+<p>Vue
+  ↓
+FastAPI
+  ↓
+PostgreSQL</p>
+
+<h1 id="cd---continuous-delivery--deployment">CD - Continuous Delivery / Deployment</h1>
+
+<p>git push
+   ↓
+CI
+   ↓
+Ruff
+pytest
+build
+   ↓
+CD
+   ↓
+Server Deployment</p>
+
+<p>즉, 테스트가 성공하면 자동으로 배포한다.</p>
+
+<p>main branch push
+       ↓
+GitHub Actions
+       ↓
+pytest PASS
+       ↓
+Docker Image Build
+       ↓
+Server Deploy</p>
+
+<p>사람이 서버에 접속해서</p>
+
+<p>git pull
+pyhthon app.py</p>
+
+<p>할 필요가 줄어든다.</p>
+
+<h1 id="cloud">Cloud</h1>
+
+<p>Docker까지 이해했다면 Cloud를 배우면 된다.</p>
+
+<p>처음부터 AWS 다 외울 필요는 없다 <del>나중에는 외워야 해?</del></p>
+
+<p>Compute</p>
+
+<p>EC2</p>
+
+<p>Storage</p>
+
+<p>S3</p>
+
+<p>Database</p>
+
+<p>RDS</p>
+
+<p>관리형 Database</p>
+
+<p>Network</p>
+
+<p>VPC
+Security Group
+Load Balancer</p>
+
+<p>DNS</p>
+
+<p>Route 53</p>
+
+<h1 id="reverse-proxy---nginx">Reverse Proxy - Nginx</h1>
+
+<p>실제 서버에서는 Python 애플리케이션을 인터넷에 바로 공개하지 않는다.</p>
+
+<p>보통</p>
+
+<p>Internet
+   ↓
+Nginx
+   ↓
+FastAPI</p>
+
+<p>형태로 사용한다.</p>
+
+<p>Nginx는 대표적으로</p>
+
+<p>Reverse Proxy
+HTTPS
+Load Balancing
+Static File</p>
+
+<h1 id="로그--모니터링">로그 &amp; 모니터링</h1>
+
+<p>운영 중 문제가 발생할 수 있다.. 이를 해결하려면 특정 지표들을 확인해야 한다.</p>
+
+<p>CPU 사용량
+Memory 사용량
+Request 수
+Response Time
+Error Rate
+Logs</p>
+
+<p>이를 Observability 라고 한다.</p>
+
+<p>대표 개념</p>
+
+<p>Logs 
+Metrics 
+Traces</p>
+
+<p>도구 예</p>
+
+<p>Prometheus
+Grafana
+OpenTelemetry</p>
+
+<p>처음에는 Logging부터 시작하면 된다.</p>
+
+<h1 id="infrastructure-as-code--terraform">Infrastructure as Code — Terraform</h1>
+
+<p>서버를 사림이 직접 클릭해서 만드는 것도 자동화 할 수 있다.</p>
+
+<p>EC2 생성
+↓
+Security Group 생성
+↓
+Network 설정
+↓
+Database 생성</p>
+
+<p>이것도 코드로 자동화 가능하다</p>
+
+<p>Terraform</p>
+
+<p><strong>IaC(Infrastructure as Code)</strong> 라고 한다.</p>
+
+<p>재현 가능
+버전 관리 가능
+자동 생성 가능</p>
+
+<h1 id="kubernetes">Kubernetes</h1>
+
+<p>Kubernetes는 가장 나중에 공부해도 된다.</p>
+
+<p>Docker Container가 수십 개, 수백 개로 늘어나면 관리가 어려워진다.</p>
+
+<p>Backend Container × 20
+Worker × 30
+Redis
+Database
+AI Server</p>
+
+<p>대표 개념</p>
+
+<p>Pod
+Deployment
+Service
+Ingress
+ConfigMap
+Secret
+Namespace</p>
+
+<h1 id="정리--devops-전체-흐름">정리 : DevOps 전체 흐름</h1>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       Developer
+           │
+           ▼
+          Git
+           │
+           ▼
+        GitHub
+           │
+           ▼
+    GitHub Actions CI
+      │          │
+    Ruff       pytest
+      │          │
+      └────┬─────┘
+           ▼
+      Docker Build
+           │
+           ▼
+         CD
+           │
+           ▼
+    Cloud / Server
+           │
+           ▼
+         Nginx
+           │
+           ▼
+      Application
+           │
+           ▼
+    Logs / Monitoring
+</code></pre></div></div>
+
+<h1 id="팁">팁</h1>
+
+<p>DevOps를 배우는 가장 좋은 방법은 API 프로젝트를 하나 배포해보는 것</p>
+
+<p>FastAPI
+   │
+   ├── Pydantic
+   ├── pytest
+   └── Ruff
+        ↓
+      GitHub
+        ↓
+ GitHub Actions
+        ↓
+      Docker
+        ↓
+     AWS EC2
+        ↓
+      Nginx
+        ↓
+     HTTPS API
+        ↓
+Logging / Monitoring</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="DevOps" /><summary type="html"><![CDATA[자 이어서! 다시 DevOps에 관해서 공부해보자]]></summary></entry><entry><title type="html">Devops_기초_1편</title><link href="http://localhost:4000/devops/2026/08/07/Devops_1/" rel="alternate" type="text/html" title="Devops_기초_1편" /><published>2026-08-07T09:00:00+09:00</published><updated>2026-08-07T09:00:00+09:00</updated><id>http://localhost:4000/devops/2026/08/07/Devops_1</id><content type="html" xml:base="http://localhost:4000/devops/2026/08/07/Devops_1/"><![CDATA[<hr />
+<p>layout: post
+title: “DevOps 기초 1편”
+date: 2026-08-07 09:00:00 +0900
+categories: [DevOps]
+tags: [DevOps]
+—</p>
+
+<h1 id="devops-기초">DevOps 기초</h1>
+
+<h2 id="1-devops란">1. DevOps란?</h2>
+
+<p>DevOps는 단순히 Docker나 Kubernetes 같은 기술을 사용하는 것을 의미하지 않는다.</p>
+
+<p><strong>Development + Operations</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 작성
+   ↓
+테스트
+   ↓
+빌드
+   ↓
+배포
+   ↓
+운영
+   ↓
+모니터링
+   ↓
+문제 수정
+   ↓
+다시 배포
+</code></pre></div></div>
+
+<p>이 전체 과정을 <strong>빠르고 안정적으로 만드는 개발 및 운영 방식</strong>이라고 볼 수 있다.</p>
+
+<p>DevOps의 핵심은 <strong>자동화와 재현성</strong>이다.</p>
+
+<p>예를 들어,</p>
+
+<blockquote>
+  <p>“내 컴퓨터에서는 실행되는데 서버에서는 실행되지 않는다.”</p>
+</blockquote>
+
+<p>라는 상황이 반복된다면 안정적인 개발 및 운영 환경이라고 보기 어렵다.</p>
+
+<p>DevOps에서는 가능한 한</p>
+
+<ul>
+  <li>같은 실행 환경</li>
+  <li>같은 테스트 과정</li>
+  <li>같은 배포 방법</li>
+  <li>같은 설정 관리 방식</li>
+</ul>
+
+<p>을 사용하도록 만들어 이러한 문제를 줄인다.</p>
+
+<hr />
+
+<h2 id="2-가장-먼저-알아야-할-것-linux">2. 가장 먼저 알아야 할 것: Linux</h2>
+
+<p>DevOps에서 사용하는 서버 환경은 Linux 기반인 경우가 많다.</p>
+
+<p>따라서 Docker나 AWS를 배우기 전에 기본적인 Linux 명령어와 터미널 사용법을 익혀두는 것이 좋다.</p>
+
+<p><del>참 쉽죠?</del></p>
+
+<p>기본적으로 다음 정도는 알아두자.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">pwd
+ls
+cd
+mkdir
+cp
+mv
+rm
+
+cat
+</span>less
+<span class="nb">grep
+
+</span>ps
+top
+<span class="nb">kill
+
+chmod
+chown
+
+</span>curl
+
+ssh
+</code></pre></div></div>
+
+<p>예를 들어 현재 실행 중인 프로세스를 확인하려면 다음과 같이 사용할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux
+</code></pre></div></div>
+
+<p>PID가 <code class="language-plaintext highlighter-rouge">1234</code>인 프로세스를 종료하려면 다음과 같이 실행한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">kill </span>1234
+</code></pre></div></div>
+
+<p>서버가 정상적으로 HTTP 응답을 보내는지 확인할 때는 <code class="language-plaintext highlighter-rouge">curl</code>을 사용할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl http://localhost:8000
+</code></pre></div></div>
+
+<h3 id="왜-필요한가">왜 필요한가?</h3>
+
+<p>실제 서버에서 문제가 발생했을 때 GUI 환경이 없는 경우가 많다.</p>
+
+<p>결국 터미널에서 직접</p>
+
+<ul>
+  <li>프로세스가 실행되고 있는가?</li>
+  <li>포트가 열려 있는가?</li>
+  <li>파일 권한은 정상인가?</li>
+  <li>서버가 요청에 응답하는가?</li>
+  <li>로그에는 어떤 오류가 기록되었는가?</li>
+</ul>
+
+<p>등을 확인해야 한다.</p>
+
+<hr />
+
+<h2 id="3-shell과-환경변수">3. Shell과 환경변수</h2>
+
+<p>서버에서는 명령어를 반복해서 실행해야 하는 일이 많다.</p>
+
+<p>이때 Bash와 같은 <strong>Shell</strong>을 사용한다.</p>
+
+<p>예를 들어 Python 프로그램을 실행하려면 다음과 같이 입력한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python app.py
+</code></pre></div></div>
+
+<p>환경변수는 다음과 같이 설정할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">API_KEY</span><span class="o">=</span><span class="s2">"secret"</span>
+</code></pre></div></div>
+
+<p>Python에서는 <code class="language-plaintext highlighter-rouge">os.getenv()</code>를 이용해 환경변수를 가져올 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"API_KEY"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="왜-필요한가-1">왜 필요한가?</h3>
+
+<p>API Key나 DB Password 같은 민감한 정보를 코드에 직접 작성하면 안 된다.</p>
+
+<p>예를 들어 다음과 같이 작성하는 것은 좋지 않다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">API_KEY</span> <span class="o">=</span> <span class="s">"abcdef123456"</span>
+</code></pre></div></div>
+
+<p>대신</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드
++
+환경변수
+</code></pre></div></div>
+
+<p>를 분리해서 관리한다.</p>
+
+<p>이 개념은 이후 배우게 될</p>
+
+<ul>
+  <li>Docker</li>
+  <li>GitHub Actions</li>
+  <li>AWS</li>
+  <li>Kubernetes</li>
+</ul>
+
+<p>에서도 계속 등장한다.</p>
+
+<hr />
+
+<h2 id="4-git과-github">4. Git과 GitHub</h2>
+
+<p>DevOps 자동화는 대부분 Git을 기반으로 시작한다.</p>
+
+<p>기본적인 흐름은 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 수정
+   ↓
+git add
+   ↓
+git commit
+   ↓
+git push
+   ↓
+GitHub
+</code></pre></div></div>
+
+<p>필수적으로 알아두어야 할 개념은 다음과 같다.</p>
+
+<ul>
+  <li>Repository</li>
+  <li>Commit</li>
+  <li>Branch</li>
+  <li>Merge</li>
+  <li>Pull Request</li>
+  <li>Conflict</li>
+  <li><code class="language-plaintext highlighter-rouge">.gitignore</code></li>
+</ul>
+
+<p>특히 <code class="language-plaintext highlighter-rouge">.gitignore</code>는 중요하다.</p>
+
+<p>예를 들어 Python 프로젝트에서는 다음과 같은 파일을 Git에서 제외할 수 있다.</p>
+
+<pre><code class="language-gitignore">.env
+.venv/
+__pycache__/
+</code></pre>
+
+<p>API Key가 저장된 <code class="language-plaintext highlighter-rouge">.env</code> 파일이나 로컬 가상환경 같은 파일은 Git 저장소에 올리지 않는 것이 기본이다.</p>
+
+<hr />
+
+<h2 id="5-네트워크-기초">5. 네트워크 기초</h2>
+
+<p>DevOps를 배우면서 의외로 자주 막히는 부분이 네트워크다.</p>
+
+<p>기본적으로 다음 개념은 알아둘 필요가 있다.</p>
+
+<ul>
+  <li>IP</li>
+  <li>Port</li>
+  <li>DNS</li>
+  <li>HTTP / HTTPS</li>
+  <li>TCP</li>
+  <li>localhost</li>
+  <li><code class="language-plaintext highlighter-rouge">127.0.0.1</code></li>
+  <li><code class="language-plaintext highlighter-rouge">0.0.0.0</code></li>
+  <li>Firewall</li>
+</ul>
+
+<p>예를 들어 FastAPI 서버를 다음과 같이 실행한다고 하자.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uvicorn main:app <span class="nt">--host</span> 127.0.0.1 <span class="nt">--port</span> 8000
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">127.0.0.1</code>에 바인딩하면 기본적으로 <strong>현재 컴퓨터 내부에서만 접근할 수 있다.</strong></p>
+
+<p>반면</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>uvicorn main:app <span class="nt">--host</span> 0.0.0.0 <span class="nt">--port</span> 8000
+</code></pre></div></div>
+
+<p>으로 실행하면 서버가 <strong>모든 네트워크 인터페이스에서 들어오는 요청을 받을 수 있도록 바인딩</strong>된다.</p>
+
+<p>다만 실제 외부 접근 가능 여부는 방화벽, 공유기, 클라우드 보안 설정 등에 따라서도 달라진다.</p>
+
+<p>이런 차이를 이해해야 Docker나 Cloud 환경에서 서버를 배포할 때 발생하는 문제를 쉽게 파악할 수 있다.</p>
+
+<hr />
+
+<h2 id="6-패키지와-실행-환경-관리">6. 패키지와 실행 환경 관리</h2>
+
+<p>DevOps에서 중요한 원칙 중 하나는 다음과 같다.</p>
+
+<blockquote>
+  <p>내가 아니더라도 다른 사람이 같은 실행 환경을 재현할 수 있어야 한다.</p>
+</blockquote>
+
+<p>개발하면서 자주 발생하는 문제가 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"내 컴퓨터에서는 되는데?"
+</code></pre></div></div>
+
+<p>실제로는 다음과 같은 차이가 원인일 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Python 3.11
+Python 3.12
+
+Pydantic 1.x
+Pydantic 2.x
+
+NumPy 버전 차이
+</code></pre></div></div>
+
+<p>따라서 프로젝트에서 사용하는 의존성을 기록한다.</p>
+
+<p>대표적인 방법이 <code class="language-plaintext highlighter-rouge">requirements.txt</code>이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fastapi
+uvicorn
+pydantic
+httpx
+pytest
+ruff
+</code></pre></div></div>
+
+<p>예를 들어 다음 명령어로 설치할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<p>최근 Python 프로젝트에서는 <code class="language-plaintext highlighter-rouge">pyproject.toml</code>을 중심으로 프로젝트 설정과 의존성을 관리하는 방식도 많이 사용한다.</p>
+
+<p>결국 중요한 것은</p>
+
+<blockquote>
+  <p><strong>누가 실행하더라도 동일한 환경을 최대한 재현할 수 있도록 만드는 것</strong></p>
+</blockquote>
+
+<p>이다.</p>
+
+<hr />
+
+<h2 id="7-코드-품질-검사">7. 코드 품질 검사</h2>
+
+<p>여기서 앞에서 배운 <strong>Ruff</strong>가 연결된다.</p>
+
+<p>코드 문제를 검사하려면 다음과 같이 실행한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruff check <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>자동으로 수정 가능한 문제를 고치려면 다음과 같이 사용할 수 있다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruff check <span class="nb">.</span> <span class="nt">--fix</span>
+</code></pre></div></div>
+
+<p>코드 포맷을 정리하려면 다음과 같이 실행한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruff format <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>DevOps에서는 이러한 코드 품질 검사를 사람이 매번 직접 수행하는 것이 아니라 <strong>자동화된 파이프라인에 포함시키는 것</strong>이 중요하다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Developer
+   ↓
+Ruff
+   ↓
+문제 없음
+   ↓
+다음 단계
+</code></pre></div></div>
+
+<p>문제가 발견되면 다음 단계로 넘어가지 않도록 만들 수도 있다.</p>
+
+<hr />
+
+<h2 id="8-자동-테스트">8. 자동 테스트</h2>
+
+<p>그다음 연결되는 것이 <code class="language-plaintext highlighter-rouge">pytest</code>이다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pytest
+</code></pre></div></div>
+
+<p>예를 들어 다음과 같은 함수가 있다고 하자.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>테스트 코드는 다음과 같이 작성할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">test_add</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+</code></pre></div></div>
+
+<p>코드를 수정할 때마다 사람이 모든 기능을 직접 확인하는 대신 테스트 프로그램이 코드의 동작을 자동으로 검사한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 변경
+   ↓
+pytest
+   ↓
+PASS / FAIL
+</code></pre></div></div>
+
+<p>기능이 많아질수록 자동 테스트의 중요성은 더욱 커진다.</p>
+
+<hr />
+
+<h2 id="9-ci---continuous-integration">9. CI - Continuous Integration</h2>
+
+<p>여기서 <strong>GitHub Actions</strong>가 등장한다.</p>
+
+<p>CI(Continuous Integration)는 간단하게 말하면</p>
+
+<blockquote>
+  <p><strong>코드가 저장소에 올라왔을 때 자동으로 검사하고 검증하는 과정</strong></p>
+</blockquote>
+
+<p>이라고 이해할 수 있다.</p>
+
+<p>예를 들어 다음과 같은 Pipeline을 구성할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push
+   ↓
+GitHub Actions
+   ↓
+Ruff
+   ↓
+pytest
+   ↓
+Build
+</code></pre></div></div>
+
+<p>즉 개발자가 코드를 Push하거나 Pull Request를 생성하면 GitHub Actions가 자동으로 코드 품질과 테스트 결과를 검사한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">.github/workflows/ci.yml</code></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">CI</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+  <span class="na">pull_request</span><span class="pi">:</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">test</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v5</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.11"</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">pip install -r requirements.txt</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">ruff check .</span>
+
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">pytest</span>
+</code></pre></div></div>
+
+<p>이렇게 설정해두면 코드가 GitHub에 올라올 때마다 자동으로</p>
+
+<ol>
+  <li>Repository의 코드를 가져오고</li>
+  <li>Python 3.11 환경을 구성하고</li>
+  <li>필요한 패키지를 설치하고</li>
+  <li>Ruff로 코드 품질을 검사하고</li>
+  <li>pytest로 테스트를 수행한다.</li>
+</ol>
+
+<p>하나라도 실패하면 CI 역시 실패한다.</p>
+
+<p><del>신기한데?</del></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 코드 작성
+       ↓
+    git push
+       ↓
+ GitHub Actions
+       ↓
+ ┌───────────────┐
+ │               │
+Ruff            pytest
+ │               │
+ └───────┬───────┘
+         ↓
+     PASS / FAIL
+</code></pre></div></div>
+
+<p>결국 DevOps의 시작은 Docker, Kubernetes가 아니라,</p>
+
+<blockquote>
+  <p><strong>코드를 작성하고 → 검사하고 → 테스트하고 → 동일한 방법으로 실행하는 과정을 자동화하는 것</strong></p>
+</blockquote>
+
+<p>부터 시작한다</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="DevOps" /><summary type="html"><![CDATA[layout: post title: “DevOps 기초 1편” date: 2026-08-07 09:00:00 +0900 categories: [DevOps] tags: [DevOps] —]]></summary></entry><entry><title type="html">MLops</title><link href="http://localhost:4000/mlops/2026/08/07/Devops_1/" rel="alternate" type="text/html" title="MLops" /><published>2026-08-07T09:00:00+09:00</published><updated>2026-08-07T09:00:00+09:00</updated><id>http://localhost:4000/mlops/2026/08/07/Devops_1</id><content type="html" xml:base="http://localhost:4000/mlops/2026/08/07/Devops_1/"><![CDATA[]]></content><author><name>Min Hyeong Lee</name></author><category term="MlOps" /><category term="MlOps" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">딥러닝 데이터셋 엔지니어링</title><link href="http://localhost:4000/deep_learning/data/2026/08/06/dataset-engineering/" rel="alternate" type="text/html" title="딥러닝 데이터셋 엔지니어링" /><published>2026-08-06T00:00:00+09:00</published><updated>2026-08-06T00:00:00+09:00</updated><id>http://localhost:4000/deep_learning/data/2026/08/06/dataset-engineering</id><content type="html" xml:base="http://localhost:4000/deep_learning/data/2026/08/06/dataset-engineering/"><![CDATA[<p>좋은 데이터셋의 조건
 Class Imbalance란 무엇인가
 Train과 Validation 데이터 누수를 방지하는 방법
 이미지 크기를 통일해야 하는 이유
@@ -113,38 +825,4 @@ Expert Collapse
 MoE의 장점과 단점
 Vision MoE
 Edge 환경에서의 MoE
-MoE 모델의 분산 학습</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="Transformer" /><category term="Deep Learning" /><category term="Transformer" /><category term="Mixture of Experts" /><category term="MoE" /><summary type="html"><![CDATA[Sparse Model, Router, Top-k Routing, Load Balancing 등 Mixture of Experts의 핵심 개념을 정리한다.]]></summary></entry><entry><title type="html">멀티모달 파운데이션 모델 핵심 개념</title><link href="http://localhost:4000/deep_learning/transformer/2026/08/06/multimodal-foundation-models/" rel="alternate" type="text/html" title="멀티모달 파운데이션 모델 핵심 개념" /><published>2026-08-06T00:00:00+09:00</published><updated>2026-08-06T00:00:00+09:00</updated><id>http://localhost:4000/deep_learning/transformer/2026/08/06/multimodal-foundation-models</id><content type="html" xml:base="http://localhost:4000/deep_learning/transformer/2026/08/06/multimodal-foundation-models/"><![CDATA[<p>Foundation Model이란 무엇인가
-Multimodal Model이란 무엇인가
-CLIP의 이미지–텍스트 정렬
-Vision Encoder와 Language Model 연결
-Multimodal Projector
-Image Token
-Vision Language Model 구조
-VLM Fine-tuning
-Multimodal Instruction Tuning
-Visual Question Answering
-Image Captioning
-Open-vocabulary Recognition
-Multimodal RAG
-Video Language Model
-Vision-Language-Action Model
-Any-to-Any Model
-Multimodal Agent
-Unified Understanding and Generation</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="Transformer" /><category term="Deep Learning" /><category term="Multimodal" /><category term="Foundation Model" /><category term="Vision Language Model" /><summary type="html"><![CDATA[Foundation Model부터 CLIP, VLM, Multimodal RAG, Vision-Language-Action Model까지 멀티모달 모델의 핵심 개념을 정리한다.]]></summary></entry><entry><title type="html">State Space Model과 Mamba</title><link href="http://localhost:4000/deep_learning/transformer/2026/08/06/state-space-models/" rel="alternate" type="text/html" title="State Space Model과 Mamba" /><published>2026-08-06T00:00:00+09:00</published><updated>2026-08-06T00:00:00+09:00</updated><id>http://localhost:4000/deep_learning/transformer/2026/08/06/state-space-models</id><content type="html" xml:base="http://localhost:4000/deep_learning/transformer/2026/08/06/state-space-models/"><![CDATA[<p>Attention의 계산량 문제
-State Space Model의 기본 아이디어
-SSM과 Transformer 비교
-Mamba 계열 구조
-Selective State Space
-Vision Mamba
-Hybrid Attention–SSM
-Recurrent Model의 재등장
-긴 시퀀스 처리
-Edge 환경에서의 SSM</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="Transformer" /><category term="Deep Learning" /><category term="State Space Model" /><category term="Mamba" /><category term="SSM" /><summary type="html"><![CDATA[State Space Model의 기본 아이디어와 Mamba 계열 구조, Transformer와의 차이를 정리한다.]]></summary></entry><entry><title type="html">CNN 아키텍처 발전 과정</title><link href="http://localhost:4000/deep_learning/computer_vision/2026/08/06/cnn-architectures/" rel="alternate" type="text/html" title="CNN 아키텍처 발전 과정" /><published>2026-08-06T00:00:00+09:00</published><updated>2026-08-06T00:00:00+09:00</updated><id>http://localhost:4000/deep_learning/computer_vision/2026/08/06/cnn-architectures</id><content type="html" xml:base="http://localhost:4000/deep_learning/computer_vision/2026/08/06/cnn-architectures/"><![CDATA[<p>CNN 발전 흐름
-CNN의 기본 구조
-AlexNet이 중요했던 이유
-VGG와 깊은 네트워크
-ResNet과 Skip Connection
-DenseNet의 Feature Reuse
-MobileNet과 Depthwise Separable Convolution
-EfficientNet과 Compound Scaling
-ConvNeXt가 CNN을 현대화한 방법</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="Computer_Vision" /><category term="Deep Learning" /><category term="Computer Vision" /><category term="CNN" /><summary type="html"><![CDATA[AlexNet부터 VGG, ResNet, DenseNet, MobileNet, EfficientNet, ConvNeXt까지 CNN의 발전 흐름을 정리한다.]]></summary></entry></feed>
+MoE 모델의 분산 학습</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="Transformer" /><category term="Deep Learning" /><category term="Transformer" /><category term="Mixture of Experts" /><category term="MoE" /><summary type="html"><![CDATA[Sparse Model, Router, Top-k Routing, Load Balancing 등 Mixture of Experts의 핵심 개념을 정리한다.]]></summary></entry></feed>
