@@ -8,24 +8,24 @@
     
     
     
-    <title>Transformer와 Vision Transformer · Minnong's Study Log</title>
-    <meta name="description" content="Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다." />
+    <title>Java 기초 정리: 실행 구조와 메모리 · Minnong's Study Log</title>
+    <meta name="description" content="Java 기초 정리" />
     
-    <link rel="canonical" href="http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" />
+    <link rel="canonical" href="http://localhost:4000/backend/java/2026/08/10/java-execution-memory/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Transformer와 Vision Transformer" />
-    <meta property="og:description" content="Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다." />
-    <meta property="og:url" content="http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" />
+    <meta property="og:title" content="Java 기초 정리: 실행 구조와 메모리" />
+    <meta property="og:description" content="Java 기초 정리" />
+    <meta property="og:url" content="http://localhost:4000/backend/java/2026/08/10/java-execution-memory/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
-      <meta property="article:published_time" content="2026-08-06T00:00:00+09:00" />
-      <meta property="article:modified_time" content="2026-08-06T00:00:00+09:00" />
-      <meta property="article:section" content="Deep_Learning" />
-      <meta property="article:tag" content="Deep Learning" /><meta property="article:tag" content="Transformer" /><meta property="article:tag" content="Vision Transformer" /><meta property="article:tag" content="ViT" />
+      <meta property="article:published_time" content="2026-08-10T10:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-10T10:00:00+09:00" />
+      <meta property="article:section" content="Backend" />
+      <meta property="article:tag" content="Java" /><meta property="article:tag" content="JDK" /><meta property="article:tag" content="JVM" /><meta property="article:tag" content="Stack" /><meta property="article:tag" content="Heap" /><meta property="article:tag" content="Thread" /><meta property="article:tag" content="StringBuilder" /><meta property="article:tag" content="Synchronized" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Transformer와 Vision Transformer" />
-    <meta name="twitter:description" content="Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다." />
+    <meta name="twitter:title" content="Java 기초 정리: 실행 구조와 메모리" />
+    <meta name="twitter:description" content="Java 기초 정리" />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=10"></script>
@@ -34,15 +34,15 @@
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" },
-          "headline": "Transformer와 Vision Transformer",
-          "description": "Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다.",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/backend/java/2026/08/10/java-execution-memory/" },
+          "headline": "Java 기초 정리: 실행 구조와 메모리",
+          "description": "Java 기초 정리",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
-          "datePublished": "2026-08-06T00:00:00+09:00",
-          "dateModified": "2026-08-06T00:00:00+09:00",
+          "datePublished": "2026-08-10T10:00:00+09:00",
+          "dateModified": "2026-08-10T10:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
-          "articleSection": "Deep_Learning",
-          "keywords": ["Deep Learning", "Transformer", "Vision Transformer", "ViT"]
+          "articleSection": "Backend",
+          "keywords": ["Java", "JDK", "JVM", "Stack", "Heap", "Thread", "StringBuilder", "Synchronized"]
         }
       </script>
     
@@ -60,8 +60,8 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/"
-    data-page-title="Transformer와 Vision Transformer"
+    data-page-url="/backend/java/2026/08/10/java-execution-memory/"
+    data-page-title="Java 기초 정리: 실행 구조와 메모리"
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / transformer와-vision-transformer</span>
+    <span>http://localhost:4000 / posts / java-기초-정리-실행-구조와-메모리</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Transformer와 Vision Transformer</span>
+    <span class="ide-mobile-title">Java 기초 정리: 실행 구조와 메모리</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -172,7 +172,7 @@
                 </button>
                 <div class="ide-tree-children" role="group">
                   
-                    <a class="ide-tree-post is-current" href="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" role="treeitem" data-date="1785942000" data-title="transformer와 vision transformer" data-search="transformer와 vision transformer &lt;p&gt;transformer 기본
+                    <a class="ide-tree-post" href="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" role="treeitem" data-date="1785942000" data-title="transformer와 vision transformer" data-search="transformer와 vision transformer &lt;p&gt;transformer 기본
 transformer가 등장한 이유
 token과 embedding
 self-attention의 직관
@@ -766,7 +766,7 @@ vue의 반응성 시스템
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</span>
                     </a>
                   
-                    <a class="ide-tree-post" href="/backend/java/2026/08/10/java-execution-memory/" role="treeitem" data-date="1786323600" data-title="java 기초 정리: 실행 구조와 메모리" data-search="java 기초 정리: 실행 구조와 메모리 &lt;h1 id=&quot;java-기초-정리&quot;&gt;java 기초 정리&lt;/h1&gt;
+                    <a class="ide-tree-post is-current" href="/backend/java/2026/08/10/java-execution-memory/" role="treeitem" data-date="1786323600" data-title="java 기초 정리: 실행 구조와 메모리" data-search="java 기초 정리: 실행 구조와 메모리 &lt;h1 id=&quot;java-기초-정리&quot;&gt;java 기초 정리&lt;/h1&gt;
 
  [&quot;java&quot;, &quot;jdk&quot;, &quot;jvm&quot;, &quot;stack&quot;, &quot;heap&quot;, &quot;thread&quot;, &quot;stringbuilder&quot;, &quot;synchronized&quot;]" title="Java 기초 정리: 실행 구조와 메모리">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Java 기초 정리: 실행 구조와 메모리</span>
@@ -1018,63 +1018,457 @@ tags: [python, cpython, datastructure, logging, typehint]
   
     <a href="/archive/">posts</a><span>&gt;</span>
     
-    <a href="/archive/?category=deep-learning">deep learning</a><span>&gt;</span>
+    <a href="/archive/?category=backend">backend</a><span>&gt;</span>
     
-      <span>transformer</span><span>&gt;</span>
+      <span>java</span><span>&gt;</span>
     
-    <span aria-current="page">transformer와-vision-transformer.md</span>
+    <span aria-current="page">java-기초-정리-실행-구조와-메모리.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>Deep Learning / Transformer</strong><time datetime="2026-08-06T00:00:00+09:00">2026.08.06</time><span data-reading-time>—</span><span>4 tags</span></div>
-    <h1>Transformer와 Vision Transformer</h1>
+    <div class="ide-document-meta"><strong>Backend / JAVA</strong><time datetime="2026-08-10T10:00:00+09:00">2026.08.10</time><span data-reading-time>—</span><span>8 tags</span></div>
+    <h1>Java 기초 정리: 실행 구조와 메모리</h1>
   </header>
   
-    <aside class="ide-reading-summary" aria-labelledby="readingSummaryTitle">
-      
-        <section class="ide-summary-card ide-summary-card-primary reveal" aria-labelledby="readingSummaryTitle">
-          <span class="ide-panel-label">QUICK SUMMARY</span>
-          <h2 id="readingSummaryTitle">핵심 요약</h2>
-          <p>Transformer와 Vision Transformer 계열의 핵심 개념과 발전 흐름을 정리한다.</p>
-        </section>
-      
-      
-      
-    </aside>
-  
-  <div class="ide-document-content prose" id="postContent"><p>Transformer 기본
-Transformer가 등장한 이유
-Token과 Embedding
-Self-Attention의 직관
-Multi-Head Attention
-Positional Encoding
-Encoder와 Decoder
-Masked Attention
-KV Cache
-Pre-training과 Fine-tuning
-Context Length</p>
+  <div class="ide-document-content prose" id="postContent"><h1 id="java-기초-정리">Java 기초 정리</h1>
 
-<p>Vision Transformer
-이미지를 Patch로 나누는 이유
-CNN과 ViT 비교
-ViT의 전체 데이터 흐름
-Swin Transformer의 Window Attention
-Hierarchical Vision Transformer
-Hybrid CNN–Transformer
-DETR
-Mask Transformer
-Vision Foundation Model
-Self-supervised Vision Model</p>
+<p>Java 프로그램이 어떻게 실행되는지, 변수와 객체가 메모리에 어떻게 연결되는지, 그리고 문자열과 멀티스레드를 어떻게 다루는지 한 번에 정리한다.</p>
+
+<h2 id="1-java-개발-환경">1. Java 개발 환경</h2>
+
+<h3 id="필요한-도구-설치">필요한 도구 설치</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>jq curl maven gradle node git kubectl
+</code></pre></div></div>
+
+<h3 id="java-21-설치와-환경-변수-설정">Java 21 설치와 환경 변수 설정</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>openjdk@21
+java <span class="nt">--version</span>
+<span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/homebrew/opt/openjdk@21
+</code></pre></div></div>
+
+<p>매번 설정하지 않으려면 <code class="language-plaintext highlighter-rouge">~/.zshrc</code>에 추가한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'export JAVA_HOME=/opt/homebrew/opt/openjdk@21'</span> <span class="o">&gt;&gt;</span> ~/.zshrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">JAVA_HOME</code>은 Java가 설치된 위치를 알려 주는 환경 변수다. 실제 경로는 설치 환경에 따라 다를 수 있으므로 <code class="language-plaintext highlighter-rouge">brew --prefix openjdk@21</code>로 확인할 수 있다.</p>
+
+<h2 id="2-java-코드가-실행되는-과정">2. Java 코드가 실행되는 과정</h2>
+
+<p>Java는 소스 코드를 바로 실행하지 않는다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>App.java
+   │  javac 컴파일
+   ▼
+App.class  ← JVM이 이해하는 바이트코드
+   │  java 실행
+   ▼
+JVM이 main() 메서드를 찾아 실행
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> <span class="nt">-p</span> bin
+javac <span class="nt">-d</span> bin src/App.java
+java <span class="nt">-cp</span> bin App
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">javac</code>: <code class="language-plaintext highlighter-rouge">.java</code>를 <code class="language-plaintext highlighter-rouge">.class</code>로 컴파일한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">-d bin</code>: 컴파일 결과를 <code class="language-plaintext highlighter-rouge">bin</code> 폴더에 저장한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">java</code>: <code class="language-plaintext highlighter-rouge">.class</code> 파일을 JVM에서 실행한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">-cp bin</code>: 클래스를 찾을 경로를 지정한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">main()</code>: Java 애플리케이션의 시작 메서드다.</li>
+</ul>
+
+<p>즉, JVM이 <code class="language-plaintext highlighter-rouge">javac</code>를 실행하는 것이 아니라 <code class="language-plaintext highlighter-rouge">javac</code>가 만든 바이트코드를 JVM이 실행한다.</p>
+
+<h2 id="3-java-프로그램의-기본-구조">3. Java 프로그램의 기본 구조</h2>
+
+<p>Java 코드는 보통 클래스 안에 작성한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloSkala</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello, Skala!"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">class</code>: 데이터와 기능을 묶는 기본 단위다.</li>
+  <li><code class="language-plaintext highlighter-rouge">main</code>: 프로그램이 시작되는 메서드다.</li>
+  <li><code class="language-plaintext highlighter-rouge">System.out.println</code>: 콘솔에 값을 출력한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">static</code>: 객체를 만들지 않아도 클래스에 소속된 형태로 사용할 수 있다는 뜻이다.</li>
+</ul>
+
+<h2 id="4-기본형과-참조형">4. 기본형과 참조형</h2>
+
+<h3 id="기본형">기본형</h3>
+
+<p>기본형은 숫자, 문자, 참·거짓처럼 값 자체를 저장하는 타입이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>타입</th>
+      <th>의미</th>
+      <th>크기</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td>작은 정수</td>
+      <td>1 byte</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td>정수</td>
+      <td>2 bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td>일반적인 정수</td>
+      <td>4 bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td>큰 정수</td>
+      <td>8 bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td>실수</td>
+      <td>4 bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td>정밀한 실수</td>
+      <td>8 bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td>문자 하나</td>
+      <td>2 bytes</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code> 또는 <code class="language-plaintext highlighter-rouge">false</code></td>
+      <td>JVM 구현에 따라 다름</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="참조형">참조형</h3>
+
+<p>참조형 변수는 객체 본체를 직접 담는 것이 아니라, 객체를 가리키는 참조값을 저장한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>              <span class="c1">// age에 값 20 저장</span>
+<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Skala"</span><span class="o">;</span>     <span class="c1">// name에는 String 객체를 가리키는 참조값 저장</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">90</span><span class="o">,</span> <span class="mi">80</span><span class="o">};</span>   <span class="c1">// scores에는 배열 객체를 가리키는 참조값 저장</span>
+</code></pre></div></div>
+
+<p>쉽게 말하면 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name ── 참조값 ──▶ "Skala" String 객체
+age  ── 값 20
+</code></pre></div></div>
+
+<h3 id="주의-기본값과-지역-변수">주의: 기본값과 지역 변수</h3>
+
+<ul>
+  <li>클래스의 필드에는 선언하지 않아도 기본값이 들어간다. <code class="language-plaintext highlighter-rouge">int</code>는 <code class="language-plaintext highlighter-rouge">0</code>, <code class="language-plaintext highlighter-rouge">boolean</code>은 <code class="language-plaintext highlighter-rouge">false</code>, 참조형은 <code class="language-plaintext highlighter-rouge">null</code>이다.</li>
+  <li>메서드 안의 지역 변수는 자동으로 기본값이 들어가지 않는다. 사용하기 전에 반드시 값을 대입해야 한다.</li>
+</ul>
+
+<h2 id="5-jvm-메모리-구조">5. JVM 메모리 구조</h2>
+
+<p>메모리를 설명할 때 자주 등장하는 영역은 Stack, Heap, Metaspace다.</p>
+
+<h3 id="stack">Stack</h3>
+
+<p>메서드가 호출될 때마다 해당 메서드의 Stack Frame이 만들어진다. 메서드가 끝나면 Frame도 사라진다.</p>
+
+<p>Stack Frame에는 다음과 같은 정보가 들어간다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Local Variables</code>: 지역 변수와 매개변수</li>
+  <li><code class="language-plaintext highlighter-rouge">Operand Stack</code>: 바이트코드 연산에 잠시 사용하는 값</li>
+  <li>반환 주소 등 메서드 실행에 필요한 정보</li>
+</ul>
+
+<h3 id="heap">Heap</h3>
+
+<p><code class="language-plaintext highlighter-rouge">new</code>로 만든 객체와 배열의 본체가 저장되는 영역이다. 객체는 메서드가 끝난 뒤에도 다른 곳에서 참조하고 있다면 계속 살아 있을 수 있다. 더 이상 참조되지 않는 객체는 Garbage Collector가 정리한다.</p>
+
+<h3 id="metaspace">Metaspace</h3>
+
+<p>클래스의 이름, 메서드 정보, 필드 정보, 바이트코드 등 클래스 구조에 대한 메타데이터가 저장되는 영역이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">java.lang.Class</code> 객체도 Heap에 존재하며, Metaspace의 클래스 메타데이터와 연결되어 있다고 이해하면 된다.</p>
+
+<h2 id="6-코드로-보는-데이터-흐름">6. 코드로 보는 데이터 흐름</h2>
+
+<p>다음 코드를 기준으로 각 값의 위치를 살펴보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">foo</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">person</span><span class="o">.</span><span class="na">age</span> <span class="o">+</span> <span class="n">x</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="실행-순서">실행 순서</h3>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">foo()</code>가 호출되면 <code class="language-plaintext highlighter-rouge">foo()</code> 전용 Stack Frame이 만들어진다.</li>
+  <li><code class="language-plaintext highlighter-rouge">int x = 10</code>의 <code class="language-plaintext highlighter-rouge">x</code>는 Local Variables 영역에 값 <code class="language-plaintext highlighter-rouge">10</code>으로 저장된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">new Person()</code>이 Heap에 <code class="language-plaintext highlighter-rouge">Person</code> 객체를 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">person</code>은 Stack에 저장되고, Heap 객체를 가리키는 참조값을 가진다.</li>
+  <li><code class="language-plaintext highlighter-rouge">person.age</code>의 <code class="language-plaintext highlighter-rouge">20</code>과 <code class="language-plaintext highlighter-rouge">x</code>의 <code class="language-plaintext highlighter-rouge">10</code>이 Operand Stack으로 전달되어 계산된다.</li>
+  <li>계산 결과 <code class="language-plaintext highlighter-rouge">30</code>이 지역 변수 <code class="language-plaintext highlighter-rouge">result</code>에 저장된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">foo()</code>가 끝나면 <code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">person</code>, <code class="language-plaintext highlighter-rouge">result</code>가 들어 있던 Stack Frame은 사라진다.</li>
+</ol>
+
+<pre><code class="language-mermaid">flowchart LR
+    Call["foo() 호출"] --&gt; Frame["foo() Stack Frame"]
+    Frame --&gt; X["Local Variables\nx = 10"]
+    Frame --&gt; P["Local Variables\nperson = 참조값"]
+    Frame --&gt; R["Local Variables\nresult = 30"]
+    P --&gt;|"참조"| Object["Heap\nPerson 객체"]
+    Object --&gt; Age["age = 20"]
+    Age --&gt; Operand["Operand Stack\n20 + 10"]
+    X --&gt; Operand
+    Operand --&gt; R
+</code></pre>
+
+<h3 id="핵심-정리">핵심 정리</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>person ─────────────▶ Heap의 Person 객체
+  Stack                  age = 20
+
+x = 10 ──┐
+age = 20 ─┴─▶ Operand Stack에서 20 + 10 계산
+                    │
+                    ▼
+              result = 30
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">person</code>: Stack의 지역 변수 슬롯에 참조값이 저장된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">new Person()</code>: Heap에 객체 본체가 만들어진다.</li>
+  <li><code class="language-plaintext highlighter-rouge">age</code>: Person 객체의 인스턴스 필드이므로 Heap 객체 안에 저장된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">x</code>, <code class="language-plaintext highlighter-rouge">result</code>: 메서드의 지역 변수이므로 해당 Stack Frame의 Local Variables에 저장된다.</li>
+  <li>연산 중간값: Operand Stack을 사용한다.</li>
+</ul>
+
+<h3 id="static-필드는-어디에-있을까"><code class="language-plaintext highlighter-rouge">static</code> 필드는 어디에 있을까?</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">age</code>는 각 객체마다 따로 존재하지만, <code class="language-plaintext highlighter-rouge">count</code>는 Person 클래스 전체가 하나만 공유한다.</p>
+
+<pre><code class="language-mermaid">flowchart TD
+    Loader["ClassLoader"] --&gt; Meta["Metaspace\nPerson 클래스 메타데이터"]
+    Loader --&gt; ClassObject["Heap\njava.lang.Class 객체"]
+    ClassObject --&gt; Static["Person.count\n클래스 공용 데이터"]
+    ClassObject -. "클래스 구조와 연결" .-&gt; Meta
+    Instance1["Heap\nPerson 객체 1: age"]
+    Instance2["Heap\nPerson 객체 2: age"]
+</code></pre>
+
+<ul>
+  <li>인스턴스 필드 <code class="language-plaintext highlighter-rouge">age</code>는 객체마다 Heap에 하나씩 생긴다.</li>
+  <li><code class="language-plaintext highlighter-rouge">static</code> 필드 <code class="language-plaintext highlighter-rouge">count</code>는 객체가 아니라 클래스에 소속되며 모든 인스턴스가 공유한다.</li>
+  <li>정확한 물리적 위치와 구현 방식은 JVM에 따라 다를 수 있다. 따라서 <code class="language-plaintext highlighter-rouge">static</code> 필드를 무조건 “Heap의 <code class="language-plaintext highlighter-rouge">Class</code> 객체 안에 있다”고 단정하기보다, “클래스 단위로 관리되고 클래스 메타데이터와 연결된다”고 이해하는 편이 안전하다.</li>
+</ul>
+
+<h2 id="7-변수-저장-위치를-판단하는-방법">7. 변수 저장 위치를 판단하는 방법</h2>
+
+<p>“기본형은 Stack, 참조형은 Heap”이라고 외우면 틀릴 수 있다. 변수의 종류와 실행 위치를 함께 봐야 한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>코드</th>
+      <th>무엇인가?</th>
+      <th>쉽게 이해하면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int x = 10</code> in method</td>
+      <td>지역 기본형 변수</td>
+      <td>Stack Frame에 값 저장</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Person person</code> in method</td>
+      <td>지역 참조형 변수</td>
+      <td>Stack Frame에 참조값 저장</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">new Person()</code></td>
+      <td>객체 본체</td>
+      <td>Heap에 저장</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int age</code> in <code class="language-plaintext highlighter-rouge">Person</code></td>
+      <td>인스턴스 필드</td>
+      <td>Heap 객체 안에 저장</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">static int count</code></td>
+      <td>클래스 필드</td>
+      <td>클래스 단위로 공유</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>예를 들어 다음 코드에서 <code class="language-plaintext highlighter-rouge">score</code>는 지역 변수가 아니라 인스턴스 필드다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">score</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"Min"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Student student = new Student()</code>로 객체를 만들면 <code class="language-plaintext highlighter-rouge">score</code>와 <code class="language-plaintext highlighter-rouge">name</code>은 Student Heap 객체의 일부가 된다. 반대로 <code class="language-plaintext highlighter-rouge">void study() { int minutes = 30; }</code>의 <code class="language-plaintext highlighter-rouge">minutes</code>는 메서드의 지역 변수이므로 Stack Frame에서 관리된다.</p>
+
+<h2 id="8-불변-객체와-wrapper-클래스">8. 불변 객체와 Wrapper 클래스</h2>
+
+<h3 id="불변-객체">불변 객체</h3>
+
+<p>불변 객체는 생성된 뒤 내부 값을 바꿀 수 없는 객체다. 대표적으로 <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">Integer</code>, <code class="language-plaintext highlighter-rouge">Long</code>, <code class="language-plaintext highlighter-rouge">Double</code>, <code class="language-plaintext highlighter-rouge">Character</code>, <code class="language-plaintext highlighter-rouge">Boolean</code>이 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"Java"</span><span class="o">;</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="s">"!"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>위 코드는 기존 String 객체에 <code class="language-plaintext highlighter-rouge">!</code>를 붙이는 것이 아니다. <code class="language-plaintext highlighter-rouge">"Java!"</code>라는 새로운 String 객체를 만들고 <code class="language-plaintext highlighter-rouge">text</code>가 새 객체를 가리키게 된다.</p>
+
+<h3 id="wrapper-클래스와-오토박싱">Wrapper 클래스와 오토박싱</h3>
+
+<p>Wrapper 클래스는 기본형을 객체처럼 사용할 수 있게 감싼 클래스다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Integer</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// int 10이 Integer 객체로 자동 변환</span>
+<span class="n">number</span> <span class="o">=</span> <span class="n">number</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>  <span class="c1">// 값을 바꾸는 대신 새 Integer 객체를 가리킴</span>
+</code></pre></div></div>
+
+<p>컬렉션은 객체만 저장할 수 있으므로 다음처럼 Wrapper 클래스를 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">scores</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="9-stringbuilder와-stringbuffer">9. StringBuilder와 StringBuffer</h2>
+
+<p>String은 불변이므로 문자열을 반복해서 더하면 중간 객체가 많이 만들어질 수 있다. 이때 문자열을 수정할 수 있는 버퍼를 사용한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">StringBuilder</code></th>
+      <th><code class="language-plaintext highlighter-rouge">StringBuffer</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문자열 수정</td>
+      <td>가능</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>동기화</td>
+      <td>하지 않음</td>
+      <td>메서드에 동기화 적용</td>
+    </tr>
+    <tr>
+      <td>일반적인 속도</td>
+      <td>빠름</td>
+      <td>상대적으로 느림</td>
+    </tr>
+    <tr>
+      <td>사용 상황</td>
+      <td>대부분의 단일 스레드 코드</td>
+      <td>여러 스레드가 같은 버퍼를 공유하는 경우</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+<span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">" "</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"Java"</span><span class="o">);</span>
+<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>실무에서는 공유하지 않는 문자열 조립에는 보통 <code class="language-plaintext highlighter-rouge">StringBuilder</code>를 사용한다. 여러 스레드가 하나의 버퍼를 직접 공유해야 하고 동기화가 필요하다면 <code class="language-plaintext highlighter-rouge">StringBuffer</code>를 고려한다.</p>
+
+<h2 id="10-synchronized와-공유-자원">10. <code class="language-plaintext highlighter-rouge">synchronized</code>와 공유 자원</h2>
+
+<p>여러 스레드가 같은 값을 동시에 수정하면 실행 순서에 따라 결과가 달라질 수 있다. 이런 문제가 발생하는 코드를 임계 영역이라고 한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">BankAccount</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">balance</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">withdraw</span><span class="o">(</span><span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">balance</span> <span class="o">-=</span> <span class="n">amount</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"출금 성공: "</span> <span class="o">+</span> <span class="n">amount</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"잔액 부족"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">withdraw()</code>에 <code class="language-plaintext highlighter-rouge">synchronized</code>를 붙이면 같은 계좌 객체를 대상으로 한 출금 메서드 실행에 한 번에 한 스레드만 들어간다. 따라서 잔액 확인과 차감이 중간에 끊기지 않도록 보호할 수 있다.</p>
+
+<p>다만 <code class="language-plaintext highlighter-rouge">synchronized</code>는 모든 문제를 자동으로 해결하는 기능은 아니다. 어떤 객체를 잠그는지, 여러 메서드가 같은 공유 자원을 다루는지까지 함께 확인해야 한다.</p>
+
+<h2 id="11-마지막-요약">11. 마지막 요약</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>소스 코드(.java)
+      │ javac
+      ▼
+바이트코드(.class)
+      │ JVM 실행
+      ▼
+┌────────────────────────────────────┐
+│ Stack      : 메서드 실행, 지역 변수   │
+│ Heap       : 객체와 배열의 본체       │
+│ Metaspace  : 클래스 구조 정보         │
+└────────────────────────────────────┘
+</code></pre></div></div>
+
+<ul>
+  <li>기본형과 참조형은 “무조건 Stack과 Heap”으로 나누지 말고, 지역 변수인지 필드인지 먼저 확인한다.</li>
+  <li>지역 변수는 Stack Frame에서 관리되는 경우가 많다.</li>
+  <li>객체와 배열의 본체는 Heap에 저장된다.</li>
+  <li>참조형 지역 변수에는 객체 자체가 아니라 객체를 가리키는 참조값이 저장된다.</li>
+  <li>인스턴스 필드는 객체마다 존재하고, <code class="language-plaintext highlighter-rouge">static</code> 필드는 클래스 전체가 공유한다.</li>
+  <li>메서드 내부 계산에는 Operand Stack이 사용된다.</li>
+  <li>더 이상 참조되지 않는 Heap 객체는 Garbage Collector가 회수한다.</li>
+</ul>
 </div>
   
-    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#deep-learning">#Deep Learning</a><a href="/tags/#transformer">#Transformer</a><a href="/tags/#vision-transformer">#Vision Transformer</a><a href="/tags/#vit">#ViT</a></footer>
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#java">#Java</a><a href="/tags/#jdk">#JDK</a><a href="/tags/#jvm">#JVM</a><a href="/tags/#stack">#Stack</a><a href="/tags/#heap">#Heap</a><a href="/tags/#thread">#Thread</a><a href="/tags/#stringbuilder">#StringBuilder</a><a href="/tags/#synchronized">#Synchronized</a></footer>
   
   <nav class="ide-document-navigation" aria-label="게시물 이동">
-    <a href="/deep_learning/transformer/2026/08/06/state-space-models/"><span>PREVIOUS</span><strong>State Space Model과 Mamba</strong></a>
-    <a href="/devops/2026/08/07/Devops_1/"><span>NEXT</span><strong>Devops_기초_1편</strong></a>
+    <a href="/backend/java/2026/08/10/java-basics/"><span>PREVIOUS</span><strong>Java 기초: 실행 구조와 JVM 메모리</strong></a>
+    <a href="/backend/java/2026/08/10/java-class-object/"><span>NEXT</span><strong>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</strong></a>
   </nav>
   
 <section
@@ -1099,7 +1493,7 @@ Self-supervised Vision Model</p>
     <h2 id="commentsTitle">COMMENTS</h2>
     <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
     <div class="ide-comments-actions">
-      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/backend/java/2026/08/10/java-execution-memory/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
       <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
   </header>
@@ -1125,13 +1519,13 @@ Self-supervised Vision Model</p>
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>2026.08.06</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.10</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>Deep Learning / Transformer</dd></div>
+      <div><dt>CATEGORY</dt><dd>Backend / JAVA</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" data-bookmark-title="Transformer와 Vision Transformer"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/backend/java/2026/08/10/java-execution-memory/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/backend/java/2026/08/10/java-execution-memory/" data-bookmark-title="Java 기초 정리: 실행 구조와 메모리"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -1146,8 +1540,6 @@ Self-supervised Vision Model</p>
           <a href="/backend/java/2026/08/10/java-class-object/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</span></a>
         
       
-        
-          <a href="/backend/java/2026/08/10/java-execution-memory/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Java 기초 정리: 실행 구조와 메모리</span></a>
         
       
         
@@ -1170,7 +1562,7 @@ Self-supervised Vision Model</p>
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Deep Learning / Transformer</span><span>36 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Backend / JAVA</span><span>36 posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>

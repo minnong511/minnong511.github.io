@@ -1,3 +1,12 @@
+---
+layout: post
+title: "Java 기초: 실행 구조와 JVM 메모리"
+description: "Java의 등장 배경부터 컴파일, JVM, Stack과 Heap의 동작 원리까지 기초 개념을 예시로 정리한다."
+date: 2026-08-10 09:00:00 +0900
+categories: [Backend, JAVA]
+tags: [Java, JVM, Stack, Heap, Garbage Collection, Backend]
+---
+
 ## IP와 Port
 
 통신을 하려면 IP와 포트 정보가 모두 필요합니다.  

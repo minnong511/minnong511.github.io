@@ -8,24 +8,24 @@
     
     
     
-    <title>Transformer와 Vision Transformer · Minnong's Study Log</title>
-    <meta name="description" content="Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다." />
+    <title>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static · Minnong's Study Log</title>
+    <meta name="description" content="Java 클래스와 객체" />
     
-    <link rel="canonical" href="http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" />
+    <link rel="canonical" href="http://localhost:4000/backend/java/2026/08/10/java-class-object/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Transformer와 Vision Transformer" />
-    <meta property="og:description" content="Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다." />
-    <meta property="og:url" content="http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" />
+    <meta property="og:title" content="Java 클래스와 객체 정리: 필드, 메서드, 생성자, static" />
+    <meta property="og:description" content="Java 클래스와 객체" />
+    <meta property="og:url" content="http://localhost:4000/backend/java/2026/08/10/java-class-object/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
-      <meta property="article:published_time" content="2026-08-06T00:00:00+09:00" />
-      <meta property="article:modified_time" content="2026-08-06T00:00:00+09:00" />
-      <meta property="article:section" content="Deep_Learning" />
-      <meta property="article:tag" content="Deep Learning" /><meta property="article:tag" content="Transformer" /><meta property="article:tag" content="Vision Transformer" /><meta property="article:tag" content="ViT" />
+      <meta property="article:published_time" content="2026-08-10T11:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-10T11:00:00+09:00" />
+      <meta property="article:section" content="Backend" />
+      <meta property="article:tag" content="Java" /><meta property="article:tag" content="Class" /><meta property="article:tag" content="Object" /><meta property="article:tag" content="Instance" /><meta property="article:tag" content="Field" /><meta property="article:tag" content="Method" /><meta property="article:tag" content="Constructor" /><meta property="article:tag" content="This" /><meta property="article:tag" content="Super" /><meta property="article:tag" content="Static" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Transformer와 Vision Transformer" />
-    <meta name="twitter:description" content="Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다." />
+    <meta name="twitter:title" content="Java 클래스와 객체 정리: 필드, 메서드, 생성자, static" />
+    <meta name="twitter:description" content="Java 클래스와 객체" />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=10"></script>
@@ -34,15 +34,15 @@
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" },
-          "headline": "Transformer와 Vision Transformer",
-          "description": "Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다.",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/backend/java/2026/08/10/java-class-object/" },
+          "headline": "Java 클래스와 객체 정리: 필드, 메서드, 생성자, static",
+          "description": "Java 클래스와 객체",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
-          "datePublished": "2026-08-06T00:00:00+09:00",
-          "dateModified": "2026-08-06T00:00:00+09:00",
+          "datePublished": "2026-08-10T11:00:00+09:00",
+          "dateModified": "2026-08-10T11:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
-          "articleSection": "Deep_Learning",
-          "keywords": ["Deep Learning", "Transformer", "Vision Transformer", "ViT"]
+          "articleSection": "Backend",
+          "keywords": ["Java", "Class", "Object", "Instance", "Field", "Method", "Constructor", "This", "Super", "Static"]
         }
       </script>
     
@@ -60,8 +60,8 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/"
-    data-page-title="Transformer와 Vision Transformer"
+    data-page-url="/backend/java/2026/08/10/java-class-object/"
+    data-page-title="Java 클래스와 객체 정리: 필드, 메서드, 생성자, static"
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / transformer와-vision-transformer</span>
+    <span>http://localhost:4000 / posts / java-클래스와-객체-정리-필드-메서드-생성자-static</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Transformer와 Vision Transformer</span>
+    <span class="ide-mobile-title">Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -172,7 +172,7 @@
                 </button>
                 <div class="ide-tree-children" role="group">
                   
-                    <a class="ide-tree-post is-current" href="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" role="treeitem" data-date="1785942000" data-title="transformer와 vision transformer" data-search="transformer와 vision transformer &lt;p&gt;transformer 기본
+                    <a class="ide-tree-post" href="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" role="treeitem" data-date="1785942000" data-title="transformer와 vision transformer" data-search="transformer와 vision transformer &lt;p&gt;transformer 기본
 transformer가 등장한 이유
 token과 embedding
 self-attention의 직관
@@ -760,7 +760,7 @@ vue의 반응성 시스템
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Java 객체지향 핵심 개념 정리</span>
                     </a>
                   
-                    <a class="ide-tree-post" href="/backend/java/2026/08/10/java-class-object/" role="treeitem" data-date="1786327200" data-title="java 클래스와 객체 정리: 필드, 메서드, 생성자, static" data-search="java 클래스와 객체 정리: 필드, 메서드, 생성자, static &lt;h1 id=&quot;java-클래스와-객체&quot;&gt;java 클래스와 객체&lt;/h1&gt;
+                    <a class="ide-tree-post is-current" href="/backend/java/2026/08/10/java-class-object/" role="treeitem" data-date="1786327200" data-title="java 클래스와 객체 정리: 필드, 메서드, 생성자, static" data-search="java 클래스와 객체 정리: 필드, 메서드, 생성자, static &lt;h1 id=&quot;java-클래스와-객체&quot;&gt;java 클래스와 객체&lt;/h1&gt;
 
  [&quot;java&quot;, &quot;class&quot;, &quot;object&quot;, &quot;instance&quot;, &quot;field&quot;, &quot;method&quot;, &quot;constructor&quot;, &quot;this&quot;, &quot;super&quot;, &quot;static&quot;]" title="Java 클래스와 객체 정리: 필드, 메서드, 생성자, static">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</span>
@@ -1018,63 +1018,616 @@ tags: [python, cpython, datastructure, logging, typehint]
   
     <a href="/archive/">posts</a><span>&gt;</span>
     
-    <a href="/archive/?category=deep-learning">deep learning</a><span>&gt;</span>
+    <a href="/archive/?category=backend">backend</a><span>&gt;</span>
     
-      <span>transformer</span><span>&gt;</span>
+      <span>java</span><span>&gt;</span>
     
-    <span aria-current="page">transformer와-vision-transformer.md</span>
+    <span aria-current="page">java-클래스와-객체-정리-필드-메서드-생성자-static.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>Deep Learning / Transformer</strong><time datetime="2026-08-06T00:00:00+09:00">2026.08.06</time><span data-reading-time>—</span><span>4 tags</span></div>
-    <h1>Transformer와 Vision Transformer</h1>
+    <div class="ide-document-meta"><strong>Backend / JAVA</strong><time datetime="2026-08-10T11:00:00+09:00">2026.08.10</time><span data-reading-time>—</span><span>10 tags</span></div>
+    <h1>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</h1>
   </header>
   
-    <aside class="ide-reading-summary" aria-labelledby="readingSummaryTitle">
-      
-        <section class="ide-summary-card ide-summary-card-primary reveal" aria-labelledby="readingSummaryTitle">
-          <span class="ide-panel-label">QUICK SUMMARY</span>
-          <h2 id="readingSummaryTitle">핵심 요약</h2>
-          <p>Transformer와 Vision Transformer 계열의 핵심 개념과 발전 흐름을 정리한다.</p>
-        </section>
-      
-      
-      
-    </aside>
-  
-  <div class="ide-document-content prose" id="postContent"><p>Transformer 기본
-Transformer가 등장한 이유
-Token과 Embedding
-Self-Attention의 직관
-Multi-Head Attention
-Positional Encoding
-Encoder와 Decoder
-Masked Attention
-KV Cache
-Pre-training과 Fine-tuning
-Context Length</p>
+  <div class="ide-document-content prose" id="postContent"><h1 id="java-클래스와-객체">Java 클래스와 객체</h1>
 
-<p>Vision Transformer
-이미지를 Patch로 나누는 이유
-CNN과 ViT 비교
-ViT의 전체 데이터 흐름
-Swin Transformer의 Window Attention
-Hierarchical Vision Transformer
-Hybrid CNN–Transformer
-DETR
-Mask Transformer
-Vision Foundation Model
-Self-supervised Vision Model</p>
+<p>Java를 이해하려면 먼저 <code class="language-plaintext highlighter-rouge">클래스</code>, <code class="language-plaintext highlighter-rouge">객체</code>, <code class="language-plaintext highlighter-rouge">인스턴스</code>, <code class="language-plaintext highlighter-rouge">필드</code>, <code class="language-plaintext highlighter-rouge">메서드</code>, <code class="language-plaintext highlighter-rouge">생성자</code>를 구분해야 한다. 이 글에서는 각 용어를 다음 순서로 설명한다.</p>
+
+<ol>
+  <li>용어의 정확한 정의</li>
+  <li>서로 어떤 관계인지</li>
+  <li>코드에서 어떻게 사용하는지</li>
+</ol>
+
+<h2 id="1-핵심-용어-한눈에-보기">1. 핵심 용어 한눈에 보기</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정확한 정의</th>
+      <th>쉬운 비유</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>클래스(<code class="language-plaintext highlighter-rouge">Class</code>)</td>
+      <td>객체를 만들기 위한 설계도이며, 객체가 가질 필드와 메서드를 정의한 코드 단위</td>
+      <td>자동차 설계도</td>
+    </tr>
+    <tr>
+      <td>객체(<code class="language-plaintext highlighter-rouge">Object</code>)</td>
+      <td>프로그램 실행 중 클래스에 따라 실제로 만들어진 데이터</td>
+      <td>실제 자동차</td>
+    </tr>
+    <tr>
+      <td>인스턴스(<code class="language-plaintext highlighter-rouge">Instance</code>)</td>
+      <td>특정 클래스에서 생성된 객체라는 관계를 강조하는 표현</td>
+      <td>자동차 설계도로 만든 한 대의 자동차</td>
+    </tr>
+    <tr>
+      <td>필드(<code class="language-plaintext highlighter-rouge">Field</code>)</td>
+      <td>클래스 안에 선언되어 객체의 상태를 저장하는 변수</td>
+      <td>자동차의 색상, 속도</td>
+    </tr>
+    <tr>
+      <td>메서드(<code class="language-plaintext highlighter-rouge">Method</code>)</td>
+      <td>클래스 안에 선언되어 객체의 동작을 정의하는 코드 블록</td>
+      <td>자동차의 가속, 정지</td>
+    </tr>
+    <tr>
+      <td>생성자(<code class="language-plaintext highlighter-rouge">Constructor</code>)</td>
+      <td>객체가 생성될 때 필드를 초기화하는 특별한 코드 블록</td>
+      <td>자동차를 출고할 때 기본 설정</td>
+    </tr>
+    <tr>
+      <td>참조값(<code class="language-plaintext highlighter-rouge">Reference</code>)</td>
+      <td>객체가 있는 곳을 가리키는 값</td>
+      <td>자동차 주차 위치</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="객체와-인스턴스의-차이">객체와 인스턴스의 차이</h3>
+
+<p>두 단어는 실제 대화에서 비슷하게 사용하지만 강조점이 다르다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">객체</code>: 실행 중 존재하는 실체라는 점을 강조한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">인스턴스</code>: 어떤 클래스에서 만들어졌는지를 강조한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stock</span> <span class="n">stock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">(</span><span class="s">"SKALA"</span><span class="o">,</span> <span class="mi">17000</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>위 코드에서 <code class="language-plaintext highlighter-rouge">new Stock(...)</code>으로 Heap에 만들어진 실체는 <code class="language-plaintext highlighter-rouge">객체</code>다. 동시에 <code class="language-plaintext highlighter-rouge">Stock</code> 클래스에서 만들어졌으므로 <code class="language-plaintext highlighter-rouge">Stock의 인스턴스</code>라고도 부른다.</p>
+
+<p>참고로 Java의 모든 클래스는 기본적으로 <code class="language-plaintext highlighter-rouge">java.lang.Object</code>를 직접 또는 간접적으로 상속한다. 다만 <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">double</code>, <code class="language-plaintext highlighter-rouge">boolean</code> 같은 기본형은 객체가 아니다.</p>
+
+<h2 id="2-클래스는-설계도다">2. 클래스는 설계도다</h2>
+
+<p>클래스는 객체를 만들기 전에 객체의 구조와 기능을 정의한다. 클래스 선언만 했다고 객체가 바로 만들어지는 것은 아니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stock</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>    <span class="c1">// 필드</span>
+    <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>   <span class="c1">// 필드</span>
+
+    <span class="kt">void</span> <span class="nf">printInfo</span><span class="o">()</span> <span class="o">{</span>  <span class="c1">// 메서드</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">" : "</span> <span class="o">+</span> <span class="n">price</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 클래스는 다음을 정의한다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">price</code>: Stock 객체가 가질 상태</li>
+  <li><code class="language-plaintext highlighter-rouge">printInfo()</code>: Stock 객체가 수행할 동작</li>
+</ul>
+
+<p>하지만 아직 <code class="language-plaintext highlighter-rouge">Stock</code> 객체가 만들어진 것은 아니다. 객체를 만들려면 <code class="language-plaintext highlighter-rouge">new</code>를 사용한다.</p>
+
+<h2 id="3-객체와-인스턴스-만들기">3. 객체와 인스턴스 만들기</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stock</span> <span class="n">scala</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>실행 흐름은 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Stock 클래스의 설계 정보 확인
+          │
+          ▼
+Heap에 Stock 객체 생성
+          │
+          ▼
+scala 변수에는 그 객체를 가리키는 참조값 저장
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Stock</code>: 어떤 클래스의 객체를 만들지 나타내는 타입</li>
+  <li><code class="language-plaintext highlighter-rouge">scala</code>: 객체를 가리키는 참조형 변수</li>
+  <li><code class="language-plaintext highlighter-rouge">new Stock()</code>: Heap에 새로운 Stock 객체를 생성하는 표현</li>
+  <li><code class="language-plaintext highlighter-rouge">=</code>: 생성된 객체의 참조값을 <code class="language-plaintext highlighter-rouge">scala</code>에 대입</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stock</span> <span class="n">scala</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">();</span>
+<span class="nc">Stock</span> <span class="n">ai</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">scala</code>와 <code class="language-plaintext highlighter-rouge">ai</code>는 서로 다른 Stock 객체를 가리킨다. 같은 클래스에서 만들어졌지만 객체는 각각 독립적으로 존재한다.</p>
+
+<h2 id="4-필드field-객체의-상태를-저장하는-변수">4. 필드(Field): 객체의 상태를 저장하는 변수</h2>
+
+<h3 id="정의">정의</h3>
+
+<p>필드란 클래스 내부에 선언된 변수다. 필드는 객체의 상태나 클래스 전체가 공유하는 값을 저장한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stock</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">name</code>과 <code class="language-plaintext highlighter-rouge">price</code>가 필드다.</p>
+
+<h3 id="인스턴스-필드">인스턴스 필드</h3>
+
+<p>인스턴스 필드는 객체마다 독립적으로 존재하는 필드다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stock</span> <span class="n">scala</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">();</span>
+<span class="nc">Stock</span> <span class="n">ai</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">();</span>
+
+<span class="n">scala</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"SKALA"</span><span class="o">;</span>
+<span class="n">ai</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">"SKALA AI"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>두 객체는 같은 <code class="language-plaintext highlighter-rouge">name</code> 필드를 가지고 있지만, 실제 값은 서로 다르게 저장된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scala ──▶ Stock 객체 1: name = "SKALA"
+ai    ──▶ Stock 객체 2: name = "SKALA AI"
+</code></pre></div></div>
+
+<h3 id="정적-필드static-field">정적 필드(<code class="language-plaintext highlighter-rouge">static</code> field)</h3>
+
+<p>정적 필드는 특정 객체가 아니라 클래스에 소속된 필드다. 해당 클래스의 모든 객체가 하나의 값을 공유한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stock</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">count</code>는 Stock 객체마다 따로 생기는 값이 아니다. Stock 클래스에 하나만 존재하며 모든 Stock 객체가 함께 사용한다.</p>
+
+<h3 id="상수constant">상수(<code class="language-plaintext highlighter-rouge">constant</code>)</h3>
+
+<p>상수는 한 번 정해진 뒤 변경하지 않는 값이다. Java에서는 보통 <code class="language-plaintext highlighter-rouge">static final</code>로 선언한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stock</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">MARKET</span> <span class="o">=</span> <span class="s">"KOSPI"</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">static</code>: 클래스에 하나만 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">final</code>: 값을 다시 대입할 수 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">static final</code>: 클래스 전체가 공유하며 변경할 수 없는 값이다.</li>
+</ul>
+
+<p>단, <code class="language-plaintext highlighter-rouge">final</code> 필드라고 해서 항상 컴파일 시점의 상수인 것은 아니다. 생성자에서 한 번만 값을 대입하는 <code class="language-plaintext highlighter-rouge">final</code> 인스턴스 필드도 만들 수 있다.</p>
+
+<h2 id="5-생성자constructor-객체-초기화-담당">5. 생성자(Constructor): 객체 초기화 담당</h2>
+
+<h3 id="정의-1">정의</h3>
+
+<p>생성자는 <code class="language-plaintext highlighter-rouge">new</code>로 객체를 만들 때 자동으로 실행되는 특별한 코드 블록이다. 객체의 초기 상태를 설정하는 데 사용한다.</p>
+
+<p>생성자의 규칙은 다음과 같다.</p>
+
+<ul>
+  <li>이름이 클래스 이름과 같아야 한다.</li>
+  <li>반환형을 작성하지 않는다. <code class="language-plaintext highlighter-rouge">void</code>도 작성하지 않는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">new</code>를 사용해 객체를 만들 때 호출된다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stock</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Stock</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">price</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stock</span> <span class="n">stock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">(</span><span class="s">"SKALA"</span><span class="o">,</span> <span class="mi">17000</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>위 코드는 다음 순서로 동작한다.</p>
+
+<ol>
+  <li>Heap에 Stock 객체를 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Stock(String name, double price)</code> 생성자를 호출한다.</li>
+  <li>전달받은 값을 객체의 <code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">price</code> 필드에 저장한다.</li>
+  <li>생성된 객체의 참조값을 <code class="language-plaintext highlighter-rouge">stock</code> 변수에 저장한다.</li>
+</ol>
+
+<h2 id="6-this-현재-객체를-가리키는-참조">6. <code class="language-plaintext highlighter-rouge">this</code>: 현재 객체를 가리키는 참조</h2>
+
+<h3 id="정의-2">정의</h3>
+
+<p><code class="language-plaintext highlighter-rouge">this</code>는 현재 실행 중인 인스턴스 메서드나 생성자에서 <strong>현재 객체 자신을 가리키는 참조</strong>다. 흔히 “현재 객체의 주소”라고 설명하지만, Java에서는 주소 자체보다 객체를 가리키는 참조라고 표현하는 것이 정확하다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>여기서 왼쪽 <code class="language-plaintext highlighter-rouge">this.name</code>은 현재 객체의 필드이고, 오른쪽 <code class="language-plaintext highlighter-rouge">name</code>은 생성자의 매개변수다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>this.name = name;
+│           │
+│           └─ 생성자에 전달된 매개변수
+└─ 현재 객체의 필드
+</code></pre></div></div>
+
+<p>매개변수 이름을 다르게 쓰면 <code class="language-plaintext highlighter-rouge">this</code>가 없어도 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">userName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">userName</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>하지만 필드와 매개변수 이름이 같을 때는 <code class="language-plaintext highlighter-rouge">this</code>를 사용해야 둘을 구분할 수 있다.</p>
+
+<h2 id="7-super-부모-클래스에-접근하는-키워드">7. <code class="language-plaintext highlighter-rouge">super</code>: 부모 클래스에 접근하는 키워드</h2>
+
+<h3 id="정의-3">정의</h3>
+
+<p><code class="language-plaintext highlighter-rouge">super</code>는 현재 클래스의 부모 클래스 부분을 가리키는 키워드다. 부모의 생성자를 호출하거나 부모의 필드와 메서드에 접근할 때 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+    <span class="kd">protected</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nc">Product</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Stock</span> <span class="kd">extends</span> <span class="nc">Product</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>
+
+    <span class="nc">Stock</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">price</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">name</span><span class="o">);</span> <span class="c1">// 부모 Product 생성자 호출</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">extends</code>: 자식 클래스가 부모 클래스를 상속한다는 뜻</li>
+  <li><code class="language-plaintext highlighter-rouge">super(name)</code>: 부모 생성자 <code class="language-plaintext highlighter-rouge">Product(String name)</code> 호출</li>
+  <li>부모 생성자 호출은 자식 생성자의 첫 번째 문장에 작성한다.</li>
+</ul>
+
+<h2 id="8-메서드method-객체의-동작을-정의하는-코드">8. 메서드(Method): 객체의 동작을 정의하는 코드</h2>
+
+<h3 id="정의-4">정의</h3>
+
+<p>메서드는 클래스 내부에 선언된 코드 블록으로, 특정 작업을 수행한다. 입력을 받을 수도 있고, 결과를 반환할 수도 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="n">접근</span> <span class="n">제어자</span><span class="o">]</span> <span class="o">[</span><span class="n">반환형</span><span class="o">]</span> <span class="o">[</span><span class="n">메서드</span> <span class="n">이름</span><span class="o">](</span><span class="n">매개변수</span> <span class="n">목록</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 실행할 코드</span>
+    <span class="k">return</span> <span class="n">반환값</span><span class="o">;</span> <span class="c1">// 반환형이 void가 아닐 때</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="메서드-구성-요소">메서드 구성 요소</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>정확한 정의</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>접근 제어자</td>
+      <td>어디에서 호출할 수 있는지 결정하는 키워드</td>
+      <td><code class="language-plaintext highlighter-rouge">public</code>, <code class="language-plaintext highlighter-rouge">private</code></td>
+    </tr>
+    <tr>
+      <td>반환형</td>
+      <td>메서드가 호출한 곳에 돌려주는 값의 타입</td>
+      <td><code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">String</code>, <code class="language-plaintext highlighter-rouge">void</code></td>
+    </tr>
+    <tr>
+      <td>메서드 이름</td>
+      <td>메서드의 동작을 나타내는 이름</td>
+      <td><code class="language-plaintext highlighter-rouge">getPrice()</code></td>
+    </tr>
+    <tr>
+      <td>매개변수(Parameter)</td>
+      <td>메서드가 실행될 때 받을 입력을 저장하는 변수</td>
+      <td><code class="language-plaintext highlighter-rouge">double price</code></td>
+    </tr>
+    <tr>
+      <td>본문</td>
+      <td>실제 작업을 작성하는 중괄호 안의 코드</td>
+      <td><code class="language-plaintext highlighter-rouge">{ ... }</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">return</code></td>
+      <td>결과를 호출한 곳에 돌려주고 메서드를 종료하는 문장</td>
+      <td><code class="language-plaintext highlighter-rouge">return price;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="void란"><code class="language-plaintext highlighter-rouge">void</code>란?</h3>
+
+<p><code class="language-plaintext highlighter-rouge">void</code>는 메서드가 호출한 곳에 <strong>반환할 값이 없다는 뜻의 반환형</strong>이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">printInfo</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"주식 정보"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 메서드는 화면에 출력하는 작업은 하지만 결과값을 돌려주지는 않는다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">double</span> <span class="nf">calculatePriceChange</span><span class="o">(</span><span class="kt">double</span> <span class="n">before</span><span class="o">,</span> <span class="kt">double</span> <span class="n">after</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">after</span> <span class="o">-</span> <span class="n">before</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 메서드는 <code class="language-plaintext highlighter-rouge">double</code> 값을 반환하므로 호출한 곳에서 결과를 받을 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="n">change</span> <span class="o">=</span> <span class="n">calculatePriceChange</span><span class="o">(</span><span class="mi">100</span><span class="o">,</span> <span class="mi">120</span><span class="o">);</span> <span class="c1">// change는 20.0</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">void</code>는 <code class="language-plaintext highlighter-rouge">0</code>이나 <code class="language-plaintext highlighter-rouge">null</code>을 반환한다는 뜻이 아니다. 애초에 반환값이 없는 것이다.</p>
+
+<h3 id="메서드-호출">메서드 호출</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stock</span> <span class="n">stock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">(</span><span class="s">"SKALA"</span><span class="o">,</span> <span class="mi">17000</span><span class="o">);</span>
+<span class="n">stock</span><span class="o">.</span><span class="na">updatePrice</span><span class="o">(</span><span class="mi">18000</span><span class="o">);</span>
+<span class="n">stock</span><span class="o">.</span><span class="na">printInfo</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">stock.updatePrice(...)</code>처럼 객체 뒤에 점(<code class="language-plaintext highlighter-rouge">.</code>)을 붙여 인스턴스 메서드를 호출한다.</p>
+
+<h2 id="9-매개변수parameter와-인자argument">9. 매개변수(Parameter)와 인자(Argument)</h2>
+
+<p>두 용어는 비슷하지만 위치가 다르다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// a, b는 매개변수</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">add</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">);</span>      <span class="c1">// 10, 20은 인자</span>
+</code></pre></div></div>
+
+<ul>
+  <li>매개변수(<code class="language-plaintext highlighter-rouge">Parameter</code>): 메서드 선언부에서 입력을 받기 위해 선언한 변수</li>
+  <li>인자 또는 전달인자(<code class="language-plaintext highlighter-rouge">Argument</code>): 메서드를 호출할 때 실제로 전달하는 값</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>메서드 선언: add(int a, int b)
+                    ▲       ▲
+                 매개변수  매개변수
+
+메서드 호출: add(10, 20)
+                 ▲   ▲
+                인자 인자
+</code></pre></div></div>
+
+<h2 id="10-오버로딩overloading">10. 오버로딩(Overloading)</h2>
+
+<p>오버로딩은 같은 클래스 안에서 <strong>같은 이름의 메서드를 매개변수 목록을 다르게 하여 여러 개 정의하는 것</strong>이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StockUtils</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printStockPrice</span><span class="o">(</span><span class="nc">String</span> <span class="n">stockName</span><span class="o">,</span> <span class="kt">double</span> <span class="n">price</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">stockName</span> <span class="o">+</span> <span class="s">" : "</span> <span class="o">+</span> <span class="n">price</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printStockPrice</span><span class="o">(</span><span class="nc">String</span> <span class="n">stockName</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"종목명: "</span> <span class="o">+</span> <span class="n">stockName</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">StockUtils</span> <span class="n">utils</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StockUtils</span><span class="o">();</span>
+<span class="n">utils</span><span class="o">.</span><span class="na">printStockPrice</span><span class="o">(</span><span class="s">"SKALA"</span><span class="o">,</span> <span class="mi">17000</span><span class="o">);</span> <span class="c1">// 두 매개변수 메서드 호출</span>
+<span class="n">utils</span><span class="o">.</span><span class="na">printStockPrice</span><span class="o">(</span><span class="s">"SKALA"</span><span class="o">);</span>        <span class="c1">// 한 매개변수 메서드 호출</span>
+</code></pre></div></div>
+
+<p>반환형만 다르게 해서는 오버로딩할 수 없다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 매개변수 목록이 같으므로 오버로딩 불가</span>
+<span class="kt">int</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span> <span class="o">}</span>
+<span class="kt">double</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span> <span class="k">return</span> <span class="mf">1.0</span><span class="o">;</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="11-static-클래스에-소속된-멤버">11. <code class="language-plaintext highlighter-rouge">static</code>: 클래스에 소속된 멤버</h2>
+
+<h3 id="정의-5">정의</h3>
+
+<p><code class="language-plaintext highlighter-rouge">static</code>은 필드나 메서드를 특정 객체가 아니라 <strong>클래스에 소속시키는 키워드</strong>다. 객체를 여러 개 만들어도 static 필드는 클래스에 하나만 존재하고 공유된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">instanceId</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Example</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">count</span><span class="o">++;</span>
+        <span class="n">instanceId</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getInstanceId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">instanceId</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Example</span> <span class="n">e1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">();</span>
+<span class="nc">Example</span> <span class="n">e2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">();</span>
+<span class="nc">Example</span> <span class="n">e3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Example</span><span class="o">();</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">Example</span><span class="o">.</span><span class="na">getCount</span><span class="o">());</span>  <span class="c1">// 3</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e1</span><span class="o">.</span><span class="na">getInstanceId</span><span class="o">());</span> <span class="c1">// 1</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e2</span><span class="o">.</span><span class="na">getInstanceId</span><span class="o">());</span> <span class="c1">// 2</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">e3</span><span class="o">.</span><span class="na">getInstanceId</span><span class="o">());</span> <span class="c1">// 3</span>
+</code></pre></div></div>
+
+<h3 id="static과-인스턴스-멤버-비교">static과 인스턴스 멤버 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>static 멤버</th>
+      <th>인스턴스 멤버</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>소속</td>
+      <td>클래스</td>
+      <td>각각의 객체</td>
+    </tr>
+    <tr>
+      <td>생성 개수</td>
+      <td>클래스에 하나</td>
+      <td>객체마다 하나</td>
+    </tr>
+    <tr>
+      <td>호출 방법</td>
+      <td><code class="language-plaintext highlighter-rouge">Example.getCount()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">e1.getInstanceId()</code></td>
+    </tr>
+    <tr>
+      <td>객체 생성 필요</td>
+      <td>static 메서드는 보통 필요 없음</td>
+      <td>필요함</td>
+    </tr>
+    <tr>
+      <td>직접 접근 가능한 값</td>
+      <td>static 멤버</td>
+      <td>static, 인스턴스 멤버</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>static 메서드는 특정 객체가 없을 수 있으므로 인스턴스 필드에 직접 접근할 수 없다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Example</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">instanceValue</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">classValue</span><span class="o">;</span>
+
+    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// System.out.println(instanceValue); // 오류</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">classValue</span><span class="o">);</span>       <span class="c1">// 가능</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="12-전체-예제">12. 전체 예제</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Stock</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">count</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Stock</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">double</span> <span class="n">price</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">;</span>
+        <span class="n">count</span><span class="o">++;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">updatePrice</span><span class="o">(</span><span class="kt">double</span> <span class="n">newPrice</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">newPrice</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printInfo</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">" : "</span> <span class="o">+</span> <span class="n">price</span> <span class="o">+</span> <span class="s">"원"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Stock</span> <span class="n">scalaEdu</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">(</span><span class="s">"스칼라 에듀"</span><span class="o">,</span> <span class="mi">15000</span><span class="o">);</span>
+        <span class="nc">Stock</span> <span class="n">scalaAi</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Stock</span><span class="o">(</span><span class="s">"스칼라 AI"</span><span class="o">,</span> <span class="mi">17500</span><span class="o">);</span>
+
+        <span class="n">scalaEdu</span><span class="o">.</span><span class="na">updatePrice</span><span class="o">(</span><span class="mi">15800</span><span class="o">);</span>
+        <span class="n">scalaEdu</span><span class="o">.</span><span class="na">printInfo</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"생성된 Stock 객체 수: "</span> <span class="o">+</span> <span class="nc">Stock</span><span class="o">.</span><span class="na">getCount</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 예제에서 확인할 수 있는 내용은 다음과 같다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Stock</code>: 객체를 만들기 위한 클래스</li>
+  <li><code class="language-plaintext highlighter-rouge">scalaEdu</code>, <code class="language-plaintext highlighter-rouge">scalaAi</code>: Stock 객체를 가리키는 참조 변수</li>
+  <li><code class="language-plaintext highlighter-rouge">new Stock(...)</code>: Stock 인스턴스 생성</li>
+  <li><code class="language-plaintext highlighter-rouge">name</code>, <code class="language-plaintext highlighter-rouge">price</code>: 객체의 상태를 저장하는 필드</li>
+  <li><code class="language-plaintext highlighter-rouge">Stock(...)</code>: 객체를 초기화하는 생성자</li>
+  <li><code class="language-plaintext highlighter-rouge">updatePrice()</code>, <code class="language-plaintext highlighter-rouge">printInfo()</code>: 객체의 동작을 정의한 인스턴스 메서드</li>
+  <li><code class="language-plaintext highlighter-rouge">count</code>, <code class="language-plaintext highlighter-rouge">getCount()</code>: Stock 클래스 전체가 공유하는 static 멤버</li>
+  <li><code class="language-plaintext highlighter-rouge">this.name</code>, <code class="language-plaintext highlighter-rouge">this.price</code>: 현재 생성 중인 객체의 필드</li>
+</ul>
+
+<h2 id="13-최종-정리">13. 최종 정리</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클래스(Class)
+  └─ 객체를 만들기 위한 설계도
+       ├─ 필드(Field): 상태를 저장하는 변수
+       ├─ 메서드(Method): 동작을 정의하는 코드
+       └─ 생성자(Constructor): 객체 생성 시 초기화
+
+new Stock(...)
+  └─ Stock 클래스의 인스턴스인 객체 생성
+       ├─ 인스턴스 필드: 객체마다 별도 보유
+       ├─ static 필드: 클래스 전체가 공유
+       └─ 참조 변수: 객체를 가리키는 참조값 보유
+</code></pre></div></div>
+
+<ul>
+  <li>클래스는 설계도이고, 객체는 설계도로 만든 실행 중인 실체다.</li>
+  <li>인스턴스는 “특정 클래스에서 만들어진 객체”라는 관계를 나타낸다.</li>
+  <li>필드는 상태, 메서드는 동작, 생성자는 초기화를 담당한다.</li>
+  <li>매개변수는 메서드 선언부의 변수이고, 인자는 호출할 때 전달하는 실제 값이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">void</code>는 반환값이 없다는 뜻이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">this</code>는 현재 객체를 가리키고, <code class="language-plaintext highlighter-rouge">super</code>는 부모 클래스 부분에 접근한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">static</code> 멤버는 객체가 아니라 클래스에 소속되어 공유된다.</li>
+</ul>
 </div>
   
-    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#deep-learning">#Deep Learning</a><a href="/tags/#transformer">#Transformer</a><a href="/tags/#vision-transformer">#Vision Transformer</a><a href="/tags/#vit">#ViT</a></footer>
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#java">#Java</a><a href="/tags/#class">#Class</a><a href="/tags/#object">#Object</a><a href="/tags/#instance">#Instance</a><a href="/tags/#field">#Field</a><a href="/tags/#method">#Method</a><a href="/tags/#constructor">#Constructor</a><a href="/tags/#this">#This</a><a href="/tags/#super">#Super</a><a href="/tags/#static">#Static</a></footer>
   
   <nav class="ide-document-navigation" aria-label="게시물 이동">
-    <a href="/deep_learning/transformer/2026/08/06/state-space-models/"><span>PREVIOUS</span><strong>State Space Model과 Mamba</strong></a>
-    <a href="/devops/2026/08/07/Devops_1/"><span>NEXT</span><strong>Devops_기초_1편</strong></a>
+    <a href="/backend/java/2026/08/10/java-execution-memory/"><span>PREVIOUS</span><strong>Java 기초 정리: 실행 구조와 메모리</strong></a>
+    <a href="/backend/java/2026/08/10/java-oop-concepts/"><span>NEXT</span><strong>Java 객체지향 핵심 개념 정리</strong></a>
   </nav>
   
 <section
@@ -1099,7 +1652,7 @@ Self-supervised Vision Model</p>
     <h2 id="commentsTitle">COMMENTS</h2>
     <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
     <div class="ide-comments-actions">
-      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/backend/java/2026/08/10/java-class-object/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
       <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
   </header>
@@ -1125,13 +1678,13 @@ Self-supervised Vision Model</p>
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>2026.08.06</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.10</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>Deep Learning / Transformer</dd></div>
+      <div><dt>CATEGORY</dt><dd>Backend / JAVA</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/deep_learning/transformer/2026/08/06/transformer-vision-transformer/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/" data-bookmark-title="Transformer와 Vision Transformer"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/backend/java/2026/08/10/java-class-object/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/backend/java/2026/08/10/java-class-object/" data-bookmark-title="Java 클래스와 객체 정리: 필드, 메서드, 생성자, static"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -1142,8 +1695,6 @@ Self-supervised Vision Model</p>
           <a href="/backend/java/2026/08/10/java-oop-concepts/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Java 객체지향 핵심 개념 정리</span></a>
         
       
-        
-          <a href="/backend/java/2026/08/10/java-class-object/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Java 클래스와 객체 정리: 필드, 메서드, 생성자, static</span></a>
         
       
         
@@ -1170,7 +1721,7 @@ Self-supervised Vision Model</p>
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Deep Learning / Transformer</span><span>36 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Backend / JAVA</span><span>36 posts</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>
