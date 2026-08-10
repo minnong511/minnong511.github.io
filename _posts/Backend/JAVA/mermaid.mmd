@@ -1,0 +1,56 @@
+%% Java의 역사 - 순서형 요약
+flowchart LR
+  S0["Java 등장 이전 (1990년대 초반)"]
+  S1["플랫폼 종속성 묹제"]
+  S2["메모리 관리의 어려움"]
+  S3["보안 취약성 (직접 메모리 접근/OS 권한)"]
+  S4["네트워크/분산 개발의 어려움"]
+  S5["Java의 등장"]
+  S6["write once, run anywhere"]
+  S7["Garbage Collection"]
+  S8["샌드박스 + 클래스 로딩 검증"]
+  S9["네트워크 중심 설계 (java.net, socket/http/URL)"]
+  S10["대규모 엔터프라이즈에 적합"]
+
+  S0 --> S1
+  S1 --> S2 --> S3 --> S4 --> S5
+  S5 --> S6 --> S7 --> S8 --> S9 --> S10
+
+%% Interpreter / Compiler 실행 방식
+flowchart TB
+  P["소스 코드"] --> A1["한 줄/구간 해석 (Interpreter)"]
+  P --> B1["전체 변환 (Compiler)"]
+  A1 --> A2["기계어 실행"]
+  B1 --> C1["바이트코드 생성/변환"]
+  C1 --> C2["실행 중 계속 해석/변환"]
+  B1 --> C3["실행 전 변환 완료"]
+  A2 --> D["실행 결과"]
+  C2 --> D
+  C3 --> D
+
+%% Java 언어별 대응 예시 (순서형 정리)
+flowchart TD
+  L["언어별 방식 정리"]
+  L1["C / Rust / Go: 컴파일 -> Native 실행"]
+  L2["Java: .class 바이트코드 + JIT -> Native"]
+  L3["Python: .pyc 바이트코드, JVM/VM 기반 실행"]
+  L4["JavaScript: 실행 시 바이트코드 + JIT"]
+  L --> L1 --> L2 --> L3 --> L4
+
+%% Java 메모리 동작
+flowchart TB
+  M["Java 메모리"]
+  Stack["Stack: 메서드 호출/지역 변수/프레임"]
+  Heap["Heap: 객체와 배열, GC 동작"]
+  Thread["스레드별 Stack"] --> Stack
+  Stack --> Heap
+  M --> Thread
+  M --> Heap
+  Heap --> GC["가비지 컬렉터(불필요 객체 제거)"]
+
+%% Compile 파이프라인
+flowchart LR
+  JavaFile[".java 파일"] --> Compile["컴파일"]
+  Compile --> Bytecode[".class (바이트코드)"]
+  Bytecode --> JVM["JVM 실행 엔진"]
+  JVM --> OS["OS 독립 실행"]
