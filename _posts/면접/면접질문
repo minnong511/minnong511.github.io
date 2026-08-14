@@ -1,0 +1,15 @@
+// (동기, blocking),(비동기, non-blocking) - 요청흐름 
+
+1번 문제: Spring IoC와 의존성 주입
+현재 UserController에는 다음 코드가 있습니다.
+@RequiredArgsConstructor
+public class UserController {
+    private final UserService userService;
+}
+그리고 UserService에는 현재 @Service가 없으며, UserServiceConfig의 @Bean 메서드가 객체를 생성합니다.
+다음 내용을 본인의 말로 설명해보세요.
+UserController 객체는 누가 생성하나요?
+UserService 객체는 누가, 어디에서 생성하나요?
+userService 필드에는 어떻게 객체가 들어가나요?
+이 과정에서 IoC와 DI는 각각 무엇을 의미하나요?
+@RequiredArgsConstructor가 UserService 객체까지 생성해 주는 것인가요?
