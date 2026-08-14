@@ -1,4 +1,608 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-12T10:53:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</title><link href="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/" rel="alternate" type="text/html" title="Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation" /><published>2026-08-11T19:20:00+09:00</published><updated>2026-08-11T19:20:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/"><![CDATA[<h1 id="spring-기초-part-1-ioc-bean-di와-주요-annotation">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-14T17:14:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Python Counter, 빈도수를 쉽게 세는 방법</title><link href="http://localhost:4000/algorithm/2026/08/14/counter/" rel="alternate" type="text/html" title="Python Counter, 빈도수를 쉽게 세는 방법" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>http://localhost:4000/algorithm/2026/08/14/counter</id><content type="html" xml:base="http://localhost:4000/algorithm/2026/08/14/counter/"><![CDATA[<h1 id="counter">Counter</h1>
+
+<blockquote>
+  <p>빈도수를 세는 문제에서 코드를 확 줄여주는 기능이다.</p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">Counter</code>는 <code class="language-plaintext highlighter-rouge">collections</code> 모듈에서 가져와 사용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+</code></pre></div></div>
+
+<p>기본 형태는 다음과 같다.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Counter(이터러블)</code> → <code class="language-plaintext highlighter-rouge">{원소: 등장 횟수}</code> 형태로 세어준다.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<p>문자열도 문자 하나씩 순회할 수 있는 이터러블이므로 카운팅할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">"banana"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+<span class="c1"># Counter({'a': 3, 'n': 2, 'b': 1})
+</span></code></pre></div></div>
+
+<hr />
+
+<h1 id="알고리즘-문제에서-자주-쓰는-기능">알고리즘 문제에서 자주 쓰는 기능</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+
+<span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>              <span class="c1"># x의 개수, 없으면 0
+</span><span class="n">count</span><span class="p">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 가장 많이 나온 값 1개
+</span><span class="n">count</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span>          <span class="c1"># 등장한 값들
+</span><span class="n">count</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>        <span class="c1"># 각 값의 등장 횟수
+</span><span class="n">count</span><span class="p">.</span><span class="n">items</span><span class="p">()</span>         <span class="c1"># (값, 등장 횟수)
+</span></code></pre></div></div>
+
+<p>예를 들어 각 귤 크기의 개수를 센 뒤, 등장 횟수만 가져오고 싶다면 다음처럼 사용할 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tangerine</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">tangerine</span><span class="p">).</span><span class="n">values</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+<span class="c1"># [1, 2, 2, 2, 1]
+</span></code></pre></div></div>
+
+<h2 id="특히-이런-문제에서-유용하다">특히 이런 문제에서 유용하다</h2>
+
+<ul>
+  <li>문자열의 문자 개수 세기</li>
+  <li>숫자별 등장 횟수 세기</li>
+  <li>애너그램 판별</li>
+  <li>최빈값 찾기</li>
+  <li>두 배열의 원소 구성 비교</li>
+  <li>중복 원소 찾기</li>
+</ul>
+
+<p>애너그램은 문자의 순서는 다르지만, 사용된 문자와 각 문자의 개수가 같은 단어를 말한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Counter</span><span class="p">(</span><span class="s">"listen"</span><span class="p">)</span> <span class="o">==</span> <span class="n">Counter</span><span class="p">(</span><span class="s">"silent"</span><span class="p">)</span>  <span class="c1"># True
+</span></code></pre></div></div>
+
+<hr />
+
+<h1 id="개인적인-고민">개인적인 고민</h1>
+
+<p>모든 기능을 내가 구현해야 하는 게 아닌가?</p>
+
+<p>나는 약간 내가 직접 구현해야 할 것 같은 강박이 있다.</p>
+
+<p>하지만 이런 강박을 가질 필요는 없다.</p>
+
+<p>알고리즘 문제에서는 단순히 코드를 길게 짜는 능력만 보는 것이 아니다.</p>
+
+<ul>
+  <li>이 문제가 빈도수를 활용해서 해결할 수 있는 문제인지 알아보는가?</li>
+  <li>어떤 자료구조를 사용해야 하는지 판단할 수 있는가?</li>
+  <li>시간 복잡도를 고려할 수 있는가?</li>
+</ul>
+
+<p>빈도수를 딕셔너리에 저장하는 반복문은 이미 검증된 도구로 대체할 수 있는 구현 세부 사항이다.</p>
+
+<p>굳이 검증된 도구가 있다면 매번 다시 만들어서 쓸 필요는 없다.</p>
+
+<h2 id="직접-구현한다면">직접 구현한다면</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+    <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<h2 id="counter를-사용한다면">Counter를 사용한다면</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>둘 다 핵심 원리는 똑같고, 평균 시간 복잡도도 보통 <code class="language-plaintext highlighter-rouge">O(N)</code>이다.</p>
+
+<p>따라서 <code class="language-plaintext highlighter-rouge">Counter</code>를 사용했다고 해서 알고리즘을 건너뛴 것은 아니다.</p>
+
+<hr />
+
+<h1 id="추천-학습-방식">추천 학습 방식</h1>
+
+<ol>
+  <li>처음에는 빈도수 계산을 직접 구현해보며 원리를 이해한다.</li>
+  <li>이후 문제에서는 <code class="language-plaintext highlighter-rouge">Counter</code>를 사용한다.</li>
+  <li>라이브러리 사용이 금지된 문제나 코딩 테스트 환경에서 지원하지 않는 경우에만 직접 구현한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Counter</code> 없이도 구현 방법을 설명할 수 있으면 충분하다.</li>
+</ol>
+
+<p>다만 아래 알고리즘과 자료구조는 동작 원리를 이해하기 위해 직접 구현해보는 것이 좋다.</p>
+
+<ul>
+  <li>정렬, 이분 탐색</li>
+  <li>스택, 큐</li>
+  <li>BFS, DFS</li>
+  <li>힙</li>
+  <li>유니온 파인드</li>
+  <li>다익스트라</li>
+</ul>
+
+<hr />
+
+<h1 id="결론">결론</h1>
+
+<blockquote>
+  <p>문제가 빈도수 문제라는 것을 알아보는 것도 알고리즘 실력이다.</p>
+
+  <p>원리는 직접 이해하고, 실전에서는 표준 라이브러리를 적극적으로 사용하자.</p>
+</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="Algorithm" /><category term="Python" /><category term="Algorithm" /><category term="Counter" /><category term="Collections" /><summary type="html"><![CDATA[Counter]]></summary></entry><entry><title type="html">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</title><link href="http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow/" rel="alternate" type="text/html" title="Spring 기초 Part 2: Spring MVC 요청 처리 흐름" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow/"><![CDATA[<h1 id="spring-기초-part-2-spring-mvc-요청-처리-흐름">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</h1>
+
+<blockquote>
+  <p>Spring MVC는 HTTP 요청을 적절한 Controller에 연결하고, 처리 결과를 View 또는 JSON으로 반환하는 웹 프레임워크다.</p>
+</blockquote>
+
+<p>처음에는 다음 흐름부터 기억하면 된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  → DispatcherServlet
+  → Controller
+  → Service
+  → Repository
+  → Database
+</code></pre></div></div>
+
+<p>응답은 반대 방향으로 돌아온다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Database
+  → Repository
+  → Service
+  → Controller
+  → JSON 또는 HTML
+  → Client
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정의</th>
+      <th>쉽게 말하면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Client</td>
+      <td>서버에 HTTP 요청을 보내는 프로그램</td>
+      <td>브라우저, Vue, React, 앱, Postman</td>
+    </tr>
+    <tr>
+      <td>HTTP Request</td>
+      <td>Client가 서버에 보내는 요청</td>
+      <td><code class="language-plaintext highlighter-rouge">GET /api/users/1</code></td>
+    </tr>
+    <tr>
+      <td>HTTP Response</td>
+      <td>서버가 Client에 돌려주는 결과</td>
+      <td>상태 코드와 JSON 데이터</td>
+    </tr>
+    <tr>
+      <td>MVC</td>
+      <td>Model, View, Controller로 역할을 나누는 설계 방식</td>
+      <td>데이터, 화면, 요청 처리를 분리</td>
+    </tr>
+    <tr>
+      <td>Servlet</td>
+      <td>Java 웹 서버에서 HTTP 요청과 응답을 처리하는 객체</td>
+      <td>Spring MVC의 입구를 만드는 기반 기술</td>
+    </tr>
+    <tr>
+      <td>DispatcherServlet</td>
+      <td>Spring MVC의 모든 요청을 먼저 받는 Front Controller</td>
+      <td>요청을 담당 Controller에 배분하는 중앙 안내자</td>
+    </tr>
+    <tr>
+      <td>HandlerMapping</td>
+      <td>요청을 처리할 Controller 메서드를 찾는 객체</td>
+      <td><code class="language-plaintext highlighter-rouge">/users/1</code>을 누가 처리하는지 검색</td>
+    </tr>
+    <tr>
+      <td>HandlerAdapter</td>
+      <td>찾은 Controller 메서드를 실제로 호출하는 객체</td>
+      <td>매개변수를 준비하고 메서드를 실행</td>
+    </tr>
+    <tr>
+      <td>Jackson</td>
+      <td>자바 객체와 JSON을 변환하는 라이브러리</td>
+      <td><code class="language-plaintext highlighter-rouge">UserDto</code>를 JSON으로 변환</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-mvc와-계층형-구조는-같은-말이-아니다">2. MVC와 계층형 구조는 같은 말이 아니다</h2>
+
+<p>기본 MVC는 역할을 다음처럼 구분한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성</th>
+      <th>역할</th>
+      <th>Spring에서의 예</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Model</td>
+      <td>애플리케이션의 데이터와 상태</td>
+      <td>DTO, Entity, Service의 처리 결과</td>
+    </tr>
+    <tr>
+      <td>View</td>
+      <td>사용자에게 보여줄 결과</td>
+      <td>HTML, Thymeleaf 화면</td>
+    </tr>
+    <tr>
+      <td>Controller</td>
+      <td>요청을 받고 처리 흐름을 연결</td>
+      <td><code class="language-plaintext highlighter-rouge">@Controller</code>, <code class="language-plaintext highlighter-rouge">@RestController</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>실무의 Spring 애플리케이션에서는 유지보수를 위해 역할을 더 세분화한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>계층</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Controller</td>
+      <td>HTTP 요청과 응답 처리</td>
+    </tr>
+    <tr>
+      <td>Service</td>
+      <td>비즈니스 규칙과 트랜잭션 처리</td>
+    </tr>
+    <tr>
+      <td>Repository</td>
+      <td>데이터베이스 접근</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>즉 Spring MVC와 계층형 구조를 함께 사용하는 것이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring MVC
+→ HTTP 요청을 Controller에 연결하고 응답을 만드는 구조
+
+계층형 구조
+→ Controller, Service, Repository의 책임을 나누는 구조
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-dispatcherservlet">3. DispatcherServlet</h2>
+
+<p>Client의 요청이 Controller로 바로 전달되는 것은 아니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  → DispatcherServlet
+  → Controller
+</code></pre></div></div>
+
+<p>DispatcherServlet은 모든 요청을 먼저 받고 적절한 Controller로 전달한다. 이런 구조를 <strong>Front Controller Pattern</strong>이라고 한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                       ┌→ UserController
+Client → DispatcherServlet → ProductController
+                       └→ OrderController
+</code></pre></div></div>
+
+<p>각 Controller가 공통 처리를 직접 반복하지 않아도 DispatcherServlet을 중심으로 일관된 요청 처리가 가능하다.</p>
+
+<hr />
+
+<h2 id="4-handlermapping과-handleradapter">4. HandlerMapping과 HandlerAdapter</h2>
+
+<p>다음 Controller가 있다고 해보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 사용자 조회</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Client가 다음 요청을 보낸다.</p>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET /api/users/1
+</span></code></pre></div></div>
+
+<p>Spring은 애플리케이션을 시작할 때 어노테이션 정보를 읽고 URL과 메서드의 연결 정보를 준비한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /api/users/{id}
+        ↓
+UserController.getUser()
+</code></pre></div></div>
+
+<p>실행 시 각 객체의 역할은 다음과 같다.</p>
+
+<ol>
+  <li>DispatcherServlet이 요청을 받는다.</li>
+  <li>HandlerMapping이 요청을 처리할 Controller 메서드를 찾는다.</li>
+  <li>HandlerAdapter가 필요한 매개변수를 준비한다.</li>
+  <li>HandlerAdapter가 Controller 메서드를 호출한다.</li>
+  <li>반환 결과를 DispatcherServlet이 응답으로 처리한다.</li>
+</ol>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Spring MVC REST API 요청 흐름</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart LR
+    C[Client] --&gt;|HTTP Request| D[DispatcherServlet]
+    D --&gt;|처리 대상 검색| HM[HandlerMapping]
+    HM --&gt;|Controller 정보| D
+    D --&gt;|실행 요청| HA[HandlerAdapter]
+    HA --&gt; CT[Controller]
+    CT --&gt; S[Service]
+    S --&gt; R[Repository]
+    R --&gt; DB[(Database)]
+    DB --&gt; R
+    R --&gt; S
+    S --&gt; CT
+    CT --&gt;|Java Object| HA
+    HA --&gt; D
+    D --&gt;|JSON Response| C
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<hr />
+
+<h2 id="5-controller-service-repository">5. Controller, Service, Repository</h2>
+
+<h3 id="controller">Controller</h3>
+
+<p>Controller는 HTTP 요청과 응답에 집중한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserController</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">UserResponse</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">UserResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Controller에는 복잡한 업무 규칙을 넣지 않는다.</p>
+
+<h3 id="service">Service</h3>
+
+<p>Service는 실제 업무 규칙을 처리한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserService</span><span class="o">(</span><span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+        <span class="k">return</span> <span class="nc">UserResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="repository">Repository</h3>
+
+<p>Repository는 데이터베이스 접근을 담당한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>역할을 나누면 HTTP 처리, 업무 규칙, DB 접근을 각각 독립적으로 수정하고 테스트하기 쉬워진다.</p>
+
+<hr />
+
+<h2 id="6-controller와-restcontroller">6. <code class="language-plaintext highlighter-rouge">@Controller</code>와 <code class="language-plaintext highlighter-rouge">@RestController</code></h2>
+
+<h3 id="controller-1"><code class="language-plaintext highlighter-rouge">@Controller</code></h3>
+
+<p>일반적인 <code class="language-plaintext highlighter-rouge">@Controller</code>가 문자열을 반환하면 View 이름으로 해석할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">home</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"home"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return "home"
+   → ViewResolver
+   → home.html 검색
+   → HTML 응답
+</code></pre></div></div>
+
+<h3 id="restcontroller"><code class="language-plaintext highlighter-rouge">@RestController</code></h3>
+
+<p><code class="language-plaintext highlighter-rouge">@RestController</code>의 반환값은 기본적으로 HTTP 응답 본문으로 전달된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/api/hello"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">MessageResponse</span> <span class="nf">hello</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">MessageResponse</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Jackson이 자바 객체를 JSON으로 변환한다.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th><code class="language-plaintext highlighter-rouge">@Controller</code></th>
+      <th><code class="language-plaintext highlighter-rouge">@RestController</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>주요 목적</td>
+      <td>HTML View 반환</td>
+      <td>JSON 데이터 반환</td>
+    </tr>
+    <tr>
+      <td>반환값 처리</td>
+      <td>View 이름으로 해석 가능</td>
+      <td>Response Body로 변환</td>
+    </tr>
+    <tr>
+      <td>주 사용처</td>
+      <td>서버 렌더링 웹 페이지</td>
+      <td>REST API</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="7-전체-실행-흐름">7. 전체 실행 흐름</h2>
+
+<p><code class="language-plaintext highlighter-rouge">GET /api/users/1</code> 요청을 다시 연결하면 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Client가 GET /api/users/1 요청
+2. DispatcherServlet이 요청 수신
+3. HandlerMapping이 UserController.getUser() 검색
+4. HandlerAdapter가 id 값을 준비하고 메서드 호출
+5. Controller가 UserService 호출
+6. Service가 UserRepository 호출
+7. Repository가 DB 조회
+8. 조회 결과가 Repository → Service → Controller로 반환
+9. Jackson이 UserResponse를 JSON으로 변환
+10. Client에 HTTP 응답 반환
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="핵심-정리">핵심 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>핵심 역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DispatcherServlet</td>
+      <td>모든 요청을 먼저 받는 Front Controller</td>
+    </tr>
+    <tr>
+      <td>HandlerMapping</td>
+      <td>요청을 처리할 Controller 메서드 검색</td>
+    </tr>
+    <tr>
+      <td>HandlerAdapter</td>
+      <td>Controller 메서드 실행</td>
+    </tr>
+    <tr>
+      <td>Controller</td>
+      <td>HTTP 요청과 응답 처리</td>
+    </tr>
+    <tr>
+      <td>Service</td>
+      <td>비즈니스 규칙 처리</td>
+    </tr>
+    <tr>
+      <td>Repository</td>
+      <td>데이터베이스 접근</td>
+    </tr>
+    <tr>
+      <td>Jackson</td>
+      <td>자바 객체를 JSON으로 변환</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Spring MVC의 핵심은 요청을 Controller에 연결하는 흐름과 Controller, Service, Repository의 책임을 분리하는 데 있다.</p>
+</blockquote>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring Framework Web MVC 공식 문서</a></li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="Spring MVC" /><category term="DispatcherServlet" /><category term="REST API" /><summary type="html"><![CDATA[DispatcherServlet부터 Controller, Service, Repository, JSON 응답까지 Spring MVC의 전체 요청 흐름을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</title><link href="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/" rel="alternate" type="text/html" title="Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation" /><published>2026-08-11T19:20:00+09:00</published><updated>2026-08-11T19:20:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/"><![CDATA[<h1 id="spring-기초-part-1-ioc-bean-di와-주요-annotation">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</h1>
 
 <h2 id="1-spring이란-무엇인가">1. Spring이란 무엇인가</h2>
 
@@ -2526,259 +3130,4 @@ User는 com.practice.model에 있기 때문</p>
 <p><code class="language-plaintext highlighter-rouge">user</code> -&gt; 참조 변수</p>
 
 <p><code class="language-plaintext highlighter-rouge">new User("민형")</code>
--&gt; 새 User 객체 생성 + 생성 호출</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="debugging" /><category term="Java" /><category term="Debugging" /><category term="OOP" /><category term="Class" /><category term="Constructor" /><category term="Static" /><category term="Package" /><category term="Import" /><category term="Abstract" /><summary type="html"><![CDATA[Java에서 자주 헷갈리는 클래스와 객체, 생성자와 this, static final, package import, 추상화 개념을 디버깅 관점에서 정리한다.]]></summary></entry><entry><title type="html">Java 디버깅 Part 2: VS Code 자동 컴파일과 프로젝트 구조</title><link href="http://localhost:4000/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/" rel="alternate" type="text/html" title="Java 디버깅 Part 2: VS Code 자동 컴파일과 프로젝트 구조" /><published>2026-08-11T09:00:00+09:00</published><updated>2026-08-11T09:00:00+09:00</updated><id>http://localhost:4000/java/debugging/2026/08/11/java-vscode-auto-compile-debugging</id><content type="html" xml:base="http://localhost:4000/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/"><![CDATA[<h1 id="java-디버깅-part-2-vs-code-자동-컴파일과-프로젝트-구조">Java 디버깅 Part 2: VS Code 자동 컴파일과 프로젝트 구조</h1>
-
-<p>VS Code에서는 왜 자동 컴파일이 바로 안 보이는 걸까? 내가 굳이 그 디렉토리로 이동해서 컴파일해야 하는 걸까? 코드가 바뀌면 알아서 다시 컴파일해 주는 도구는 없는 걸까?</p>
-
-<p>일단 <code class="language-plaintext highlighter-rouge">자동 컴파일</code>과 내가 보고 있는 폴더에 <code class="language-plaintext highlighter-rouge">.class</code> 파일이 생기는 것은 같은 얘기가 아니다.</p>
-
-<h2 id="vs-code에서는-어떻게-실행되는가">VS Code에서는 어떻게 실행되는가</h2>
-
-<p>예를 들어 <code class="language-plaintext highlighter-rouge">Calculator.java</code>가 아래처럼 있다고 하자.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculator</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="mi">20</span><span class="o">;</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>VS Code에서 Java 프로젝트가 정상적으로 잡혀 있다면, 저장할 때 내부적으로 최신 클래스를 만들고 <code class="language-plaintext highlighter-rouge">Run Java</code>로 실행할 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Calculator.java 수정
-    ↓
-Ctrl+S / Cmd+S
-    ↓
-Java Language Server
-    ↓
-자동 빌드
-    ↓
-내부 bin에 최신 class 생성
-    ↓
-Run Java
-    ↓
-최신 코드 실행
-</code></pre></div></div>
-
-<p>그래서 매번 아래처럼 직접 컴파일할 필요는 없다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>6.exception
-javac Calculator.java
-java Calculator
-</code></pre></div></div>
-
-<p>다만 VS Code가 지금 열어 둔 폴더를 Java 프로젝트로 제대로 인식했을 때 이야기다.</p>
-
-<h2 id="프로젝트-구조가-애매한-경우">프로젝트 구조가 애매한 경우</h2>
-
-<p>아래처럼 챕터별 폴더만 있는 단순 실습 구조라면 VS Code가 이 폴더를 일반적인 Java 프로젝트로 정확히 잡지 못할 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java-springboot/
-├── 1.basic/
-├── 2.object/
-├── 3.inheritance/
-├── 6.exception/
-│   └── Calculator.java
-└── ...
-</code></pre></div></div>
-
-<p>이런 경우 VS Code는 폴더를 <code class="language-plaintext highlighter-rouge">unmanaged folder</code> 형태로 처리할 수 있다. 그래서 내가 원하는 위치에 <code class="language-plaintext highlighter-rouge">.class</code>가 안 보이거나, 직접 <code class="language-plaintext highlighter-rouge">javac</code>를 실행해야 하는 것처럼 느껴질 수 있다.</p>
-
-<p>보통 Java에서는 Maven이나 Gradle 프로젝트 구조를 사용한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project/
-├── pom.xml
-└── src/
-    └── main/
-        └── java/
-            └── ...
-</code></pre></div></div>
-
-<p>이 구조면 Maven이나 Gradle이 소스 폴더, 빌드 결과 폴더, 필요한 라이브러리를 알고 있어서 훨씬 안정적으로 동작한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Maven / Gradle
-    ↓
-소스 탐색
-    ↓
-의존성 해결
-    ↓
-컴파일
-    ↓
-테스트
-    ↓
-패키징
-</code></pre></div></div>
-
-<p>VS Code도 Maven과 Gradle을 Java 빌드 도구 워크플로로 지원한다.</p>
-
-<h2 id="코드-변경-시-자동-재실행까지">코드 변경 시 자동 재실행까지</h2>
-
-<p>자동 컴파일은 저장한 코드를 다시 빌드하는 것까지다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 저장
-    ↓
-.class 갱신
-</code></pre></div></div>
-
-<p>실행 중인 애플리케이션까지 자동으로 다시 시작하려면 별도 도구가 필요하다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>코드 저장
-    ↓
-컴파일
-    ↓
-실행 중인 애플리케이션 재시작
-</code></pre></div></div>
-
-<p>Spring Boot를 쓰는 단계가 되면 <code class="language-plaintext highlighter-rouge">spring-boot-devtools</code>를 추가해서 개발 중 재시작을 더 편하게 할 수 있다.</p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>spring-boot-devtools<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;scope&gt;</span>runtime<span class="nt">&lt;/scope&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="debugging" /><category term="Java" /><category term="Debugging" /><category term="VS Code" /><category term="Compiler" /><category term="Maven" /><category term="Gradle" /><category term="Spring Boot" /><category term="DevTools" /><summary type="html"><![CDATA[VS Code의 Java 자동 빌드 동작, .class 파일 위치, Maven과 Gradle 기반 프로젝트 구조, 자동 재시작 도구를 정리한다.]]></summary></entry><entry><title type="html">Java 객체지향 Part 4: 상속과 인터페이스</title><link href="http://localhost:4000/java/oop/2026/08/10/java-inheritance-interface/" rel="alternate" type="text/html" title="Java 객체지향 Part 4: 상속과 인터페이스" /><published>2026-08-10T13:20:00+09:00</published><updated>2026-08-10T13:20:00+09:00</updated><id>http://localhost:4000/java/oop/2026/08/10/java-inheritance-interface</id><content type="html" xml:base="http://localhost:4000/java/oop/2026/08/10/java-inheritance-interface/"><![CDATA[<h1 id="java-객체지향-part-4-상속과-인터페이스">Java 객체지향 Part 4: 상속과 인터페이스</h1>
-
-<h2 id="1-상속">1. 상속</h2>
-
-<p>상속은 <code class="language-plaintext highlighter-rouge">Superclass</code>의 상태와 동작을 <code class="language-plaintext highlighter-rouge">Subclass</code>가 물려받아 재사용하고 확장하는 방법이다.</p>
-
-<p>일반적으로 기능을 물려받는 쪽을 자식 클래스, 물려주는 쪽을 부모 클래스라고 한다.</p>
-
-<h2 id="2-인터페이스">2. 인터페이스</h2>
-
-<blockquote>
-  <p>공통 규칙을 정의하고, 서로 다른 구현 객체를 같은 타입으로 처리해 다형성을 활용할 수 있다.</p>
-</blockquote>
-
-<ul>
-  <li>클래스가 구현해야 하는 메서드의 규약(Contract)를 정의하는 참조 타입</li>
-  <li>메서드 시그니쳐 (이름, 매개변수, 반환형)만 선언하고 실제 구현은 인터페이스를 구현한 클래스가 담당</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">makeSound</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>class 키워드 대신 interface 키워드 활용</li>
-  <li>메소드의 정의만 해두고 구현체는 존재하지 않음</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 인터페이스 선언</span>
-<span class="kd">interface</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">makeSound</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="c1">// 2. Dog 구현체</span>
-<span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeSound</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"멍멍!"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// 3. Cat 구현체</span>
-<span class="kd">class</span> <span class="nc">Cat</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">makeSound</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"야옹!"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// 4. Main 클래스</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnimalSound</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// Animal 타입으로 각각의 구현 객체를 참조</span>
-        <span class="nc">Animal</span> <span class="n">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Dog</span><span class="o">();</span>
-        <span class="nc">Animal</span> <span class="n">cat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Cat</span><span class="o">();</span>
-
-        <span class="n">dog</span><span class="o">.</span><span class="na">makeSound</span><span class="o">();</span> <span class="c1">// 멍멍!</span>
-        <span class="n">cat</span><span class="o">.</span><span class="na">makeSound</span><span class="o">();</span> <span class="c1">// 야옹!</span>
-
-        <span class="c1">// Animal 타입을 받는 메서드에 Cat 객체 전달</span>
-        <span class="n">handleAnimalSound</span><span class="o">(</span><span class="n">cat</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// Animal을 구현한 객체라면 전달 가능</span>
-    <span class="kd">static</span> <span class="kt">void</span> <span class="nf">handleAnimalSound</span><span class="o">(</span><span class="nc">Animal</span> <span class="n">animal</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">animal</span><span class="o">.</span><span class="na">makeSound</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="override-annotation-사용-이유"><code class="language-plaintext highlighter-rouge">@Override</code> Annotation 사용 이유</h3>
-
-<p>다음과 같은 이유로 사용 권고</p>
-
-<ol>
-  <li>컴파일러 체크 기능</li>
-  <li>가독성향상</li>
-  <li>리팩토링 안정성</li>
-</ol>
-
-<h3 id="인터페이스-메서드-접근자">인터페이스 메서드 접근자</h3>
-
-<p>인터페이스의 추상 메서드는 기본적으로 <code class="language-plaintext highlighter-rouge">public abstract</code>이며, 명시하지 않아도 자동으로 적용된다.</p>
-
-<h2 id="3-다중-상속">3. 다중 상속</h2>
-
-<p>Java 클래스는 다중 상속을 지원하지 않지만, 여러 인터페이스를 동시에 구현할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">Flyable</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">fly</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">interface</span> <span class="nc">Swimmable</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">swim</span><span class="o">();</span>
-<span class="o">}</span>
-
-<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Bird</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">moving</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"움직입니다!"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// 하나의 클래스가 두 인터페이스를 모두 구현</span>
-<span class="kd">class</span> <span class="nc">Duck</span> <span class="kd">extends</span> <span class="nc">Bird</span> <span class="kd">implements</span> <span class="nc">Flyable</span><span class="o">,</span> <span class="nc">Swimmable</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fly</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"오리가 하늘을 납니다!"</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">swim</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"오리가 물 위를 헤엄칩니다!"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="nc">Duck</span> <span class="n">duck</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Duck</span><span class="o">();</span>
-<span class="n">duck</span><span class="o">.</span><span class="na">fly</span><span class="o">();</span>
-<span class="n">duck</span><span class="o">.</span><span class="na">swim</span><span class="o">();</span>
-<span class="n">duck</span><span class="o">.</span><span class="na">moving</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>클래스는 다중 상속을 지원하지 않는다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">A</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"A"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">class</span> <span class="nc">B</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"B"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// 컴파일 오류: Java 클래스는 두 클래스를 동시에 상속할 수 없다.</span>
-<span class="kd">class</span> <span class="nc">C</span> <span class="kd">extends</span> <span class="no">A</span><span class="o">,</span> <span class="no">B</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">A</code>와 <code class="language-plaintext highlighter-rouge">B</code>에 같은 <code class="language-plaintext highlighter-rouge">print()</code> 메서드가 있으면 어느 메서드를 물려받아야 하는지 모호해지기 때문에 클래스 다중 상속을 허용하지 않는다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="oop" /><category term="Java" /><category term="OOP" /><category term="Inheritance" /><category term="Interface" /><category term="Override" /><category term="Polymorphism" /><summary type="html"><![CDATA[Java의 상속, 인터페이스, Override 애너테이션과 다중 구현 방식을 예제로 정리한다.]]></summary></entry></feed>
+-&gt; 새 User 객체 생성 + 생성 호출</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="debugging" /><category term="Java" /><category term="Debugging" /><category term="OOP" /><category term="Class" /><category term="Constructor" /><category term="Static" /><category term="Package" /><category term="Import" /><category term="Abstract" /><summary type="html"><![CDATA[Java에서 자주 헷갈리는 클래스와 객체, 생성자와 this, static final, package import, 추상화 개념을 디버깅 관점에서 정리한다.]]></summary></entry></feed>
