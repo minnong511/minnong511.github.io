@@ -53,7 +53,7 @@
     { id: "toggle", label: "토글", description: "필요할 때 펼쳐보는 내용", icon: "ri-arrow-right-s-line", shortcut: "▸", keywords: "toggle details 접기 펼치기" },
     { id: "code", label: "코드 블록", description: "언어를 선택해 코드 작성", icon: "ri-code-box-line", shortcut: "</>", keywords: "code block 코드 개발" },
     { id: "math", label: "수학 블록", description: "LaTeX 수식과 실시간 미리보기", icon: "ri-function-line", shortcut: "∑", keywords: "math latex formula 수학 수식" },
-    { id: "embed", label: "임베드", description: "YouTube 또는 웹 콘텐츠 삽입", icon: "ri-layout-masonry-line", shortcut: "↗", keywords: "embed iframe youtube 임베드 링크" },
+    { id: "embed", label: "임베드", description: "YouTube 또는 웹 링크를 블록으로 삽입", icon: "ri-layout-masonry-line", shortcut: "↗", keywords: "embed iframe youtube 임베드 링크" },
     { id: "media", label: "이미지 · GIF", description: "파일을 선택하거나 끌어놓기", icon: "ri-image-add-line", shortcut: "IMG", keywords: "image gif media upload 사진 이미지 업로드" }
   ];
 
@@ -338,11 +338,11 @@
     block.setAttribute("contenteditable", "false");
     block.innerHTML =
       '<header class="writer-special-head">' +
-        '<span class="writer-special-label"><i class="ri-layout-masonry-line"></i> Embed block</span>' +
+        '<span class="writer-special-label"><i class="ri-layout-masonry-line"></i> Web embed</span>' +
         '<div class="writer-special-actions">' + createRemoveButton() + '</div>' +
       '</header>' +
       '<div class="writer-embed-body">' +
-        '<input class="writer-embed-url" type="url" inputmode="url" aria-label="임베드 URL" placeholder="https://www.youtube.com/watch?v=..." />' +
+        '<input class="writer-embed-url" type="url" inputmode="url" aria-label="임베드 URL" placeholder="https://example.com 또는 YouTube 링크" />' +
         '<div class="writer-embed-preview">URL을 입력하면 미리보기가 표시됩니다.</div>' +
       '</div>';
     return block;
@@ -387,7 +387,7 @@
     if (type === "math") block = createMathBlock();
     if (type === "embed") block = createEmbedBlock();
     if (type === "toggle") block = createToggleBlock();
-    if (!block) return;
+    if (!block) return null;
 
     if (replaceBlock && replaceBlock.parentElement === editor) {
       replaceBlock.replaceWith(block);
@@ -403,6 +403,7 @@
 
     var input = block.querySelector("textarea, input, [contenteditable='true']");
     if (input) window.setTimeout(function () { input.focus(); }, 0);
+    return block;
   }
 
   function normalizeUrl(value) {
@@ -416,6 +417,14 @@
     } catch (error) {
       return "";
     }
+  }
+
+  function webUrlFromText(value) {
+    var candidate = String(value || "").trim();
+    if (!candidate || /\s/.test(candidate)) return "";
+    var looksLikeWebUrl = /^https?:\/\/\S+$/i.test(candidate) ||
+      /^(?:www\.)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?(?:[/?#]\S*)?$/i.test(candidate);
+    return looksLikeWebUrl ? normalizeUrl(candidate) : "";
   }
 
   function youtubeIdFromUrl(value) {
@@ -455,8 +464,43 @@
     frame.src = youtubeId ? "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(youtubeId) : url;
     frame.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
     frame.setAttribute("allowfullscreen", "");
-    if (!youtubeId) frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-popups");
+    if (!youtubeId) {
+      frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-popups allow-presentation");
+      var parsed = new URL(url);
+      var bar = document.createElement("div");
+      bar.className = "writer-embed-linkbar";
+
+      var identity = document.createElement("span");
+      identity.className = "writer-embed-identity";
+      identity.innerHTML = '<i class="ri-global-line" aria-hidden="true"></i><span><strong></strong><small></small></span>';
+      identity.querySelector("strong").textContent = parsed.hostname.replace(/^www\./, "");
+      identity.querySelector("small").textContent = parsed.pathname === "/" ? url : parsed.pathname + parsed.search;
+
+      var openLink = document.createElement("a");
+      openLink.href = url;
+      openLink.target = "_blank";
+      openLink.rel = "noreferrer noopener";
+      openLink.setAttribute("aria-label", "새 탭에서 링크 열기");
+      openLink.innerHTML = '<span>새 탭에서 열기</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i>';
+
+      bar.appendChild(identity);
+      bar.appendChild(openLink);
+      target.appendChild(bar);
+    }
     target.appendChild(frame);
+  }
+
+  function insertEmbedFromUrl(url, replaceBlock) {
+    var block = insertSpecialBlock("embed", replaceBlock);
+    if (!block) return;
+    var input = block.querySelector(".writer-embed-url");
+    input.value = url;
+    renderEmbedBlock(block);
+    var nextBlock = block.nextElementSibling;
+    if (nextBlock) window.setTimeout(function () { focusAtEnd(nextBlock); }, 0);
+    scheduleSave();
+    schedulePreview();
+    showToast("웹 링크를 임베드 블록으로 만들었습니다.");
   }
 
   function renderMathBlock(block) {
@@ -781,7 +825,7 @@
       if (youtubeId) {
         return '{% include library/youtube-embed.html title="임베드 영상" video_id="' + escapeYaml(youtubeId) + '" %}';
       }
-      return '<iframe src="' + escapeHtml(url) + '" title="임베드 콘텐츠" loading="lazy" width="100%" height="420" sandbox="allow-scripts allow-same-origin allow-presentation" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+      return '{% include library/web-embed.html url="' + escapeYaml(url) + '" %}';
     }
     if (type === "media") {
       var id = block.dataset.mediaId;
@@ -1148,6 +1192,17 @@
         return;
       }
     }
+
+    if (event.key === "Enter" && !event.shiftKey && !event.isComposing && !event.target.matches("textarea, input")) {
+      var currentBlock = getCurrentBlock();
+      var typedUrl = currentBlock && !currentBlock.matches(".writer-special-block, .writer-media-block, .writer-toggle")
+        ? webUrlFromText(currentBlock.textContent)
+        : "";
+      if (typedUrl) {
+        event.preventDefault();
+        insertEmbedFromUrl(typedUrl, currentBlock);
+      }
+    }
   });
 
   editor.addEventListener("paste", function (event) {
@@ -1160,6 +1215,16 @@
     }
     var plainText = event.clipboardData && event.clipboardData.getData("text/plain");
     if (plainText) {
+      var pastedUrl = plainText.indexOf("\n") === -1 ? webUrlFromText(plainText) : "";
+      var currentBlock = getCurrentBlock();
+      var currentBlockIsEmpty = currentBlock &&
+        !currentBlock.matches(".writer-special-block, .writer-media-block, .writer-toggle") &&
+        !(currentBlock.textContent || "").trim();
+      if (pastedUrl && currentBlockIsEmpty) {
+        event.preventDefault();
+        insertEmbedFromUrl(pastedUrl, currentBlock);
+        return;
+      }
       event.preventDefault();
       document.execCommand("insertText", false, plainText);
     }

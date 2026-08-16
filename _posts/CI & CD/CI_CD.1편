@@ -1,0 +1,243 @@
+# CI/CD가 뭔가요?
+
+쉽게 말하면 코드를 GitHub에 올린 다음 사람이 반복하던 검사와 배포를 자동화하는 것
+
+```text
+코드 작성
+  ↓
+GitHub에 Push
+  ↓
+자동 테스트와 빌드                 ← CI
+  ↓
+통과한 프로그램을 서버에 배포     ← CD
+  ↓
+실제 서비스 동작 확인
+```
+
+## CI
+
+Continous Integration
+
+한국어로는 지속적 통합
+
+여러 사람이 작성한 코드 또는 내가 새로 작성한 코드가 기존 프로젝트의 잘 합쳐지는지 자동으로 검사
+
+현재 프로젝트에서는 다음 작업이 CI에 해당함.
+
+일단 내 프로젝트를 예시로 들어보자면 (Pi-monitor)
+
+### Frontend
+
+```bash
+npm ci
+npm test
+npm run build
+```
+
+### Backend
+
+- Maven 테스트
+- Spring Boot 테스트
+
+예를 들어 잘못된 코드를 Github에 올렸을 때
+
+- 프론트 테스트 실패
+- Vue 빌드 실패
+- Java 컴파일 실패
+- 백엔트 테스트 실패
+
+이와 같은 문제를 Github가 자동으로 발견해야 함
+
+CI가 없으면 사람이 매번 직접 명령을 실행
+
+```bash
+cd frontend
+npm test
+npm run build
+
+cd ../backend
+./mvnw test
+```
+
+CI가 있으면 Github가 별도의 컴퓨터에서 이 명령들을 자동으로 실행
+
+## CD - Continuous Deilvery 또는 Deployment
+
+CD에는 두 가지 의미가 있음
+
+- Continuous Delivery : 배포 가능한 상태까지 자동으로 준비하고 실제 배포는 사람이 승인
+
+- Continuous Deployment : 테스트가 통과하면 실제 서버까지 자동으로 배포
+
+시스템이 갖쳐지지 않았다면 Continuous Delivery 방식이 안전하다.
+
+### Continuous Delivery 예시
+
+```text
+main에 push
+->
+테스트 및 빌드
+->
+배포 준비 완료
+->
+사람이 Deploy 버튼 클릭
+```
+
+### Continuous Deployment
+
+```text
+main에 push
+->
+테스트 및 빌드 통과
+->
+라즈베리파이 자동 업데이트
+->
+컨테이너 재시작
+```
+
+## Github Actions
+
+Github Actions는 Github에서 CI/CD 작업을 실행해주는 기능
+
+저장소에 다음과 같은 파일을 만들어야 함
+
+```text
+.github/
+└── workflows/
+    └── ci.yml
+```
+
+ci.yml 에는 다음 내용을 적어야 한다.
+
+- 언제 실행한지
+- 어떤 운영체재에서 실행할지
+- 어떤 명령을 실행할지
+- 실패하면 작업을 중단할지
+
+```yaml
+name : CI
+
+on:
+    push:
+    pull_request:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name : 패키지 설치
+        working-directory : frontend
+        run : npm ci
+
+      - name : 테스트
+        working-directory : frontend
+        run : npm test
+
+      - name: 빌드
+        working-directory : frontend
+        run : npm run build
+```
+
+이 파일을 Push하면 Github가 Ubuntu 가상 컴퓨터를 만들고 위 명령을 실행합니다.
+
+## 알아두면 좋은 용어
+
+| 용어 | 의미 |
+| --- | --- |
+| Workflow | CI/CD 전체 작업 파일 |
+| Trigger | 작업을 시작시키는 사건. 예: Push, Pull Request |
+| Job | 테스트, 빌드처럼 하나로 묶인 작업 |
+| Step | Job 안에서 실행하는 개별 명령 |
+| Runner | 실제 명령을 실행하는 컴퓨터 |
+| Artifact | 빌드해서 만들어진 결과물 |
+| Secret | 비밀번호, 토큰 같은 비공개 값 |
+| Deploy | 완성된 프로그램을 실제 서버에 반영 |
+| Rollback | 문제가 생겼을 때 이전 버전으로 복구 |
+
+## 내 프로젝트로 보는 CI/CD
+
+```text
+GitHub push
+  │
+  ├─ Frontend CI
+  │    ├─ npm ci
+  │    ├─ npm test
+  │    └─ npm run build
+  │
+  ├─ Backend CI
+  │    ├─ Maven test
+  │    └─ Spring Boot package
+  │
+  └─ 모든 검사 통과
+       │
+       ├─ Vercel이 프런트 자동 배포
+       └─ Raspberry Pi 백엔드 배포
+```
+
+프론트의 경우에는 Vercel이 Github 저장소와 연결되어 있으므로 기본적인 CD를 사용하고 있는 것. main에 Push 하면 Vercel이 자동으로 빌드하고 배포하기 때문에
+
+반면 라즈베리파이 백엔드는 현재.. 수동 배포를 하는 중임... ㅋㅋㅋㅋㅋㅋ
+
+```bash
+git pull
+./scripts/pi-compose.sh up -d --build
+```
+
+이거를 내 손으로 치고 있는데, 이 부분을 자동화해야한다.
+
+## 추천 학습 순서
+
+1. Github Actions로 프론트 테스트로 빌드 자동화
+2. 백엔드 테스트와 빌드 추가
+3. Pull Request에서 CI가 통과해야 Merge하도록 설정
+4. Vercel 자동 배포 과정 이해
+5. 라즈베리파이 완전 자동 배포 테스트
+
+## 라즈베리파이 CD 방법
+
+나중에는 대략적으로 세 가지 방법으로 할 수 있다.
+
+### 1. SSH로 배포
+
+GitHub Actions가 라즈베리파이에 SSH로 접속해 배포 명령을 실행
+
+```text
+Github Actions
+-> SSH 접속
+-> git pull
+-> Docker 이미지 빌드
+-> 컨테이너 교체
+-> 상태 확인
+```
+
+다만, 라즈베리파이를 외부에서 SSH로 접근할 수 있어야 한다. (설정이 귀찮을 것으로.. 예상)
+
+### 2. Self-hosted Runner
+
+라즈베리파이에 Github Actions Runner를 설치, Github가 작업을 보내면 라즈베리파이가 직접 실행
+
+외부 SSH 포트를 열 필요는 없지만, GitHub Actions 작업이 라즈베리파이에서 직접 명령을 실행하므로 공개 저장소나 신뢰할 수 없는 PR에서는 특히 조심해야함.
+
+### 3. 이미지 기반 배포
+
+Github Actions가 Docker 이미지를 빌드하고 컨테이너 저장소에 올리고, 라즈베리파이는 완성된 이미지만 내려받음
+
+```text
+Github Actions
+-> Docker 이미지 빌드
+-> Github Container Registroy에 Push
+-> Raspberry Pi가 이미지 Pull
+-> 컨테이너 교체
+```
+
+가장 체계적인 방식이지만 공부 할 것이 좀 있다.

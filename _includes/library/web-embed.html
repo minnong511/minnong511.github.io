@@ -1,0 +1,26 @@
+{% assign embed_url = include.url | default: "" %}
+{% assign embed_title = include.title | default: "웹 임베드" %}
+{% assign embed_host = embed_url | remove: "https://" | remove: "http://" | split: "/" | first | remove_first: "www." %}
+
+{% if embed_url != "" %}
+<section class="web-embed-card">
+  <header class="web-embed-header">
+    <span class="web-embed-identity">
+      <i class="ri-global-line" aria-hidden="true"></i>
+      <span><strong>{{ embed_host | escape }}</strong><small>{{ embed_url | escape }}</small></span>
+    </span>
+    <a href="{{ embed_url | escape }}" target="_blank" rel="noreferrer noopener">
+      <span>새 탭에서 열기</span><i class="ri-arrow-right-up-line" aria-hidden="true"></i>
+    </a>
+  </header>
+  <iframe
+    src="{{ embed_url | escape }}"
+    title="{{ embed_title | escape }}"
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
+    allow="clipboard-write; encrypted-media; picture-in-picture; web-share"
+  ></iframe>
+  <p class="web-embed-fallback">미리보기가 보이지 않으면 <a href="{{ embed_url | escape }}" target="_blank" rel="noreferrer noopener">원문을 새 탭에서 열어주세요.</a></p>
+</section>
+{% endif %}

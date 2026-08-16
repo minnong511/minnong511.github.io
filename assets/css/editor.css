@@ -801,6 +801,70 @@ html[data-theme="dark"] .writer-page {
   font-size: 12px;
 }
 
+.writer-embed-linkbar {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 64px;
+  padding: 10px 12px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-bottom: 1px solid var(--writer-line);
+  color: var(--writer-text);
+}
+
+.writer-embed-identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.writer-embed-identity > i {
+  flex: 0 0 auto;
+  font-size: 20px;
+}
+
+.writer-embed-identity > span {
+  min-width: 0;
+}
+
+.writer-embed-identity strong,
+.writer-embed-identity small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.writer-embed-identity strong {
+  color: var(--writer-text);
+  font-size: 13px;
+}
+
+.writer-embed-identity small {
+  max-width: 420px;
+  margin-top: 3px;
+  color: var(--writer-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.writer-embed-linkbar > a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  color: var(--writer-text);
+  font-size: 11px;
+}
+
+.writer-embed-linkbar > a:hover span {
+  text-decoration: underline;
+}
+
 .writer-embed-preview iframe {
   width: 100%;
   min-height: 300px;
@@ -1266,6 +1330,18 @@ html[data-theme="dark"] .writer-page {
 
   .writer-embed-preview iframe {
     min-height: 220px;
+  }
+
+  .writer-embed-linkbar {
+    align-items: flex-start;
+  }
+
+  .writer-embed-identity small {
+    max-width: 48vw;
+  }
+
+  .writer-embed-linkbar > a span {
+    display: none;
   }
 
   .writer-slash-menu {

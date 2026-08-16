@@ -1,4 +1,1153 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-14T17:14:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Python Counter, 빈도수를 쉽게 세는 방법</title><link href="http://localhost:4000/algorithm/2026/08/14/counter/" rel="alternate" type="text/html" title="Python Counter, 빈도수를 쉽게 세는 방법" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>http://localhost:4000/algorithm/2026/08/14/counter</id><content type="html" xml:base="http://localhost:4000/algorithm/2026/08/14/counter/"><![CDATA[<h1 id="counter">Counter</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://minnong511.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://minnong511.github.io/" rel="alternate" type="text/html" /><updated>2026-08-16T17:57:30+09:00</updated><id>https://minnong511.github.io/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Spring 기초 Part 4: JPA, Entity와 Repository</title><link href="https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/" rel="alternate" type="text/html" title="Spring 기초 Part 4: JPA, Entity와 Repository" /><published>2026-08-16T09:00:00+09:00</published><updated>2026-08-16T09:00:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/"><![CDATA[<h1 id="spring-기초-part-4-jpa-entity와-repository">Spring 기초 Part 4: JPA, Entity와 Repository</h1>
+
+<blockquote>
+  <p>JPA는 자바 객체와 데이터베이스 테이블을 매핑하여 객체 중심으로 데이터를 다룰 수 있게 해주는 자바 표준이다.</p>
+</blockquote>
+
+<p>개발자는 Entity와 Repository를 작성하고, JPA 구현체는 객체 정보를 바탕으로 SQL을 만든다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Java 객체
+   ↓
+Spring Data JPA
+   ↓
+JPA
+   ↓
+Hibernate
+   ↓
+JDBC
+   ↓
+Database
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정의</th>
+      <th>쉽게 말하면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>관계형 데이터베이스</td>
+      <td>데이터를 테이블 사이의 관계로 저장하는 시스템</td>
+      <td>H2, MySQL, PostgreSQL</td>
+    </tr>
+    <tr>
+      <td>테이블</td>
+      <td>데이터를 행과 열로 저장하는 구조</td>
+      <td>사용자 목록을 저장하는 표</td>
+    </tr>
+    <tr>
+      <td>행(Row)</td>
+      <td>테이블에 저장된 데이터 한 건</td>
+      <td>사용자 한 명</td>
+    </tr>
+    <tr>
+      <td>컬럼(Column)</td>
+      <td>데이터가 가지는 속성</td>
+      <td>이름, 이메일, 나이</td>
+    </tr>
+    <tr>
+      <td>기본키(PK)</td>
+      <td>각 행을 유일하게 구분하는 값</td>
+      <td>사용자 <code class="language-plaintext highlighter-rouge">id</code></td>
+    </tr>
+    <tr>
+      <td>ORM</td>
+      <td>객체와 관계형 테이블을 연결하는 기술</td>
+      <td><code class="language-plaintext highlighter-rouge">User</code>와 <code class="language-plaintext highlighter-rouge">users</code>를 연결</td>
+    </tr>
+    <tr>
+      <td>JPA</td>
+      <td>자바 ORM 사용법을 정의한 표준</td>
+      <td>Entity와 관련 어노테이션 규칙</td>
+    </tr>
+    <tr>
+      <td>Hibernate</td>
+      <td>JPA 표준을 실제로 구현한 라이브러리</td>
+      <td>객체를 보고 SQL을 생성</td>
+    </tr>
+    <tr>
+      <td>JDBC</td>
+      <td>자바가 DB에 SQL을 전달하는 API</td>
+      <td>Hibernate가 생성한 SQL 전달</td>
+    </tr>
+    <tr>
+      <td>Entity</td>
+      <td>JPA가 관리하고 테이블과 매핑하는 객체</td>
+      <td><code class="language-plaintext highlighter-rouge">User</code> 클래스</td>
+    </tr>
+    <tr>
+      <td>Repository</td>
+      <td>데이터 저장과 조회를 담당하는 계층</td>
+      <td><code class="language-plaintext highlighter-rouge">UserRepository</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-orm은-왜-필요한가">2. ORM은 왜 필요한가</h2>
+
+<p>자바는 객체를 사용하고 관계형 데이터베이스는 테이블을 사용한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>자바 객체</th>
+      <th>데이터베이스</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>클래스</td>
+      <td>테이블</td>
+    </tr>
+    <tr>
+      <td>객체</td>
+      <td>행</td>
+    </tr>
+    <tr>
+      <td>필드</td>
+      <td>컬럼</td>
+    </tr>
+    <tr>
+      <td>객체 참조</td>
+      <td>외래키</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>두 구조가 다르기 때문에 JDBC만 사용하면 SQL 작성과 결과 변환을 직접 처리해야 한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT id, name, email FROM users WHERE id = ?"</span><span class="o">;</span>
+
+<span class="c1">// Connection, PreparedStatement, ResultSet 처리</span>
+<span class="c1">// ResultSet 값을 꺼내 User 객체로 직접 변환</span>
+</code></pre></div></div>
+
+<p>ORM을 사용하면 매핑 정보를 기준으로 반복 코드를 줄일 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>ORM이 SQL 지식을 없애주는 것은 아니다. 생성되는 SQL과 데이터베이스 구조를 이해해야 성능 문제를 찾을 수 있다.</p>
+
+<hr />
+
+<h2 id="3-jpa-hibernate-spring-data-jpa의-차이">3. JPA, Hibernate, Spring Data JPA의 차이</h2>
+
+<p>세 단어는 같은 뜻이 아니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>JPA</td>
+      <td>ORM을 사용하는 인터페이스와 어노테이션을 정의한 표준</td>
+    </tr>
+    <tr>
+      <td>Hibernate</td>
+      <td>JPA 표준을 구현하여 실제 SQL을 생성하고 Entity를 관리</td>
+    </tr>
+    <tr>
+      <td>Spring Data JPA</td>
+      <td>Repository 인터페이스를 쉽게 작성하도록 도와주는 Spring 프로젝트</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 UserRepository 호출
+          ↓
+Spring Data JPA가 Repository 구현 제공
+          ↓
+JPA 표준 방식으로 Entity 관리 요청
+          ↓
+Hibernate가 SQL 생성
+          ↓
+JDBC가 DB에 SQL 전달
+</code></pre></div></div>
+
+<blockquote>
+  <p>JPA는 규칙이고, Hibernate는 그 규칙의 구현체이며, Spring Data JPA는 JPA를 편하게 사용하도록 도와준다.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="4-entity-만들기">4. Entity 만들기</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.persistence.Column</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.persistence.Table</span><span class="o">;</span>
+
+<span class="nd">@Entity</span>
+<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">50</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">unique</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="nf">User</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Entity 클래스에는 다음 조건이 필요하다.</p>
+
+<ul>
+  <li>클래스에 <code class="language-plaintext highlighter-rouge">@Entity</code>를 붙인다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@Id</code>로 기본키를 지정한다.</li>
+  <li>JPA가 사용할 <code class="language-plaintext highlighter-rouge">public</code> 또는 <code class="language-plaintext highlighter-rouge">protected</code> 기본 생성자가 필요하다.</li>
+  <li>Entity 클래스 자체를 <code class="language-plaintext highlighter-rouge">final</code>로 선언하지 않는다.</li>
+</ul>
+
+<h3 id="주요-어노테이션">주요 어노테이션</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>어노테이션</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Entity</code></td>
+      <td>클래스를 JPA가 관리할 Entity로 지정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Table</code></td>
+      <td>매핑할 테이블 이름 지정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Id</code></td>
+      <td>기본키 필드 지정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@GeneratedValue</code></td>
+      <td>기본키 자동 생성 전략 지정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Column</code></td>
+      <td>컬럼 이름과 제약조건 설정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Enumerated</code></td>
+      <td>Enum을 저장할 방식 지정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Transient</code></td>
+      <td>DB 컬럼과 매핑하지 않을 필드 지정</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="generatedvalue"><code class="language-plaintext highlighter-rouge">@GeneratedValue</code></h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Id</span>
+<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">IDENTITY</code> 전략은 기본키 생성을 데이터베이스에 맡긴다. 새로운 사용자를 만들 때 개발자가 <code class="language-plaintext highlighter-rouge">id</code>를 직접 지정하지 않는다.</p>
+
+<h3 id="column"><code class="language-plaintext highlighter-rouge">@Column</code></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>속성</th>
+      <th>의미</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">name</code></td>
+      <td>매핑할 컬럼명</td>
+      <td><code class="language-plaintext highlighter-rouge">@Column(name = "user_name")</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">nullable</code></td>
+      <td><code class="language-plaintext highlighter-rouge">NULL</code> 허용 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">@Column(nullable = false)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">length</code></td>
+      <td>문자열 컬럼 길이</td>
+      <td><code class="language-plaintext highlighter-rouge">@Column(length = 50)</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">unique</code></td>
+      <td>중복 허용 여부</td>
+      <td><code class="language-plaintext highlighter-rouge">@Column(unique = true)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">@Column</code> 설정만 믿기보다 운영 DB에는 마이그레이션 도구 등을 이용해 실제 제약조건도 함께 관리해야 한다.</p>
+
+<hr />
+
+<h2 id="5-repository-만들기">5. Repository 만들기</h2>
+
+<p>Spring Data JPA의 <code class="language-plaintext highlighter-rouge">JpaRepository</code>를 상속하면 기본 CRUD 기능을 사용할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>두 타입의 의미는 다음과 같다.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">User</code>: Repository가 관리할 Entity 타입</li>
+  <li><code class="language-plaintext highlighter-rouge">Long</code>: <code class="language-plaintext highlighter-rouge">User</code>의 기본키 타입</li>
+</ul>
+
+<p>기본 제공 메서드는 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">save(entity)</code></td>
+      <td>새 Entity 저장 또는 기존 Entity 반영</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">findById(id)</code></td>
+      <td>기본키로 한 건 조회</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">findAll()</code></td>
+      <td>전체 조회</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">existsById(id)</code></td>
+      <td>기본키에 해당하는 데이터 존재 여부 확인</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">delete(entity)</code></td>
+      <td>Entity 삭제</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">deleteById(id)</code></td>
+      <td>기본키로 삭제</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>메서드 이름을 분석해 조회 조건을 만들 수도 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+
+<span class="kt">boolean</span> <span class="nf">existsByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
+
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByNameContaining</span><span class="o">(</span><span class="nc">String</span> <span class="n">keyword</span><span class="o">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="6-사용자-저장-흐름">6. 사용자 저장 흐름</h2>
+
+<h3 id="service">Service</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserService</span><span class="o">(</span><span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">createUser</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
+        <span class="nc">User</span> <span class="n">savedUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">savedUser</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실행 흐름은 다음과 같다.</p>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Spring Data JPA 저장 흐름</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart TD
+    S[Service가 User 생성] --&gt; R[UserRepository.save 호출]
+    R --&gt; SD[Spring Data JPA]
+    SD --&gt; H[Hibernate가 Entity 관리]
+    H --&gt; SQL[INSERT SQL 생성]
+    SQL --&gt; J[JDBC가 SQL 전달]
+    J --&gt; DB[(Database 저장)]
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<p>Hibernate는 Entity의 매핑 정보를 보고 대략 다음과 같은 SQL을 실행한다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
+<span class="k">VALUES</span> <span class="p">(</span><span class="s1">'민형'</span><span class="p">,</span> <span class="s1">'min@example.com'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-jpa와-jdbc-비교">7. JPA와 JDBC 비교</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>JPA</th>
+      <th>JDBC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>객체와 테이블을 매핑한다.</td>
+      <td>SQL을 직접 작성한다.</td>
+    </tr>
+    <tr>
+      <td>반복적인 CRUD 코드를 줄인다.</td>
+      <td>결과를 객체로 직접 변환한다.</td>
+    </tr>
+    <tr>
+      <td>변경 감지와 연관관계 기능을 제공한다.</td>
+      <td>실행 흐름이 SQL 중심으로 명확하다.</td>
+    </tr>
+    <tr>
+      <td>잘못 사용하면 예상하지 못한 SQL이 발생할 수 있다.</td>
+      <td>반복 코드가 많아질 수 있다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>JPA도 내부적으로 JDBC를 사용해 SQL을 전달한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JPA와 JDBC 중 하나만 선택
+</code></pre></div></div>
+
+<p>이 아니라 다음 구조에 가깝다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JPA / Hibernate
+      ↓
+    JDBC
+      ↓
+  Database
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="8-h2-연결-설정">8. H2 연결 설정</h2>
+
+<p>H2는 학습과 테스트에 많이 사용하는 가벼운 관계형 데이터베이스다.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
+  <span class="na">datasource</span><span class="pi">:</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">jdbc:h2:mem:testdb</span>
+    <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.h2.Driver</span>
+    <span class="na">username</span><span class="pi">:</span> <span class="s">sa</span>
+    <span class="na">password</span><span class="pi">:</span>
+
+  <span class="na">h2</span><span class="pi">:</span>
+    <span class="na">console</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">path</span><span class="pi">:</span> <span class="s">/h2-console</span>
+
+  <span class="na">jpa</span><span class="pi">:</span>
+    <span class="na">hibernate</span><span class="pi">:</span>
+      <span class="na">ddl-auto</span><span class="pi">:</span> <span class="s">create-drop</span>
+    <span class="na">show-sql</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>설정</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">datasource</code></td>
+      <td>연결할 DB 주소와 계정 설정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ddl-auto</code></td>
+      <td>Entity를 기준으로 테이블을 관리하는 방식 설정</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">create-drop</code></td>
+      <td>시작할 때 생성하고 종료할 때 삭제</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">show-sql</code></td>
+      <td>Hibernate가 실행하는 SQL 출력</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">h2.console.enabled</code></td>
+      <td>H2 웹 콘솔 활성화</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><code class="language-plaintext highlighter-rouge">create-drop</code>은 애플리케이션 종료 시 테이블을 삭제하므로 운영 환경에서 사용하면 안 된다.</p>
+
+<hr />
+
+<h2 id="핵심-정리">핵심 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>한 줄 정리</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ORM</td>
+      <td>자바 객체와 관계형 테이블을 연결하는 기술</td>
+    </tr>
+    <tr>
+      <td>JPA</td>
+      <td>자바 ORM 사용법을 정의한 표준</td>
+    </tr>
+    <tr>
+      <td>Hibernate</td>
+      <td>JPA를 실제로 구현한 라이브러리</td>
+    </tr>
+    <tr>
+      <td>Spring Data JPA</td>
+      <td>Repository 작성을 편하게 도와주는 Spring 프로젝트</td>
+    </tr>
+    <tr>
+      <td>Entity</td>
+      <td>JPA가 관리하며 테이블과 매핑되는 객체</td>
+    </tr>
+    <tr>
+      <td>Repository</td>
+      <td>Entity의 저장과 조회를 담당하는 데이터 접근 계층</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>JPA를 사용한다는 것은 SQL을 몰라도 된다는 뜻이 아니라, 객체와 테이블의 매핑을 이용해 반복적인 데이터 접근 코드를 줄인다는 뜻이다.</p>
+</blockquote>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-data/jpa/reference/">Spring Data JPA 공식 문서</a></li>
+  <li><a href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence 공식 명세</a></li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="JPA" /><category term="Hibernate" /><category term="Spring Data JPA" /><category term="Entity" /><summary type="html"><![CDATA[ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 3: REST API 요청값과 입력값 검증</title><link href="https://minnong511.github.io/java/spring/2026/08/15/spring-rest-api-validation/" rel="alternate" type="text/html" title="Spring 기초 Part 3: REST API 요청값과 입력값 검증" /><published>2026-08-15T09:00:00+09:00</published><updated>2026-08-15T09:00:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/15/spring-rest-api-validation</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/15/spring-rest-api-validation/"><![CDATA[<h1 id="spring-기초-part-3-rest-api-요청값과-입력값-검증">Spring 기초 Part 3: REST API 요청값과 입력값 검증</h1>
+
+<blockquote>
+  <p>Controller는 HTTP 요청값을 자바 값이나 객체로 변환하고, 규칙에 맞는지 검증한 뒤 Service에 전달한다.</p>
+</blockquote>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP Request
+    ↓
+요청값 바인딩
+    ↓
+입력값 검증
+    ↓
+Controller
+    ↓
+Service
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정의</th>
+      <th>쉽게 말하면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Endpoint</td>
+      <td>Client가 호출할 수 있는 API 주소와 HTTP Method의 조합</td>
+      <td><code class="language-plaintext highlighter-rouge">POST /api/users</code></td>
+    </tr>
+    <tr>
+      <td>Parameter</td>
+      <td>HTTP 요청에 포함된 입력값</td>
+      <td>사용자 ID, 검색어, 페이지 번호</td>
+    </tr>
+    <tr>
+      <td>Request Body</td>
+      <td>HTTP 요청 본문에 담긴 데이터</td>
+      <td>JSON 회원가입 정보</td>
+    </tr>
+    <tr>
+      <td>Binding</td>
+      <td>HTTP 요청값을 자바 값이나 객체로 변환하는 과정</td>
+      <td>JSON을 <code class="language-plaintext highlighter-rouge">UserCreateRequest</code>로 변환</td>
+    </tr>
+    <tr>
+      <td>DTO</td>
+      <td>계층 사이에서 데이터를 전달하는 객체</td>
+      <td>API 요청 전용 객체</td>
+    </tr>
+    <tr>
+      <td>Validation</td>
+      <td>값이 정해진 규칙을 만족하는지 검사하는 과정</td>
+      <td>이메일 형식과 나이 확인</td>
+    </tr>
+    <tr>
+      <td>Constraint</td>
+      <td>입력값이 지켜야 하는 검증 규칙</td>
+      <td><code class="language-plaintext highlighter-rouge">@NotBlank</code>, <code class="language-plaintext highlighter-rouge">@Email</code></td>
+    </tr>
+    <tr>
+      <td>직렬화</td>
+      <td>자바 객체를 JSON 같은 전송 형식으로 변환</td>
+      <td><code class="language-plaintext highlighter-rouge">UserResponse</code> → JSON</td>
+    </tr>
+    <tr>
+      <td>역직렬화</td>
+      <td>JSON을 자바 객체로 변환</td>
+      <td>JSON → <code class="language-plaintext highlighter-rouge">UserCreateRequest</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-http-요청값을-받는-세-가지-방법">2. HTTP 요청값을 받는 세 가지 방법</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>어노테이션</th>
+      <th>값을 가져오는 위치</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@PathVariable</code></td>
+      <td>URL 경로</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/users/1</code>의 <code class="language-plaintext highlighter-rouge">1</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@RequestParam</code></td>
+      <td>Query String</td>
+      <td><code class="language-plaintext highlighter-rouge">/api/users?name=민형</code>의 <code class="language-plaintext highlighter-rouge">name</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@RequestBody</code></td>
+      <td>HTTP 요청 본문</td>
+      <td>JSON 회원가입 정보</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="pathvariable"><code class="language-plaintext highlighter-rouge">@PathVariable</code></h3>
+
+<p>특정 자원을 식별할 때 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/api/users/{id}"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET /api/users/1
+</span></code></pre></div></div>
+
+<h3 id="requestparam"><code class="language-plaintext highlighter-rouge">@RequestParam</code></h3>
+
+<p>검색, 필터, 정렬처럼 선택적인 조건을 전달할 때 자주 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">UserResponse</span><span class="o">&gt;</span> <span class="nf">searchUsers</span><span class="o">(</span>
+        <span class="nd">@RequestParam</span><span class="o">(</span><span class="n">required</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userService</span><span class="o">.</span><span class="na">searchUsers</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET /api/users?name=민형
+</span></code></pre></div></div>
+
+<h3 id="requestbody"><code class="language-plaintext highlighter-rouge">@RequestBody</code></h3>
+
+<p>JSON 같은 요청 본문을 자바 객체로 변환할 때 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">createUser</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">UserCreateRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"민형"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"min@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Spring MVC와 Jackson이 JSON을 <code class="language-plaintext highlighter-rouge">UserCreateRequest</code> 객체로 변환한다.</p>
+
+<hr />
+
+<h2 id="3-entity-대신-요청-dto를-사용한다">3. Entity 대신 요청 DTO를 사용한다</h2>
+
+<p>요청 JSON을 Entity로 바로 받으면 API 입력 구조와 DB 구조가 강하게 연결된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 권장하지 않는 형태</span>
+<span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">createUser</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 요청이 Entity 구조에 직접 의존</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>요청 전용 DTO를 만들면 API가 허용할 값과 검증 규칙을 명확하게 표현할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">UserCreateRequest</span><span class="o">(</span>
+        <span class="nc">String</span> <span class="n">name</span><span class="o">,</span>
+        <span class="nc">String</span> <span class="n">email</span><span class="o">,</span>
+        <span class="kt">int</span> <span class="n">age</span>
+<span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>객체</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Request DTO</td>
+      <td>Client가 보낸 입력값 표현</td>
+    </tr>
+    <tr>
+      <td>Entity</td>
+      <td>데이터베이스에 저장하고 JPA가 관리</td>
+    </tr>
+    <tr>
+      <td>Response DTO</td>
+      <td>Client에 반환할 데이터 표현</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JSON
+  → Request DTO
+  → Service
+  → Entity
+  → Repository
+  → Database
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="4-bean-validation">4. Bean Validation</h2>
+
+<p>Bean Validation은 어노테이션으로 입력값 규칙을 선언하는 표준이다. Spring Boot 3 계열에서는 일반적으로 <code class="language-plaintext highlighter-rouge">jakarta.validation</code> 패키지를 사용한다.</p>
+
+<p>검증 기능을 사용하려면 Validation Starter를 추가한다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-validation<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h3 id="자주-사용하는-검증-어노테이션">자주 사용하는 검증 어노테이션</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>어노테이션</th>
+      <th>검증 내용</th>
+      <th>적용 예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@NotNull</code></td>
+      <td>값이 <code class="language-plaintext highlighter-rouge">null</code>이면 실패</td>
+      <td>객체, 숫자 필수값</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@NotBlank</code></td>
+      <td><code class="language-plaintext highlighter-rouge">null</code>, 빈 문자열, 공백 문자열이면 실패</td>
+      <td>이름, 제목</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@NotEmpty</code></td>
+      <td><code class="language-plaintext highlighter-rouge">null</code>이거나 길이가 0이면 실패</td>
+      <td>문자열, 컬렉션</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Email</code></td>
+      <td>이메일 형식 검사</td>
+      <td>이메일 주소</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Positive</code></td>
+      <td>0보다 큰 값인지 검사</td>
+      <td>가격, 수량</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Min</code></td>
+      <td>지정한 최솟값 이상인지 검사</td>
+      <td>나이</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Max</code></td>
+      <td>지정한 최댓값 이하인지 검사</td>
+      <td>점수</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Size</code></td>
+      <td>문자열이나 컬렉션의 길이 검사</td>
+      <td>비밀번호 길이</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>요청 DTO에 규칙을 선언한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Email</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Max</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.Min</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">jakarta.validation.constraints.NotBlank</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="n">record</span> <span class="nf">UserCreateRequest</span><span class="o">(</span>
+        <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"이름은 필수입니다."</span><span class="o">)</span>
+        <span class="nc">String</span> <span class="n">name</span><span class="o">,</span>
+
+        <span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"이메일은 필수입니다."</span><span class="o">)</span>
+        <span class="nd">@Email</span><span class="o">(</span><span class="n">message</span> <span class="o">=</span> <span class="s">"이메일 형식이 올바르지 않습니다."</span><span class="o">)</span>
+        <span class="nc">String</span> <span class="n">email</span><span class="o">,</span>
+
+        <span class="nd">@Min</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"나이는 1 이상이어야 합니다."</span><span class="o">)</span>
+        <span class="nd">@Max</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="mi">150</span><span class="o">,</span> <span class="n">message</span> <span class="o">=</span> <span class="s">"나이는 150 이하여야 합니다."</span><span class="o">)</span>
+        <span class="kt">int</span> <span class="n">age</span>
+<span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="5-valid로-검증-실행하기">5. <code class="language-plaintext highlighter-rouge">@Valid</code>로 검증 실행하기</h2>
+
+<p>DTO에 검증 어노테이션만 붙이면 끝이 아니다. Controller 매개변수에 <code class="language-plaintext highlighter-rouge">@Valid</code>를 붙여 검증을 실행한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserController</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@PostMapping</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">UserResponse</span><span class="o">&gt;</span> <span class="nf">createUser</span><span class="o">(</span>
+            <span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="nc">UserCreateRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="nc">UserResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="nc">ResponseEntity</span>
+                <span class="o">.</span><span class="na">status</span><span class="o">(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">body</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>검증 흐름은 다음과 같다.</p>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Request Body 검증 흐름</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart TD
+    C[Client JSON 요청] --&gt; J[Jackson이 DTO로 변환]
+    J --&gt; V[@Valid 검증]
+    V --&gt;|성공| CT[Controller 실행]
+    CT --&gt; S[Service 실행]
+    V --&gt;|실패| E[MethodArgumentNotValidException]
+    E --&gt; R[400 Bad Request 응답]
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<p>검증에 실패하면 보통 <code class="language-plaintext highlighter-rouge">MethodArgumentNotValidException</code>이 발생하고 HTTP 400 응답으로 처리된다.</p>
+
+<hr />
+
+<h2 id="6-검증-오류-응답-통일하기">6. 검증 오류 응답 통일하기</h2>
+
+<p><code class="language-plaintext highlighter-rouge">@RestControllerAdvice</code>를 사용하면 여러 Controller의 예외를 한곳에서 처리할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestControllerAdvice</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GlobalExceptionHandler</span> <span class="o">{</span>
+
+    <span class="nd">@ExceptionHandler</span><span class="o">(</span><span class="nc">MethodArgumentNotValidException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;&gt;</span> <span class="nf">handleValidation</span><span class="o">(</span>
+            <span class="nc">MethodArgumentNotValidException</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">errors</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedHashMap</span><span class="o">&lt;&gt;();</span>
+
+        <span class="n">exception</span><span class="o">.</span><span class="na">getBindingResult</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">getFieldErrors</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">error</span> <span class="o">-&gt;</span> <span class="n">errors</span><span class="o">.</span><span class="na">put</span><span class="o">(</span>
+                        <span class="n">error</span><span class="o">.</span><span class="na">getField</span><span class="o">(),</span>
+                        <span class="n">error</span><span class="o">.</span><span class="na">getDefaultMessage</span><span class="o">()</span>
+                <span class="o">));</span>
+
+        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">badRequest</span><span class="o">().</span><span class="na">body</span><span class="o">(</span><span class="n">errors</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>잘못된 요청을 보내면 다음과 같은 응답을 만들 수 있다.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이름은 필수입니다."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"이메일 형식이 올바르지 않습니다."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="7-직접-요청해보기">7. 직접 요청해보기</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-i</span> <span class="nt">-X</span> POST <span class="s1">'http://localhost:8080/api/users'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "name": "민형",
+    "email": "min@example.com",
+    "age": 25
+  }'</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>부분</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-i</code></td>
+      <td>응답 Header까지 출력</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-X POST</code></td>
+      <td>POST Method 사용</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Content-Type</code></td>
+      <td>요청 본문이 JSON임을 알림</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-d</code></td>
+      <td>서버로 보낼 요청 본문</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="8-형식-검증과-비즈니스-검증">8. 형식 검증과 비즈니스 검증</h2>
+
+<p><code class="language-plaintext highlighter-rouge">@Valid</code>는 값의 기본 형식을 검사하는 데 적합하다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@NotBlank → 이름이 비어 있는가?
+@Email    → 이메일 형태가 맞는가?
+@Positive → 수량이 양수인가?
+</code></pre></div></div>
+
+<p>하지만 DB 조회가 필요한 업무 규칙은 Service에서 검사하는 것이 자연스럽다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">createUser</span><span class="o">(</span><span class="nc">UserCreateRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">userRepository</span><span class="o">.</span><span class="na">existsByEmail</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">email</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">DuplicateEmailException</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">email</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="nc">User</span><span class="o">.</span><span class="na">create</span><span class="o">(</span>
+            <span class="n">request</span><span class="o">.</span><span class="na">name</span><span class="o">(),</span>
+            <span class="n">request</span><span class="o">.</span><span class="na">email</span><span class="o">(),</span>
+            <span class="n">request</span><span class="o">.</span><span class="na">age</span><span class="o">()</span>
+    <span class="o">);</span>
+
+    <span class="k">return</span> <span class="nc">UserResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>검증 위치</th>
+      <th>담당할 규칙</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Request DTO</td>
+      <td>빈 값, 길이, 숫자 범위, 이메일 형식</td>
+    </tr>
+    <tr>
+      <td>Service</td>
+      <td>이메일 중복, 재고 부족, 권한 등 업무 규칙</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td><code class="language-plaintext highlighter-rouge">NOT NULL</code>, <code class="language-plaintext highlighter-rouge">UNIQUE</code>, 외래키 등 최종 무결성</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>검증을 한 계층에만 의존하지 않고 각 계층이 책임져야 할 규칙을 나누는 것이 중요하다.</p>
+
+<hr />
+
+<h2 id="핵심-정리">핵심 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>핵심 내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@PathVariable</code></td>
+      <td>URL 경로의 식별자를 받는다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@RequestParam</code></td>
+      <td>Query String의 검색 조건을 받는다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@RequestBody</code></td>
+      <td>JSON 요청 본문을 자바 객체로 변환한다.</td>
+    </tr>
+    <tr>
+      <td>DTO</td>
+      <td>API와 Entity의 구조를 분리한다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@Valid</code></td>
+      <td>DTO에 선언한 Bean Validation을 실행한다.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@RestControllerAdvice</code></td>
+      <td>여러 Controller의 오류 응답을 통일한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Controller는 요청값을 받고 검증하는 입구이며, 실제 비즈니스 규칙은 Service에 맡긴다.</p>
+</blockquote>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html">Spring Framework Validation 공식 문서</a></li>
+  <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring Framework Web MVC 공식 문서</a></li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="REST API" /><category term="Validation" /><category term="DTO" /><category term="RequestBody" /><summary type="html"><![CDATA[PathVariable, RequestParam, RequestBody로 요청값을 받고 DTO와 Bean Validation으로 검증하는 흐름을 정리한다.]]></summary></entry><entry><title type="html">Python Counter, 빈도수를 쉽게 세는 방법</title><link href="https://minnong511.github.io/algorithm/2026/08/14/counter/" rel="alternate" type="text/html" title="Python Counter, 빈도수를 쉽게 세는 방법" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>https://minnong511.github.io/algorithm/2026/08/14/counter</id><content type="html" xml:base="https://minnong511.github.io/algorithm/2026/08/14/counter/"><![CDATA[<h1 id="counter">Counter</h1>
 
 <blockquote>
   <p>빈도수를 세는 문제에서 코드를 확 줄여주는 기능이다.</p>
@@ -141,7 +1290,7 @@
   <p>문제가 빈도수 문제라는 것을 알아보는 것도 알고리즘 실력이다.</p>
 
   <p>원리는 직접 이해하고, 실전에서는 표준 라이브러리를 적극적으로 사용하자.</p>
-</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="Algorithm" /><category term="Python" /><category term="Algorithm" /><category term="Counter" /><category term="Collections" /><summary type="html"><![CDATA[Counter]]></summary></entry><entry><title type="html">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</title><link href="http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow/" rel="alternate" type="text/html" title="Spring 기초 Part 2: Spring MVC 요청 처리 흐름" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow/"><![CDATA[<h1 id="spring-기초-part-2-spring-mvc-요청-처리-흐름">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</h1>
+</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="Algorithm" /><category term="Python" /><category term="Algorithm" /><category term="Counter" /><category term="Collections" /><summary type="html"><![CDATA[Counter]]></summary></entry><entry><title type="html">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</title><link href="https://minnong511.github.io/java/spring/2026/08/14/spring-mvc-request-flow/" rel="alternate" type="text/html" title="Spring 기초 Part 2: Spring MVC 요청 처리 흐름" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/14/spring-mvc-request-flow</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/14/spring-mvc-request-flow/"><![CDATA[<h1 id="spring-기초-part-2-spring-mvc-요청-처리-흐름">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</h1>
 
 <blockquote>
   <p>Spring MVC는 HTTP 요청을 적절한 Controller에 연결하고, 처리 결과를 View 또는 JSON으로 반환하는 웹 프레임워크다.</p>
@@ -602,7 +1751,7 @@ flowchart LR
 
 <ul>
   <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring Framework Web MVC 공식 문서</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="Spring MVC" /><category term="DispatcherServlet" /><category term="REST API" /><summary type="html"><![CDATA[DispatcherServlet부터 Controller, Service, Repository, JSON 응답까지 Spring MVC의 전체 요청 흐름을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</title><link href="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/" rel="alternate" type="text/html" title="Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation" /><published>2026-08-11T19:20:00+09:00</published><updated>2026-08-11T19:20:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/"><![CDATA[<h1 id="spring-기초-part-1-ioc-bean-di와-주요-annotation">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</h1>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="Spring MVC" /><category term="DispatcherServlet" /><category term="REST API" /><summary type="html"><![CDATA[DispatcherServlet부터 Controller, Service, Repository, JSON 응답까지 Spring MVC의 전체 요청 흐름을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</title><link href="https://minnong511.github.io/java/spring/2026/08/11/spring-ioc-bean-di/" rel="alternate" type="text/html" title="Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation" /><published>2026-08-11T19:20:00+09:00</published><updated>2026-08-11T19:20:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/11/spring-ioc-bean-di</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/11/spring-ioc-bean-di/"><![CDATA[<h1 id="spring-기초-part-1-ioc-bean-di와-주요-annotation">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</h1>
 
 <h2 id="1-spring이란-무엇인가">1. Spring이란 무엇인가</h2>
 
@@ -1454,7 +2603,7 @@ Controller → Service → Repository
   <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller.html">Spring Framework: Annotated Controllers</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-requestmapping.html">Spring Framework: Mapping Requests</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html">Spring Framework: Using <code class="language-plaintext highlighter-rouge">@Transactional</code></a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Framework" /><category term="IoC" /><category term="DI" /><category term="Bean" /><category term="Annotation" /><category term="Spring MVC" /><category term="Transaction" /><summary type="html"><![CDATA[Spring을 사용하는 이유와 IoC Container, Bean, DI, Component Scan, Spring MVC, Transaction의 관계를 정리한다.]]></summary></entry><entry><title type="html">Java 심화 Part 3: 함수형 프로그래밍과 Lambda</title><link href="http://localhost:4000/java/advanced/2026/08/11/java-functional-programming-lambda/" rel="alternate" type="text/html" title="Java 심화 Part 3: 함수형 프로그래밍과 Lambda" /><published>2026-08-11T11:40:00+09:00</published><updated>2026-08-11T11:40:00+09:00</updated><id>http://localhost:4000/java/advanced/2026/08/11/java-functional-programming-lambda</id><content type="html" xml:base="http://localhost:4000/java/advanced/2026/08/11/java-functional-programming-lambda/"><![CDATA[<h1 id="java-심화-part-3-함수형-프로그래밍과-lambda">Java 심화 Part 3: 함수형 프로그래밍과 Lambda</h1>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Framework" /><category term="IoC" /><category term="DI" /><category term="Bean" /><category term="Annotation" /><category term="Spring MVC" /><category term="Transaction" /><summary type="html"><![CDATA[Spring을 사용하는 이유와 IoC Container, Bean, DI, Component Scan, Spring MVC, Transaction의 관계를 정리한다.]]></summary></entry><entry><title type="html">Java 심화 Part 3: 함수형 프로그래밍과 Lambda</title><link href="https://minnong511.github.io/java/advanced/2026/08/11/java-functional-programming-lambda/" rel="alternate" type="text/html" title="Java 심화 Part 3: 함수형 프로그래밍과 Lambda" /><published>2026-08-11T11:40:00+09:00</published><updated>2026-08-11T11:40:00+09:00</updated><id>https://minnong511.github.io/java/advanced/2026/08/11/java-functional-programming-lambda</id><content type="html" xml:base="https://minnong511.github.io/java/advanced/2026/08/11/java-functional-programming-lambda/"><![CDATA[<h1 id="java-심화-part-3-함수형-프로그래밍과-lambda">Java 심화 Part 3: 함수형 프로그래밍과 Lambda</h1>
 
 <ul>
   <li>Java의 함수형 프로그래밍(Functional Programming)은 함수를 일급 객체(First-Class Citizen)로 취급, 불변성(immunability)과 순수 함수(Pure function)를 기반으로 프로그램을 작성하는 방식</li>
@@ -1629,7 +2778,7 @@ print(square(4)) # 출력: 16</p>
 코드 길이 길고 반복적 매우 간결
 의미 객체지향적 해결 함수형 프로그래밍 해결
 실행 구조 내부적으로 클래스 생성 함수형 인터페이스 구현체 생성
-사용성 가독성 낮음 가독성, 유지보수 높음</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Functional Programming" /><category term="Lambda" /><category term="Anonymous Class" /><category term="Stream" /><category term="Pure Function" /><summary type="html"><![CDATA[Java의 함수형 프로그래밍, 순수 함수, 익명 클래스, 람다식과 함수형 인터페이스를 정리한다.]]></summary></entry><entry><title type="html">Java 객체지향 Part 5: static 메서드와 중첩 클래스</title><link href="http://localhost:4000/java/oop/2026/08/11/java-static-nested-class/" rel="alternate" type="text/html" title="Java 객체지향 Part 5: static 메서드와 중첩 클래스" /><published>2026-08-11T11:20:00+09:00</published><updated>2026-08-11T11:20:00+09:00</updated><id>http://localhost:4000/java/oop/2026/08/11/java-static-nested-class</id><content type="html" xml:base="http://localhost:4000/java/oop/2026/08/11/java-static-nested-class/"><![CDATA[<h1 id="java-객체지향-part-5-static-메서드와-중첩-클래스">Java 객체지향 Part 5: static 메서드와 중첩 클래스</h1>
+사용성 가독성 낮음 가독성, 유지보수 높음</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Functional Programming" /><category term="Lambda" /><category term="Anonymous Class" /><category term="Stream" /><category term="Pure Function" /><summary type="html"><![CDATA[Java의 함수형 프로그래밍, 순수 함수, 익명 클래스, 람다식과 함수형 인터페이스를 정리한다.]]></summary></entry><entry><title type="html">Java 객체지향 Part 5: static 메서드와 중첩 클래스</title><link href="https://minnong511.github.io/java/oop/2026/08/11/java-static-nested-class/" rel="alternate" type="text/html" title="Java 객체지향 Part 5: static 메서드와 중첩 클래스" /><published>2026-08-11T11:20:00+09:00</published><updated>2026-08-11T11:20:00+09:00</updated><id>https://minnong511.github.io/java/oop/2026/08/11/java-static-nested-class</id><content type="html" xml:base="https://minnong511.github.io/java/oop/2026/08/11/java-static-nested-class/"><![CDATA[<h1 id="java-객체지향-part-5-static-메서드와-중첩-클래스">Java 객체지향 Part 5: static 메서드와 중첩 클래스</h1>
 
 <p>중첩 클래스에서 Static을 붙이는 이유는 바깥 객체와 연결되지 않은 클래스를 내부에 묶어두기 위해서이다.</p>
 
@@ -1874,7 +3023,7 @@ calculator2.calculate(10, 20); // 200</p>
 
 <p>필드가 필요하다 -&gt; 일반 메소드 
 필드가 필요 없지만 객체마다 동작이 달라질 수 있다 -&gt; 일반 메서드 
-필드가 필요 업고 동작도 항상 같다 -&gt; static 메서드가 자연스럽다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="oop" /><category term="Java" /><category term="Static" /><category term="Nested Class" /><category term="Inner Class" /><category term="Method" /><category term="Polymorphism" /><summary type="html"><![CDATA[Java static 메서드, 일반 내부 클래스, static 중첩 클래스의 차이와 사용 기준을 정리한다.]]></summary></entry><entry><title type="html">Java 심화 Part 2: Annotation</title><link href="http://localhost:4000/java/advanced/2026/08/11/java-annotations/" rel="alternate" type="text/html" title="Java 심화 Part 2: Annotation" /><published>2026-08-11T11:00:00+09:00</published><updated>2026-08-11T11:00:00+09:00</updated><id>http://localhost:4000/java/advanced/2026/08/11/java-annotations</id><content type="html" xml:base="http://localhost:4000/java/advanced/2026/08/11/java-annotations/"><![CDATA[<h1 id="java-심화-part-2-annotation">Java 심화 Part 2: Annotation</h1>
+필드가 필요 업고 동작도 항상 같다 -&gt; static 메서드가 자연스럽다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="oop" /><category term="Java" /><category term="Static" /><category term="Nested Class" /><category term="Inner Class" /><category term="Method" /><category term="Polymorphism" /><summary type="html"><![CDATA[Java static 메서드, 일반 내부 클래스, static 중첩 클래스의 차이와 사용 기준을 정리한다.]]></summary></entry><entry><title type="html">Java 심화 Part 2: Annotation</title><link href="https://minnong511.github.io/java/advanced/2026/08/11/java-annotations/" rel="alternate" type="text/html" title="Java 심화 Part 2: Annotation" /><published>2026-08-11T11:00:00+09:00</published><updated>2026-08-11T11:00:00+09:00</updated><id>https://minnong511.github.io/java/advanced/2026/08/11/java-annotations</id><content type="html" xml:base="https://minnong511.github.io/java/advanced/2026/08/11/java-annotations/"><![CDATA[<h1 id="java-심화-part-2-annotation">Java 심화 Part 2: Annotation</h1>
 
 <h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
 
@@ -2102,7 +3251,7 @@ Spring     → 읽은 정보를 기준으로 객체를 생성하고 관리
 
 <blockquote>
   <p>Annotation은 코드에 메타데이터를 붙이는 기능이다. 컴파일러는 코드 검증에 사용하고, Spring 같은 프레임워크는 Reflection으로 읽어 객체 관리와 요청 처리에 활용한다.</p>
-</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Annotation" /><category term="Reflection" /><category term="Spring" /><category term="Override" /><category term="Metadata" /><summary type="html"><![CDATA[Java Annotation의 메타데이터 역할과 Override, Spring 컴포넌트, 요청 매핑, Reflection의 연결을 정리한다.]]></summary></entry><entry><title type="html">Java 심화 Part 1: Reflection</title><link href="http://localhost:4000/java/advanced/2026/08/11/java-reflection/" rel="alternate" type="text/html" title="Java 심화 Part 1: Reflection" /><published>2026-08-11T10:40:00+09:00</published><updated>2026-08-11T10:40:00+09:00</updated><id>http://localhost:4000/java/advanced/2026/08/11/java-reflection</id><content type="html" xml:base="http://localhost:4000/java/advanced/2026/08/11/java-reflection/"><![CDATA[<h1 id="java-심화-part-1-reflection">Java 심화 Part 1: Reflection</h1>
+</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Annotation" /><category term="Reflection" /><category term="Spring" /><category term="Override" /><category term="Metadata" /><summary type="html"><![CDATA[Java Annotation의 메타데이터 역할과 Override, Spring 컴포넌트, 요청 매핑, Reflection의 연결을 정리한다.]]></summary></entry><entry><title type="html">Java 심화 Part 1: Reflection</title><link href="https://minnong511.github.io/java/advanced/2026/08/11/java-reflection/" rel="alternate" type="text/html" title="Java 심화 Part 1: Reflection" /><published>2026-08-11T10:40:00+09:00</published><updated>2026-08-11T10:40:00+09:00</updated><id>https://minnong511.github.io/java/advanced/2026/08/11/java-reflection</id><content type="html" xml:base="https://minnong511.github.io/java/advanced/2026/08/11/java-reflection/"><![CDATA[<h1 id="java-심화-part-1-reflection">Java 심화 Part 1: Reflection</h1>
 
 <h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
 
@@ -2338,7 +3487,7 @@ Bean으로 등록한다
       <li>외부 패키지의 클래스를 런타임에 로드하여 확장 기능 구현 가능</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Reflection" /><category term="Metadata" /><category term="Annotation" /><category term="Spring" /><category term="DI" /><summary type="html"><![CDATA[Java Reflection으로 런타임에 클래스, 필드, 메서드, 애너테이션 정보를 조회하고 호출하는 방법을 정리한다.]]></summary></entry><entry><title type="html">Java 기초 Part 5: Stream API</title><link href="http://localhost:4000/java/basics/2026/08/11/java-stream-api/" rel="alternate" type="text/html" title="Java 기초 Part 5: Stream API" /><published>2026-08-11T10:20:00+09:00</published><updated>2026-08-11T10:20:00+09:00</updated><id>http://localhost:4000/java/basics/2026/08/11/java-stream-api</id><content type="html" xml:base="http://localhost:4000/java/basics/2026/08/11/java-stream-api/"><![CDATA[<h1 id="java-기초-part-5-stream-api">Java 기초 Part 5: Stream API</h1>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Reflection" /><category term="Metadata" /><category term="Annotation" /><category term="Spring" /><category term="DI" /><summary type="html"><![CDATA[Java Reflection으로 런타임에 클래스, 필드, 메서드, 애너테이션 정보를 조회하고 호출하는 방법을 정리한다.]]></summary></entry><entry><title type="html">Java 기초 Part 5: Stream API</title><link href="https://minnong511.github.io/java/basics/2026/08/11/java-stream-api/" rel="alternate" type="text/html" title="Java 기초 Part 5: Stream API" /><published>2026-08-11T10:20:00+09:00</published><updated>2026-08-11T10:20:00+09:00</updated><id>https://minnong511.github.io/java/basics/2026/08/11/java-stream-api</id><content type="html" xml:base="https://minnong511.github.io/java/basics/2026/08/11/java-stream-api/"><![CDATA[<h1 id="java-기초-part-5-stream-api">Java 기초 Part 5: Stream API</h1>
 
 <h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
 
@@ -2638,496 +3787,4 @@ result  → [10, 20, 30]
 
 <blockquote>
   <p>Stream API는 데이터를 어떻게 반복할지보다 어떤 조건으로 골라내고, 어떻게 바꾸고, 어떤 결과로 모을지에 집중하게 해주는 기능이다.</p>
-</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="basics" /><category term="Java" /><category term="Stream API" /><category term="Collection" /><category term="Lambda" /><category term="Filter" /><category term="Map" /><summary type="html"><![CDATA[Java Stream API의 파이프라인, 중간 연산과 최종 연산을 filter, map, sorted 예제로 정리한다.]]></summary></entry><entry><title type="html">Java 기초 Part 4: 제네릭</title><link href="http://localhost:4000/java/basics/2026/08/11/java-generics/" rel="alternate" type="text/html" title="Java 기초 Part 4: 제네릭" /><published>2026-08-11T10:00:00+09:00</published><updated>2026-08-11T10:00:00+09:00</updated><id>http://localhost:4000/java/basics/2026/08/11/java-generics</id><content type="html" xml:base="http://localhost:4000/java/basics/2026/08/11/java-generics/"><![CDATA[<h1 id="java-기초-part-4-제네릭">Java 기초 Part 4: 제네릭</h1>
-
-<h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>단어</th>
-      <th>정의</th>
-      <th>예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>제네릭(Generic)</td>
-      <td>클래스나 메서드가 사용할 데이터 타입을 외부에서 지정할 수 있게 하는 기능</td>
-      <td><code class="language-plaintext highlighter-rouge">Box&lt;T&gt;</code></td>
-    </tr>
-    <tr>
-      <td>타입 매개변수(Type Parameter)</td>
-      <td>아직 정해지지 않은 타입을 나타내는 이름</td>
-      <td><code class="language-plaintext highlighter-rouge">T</code></td>
-    </tr>
-    <tr>
-      <td>타입 인자(Type Argument)</td>
-      <td>제네릭을 사용할 때 실제로 지정하는 타입</td>
-      <td><code class="language-plaintext highlighter-rouge">Box&lt;String&gt;</code>의 <code class="language-plaintext highlighter-rouge">String</code></td>
-    </tr>
-    <tr>
-      <td>타입 안정성(Type Safety)</td>
-      <td>잘못된 타입의 값을 컴파일 단계에서 막는 성질</td>
-      <td><code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code>에는 문자열만 저장</td>
-    </tr>
-    <tr>
-      <td>Raw Type</td>
-      <td>타입 인자를 생략한 제네릭 타입</td>
-      <td><code class="language-plaintext highlighter-rouge">ArrayList list</code></td>
-    </tr>
-    <tr>
-      <td>Wrapper Class</td>
-      <td>기본형을 객체처럼 다루기 위한 참조 타입</td>
-      <td><code class="language-plaintext highlighter-rouge">int</code>의 <code class="language-plaintext highlighter-rouge">Integer</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>제네릭은 클래스나 메서드가 다룰 데이터 타입을 나중에 지정할 수 있게 해주는 기능이다.</p>
-</blockquote>
-
-<h2 id="2-제네릭의-기본-사용법">2. 제네릭의 기본 사용법</h2>
-
-<p><code class="language-plaintext highlighter-rouge">ArrayList&lt;String&gt;</code>은 이 리스트에 <code class="language-plaintext highlighter-rouge">String</code> 타입만 저장하겠다는 뜻이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">history</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-
-<span class="n">history</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"10 + 20 = 30"</span><span class="o">);</span> <span class="c1">// 가능</span>
-<span class="n">history</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>            <span class="c1">// 컴파일 오류</span>
-</code></pre></div></div>
-
-<p>여기서 <code class="language-plaintext highlighter-rouge">String</code>은 타입 인자다. <code class="language-plaintext highlighter-rouge">history.add(100)</code>은 <code class="language-plaintext highlighter-rouge">String</code> 전용 리스트에 <code class="language-plaintext highlighter-rouge">Integer</code>를 넣으려고 했기 때문에 컴파일 오류가 발생한다.</p>
-
-<h2 id="3-제네릭이-없던-방식">3. 제네릭이 없던 방식</h2>
-
-<p>타입 인자를 지정하지 않은 <code class="language-plaintext highlighter-rouge">ArrayList</code>를 Raw Type이라고 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
-
-<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"민형"</span><span class="o">);</span>
-<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>Raw Type에는 여러 타입의 값을 넣을 수 있지만, 값을 꺼낼 때 문제가 생긴다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Object</span> <span class="n">value</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>컴파일러는 꺼낸 값이 <code class="language-plaintext highlighter-rouge">String</code>인지 <code class="language-plaintext highlighter-rouge">Integer</code>인지 확신할 수 없으므로 직접 형변환해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>하지만 인덱스 <code class="language-plaintext highlighter-rouge">1</code>에는 정수 <code class="language-plaintext highlighter-rouge">100</code>이 들어 있으므로 실행 중에 <code class="language-plaintext highlighter-rouge">ClassCastException</code>이 발생할 수 있다.</p>
-
-<p>이러한 문제를 방지하기 위해 제네릭을 사용한다.</p>
-
-<h2 id="4-제네릭의-장점">4. 제네릭의 장점</h2>
-
-<h3 id="타입-안정성">타입 안정성</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-
-<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"민형"</span><span class="o">);</span> <span class="c1">// 가능</span>
-<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>    <span class="c1">// 컴파일 오류</span>
-</code></pre></div></div>
-
-<p>컴파일러는 처음부터 이 리스트가 <code class="language-plaintext highlighter-rouge">String</code>만 저장하는 곳이라는 사실을 알고 있다. 따라서 잘못된 타입을 실행 전에 차단한다. 이것이 타입 안정성이다.</p>
-
-<h3 id="형변환-불필요">형변환 불필요</h3>
-
-<p>제네릭이 없다면 값을 꺼낸 뒤 직접 형변환해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Object</span> <span class="n">value</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> 
-<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">value</span><span class="o">;</span> 
-</code></pre></div></div>
-
-<p>제네릭을 사용하면 꺼낸 값의 타입을 컴파일러가 알고 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span> 
-<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>따라서 바로 <code class="language-plaintext highlighter-rouge">String</code> 변수로 받을 수 있다.</p>
-
-<h3 id="여러-타입에-재사용">여러 타입에 재사용</h3>
-
-<p>다음 <code class="language-plaintext highlighter-rouge">Box</code> 클래스는 <code class="language-plaintext highlighter-rouge">String</code>만 저장할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Box</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">value</span><span class="o">;</span> 
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="nc">String</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span> 
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">value</span><span class="o">;</span> 
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>제네릭을 사용하면 저장할 타입을 나중에 정할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="no">T</span> <span class="n">value</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span> 
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="no">T</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">value</span><span class="o">;</span> 
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>여기서 <code class="language-plaintext highlighter-rouge">T</code>는 타입 매개변수이며, 실제 타입은 <code class="language-plaintext highlighter-rouge">Box</code> 객체를 사용할 때 결정한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Box</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Box</span><span class="o">&lt;&gt;();</span>
-<span class="nc">Box</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numberBox</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Box</span><span class="o">&lt;&gt;();</span>
-
-<span class="n">stringBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="s">"민형"</span><span class="o">);</span>
-<span class="n">numberBox</span><span class="o">.</span><span class="na">setValue</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
-
-<span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">stringBox</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
-<span class="nc">Integer</span> <span class="n">number</span> <span class="o">=</span> <span class="n">numberBox</span><span class="o">.</span><span class="na">getValue</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>같은 <code class="language-plaintext highlighter-rouge">Box&lt;T&gt;</code> 코드를 <code class="language-plaintext highlighter-rouge">String</code>과 <code class="language-plaintext highlighter-rouge">Integer</code> 타입에 모두 재사용할 수 있다.</p>
-
-<h2 id="5-iterator와-제네릭">5. Iterator와 제네릭</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Iterator</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
-<span class="nc">String</span> <span class="n">record</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">Iterator&lt;String&gt;</code>은 순회하면서 꺼내는 데이터가 <code class="language-plaintext highlighter-rouge">String</code>이라는 뜻이다. 따라서 <code class="language-plaintext highlighter-rouge">iterator.next()</code>의 반환값도 바로 <code class="language-plaintext highlighter-rouge">String</code>으로 받을 수 있다.</p>
-
-<h2 id="6-자주-사용하는-제네릭-타입">6. 자주 사용하는 제네릭 타입</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code></li>
-  <li><code class="language-plaintext highlighter-rouge">ArrayList&lt;Integer&gt;</code></li>
-  <li><code class="language-plaintext highlighter-rouge">Iterator&lt;String&gt;</code></li>
-  <li><code class="language-plaintext highlighter-rouge">Map&lt;String, Integer&gt;</code></li>
-  <li><code class="language-plaintext highlighter-rouge">Optional&lt;User&gt;</code></li>
-</ul>
-
-<p><code class="language-plaintext highlighter-rouge">Map&lt;String, Integer&gt;</code>는 키가 <code class="language-plaintext highlighter-rouge">String</code>, 값이 <code class="language-plaintext highlighter-rouge">Integer</code>라는 뜻이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span><span class="o">;</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Key   → String
-Value → Integer
-</code></pre></div></div>
-
-<h2 id="7-왜-기본형-대신-wrapper-class를-사용할까">7. 왜 기본형 대신 Wrapper Class를 사용할까?</h2>
-
-<p>제네릭의 타입 인자에는 기본형을 직접 사용할 수 없다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 허용되지 않음</span>
-<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="o">;</span> 
-</code></pre></div></div>
-
-<p>제네릭은 참조 타입을 대상으로 하기 때문에 Wrapper Class를 사용해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 허용됨</span>
-<span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span><span class="o">;</span> 
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int     → Integer
-double  → Double
-boolean → Boolean
-char    → Character
-</code></pre></div></div>
-
-<h2 id="8-결론">8. 결론</h2>
-
-<ol>
-  <li>
-    <p>타입 안정성</p>
-
-    <p>잘못된 타입을 컴파일 단계에서 차단한다.</p>
-  </li>
-  <li>
-    <p>형변환 감소</p>
-
-    <p>값을 꺼낼 때 불필요한 타입 캐스팅을 줄인다.</p>
-  </li>
-  <li>
-    <p>코드 재사용</p>
-
-    <p>하나의 클래스나 메서드를 여러 타입에 활용할 수 있다.</p>
-  </li>
-</ol>
-
-<blockquote>
-  <p>제네릭은 클래스나 메서드가 사용할 데이터 타입을 외부에서 지정할 수 있게 한다. 이를 통해 타입 안정성을 확보하고, 불필요한 형변환을 줄이며, 같은 코드를 여러 타입에서 재사용할 수 있다.</p>
-</blockquote>
-
-<p><code class="language-plaintext highlighter-rouge">ArrayList&lt;String&gt;</code>을 사용할 때 이미 제네릭을 사용하고 있었던 것이다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="basics" /><category term="Java" /><category term="Generic" /><category term="ArrayList" /><category term="Collection" /><category term="Type Safety" /><summary type="html"><![CDATA[Java 제네릭으로 컬렉션이 다룰 데이터 타입을 지정하는 방법을 ArrayList 예제로 정리한다.]]></summary></entry><entry><title type="html">Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념</title><link href="http://localhost:4000/java/debugging/2026/08/11/java-confusing-concepts-debugging/" rel="alternate" type="text/html" title="Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념" /><published>2026-08-11T09:00:00+09:00</published><updated>2026-08-11T09:00:00+09:00</updated><id>http://localhost:4000/java/debugging/2026/08/11/java-confusing-concepts-debugging</id><content type="html" xml:base="http://localhost:4000/java/debugging/2026/08/11/java-confusing-concepts-debugging/"><![CDATA[<h1 id="java-디버깅-part-1-자주-헷갈리는-핵심-개념">Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념</h1>
-
-<h2 id="1-클래스와-객체">1. 클래스와 객체</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
-</code></pre></div></div>
-
-<ul>
-  <li>User -&gt; 클래스 타입</li>
-  <li>user -&gt; 참조 변수</li>
-  <li>new - &gt; 새로오 객체를 생성하는 키워드</li>
-  <li>User() -&gt; 생성자 호출</li>
-</ul>
-
-<p>클래스는 이미 존재하고, 그 클래스를 기반으로 객체를 새로 만드는 것</p>
-
-<blockquote>
-  <p>User 클래스를 기반으로 새로운 객체를 생성ㅅ, 그 객체의 참조를 user 변수에 저장한다.</p>
-</blockquote>
-
-<h2 id="2-생성자와-this">2. 생성자와 This</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nc">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li>String name; -&gt; 인자(argument)가 아니라 field
-    <ul>
-      <li>User 객체가 가지는 필드</li>
-    </ul>
-  </li>
-</ul>
-
-<p><code class="language-plaintext highlighter-rouge">User(String name)</code>
-    - 여기있는 name은 Parameter(매개변수)</p>
-
-<p><code class="language-plaintext highlighter-rouge">new User("민형")</code>
-    - 여기에 들어가는 “민형”이 argument(인자)</p>
-
-<p><code class="language-plaintext highlighter-rouge">String name;</code> -&gt; field</p>
-
-<p><code class="language-plaintext highlighter-rouge">User(String name)</code> -&gt; parameter</p>
-
-<p><code class="language-plaintext highlighter-rouge">new User("민형")</code> -&gt; “민형”은 argument</p>
-
-<p>this.name은 생성자로 전달받은 name parameter 값을 현재 객체의 name field에 저장한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"민형"
-    ↓ argument
-String name
-    ↓ parameter
-this.name = name
-    ↓
-현재 객체의 name field = "민형"
-</code></pre></div></div>
-
-<p>User 객체를 생성하면 “민형”을 생성자의 argument로 전달하고, 생성자는 그 값을 현재 객체의 name 필드에 저장한다.</p>
-
-<h2 id="3-참조변수">3. 참조변수</h2>
-
-<p>JAVA 언어 수준에서 메모리 직접 다루는 것은 아니기 때문에,</p>
-
-<blockquote>
-  <p>같은 객체를 참조한다. 라고 서술하는 것이 더 안전한 편이다.</p>
-</blockquote>
-
-<ul>
-  <li>b에는 새로운 객체가 생성되는 것이 아니라 a가 가진 참조값이 복사되므로, a 와 b는 같은 User 객체를 가리킨다.</li>
-</ul>
-
-<h2 id="4-static">4. Static</h2>
-
-<blockquote>
-  <p>static은 특정 객체가 아니라, 클래스 자체에 속하는 멤버를 정의하고, 모든 인스턴스가 하나의 값을 공유하도록 한다.</p>
-</blockquote>
-
-<h2 id="5-static-final">5. Static final</h2>
-
-<blockquote>
-  <p>final 참조 변수는 다른 객체로 재할당할 수 없다.</p>
-</blockquote>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="s">"민형"</span><span class="o">);</span>
-
-<span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="s">"철수"</span><span class="o">);</span> <span class="o">-&gt;</span> <span class="n">가능하다</span><span class="o">.</span> 
-</code></pre></div></div>
-
-<p>다만</p>
-
-<p><code class="language-plaintext highlighter-rouge">static final User user = new User("민형");</code> 같은 경우에는 
-<code class="language-plaintext highlighter-rouge">user = new User("철수");</code> 로 재할당이 불가능하다.</p>
-
-<p>user가 가리키는 객체를 다른 객체로 바꾸지 못하게 하는 것</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final user ─X──→ [다른 User 객체]
-</code></pre></div></div>
-
-<p>다만 객체 내부는 이와 같은 변경이 가능하다</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[User 객체]
-name = "민형"
-      ↓
-name = "철수"
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>코드</th>
-      <th style="text-align: right">static</th>
-      <th style="text-align: right">static final</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">user = new User("철수")</code></td>
-      <td style="text-align: right">가능</td>
-      <td style="text-align: right">불가능</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">user.name = "철수"</code></td>
-      <td style="text-align: right">가능</td>
-      <td style="text-align: right">가능</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>단, name 자체도 final이거나 setter가 막혀 있으면 별개야.</p>
-
-<blockquote>
-  <p>Static은 클래스 단위의 공유 여부를 결정하고, final은 변수에 저장된 값을 다시 할당할 수 있는지를 제한한다.</p>
-</blockquote>
-
-<h2 id="6-package--import">6. Package / import</h2>
-
-<blockquote>
-  <p>package는 클래스의 소속과 이름 공간(namespace)를 정의하는 역할</p>
-</blockquote>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.practice.model</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>의 의미는 이 클래는 com.practice.model 패키지에 속한다.</p>
-
-<p>그리고서는</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.practice.model.User</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>는:</p>
-
-<blockquote>
-  <p>다른 패키지에 있는 User 클래스를 이 소스 코드에서 짧은 이름 User로 사용할 수 있게 된다.</p>
-</blockquote>
-
-<blockquote>
-  <p>어떤 클래스를 말하는지 컴파일러가 알 수 있도록 이름을 연결해주는 것에 가깝다.</p>
-</blockquote>
-
-<ul>
-  <li>왜 Main 안에서 임포트하냐..?</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.practice</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">com.practice.model.User</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>import는 Main 클래스 밖, 파일 위쪽에 있는 이유</p>
-
-<p>Main은 com.practice에 있고, 
-User는 com.practice.model에 있기 때문</p>
-
-<p>꼭 import할 필요는 없는데</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">com</span><span class="o">.</span><span class="na">practice</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">User</span> <span class="n">user</span> <span class="o">=</span>
-    <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">practice</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">User</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>라고 풀네임으로 적어도 되긴하다.</p>
-
-<p>하지만 귀찮으니까</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">com.practice.model.User</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>를 하고 나서</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
-</code></pre></div></div>
-
-<h2 id="7-추상화">7. 추상화</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Animal</span> <span class="n">animal</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Animal</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>부모 클래스에 sound()가 없는 게 아니라 존재한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">sound</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>하지만 구현 내용이 없는 추상 메서드여서 구현을 반드시 구현을 해야한다.</p>
-
-<p>eat() 사용 가능하다는 것도 맞긴 하다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Void</span> <span class="nf">eat</span><span class="o">()</span> <span class="o">{</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"먹는다"</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>부모 클래스에서 구현됐으니까 Dog가 상속받아 사용할 수 있다.</p>
-
-<blockquote>
-  <p>정리하자면</p>
-</blockquote>
-
-<p>Animal은 모든 동물이 sound() 기능을 가져야 한다는 공통 규칙만 추상적으로 정의하고, 실제 소리를 내는 방법은 자식 클래스가 구현하도록 해야한다.</p>
-
-<h2 id="가장-많이-헷갈리는-용어">가장 많이 헷갈리는 용어</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
-
-    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nc">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="s">"민형"</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">User</code> -&gt; 클래스 / 타입</p>
-
-<p><code class="language-plaintext highlighter-rouge">String name;</code> -&gt; field</p>
-
-<p><code class="language-plaintext highlighter-rouge">User(String name)</code> -&gt; 생성자</p>
-
-<p><code class="language-plaintext highlighter-rouge">"민형"</code> -&gt; argument</p>
-
-<p><code class="language-plaintext highlighter-rouge">this</code> -&gt; 현재 객체</p>
-
-<p><code class="language-plaintext highlighter-rouge">this.name</code> -&gt; 현재 객체의 field</p>
-
-<p><code class="language-plaintext highlighter-rouge">user</code> -&gt; 참조 변수</p>
-
-<p><code class="language-plaintext highlighter-rouge">new User("민형")</code>
--&gt; 새 User 객체 생성 + 생성 호출</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="debugging" /><category term="Java" /><category term="Debugging" /><category term="OOP" /><category term="Class" /><category term="Constructor" /><category term="Static" /><category term="Package" /><category term="Import" /><category term="Abstract" /><summary type="html"><![CDATA[Java에서 자주 헷갈리는 클래스와 객체, 생성자와 this, static final, package import, 추상화 개념을 디버깅 관점에서 정리한다.]]></summary></entry></feed>
+</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="basics" /><category term="Java" /><category term="Stream API" /><category term="Collection" /><category term="Lambda" /><category term="Filter" /><category term="Map" /><summary type="html"><![CDATA[Java Stream API의 파이프라인, 중간 연산과 최종 연산을 filter, map, sorted 예제로 정리한다.]]></summary></entry></feed>

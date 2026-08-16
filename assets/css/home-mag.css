@@ -1824,6 +1824,88 @@ html[data-theme="dark"] .visual-hero {
   background: var(--paper);
 }
 
+.web-embed-card {
+  max-width: 100%;
+  margin: 36px 0;
+  overflow: hidden;
+  border: var(--rule);
+  background: var(--paper);
+}
+
+.web-embed-header {
+  display: flex;
+  min-height: 68px;
+  padding: 11px 14px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: var(--rule);
+}
+
+.web-embed-identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 11px;
+}
+
+.web-embed-identity > i {
+  flex: 0 0 auto;
+  font-size: 22px;
+}
+
+.web-embed-identity > span {
+  min-width: 0;
+}
+
+.web-embed-identity strong,
+.web-embed-identity small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.web-embed-identity strong {
+  font-size: 14px;
+}
+
+.web-embed-identity small {
+  max-width: min(58vw, 620px);
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.web-embed-header > a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+}
+
+.web-embed-header > a:hover span,
+.web-embed-fallback a:hover {
+  text-decoration: underline;
+}
+
+.web-embed-card > iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+
+.web-embed-fallback {
+  margin: 0;
+  padding: 9px 14px;
+  border-top: var(--rule);
+  color: var(--muted);
+  font-size: 11px;
+}
+
 .callout,
 .link-card,
 .inline-toc {
@@ -2145,6 +2227,22 @@ html[data-theme="dark"] .site-footer {
 @media (max-width: 767px) {
   :root {
     --page-gutter: 24px;
+  }
+
+  .web-embed-header {
+    align-items: flex-start;
+  }
+
+  .web-embed-identity small {
+    max-width: 56vw;
+  }
+
+  .web-embed-header > a span {
+    display: none;
+  }
+
+  .web-embed-card > iframe {
+    height: 320px;
   }
 
   html {
