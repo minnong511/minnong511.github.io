@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 2
 ---
 
-# Spring 기초 Part 2: Spring MVC 요청 처리 흐름
+## Spring 기초 Part 2: Spring MVC 요청 처리 흐름
 
 > Spring MVC는 HTTP 요청을 적절한 Controller에 연결하고, 처리 결과를 View 또는 JSON으로 반환하는 웹 프레임워크다.
 
@@ -37,7 +37,7 @@ Database
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -53,7 +53,7 @@ Database
 
 ---
 
-## 2. MVC와 계층형 구조는 같은 말이 아니다
+### 2. MVC와 계층형 구조는 같은 말이 아니다
 
 기본 MVC는 역할을 다음처럼 구분한다.
 
@@ -83,7 +83,7 @@ Spring MVC
 
 ---
 
-## 3. DispatcherServlet
+### 3. DispatcherServlet
 
 Client의 요청이 Controller로 바로 전달되는 것은 아니다.
 
@@ -105,7 +105,7 @@ Client → DispatcherServlet → ProductController
 
 ---
 
-## 4. HandlerMapping과 HandlerAdapter
+### 4. HandlerMapping과 HandlerAdapter
 
 다음 Controller가 있다고 해보자.
 
@@ -168,9 +168,9 @@ flowchart LR
 
 ---
 
-## 5. Controller, Service, Repository
+### 5. Controller, Service, Repository
 
-### Controller
+#### Controller
 
 Controller는 HTTP 요청과 응답에 집중한다.
 
@@ -195,7 +195,7 @@ public class UserController {
 
 Controller에는 복잡한 업무 규칙을 넣지 않는다.
 
-### Service
+#### Service
 
 Service는 실제 업무 규칙을 처리한다.
 
@@ -216,7 +216,7 @@ public class UserService {
 }
 ```
 
-### Repository
+#### Repository
 
 Repository는 데이터베이스 접근을 담당한다.
 
@@ -229,9 +229,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 ---
 
-## 6. `@Controller`와 `@RestController`
+### 6. `@Controller`와 `@RestController`
 
-### `@Controller`
+#### `@Controller`
 
 일반적인 `@Controller`가 문자열을 반환하면 View 이름으로 해석할 수 있다.
 
@@ -253,7 +253,7 @@ return "home"
    → HTML 응답
 ```
 
-### `@RestController`
+#### `@RestController`
 
 `@RestController`의 반환값은 기본적으로 HTTP 응답 본문으로 전달된다.
 
@@ -284,7 +284,7 @@ Jackson이 자바 객체를 JSON으로 변환한다.
 
 ---
 
-## 7. 전체 실행 흐름
+### 7. 전체 실행 흐름
 
 `GET /api/users/1` 요청을 다시 연결하면 다음과 같다.
 
@@ -303,7 +303,7 @@ Jackson이 자바 객체를 JSON으로 변환한다.
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 구성 요소 | 핵심 역할 |
 |---|---|
@@ -317,6 +317,6 @@ Jackson이 자바 객체를 JSON으로 변환한다.
 
 > Spring MVC의 핵심은 요청을 Controller에 연결하는 흐름과 Controller, Service, Repository의 책임을 분리하는 데 있다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Framework Web MVC 공식 문서](https://docs.spring.io/spring-framework/reference/web/webmvc.html)

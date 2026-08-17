@@ -9,7 +9,7 @@ series: "Java 기초"
 part: 1
 ---
 
-## IP와 Port
+### IP와 Port
 
 통신을 하려면 IP와 포트 정보가 모두 필요합니다.  
 네트워크에서 프로세스 통신을 식별하는 기본 식별자는 `IP + PORT`입니다.
@@ -20,12 +20,12 @@ part: 1
 |Port|해당 Host에서 실행 중인 서비스 또는 프로세스를 구분하는 번호|
 |예시|`http://168.126.63.42:8080` (`168.126.63.42` = IP, `8080` = Port)|
 
-### Localhost vs 127.0.0.1
+#### Localhost vs 127.0.0.1
 
 동일 호스트 내에서 프로세스 간 통신할 때 사용하는 이름:
 `localhost` (도메인 이름), `127.0.0.1` (IP 주소)
 
-### Process와 Port
+#### Process와 Port
 
 |구분|값|
 |---|---|
@@ -40,7 +40,7 @@ npm run dev
 java -jar ./target/ideoperators-0.0.1-SNAPSHOT.jar
 ```
 
-## Process vs Thread
+### Process vs Thread
 
 |항목|프로세스 (Process)|스레드 (Thread)|
 |---|---|---|
@@ -53,14 +53,14 @@ java -jar ./target/ideoperators-0.0.1-SNAPSHOT.jar
 
 한 프로세스 내부에서 여러 스레드를 실행할 수 있습니다.
 
-## Public IP와 Private IP
+### Public IP와 Private IP
 
 |구분|설명|
 |---|---|
 |Public IP|인터넷 전역에서 접근 가능한 IP 주소|
 |Private IP|특정 private network 내부에서만 유일하게 사용되는 IP (보통 내부용)|
 
-## Gateway, Router, Load Balancer
+### Gateway, Router, Load Balancer
 
 |구분|역할|
 |---|---|
@@ -68,9 +68,9 @@ java -jar ./target/ideoperators-0.0.1-SNAPSHOT.jar
 |Gateway|서비스/애플리케이션 진입점 역할, 외부 IP를 내부 IP로 연결/변환, 프로토콜 변환, 인증/필터/헤더 처리 등 계층 처리|
 |Load Balancer|트래픽을 여러 노드에 분산/배분. 대표적으로 L4, L7 라우팅 역할|
 
-## Frontend / Backend
+### Frontend / Backend
 
-### Frontend
+#### Frontend
 
 |구분|내용|
 |---|---|
@@ -92,7 +92,7 @@ java -jar ./target/ideoperators-0.0.1-SNAPSHOT.jar
 |---|---|
 |Endpoint|서비스의 종단점, 경계 지점|
 
-### Back end
+#### Back end
 
 |구분|내용|
 |---|---|
@@ -104,14 +104,14 @@ java -jar ./target/ideoperators-0.0.1-SNAPSHOT.jar
 |API 형식|REST API, GraphQL|
 |배포 환경|AWS, Docker, Nginx, GitHub Actions|
 
-## 현대적 Frontend/Backend 구조
+### 현대적 Frontend/Backend 구조
 
 최초 1회 HTML을 로드한 뒤에는 페이지 전체 새로고침 없이 JavaScript가 동적으로 화면을 바꿉니다(SPA 구조).  
 Client side에서 상태와 변수 데이터를 생성·처리하여 화면을 갱신합니다.
 
 ![alt text](image.png)
 
-## JSON Format
+### JSON Format
 
 |항목|설명|
 |---|---|
@@ -119,7 +119,7 @@ Client side에서 상태와 변수 데이터를 생성·처리하여 화면을 �
 |특징|언어에 구애받지 않음, 읽기/파싱이 쉬움|
 |주요 사용|API 응답, 데이터 저장 및 전송|
 
-### JSON (JavaScript Object Notation)
+#### JSON (JavaScript Object Notation)
 
 |요소|설명|
 |---|---|
@@ -140,7 +140,7 @@ Client side에서 상태와 변수 데이터를 생성·처리하여 화면을 �
 }
 ```
 
-### YAML Format
+#### YAML Format
 
 |항목|설명|
 |---|---|
@@ -161,7 +161,7 @@ address:
   zipCode: "12345"
 ```
 
-### JSON vs YAML
+#### JSON vs YAML
 
 |특징|JSON|YAML|
 |---|---|---|
@@ -172,7 +172,7 @@ address:
 |파싱 속도|보통 빠름|상대적으로 느릴 수 있음|
 |유연성|형식이 엄격함|덜 엄격하고 유연함|
 
-# 좋은 소프트웨어란?
+## 좋은 소프트웨어란?
 
 |개념|설명|
 |---|---|
@@ -181,7 +181,7 @@ address:
 |단독 실행 (Standalone Execution)|시스템의 일부를 독립 실행/테스트할 수 있는 능력. 분산 개발·배포·복구에 유리|
 |결합도 (Coupling)|요소 간 의존성. 낮을수록 개별 변경의 영향이 작고 확장 용이|
 
-## 소프트웨어 아키텍처 비교
+### 소프트웨어 아키텍처 비교
 
 |기준|Monolith|MSA / Microservice Architecture|
 |---|---|---|
@@ -193,16 +193,16 @@ address:
 
 ---- 여기부터 다듬어야 한다. 
 
-# Java의 역사
+## Java의 역사
 
-## Java 등장 이전의 주요 어려움 (1990년대 초반)
+### Java 등장 이전의 주요 어려움 (1990년대 초반)
 
 - 플랫폼 종속성 묹제 (OS 하드웨어 의존)
 - 메모리 관리의 어려움
 - 메모리 직접 접근 및 OS 권한을 가지는 프로그램으로 인한 보안 취약
 - 네트워크 / 분산 프로그램 개발의 어려움
 
-## Java의 등장
+### Java의 등장
 
 하드웨어와 OS 중심 개발에서 "플랫폼 독립적, 네트워크 중심, 엔터프라이즈 중심 개발"로 패러다임 전환을 위해 등장
 
@@ -237,7 +237,7 @@ flowchart LR
 |이력|Sun Microsystems의 제임스 고슬링James Gosling과 팀이 가전 제품용 언어 개발 시작|
 |인수|2010년 Oracle이 SUN 인수하여, Java의 상품권, 저작권, 브랜드가 Oracle로 이전|
 
-### Java 버전/시스템 정리
+#### Java 버전/시스템 정리
 
 |항목|내용|
 |---|---|
@@ -252,7 +252,7 @@ flowchart LR
 |기타|일반적으로 다음버전까지 6개월 단기 지원 신규 기능이라도 deprecated 될 수 있음|
 |LTS|Long Term Support: 장기지원 버전. 몇년간 안정적이고 지속적인 보안/버그 패치, 호환성 검증된 버전이며, 기업, 프로덕션 환경용|
 
-## Interpreter 와 Compiler
+### Interpreter 와 Compiler
 
 소스 코드를 기계가 이해할 수 있는 기계어로 변환 파일을 여기 저기서 바로 실행  
 소스 코드를 한 줄(또는 일정 단위)씩 읽어서 해석(interpret) -> 기계어 실행 -> 실행
@@ -282,7 +282,7 @@ flowchart TB
   C3 --> D
 ```
 
-### 언어 방식/실행 방식 정리
+#### 언어 방식/실행 방식 정리
 
 |언어|바이트코드?|JIT?|실행 방식|
 |---|---|---|---|
@@ -304,7 +304,7 @@ flowchart TD
   L --> L1 --> L2 --> L3 --> L4
 ```
 
-## 언어별 Position
+### 언어별 Position
 
 |역할|언어|
 |---|---|
@@ -313,7 +313,7 @@ flowchart TD
 |시스템 핵심 / 고성능|Rust|
 |AI / 데이터|Python|
 
-## 언어별 Position (중복 정리)
+### 언어별 Position (중복 정리)
 
 |역할|언어|
 |---|---|
@@ -322,7 +322,7 @@ flowchart TD
 |시스템 핵심 / 고성능|Rust|
 |AI / 데이터|Python|
 
-## Java 프로그램의 구조 자바 둘러보기
+### Java 프로그램의 구조 자바 둘러보기
 
 |항목|내용|
 |---|---|
@@ -346,7 +346,7 @@ public void anotherMethod() {
 }
 ```
 
-## Java 메모리 구조
+### Java 메모리 구조
 
 Java 프로그램이 실행될 때 메모리는 여러 영역으로 나뉘어 사용됩니다. 그중 초보자가 가장 먼저 이해할 영역은 `Stack`과 `Heap`입니다.
 
@@ -357,7 +357,7 @@ Java 프로그램이 실행될 때 메모리는 여러 영역으로 나뉘어 �
 |Stack|현재 작업 중인 사람의 책상|메서드의 호출 정보, 지역 변수, 기본형 값, 객체를 가리키는 참조값|메서드가 끝나면 해당 메서드의 공간이 자동으로 정리됨. 스레드마다 별도의 Stack을 가짐|
 |Heap|여러 사람이 함께 사용하는 창고|`new`로 만든 객체와 배열|여러 스레드가 공유함. 더 이상 사용하지 않는 객체는 Garbage Collector가 정리함|
 
-### 아주 간단한 예시
+#### 아주 간단한 예시
 
 ```java
 class Person {
@@ -404,7 +404,7 @@ flowchart TB
   Person -. 더 이상 참조되지 않으면 .-> GC
 ```
 
-### Stack과 Heap의 차이 기억하기
+#### Stack과 Heap의 차이 기억하기
 
 - 메서드가 호출되면 Stack에 작업 공간이 생기고, 메서드가 끝나면 사라집니다.
 - `int`, `double`, `boolean` 같은 기본형 지역 변수는 보통 Stack 프레임에서 바로 관리됩니다.
@@ -421,7 +421,7 @@ static void example() {
 
 여기서 `example()`이 끝나면 `number`와 `p`는 사라집니다. `p`가 가리키던 `Person` 객체도 다른 곳에서 사용하지 않는다면 Garbage Collector가 나중에 Heap에서 정리할 수 있습니다.
 
-## 자바와 JVM
+### 자바와 JVM
 
 ```text
 JVM Java Virtual Machine 자바를 실행하기 위한 가상 머신
@@ -438,7 +438,7 @@ OS Windows, MacOS
 컴퓨터
 ```
 
-## Java 파일과 컴파일
+### Java 파일과 컴파일
 
 |구분|설명|
 |---|---|

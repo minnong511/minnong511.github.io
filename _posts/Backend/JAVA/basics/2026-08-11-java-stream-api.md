@@ -9,9 +9,9 @@ series: "Java 기초"
 part: 5
 ---
 
-# Java 기초 Part 5: Stream API
+## Java 기초 Part 5: Stream API
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 단어 | 정의 | 예시 |
 | --- | --- | --- |
@@ -26,7 +26,7 @@ part: 5
 
 Java 8에서 도입됐으며, 반복문이나 `Iterator`로 작성하던 코드를 선언적이고 함수형인 스타일로 표현할 수 있게 해준다.
 
-## 2. Stream API의 핵심
+### 2. Stream API의 핵심
 
 Stream API의 핵심은 데이터 처리 과정을 위에서 아래로 읽을 수 있다는 점이다.
 
@@ -52,7 +52,7 @@ User 객체를 이름으로 바꾼다
 List로 모은다
 ```
 
-## 3. 반복문과 Stream 비교
+### 3. 반복문과 Stream 비교
 
 예를 들어 숫자 리스트에서 짝수만 뽑는다고 하자.
 
@@ -90,7 +90,7 @@ numbers를 Stream으로 만든다
 List로 모은다
 ```
 
-## 4. 자주 사용하는 메서드
+### 4. 자주 사용하는 메서드
 
 | 메서드 | 구분 | 역할 |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ List로 모은다
 | `toList()` | 최종 연산 | 처리 결과를 `List`로 모은다. |
 | `forEach()` | 최종 연산 | 각 요소에 지정한 동작을 실행한다. |
 
-## 5. `filter()`: 조건에 맞는 값만 남기기
+### 5. `filter()`: 조건에 맞는 값만 남기기
 
 ```java
 List<String> names = List.of("민형", "철수", "영희", "김민형");
@@ -120,7 +120,7 @@ names.stream()
 
 `filter()`는 조건을 만족하는 요소만 통과시킨다. 요소의 값 자체를 다른 값으로 바꾸지는 않는다.
 
-## 6. `map()`: 값을 다른 형태로 바꾸기
+### 6. `map()`: 값을 다른 형태로 바꾸기
 
 ```java
 List<Integer> numbers = List.of(1, 2, 3);
@@ -136,7 +136,7 @@ List<Integer> result = numbers.stream()
 
 `map()`은 각 요소를 전달받아 새로운 값으로 바꾼다.
 
-## 7. `filter()`와 `map()` 함께 사용하기
+### 7. `filter()`와 `map()` 함께 사용하기
 
 ```java
 List<Integer> numbers = List.of(1, 2, 3, 4, 5);
@@ -164,7 +164,7 @@ filter → 골라낸다
 map    → 바꾼다
 ```
 
-## 8. 중간 연산과 최종 연산
+### 8. 중간 연산과 최종 연산
 
 `filter()`, `map()`, `sorted()` 같은 중간 연산만 작성하면 실제 데이터 처리가 시작되지 않는다. `toList()`나 `forEach()` 같은 최종 연산이 호출되어야 전체 파이프라인이 실행된다.
 
@@ -186,9 +186,9 @@ List<Integer> result = numbers.stream()
 
 이처럼 필요한 시점까지 실행을 미루는 방식을 지연 연산(Lazy Evaluation)이라고 한다.
 
-## 9. 사용할 때 주의할 점
+### 9. 사용할 때 주의할 점
 
-### 원본 컬렉션은 바뀌지 않는다
+#### 원본 컬렉션은 바뀌지 않는다
 
 ```java
 List<Integer> numbers = List.of(1, 2, 3);
@@ -205,7 +205,7 @@ result  → [10, 20, 30]
 
 Stream은 원본 컬렉션을 직접 변경하는 기능이 아니다. 처리 결과가 필요하면 새로운 리스트 등으로 받아야 한다.
 
-### Stream은 한 번만 사용할 수 있다
+#### Stream은 한 번만 사용할 수 있다
 
 ```java
 Stream<Integer> stream = numbers.stream();
@@ -216,7 +216,7 @@ stream.toList(); // IllegalStateException
 
 최종 연산이 끝난 Stream은 다시 사용할 수 없다. 다시 처리하려면 `numbers.stream()`으로 새로운 Stream을 만들어야 한다.
 
-## 10. 최종 정리
+### 10. 최종 정리
 
 | 구분 | 핵심 내용 |
 | --- | --- |

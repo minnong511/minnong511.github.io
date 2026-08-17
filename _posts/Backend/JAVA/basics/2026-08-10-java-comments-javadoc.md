@@ -9,9 +9,9 @@ series: "Java 기초"
 part: 2
 ---
 
-# Java 기초 Part 2: 주석과 Javadoc
+## Java 기초 Part 2: 주석과 Javadoc
 
-## Java의 주석
+### Java의 주석
 
 | 구분 | 사용 문법 | 용도 | 예시 |
 | --- | --- | --- | --- |
@@ -36,7 +36,7 @@ public class Example {
 }
 ```
 
-## Javadoc 주요 태그 
+### Javadoc 주요 태그 
 
 - `@param` - 메서드 매개변수 설명 
 - `@return` - 반환값 설명 

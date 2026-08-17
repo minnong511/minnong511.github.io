@@ -9,19 +9,19 @@ series: "Java 실행과 JVM"
 part: 2
 ---
 
-# Java 실행과 JVM Part 2: 메모리와 데이터 흐름
+## Java 실행과 JVM Part 2: 메모리와 데이터 흐름
 
 Java 프로그램이 어떻게 실행되는지, 변수와 객체가 메모리에 어떻게 연결되는지, 그리고 문자열과 멀티스레드를 어떻게 다루는지 한 번에 정리한다.
 
-## 1. Java 개발 환경
+### 1. Java 개발 환경
 
-### 필요한 도구 설치
+#### 필요한 도구 설치
 
 ```bash
 brew install jq curl maven gradle node git kubectl
 ```
 
-### Java 21 설치와 환경 변수 설정
+#### Java 21 설치와 환경 변수 설정
 
 ```bash
 brew install openjdk@21
@@ -38,7 +38,7 @@ source ~/.zshrc
 
 `JAVA_HOME`은 Java가 설치된 위치를 알려 주는 환경 변수다. 실제 경로는 설치 환경에 따라 다를 수 있으므로 `brew --prefix openjdk@21`로 확인할 수 있다.
 
-## 2. Java 코드가 실행되는 과정
+### 2. Java 코드가 실행되는 과정
 
 Java는 소스 코드를 바로 실행하지 않는다.
 
@@ -66,7 +66,7 @@ java -cp bin App
 
 즉, JVM이 `javac`를 실행하는 것이 아니라 `javac`가 만든 바이트코드를 JVM이 실행한다.
 
-## 3. Java 프로그램의 기본 구조
+### 3. Java 프로그램의 기본 구조
 
 Java 코드는 보통 클래스 안에 작성한다.
 
@@ -83,9 +83,9 @@ public class HelloSkala {
 - `System.out.println`: 콘솔에 값을 출력한다.
 - `static`: 객체를 만들지 않아도 클래스에 소속된 형태로 사용할 수 있다는 뜻이다.
 
-## 4. 기본형과 참조형
+### 4. 기본형과 참조형
 
-### 기본형
+#### 기본형
 
 기본형은 숫자, 문자, 참·거짓처럼 값 자체를 저장하는 타입이다.
 
@@ -100,7 +100,7 @@ public class HelloSkala {
 | `char` | 문자 하나 | 2 bytes |
 | `boolean` | `true` 또는 `false` | JVM 구현에 따라 다름 |
 
-### 참조형
+#### 참조형
 
 참조형 변수는 객체 본체를 직접 담는 것이 아니라, 객체를 가리키는 참조값을 저장한다.
 
@@ -117,16 +117,16 @@ name ── 참조값 ──▶ "Skala" String 객체
 age  ── 값 20
 ```
 
-### 주의: 기본값과 지역 변수
+#### 주의: 기본값과 지역 변수
 
 - 클래스의 필드에는 선언하지 않아도 기본값이 들어간다. `int`는 `0`, `boolean`은 `false`, 참조형은 `null`이다.
 - 메서드 안의 지역 변수는 자동으로 기본값이 들어가지 않는다. 사용하기 전에 반드시 값을 대입해야 한다.
 
-## 5. JVM 메모리 구조
+### 5. JVM 메모리 구조
 
 메모리를 설명할 때 자주 등장하는 영역은 Stack, Heap, Metaspace다.
 
-### Stack
+#### Stack
 
 메서드가 호출될 때마다 해당 메서드의 Stack Frame이 만들어진다. 메서드가 끝나면 Frame도 사라진다.
 
@@ -136,17 +136,17 @@ Stack Frame에는 다음과 같은 정보가 들어간다.
 - `Operand Stack`: 바이트코드 연산에 잠시 사용하는 값
 - 반환 주소 등 메서드 실행에 필요한 정보
 
-### Heap
+#### Heap
 
 `new`로 만든 객체와 배열의 본체가 저장되는 영역이다. 객체는 메서드가 끝난 뒤에도 다른 곳에서 참조하고 있다면 계속 살아 있을 수 있다. 더 이상 참조되지 않는 객체는 Garbage Collector가 정리한다.
 
-### Metaspace
+#### Metaspace
 
 클래스의 이름, 메서드 정보, 필드 정보, 바이트코드 등 클래스 구조에 대한 메타데이터가 저장되는 영역이다.
 
 `java.lang.Class` 객체도 Heap에 존재하며, Metaspace의 클래스 메타데이터와 연결되어 있다고 이해하면 된다.
 
-## 6. 코드로 보는 데이터 흐름
+### 6. 코드로 보는 데이터 흐름
 
 다음 코드를 기준으로 각 값의 위치를 살펴보자.
 
@@ -163,7 +163,7 @@ void foo() {
 }
 ```
 
-### 실행 순서
+#### 실행 순서
 
 1. `foo()`가 호출되면 `foo()` 전용 Stack Frame이 만들어진다.
 2. `int x = 10`의 `x`는 Local Variables 영역에 값 `10`으로 저장된다.
@@ -186,7 +186,7 @@ flowchart LR
     Operand --> R
 ```
 
-### 핵심 정리
+#### 핵심 정리
 
 ```text
 person ─────────────▶ Heap의 Person 객체
@@ -205,7 +205,7 @@ age = 20 ─┴─▶ Operand Stack에서 20 + 10 계산
 - `x`, `result`: 메서드의 지역 변수이므로 해당 Stack Frame의 Local Variables에 저장된다.
 - 연산 중간값: Operand Stack을 사용한다.
 
-### `static` 필드는 어디에 있을까?
+#### `static` 필드는 어디에 있을까?
 
 ```java
 class Person {
@@ -230,7 +230,7 @@ flowchart TD
 - `static` 필드 `count`는 객체가 아니라 클래스에 소속되며 모든 인스턴스가 공유한다.
 - 정확한 물리적 위치와 구현 방식은 JVM에 따라 다를 수 있다. 따라서 `static` 필드를 무조건 “Heap의 `Class` 객체 안에 있다”고 단정하기보다, “클래스 단위로 관리되고 클래스 메타데이터와 연결된다”고 이해하는 편이 안전하다.
 
-## 7. 변수 저장 위치를 판단하는 방법
+### 7. 변수 저장 위치를 판단하는 방법
 
 “기본형은 Stack, 참조형은 Heap”이라고 외우면 틀릴 수 있다. 변수의 종류와 실행 위치를 함께 봐야 한다.
 
@@ -253,9 +253,9 @@ class Student {
 
 `Student student = new Student()`로 객체를 만들면 `score`와 `name`은 Student Heap 객체의 일부가 된다. 반대로 `void study() { int minutes = 30; }`의 `minutes`는 메서드의 지역 변수이므로 Stack Frame에서 관리된다.
 
-## 8. 불변 객체와 Wrapper 클래스
+### 8. 불변 객체와 Wrapper 클래스
 
-### 불변 객체
+#### 불변 객체
 
 불변 객체는 생성된 뒤 내부 값을 바꿀 수 없는 객체다. 대표적으로 `String`, `Integer`, `Long`, `Double`, `Character`, `Boolean`이 있다.
 
@@ -266,7 +266,7 @@ text = text + "!";
 
 위 코드는 기존 String 객체에 `!`를 붙이는 것이 아니다. `"Java!"`라는 새로운 String 객체를 만들고 `text`가 새 객체를 가리키게 된다.
 
-### Wrapper 클래스와 오토박싱
+#### Wrapper 클래스와 오토박싱
 
 Wrapper 클래스는 기본형을 객체처럼 사용할 수 있게 감싼 클래스다.
 
@@ -282,7 +282,7 @@ List<Integer> scores = new ArrayList<>();
 scores.add(100);
 ```
 
-## 9. StringBuilder와 StringBuffer
+### 9. StringBuilder와 StringBuffer
 
 String은 불변이므로 문자열을 반복해서 더하면 중간 객체가 많이 만들어질 수 있다. 이때 문자열을 수정할 수 있는 버퍼를 사용한다.
 
@@ -301,7 +301,7 @@ String result = builder.toString();
 
 실무에서는 공유하지 않는 문자열 조립에는 보통 `StringBuilder`를 사용한다. 여러 스레드가 하나의 버퍼를 직접 공유해야 하고 동기화가 필요하다면 `StringBuffer`를 고려한다.
 
-## 10. `synchronized`와 공유 자원
+### 10. `synchronized`와 공유 자원
 
 여러 스레드가 같은 값을 동시에 수정하면 실행 순서에 따라 결과가 달라질 수 있다. 이런 문제가 발생하는 코드를 임계 영역이라고 한다.
 
@@ -324,7 +324,7 @@ class BankAccount {
 
 다만 `synchronized`는 모든 문제를 자동으로 해결하는 기능은 아니다. 어떤 객체를 잠그는지, 여러 메서드가 같은 공유 자원을 다루는지까지 함께 확인해야 한다.
 
-## 11. 마지막 요약
+### 11. 마지막 요약
 
 ```text
 소스 코드(.java)

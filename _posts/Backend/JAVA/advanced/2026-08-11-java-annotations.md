@@ -9,9 +9,9 @@ series: "Java 심화"
 part: 2
 ---
 
-# Java 심화 Part 2: Annotation
+## Java 심화 Part 2: Annotation
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 단어 | 정의 |
 | --- | --- |
@@ -23,7 +23,7 @@ part: 2
 
 > Annotation은 클래스, 메서드, 필드 등에 추가적인 메타데이터를 붙이는 기능이다. 애너테이션 자체가 로직을 실행하는 것은 아니며, 컴파일러나 프레임워크가 이 정보를 읽고 처리한다.
 
-## 2. `@Override`: 컴파일러에게 재정의를 알리기
+### 2. `@Override`: 컴파일러에게 재정의를 알리기
 
 Java에서 `@`로 시작하는 것이 Annotation이다. 가장 익숙한 예시는 `@Override`다.
 
@@ -53,7 +53,7 @@ class Dog implements Animal {
 
 위 코드의 `makeSond()`는 `Animal`의 `makeSound()`와 이름이 다르다. `@Override`가 있기 때문에 컴파일러가 재정의가 아니라는 오류를 바로 알려준다.
 
-## 3. 애너테이션은 혼자 실행되지 않는다
+### 3. 애너테이션은 혼자 실행되지 않는다
 
 다음 코드에서 `@Override`가 직접 `makeSound()`를 실행하는 것은 아니다.
 
@@ -78,7 +78,7 @@ public void makeSound() {
 
 즉, 애너테이션은 표시이고 그 표시를 해석하는 컴파일러나 프레임워크가 실제 처리를 담당한다.
 
-## 4. 자주 사용하는 Java 애너테이션
+### 4. 자주 사용하는 Java 애너테이션
 
 | 애너테이션 | 역할 |
 | --- | --- |
@@ -94,7 +94,7 @@ public void oldLogin() {
 }
 ```
 
-## 5. Spring에서의 Annotation
+### 5. Spring에서의 Annotation
 
 Spring에서는 애너테이션이 클래스의 역할과 처리 방식을 알려 주는 중요한 설정 정보가 된다.
 
@@ -128,7 +128,7 @@ public class UserController {
 - `@GetMapping("/users")`: `/users`로 들어오는 GET 요청을 이 메서드와 연결한다.
 - 생성자: Spring이 필요한 `UserService`를 주입할 수 있는 위치다. 생성자가 하나라면 보통 `@Autowired`를 생략한다.
 
-## 6. Reflection과 Spring의 연결
+### 6. Reflection과 Spring의 연결
 
 Spring은 실행 중 Reflection을 이용해 클래스와 애너테이션을 검사한다.
 
@@ -154,7 +154,7 @@ Reflection → 실행 중 그 표시를 읽음
 Spring     → 읽은 정보를 기준으로 객체를 생성하고 관리
 ```
 
-## 7. 애너테이션에 값 넣기
+### 7. 애너테이션에 값 넣기
 
 애너테이션은 설정값도 받을 수 있다.
 
@@ -188,7 +188,7 @@ class AdminService {
 
 `@Retention(RetentionPolicy.RUNTIME)`은 실행 중 Reflection으로 이 애너테이션을 읽을 수 있게 한다. `@Target(ElementType.TYPE)`은 이 애너테이션을 클래스나 인터페이스에 붙일 수 있다는 뜻이다.
 
-## 8. 요약
+### 8. 요약
 
 ```text
 Annotation

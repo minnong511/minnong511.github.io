@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 6
 ---
 
-# Spring 기초 Part 6: JPA 연관관계 매핑
+## Spring 기초 Part 6: JPA 연관관계 매핑
 
 > 연관관계 매핑은 자바 객체의 참조와 데이터베이스 테이블의 외래키를 연결하는 작업이다.
 
@@ -29,7 +29,7 @@ JPA는 이 두 관계를 어노테이션으로 연결한다.
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉬운 설명 |
 |---|---|---|
@@ -44,7 +44,7 @@ JPA는 이 두 관계를 어노테이션으로 연결한다.
 
 ---
 
-## 2. 연관관계의 종류
+### 2. 연관관계의 종류
 
 | 어노테이션 | 관계 | 예시 |
 |---|---|---|
@@ -64,7 +64,7 @@ User 1 ─── N Watchlist N ─── 1 Stock
 
 ---
 
-## 3. 다대일 단방향 매핑
+### 3. 다대일 단방향 매핑
 
 여러 회원이 하나의 팀에 소속된다고 해보자.
 
@@ -82,7 +82,7 @@ name                    id (PK)
                         name
 ```
 
-### Team Entity
+#### Team Entity
 
 ```java
 @Entity
@@ -99,7 +99,7 @@ public class Team {
 }
 ```
 
-### Member Entity
+#### Member Entity
 
 ```java
 @Entity
@@ -137,7 +137,7 @@ team.getMembers(); // Team에 members 필드가 없으므로 불가능
 
 ---
 
-## 4. 양방향 연관관계
+### 4. 양방향 연관관계
 
 Team에서도 소속 회원 목록을 조회하고 싶다면 `@OneToMany`를 추가한다.
 
@@ -176,7 +176,7 @@ DB:   members.team_id → teams.id
 
 ---
 
-## 5. 연관관계의 주인
+### 5. 연관관계의 주인
 
 객체에는 `Member.team`과 `Team.members`라는 참조가 두 개지만, DB 외래키는 `members.team_id` 하나다.
 
@@ -204,7 +204,7 @@ private Team team;
              // ↑ 이 필드명
 ```
 
-### 외래키를 변경한다는 뜻
+#### 외래키를 변경한다는 뜻
 
 외래키를 변경한다는 것은 객체의 소속 관계를 바꾼다는 뜻이다.
 
@@ -233,7 +233,7 @@ team.getMembers().add(member); // 이것만으로는 부족함
 
 ---
 
-## 6. 양쪽 객체를 함께 변경하기
+### 6. 양쪽 객체를 함께 변경하기
 
 DB 외래키는 주인 쪽 값으로 변경되지만, 현재 메모리의 두 객체도 일치시키는 것이 안전하다.
 
@@ -269,7 +269,7 @@ members.team_id 변경
 
 ---
 
-## 7. 지연 로딩
+### 7. 지연 로딩
 
 지연 로딩(Lazy Loading)은 연관된 Entity를 처음부터 조회하지 않고 실제로 사용할 때 조회하는 방식이다.
 
@@ -296,9 +296,9 @@ member.getTeam() 사용
 
 ---
 
-## 8. `cascade`와 `orphanRemoval`
+### 8. `cascade`와 `orphanRemoval`
 
-### `cascade`
+#### `cascade`
 
 영속성 전이(Cascade)는 부모 Entity의 저장이나 삭제 작업을 연관된 Entity에도 전달한다.
 
@@ -309,7 +309,7 @@ private List<Member> members = new ArrayList<>();
 
 연관되어 있다는 이유만으로 무조건 사용하면 안 된다. 두 Entity의 생명주기를 함께 관리할 때 사용한다.
 
-### `orphanRemoval`
+#### `orphanRemoval`
 
 고아 객체 제거는 부모 컬렉션에서 제거된 자식 Entity를 DB에서도 삭제하는 기능이다.
 
@@ -322,7 +322,7 @@ private List<Member> members = new ArrayList<>();
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -337,7 +337,7 @@ private List<Member> members = new ArrayList<>();
 
 > Team과 Member의 양방향 관계에서는 외래키 `team_id`가 있는 `Member.team`이 연관관계의 주인이다.
 
-## 참고 자료
+### 참고 자료
 
 - [Jakarta Persistence 공식 명세](https://jakarta.ee/specifications/persistence/)
 - [Hibernate ORM User Guide](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html)

@@ -9,37 +9,37 @@ series: "Java 심화"
 part: 3
 ---
 
-# Java 심화 Part 3: 함수형 프로그래밍과 Lambda
+## Java 심화 Part 3: 함수형 프로그래밍과 Lambda
 
 - Java의 함수형 프로그래밍(Functional Programming)은 함수를 일급 객체(First-Class Citizen)로 취급, 불변성(immunability)과 순수 함수(Pure function)를 기반으로 프로그램을 작성하는 방식
 
-### First-Class Citizen 
+#### First-Class Citizen 
 - 함수를 변수에 저장, 전달, 반환할 수 있음
 - 함수 자체를 데이터처럼 다루는 방식
 
-### Pure Function 
+#### Pure Function 
 - 같은 입력 -> 같은 출력 
 - 외부 상태를 변경하지 않음 (Side Effect 없음)
 
-### Immmunability 
+#### Immmunability 
 - 함수 내부에서 외부 변수를 변경하지 않는 구조 
 - 병렬 처리에서 안정성과 예측 가능성이 높아진다. 
 
-### Declarative Style 
+#### Declarative Style 
 - 어떻게가 아니라 무엇을 할지에 집중
 - 시스템이 실행 흐름을 알아서 처리
 - Stream, Optional 등이 대표적인 예 
 
-## 일급 함수 
+### 일급 함수 
 > 함수를 값처럼 취급할 수 있는 언어 특성 
 
 1. 함수를 변수에 할당 
 
 def say_hello():
 print("Hello")
-# 함수를 변수에 할당
+## 함수를 변수에 할당
     say_hello_var = say_hello
-# 변수를 통해 함수 실행
+## 변수를 통해 함수 실행
 say_hello_var()
 
 2. 함수를 인자로 전달 
@@ -61,15 +61,15 @@ print(add(3))
 
 4. 객체의 속성properties 로 사용
 
-#### 딕셔너리의 key-value 쌍으로 함수를 정의
+##### 딕셔너리의 key-value 쌍으로 함수를 정의
 calculator = {
 "add": lambda a, b: a + b
 }
 
-#### 딕셔너리의 Key로 함수에 접근하여 실행
+##### 딕셔너리의 Key로 함수에 접근하여 실행
 print(calculator["add"](2, 3)) # 출력: 5
 
-## 순수 함수 Pure Function Lambda Expression
+### 순수 함수 Pure Function Lambda Expression
 동일한 입력에는 항상 동일한 출력을 반환, 함수 외부 변수의 샅애를 변경하지 않는 함수 
 
 - 비순수 함수 
@@ -104,7 +104,7 @@ print(square(4)) # 출력: 16
 
 - 클래스 기반 언어인 Java 환경에서 함수형 프로그램을 지원하기 위한 방식
 
-## 익명 클래스(Anonymus Class)란? 
+### 익명 클래스(Anonymus Class)란? 
 - 이름이 없는 클래스 
 - 한번만 사용할 목적으로 정의 
 - 클래스를 선언하면서 동시에 인스터스 생성
@@ -114,7 +114,7 @@ print(square(4)) # 출력: 16
 - 가독성 감소
 - 함수 전달을 위한 최소 표현이 아님
 
-### 람다 표현식 Lamda Expression
+#### 람다 표현식 Lamda Expression
 - 익명 클래스를 간결하게 표현하기 위한 문법, 함수형 인터페이스를 인스턴스로 생성하는 가장 짧은 방식
 
 배경

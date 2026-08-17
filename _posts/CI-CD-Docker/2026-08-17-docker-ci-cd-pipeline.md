@@ -9,7 +9,7 @@ series: "Docker 기반 CI/CD"
 part: 2
 ---
 
-# Docker 기반 CI/CD
+## Docker 기반 CI/CD
 
 먼저 Docker 기반 배포의 전체 흐름을 살펴보자.
 
@@ -55,9 +55,9 @@ Source Code
 → Running Service
 ```
 
-## 1. CI와 CD 다시 구분하기
+### 1. CI와 CD 다시 구분하기
 
-### CI(Continuous Integration)
+#### CI(Continuous Integration)
 
 개발자가 작성한 코드를 지속적으로 통합하고 검증하는 과정이다.
 
@@ -71,7 +71,7 @@ Spring Boot 프로젝트라면 다음과 같은 작업을 수행할 수 있다.
 docker build -t myapp:1.0 .
 ```
 
-### CD(Continuous Delivery 또는 Deployment)
+#### CD(Continuous Delivery 또는 Deployment)
 
 **Continuous Delivery**는 배포 가능한 상태까지 자동화하고 실제 배포는 사람이 승인하는 방식이다.
 
@@ -97,7 +97,7 @@ git push
 
 간단히 정리하면 CI는 배포 가능한 결과물을 만들고, CD는 그 결과물을 실제 환경에 배포한다.
 
-## 2. Docker에서 CI/CD가 중요한 이유
+### 2. Docker에서 CI/CD가 중요한 이유
 
 서버에 직접 접속해서 코드를 받고 환경을 구성하면 개발 환경과 운영 환경의 차이로 문제가 생길 수 있다.
 
@@ -128,7 +128,7 @@ Application
 
 개발 및 검증 환경에서 확인한 이미지를 Production에서도 동일하게 실행할 수 있다.
 
-## 3. Docker Image와 Container
+### 3. Docker Image와 Container
 
 ```text
 Dockerfile
@@ -155,7 +155,7 @@ Class     → Docker Image
 Instance  → Docker Container
 ```
 
-## 4. Dockerfile
+### 4. Dockerfile
 
 Dockerfile은 Docker 이미지를 어떻게 만들지 선언하는 파일이다. Spring Boot라면 다음과 같이 작성할 수 있다.
 
@@ -181,7 +181,7 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 즉, Dockerfile을 보면 애플리케이션을 실행할 서버 환경이 어떻게 구성되는지 알 수 있다.
 
-## 5. Build Artifact
+### 5. Build Artifact
 
 Build Artifact는 소스 코드를 컴파일·테스트·패키징하는 과정에서 만들어지는 배포 가능한 결과물이다.
 
@@ -203,7 +203,7 @@ Source Code
 
 Docker 기반 시스템에서는 Docker 이미지를 최종 Release Artifact로 사용할 수 있다.
 
-## 6. Container Registry
+### 6. Container Registry
 
 Release Artifact인 Docker 이미지는 어딘가에 저장해야 한다. 이때 사용하는 저장소가 Container Registry다.
 
@@ -223,7 +223,7 @@ CI Server
 
 GitHub가 소스 코드 저장소라면 Registry는 Docker 이미지 저장소다.
 
-## 7. 실제 데이터 흐름
+### 7. 실제 데이터 흐름
 
 개발자가 Spring Boot 코드를 수정하고 Push하면 GitHub Actions가 CI를 실행한다.
 
@@ -270,7 +270,7 @@ User
 → Database
 ```
 
-## 8. Build Once, Deploy Many
+### 8. Build Once, Deploy Many
 
 CI/CD에서 중요한 원칙은 **한 번 빌드한 결과물을 여러 환경에 배포하는 것**이다.
 
@@ -293,7 +293,7 @@ Image: abc123
   └── Production
 ```
 
-## 9. 환경 설정 분리
+### 9. 환경 설정 분리
 
 개발, Staging, Production의 DB 주소와 설정은 서로 다르다. 이미지는 동일하게 유지하고 환경별 값은 컨테이너 실행 시 외부에서 주입한다.
 
@@ -316,7 +316,7 @@ docker run \
 
 이미지와 환경 설정을 분리해서 생각해야 한다.
 
-## 10. Secret은 이미지에 넣지 않기
+### 10. Secret은 이미지에 넣지 않기
 
 다음처럼 비밀번호나 API Key를 이미지에 넣으면 이미지를 받은 사람이 값을 확인할 수 있다.
 
@@ -340,7 +340,7 @@ Secret Storage
 → Container Environment
 ```
 
-## 11. Image Tagging
+### 11. Image Tagging
 
 `myapp:latest`만 사용하면 현재 실행 중인 이미지가 정확히 어떤 버전인지 추적하기 어렵다.
 

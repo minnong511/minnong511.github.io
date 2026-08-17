@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 5
 ---
 
-# Spring 기초 Part 5: EntityManager와 영속성 컨텍스트
+## Spring 기초 Part 5: EntityManager와 영속성 컨텍스트
 
 > EntityManager는 Entity를 영속성 컨텍스트에서 관리하고, 데이터베이스 작업을 JPA 구현체에 요청하는 핵심 인터페이스다.
 
@@ -25,7 +25,7 @@ EntityManager
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -41,7 +41,7 @@ EntityManager
 
 ---
 
-## 2. EntityManager가 하는 일
+### 2. EntityManager가 하는 일
 
 EntityManager의 대표 메서드는 다음과 같다.
 
@@ -91,7 +91,7 @@ Spring Data JPA의 `JpaRepository`도 내부적으로 EntityManager를 사용한
 
 ---
 
-## 3. Entity의 네 가지 상태
+### 3. Entity의 네 가지 상태
 
 | 상태 | 의미 |
 |---|---|
@@ -100,7 +100,7 @@ Spring Data JPA의 `JpaRepository`도 내부적으로 EntityManager를 사용한
 | 준영속(Detached) | 한때 관리됐지만 현재는 분리된 상태 |
 | 삭제(Removed) | 삭제하도록 등록된 상태 |
 
-### 비영속
+#### 비영속
 
 ```java
 User user = new User("민형", "min@example.com");
@@ -114,7 +114,7 @@ Java 메모리: User 객체 있음
 Database: 저장되지 않음
 ```
 
-### 영속
+#### 영속
 
 ```java
 entityManager.persist(user);
@@ -128,7 +128,7 @@ User user = entityManager.find(User.class, 1L);
 
 영속 상태가 되면 JPA가 객체의 변경을 추적한다.
 
-### 준영속
+#### 준영속
 
 ```java
 entityManager.detach(user);
@@ -140,7 +140,7 @@ entityManager.detach(user);
 user.changeName("민농"); // 자동 UPDATE 대상이 아님
 ```
 
-### 삭제
+#### 삭제
 
 ```java
 entityManager.remove(user);
@@ -163,7 +163,7 @@ flowchart LR
 
 ---
 
-## 4. 1차 캐시와 동일성 보장
+### 4. 1차 캐시와 동일성 보장
 
 영속성 컨텍스트는 관리 중인 Entity를 기본키 기준으로 1차 캐시에 보관한다.
 
@@ -195,7 +195,7 @@ System.out.println(user1 == user2); // true
 
 ---
 
-## 5. 변경 감지
+### 5. 변경 감지
 
 변경 감지(Dirty Checking)는 영속 상태의 Entity가 변경됐는지 확인하여 `UPDATE` SQL을 만드는 기능이다.
 
@@ -228,7 +228,7 @@ WHERE id = 1;
 
 ---
 
-## 6. 쓰기 지연
+### 6. 쓰기 지연
 
 JPA는 쓰기 SQL을 준비해두었다가 flush 시점에 DB로 전달할 수 있다.
 
@@ -250,7 +250,7 @@ commit         → 트랜잭션 확정
 
 ---
 
-## 7. `flush()`와 `commit()`의 차이
+### 7. `flush()`와 `commit()`의 차이
 
 ```java
 entityManager.flush();
@@ -286,7 +286,7 @@ JPQL 쿼리를 실행하기 전에 조회 결과의 일관성을 맞추기 위�
 
 ---
 
-## 8. `merge()` 주의점
+### 8. `merge()` 주의점
 
 `merge()`는 전달받은 준영속 객체 자체를 다시 영속 상태로 바꾸는 메서드가 아니다.
 
@@ -315,7 +315,7 @@ public void changeName(Long id, String newName) {
 
 ---
 
-## 9. 실제 Service 실행 흐름
+### 9. 실제 Service 실행 흐름
 
 ```java
 @Transactional
@@ -339,7 +339,7 @@ public void updateUser(Long id, String newName) {
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -353,7 +353,7 @@ public void updateUser(Long id, String newName) {
 
 > EntityManager의 핵심은 SQL 메서드를 대신 제공하는 것보다 Entity의 생명주기와 상태를 관리하는 데 있다.
 
-## 참고 자료
+### 참고 자료
 
 - [Jakarta Persistence 공식 명세](https://jakarta.ee/specifications/persistence/)
 - [Hibernate ORM User Guide](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html)

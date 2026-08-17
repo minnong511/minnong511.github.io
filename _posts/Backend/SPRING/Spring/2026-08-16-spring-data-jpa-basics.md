@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 4
 ---
 
-# Spring 기초 Part 4: JPA, Entity와 Repository
+## Spring 기초 Part 4: JPA, Entity와 Repository
 
 > JPA는 자바 객체와 데이터베이스 테이블을 매핑하여 객체 중심으로 데이터를 다룰 수 있게 해주는 자바 표준이다.
 
@@ -31,7 +31,7 @@ Database
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -49,7 +49,7 @@ Database
 
 ---
 
-## 2. ORM은 왜 필요한가
+### 2. ORM은 왜 필요한가
 
 자바는 객체를 사용하고 관계형 데이터베이스는 테이블을 사용한다.
 
@@ -79,7 +79,7 @@ ORM이 SQL 지식을 없애주는 것은 아니다. 생성되는 SQL과 데이�
 
 ---
 
-## 3. JPA, Hibernate, Spring Data JPA의 차이
+### 3. JPA, Hibernate, Spring Data JPA의 차이
 
 세 단어는 같은 뜻이 아니다.
 
@@ -105,7 +105,7 @@ JDBC가 DB에 SQL 전달
 
 ---
 
-## 4. Entity 만들기
+### 4. Entity 만들기
 
 ```java
 import jakarta.persistence.Column;
@@ -146,7 +146,7 @@ Entity 클래스에는 다음 조건이 필요하다.
 - JPA가 사용할 `public` 또는 `protected` 기본 생성자가 필요하다.
 - Entity 클래스 자체를 `final`로 선언하지 않는다.
 
-### 주요 어노테이션
+#### 주요 어노테이션
 
 | 어노테이션 | 역할 |
 |---|---|
@@ -158,7 +158,7 @@ Entity 클래스에는 다음 조건이 필요하다.
 | `@Enumerated` | Enum을 저장할 방식 지정 |
 | `@Transient` | DB 컬럼과 매핑하지 않을 필드 지정 |
 
-### `@GeneratedValue`
+#### `@GeneratedValue`
 
 ```java
 @Id
@@ -168,7 +168,7 @@ private Long id;
 
 `IDENTITY` 전략은 기본키 생성을 데이터베이스에 맡긴다. 새로운 사용자를 만들 때 개발자가 `id`를 직접 지정하지 않는다.
 
-### `@Column`
+#### `@Column`
 
 | 속성 | 의미 | 예시 |
 |---|---|---|
@@ -181,7 +181,7 @@ private Long id;
 
 ---
 
-## 5. Repository 만들기
+### 5. Repository 만들기
 
 Spring Data JPA의 `JpaRepository`를 상속하면 기본 CRUD 기능을 사용할 수 있다.
 
@@ -218,9 +218,9 @@ List<User> findByNameContaining(String keyword);
 
 ---
 
-## 6. 사용자 저장 흐름
+### 6. 사용자 저장 흐름
 
-### Service
+#### Service
 
 ```java
 @Service
@@ -267,7 +267,7 @@ VALUES ('민형', 'min@example.com');
 
 ---
 
-## 7. JPA와 JDBC 비교
+### 7. JPA와 JDBC 비교
 
 | JPA | JDBC |
 |---|---|
@@ -294,7 +294,7 @@ JPA / Hibernate
 
 ---
 
-## 8. H2 연결 설정
+### 8. H2 연결 설정
 
 H2는 학습과 테스트에 많이 사용하는 가벼운 관계형 데이터베이스다.
 
@@ -329,7 +329,7 @@ spring:
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -342,7 +342,7 @@ spring:
 
 > JPA를 사용한다는 것은 SQL을 몰라도 된다는 뜻이 아니라, 객체와 테이블의 매핑을 이용해 반복적인 데이터 접근 코드를 줄인다는 뜻이다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Data JPA 공식 문서](https://docs.spring.io/spring-data/jpa/reference/)
 - [Jakarta Persistence 공식 명세](https://jakarta.ee/specifications/persistence/)

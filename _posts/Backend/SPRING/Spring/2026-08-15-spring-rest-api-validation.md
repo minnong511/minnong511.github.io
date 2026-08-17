@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 3
 ---
 
-# Spring 기초 Part 3: REST API 요청값과 입력값 검증
+## Spring 기초 Part 3: REST API 요청값과 입력값 검증
 
 > Controller는 HTTP 요청값을 자바 값이나 객체로 변환하고, 규칙에 맞는지 검증한 뒤 Service에 전달한다.
 
@@ -27,7 +27,7 @@ Service
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -43,7 +43,7 @@ Service
 
 ---
 
-## 2. HTTP 요청값을 받는 세 가지 방법
+### 2. HTTP 요청값을 받는 세 가지 방법
 
 | 어노테이션 | 값을 가져오는 위치 | 예시 |
 |---|---|---|
@@ -51,7 +51,7 @@ Service
 | `@RequestParam` | Query String | `/api/users?name=민형`의 `name` |
 | `@RequestBody` | HTTP 요청 본문 | JSON 회원가입 정보 |
 
-### `@PathVariable`
+#### `@PathVariable`
 
 특정 자원을 식별할 때 사용한다.
 
@@ -66,7 +66,7 @@ public UserResponse getUser(@PathVariable Long id) {
 GET /api/users/1
 ```
 
-### `@RequestParam`
+#### `@RequestParam`
 
 검색, 필터, 정렬처럼 선택적인 조건을 전달할 때 자주 사용한다.
 
@@ -82,7 +82,7 @@ public List<UserResponse> searchUsers(
 GET /api/users?name=민형
 ```
 
-### `@RequestBody`
+#### `@RequestBody`
 
 JSON 같은 요청 본문을 자바 객체로 변환할 때 사용한다.
 
@@ -105,7 +105,7 @@ Spring MVC와 Jackson이 JSON을 `UserCreateRequest` 객체로 변환한다.
 
 ---
 
-## 3. Entity 대신 요청 DTO를 사용한다
+### 3. Entity 대신 요청 DTO를 사용한다
 
 요청 JSON을 Entity로 바로 받으면 API 입력 구조와 DB 구조가 강하게 연결된다.
 
@@ -144,7 +144,7 @@ JSON
 
 ---
 
-## 4. Bean Validation
+### 4. Bean Validation
 
 Bean Validation은 어노테이션으로 입력값 규칙을 선언하는 표준이다. Spring Boot 3 계열에서는 일반적으로 `jakarta.validation` 패키지를 사용한다.
 
@@ -157,7 +157,7 @@ Bean Validation은 어노테이션으로 입력값 규칙을 선언하는 표준
 </dependency>
 ```
 
-### 자주 사용하는 검증 어노테이션
+#### 자주 사용하는 검증 어노테이션
 
 | 어노테이션 | 검증 내용 | 적용 예시 |
 |---|---|---|
@@ -195,7 +195,7 @@ public record UserCreateRequest(
 
 ---
 
-## 5. `@Valid`로 검증 실행하기
+### 5. `@Valid`로 검증 실행하기
 
 DTO에 검증 어노테이션만 붙이면 끝이 아니다. Controller 매개변수에 `@Valid`를 붙여 검증을 실행한다.
 
@@ -244,7 +244,7 @@ flowchart TD
 
 ---
 
-## 6. 검증 오류 응답 통일하기
+### 6. 검증 오류 응답 통일하기
 
 `@RestControllerAdvice`를 사용하면 여러 Controller의 예외를 한곳에서 처리할 수 있다.
 
@@ -281,7 +281,7 @@ public class GlobalExceptionHandler {
 
 ---
 
-## 7. 직접 요청해보기
+### 7. 직접 요청해보기
 
 ```bash
 curl -i -X POST 'http://localhost:8080/api/users' \
@@ -302,7 +302,7 @@ curl -i -X POST 'http://localhost:8080/api/users' \
 
 ---
 
-## 8. 형식 검증과 비즈니스 검증
+### 8. 형식 검증과 비즈니스 검증
 
 `@Valid`는 값의 기본 형식을 검사하는 데 적합하다.
 
@@ -341,7 +341,7 @@ public UserResponse createUser(UserCreateRequest request) {
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 핵심 내용 |
 |---|---|
@@ -354,7 +354,7 @@ public UserResponse createUser(UserCreateRequest request) {
 
 > Controller는 요청값을 받고 검증하는 입구이며, 실제 비즈니스 규칙은 Service에 맡긴다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Framework Validation 공식 문서](https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html)
 - [Spring Framework Web MVC 공식 문서](https://docs.spring.io/spring-framework/reference/web/webmvc.html)

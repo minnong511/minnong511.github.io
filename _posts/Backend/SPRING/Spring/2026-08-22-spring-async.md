@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 10
 ---
 
-# Spring 기초 Part 10: 비동기 처리와 `@Async`
+## Spring 기초 Part 10: 비동기 처리와 `@Async`
 
 > 비동기 처리는 작업의 완료를 기다리는 대신 다른 실행 흐름에 작업을 맡기고, 호출한 쪽은 다음 작업을 진행하는 방식이다.
 
@@ -37,7 +37,7 @@ part: 10
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -54,7 +54,7 @@ part: 10
 
 ---
 
-## 2. `@Async` 활성화
+### 2. `@Async` 활성화
 
 Spring에서 `@Async`를 사용하려면 비동기 실행 기능을 활성화한다.
 
@@ -85,7 +85,7 @@ TaskExecutor
 
 ---
 
-## 3. 가장 간단한 `@Async`
+### 3. 가장 간단한 `@Async`
 
 ```java
 @Service
@@ -140,7 +140,7 @@ sequenceDiagram
 
 ---
 
-## 4. 결과가 필요한 경우
+### 4. 결과가 필요한 경우
 
 결과가 필요하다면 `CompletableFuture`를 반환할 수 있다.
 
@@ -170,7 +170,7 @@ String result = future.join(); // 이 지점에서 완료까지 대기
 
 ---
 
-## 5. Thread Pool 설정
+### 5. Thread Pool 설정
 
 운영 환경에서는 작업량에 맞는 Executor를 명시적으로 설정하는 것이 좋다.
 
@@ -212,7 +212,7 @@ Thread를 많이 만들면 무조건 빨라지는 것이 아니다. CPU, 메모�
 
 ---
 
-## 6. 자기 호출 문제
+### 6. 자기 호출 문제
 
 `@Async`도 기본적으로 Proxy를 통해 동작한다.
 
@@ -244,9 +244,9 @@ UserService
 
 ---
 
-## 7. 예외 처리
+### 7. 예외 처리
 
-### `CompletableFuture` 반환
+#### `CompletableFuture` 반환
 
 비동기 결과를 통해 예외를 처리할 수 있다.
 
@@ -258,7 +258,7 @@ reportService.createReport(userId)
         });
 ```
 
-### `void` 반환
+#### `void` 반환
 
 `void` 메서드에서 발생한 예외는 호출자에게 직접 전달할 수 없다. 기본적으로 로그에 남을 수 있으며, 필요하면 `AsyncUncaughtExceptionHandler`를 설정한다.
 
@@ -276,7 +276,7 @@ public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
 
 ---
 
-## 8. 트랜잭션과 `@Async`
+### 8. 트랜잭션과 `@Async`
 
 일반적인 Spring 트랜잭션은 현재 Thread에 연결된다. 따라서 호출자 Thread의 트랜잭션이 새 비동기 Thread로 자동 전달되지 않는다.
 
@@ -302,7 +302,7 @@ public void register(User user) {
 
 ---
 
-## 9. 언제 사용하면 좋은가
+### 9. 언제 사용하면 좋은가
 
 | 적합한 작업 | 주의할 작업 |
 |---|---|
@@ -315,7 +315,7 @@ public void register(User user) {
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -329,6 +329,6 @@ public void register(User user) {
 
 > `@Async`의 핵심은 작업을 무조건 빠르게 만드는 것이 아니라, 기다리는 작업을 별도 실행 흐름에 맡기는 것이다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Framework Task Execution and Scheduling](https://docs.spring.io/spring-framework/reference/integration/scheduling.html)

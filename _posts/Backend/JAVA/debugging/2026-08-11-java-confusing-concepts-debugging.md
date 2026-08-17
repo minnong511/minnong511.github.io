@@ -9,9 +9,9 @@ series: "Java 디버깅"
 part: 1
 ---
 
-# Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념
+## Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념
 
-## 1. 클래스와 객체 
+### 1. 클래스와 객체 
 
 ```java
 User user = new User();
@@ -26,7 +26,7 @@ User user = new User();
 
 > User 클래스를 기반으로 새로운 객체를 생성ㅅ, 그 객체의 참조를 user 변수에 저장한다. 
 
-## 2. 생성자와 This 
+### 2. 생성자와 This 
 
 ```java
 class User {
@@ -67,7 +67,7 @@ this.name = name
 
 User 객체를 생성하면 "민형"을 생성자의 argument로 전달하고, 생성자는 그 값을 현재 객체의 name 필드에 저장한다.
 
-## 3. 참조변수 
+### 3. 참조변수 
 
 JAVA 언어 수준에서 메모리 직접 다루는 것은 아니기 때문에, 
 
@@ -75,11 +75,11 @@ JAVA 언어 수준에서 메모리 직접 다루는 것은 아니기 때문에,
 
 - b에는 새로운 객체가 생성되는 것이 아니라 a가 가진 참조값이 복사되므로, a 와 b는 같은 User 객체를 가리킨다. 
 
-## 4. Static 
+### 4. Static 
 
 > static은 특정 객체가 아니라, 클래스 자체에 속하는 멤버를 정의하고, 모든 인스턴스가 하나의 값을 공유하도록 한다.
 
-## 5. Static final 
+### 5. Static final 
 
 > final 참조 변수는 다른 객체로 재할당할 수 없다.
 
@@ -118,7 +118,7 @@ name = "철수"
 
 > Static은 클래스 단위의 공유 여부를 결정하고, final은 변수에 저장된 값을 다시 할당할 수 있는지를 제한한다. 
 
-## 6. Package / import 
+### 6. Package / import 
 
 > package는 클래스의 소속과 이름 공간(namespace)를 정의하는 역할 
 
@@ -180,7 +180,7 @@ import com.practice.model.User;
 User user = new User();
 ```
 
-## 7. 추상화 
+### 7. 추상화 
 
 ```java
 Animal animal = new Animal();
@@ -208,7 +208,7 @@ Void eat() {
 
 Animal은 모든 동물이 sound() 기능을 가져야 한다는 공통 규칙만 추상적으로 정의하고, 실제 소리를 내는 방법은 자식 클래스가 구현하도록 해야한다.
 
-## 가장 많이 헷갈리는 용어
+### 가장 많이 헷갈리는 용어
 
 ```java
 class User {

@@ -9,9 +9,9 @@ series: "Java 심화"
 part: 1
 ---
 
-# Java 심화 Part 1: Reflection
+## Java 심화 Part 1: Reflection
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 단어 | 정의 |
 | --- | --- |
@@ -24,7 +24,7 @@ part: 1
 
 > Reflection은 프로그램이 실행 중에 클래스의 구조를 직접 조사하고, 필요하면 메서드를 호출하거나 필드 값을 읽고 수정할 수 있게 해주는 기능이다.
 
-## 2. Reflection으로 확인할 수 있는 것
+### 2. Reflection으로 확인할 수 있는 것
 
 Reflection을 사용하면 실행 중에 다음 정보를 확인할 수 있다.
 
@@ -45,7 +45,7 @@ class User {
 }
 ```
 
-## 3. 클래스 정보 가져오기
+### 3. 클래스 정보 가져오기
 
 `User.class`로 `User` 클래스의 정보를 담은 `Class` 객체를 가져올 수 있다.
 
@@ -61,9 +61,9 @@ System.out.println(clazz.getName());
 
 `clazz`에는 `User` 객체 한 개의 데이터가 아니라 `User` 클래스 자체의 구조 정보가 들어 있다.
 
-## 4. 메서드와 필드 조회하기
+### 4. 메서드와 필드 조회하기
 
-### 메서드 조회
+#### 메서드 조회
 
 ```java
 Method[] methods = clazz.getDeclaredMethods();
@@ -77,7 +77,7 @@ for (Method method : methods) {
 출력: hello
 ```
 
-### 필드 조회
+#### 필드 조회
 
 ```java
 Field[] fields = clazz.getDeclaredFields();
@@ -93,7 +93,7 @@ for (Field field : fields) {
 
 `getDeclaredMethods()`와 `getDeclaredFields()`는 해당 클래스에 직접 선언된 메서드와 필드를 가져온다.
 
-## 5. 실행 중에 메서드 호출하기
+### 5. 실행 중에 메서드 호출하기
 
 Reflection을 사용하면 메서드 이름을 문자열로 찾아 실행할 수도 있다.
 
@@ -122,7 +122,7 @@ public class ReflectionExample {
 
 `getDeclaredMethod("hello")`로 메서드를 찾고, `invoke(user)`로 `user` 객체에서 그 메서드를 실행한다.
 
-## 6. private 필드 접근
+### 6. private 필드 접근
 
 Reflection을 사용하면 `private` 필드에도 접근을 시도할 수 있다.
 
@@ -151,7 +151,7 @@ public class ReflectionExample {
 
 다만 `setAccessible(true)`는 캡슐화를 우회하는 기능이다. Java 모듈 환경에서는 접근이 제한될 수도 있으므로, 일반 애플리케이션 코드에서 무분별하게 사용하면 안 된다.
 
-## 7. Spring에서 Reflection을 사용하는 이유
+### 7. Spring에서 Reflection을 사용하는 이유
 
 Spring 같은 프레임워크는 실행 중에 클래스를 조사해야 한다.
 
@@ -184,7 +184,7 @@ class OrderService {
 }
 ```
 
-## 8. 사용할 때 주의할 점
+### 8. 사용할 때 주의할 점
 
 - 일반 코드보다 느릴 수 있다.
 - 컴파일러가 확인해 주는 타입 안정성이 약해질 수 있다.
@@ -193,7 +193,7 @@ class OrderService {
 
 Spring, Hibernate, Jackson, 테스트 프레임워크처럼 클래스 구조를 자동으로 분석해야 하는 라이브러리와 프레임워크에서 Reflection을 많이 사용한다.
 
-## 9. 요약
+### 9. 요약
 
 ```text
 Reflection

@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 11
 ---
 
-# Spring 기초 Part 11: Actuator와 애플리케이션 모니터링
+## Spring 기초 Part 11: Actuator와 애플리케이션 모니터링
 
 > Spring Boot Actuator는 실행 중인 애플리케이션의 상태와 성능 지표를 확인하고 관리할 수 있도록 운영용 엔드포인트를 제공한다.
 
@@ -27,7 +27,7 @@ Actuator와 Metrics는 이런 질문에 답할 수 있는 정보를 제공한다
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -42,7 +42,7 @@ Actuator와 Metrics는 이런 질문에 답할 수 있는 정보를 제공한다
 
 ---
 
-## 2. 의존성 추가
+### 2. 의존성 추가
 
 Maven 프로젝트에 Actuator Starter를 추가한다.
 
@@ -76,7 +76,7 @@ Prometheus가 주기적으로 수집
 
 ---
 
-## 3. 주요 엔드포인트
+### 3. 주요 엔드포인트
 
 | 기능 | 설명 | 엔드포인트 |
 |---|---|---|
@@ -95,7 +95,7 @@ Prometheus가 주기적으로 수집
 
 ---
 
-## 4. Health Check
+### 4. Health Check
 
 ```bash
 curl 'http://localhost:8080/actuator/health'
@@ -129,7 +129,7 @@ management:
 
 ---
 
-## 5. Metrics
+### 5. Metrics
 
 Metrics Endpoint를 노출한 뒤 사용 가능한 지표 이름을 확인할 수 있다.
 
@@ -158,7 +158,7 @@ Metrics는 한 번 확인하는 값보다 시간에 따른 변화와 평소 기�
 
 ---
 
-## 6. Prometheus 연동
+### 6. Prometheus 연동
 
 Prometheus Registry 의존성을 추가하고 Endpoint를 노출하면 다음 주소에서 Metrics를 확인할 수 있다.
 
@@ -192,7 +192,7 @@ Spring Boot
 
 ---
 
-## 7. 필요한 엔드포인트만 노출하기
+### 7. 필요한 엔드포인트만 노출하기
 
 학습 환경에서 `health`, `info`, `metrics`, `prometheus`만 노출하는 예다.
 
@@ -224,7 +224,7 @@ management:
 
 ---
 
-## 8. 관리 포트 분리
+### 8. 관리 포트 분리
 
 Actuator를 애플리케이션과 다른 포트에서 실행할 수도 있다.
 
@@ -255,7 +255,7 @@ management:
 
 ---
 
-## 9. 운영 환경 체크리스트
+### 9. 운영 환경 체크리스트
 
 | 확인 항목 | 이유 |
 |---|---|
@@ -270,7 +270,7 @@ Actuator는 정보를 제공하는 도구다. 장애 대응을 자동화하려�
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -283,7 +283,7 @@ Actuator는 정보를 제공하는 도구다. 장애 대응을 자동화하려�
 
 > Actuator의 핵심은 모든 Endpoint를 여는 것이 아니라, 운영에 필요한 정보를 안전하게 노출하고 지속적으로 관찰하는 것이다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Boot Actuator Endpoint 공식 문서](https://docs.spring.io/spring-boot/reference/actuator/endpoints.html)
 - [Spring Boot Actuator Metrics 공식 문서](https://docs.spring.io/spring-boot/reference/actuator/metrics.html)

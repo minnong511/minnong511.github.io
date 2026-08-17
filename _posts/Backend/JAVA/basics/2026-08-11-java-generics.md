@@ -9,9 +9,9 @@ series: "Java 기초"
 part: 4
 ---
 
-# Java 기초 Part 4: 제네릭
+## Java 기초 Part 4: 제네릭
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 단어 | 정의 | 예시 |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ part: 4
 
 > 제네릭은 클래스나 메서드가 다룰 데이터 타입을 나중에 지정할 수 있게 해주는 기능이다.
 
-## 2. 제네릭의 기본 사용법
+### 2. 제네릭의 기본 사용법
 
 `ArrayList<String>`은 이 리스트에 `String` 타입만 저장하겠다는 뜻이다.
 
@@ -37,7 +37,7 @@ history.add(100);            // 컴파일 오류
 
 여기서 `String`은 타입 인자다. `history.add(100)`은 `String` 전용 리스트에 `Integer`를 넣으려고 했기 때문에 컴파일 오류가 발생한다.
 
-## 3. 제네릭이 없던 방식
+### 3. 제네릭이 없던 방식
 
 타입 인자를 지정하지 않은 `ArrayList`를 Raw Type이라고 한다.
 
@@ -66,9 +66,9 @@ String name = (String) list.get(1);
 
 이러한 문제를 방지하기 위해 제네릭을 사용한다.
 
-## 4. 제네릭의 장점
+### 4. 제네릭의 장점
 
-### 타입 안정성
+#### 타입 안정성
 
 ```java
 ArrayList<String> list = new ArrayList<>();
@@ -79,7 +79,7 @@ list.add(100);    // 컴파일 오류
 
 컴파일러는 처음부터 이 리스트가 `String`만 저장하는 곳이라는 사실을 알고 있다. 따라서 잘못된 타입을 실행 전에 차단한다. 이것이 타입 안정성이다.
 
-### 형변환 불필요 
+#### 형변환 불필요 
 
 제네릭이 없다면 값을 꺼낸 뒤 직접 형변환해야 한다.
 
@@ -97,7 +97,7 @@ String name = list.get(0);
 
 따라서 바로 `String` 변수로 받을 수 있다.
 
-### 여러 타입에 재사용
+#### 여러 타입에 재사용
 
 다음 `Box` 클래스는 `String`만 저장할 수 있다.
 
@@ -146,7 +146,7 @@ Integer number = numberBox.getValue();
 
 같은 `Box<T>` 코드를 `String`과 `Integer` 타입에 모두 재사용할 수 있다.
 
-## 5. Iterator와 제네릭
+### 5. Iterator와 제네릭
 
 ```java
 Iterator<String> iterator = history.iterator();
@@ -155,7 +155,7 @@ String record = iterator.next();
 
 `Iterator<String>`은 순회하면서 꺼내는 데이터가 `String`이라는 뜻이다. 따라서 `iterator.next()`의 반환값도 바로 `String`으로 받을 수 있다.
 
-## 6. 자주 사용하는 제네릭 타입
+### 6. 자주 사용하는 제네릭 타입
 
 - `List<String>`
 - `ArrayList<Integer>`
@@ -174,7 +174,7 @@ Key   → String
 Value → Integer
 ```
 
-## 7. 왜 기본형 대신 Wrapper Class를 사용할까?
+### 7. 왜 기본형 대신 Wrapper Class를 사용할까?
 
 제네릭의 타입 인자에는 기본형을 직접 사용할 수 없다.
 
@@ -197,7 +197,7 @@ boolean → Boolean
 char    → Character
 ```
 
-## 8. 결론
+### 8. 결론
 
 1. 타입 안정성
 

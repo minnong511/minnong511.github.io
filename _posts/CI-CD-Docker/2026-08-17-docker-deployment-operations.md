@@ -9,7 +9,7 @@ series: "Docker 기반 CI/CD"
 part: 3
 ---
 
-# 배포 후에도 끝은 아니다
+## 배포 후에도 끝은 아니다
 
 CI/CD를 처음 접하면 `docker run`이 성공한 것을 배포 성공으로 생각하기 쉽다. 하지만 컨테이너 프로세스가 실행됐더라도 Spring Boot 애플리케이션은 정상적으로 동작하지 않을 수 있다.
 
@@ -23,7 +23,7 @@ Deploy
 
 배포 이후에는 위와 같은 확인 과정이 필요하다.
 
-## 1. Health Check
+### 1. Health Check
 
 Spring Boot Actuator를 사용한다면 `/actuator/health` 엔드포인트로 애플리케이션 상태를 확인할 수 있다.
 
@@ -51,7 +51,7 @@ HTTP 요청
 
 따라서 단순히 컨테이너가 실행 중인지 확인하는 것보다 애플리케이션이 실제 요청을 처리할 수 있는지 검사하는 것이 중요하다.
 
-## 2. Rollback
+### 2. Rollback
 
 Health Check에서 문제가 발견되면 이전 정상 버전으로 되돌려야 한다. 이때 Docker 이미지의 버전 관리가 도움이 된다.
 
@@ -66,7 +66,7 @@ myapp:1.4.2 중지
 
 Registry에 이전 이미지가 남아 있으면 빠르게 Rollback할 수 있다. 따라서 운영 정책과 보관 기간을 정하지 않은 상태에서 이전 이미지를 무조건 삭제하면 안 된다.
 
-## 3. 컨테이너는 수정하지 않고 교체한다
+### 3. 컨테이너는 수정하지 않고 교체한다
 
 Docker의 중요한 철학 중 하나는 고장 난 컨테이너 내부를 직접 고치는 대신 새 이미지로 컨테이너를 교체하는 것이다.
 
@@ -89,7 +89,7 @@ Dockerfile 또는 설정 수정
 
 실행 중인 서버를 계속 수정하는 Mutable Server 방식보다, 변경 사항을 이미지에 반영해 통째로 교체하는 **Immutable Infrastructure** 방식에 가깝다.
 
-## 4. Production에서 컨테이너 교체하기
+### 4. Production에서 컨테이너 교체하기
 
 컨테이너 한 개만 운영한다면 다음 교체 과정에서 잠깐 서비스가 끊길 수 있다.
 
@@ -100,7 +100,7 @@ Old Container Stop
 
 서비스 중단을 줄이기 위해 Rolling, Blue-Green, Canary 같은 배포 전략을 사용한다.
 
-## 5. Rolling Deployment
+### 5. Rolling Deployment
 
 여러 서버 또는 컨테이너를 하나씩 새 버전으로 교체하는 방식이다.
 
@@ -113,7 +113,7 @@ Old Container Stop
 
 기존 인스턴스를 순차적으로 교체하므로 서비스 중단을 줄이고 리소스를 효율적으로 사용할 수 있다. Kubernetes에서 흔히 사용하는 방식이다.
 
-## 6. Blue-Green Deployment
+### 6. Blue-Green Deployment
 
 현재 운영 중인 Blue 환경 옆에 새 버전인 Green 환경을 별도로 만든다.
 
@@ -133,7 +133,7 @@ Users
 
 문제가 발생하면 트래픽을 다시 Blue로 돌릴 수 있어 Rollback이 빠르다. 다만 두 환경을 동시에 유지할 리소스가 필요하다.
 
-## 7. Canary Deployment
+### 7. Canary Deployment
 
 새 버전을 일부 사용자에게 먼저 제공하는 방식이다.
 
@@ -147,7 +147,7 @@ Canary 배포를 사용하는 이유는 모든 서버의 가용성을 높이기 
 
 대규모 서비스에서는 사용자 그룹, 지역 또는 트래픽 비율을 기준으로 점진적으로 범위를 넓힌다.
 
-## 8. CI/CD Pipeline의 Stage
+### 8. CI/CD Pipeline의 Stage
 
 실무에서는 Pipeline을 Stage 단위로 생각하면 이해하기 쉽다.
 
@@ -171,7 +171,7 @@ Monitoring
 
 이것이 Docker 기반 CI/CD의 전체 뼈대다.
 
-## 9. 배포 시스템에서 흐르는 것
+### 9. 배포 시스템에서 흐르는 것
 
 CI/CD 시스템에서는 다음 항목들이 각 단계를 거쳐 이동하거나 참조된다.
 
@@ -196,7 +196,7 @@ Container 삭제
 
 컨테이너를 삭제해도 데이터가 사라지지 않도록 DB는 Docker Volume이나 외부 데이터베이스를 사용한다.
 
-## 10. 운영에서는 Observability가 중요하다
+### 10. 운영에서는 Observability가 중요하다
 
 배포 이후에는 서비스가 정상적으로 동작하는지 지속해서 관찰해야 한다. 최소한 다음 정보를 확인할 필요가 있다.
 
@@ -215,7 +215,7 @@ Problem   → Fix
 git push  → 다시 CI
 ```
 
-## 11. DevOps는 하나의 Loop다
+### 11. DevOps는 하나의 Loop다
 
 ```text
 PLAN
@@ -231,7 +231,7 @@ PLAN
 
 Docker는 이 과정에서 Build, Release, Deploy, Operate를 연결해 주는 핵심 기술이다.
 
-## 12. Spring Boot 프로젝트에 적용한다면
+### 12. Spring Boot 프로젝트에 적용한다면
 
 ```text
 Spring Boot Source Code
@@ -270,7 +270,7 @@ Spring Boot Source Code
 | Health Check | 실제 서비스가 정상인지 검사 |
 | Rollback | 이전 정상 버전으로 복귀 |
 
-## 13. CI/CD를 공부할 때의 질문
+### 13. CI/CD를 공부할 때의 질문
 
 Workflow 문법만 외우기보다 다음 흐름을 이해하는 것이 중요하다.
 
@@ -295,7 +295,7 @@ Docker          = 이미지를 Container로 실행
 CI/CD           = 이 전체 이동과 검증을 자동화
 ```
 
-## 14. 다음 실습에서 확인할 것
+### 14. 다음 실습에서 확인할 것
 
 1. Spring Boot 애플리케이션 작성
 2. `./gradlew bootJar` 실행

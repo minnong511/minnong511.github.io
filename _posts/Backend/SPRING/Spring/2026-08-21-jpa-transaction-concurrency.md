@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 9
 ---
 
-# Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어
+## Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어
 
 > 트랜잭션은 여러 데이터베이스 작업을 하나의 성공 또는 실패 단위로 묶는 것이다.
 
@@ -28,7 +28,7 @@ part: 9
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -43,7 +43,7 @@ part: 9
 
 ---
 
-## 2. ACID 원칙
+### 2. ACID 원칙
 
 | 원칙 | 의미 | 쉬운 예시 |
 |---|---|---|
@@ -54,7 +54,7 @@ part: 9
 
 ---
 
-## 3. `@Transactional` 동작 원리
+### 3. `@Transactional` 동작 원리
 
 `@Transactional`은 Spring이 트랜잭션 경계를 관리하도록 지정하는 어노테이션이다.
 
@@ -104,7 +104,7 @@ COMMIT               ROLLBACK
 
 ---
 
-## 4. Service에 트랜잭션을 적용하는 이유
+### 4. Service에 트랜잭션을 적용하는 이유
 
 `JpaRepository`의 기본 저장, 수정, 삭제 메서드에도 트랜잭션이 적용되어 있다. `save()` 하나만 호출하는 작업은 자체 트랜잭션으로 실행될 수 있다.
 
@@ -127,7 +127,7 @@ public void transfer(Long fromId, Long toId, int amount) {
 
 ---
 
-## 5. 트랜잭션 범위는 짧게 유지한다
+### 5. 트랜잭션 범위는 짧게 유지한다
 
 트랜잭션 안에서 외부 API나 파일 작업을 오래 수행하면 DB Connection과 Lock을 오랫동안 점유할 수 있다.
 
@@ -153,7 +153,7 @@ DB 커밋과 외부 시스템 호출은 하나의 로컬 트랜잭션으로 원�
 
 ---
 
-## 6. `readOnly = true`
+### 6. `readOnly = true`
 
 클래스에 조회 전용 설정을 두고 쓰기 메서드에서 덮어쓸 수 있다.
 
@@ -180,7 +180,7 @@ public class UserService {
 
 ---
 
-## 7. flush와 commit
+### 7. flush와 commit
 
 | 구분 | 역할 |
 |---|---|
@@ -201,7 +201,7 @@ flush가 실행된 뒤에도 commit 전에 오류가 발생하면 rollback할 �
 
 ---
 
-## 8. 예외와 롤백 규칙
+### 8. 예외와 롤백 규칙
 
 Spring의 `@Transactional`은 기본적으로 `RuntimeException`과 `Error`가 메서드 밖으로 전달될 때 롤백한다.
 
@@ -229,7 +229,7 @@ public void process() {
 }
 ```
 
-### 예외를 메서드 안에서 잡으면
+#### 예외를 메서드 안에서 잡으면
 
 ```java
 @Transactional
@@ -247,7 +247,7 @@ public void process() {
 
 ---
 
-## 9. 트랜잭션 전파
+### 9. 트랜잭션 전파
 
 전파(Propagation)는 이미 트랜잭션이 있을 때 새로 호출된 메서드가 그 트랜잭션을 어떻게 사용할지 정하는 규칙이다.
 
@@ -256,7 +256,7 @@ public void process() {
 | `REQUIRED` | 기존 트랜잭션이 있으면 참여하고, 없으면 새로 만든다. | 대부분의 Service 로직 |
 | `REQUIRES_NEW` | 기존 트랜잭션을 일시 중단하고 독립된 새 트랜잭션을 만든다. | 독립적으로 저장할 감사 로그 |
 
-### `REQUIRED`
+#### `REQUIRED`
 
 ```java
 @Transactional
@@ -268,7 +268,7 @@ public void createOrder() {
 
 `paymentService.pay()`도 `REQUIRED`라면 바깥 트랜잭션에 참여한다. 내부 작업이 rollback-only로 표시되면 최종 커밋 시 `UnexpectedRollbackException`이 발생할 수 있다.
 
-### `REQUIRES_NEW`
+#### `REQUIRES_NEW`
 
 ```java
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -285,7 +285,7 @@ public void saveAuditLog(AuditLog log) {
 
 ---
 
-## 10. 동시성 문제
+### 10. 동시성 문제
 
 `@Transactional`은 작업 범위를 묶어주지만 모든 동시성 문제를 자동으로 해결하지는 않는다.
 
@@ -299,7 +299,7 @@ public void saveAuditLog(AuditLog log) {
 
 ---
 
-## 11. 격리 수준
+### 11. 격리 수준
 
 격리 수준은 다른 트랜잭션의 변경 내용을 어디까지 볼 수 있는지 정한다.
 
@@ -321,7 +321,7 @@ Spring의 `Isolation.DEFAULT`는 사용하는 DB의 기본 격리 수준을 따�
 
 ---
 
-## 12. 낙관적 락
+### 12. 낙관적 락
 
 낙관적 락은 충돌이 드물다고 가정하고 버전 값으로 수정 충돌을 감지한다.
 
@@ -370,7 +370,7 @@ B가 version = 1 조건으로 수정
 
 ---
 
-## 13. 비관적 락
+### 13. 비관적 락
 
 비관적 락은 충돌이 자주 발생한다고 가정하고 조회 시점에 DB Lock을 획득한다.
 
@@ -402,7 +402,7 @@ Lock의 실제 동작은 DB 종류와 격리 수준에 따라 달라질 수 있�
 
 ---
 
-## 14. 해결 방법 선택
+### 14. 해결 방법 선택
 
 | 해결 방법 | 적합한 상황 |
 |---|---|
@@ -425,7 +425,7 @@ WHERE id = 1
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -439,7 +439,7 @@ WHERE id = 1
 
 > `@Transactional`만 붙인다고 모든 문제가 해결되지는 않는다. 업무 단위, 롤백 규칙, 전파, 격리 수준과 동시성 제어 방법을 함께 선택해야 한다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Framework 선언적 트랜잭션 공식 문서](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html)
 - [Spring Framework 트랜잭션 전파 공식 문서](https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html)

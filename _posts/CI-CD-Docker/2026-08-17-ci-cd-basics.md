@@ -9,7 +9,7 @@ series: "Docker 기반 CI/CD"
 part: 1
 ---
 
-# CI/CD가 뭔가요?
+## CI/CD가 뭔가요?
 
 쉽게 말하면 코드를 GitHub에 올린 다음, 사람이 반복하던 검사와 배포를 자동화하는 것이다.
 
@@ -25,13 +25,13 @@ GitHub에 Push
 실제 서비스 동작 확인
 ```
 
-## 1. CI(Continuous Integration)
+### 1. CI(Continuous Integration)
 
 한국어로는 **지속적 통합**이다. 여러 사람이 작성한 코드나 새로 작성한 코드가 기존 프로젝트와 잘 합쳐지는지 자동으로 검사한다.
 
 현재 프로젝트인 Pi-monitor를 예로 들면 다음 작업이 CI에 해당한다.
 
-### Frontend
+#### Frontend
 
 ```bash
 npm ci
@@ -39,7 +39,7 @@ npm test
 npm run build
 ```
 
-### Backend
+#### Backend
 
 ```bash
 ./mvnw test
@@ -59,7 +59,7 @@ cd ../backend
 
 CI를 구성하면 GitHub가 별도의 실행 환경에서 이 명령들을 자동으로 실행한다.
 
-## 2. CD(Continuous Delivery 또는 Deployment)
+### 2. CD(Continuous Delivery 또는 Deployment)
 
 CD에는 두 가지 의미가 있다.
 
@@ -68,7 +68,7 @@ CD에는 두 가지 의미가 있다.
 
 배포 시스템을 처음 구성한다면 사람이 마지막으로 승인하는 Continuous Delivery 방식이 안전하다.
 
-### Continuous Delivery 예시
+#### Continuous Delivery 예시
 
 ```text
 main에 Push
@@ -77,7 +77,7 @@ main에 Push
 → 사람이 Deploy 버튼 클릭
 ```
 
-### Continuous Deployment 예시
+#### Continuous Deployment 예시
 
 ```text
 main에 Push
@@ -86,7 +86,7 @@ main에 Push
 → 컨테이너 재시작
 ```
 
-## 3. GitHub Actions
+### 3. GitHub Actions
 
 GitHub Actions는 GitHub에서 CI/CD 작업을 실행해 주는 기능이다. 저장소에 다음과 같은 Workflow 파일을 만든다.
 
@@ -135,7 +135,7 @@ jobs:
 
 이 파일을 Push하면 GitHub가 Ubuntu 가상 환경을 만들고 위 명령을 실행한다.
 
-## 4. 알아두면 좋은 용어
+### 4. 알아두면 좋은 용어
 
 | 용어 | 의미 |
 |---|---|
@@ -149,7 +149,7 @@ jobs:
 | Deploy | 완성된 프로그램을 실제 서버에 반영하는 작업 |
 | Rollback | 문제가 생겼을 때 이전 버전으로 복구하는 작업 |
 
-## 5. 내 프로젝트로 보는 CI/CD
+### 5. 내 프로젝트로 보는 CI/CD
 
 ```text
 GitHub Push
@@ -178,7 +178,7 @@ git pull
 ./scripts/pi-compose.sh up -d --build
 ```
 
-## 6. 추천 학습 순서
+### 6. 추천 학습 순서
 
 1. GitHub Actions로 프론트엔드 테스트와 빌드 자동화
 2. 백엔드 테스트와 빌드 추가
@@ -186,9 +186,9 @@ git pull
 4. Vercel 자동 배포 과정 이해
 5. 라즈베리파이 자동 배포 테스트
 
-## 7. 라즈베리파이 CD 방법
+### 7. 라즈베리파이 CD 방법
 
-### SSH로 배포
+#### SSH로 배포
 
 GitHub Actions가 라즈베리파이에 SSH로 접속해 배포 명령을 실행한다.
 
@@ -203,11 +203,11 @@ GitHub Actions
 
 다만 라즈베리파이를 외부에서 SSH로 접근할 수 있어야 한다.
 
-### Self-hosted Runner 사용
+#### Self-hosted Runner 사용
 
 라즈베리파이에 GitHub Actions Runner를 설치하면 GitHub가 보낸 작업을 라즈베리파이가 직접 실행한다. 외부 SSH 포트를 열 필요는 없지만, 공개 저장소나 신뢰할 수 없는 PR의 코드가 실행되지 않도록 주의해야 한다.
 
-### 이미지 기반 배포
+#### 이미지 기반 배포
 
 GitHub Actions가 Docker 이미지를 빌드해 Container Registry에 올리고, 라즈베리파이는 완성된 이미지만 내려받는다.
 

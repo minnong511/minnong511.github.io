@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 8
 ---
 
-# Spring 기초 Part 8: AOP와 공통 관심사 분리
+## Spring 기초 Part 8: AOP와 공통 관심사 분리
 
 > AOP는 여러 기능에서 반복되는 공통 관심사를 핵심 비즈니스 로직과 분리하는 프로그래밍 방식이다.
 
@@ -27,7 +27,7 @@ Service 메서드의 핵심 목적은 주문, 결제, 회원 조회 같은 업�
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 핵심 질문 |
 |---|---|---|
@@ -43,7 +43,7 @@ Spring AOP에서는 주로 메서드 실행이 Join Point가 된다.
 
 ---
 
-## 2. 전체 동작 구조
+### 2. 전체 동작 구조
 
 ```text
 Controller
@@ -78,7 +78,7 @@ flowchart TD
 
 ---
 
-## 3. Aspect 만들기
+### 3. Aspect 만들기
 
 AOP 기능을 사용하려면 일반적으로 AOP Starter를 추가한다.
 
@@ -107,7 +107,7 @@ public class LoggingAspect {
 
 ---
 
-## 4. Pointcut
+### 4. Pointcut
 
 Pointcut은 AOP를 적용할 메서드를 고르는 조건이다.
 
@@ -139,7 +139,7 @@ Pointcut 범위를 지나치게 넓게 지정하면 원하지 않는 메서드�
 
 ---
 
-## 5. Advice 종류
+### 5. Advice 종류
 
 | Advice | 실행 시점 |
 |---|---|
@@ -149,7 +149,7 @@ Pointcut 범위를 지나치게 넓게 지정하면 원하지 않는 메서드�
 | `@AfterThrowing` | Target 메서드에서 예외가 발생한 후 |
 | `@Around` | Target 메서드 전체를 감싸고 전후를 직접 제어 |
 
-### `@Before`
+#### `@Before`
 
 ```java
 @Before("serviceMethods()")
@@ -164,7 +164,7 @@ beforeAdvice()
 실제 메서드
 ```
 
-### `@AfterReturning`
+#### `@AfterReturning`
 
 ```java
 @AfterReturning(
@@ -178,7 +178,7 @@ public void afterReturning(JoinPoint joinPoint, Object result) {
 
 정상적으로 값을 반환했을 때만 실행된다.
 
-### `@AfterThrowing`
+#### `@AfterThrowing`
 
 ```java
 @AfterThrowing(
@@ -198,7 +198,7 @@ public void afterThrowing(
 
 ---
 
-## 6. `@Around`
+### 6. `@Around`
 
 `@Around`는 실제 메서드 실행 전체를 감싼다.
 
@@ -258,7 +258,7 @@ public Object wrongAdvice(ProceedingJoinPoint joinPoint) {
 
 ---
 
-## 7. 실제 로그 Aspect 예제
+### 7. 실제 로그 Aspect 예제
 
 ```java
 @Aspect
@@ -293,7 +293,7 @@ public class ServiceLoggingAspect {
 
 ---
 
-## 8. AOP와 Proxy의 역할 구분
+### 8. AOP와 Proxy의 역할 구분
 
 ```text
 AOP
@@ -320,9 +320,9 @@ Spring AOP가 Proxy를 사용한다고 해서 모든 AOP 구현이 Proxy만 사�
 
 ---
 
-## 9. 주의할 점
+### 9. 주의할 점
 
-### 자기 호출
+#### 자기 호출
 
 같은 객체의 내부 호출은 Spring Proxy를 다시 거치지 않으므로 Advice가 적용되지 않을 수 있다.
 
@@ -332,21 +332,21 @@ public void outer() {
 }
 ```
 
-### 중복 Proxy
+#### 중복 Proxy
 
 같은 기능에 수동 Proxy와 Spring AOP를 동시에 적용하면 로그나 실행 시간 측정이 두 번 실행될 수 있다.
 
-### 민감 정보 로그
+#### 민감 정보 로그
 
 메서드 인자를 전부 기록하면 비밀번호, 토큰, 개인정보가 로그에 남을 수 있다. 기록 대상을 제한해야 한다.
 
-### AOP에 업무 로직 넣지 않기
+#### AOP에 업무 로직 넣지 않기
 
 AOP는 반복되는 기반 기능에 적합하다. 주문 금액 계산 같은 핵심 업무 규칙은 Service나 도메인 객체에 둔다.
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -359,6 +359,6 @@ AOP는 반복되는 기반 기능에 적합하다. 주문 금액 계산 같은 �
 
 > AOP는 공통 기능을 핵심 로직에서 분리하고, Spring AOP는 Proxy를 이용해 선택한 메서드의 앞뒤에서 그 기능을 실행한다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Framework AOP 공식 문서](https://docs.spring.io/spring-framework/reference/core/aop.html)

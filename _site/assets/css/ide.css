@@ -755,7 +755,7 @@ html[data-font-size="large"] .ide-document-content { font-size: 19px; }
 .ide-palette-input-wrap input::placeholder { color: #aeb6c0; opacity: 1; }
 .ide-palette-input-wrap kbd { color: #8995a1; font-family: var(--ui-font); font-size: 10px; }
 .ide-palette-results { max-height: 350px; overflow: auto; padding: 10px 12px 4px; }
-.ide-palette-result { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; min-height: 39px; padding: 4px 10px; border: 1px solid transparent; background: transparent; color: #f4f7fa; cursor: pointer; font-family: var(--body-font); font-size: 17px; text-align: left; }
+.ide-palette-result { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; min-height: 39px; padding: 4px 10px; border: 1px solid transparent; background: transparent; color: #f4f7fa; cursor: pointer; font-family: var(--body-font); font-size: 17px; text-align: left; text-decoration: none; }
 .ide-palette-result:hover,
 .ide-palette-result.is-selected { border: 1px dotted #f59e0b; background: rgba(245, 158, 11, .08); color: #fff; }
 .ide-palette-result i { color: #55c2ff; font-size: 18px; }
@@ -764,7 +764,7 @@ html[data-font-size="large"] .ide-document-content { font-size: 19px; }
 .ide-palette-recent { max-height: 230px; overflow: auto; margin: 0 12px 12px; border-top: 1px solid #d7dce2; }
 .ide-palette-recent-heading { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 4px; color: #aeb6c0; font-family: var(--ui-font); font-size: 11px; }
 .ide-palette-recent-heading span:last-child { color: #aeb6c0; }
-.ide-palette-recent-item { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; min-height: 38px; padding: 3px 10px; border: 0; background: transparent; color: #f4f7fa; cursor: pointer; font-family: var(--body-font); font-size: 16px; text-align: left; }
+.ide-palette-recent-item { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; min-height: 38px; padding: 3px 10px; border: 0; background: transparent; color: #f4f7fa; cursor: pointer; font-family: var(--body-font); font-size: 16px; text-align: left; text-decoration: none; }
 .ide-palette-recent-item:hover { background: rgba(255, 255, 255, .06); }
 .ide-palette-recent-item i { color: #f59e0b; }
 .ide-palette-recent-item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

@@ -20,9 +20,24 @@
     selected = 0;
     input.value = query || "";
     render();
+    renderRecent();
     window.requestAnimationFrame(function () { input.focus(); input.select(); });
   }
   function closePalette() { palette.hidden = true; }
+  function resolveUrl(url) {
+    var baseurl = document.body.dataset.baseurl || "";
+    var value = String(url || "/");
+    if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(value)) return value;
+    if (value.charAt(0) !== "/") value = "/" + value;
+    if (baseurl && value !== baseurl && value.indexOf(baseurl + "/") !== 0) return baseurl + value;
+    return value;
+  }
+  function syncSelected() {
+    results.querySelectorAll(".ide-palette-result").forEach(function (item, index) {
+      item.classList.toggle("is-selected", index === selected);
+      item.setAttribute("aria-selected", String(index === selected));
+    });
+  }
   function loadPosts() {
     return fetch((document.body.dataset.baseurl || "") + "/search.json").then(function (response) { return response.ok ? response.json() : []; }).catch(function () { return []; });
   }
@@ -31,16 +46,22 @@
     var all = commands.slice();
     document.querySelectorAll(".ide-tree-folder").forEach(function (folder) { all.push({ title: folder.dataset.folderName, detail: "category", icon: "ri-folder-3-line", url: "/archive/?category=" + folder.dataset.category }); });
     try { JSON.parse(localStorage.getItem("ide-bookmarks") || "[]").forEach(function (item) { all.push({ title: item.title, detail: "bookmark", icon: "ri-bookmark-3-line", url: item.url }); }); } catch (error) {}
-    items = all.filter(function (item) { return !query || (item.title + " " + item.detail).toLowerCase().indexOf(query) !== -1; });
+    items = all.filter(function (item) { return !query || (item.title + " " + item.detail).toLowerCase().indexOf(query) !== -1; }).slice(0, 12);
     results.replaceChildren();
-    if (!items.length) { var empty = document.createElement("p"); empty.className = "ide-panel-empty"; empty.textContent = "검색 결과가 없습니다."; results.appendChild(empty); renderRecent(); return; }
-    items.slice(0, 12).forEach(function (item, index) {
-      var button = document.createElement("button"); button.type = "button"; button.className = "ide-palette-result" + (index === selected ? " is-selected" : ""); button.setAttribute("role", "option");
-      button.innerHTML = '<i class="' + item.icon + '" aria-hidden="true"></i><span></span><small></small>';
-      button.querySelector("span").textContent = item.title; button.querySelector("small").textContent = item.detail;
-      button.addEventListener("mouseenter", function () { selected = index; render(); }); button.addEventListener("click", function () { execute(item); }); results.appendChild(button);
+    if (!items.length) { var empty = document.createElement("p"); empty.className = "ide-panel-empty"; empty.textContent = "검색 결과가 없습니다."; results.appendChild(empty); return; }
+    items.forEach(function (item, index) {
+      var control = item.url ? document.createElement("a") : document.createElement("button");
+      if (item.url) control.href = resolveUrl(item.url);
+      else control.type = "button";
+      control.className = "ide-palette-result" + (index === selected ? " is-selected" : "");
+      control.setAttribute("role", "option");
+      control.setAttribute("aria-selected", String(index === selected));
+      control.innerHTML = '<i class="' + item.icon + '" aria-hidden="true"></i><span></span><small></small>';
+      control.querySelector("span").textContent = item.title; control.querySelector("small").textContent = item.detail;
+      control.addEventListener("mouseenter", function () { selected = index; syncSelected(); });
+      if (!item.url) control.addEventListener("click", function () { execute(item); });
+      results.appendChild(control);
     });
-    renderRecent();
   }
   function renderRecent() {
     if (!recentRoot) return;
@@ -52,18 +73,17 @@
     recent.forEach(function (item) { if (!unique.some(function (saved) { return saved.url === item.url; })) unique.push(item); });
     recentRoot.replaceChildren();
     unique.slice(0, 7).forEach(function (item) {
-      var button = document.createElement("button");
-      button.type = "button";
-      button.className = "ide-palette-recent-item";
-      button.innerHTML = '<i class="' + item.icon + '" aria-hidden="true"></i><span></span><small></small>';
-      button.querySelector("span").textContent = item.title;
-      button.querySelector("small").textContent = item.detail;
-      button.addEventListener("click", function () { window.location.href = (document.body.dataset.baseurl || "") + item.url; });
-      recentRoot.appendChild(button);
+      var link = document.createElement("a");
+      link.className = "ide-palette-recent-item";
+      link.href = resolveUrl(item.url);
+      link.innerHTML = '<i class="' + item.icon + '" aria-hidden="true"></i><span></span><small></small>';
+      link.querySelector("span").textContent = item.title;
+      link.querySelector("small").textContent = item.detail;
+      recentRoot.appendChild(link);
     });
   }
   function execute(item) {
-    if (item.url) { window.location.href = (document.body.dataset.baseurl || "") + item.url; return; }
+    if (item.url) { window.location.assign(resolveUrl(item.url)); return; }
     closePalette();
     if (item.action === "explorer") {
       var explorerButton = document.querySelector('[data-activity-panel="explorer"]');
@@ -86,13 +106,14 @@
     if ((event.metaKey || event.ctrlKey) && ["k", "p"].indexOf(event.key.toLowerCase()) !== -1) { event.preventDefault(); openPalette(""); return; }
     if (palette.hidden) return;
     if (event.key === "Escape") { event.preventDefault(); closePalette(); }
-    if (event.key === "ArrowDown") { event.preventDefault(); selected = Math.min(selected + 1, Math.max(0, items.length - 1)); render(); }
-    if (event.key === "ArrowUp") { event.preventDefault(); selected = Math.max(0, selected - 1); render(); }
+    if (event.key === "ArrowDown") { event.preventDefault(); selected = Math.min(selected + 1, Math.max(0, items.length - 1)); syncSelected(); }
+    if (event.key === "ArrowUp") { event.preventDefault(); selected = Math.max(0, selected - 1); syncSelected(); }
     if (event.key === "Enter" && items[selected]) { event.preventDefault(); execute(items[selected]); }
   });
   input.addEventListener("input", function () { selected = 0; render(); });
   palette.addEventListener("click", function (event) { if (event.target === palette) closePalette(); });
   loadPosts().then(function (posts) {
     posts.forEach(function (post) { commands.push({ title: post.title, detail: (post.categories || "posts") + " · " + (post.date || ""), icon: "ri-markdown-line", url: post.url }); });
+    if (!palette.hidden) render();
   });
 })();

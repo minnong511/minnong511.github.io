@@ -9,7 +9,7 @@ series: "Spring 기초"
 part: 7
 ---
 
-# Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+## Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
 
 > Proxy는 Client와 실제 객체 사이에서 요청을 먼저 받고, 실제 메서드 호출 전후에 부가 기능을 수행하는 대리 객체다.
 
@@ -23,7 +23,7 @@ Proxy를 이해하면 `@Transactional`, `@Async`, `@Cacheable`, Spring AOP가 �
 
 ---
 
-## 1. 먼저 알아둘 단어
+### 1. 먼저 알아둘 단어
 
 | 용어 | 정의 | 쉽게 말하면 |
 |---|---|---|
@@ -41,7 +41,7 @@ Proxy를 이해하면 `@Transactional`, `@Async`, `@Cacheable`, Spring AOP가 �
 
 ---
 
-## 2. Proxy 패턴의 기본 구조
+### 2. Proxy 패턴의 기본 구조
 
 Proxy와 실제 객체는 같은 인터페이스를 사용한다.
 
@@ -51,7 +51,7 @@ public interface UserService {
 }
 ```
 
-### 실제 객체
+#### 실제 객체
 
 ```java
 public class UserServiceImpl implements UserService {
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 }
 ```
 
-### Proxy 객체
+#### Proxy 객체
 
 ```java
 public class UserServiceProxy implements UserService {
@@ -87,7 +87,7 @@ public class UserServiceProxy implements UserService {
 }
 ```
 
-### Client
+#### Client
 
 ```java
 public class ProxyExample {
@@ -122,7 +122,7 @@ String result = target.findUserName(id);
 
 ---
 
-## 3. Proxy를 사용하는 이유
+### 3. Proxy를 사용하는 이유
 
 회원 조회 Service의 핵심 목적은 회원을 조회하는 것이다.
 
@@ -167,7 +167,7 @@ Proxy가 처리할 수 있는 기능은 다음과 같다.
 
 ---
 
-## 4. Bean과 Proxy의 관계
+### 4. Bean과 Proxy의 관계
 
 Bean은 Spring Container가 관리하는 객체다.
 
@@ -216,7 +216,7 @@ Proxy가 커밋 또는 롤백
 
 ---
 
-## 5. Spring의 동적 Proxy
+### 5. Spring의 동적 Proxy
 
 Spring은 실행 시점에 Proxy 객체를 자동으로 만들 수 있다.
 
@@ -231,7 +231,7 @@ Spring Boot에서는 클래스 기반 Proxy가 널리 사용되지만, 실제 �
 
 ---
 
-## 6. `@Transactional` 호출 흐름
+### 6. `@Transactional` 호출 흐름
 
 ```java
 @Transactional
@@ -262,7 +262,7 @@ flowchart TD
 
 ---
 
-## 7. 자기 호출 문제
+### 7. 자기 호출 문제
 
 Spring Proxy는 **Proxy를 거쳐 들어오는 호출**을 가로챈다.
 
@@ -326,7 +326,7 @@ public class OrderService {
 
 ---
 
-## 8. Proxy와 AOP의 차이
+### 8. Proxy와 AOP의 차이
 
 | 구분 | 역할 |
 |---|---|
@@ -338,7 +338,7 @@ public class OrderService {
 
 ---
 
-## 핵심 정리
+### 핵심 정리
 
 | 개념 | 한 줄 정리 |
 |---|---|
@@ -351,6 +351,6 @@ public class OrderService {
 
 > Proxy의 핵심은 실제 업무 코드를 크게 바꾸지 않고 메서드 호출 앞뒤에 공통 기능을 추가하는 것이다.
 
-## 참고 자료
+### 참고 자료
 
 - [Spring Framework AOP Proxying Mechanisms](https://docs.spring.io/spring-framework/reference/core/aop/proxying.html)

@@ -3,7 +3,7 @@ title: "Socket이란 무엇인가"
 categories: [Backend, Network]
 ---
 
-# Socket이란 무엇인가
+## Socket이란 무엇인가
 
 소켓(Socket)은 프로그램이 네트워크를 통해 다른 프로그램과 데이터를 주고받을 수 있게 해주는 통신 창구입니다.
 
@@ -11,7 +11,7 @@ categories: [Backend, Network]
 
 > IP 주소가 건물의 주소라면, 포트 번호는 건물 안의 특정 방 번호이고, 소켓은 그 방에서 실제로 대화하기 위한 연결 통로입니다.
 
-## 공부에 필요한 핵심 용어
+### 공부에 필요한 핵심 용어
 
 | 용어 | 정의 | 쉬운 예시 |
 |---|---|---|
@@ -34,7 +34,7 @@ categories: [Backend, Network]
 | `accept()` | 연결 요청을 기다리다가 연결되면 통신용 소켓을 반환하는 메서드 | 대기 중인 손님을 맞이해 자리를 안내하는 동작 |
 | 파일 디스크립터 | 운영체제가 소켓 같은 입출력 자원에 부여하는 식별 번호 | 운영체제가 열린 통신 통로를 관리하기 위한 번호 |
 
-## 소켓 통신에 사용되는 주소
+### 소켓 통신에 사용되는 주소
 
 소켓 연결은 보통 다음 세 가지 정보로 대상을 구분합니다.
 
@@ -52,7 +52,7 @@ TCP + localhost + 8080
 | 호스트 주소 | 어느 컴퓨터에 연결할지 결정 | `localhost`, `192.168.0.10` |
 | 포트 번호 | 그 컴퓨터의 어느 프로그램에 연결할지 결정 | `8080` |
 
-## 클라이언트와 서버의 연결 구조
+### 클라이언트와 서버의 연결 구조
 
 서버는 먼저 서버 소켓을 만들고 특정 포트에서 연결 요청을 기다립니다. 클라이언트가 연결을 요청하면 서버의 `accept()`가 통신용 소켓을 반환합니다.
 
@@ -80,9 +80,9 @@ sequenceDiagram
     CS-->>C: 응답 수신
 ```
 
-## Java에서 사용하는 주요 클래스
+### Java에서 사용하는 주요 클래스
 
-### `InetAddress`
+#### `InetAddress`
 
 `java.net.InetAddress`는 호스트 이름과 IP 주소 정보를 표현하는 클래스입니다. 도메인 이름을 IP 주소로 바꾸거나 현재 컴퓨터의 주소를 확인할 때 사용합니다.
 
@@ -93,7 +93,7 @@ sequenceDiagram
 | `getHostAddress()` | IP 주소를 문자열로 반환 | `127.0.0.1` 출력 |
 | `getHostName()` | 호스트 이름을 문자열로 반환 | `localhost` 출력 |
 
-### `Socket`
+#### `Socket`
 
 `java.net.Socket`은 TCP 클라이언트가 서버와 연결된 뒤 데이터를 주고받는 통신용 객체입니다.
 
@@ -104,7 +104,7 @@ sequenceDiagram
 | `getOutputStream()` | 클라이언트에서 서버로 나가는 데이터 쓰기 |
 | `close()` | 소켓 연결 종료 |
 
-### `ServerSocket`
+#### `ServerSocket`
 
 `java.net.ServerSocket`은 TCP 서버가 특정 포트에서 클라이언트 연결을 기다릴 때 사용하는 객체입니다.
 
@@ -114,11 +114,11 @@ sequenceDiagram
 | `accept()` | 클라이언트 연결을 기다리고, 연결되면 `Socket` 반환 |
 | `close()` | 서버 소켓을 닫고 새로운 연결을 받지 않음 |
 
-## Java TCP 에코 서버 예제
+### Java TCP 에코 서버 예제
 
 에코 서버는 클라이언트가 보낸 메시지를 그대로 다시 돌려주는 서버입니다.
 
-### 서버 코드: `SimpleEchoServer.java`
+#### 서버 코드: `SimpleEchoServer.java`
 
 ```java
 import java.io.BufferedReader;
@@ -167,7 +167,7 @@ public class SimpleEchoServer {
 }
 ```
 
-### 클라이언트 코드: `SimpleEchoClient.java`
+#### 클라이언트 코드: `SimpleEchoClient.java`
 
 ```java
 import java.io.BufferedReader;
@@ -203,7 +203,7 @@ public class SimpleEchoClient {
 }
 ```
 
-## 코드 실행 흐름
+### 코드 실행 흐름
 
 서버와 클라이언트는 각각 별도의 터미널에서 실행해야 합니다.
 
@@ -222,7 +222,7 @@ flowchart LR
     K --> L[응답 출력 및 연결 종료]
 ```
 
-### 실행 명령
+#### 실행 명령
 
 먼저 두 Java 파일을 같은 폴더에 저장하고 컴파일합니다.
 
@@ -242,7 +242,7 @@ java SimpleEchoServer
 java SimpleEchoClient
 ```
 
-### 예상 결과
+#### 예상 결과
 
 서버 터미널:
 
@@ -258,7 +258,7 @@ Received: Hello Server!
 Response: Echo: Hello Server!
 ```
 
-## 코드에서 데이터가 이동하는 방향
+### 코드에서 데이터가 이동하는 방향
 
 ```mermaid
 flowchart TB
@@ -275,7 +275,7 @@ flowchart TB
     SW -- "Echo: Hello Server!" --> CR
 ```
 
-## 실행 순서 요약
+### 실행 순서 요약
 
 | 순서 | 실행 주체 | 동작 |
 |---:|---|---|
@@ -289,7 +289,7 @@ flowchart TB
 | 8 | 클라이언트 | 응답을 읽고 화면에 출력한다 |
 | 9 | 양쪽 | 스트림과 소켓을 닫는다 |
 
-## 정리
+### 정리
 
 - 서버는 `ServerSocket`으로 연결 요청을 기다립니다.
 - 클라이언트는 `Socket`으로 서버에 연결합니다.

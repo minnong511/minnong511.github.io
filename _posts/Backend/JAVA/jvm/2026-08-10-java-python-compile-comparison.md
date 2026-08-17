@@ -9,9 +9,9 @@ series: "Java 실행과 JVM"
 part: 1
 ---
 
-# Java 실행과 JVM Part 1: Java와 Python 컴파일 비교
+## Java 실행과 JVM Part 1: Java와 Python 컴파일 비교
 
-## Python
+### Python
 
 ```text
 main.py
@@ -25,7 +25,7 @@ Python Virtual Machine에서 실행
 
 컴파일과 실행이 붙어서 그렇지 Python도 내부적으로는 바이트코드로 컴파일하는 과정이 있다.
 
-## Java
+### Java
 
 파이썬보다는 JAVA의 컴파일 과정이 더 명확하게 분리된다.
 
@@ -79,7 +79,7 @@ JVM
 실행
 ```
 
-### Java가 디렉터리를 읽는 부분
+#### Java가 디렉터리를 읽는 부분
 
 ```text
 project/
@@ -134,7 +134,7 @@ Stock cannot be resolved to a type
 
 이렇게 된것 .
 
-### 여기서 Package가 등장
+#### 여기서 Package가 등장
 
 ```java
 package com.example.model;
@@ -194,7 +194,7 @@ Main.class
 User.class
 ```
 
-## Python과 Java 비교
+### Python과 Java 비교
 
 | | Python | Java |
 |---|---|---|
@@ -205,7 +205,7 @@ User.class
 | 일반적인 명령 | `python main.py` | `javac Main.java` → `java Main` |
 | 타입 검사 | 주로 실행 중 | 주로 컴파일 시 |
 
-## 요약 
+### 요약 
 
 JAVA 실행 구조를 한 문장으로 말하면... 
 

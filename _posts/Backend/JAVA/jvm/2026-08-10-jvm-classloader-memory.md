@@ -9,9 +9,9 @@ series: "Java 실행과 JVM"
 part: 3
 ---
 
-# Java 실행과 JVM Part 3: ClassLoader와 JVM 메모리
+## Java 실행과 JVM Part 3: ClassLoader와 JVM 메모리
 
-## 실행 과정 요약
+### 실행 과정 요약
 
 ```text
 Java Source (.java)
@@ -29,7 +29,7 @@ OS
 Hardware
 ```
 
-### `Main.java`
+#### `Main.java`
 
 ```java
 public class Main {
@@ -55,7 +55,7 @@ Main.class에는 CPU가 직접 실행하는 기계어가 아니라 JAVA Bytecode
 
 `java Main`을 실행하면 `Main.class`를 가져와 실행한다. 
 
-## 1. ClassLoader 
+### 1. ClassLoader 
 
 ```text
 .class → ClassLoader → JVM
@@ -73,7 +73,7 @@ User user = new User();
 JVM이 실행하면서 User 클래스가 필요하다. 
 그러면 ClassLoader가 User.class를 찾아 로딩한다.
 
-## 2. JVM 메모리 영역 
+### 2. JVM 메모리 영역 
 
 ```text
                 JVM
@@ -97,7 +97,7 @@ JVM이 실행하면서 User 클래스가 필요하다.
 
 > 모든 스레드가 같이 사용하는 메모리와 각 스레드가 자기 것만 사용하는 메모리가 있다.
 
-## 3. Heap 
+### 3. Heap 
 
 `Heap`은 객체 인스턴스를 저장하는 영역이다.
 
@@ -126,7 +126,7 @@ new Cat();
 
 으로 만들어지는 갹체들이 Heap과 연결된다. 
 
-## 4. Stack 
+### 4. Stack 
 
 ```text
 Thread 1 - Stack
@@ -156,7 +156,7 @@ Thread Stack
 
 메서드가 끝나면 해당 Stack Frame도 제거
 
-## 5. Heap과 Stack 연결 
+### 5. Heap과 Stack 연결 
 
 ```java
 User user = new User("민형");
@@ -195,7 +195,7 @@ b ─────────┘                 name="민형"
 참조 변수가 두 개, Heap의 객체는 하나 
 앞에서 공부한 참조 변수 개념이 JVM에서 이어진다. 
 
-## 6. 왜 Stack이 Thread마다 따로 있나? 
+### 6. 왜 Stack이 Thread마다 따로 있나? 
 
 예를 들어 두 개의 thread가 동시에 실행된다고 해보자 
 
@@ -227,7 +227,7 @@ email = "..."
 
 `여러 Thread → 같은 Heap 객체 수정 → Race Condition`
 
-## 7. Method Area 
+### 7. Method Area 
 
 Method Area 
 
@@ -259,7 +259,7 @@ Method Area → 개념적인 JVM 영역
 Metaspace   → HotSpot JVM에서 이를 구현하는 핵심 영역
 ```
 
-## 8. Code Cache
+### 8. Code Cache
 
 이미지에는 
 

@@ -9,11 +9,11 @@ series: "Java 객체지향"
 part: 5
 ---
 
-# Java 객체지향 Part 5: static 메서드와 중첩 클래스
+## Java 객체지향 Part 5: static 메서드와 중첩 클래스
 
 중첩 클래스에서 Static을 붙이는 이유는 바깥 객체와 연결되지 않은 클래스를 내부에 묶어두기 위해서이다. 
 
-## 일반 내부 클래스 
+### 일반 내부 클래스 
 
 tatic이 없는 내부 클래스는 바깥 객체에 소속 
 
@@ -40,7 +40,7 @@ User 객체
 
 profile이 특정 User의 name을 사용하므로 바깥 객체와 연결되는 것이 자연스럽다
 
-## Static 중첩 클래스
+### Static 중첩 클래스
 
 static 중첩 클래스는 바깥 객체와 연결되지 않는다. 
 
@@ -59,9 +59,9 @@ profile.printMessage();
 여기서 User.Profile 이라고 쓰지만, 특정 User 객체에 소속된 것은 아니다. 
 단지 User와 관련된 클래스라서 User 내부에 정리한 것 
 
-# 왜 Static을 사용하는가? 
+## 왜 Static을 사용하는가? 
 
-## 1. 바깥 객체가 필요없기 때문에 
+### 1. 바깥 객체가 필요없기 때문에 
 
 다음 Address는 특정 User 객체의 필드에 직접 접근할 필요가 없다. 
 
@@ -81,7 +81,7 @@ User.Address address = new User.Address("판교")
 
 바깥 객체가 필요 없는데 일반 내부 클래스로 만들면 불필요하게 User 객체와 연결된다. 
 
-## 2. 관련 클래스를 한 곳에 묶을 수 있기 때문에 
+### 2. 관련 클래스를 한 곳에 묶을 수 있기 때문에 
 
 class HttpResponse{
     static class Header{
@@ -97,7 +97,7 @@ Header 와 Body가 HttpsResponse와 관련있다는 것을 구조적으로 표�
 HttpResponse.Header header  = new HttpResponse.Header(); 
 HttpResponse.Body body = new HttpResponse.Body();
 
-# 3. 불필요한 바깥 객체 참조를 막기 때문에 
+## 3. 불필요한 바깥 객체 참조를 막기 때문에 
 
 일반 내부 클래스 객체는 내부적으로 바깥 객체를 참조 
 
@@ -112,13 +112,13 @@ static 중첩 클래스 객체     바깥 클래스 객체
 바깥 객체가 필요하지 않다면 static 중첩 클래스를 사용해야 구조가 단순하고 
 불필요한 객체 참조도 생기지 않는다. 
 
-### 개념 확인 문제 
+#### 개념 확인 문제 
 
 Receipt 클래스는 특정 Order 객체의 orderNumber를 직접 사용해야 한다. 
 
 Receipt는 특정 Order 객체의 orderNumber를 사용해야 하므로 일반 내부 클래스로 선언해야 한다. 일반 내부 클래스는 자신을 생성한 바깥 Order 객체를 참조할 수 있기 때문에 
 
-# Static 메서드
+## Static 메서드
 
 판단 기준
 
@@ -187,7 +187,7 @@ class Order {
 
 boolean valid = Order.isValidOrderNumber("ORDER-100");
 
-### 근데 그냥 필드 선언 안하고 쓰면 되는 거 아닌가?
+#### 근데 그냥 필드 선언 안하고 쓰면 되는 거 아닌가?
 
 class Calculator {
     int add(int a, int b) {
@@ -213,7 +213,7 @@ Calculator.add(10, 20);
 일반 메서드는 필드를 사용하지 않더라도 객체를 먼저 만들어야 합니다. 반면 static 메서드는 객체 없이 실행할 수 있다.
 -> 이거는 객체를 만들지 않아서 상당히 편리하다! 
 
-### 그러면 Static method는 언제 안써야 하는가? 
+#### 그러면 Static method는 언제 안써야 하는가? 
 
 나중에 구현을 객체마다 다르게 바꿔야 한다면 일반 베서드로 구현해야 한다.
 
