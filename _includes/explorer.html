@@ -77,26 +77,6 @@
       {% endfor %}
     </div>
     <p class="ide-explorer-empty" id="explorerEmpty" hidden>검색 결과가 없습니다.</p>
-    <section class="ide-mini-game" id="explorerMiniGame" aria-labelledby="miniGameTitle">
-      <header class="ide-mini-game-header">
-        <div><i class="ri-bug-line" aria-hidden="true"></i><strong id="miniGameTitle">BUG HUNT</strong></div>
-        <button class="ide-mini-game-toggle" id="miniGameToggle" type="button" aria-expanded="true" aria-controls="miniGameBody" aria-label="미니게임 접기" title="미니게임 접기"><i class="ri-arrow-down-s-line" aria-hidden="true"></i></button>
-      </header>
-      <div class="ide-mini-game-body" id="miniGameBody">
-        <div class="ide-mini-game-stats">
-          <span>SCORE <strong id="miniGameScore">0</strong></span>
-          <span>BEST <strong id="miniGameBest">0</strong></span>
-          <span>TIME <strong id="miniGameTime">15.0</strong></span>
-        </div>
-        <div class="ide-mini-game-arena" id="miniGameArena" aria-label="움직이는 버그를 클릭하는 게임 영역">
-          <button class="ide-mini-game-target" id="miniGameTarget" type="button" aria-label="버그 잡기" disabled><i class="ri-bug-line" aria-hidden="true"></i></button>
-        </div>
-        <div class="ide-mini-game-footer">
-          <p id="miniGameMessage" aria-live="polite">15초 동안 버그를 잡으세요.</p>
-          <button class="ide-mini-game-start" id="miniGameStart" type="button">START</button>
-        </div>
-      </div>
-    </section>
     <button class="ide-resize-handle ide-resize-explorer" type="button" data-resize-panel="explorer" aria-label="Explorer 너비 조절"></button>
   </section>
 

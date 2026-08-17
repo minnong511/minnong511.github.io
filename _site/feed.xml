@@ -1,4 +1,502 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://minnong511.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://minnong511.github.io/" rel="alternate" type="text/html" /><updated>2026-08-16T17:57:30+09:00</updated><id>https://minnong511.github.io/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Spring 기초 Part 4: JPA, Entity와 Repository</title><link href="https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/" rel="alternate" type="text/html" title="Spring 기초 Part 4: JPA, Entity와 Repository" /><published>2026-08-16T09:00:00+09:00</published><updated>2026-08-16T09:00:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/"><![CDATA[<h1 id="spring-기초-part-4-jpa-entity와-repository">Spring 기초 Part 4: JPA, Entity와 Repository</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://minnong511.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://minnong511.github.io/" rel="alternate" type="text/html" /><updated>2026-08-17T14:35:29+09:00</updated><id>https://minnong511.github.io/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</title><link href="https://minnong511.github.io/java/spring/2026/08/17/jpa-entity-manager-persistence-context/" rel="alternate" type="text/html" title="Spring 기초 Part 5: EntityManager와 영속성 컨텍스트" /><published>2026-08-17T09:00:00+09:00</published><updated>2026-08-17T09:00:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/17/jpa-entity-manager-persistence-context</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/17/jpa-entity-manager-persistence-context/"><![CDATA[<h1 id="spring-기초-part-5-entitymanager와-영속성-컨텍스트">Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</h1>
+
+<blockquote>
+  <p>EntityManager는 Entity를 영속성 컨텍스트에서 관리하고, 데이터베이스 작업을 JPA 구현체에 요청하는 핵심 인터페이스다.</p>
+</blockquote>
+
+<p>두 개념의 관계를 먼저 기억하자.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EntityManager
+→ 영속성 컨텍스트를 사용해 Entity를 관리하는 관리자
+
+영속성 컨텍스트
+→ Entity의 상태를 보관하고 추적하는 논리적인 작업 공간
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정의</th>
+      <th>쉽게 말하면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EntityManager</td>
+      <td>Entity의 저장, 조회, 삭제와 상태 관리를 담당하는 JPA 인터페이스</td>
+      <td>Entity 관리자</td>
+    </tr>
+    <tr>
+      <td>영속성</td>
+      <td>애플리케이션이 종료돼도 데이터가 DB에 남는 성질</td>
+      <td>데이터를 계속 보관</td>
+    </tr>
+    <tr>
+      <td>영속성 컨텍스트</td>
+      <td>JPA가 Entity를 관리하는 논리적인 공간</td>
+      <td>Entity 작업실</td>
+    </tr>
+    <tr>
+      <td>1차 캐시</td>
+      <td>영속성 컨텍스트 내부의 Entity 저장 공간</td>
+      <td>같은 트랜잭션의 조회 결과 보관</td>
+    </tr>
+    <tr>
+      <td>스냅샷</td>
+      <td>Entity를 처음 관리할 때 저장한 상태</td>
+      <td>변경 전 값</td>
+    </tr>
+    <tr>
+      <td>변경 감지</td>
+      <td>현재 상태와 스냅샷을 비교해 변경을 찾는 기능</td>
+      <td>수정된 필드를 자동 확인</td>
+    </tr>
+    <tr>
+      <td>쓰기 지연</td>
+      <td>쓰기 SQL을 모아두었다가 flush 시점에 전달하는 방식</td>
+      <td>SQL을 바로 보내지 않고 준비</td>
+    </tr>
+    <tr>
+      <td>flush</td>
+      <td>영속성 컨텍스트의 변경을 SQL로 DB에 전달</td>
+      <td>SQL 전송</td>
+    </tr>
+    <tr>
+      <td>commit</td>
+      <td>트랜잭션의 변경 내용을 최종 확정</td>
+      <td>저장 확정</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="2-entitymanager가-하는-일">2. EntityManager가 하는 일</h2>
+
+<p>EntityManager의 대표 메서드는 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>메서드</th>
+      <th>역할</th>
+      <th>SQL 관점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">persist(entity)</code></td>
+      <td>새 Entity를 영속 상태로 만듦</td>
+      <td>보통 <code class="language-plaintext highlighter-rouge">INSERT</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">find(type, id)</code></td>
+      <td>기본키로 Entity 조회</td>
+      <td><code class="language-plaintext highlighter-rouge">SELECT</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">remove(entity)</code></td>
+      <td>Entity를 삭제 상태로 만듦</td>
+      <td><code class="language-plaintext highlighter-rouge">DELETE</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">merge(entity)</code></td>
+      <td>준영속 Entity의 값을 새 영속 Entity에 복사</td>
+      <td><code class="language-plaintext highlighter-rouge">SELECT</code>, <code class="language-plaintext highlighter-rouge">UPDATE</code> 가능</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">flush()</code></td>
+      <td>변경 내용을 DB에 전달</td>
+      <td>쓰기 SQL 실행</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">detach(entity)</code></td>
+      <td>특정 Entity를 관리 대상에서 제외</td>
+      <td>자동 변경 감지 중단</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">clear()</code></td>
+      <td>영속성 컨텍스트를 비움</td>
+      <td>관리 중인 Entity 전체 분리</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>직접 사용하는 Repository를 만들면 다음과 같은 모습이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserJpaRepository</span> <span class="o">{</span>
+
+    <span class="nd">@PersistenceContext</span>
+    <span class="kd">private</span> <span class="nc">EntityManager</span> <span class="n">entityManager</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">User</span> <span class="nf">findById</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">entityManager</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Spring Data JPA의 <code class="language-plaintext highlighter-rouge">JpaRepository</code>도 내부적으로 EntityManager를 사용한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>내 코드
+  → JpaRepository
+  → EntityManager
+  → Hibernate
+  → JDBC
+  → Database
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-entity의-네-가지-상태">3. Entity의 네 가지 상태</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>상태</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>비영속(New/Transient)</td>
+      <td>객체는 있지만 JPA가 관리하지 않는 상태</td>
+    </tr>
+    <tr>
+      <td>영속(Managed)</td>
+      <td>영속성 컨텍스트가 관리하는 상태</td>
+    </tr>
+    <tr>
+      <td>준영속(Detached)</td>
+      <td>한때 관리됐지만 현재는 분리된 상태</td>
+    </tr>
+    <tr>
+      <td>삭제(Removed)</td>
+      <td>삭제하도록 등록된 상태</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="비영속">비영속</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="s">"민형"</span><span class="o">,</span> <span class="s">"min@example.com"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>일반 자바 객체만 생성된 상태다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Java 메모리: User 객체 있음
+영속성 컨텍스트: 등록되지 않음
+Database: 저장되지 않음
+</code></pre></div></div>
+
+<h3 id="영속">영속</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>또는 EntityManager로 조회한 객체도 영속 상태가 된다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>영속 상태가 되면 JPA가 객체의 변경을 추적한다.</p>
+
+<h3 id="준영속">준영속</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">entityManager</span><span class="o">.</span><span class="na">detach</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>영속성 컨텍스트에서 분리된 객체는 값을 바꿔도 변경 감지가 동작하지 않는다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">user</span><span class="o">.</span><span class="na">changeName</span><span class="o">(</span><span class="s">"민농"</span><span class="o">);</span> <span class="c1">// 자동 UPDATE 대상이 아님</span>
+</code></pre></div></div>
+
+<h3 id="삭제">삭제</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">entityManager</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Entity가 삭제 대상으로 등록되고 flush 시점에 <code class="language-plaintext highlighter-rouge">DELETE</code> SQL이 전달된다.</p>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Entity 생명주기</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart LR
+    N[비영속] --&gt;|persist| M[영속]
+    M --&gt;|detach, clear| D[준영속]
+    D --&gt;|merge 후 반환 객체| M
+    M --&gt;|remove| R[삭제]
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<hr />
+
+<h2 id="4-1차-캐시와-동일성-보장">4. 1차 캐시와 동일성 보장</h2>
+
+<p>영속성 컨텍스트는 관리 중인 Entity를 기본키 기준으로 1차 캐시에 보관한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+<span class="nc">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="mi">1L</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>첫 조회는 DB에서 데이터를 가져와 1차 캐시에 저장한다. 같은 영속성 컨텍스트에서 다시 조회하면 1차 캐시의 객체를 반환할 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>첫 번째 find()
+→ 1차 캐시에 없음
+→ SELECT 실행
+→ 조회 결과를 1차 캐시에 저장
+
+두 번째 find()
+→ 1차 캐시에서 발견
+→ 같은 Entity 객체 반환
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user1</span> <span class="o">==</span> <span class="n">user2</span><span class="o">);</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<p>이처럼 같은 영속성 컨텍스트에서 같은 기본키의 Entity에 대해 같은 객체 참조를 제공하는 것을 동일성 보장이라고 한다.</p>
+
+<p>1차 캐시는 보통 하나의 트랜잭션처럼 짧은 범위에서 사용되므로 애플리케이션 전체의 공용 캐시와는 다르다.</p>
+
+<hr />
+
+<h2 id="5-변경-감지">5. 변경 감지</h2>
+
+<p>변경 감지(Dirty Checking)는 영속 상태의 Entity가 변경됐는지 확인하여 <code class="language-plaintext highlighter-rouge">UPDATE</code> SQL을 만드는 기능이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">newName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">changeName</span><span class="o">(</span><span class="n">newName</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">update()</code>나 <code class="language-plaintext highlighter-rouge">save()</code>를 따로 호출하지 않아도 트랜잭션이 끝날 때 변경이 반영될 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. User 조회
+2. 조회 당시 상태를 스냅샷으로 보관
+3. user.changeName() 호출
+4. flush 시 현재 상태와 스냅샷 비교
+5. 변경 발견
+6. UPDATE SQL 실행
+</code></pre></div></div>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">users</span>
+<span class="k">SET</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">'민농'</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>변경 감지는 영속 상태의 Entity에만 적용된다.</p>
+
+<hr />
+
+<h2 id="6-쓰기-지연">6. 쓰기 지연</h2>
+
+<p>JPA는 쓰기 SQL을 준비해두었다가 flush 시점에 DB로 전달할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">user1</span><span class="o">);</span>
+<span class="n">entityManager</span><span class="o">.</span><span class="na">persist</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>persist(user1) → INSERT 준비
+persist(user2) → INSERT 준비
+flush          → SQL을 DB에 전달
+commit         → 트랜잭션 확정
+</code></pre></div></div>
+
+<p>이 방식을 쓰기 지연(Write Behind)이라고 한다.</p>
+
+<p>다만 모든 SQL이 반드시 커밋 직전에만 실행되는 것은 아니다. 예를 들어 <code class="language-plaintext highlighter-rouge">IDENTITY</code> 기본키 전략은 생성된 ID를 얻기 위해 <code class="language-plaintext highlighter-rouge">persist()</code> 시점에 <code class="language-plaintext highlighter-rouge">INSERT</code>가 먼저 실행될 수 있다.</p>
+
+<hr />
+
+<h2 id="7-flush와-commit의-차이">7. <code class="language-plaintext highlighter-rouge">flush()</code>와 <code class="language-plaintext highlighter-rouge">commit()</code>의 차이</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">entityManager</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">flush()</code>는 변경 내용을 SQL로 DB에 전달하지만 트랜잭션을 최종 확정하지는 않는다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">flush()</code></td>
+      <td>변경 내용을 SQL로 DB에 전달</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">commit()</code></td>
+      <td>트랜잭션 변경을 최종 확정</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flush 실행
+  → SQL은 DB에 전달됨
+  → 아직 commit 전
+  → 오류 발생 시 rollback 가능
+</code></pre></div></div>
+
+<p>일반적으로 <code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드가 정상 종료될 때 다음 과정이 진행된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>메서드 정상 종료
+   ↓
+flush
+   ↓
+쓰기 SQL 실행
+   ↓
+commit
+</code></pre></div></div>
+
+<p>JPQL 쿼리를 실행하기 전에 조회 결과의 일관성을 맞추기 위해 flush가 먼저 발생할 수도 있다.</p>
+
+<hr />
+
+<h2 id="8-merge-주의점">8. <code class="language-plaintext highlighter-rouge">merge()</code> 주의점</h2>
+
+<p><code class="language-plaintext highlighter-rouge">merge()</code>는 전달받은 준영속 객체 자체를 다시 영속 상태로 바꾸는 메서드가 아니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">managedUser</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">merge</span><span class="o">(</span><span class="n">detachedUser</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>detachedUser → 여전히 준영속
+managedUser  → merge가 반환한 영속 객체
+</code></pre></div></div>
+
+<p>따라서 <code class="language-plaintext highlighter-rouge">merge()</code>를 사용할 때는 반환 객체를 사용해야 한다.</p>
+
+<p>실무에서는 준영속 Entity 전체를 <code class="language-plaintext highlighter-rouge">merge()</code>하기보다 트랜잭션 안에서 Entity를 다시 조회하고 필요한 값만 변경하는 방식을 자주 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">newName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">changeName</span><span class="o">(</span><span class="n">newName</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 방식은 어떤 필드가 변경되는지 코드에서 명확하게 확인할 수 있다.</p>
+
+<hr />
+
+<h2 id="9-실제-service-실행-흐름">9. 실제 Service 실행 흐름</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">newName</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">changeName</span><span class="o">(</span><span class="n">newName</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. @Transactional로 트랜잭션 시작
+2. EntityManager가 영속성 컨텍스트 사용
+3. User 조회
+4. User가 영속 상태가 됨
+5. 이름 변경
+6. 트랜잭션 종료 직전 변경 감지
+7. UPDATE SQL 실행
+8. commit
+9. 영속성 컨텍스트 범위 종료
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="핵심-정리">핵심 정리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>한 줄 정리</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>EntityManager</td>
+      <td>Entity의 저장, 조회, 삭제와 상태를 관리</td>
+    </tr>
+    <tr>
+      <td>영속성 컨텍스트</td>
+      <td>Entity를 보관하고 변경을 추적하는 논리적인 공간</td>
+    </tr>
+    <tr>
+      <td>1차 캐시</td>
+      <td>같은 영속성 컨텍스트에서 조회한 Entity 보관</td>
+    </tr>
+    <tr>
+      <td>변경 감지</td>
+      <td>영속 Entity의 변경을 찾아 <code class="language-plaintext highlighter-rouge">UPDATE</code> 실행</td>
+    </tr>
+    <tr>
+      <td>쓰기 지연</td>
+      <td>쓰기 SQL을 준비했다가 flush 시 전달</td>
+    </tr>
+    <tr>
+      <td>flush</td>
+      <td>SQL을 DB에 전달하지만 확정하지는 않음</td>
+    </tr>
+    <tr>
+      <td>commit</td>
+      <td>트랜잭션 변경을 최종 확정</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>EntityManager의 핵심은 SQL 메서드를 대신 제공하는 것보다 Entity의 생명주기와 상태를 관리하는 데 있다.</p>
+</blockquote>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence 공식 명세</a></li>
+  <li><a href="https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html">Hibernate ORM User Guide</a></li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="JPA" /><category term="EntityManager" /><category term="Persistence Context" /><category term="Dirty Checking" /><summary type="html"><![CDATA[EntityManager의 역할, Entity 생명주기, 1차 캐시, 변경 감지, 쓰기 지연, flush와 commit의 차이를 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 4: JPA, Entity와 Repository</title><link href="https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/" rel="alternate" type="text/html" title="Spring 기초 Part 4: JPA, Entity와 Repository" /><published>2026-08-16T09:00:00+09:00</published><updated>2026-08-16T09:00:00+09:00</updated><id>https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics</id><content type="html" xml:base="https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/"><![CDATA[<h1 id="spring-기초-part-4-jpa-entity와-repository">Spring 기초 Part 4: JPA, Entity와 Repository</h1>
 
 <blockquote>
   <p>JPA는 자바 객체와 데이터베이스 테이블을 매핑하여 객체 중심으로 데이터를 다룰 수 있게 해주는 자바 표준이다.</p>
@@ -3487,304 +3985,4 @@ Bean으로 등록한다
       <li>외부 패키지의 클래스를 런타임에 로드하여 확장 기능 구현 가능</li>
     </ul>
   </li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Reflection" /><category term="Metadata" /><category term="Annotation" /><category term="Spring" /><category term="DI" /><summary type="html"><![CDATA[Java Reflection으로 런타임에 클래스, 필드, 메서드, 애너테이션 정보를 조회하고 호출하는 방법을 정리한다.]]></summary></entry><entry><title type="html">Java 기초 Part 5: Stream API</title><link href="https://minnong511.github.io/java/basics/2026/08/11/java-stream-api/" rel="alternate" type="text/html" title="Java 기초 Part 5: Stream API" /><published>2026-08-11T10:20:00+09:00</published><updated>2026-08-11T10:20:00+09:00</updated><id>https://minnong511.github.io/java/basics/2026/08/11/java-stream-api</id><content type="html" xml:base="https://minnong511.github.io/java/basics/2026/08/11/java-stream-api/"><![CDATA[<h1 id="java-기초-part-5-stream-api">Java 기초 Part 5: Stream API</h1>
-
-<h2 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>단어</th>
-      <th>정의</th>
-      <th>예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Stream</td>
-      <td>컬렉션의 원본 데이터를 바꾸지 않고 요소를 순서대로 처리하는 흐름</td>
-      <td><code class="language-plaintext highlighter-rouge">numbers.stream()</code></td>
-    </tr>
-    <tr>
-      <td>파이프라인(Pipeline)</td>
-      <td>여러 연산을 연결한 데이터 처리 과정</td>
-      <td><code class="language-plaintext highlighter-rouge">stream().filter().map().toList()</code></td>
-    </tr>
-    <tr>
-      <td>중간 연산</td>
-      <td>Stream을 받아 새로운 Stream을 반환하는 연산</td>
-      <td><code class="language-plaintext highlighter-rouge">filter()</code>, <code class="language-plaintext highlighter-rouge">map()</code>, <code class="language-plaintext highlighter-rouge">sorted()</code></td>
-    </tr>
-    <tr>
-      <td>최종 연산</td>
-      <td>Stream 처리를 실행하고 결과를 만드는 연산</td>
-      <td><code class="language-plaintext highlighter-rouge">toList()</code>, <code class="language-plaintext highlighter-rouge">forEach()</code></td>
-    </tr>
-    <tr>
-      <td>람다식(Lambda)</td>
-      <td>짧게 표현한 익명 함수</td>
-      <td><code class="language-plaintext highlighter-rouge">n -&gt; n * 2</code></td>
-    </tr>
-    <tr>
-      <td>메서드 참조</td>
-      <td>이미 존재하는 메서드를 간결하게 전달하는 문법</td>
-      <td><code class="language-plaintext highlighter-rouge">System.out::println</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Stream API는 리스트 같은 데이터 묶음을 하나씩 꺼내서 조건을 걸고, 바꾸고, 다시 모으는 데이터 처리 기능이다.</p>
-</blockquote>
-
-<p>Java 8에서 도입됐으며, 반복문이나 <code class="language-plaintext highlighter-rouge">Iterator</code>로 작성하던 코드를 선언적이고 함수형인 스타일로 표현할 수 있게 해준다.</p>
-
-<h2 id="2-stream-api의-핵심">2. Stream API의 핵심</h2>
-
-<p>Stream API의 핵심은 데이터 처리 과정을 위에서 아래로 읽을 수 있다는 점이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">user</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">User:</span><span class="o">:</span><span class="n">getName</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">sorted</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>위 코드는 다음 순서로 읽을 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>users를 Stream으로 만든다
-    ↓
-20세 이상인 사용자만 남긴다
-    ↓
-User 객체를 이름으로 바꾼다
-    ↓
-이름을 정렬한다
-    ↓
-List로 모은다
-</code></pre></div></div>
-
-<h2 id="3-반복문과-stream-비교">3. 반복문과 Stream 비교</h2>
-
-<p>예를 들어 숫자 리스트에서 짝수만 뽑는다고 하자.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>반복문을 사용하면 결과 리스트를 직접 만들고 값을 추가해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-
-<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">number</span> <span class="o">:</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Stream을 사용하면 데이터 처리 과정에 집중해서 작성할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>다음과 같이 읽으면 된다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>numbers를 Stream으로 만든다
-    ↓
-짝수만 남긴다
-    ↓
-List로 모은다
-</code></pre></div></div>
-
-<h2 id="4-자주-사용하는-메서드">4. 자주 사용하는 메서드</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>메서드</th>
-      <th>구분</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">stream()</code></td>
-      <td>Stream 생성</td>
-      <td>컬렉션에서 데이터 처리 흐름을 시작한다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">filter()</code></td>
-      <td>중간 연산</td>
-      <td>조건에 맞는 요소만 남긴다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">map()</code></td>
-      <td>중간 연산</td>
-      <td>요소를 다른 값이나 형태로 바꾼다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">sorted()</code></td>
-      <td>중간 연산</td>
-      <td>요소를 정렬한다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">distinct()</code></td>
-      <td>중간 연산</td>
-      <td>중복 요소를 제거한다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">toList()</code></td>
-      <td>최종 연산</td>
-      <td>처리 결과를 <code class="language-plaintext highlighter-rouge">List</code>로 모은다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">forEach()</code></td>
-      <td>최종 연산</td>
-      <td>각 요소에 지정한 동작을 실행한다.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="5-filter-조건에-맞는-값만-남기기">5. <code class="language-plaintext highlighter-rouge">filter()</code>: 조건에 맞는 값만 남기기</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"민형"</span><span class="o">,</span> <span class="s">"철수"</span><span class="o">,</span> <span class="s">"영희"</span><span class="o">,</span> <span class="s">"김민형"</span><span class="o">);</span>
-
-<span class="n">names</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">name</span> <span class="o">-&gt;</span> <span class="n">name</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>결과는 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>김민형
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">filter()</code>는 조건을 만족하는 요소만 통과시킨다. 요소의 값 자체를 다른 값으로 바꾸지는 않는다.</p>
-
-<h2 id="6-map-값을-다른-형태로-바꾸기">6. <code class="language-plaintext highlighter-rouge">map()</code>: 값을 다른 형태로 바꾸기</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">*</span> <span class="mi">2</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>결과: [2, 4, 6]
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">map()</code>은 각 요소를 전달받아 새로운 값으로 바꾼다.</p>
-
-<h2 id="7-filter와-map-함께-사용하기">7. <code class="language-plaintext highlighter-rouge">filter()</code>와 <code class="language-plaintext highlighter-rouge">map()</code> 함께 사용하기</h2>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">);</span>
-
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">*</span> <span class="mi">10</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>처리 흐름은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 3, 4, 5]
-    ↓ filter(number -&gt; number &gt; 2)
-[3, 4, 5]
-    ↓ map(number -&gt; number * 10)
-[30, 40, 50]
-</code></pre></div></div>
-
-<p>기억할 내용은 간단하다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>filter → 골라낸다
-map    → 바꾼다
-</code></pre></div></div>
-
-<h2 id="8-중간-연산과-최종-연산">8. 중간 연산과 최종 연산</h2>
-
-<p><code class="language-plaintext highlighter-rouge">filter()</code>, <code class="language-plaintext highlighter-rouge">map()</code>, <code class="language-plaintext highlighter-rouge">sorted()</code> 같은 중간 연산만 작성하면 실제 데이터 처리가 시작되지 않는다. <code class="language-plaintext highlighter-rouge">toList()</code>나 <code class="language-plaintext highlighter-rouge">forEach()</code> 같은 최종 연산이 호출되어야 전체 파이프라인이 실행된다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"확인: "</span> <span class="o">+</span> <span class="n">number</span><span class="o">);</span>
-            <span class="k">return</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
-        <span class="o">});</span>
-</code></pre></div></div>
-
-<p>위 코드는 최종 연산이 없기 때문에 <code class="language-plaintext highlighter-rouge">filter()</code> 내부의 출력도 실행되지 않는다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>이처럼 필요한 시점까지 실행을 미루는 방식을 지연 연산(Lazy Evaluation)이라고 한다.</p>
-
-<h2 id="9-사용할-때-주의할-점">9. 사용할 때 주의할 점</h2>
-
-<h3 id="원본-컬렉션은-바뀌지-않는다">원본 컬렉션은 바뀌지 않는다</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">numbers</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
-
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">number</span> <span class="o">-&gt;</span> <span class="n">number</span> <span class="o">*</span> <span class="mi">10</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>numbers → [1, 2, 3]
-result  → [10, 20, 30]
-</code></pre></div></div>
-
-<p>Stream은 원본 컬렉션을 직접 변경하는 기능이 아니다. 처리 결과가 필요하면 새로운 리스트 등으로 받아야 한다.</p>
-
-<h3 id="stream은-한-번만-사용할-수-있다">Stream은 한 번만 사용할 수 있다</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
-
-<span class="n">stream</span><span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-<span class="n">stream</span><span class="o">.</span><span class="na">toList</span><span class="o">();</span> <span class="c1">// IllegalStateException</span>
-</code></pre></div></div>
-
-<p>최종 연산이 끝난 Stream은 다시 사용할 수 없다. 다시 처리하려면 <code class="language-plaintext highlighter-rouge">numbers.stream()</code>으로 새로운 Stream을 만들어야 한다.</p>
-
-<h2 id="10-최종-정리">10. 최종 정리</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>핵심 내용</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Stream</td>
-      <td>데이터 자체가 아니라 데이터 처리 흐름이다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">filter()</code></td>
-      <td>조건에 맞는 요소만 남긴다.</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">map()</code></td>
-      <td>요소를 다른 값이나 형태로 바꾼다.</td>
-    </tr>
-    <tr>
-      <td>중간 연산</td>
-      <td>Stream을 반환하며, 최종 연산 전까지 실행을 미룬다.</td>
-    </tr>
-    <tr>
-      <td>최종 연산</td>
-      <td>파이프라인을 실행하고 결과를 만든다.</td>
-    </tr>
-    <tr>
-      <td>원본 데이터</td>
-      <td>Stream으로 처리해도 원본 컬렉션은 그대로 유지된다.</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Stream API는 데이터를 어떻게 반복할지보다 어떤 조건으로 골라내고, 어떻게 바꾸고, 어떤 결과로 모을지에 집중하게 해주는 기능이다.</p>
-</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="basics" /><category term="Java" /><category term="Stream API" /><category term="Collection" /><category term="Lambda" /><category term="Filter" /><category term="Map" /><summary type="html"><![CDATA[Java Stream API의 파이프라인, 중간 연산과 최종 연산을 filter, map, sorted 예제로 정리한다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="advanced" /><category term="Java" /><category term="Reflection" /><category term="Metadata" /><category term="Annotation" /><category term="Spring" /><category term="DI" /><summary type="html"><![CDATA[Java Reflection으로 런타임에 클래스, 필드, 메서드, 애너테이션 정보를 조회하고 호출하는 방법을 정리한다.]]></summary></entry></feed>
