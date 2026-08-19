@@ -1,4 +1,1138 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-17T22:11:31+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">CI/CD 기초 3편: 배포 전략과 운영</title><link href="http://localhost:4000/devops/2026/08/17/docker-deployment-operations/" rel="alternate" type="text/html" title="CI/CD 기초 3편: 배포 전략과 운영" /><published>2026-08-17T15:00:00+09:00</published><updated>2026-08-17T15:00:00+09:00</updated><id>http://localhost:4000/devops/2026/08/17/docker-deployment-operations</id><content type="html" xml:base="http://localhost:4000/devops/2026/08/17/docker-deployment-operations/"><![CDATA[<h2 id="배포-후에도-끝은-아니다">배포 후에도 끝은 아니다</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-19T15:27:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</title><link href="http://localhost:4000/java/spring/2026/08/19/spring-proxy/" rel="alternate" type="text/html" title="Spring 기초 Part 7: Proxy 패턴과 Spring Proxy" /><published>2026-08-19T09:00:00+09:00</published><updated>2026-08-19T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/19/spring-proxy</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/19/spring-proxy/"><![CDATA[<h2 id="spring-기초-part-7-proxy-패턴과-spring-proxy">Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</h2>
+
+<blockquote>
+  <p>Proxy는 Client와 실제 객체 사이에서 요청을 먼저 받고, 실제 메서드 호출 전후에 부가 기능을 수행하는 대리 객체다.</p>
+</blockquote>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  → Proxy
+  → 실제 객체
+</code></pre></div></div>
+
+<p>Proxy를 이해하면 <code class="language-plaintext highlighter-rouge">@Transactional</code>, <code class="language-plaintext highlighter-rouge">@Async</code>, <code class="language-plaintext highlighter-rouge">@Cacheable</code>, Spring AOP가 왜 같은 클래스의 내부 호출에서 동작하지 않을 수 있는지도 이해할 수 있다.</p>
+
+<hr />
+
+<h3 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정의</th>
+      <th>쉽게 말하면</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Client</td>
+      <td>기능을 요청하는 객체</td>
+      <td>Service를 호출하는 Controller</td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td>Proxy와 실제 객체가 함께 따르는 인터페이스</td>
+      <td>두 객체의 공통 사용법</td>
+    </tr>
+    <tr>
+      <td>RealSubject</td>
+      <td>핵심 기능을 실제로 처리하는 객체</td>
+      <td>실제 Service</td>
+    </tr>
+    <tr>
+      <td>Proxy</td>
+      <td>실제 객체 대신 요청을 먼저 받는 객체</td>
+      <td>대리인</td>
+    </tr>
+    <tr>
+      <td>Target</td>
+      <td>Proxy가 감싸고 있는 실제 대상 객체</td>
+      <td>Proxy 내부의 Service</td>
+    </tr>
+    <tr>
+      <td>Wrapping</td>
+      <td>한 객체가 다른 객체를 내부에 보관하는 구조</td>
+      <td>Proxy가 Target을 감쌈</td>
+    </tr>
+    <tr>
+      <td>Delegation</td>
+      <td>받은 작업을 다른 객체에 넘기는 것</td>
+      <td>Proxy가 실제 작업을 Target에 전달</td>
+    </tr>
+    <tr>
+      <td>전처리</td>
+      <td>실제 메서드 실행 전에 수행하는 작업</td>
+      <td>트랜잭션 시작, 권한 확인</td>
+    </tr>
+    <tr>
+      <td>후처리</td>
+      <td>실제 메서드 실행 후 수행하는 작업</td>
+      <td>커밋, 로그 기록</td>
+    </tr>
+    <tr>
+      <td>동적 Proxy</td>
+      <td>실행 시점에 자동으로 생성되는 Proxy</td>
+      <td>개발자가 Proxy 클래스를 직접 작성하지 않음</td>
+    </tr>
+    <tr>
+      <td>Bean</td>
+      <td>Spring Container가 생성하고 관리하는 객체</td>
+      <td>Spring이 보관하고 주입하는 객체</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="2-proxy-패턴의-기본-구조">2. Proxy 패턴의 기본 구조</h3>
+
+<p>Proxy와 실제 객체는 같은 인터페이스를 사용한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserService</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="nf">findUserName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="실제-객체">실제 객체</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="nc">UserService</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">findUserName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"실제 사용자 조회"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"민형"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="proxy-객체">Proxy 객체</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceProxy</span> <span class="kd">implements</span> <span class="nc">UserService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">target</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">UserServiceProxy</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">findUserName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"조회 시작"</span><span class="o">);</span>
+
+        <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">findUserName</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"조회 종료"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="client">Client</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyExample</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">UserService</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserServiceImpl</span><span class="o">();</span>
+        <span class="nc">UserService</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserServiceProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+
+        <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="na">findUserName</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client가 proxy.findUserName() 호출
+          ↓
+Proxy가 "조회 시작" 출력
+          ↓
+target.findUserName()에 실제 작업 위임
+          ↓
+Proxy가 "조회 종료" 출력
+          ↓
+결과 반환
+</code></pre></div></div>
+
+<p>Proxy 안의 다음 코드가 위임이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">findUserName</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="3-proxy를-사용하는-이유">3. Proxy를 사용하는 이유</h3>
+
+<p>회원 조회 Service의 핵심 목적은 회원을 조회하는 것이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>여기에 로그, 실행 시간, 권한 검사, 트랜잭션 코드를 모두 넣으면 핵심 로직이 흐려진다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+    <span class="n">checkPermission</span><span class="o">();</span>
+    <span class="n">beginTransaction</span><span class="o">();</span>
+
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+
+    <span class="n">commitTransaction</span><span class="o">();</span>
+    <span class="n">logExecutionTime</span><span class="o">(</span><span class="n">startTime</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Proxy가 공통 기능을 맡으면 실제 Service는 업무 로직에 집중할 수 있다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>실제 Service</th>
+      <th>Proxy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>회원 조회, 주문 처리, 재고 감소</td>
+      <td>로그, 권한, 트랜잭션, 캐시</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Proxy가 처리할 수 있는 기능은 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>기능</th>
+      <th>Proxy가 하는 일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>트랜잭션</td>
+      <td>메서드 전후에 시작, 커밋, 롤백 처리</td>
+    </tr>
+    <tr>
+      <td>로그</td>
+      <td>메서드 실행 정보 기록</td>
+    </tr>
+    <tr>
+      <td>권한 검사</td>
+      <td>실제 메서드 실행 전에 접근 권한 확인</td>
+    </tr>
+    <tr>
+      <td>캐시</td>
+      <td>저장된 결과가 있으면 실제 메서드 호출 생략</td>
+    </tr>
+    <tr>
+      <td>실행 시간 측정</td>
+      <td>시작과 종료 시각 비교</td>
+    </tr>
+    <tr>
+      <td>비동기 실행</td>
+      <td>작업을 Executor에 제출</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="4-bean과-proxy의-관계">4. Bean과 Proxy의 관계</h3>
+
+<p>Bean은 Spring Container가 관리하는 객체다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TransferService</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">@Service</code>가 붙었다고 항상 Proxy가 생성되는 것은 아니다. Spring이 적용해야 할 부가 기능을 발견했을 때 Proxy로 감쌀 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TransferService</span> <span class="o">{</span>
+
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">transfer</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 출금과 입금</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Component Scan
+   ↓
+TransferService 객체 생성
+   ↓
+@Transactional 적용 대상 확인
+   ↓
+Proxy가 Target을 감쌈
+   ↓
+다른 Bean에는 Proxy가 주입됨
+</code></pre></div></div>
+
+<p>Controller가 <code class="language-plaintext highlighter-rouge">TransferService</code>를 호출한다고 생각하지만, 실제 참조가 Proxy일 수 있다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Controller
+   ↓
+TransferService Proxy
+   ↓ 트랜잭션 시작
+실제 TransferService
+   ↓
+Proxy가 커밋 또는 롤백
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-spring의-동적-proxy">5. Spring의 동적 Proxy</h3>
+
+<p>Spring은 실행 시점에 Proxy 객체를 자동으로 만들 수 있다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>JDK Dynamic Proxy</th>
+      <th>CGLIB Proxy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>기준</td>
+      <td>인터페이스</td>
+      <td>클래스</td>
+    </tr>
+    <tr>
+      <td>인터페이스 필요 여부</td>
+      <td>필요</td>
+      <td>없어도 됨</td>
+    </tr>
+    <tr>
+      <td>생성 방식</td>
+      <td>Reflection을 이용한 Proxy 생성</td>
+      <td>대상 클래스를 상속한 하위 클래스 생성</td>
+    </tr>
+    <tr>
+      <td>주요 제약</td>
+      <td>인터페이스에 선언된 호출 중심</td>
+      <td><code class="language-plaintext highlighter-rouge">final</code> 클래스와 <code class="language-plaintext highlighter-rouge">final</code> 메서드 재정의 불가</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Spring Boot에서는 클래스 기반 Proxy가 널리 사용되지만, 실제 방식은 설정과 대상 구조에 따라 달라질 수 있다. 코드를 작성할 때 특정 Proxy 방식에 과도하게 의존하지 않는 것이 좋다.</p>
+
+<hr />
+
+<h3 id="6-transactional-호출-흐름">6. <code class="language-plaintext highlighter-rouge">@Transactional</code> 호출 흐름</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">changeName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>개발자가 작성한 메서드에는 회원 수정 로직만 있다. 트랜잭션 처리는 Proxy가 앞뒤에서 수행한다.</p>
+
+<section class="mermaid-card">
+  <header class="mermaid-head">
+    <span>Transactional Proxy 호출 흐름</span>
+  </header>
+  <div class="mermaid js-mermaid">
+flowchart TD
+    C[Controller] --&gt; P[Transactional Proxy]
+    P --&gt; B[트랜잭션 시작]
+    B --&gt; T[실제 updateUser 실행]
+    T --&gt; Q{정상 종료?}
+    Q --&gt;|예| COMMIT[Commit]
+    Q --&gt;|아니오| ROLLBACK[Rollback]
+    COMMIT --&gt; C
+    ROLLBACK --&gt; C
+</div>
+</section>
+
+<script>
+  (function () {
+    function render() {
+      if (window.mermaid && window.mermaid.run) {
+        window.mermaid.run({ querySelector: '.js-mermaid' });
+      }
+    }
+
+    if (!window.__mermaidLibInit) {
+      window.__mermaidLibInit = true;
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+      script.async = true;
+      script.onload = function () {
+        if (window.mermaid && window.mermaid.initialize) {
+          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+        }
+        render();
+      };
+      document.head.appendChild(script);
+    } else {
+      render();
+    }
+  })();
+</script>
+
+<hr />
+
+<h3 id="7-자기-호출-문제">7. 자기 호출 문제</h3>
+
+<p>Spring Proxy는 <strong>Proxy를 거쳐 들어오는 호출</strong>을 가로챈다.</p>
+
+<p>같은 객체 안에서 자신의 메서드를 직접 호출하면 Proxy를 거치지 않는다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PaymentService</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">order</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">pay</span><span class="o">();</span> <span class="c1">// 같은 객체의 내부 호출</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pay</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 결제 처리</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>외부 호출
+→ Proxy
+→ @Transactional 적용 가능
+
+같은 객체의 pay() 내부 호출
+→ Proxy를 다시 거치지 않음
+→ 새 트랜잭션 설정이 적용되지 않을 수 있음
+</code></pre></div></div>
+
+<p>이것을 Self-invocation, 자기 호출 문제라고 한다.</p>
+
+<p>트랜잭션 경계가 분명히 달라야 한다면 별도 Bean으로 분리하는 방법을 사용할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PaymentProcessor</span> <span class="o">{</span>
+
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pay</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 결제 처리</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderService</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">PaymentProcessor</span> <span class="n">paymentProcessor</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">OrderService</span><span class="o">(</span><span class="nc">PaymentProcessor</span> <span class="n">paymentProcessor</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">paymentProcessor</span> <span class="o">=</span> <span class="n">paymentProcessor</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">order</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">paymentProcessor</span><span class="o">.</span><span class="na">pay</span><span class="o">();</span> <span class="c1">// 다른 Bean의 Proxy를 통해 호출</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="8-proxy와-aop의-차이">8. Proxy와 AOP의 차이</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AOP</td>
+      <td>어떤 공통 기능을 어디에 적용할지 정의하는 설계 방식</td>
+    </tr>
+    <tr>
+      <td>Proxy</td>
+      <td>실제 메서드 호출을 가로채 공통 기능을 실행하는 객체</td>
+    </tr>
+    <tr>
+      <td>Spring</td>
+      <td>AOP 설정을 읽고 Proxy를 자동 생성하고 관리</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>AOP가 곧 Proxy인 것은 아니다. Spring AOP가 공통 기능을 적용하는 핵심 구현 방식으로 Proxy를 사용하는 것이다.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="핵심-정리">핵심 정리</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>한 줄 정리</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Proxy</td>
+      <td>실제 객체 대신 요청을 먼저 받는 대리 객체</td>
+    </tr>
+    <tr>
+      <td>Target</td>
+      <td>Proxy가 감싸고 있는 실제 객체</td>
+    </tr>
+    <tr>
+      <td>Wrapping</td>
+      <td>Proxy가 Target을 내부에 보관하는 구조</td>
+    </tr>
+    <tr>
+      <td>Delegation</td>
+      <td>Proxy가 실제 작업을 Target에 전달하는 것</td>
+    </tr>
+    <tr>
+      <td>동적 Proxy</td>
+      <td>실행 시점에 자동으로 생성되는 Proxy</td>
+    </tr>
+    <tr>
+      <td>자기 호출</td>
+      <td>같은 객체 내부 호출이 Proxy를 거치지 않는 문제</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Proxy의 핵심은 실제 업무 코드를 크게 바꾸지 않고 메서드 호출 앞뒤에 공통 기능을 추가하는 것이다.</p>
+</blockquote>
+
+<h3 id="참고-자료">참고 자료</h3>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/core/aop/proxying.html">Spring Framework AOP Proxying Mechanisms</a></li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Proxy" /><category term="Dynamic Proxy" /><category term="JDK Proxy" /><category term="CGLIB" /><category term="Bean" /><summary type="html"><![CDATA[대리 객체인 Proxy가 실제 객체의 호출을 감싸는 원리와 Spring의 JDK Dynamic Proxy, CGLIB, 자기 호출 문제를 정리한다.]]></summary></entry><entry><title type="html">현대 LLM 워크플로의 패턴</title><link href="http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/" rel="alternate" type="text/html" title="현대 LLM 워크플로의 패턴" /><published>2026-08-19T00:00:00+09:00</published><updated>2026-08-19T00:00:00+09:00</updated><id>http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns</id><content type="html" xml:base="http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><![CDATA[<h1 id="현대-llm-워크플로의-패턴">현대 LLM 워크플로의 패턴</h1>
+
+<blockquote>
+  <p>LLM 서비스는 도대체 어떻게 작동하는 걸까? 궁금해서 참을 수가 없단 말이지!</p>
+</blockquote>
+
+<p>LLM 애플리케이션을 만들 때는 요청을 한 번 받고 바로 답을 내는 경우도 있지만, 실제로는 입력을 분류하고, 작업을 나누고, 결과를 평가하는 흐름으로 구성하는 경우가 많다.</p>
+
+<h2 id="자주-나오는-workflow-패턴">자주 나오는 Workflow 패턴</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>패턴</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Routing</td>
+      <td>입력을 분류해서 적절한 처리 경로 하나를 선택한다.</td>
+    </tr>
+    <tr>
+      <td>Parallelization</td>
+      <td>서로 의존하지 않는 AI 작업을 동시에 실행한다.</td>
+    </tr>
+    <tr>
+      <td>Evaluator-Optimizer</td>
+      <td>결과를 평가하고 피드백을 기반으로 반복 개선한다.</td>
+    </tr>
+    <tr>
+      <td>Orchestrator-Workers</td>
+      <td>큰 작업을 여러 하위 작업으로 분해하고 각각 처리한 후 합친다.</td>
+    </tr>
+    <tr>
+      <td>Chaining</td>
+      <td>앞 단계의 출력을 다음 단계의 입력으로 연결한다.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="개념적으로-이런-구조">개념적으로 이런 구조</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자 요청
+  ↓
+Routing
+  ↓
+계획 / 작업 분해
+  ↓
+┌───────────────┐
+│ Worker A      │
+│ Worker B      │
+│ Worker C      │
+└───────────────┘
+  ↓
+결과 통합
+  ↓
+Evaluator
+  ↓
+필요하면 재시도
+  ↓
+최종 응답
+</code></pre></div></div>
+
+<p>이건 지금도 LLM 애플리케이션에서 아주 전형적인 구조다.</p>
+
+<p>다만, 실제 현대 시스템에서는 여기에 보통 다음 요소가 추가된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LLM Workflow
+  + Tool Calling
+  + RAG
+  + Memory / State
+  + Retry / Timeout
+  + Observability
+  + Guardrails
+  + Model Selection
+  + Caching
+</code></pre></div></div>
+
+<p>현대적인 구조에서는 Spring Boot에서 했던 기능에 더해 다음과 같은 Tool을 사용할 수 있다.</p>
+
+<ul>
+  <li>웹 검색</li>
+  <li>DB 조회</li>
+  <li>사내 문서 검색</li>
+  <li>Python 실행</li>
+  <li>API 호출</li>
+  <li>파일 읽기</li>
+</ul>
+
+<h2 id="요즘은-이런-것도-만들-수-있다">요즘은 이런 것도 만들 수 있다</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자
+  ↓
+Router
+  ↓
+Planner
+  ↓
+Workers
+  ├─ Search Agent
+  ├─ SQL Agent
+  ├─ Code Agent
+  └─ Document Agent
+  ↓
+Aggregator
+  ↓
+Evaluator
+  ↓
+Final Answer
+</code></pre></div></div>
+
+<p>이런 형태가 된다.</p>
+
+<h2 id="정해진-로직으로-처리하는-workflow">정해진 로직으로 처리하는 Workflow</h2>
+
+<p>다만 나는 로직을 정해놓았는데,</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>분류
+  → switch
+  → 특정 처리
+</code></pre></div></div>
+
+<p>또는</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>계획
+  → worker 실행
+  → 통합
+</code></pre></div></div>
+
+<p>이런 방식으로 처리한다면 <code class="language-plaintext highlighter-rouge">deterministic workflow</code> 또는 <code class="language-plaintext highlighter-rouge">LLM workflow</code>라고 생각하면 된다.</p>
+
+<h2 id="llm이-다음-행동을-직접-선택하는-agent">LLM이 다음 행동을 직접 선택하는 Agent</h2>
+
+<p>다만 모던한 Agentic 시스템은 조금 다르게 동작한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LLM: "검색이 필요하겠군"
+  ↓
+검색 Tool 호출
+  ↓
+LLM: "정보가 부족하군"
+  ↓
+다른 Tool 호출
+  ↓
+LLM: "이제 답할 수 있겠다"
+</code></pre></div></div>
+
+<p>이렇게 LLM이 알아서 다음 행동을 스스로 선택한다.</p>
+
+<p>요즘은 이런 식으로 가는 중이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>고정 Workflow                                      자율 Agent
+──────────────────────────────────────────────────────→
+Chaining
+Routing
+Parallel
+Evaluator
+Orchestrator
+                      Tool Calling
+                              Planner
+                                      Agent Loop
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">WorkflowPatterns.java</code>에서 생각해볼 수 있는 위치는 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chaining
+Routing
+Parallel
+Evaluator
+Orchestrator
+        ↑
+     현재 위치
+</code></pre></div></div>
+
+<p>자율 Agent를 만드는 것보다 가능하면 Workflow로 통제하고, 필요한 부분만 Agent화하는 방식이 안정성, 비용, 디버깅 측면에서 훨씬 유리한 경우가 있다.</p>
+
+<blockquote>
+  <p>항상 자유가 좋은 결과를 내주는 것은 아니다.</p>
+</blockquote>
+
+<p>가끔은 행동에 제약을 걸어서 예측 가능한 결과를 낼 수 있어야 한다.</p>
+
+<p>예를 들어 다음처럼 반복 횟수를 Java 코드에서 제한하는 것은 상당히 프로덕션 지향적인 사고다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">round</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">round</span> <span class="o">&lt;=</span> <span class="n">maxRounds</span><span class="o">;</span> <span class="n">round</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="c1">// 작업 실행과 평가</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>LLM에게 그냥 “좋아질 때까지 반복해”라고 하는 것은 결과를 예측하기도 어렵고, 무한 루프 문제가 생길 수도 있다.</p>
+
+<h2 id="학습-순서">학습 순서</h2>
+
+<ol>
+  <li>Tool Calling</li>
+  <li>RAG</li>
+  <li>Memory / State</li>
+  <li>Agent Loop</li>
+  <li>Observability</li>
+  <li>Guardrails</li>
+  <li>Model Routing</li>
+</ol>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="LLM" /><category term="Deep Learning" /><category term="LLM" /><category term="Workflow" /><category term="Agent" /><summary type="html"><![CDATA[Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 6: JPA 연관관계 매핑</title><link href="http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/" rel="alternate" type="text/html" title="Spring 기초 Part 6: JPA 연관관계 매핑" /><published>2026-08-18T09:00:00+09:00</published><updated>2026-08-18T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/"><![CDATA[<h2 id="spring-기초-part-6-jpa-연관관계-매핑">Spring 기초 Part 6: JPA 연관관계 매핑</h2>
+
+<blockquote>
+  <p>연관관계 매핑은 자바 객체의 참조와 데이터베이스 테이블의 외래키를 연결하는 작업이다.</p>
+</blockquote>
+
+<p>자바 객체는 다른 객체를 필드로 참조한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>관계형 데이터베이스는 외래키로 다른 테이블을 참조한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>members.team_id → teams.id
+</code></pre></div></div>
+
+<p>JPA는 이 두 관계를 어노테이션으로 연결한다.</p>
+
+<hr />
+
+<h3 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>정의</th>
+      <th>쉬운 설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>기본키(PK)</td>
+      <td>테이블의 각 행을 유일하게 구분하는 값</td>
+      <td><code class="language-plaintext highlighter-rouge">teams.id</code></td>
+    </tr>
+    <tr>
+      <td>외래키(FK)</td>
+      <td>다른 테이블의 기본키를 참조하는 컬럼</td>
+      <td><code class="language-plaintext highlighter-rouge">members.team_id</code></td>
+    </tr>
+    <tr>
+      <td>연관관계</td>
+      <td>한 객체나 테이블이 다른 대상과 연결된 관계</td>
+      <td>회원이 팀에 소속됨</td>
+    </tr>
+    <tr>
+      <td>다중성</td>
+      <td>관계에 참여하는 대상의 수</td>
+      <td>일대일, 일대다, 다대일, 다대다</td>
+    </tr>
+    <tr>
+      <td>방향성</td>
+      <td>객체에서 어느 방향으로 참조할 수 있는지 나타내는 것</td>
+      <td><code class="language-plaintext highlighter-rouge">Member → Team</code>, 또는 양쪽 모두</td>
+    </tr>
+    <tr>
+      <td>연관관계의 주인</td>
+      <td>외래키 값을 실제로 저장하고 변경하는 쪽</td>
+      <td><code class="language-plaintext highlighter-rouge">Member.team</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mappedBy</code></td>
+      <td>주인이 아닌 쪽에서 주인 필드의 이름을 지정하는 속성</td>
+      <td><code class="language-plaintext highlighter-rouge">mappedBy = "team"</code></td>
+    </tr>
+    <tr>
+      <td>Join</td>
+      <td>외래키를 기준으로 여러 테이블의 데이터를 연결하는 것</td>
+      <td>회원과 팀을 함께 조회</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="2-연관관계의-종류">2. 연관관계의 종류</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>어노테이션</th>
+      <th>관계</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@OneToOne</code></td>
+      <td>일대일(1:1)</td>
+      <td>사용자와 프로필</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@OneToMany</code></td>
+      <td>일대다(1:N)</td>
+      <td>하나의 팀과 여러 회원</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@ManyToOne</code></td>
+      <td>다대일(N:1)</td>
+      <td>여러 회원과 하나의 팀</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@ManyToMany</code></td>
+      <td>다대다(N:M)</td>
+      <td>여러 사용자와 여러 관심 종목</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@JoinColumn</code></td>
+      <td>외래키 컬럼 지정</td>
+      <td><code class="language-plaintext highlighter-rouge">team_id</code>, <code class="language-plaintext highlighter-rouge">user_id</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>실무에서는 다대다 관계를 바로 사용하기보다 중간 Entity로 분리하는 경우가 많다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User 1 ─── N Watchlist N ─── 1 Stock
+</code></pre></div></div>
+
+<p>중간 Entity를 만들면 등록 날짜, 알림 설정 같은 추가 정보도 저장할 수 있다.</p>
+
+<hr />
+
+<h3 id="3-다대일-단방향-매핑">3. 다대일 단방향 매핑</h3>
+
+<p>여러 회원이 하나의 팀에 소속된다고 해보자.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Team 1  ←────  N Member
+</code></pre></div></div>
+
+<p>외래키는 보통 다수 쪽 테이블인 <code class="language-plaintext highlighter-rouge">members</code>에 둔다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>teams                   members
+-------------           ----------------
+id (PK)       ←──────── team_id (FK)
+name                    id (PK)
+                        name
+</code></pre></div></div>
+
+<h4 id="team-entity">Team Entity</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="nf">Team</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="member-entity">Member Entity</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="nf">Member</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">team</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">team</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">@ManyToOne</code>: 여러 <code class="language-plaintext highlighter-rouge">Member</code>가 하나의 <code class="language-plaintext highlighter-rouge">Team</code>과 연결된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@JoinColumn(name = "team_id")</code>: <code class="language-plaintext highlighter-rouge">members.team_id</code>를 외래키로 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">FetchType.LAZY</code>: <code class="language-plaintext highlighter-rouge">team</code>이 실제로 필요할 때 조회하도록 설정한다.</li>
+</ul>
+
+<p>현재는 Member만 Team을 참조하므로 단방향 관계다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>  <span class="c1">// 가능</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">();</span> <span class="c1">// Team에 members 필드가 없으므로 불가능</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="4-양방향-연관관계">4. 양방향 연관관계</h3>
+
+<p>Team에서도 소속 회원 목록을 조회하고 싶다면 <code class="language-plaintext highlighter-rouge">@OneToMany</code>를 추가한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="nf">getMembers</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">members</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이제 객체에서 양쪽 방향으로 이동할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>  <span class="c1">// Member → Team</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">();</span> <span class="c1">// Team → Member</span>
+</code></pre></div></div>
+
+<p>양방향 객체 관계라고 해서 DB 외래키가 두 개 생기는 것은 아니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>객체: Member ↔ Team
+DB:   members.team_id → teams.id
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="5-연관관계의-주인">5. 연관관계의 주인</h3>
+
+<p>객체에는 <code class="language-plaintext highlighter-rouge">Member.team</code>과 <code class="language-plaintext highlighter-rouge">Team.members</code>라는 참조가 두 개지만, DB 외래키는 <code class="language-plaintext highlighter-rouge">members.team_id</code> 하나다.</p>
+
+<p>따라서 JPA는 어느 필드의 값을 기준으로 외래키를 변경할지 결정해야 한다. 외래키를 관리하는 쪽을 <strong>연관관계의 주인</strong>이라고 한다.</p>
+
+<p>이 예제에서는 <code class="language-plaintext highlighter-rouge">Member.team</code>이 주인이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>주인이 아닌 <code class="language-plaintext highlighter-rouge">Team.members</code>에는 <code class="language-plaintext highlighter-rouge">mappedBy</code>를 작성한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">mappedBy = "team"</code>의 <code class="language-plaintext highlighter-rouge">team</code>은 DB 컬럼명이 아니라 <strong>Member 클래스의 필드명</strong>이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+             <span class="c1">// ↑ 이 필드명</span>
+</code></pre></div></div>
+
+<h4 id="외래키를-변경한다는-뜻">외래키를 변경한다는 뜻</h4>
+
+<p>외래키를 변경한다는 것은 객체의 소속 관계를 바꾼다는 뜻이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>변경 전: members.team_id = 1
+변경 후: members.team_id = 2
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">changeTeam</span><span class="o">(</span><span class="n">team2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>JPA는 주인인 <code class="language-plaintext highlighter-rouge">Member.team</code>의 변경을 기준으로 <code class="language-plaintext highlighter-rouge">team_id</code>를 수정한다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">members</span>
+<span class="k">SET</span> <span class="n">team_id</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>반대편 컬렉션만 변경하면 메모리의 목록은 바뀌지만 외래키 변경이 반영되지 않을 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member</span><span class="o">);</span> <span class="c1">// 이것만으로는 부족함</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="6-양쪽-객체를-함께-변경하기">6. 양쪽 객체를 함께 변경하기</h3>
+
+<p>DB 외래키는 주인 쪽 값으로 변경되지만, 현재 메모리의 두 객체도 일치시키는 것이 안전하다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">newTeam</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">remove</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">newTeam</span><span class="o">;</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">newTeam</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">newTeam</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">changeTeam</span><span class="o">(</span><span class="n">team</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Member.team에 Team 저장
+          ↓
+Team.members에 Member 추가
+          ↓
+메모리의 양쪽 관계 일치
+          ↓
+members.team_id 변경
+</code></pre></div></div>
+
+<p>이런 메서드를 연관관계 편의 메서드라고 한다. 양쪽 메서드가 서로를 계속 호출하면 무한 호출이 발생할 수 있으므로 한쪽에서 관계를 관리한다.</p>
+
+<hr />
+
+<h3 id="7-지연-로딩">7. 지연 로딩</h3>
+
+<p>지연 로딩(Lazy Loading)은 연관된 Entity를 처음부터 조회하지 않고 실제로 사용할 때 조회하는 방식이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Member 조회
+    ↓
+Team은 아직 조회하지 않음
+    ↓
+member.getTeam() 사용
+    ↓
+필요한 Team 조회
+</code></pre></div></div>
+
+<p>즉시 로딩(Eager Loading)은 원래 Entity를 조회할 때 연관된 Entity도 함께 조회한다.</p>
+
+<p>연관관계를 무조건 즉시 로딩하면 예상하지 못한 SQL이 많이 실행될 수 있으므로 일반적으로 지연 로딩을 우선 사용하고, 필요한 조회에서 fetch join이나 EntityGraph 등을 명시적으로 고려한다.</p>
+
+<p>지연 로딩된 Entity를 영속성 컨텍스트가 끝난 뒤 접근하면 예외가 발생할 수 있으므로 Service 안에서 필요한 데이터를 DTO로 변환하는 방식이 안전하다.</p>
+
+<hr />
+
+<h3 id="8-cascade와-orphanremoval">8. <code class="language-plaintext highlighter-rouge">cascade</code>와 <code class="language-plaintext highlighter-rouge">orphanRemoval</code></h3>
+
+<h4 id="cascade"><code class="language-plaintext highlighter-rouge">cascade</code></h4>
+
+<p>영속성 전이(Cascade)는 부모 Entity의 저장이나 삭제 작업을 연관된 Entity에도 전달한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>연관되어 있다는 이유만으로 무조건 사용하면 안 된다. 두 Entity의 생명주기를 함께 관리할 때 사용한다.</p>
+
+<h4 id="orphanremoval"><code class="language-plaintext highlighter-rouge">orphanRemoval</code></h4>
+
+<p>고아 객체 제거는 부모 컬렉션에서 제거된 자식 Entity를 DB에서도 삭제하는 기능이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">,</span> <span class="n">orphanRemoval</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>단순히 관계만 끊으려는 상황에서도 데이터가 삭제될 수 있으므로 주의해야 한다.</p>
+
+<hr />
+
+<h3 id="핵심-정리">핵심 정리</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>한 줄 정리</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>연관관계 매핑</td>
+      <td>객체 참조와 테이블 외래키를 연결</td>
+    </tr>
+    <tr>
+      <td>다중성</td>
+      <td><code class="language-plaintext highlighter-rouge">1:1</code>, <code class="language-plaintext highlighter-rouge">1:N</code>, <code class="language-plaintext highlighter-rouge">N:1</code>, <code class="language-plaintext highlighter-rouge">N:M</code>처럼 관계의 수를 표현</td>
+    </tr>
+    <tr>
+      <td>방향성</td>
+      <td>객체가 한쪽 또는 양쪽으로 참조할 수 있는지 표현</td>
+    </tr>
+    <tr>
+      <td>연관관계의 주인</td>
+      <td>외래키 값을 실제로 저장하고 변경하는 쪽</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mappedBy</code></td>
+      <td>주인이 아닌 쪽에서 주인 필드명을 지정</td>
+    </tr>
+    <tr>
+      <td>지연 로딩</td>
+      <td>연관 Entity가 실제로 필요할 때 조회</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cascade</code></td>
+      <td>영속성 작업을 연관 Entity에 전달</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">orphanRemoval</code></td>
+      <td>관계에서 제거된 자식 Entity를 DB에서도 삭제</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Team과 Member의 양방향 관계에서는 외래키 <code class="language-plaintext highlighter-rouge">team_id</code>가 있는 <code class="language-plaintext highlighter-rouge">Member.team</code>이 연관관계의 주인이다.</p>
+</blockquote>
+
+<h3 id="참고-자료">참고 자료</h3>
+
+<ul>
+  <li><a href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence 공식 명세</a></li>
+  <li><a href="https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html">Hibernate ORM User Guide</a></li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="JPA" /><category term="Relationship Mapping" /><category term="ManyToOne" /><category term="OneToMany" /><category term="Foreign Key" /><summary type="html"><![CDATA[객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다.]]></summary></entry><entry><title type="html">CI/CD 기초 3편: 배포 전략과 운영</title><link href="http://localhost:4000/devops/2026/08/17/docker-deployment-operations/" rel="alternate" type="text/html" title="CI/CD 기초 3편: 배포 전략과 운영" /><published>2026-08-17T15:00:00+09:00</published><updated>2026-08-17T15:00:00+09:00</updated><id>http://localhost:4000/devops/2026/08/17/docker-deployment-operations</id><content type="html" xml:base="http://localhost:4000/devops/2026/08/17/docker-deployment-operations/"><![CDATA[<h2 id="배포-후에도-끝은-아니다">배포 후에도 끝은 아니다</h2>
 
 <p>CI/CD를 처음 접하면 <code class="language-plaintext highlighter-rouge">docker run</code>이 성공한 것을 배포 성공으로 생각하기 쉽다. 하지만 컨테이너 프로세스가 실행됐더라도 Spring Boot 애플리케이션은 정상적으로 동작하지 않을 수 있다.</p>
 
@@ -3391,1460 +4525,4 @@ flowchart TD
 <ul>
   <li><a href="https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html">Spring Framework Validation 공식 문서</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring Framework Web MVC 공식 문서</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="REST API" /><category term="Validation" /><category term="DTO" /><category term="RequestBody" /><summary type="html"><![CDATA[PathVariable, RequestParam, RequestBody로 요청값을 받고 DTO와 Bean Validation으로 검증하는 흐름을 정리한다.]]></summary></entry><entry><title type="html">Python Counter, 빈도수를 쉽게 세는 방법</title><link href="http://localhost:4000/algorithm/2026/08/14/counter/" rel="alternate" type="text/html" title="Python Counter, 빈도수를 쉽게 세는 방법" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>http://localhost:4000/algorithm/2026/08/14/counter</id><content type="html" xml:base="http://localhost:4000/algorithm/2026/08/14/counter/"><![CDATA[<h2 id="counter">Counter</h2>
-
-<blockquote>
-  <p>빈도수를 세는 문제에서 코드를 확 줄여주는 기능이다.</p>
-</blockquote>
-
-<p><code class="language-plaintext highlighter-rouge">Counter</code>는 <code class="language-plaintext highlighter-rouge">collections</code> 모듈에서 가져와 사용한다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-</code></pre></div></div>
-
-<p>기본 형태는 다음과 같다.</p>
-
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">Counter(이터러블)</code> → <code class="language-plaintext highlighter-rouge">{원소: 등장 횟수}</code> 형태로 세어준다.</p>
-</blockquote>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
-
-<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
-</code></pre></div></div>
-
-<p>문자열도 문자 하나씩 순회할 수 있는 이터러블이므로 카운팅할 수 있다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">"banana"</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-<span class="c1"># Counter({'a': 3, 'n': 2, 'b': 1})
-</span></code></pre></div></div>
-
-<hr />
-
-<h2 id="알고리즘-문제에서-자주-쓰는-기능">알고리즘 문제에서 자주 쓰는 기능</h2>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-
-<span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>              <span class="c1"># x의 개수, 없으면 0
-</span><span class="n">count</span><span class="p">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 가장 많이 나온 값 1개
-</span><span class="n">count</span><span class="p">.</span><span class="n">keys</span><span class="p">()</span>          <span class="c1"># 등장한 값들
-</span><span class="n">count</span><span class="p">.</span><span class="n">values</span><span class="p">()</span>        <span class="c1"># 각 값의 등장 횟수
-</span><span class="n">count</span><span class="p">.</span><span class="n">items</span><span class="p">()</span>         <span class="c1"># (값, 등장 횟수)
-</span></code></pre></div></div>
-
-<p>예를 들어 각 귤 크기의 개수를 센 뒤, 등장 횟수만 가져오고 싶다면 다음처럼 사용할 수 있다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">tangerine</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
-<span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">tangerine</span><span class="p">).</span><span class="n">values</span><span class="p">())</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
-<span class="c1"># [1, 2, 2, 2, 1]
-</span></code></pre></div></div>
-
-<h3 id="특히-이런-문제에서-유용하다">특히 이런 문제에서 유용하다</h3>
-
-<ul>
-  <li>문자열의 문자 개수 세기</li>
-  <li>숫자별 등장 횟수 세기</li>
-  <li>애너그램 판별</li>
-  <li>최빈값 찾기</li>
-  <li>두 배열의 원소 구성 비교</li>
-  <li>중복 원소 찾기</li>
-</ul>
-
-<p>애너그램은 문자의 순서는 다르지만, 사용된 문자와 각 문자의 개수가 같은 단어를 말한다.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Counter</span><span class="p">(</span><span class="s">"listen"</span><span class="p">)</span> <span class="o">==</span> <span class="n">Counter</span><span class="p">(</span><span class="s">"silent"</span><span class="p">)</span>  <span class="c1"># True
-</span></code></pre></div></div>
-
-<hr />
-
-<h2 id="개인적인-고민">개인적인 고민</h2>
-
-<p>모든 기능을 내가 구현해야 하는 게 아닌가?</p>
-
-<p>나는 약간 내가 직접 구현해야 할 것 같은 강박이 있다.</p>
-
-<p>하지만 이런 강박을 가질 필요는 없다.</p>
-
-<p>알고리즘 문제에서는 단순히 코드를 길게 짜는 능력만 보는 것이 아니다.</p>
-
-<ul>
-  <li>이 문제가 빈도수를 활용해서 해결할 수 있는 문제인지 알아보는가?</li>
-  <li>어떤 자료구조를 사용해야 하는지 판단할 수 있는가?</li>
-  <li>시간 복잡도를 고려할 수 있는가?</li>
-</ul>
-
-<p>빈도수를 딕셔너리에 저장하는 반복문은 이미 검증된 도구로 대체할 수 있는 구현 세부 사항이다.</p>
-
-<p>굳이 검증된 도구가 있다면 매번 다시 만들어서 쓸 필요는 없다.</p>
-
-<h3 id="직접-구현한다면">직접 구현한다면</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="p">{}</span>
-
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
-    <span class="n">count</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-</code></pre></div></div>
-
-<h3 id="counter를-사용한다면">Counter를 사용한다면</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>둘 다 핵심 원리는 똑같고, 평균 시간 복잡도도 보통 <code class="language-plaintext highlighter-rouge">O(N)</code>이다.</p>
-
-<p>따라서 <code class="language-plaintext highlighter-rouge">Counter</code>를 사용했다고 해서 알고리즘을 건너뛴 것은 아니다.</p>
-
-<hr />
-
-<h2 id="추천-학습-방식">추천 학습 방식</h2>
-
-<ol>
-  <li>처음에는 빈도수 계산을 직접 구현해보며 원리를 이해한다.</li>
-  <li>이후 문제에서는 <code class="language-plaintext highlighter-rouge">Counter</code>를 사용한다.</li>
-  <li>라이브러리 사용이 금지된 문제나 코딩 테스트 환경에서 지원하지 않는 경우에만 직접 구현한다.</li>
-  <li><code class="language-plaintext highlighter-rouge">Counter</code> 없이도 구현 방법을 설명할 수 있으면 충분하다.</li>
-</ol>
-
-<p>다만 아래 알고리즘과 자료구조는 동작 원리를 이해하기 위해 직접 구현해보는 것이 좋다.</p>
-
-<ul>
-  <li>정렬, 이분 탐색</li>
-  <li>스택, 큐</li>
-  <li>BFS, DFS</li>
-  <li>힙</li>
-  <li>유니온 파인드</li>
-  <li>다익스트라</li>
-</ul>
-
-<hr />
-
-<h2 id="결론">결론</h2>
-
-<blockquote>
-  <p>문제가 빈도수 문제라는 것을 알아보는 것도 알고리즘 실력이다.</p>
-
-  <p>원리는 직접 이해하고, 실전에서는 표준 라이브러리를 적극적으로 사용하자.</p>
-</blockquote>]]></content><author><name>Min Hyeong Lee</name></author><category term="Algorithm" /><category term="Python" /><category term="Algorithm" /><category term="Counter" /><category term="Collections" /><summary type="html"><![CDATA[Python collections.Counter로 원소의 빈도수를 세고 알고리즘 문제에 활용하는 방법을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</title><link href="http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow/" rel="alternate" type="text/html" title="Spring 기초 Part 2: Spring MVC 요청 처리 흐름" /><published>2026-08-14T09:00:00+09:00</published><updated>2026-08-14T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/14/spring-mvc-request-flow/"><![CDATA[<h2 id="spring-기초-part-2-spring-mvc-요청-처리-흐름">Spring 기초 Part 2: Spring MVC 요청 처리 흐름</h2>
-
-<blockquote>
-  <p>Spring MVC는 HTTP 요청을 적절한 Controller에 연결하고, 처리 결과를 View 또는 JSON으로 반환하는 웹 프레임워크다.</p>
-</blockquote>
-
-<p>처음에는 다음 흐름부터 기억하면 된다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
-  → DispatcherServlet
-  → Controller
-  → Service
-  → Repository
-  → Database
-</code></pre></div></div>
-
-<p>응답은 반대 방향으로 돌아온다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Database
-  → Repository
-  → Service
-  → Controller
-  → JSON 또는 HTML
-  → Client
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>정의</th>
-      <th>쉽게 말하면</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Client</td>
-      <td>서버에 HTTP 요청을 보내는 프로그램</td>
-      <td>브라우저, Vue, React, 앱, Postman</td>
-    </tr>
-    <tr>
-      <td>HTTP Request</td>
-      <td>Client가 서버에 보내는 요청</td>
-      <td><code class="language-plaintext highlighter-rouge">GET /api/users/1</code></td>
-    </tr>
-    <tr>
-      <td>HTTP Response</td>
-      <td>서버가 Client에 돌려주는 결과</td>
-      <td>상태 코드와 JSON 데이터</td>
-    </tr>
-    <tr>
-      <td>MVC</td>
-      <td>Model, View, Controller로 역할을 나누는 설계 방식</td>
-      <td>데이터, 화면, 요청 처리를 분리</td>
-    </tr>
-    <tr>
-      <td>Servlet</td>
-      <td>Java 웹 서버에서 HTTP 요청과 응답을 처리하는 객체</td>
-      <td>Spring MVC의 입구를 만드는 기반 기술</td>
-    </tr>
-    <tr>
-      <td>DispatcherServlet</td>
-      <td>Spring MVC의 모든 요청을 먼저 받는 Front Controller</td>
-      <td>요청을 담당 Controller에 배분하는 중앙 안내자</td>
-    </tr>
-    <tr>
-      <td>HandlerMapping</td>
-      <td>요청을 처리할 Controller 메서드를 찾는 객체</td>
-      <td><code class="language-plaintext highlighter-rouge">/users/1</code>을 누가 처리하는지 검색</td>
-    </tr>
-    <tr>
-      <td>HandlerAdapter</td>
-      <td>찾은 Controller 메서드를 실제로 호출하는 객체</td>
-      <td>매개변수를 준비하고 메서드를 실행</td>
-    </tr>
-    <tr>
-      <td>Jackson</td>
-      <td>자바 객체와 JSON을 변환하는 라이브러리</td>
-      <td><code class="language-plaintext highlighter-rouge">UserDto</code>를 JSON으로 변환</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="2-mvc와-계층형-구조는-같은-말이-아니다">2. MVC와 계층형 구조는 같은 말이 아니다</h3>
-
-<p>기본 MVC는 역할을 다음처럼 구분한다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구성</th>
-      <th>역할</th>
-      <th>Spring에서의 예</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Model</td>
-      <td>애플리케이션의 데이터와 상태</td>
-      <td>DTO, Entity, Service의 처리 결과</td>
-    </tr>
-    <tr>
-      <td>View</td>
-      <td>사용자에게 보여줄 결과</td>
-      <td>HTML, Thymeleaf 화면</td>
-    </tr>
-    <tr>
-      <td>Controller</td>
-      <td>요청을 받고 처리 흐름을 연결</td>
-      <td><code class="language-plaintext highlighter-rouge">@Controller</code>, <code class="language-plaintext highlighter-rouge">@RestController</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>실무의 Spring 애플리케이션에서는 유지보수를 위해 역할을 더 세분화한다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>계층</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Controller</td>
-      <td>HTTP 요청과 응답 처리</td>
-    </tr>
-    <tr>
-      <td>Service</td>
-      <td>비즈니스 규칙과 트랜잭션 처리</td>
-    </tr>
-    <tr>
-      <td>Repository</td>
-      <td>데이터베이스 접근</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>즉 Spring MVC와 계층형 구조를 함께 사용하는 것이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring MVC
-→ HTTP 요청을 Controller에 연결하고 응답을 만드는 구조
-
-계층형 구조
-→ Controller, Service, Repository의 책임을 나누는 구조
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="3-dispatcherservlet">3. DispatcherServlet</h3>
-
-<p>Client의 요청이 Controller로 바로 전달되는 것은 아니다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
-  → DispatcherServlet
-  → Controller
-</code></pre></div></div>
-
-<p>DispatcherServlet은 모든 요청을 먼저 받고 적절한 Controller로 전달한다. 이런 구조를 <strong>Front Controller Pattern</strong>이라고 한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                       ┌→ UserController
-Client → DispatcherServlet → ProductController
-                       └→ OrderController
-</code></pre></div></div>
-
-<p>각 Controller가 공통 처리를 직접 반복하지 않아도 DispatcherServlet을 중심으로 일관된 요청 처리가 가능하다.</p>
-
-<hr />
-
-<h3 id="4-handlermapping과-handleradapter">4. HandlerMapping과 HandlerAdapter</h3>
-
-<p>다음 Controller가 있다고 해보자.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 사용자 조회</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Client가 다음 요청을 보낸다.</p>
-
-<div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">GET /api/users/1
-</span></code></pre></div></div>
-
-<p>Spring은 애플리케이션을 시작할 때 어노테이션 정보를 읽고 URL과 메서드의 연결 정보를 준비한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET /api/users/{id}
-        ↓
-UserController.getUser()
-</code></pre></div></div>
-
-<p>실행 시 각 객체의 역할은 다음과 같다.</p>
-
-<ol>
-  <li>DispatcherServlet이 요청을 받는다.</li>
-  <li>HandlerMapping이 요청을 처리할 Controller 메서드를 찾는다.</li>
-  <li>HandlerAdapter가 필요한 매개변수를 준비한다.</li>
-  <li>HandlerAdapter가 Controller 메서드를 호출한다.</li>
-  <li>반환 결과를 DispatcherServlet이 응답으로 처리한다.</li>
-</ol>
-
-<section class="mermaid-card">
-  <header class="mermaid-head">
-    <span>Spring MVC REST API 요청 흐름</span>
-  </header>
-  <div class="mermaid js-mermaid">
-flowchart LR
-    C[Client] --&gt;|HTTP Request| D[DispatcherServlet]
-    D --&gt;|처리 대상 검색| HM[HandlerMapping]
-    HM --&gt;|Controller 정보| D
-    D --&gt;|실행 요청| HA[HandlerAdapter]
-    HA --&gt; CT[Controller]
-    CT --&gt; S[Service]
-    S --&gt; R[Repository]
-    R --&gt; DB[(Database)]
-    DB --&gt; R
-    R --&gt; S
-    S --&gt; CT
-    CT --&gt;|Java Object| HA
-    HA --&gt; D
-    D --&gt;|JSON Response| C
-</div>
-</section>
-
-<script>
-  (function () {
-    function render() {
-      if (window.mermaid && window.mermaid.run) {
-        window.mermaid.run({ querySelector: '.js-mermaid' });
-      }
-    }
-
-    if (!window.__mermaidLibInit) {
-      window.__mermaidLibInit = true;
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-      script.async = true;
-      script.onload = function () {
-        if (window.mermaid && window.mermaid.initialize) {
-          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-        }
-        render();
-      };
-      document.head.appendChild(script);
-    } else {
-      render();
-    }
-  })();
-</script>
-
-<hr />
-
-<h3 id="5-controller-service-repository">5. Controller, Service, Repository</h3>
-
-<h4 id="controller">Controller</h4>
-
-<p>Controller는 HTTP 요청과 응답에 집중한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/api/users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserController</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">UserResponse</span><span class="o">&gt;</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">UserResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-        <span class="k">return</span> <span class="nc">ResponseEntity</span><span class="o">.</span><span class="na">ok</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Controller에는 복잡한 업무 규칙을 넣지 않는다.</p>
-
-<h4 id="service">Service</h4>
-
-<p>Service는 실제 업무 규칙을 처리한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserService</span><span class="o">(</span><span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
-        <span class="k">return</span> <span class="nc">UserResponse</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="repository">Repository</h4>
-
-<p>Repository는 데이터베이스 접근을 담당한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>역할을 나누면 HTTP 처리, 업무 규칙, DB 접근을 각각 독립적으로 수정하고 테스트하기 쉬워진다.</p>
-
-<hr />
-
-<h3 id="6-controller와-restcontroller">6. <code class="language-plaintext highlighter-rouge">@Controller</code>와 <code class="language-plaintext highlighter-rouge">@RestController</code></h3>
-
-<h4 id="controller-1"><code class="language-plaintext highlighter-rouge">@Controller</code></h4>
-
-<p>일반적인 <code class="language-plaintext highlighter-rouge">@Controller</code>가 문자열을 반환하면 View 이름으로 해석할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HomeController</span> <span class="o">{</span>
-
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">home</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"home"</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return "home"
-   → ViewResolver
-   → home.html 검색
-   → HTML 응답
-</code></pre></div></div>
-
-<h4 id="restcontroller"><code class="language-plaintext highlighter-rouge">@RestController</code></h4>
-
-<p><code class="language-plaintext highlighter-rouge">@RestController</code>의 반환값은 기본적으로 HTTP 응답 본문으로 전달된다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloController</span> <span class="o">{</span>
-
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/api/hello"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">MessageResponse</span> <span class="nf">hello</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">MessageResponse</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Jackson이 자바 객체를 JSON으로 변환한다.</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hello"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th><code class="language-plaintext highlighter-rouge">@Controller</code></th>
-      <th><code class="language-plaintext highlighter-rouge">@RestController</code></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>주요 목적</td>
-      <td>HTML View 반환</td>
-      <td>JSON 데이터 반환</td>
-    </tr>
-    <tr>
-      <td>반환값 처리</td>
-      <td>View 이름으로 해석 가능</td>
-      <td>Response Body로 변환</td>
-    </tr>
-    <tr>
-      <td>주 사용처</td>
-      <td>서버 렌더링 웹 페이지</td>
-      <td>REST API</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="7-전체-실행-흐름">7. 전체 실행 흐름</h3>
-
-<p><code class="language-plaintext highlighter-rouge">GET /api/users/1</code> 요청을 다시 연결하면 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Client가 GET /api/users/1 요청
-2. DispatcherServlet이 요청 수신
-3. HandlerMapping이 UserController.getUser() 검색
-4. HandlerAdapter가 id 값을 준비하고 메서드 호출
-5. Controller가 UserService 호출
-6. Service가 UserRepository 호출
-7. Repository가 DB 조회
-8. 조회 결과가 Repository → Service → Controller로 반환
-9. Jackson이 UserResponse를 JSON으로 변환
-10. Client에 HTTP 응답 반환
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="핵심-정리">핵심 정리</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구성 요소</th>
-      <th>핵심 역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>DispatcherServlet</td>
-      <td>모든 요청을 먼저 받는 Front Controller</td>
-    </tr>
-    <tr>
-      <td>HandlerMapping</td>
-      <td>요청을 처리할 Controller 메서드 검색</td>
-    </tr>
-    <tr>
-      <td>HandlerAdapter</td>
-      <td>Controller 메서드 실행</td>
-    </tr>
-    <tr>
-      <td>Controller</td>
-      <td>HTTP 요청과 응답 처리</td>
-    </tr>
-    <tr>
-      <td>Service</td>
-      <td>비즈니스 규칙 처리</td>
-    </tr>
-    <tr>
-      <td>Repository</td>
-      <td>데이터베이스 접근</td>
-    </tr>
-    <tr>
-      <td>Jackson</td>
-      <td>자바 객체를 JSON으로 변환</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Spring MVC의 핵심은 요청을 Controller에 연결하는 흐름과 Controller, Service, Repository의 책임을 분리하는 데 있다.</p>
-</blockquote>
-
-<h3 id="참고-자료">참고 자료</h3>
-
-<ul>
-  <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc.html">Spring Framework Web MVC 공식 문서</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="Spring MVC" /><category term="DispatcherServlet" /><category term="REST API" /><summary type="html"><![CDATA[DispatcherServlet부터 Controller, Service, Repository, JSON 응답까지 Spring MVC의 전체 요청 흐름을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</title><link href="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/" rel="alternate" type="text/html" title="Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation" /><published>2026-08-11T19:20:00+09:00</published><updated>2026-08-11T19:20:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/11/spring-ioc-bean-di/"><![CDATA[<h2 id="spring-기초-part-1-ioc-bean-di와-주요-annotation">Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</h2>
-
-<h3 id="1-spring이란-무엇인가">1. Spring이란 무엇인가</h3>
-
-<p>Spring이 뭔지 일단 한 문장으로 말하면 다음과 같다.</p>
-
-<blockquote>
-  <p>Spring은 Java 객체를 대신 생성하고 관리하며, 서로 연결해 주고, 웹 요청 처리나 DB Transaction 같은 애플리케이션 기능까지 제공하는 Framework다.</p>
-</blockquote>
-
-<p>여기서 <strong>Framework</strong>란 애플리케이션의 전체 구조와 실행 흐름을 제공하고, 정해진 시점에 개발자가 작성한 코드를 호출하는 기반을 말한다. 개발자가 필요할 때 직접 호출하는 Library와 비교하면, Framework는 애플리케이션의 흐름을 주도한다는 특징이 있다.</p>
-
-<p>Spring을 처음 배우면 Annotation부터 정말 많이 보게 된다. 그런데 일단 다음 세 개념의 관계부터 이해해야 한다.</p>
-
-<ol>
-  <li><strong>IoC Container</strong>: 객체를 생성하고 관리하는 공간</li>
-  <li><strong>Bean</strong>: Spring Container가 관리하는 객체</li>
-  <li><strong>DI</strong>: Bean이 필요로 하는 다른 Bean을 넣어 주는 방식</li>
-</ol>
-
-<p>관계를 한 줄로 나타내면 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Container가 Bean을 생성하고, Bean 사이의 의존 관계를 DI로 연결한다.
-</code></pre></div></div>
-
-<h4 id="spring을-왜-사용하는가">Spring을 왜 사용하는가</h4>
-
-<p>그냥 Java에서 직접 <code class="language-plaintext highlighter-rouge">new</code>를 사용해도 애플리케이션을 만들 수 있다. 그런데 규모가 커지면 객체 생성과 연결, 설정, Transaction, 웹 요청 처리 같은 반복 코드가 빠르게 늘어난다. Spring은 이러한 문제를 다음과 같이 줄여 준다.</p>
-
-<ul>
-  <li><strong>객체 관리 자동화</strong>: 객체 생성, 의존 관계 설정, 생명주기 관리를 Container에 맡길 수 있다.</li>
-  <li><strong>낮은 결합도</strong>: 클래스가 구체적인 구현 객체를 직접 생성하지 않으므로 구현 교체와 테스트가 쉬워진다.</li>
-  <li><strong>관심사 분리</strong>: Controller, Service, Repository처럼 역할을 나누어 코드를 관리할 수 있다.</li>
-  <li><strong>선언적 기능 사용</strong>: <code class="language-plaintext highlighter-rouge">@Transactional</code> 같은 애너테이션으로 반복적인 기반 코드를 직접 작성하지 않고 기능을 적용할 수 있다.</li>
-  <li><strong>일관된 생태계</strong>: Spring MVC, Spring Data 등 여러 모듈을 같은 객체 관리 방식과 설정 모델로 사용할 수 있다.</li>
-</ul>
-
-<p>그렇다고 모든 객체를 무조건 Bean으로 만들어야 하는 것은 아니다. 값만 담는 단순 객체나 한 메서드 안에서 잠깐 사용하는 객체처럼 Container의 관리가 필요 없는 객체는 직접 <code class="language-plaintext highlighter-rouge">new</code>로 생성해도 된다.</p>
-
-<h3 id="2-먼저-알아둘-용어">2. 먼저 알아둘 용어</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>정의</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>객체(Object)</td>
-      <td>클래스를 바탕으로 메모리에 생성된 실제 값</td>
-    </tr>
-    <tr>
-      <td>컴포넌트(Component)</td>
-      <td>애플리케이션을 구성하는 하나의 기능 단위. Spring에서는 보통 Container가 관리하는 클래스 또는 Bean 후보를 가리킨다.</td>
-    </tr>
-    <tr>
-      <td>의존성(Dependency)</td>
-      <td>어떤 객체가 자신의 기능을 수행하기 위해 필요로 하는 다른 객체</td>
-    </tr>
-    <tr>
-      <td>메타데이터(Metadata)</td>
-      <td>코드 자체의 실행 내용이 아니라 코드의 역할과 처리 방법을 설명하는 부가 정보</td>
-    </tr>
-    <tr>
-      <td>스테레오타입(Stereotype)</td>
-      <td><code class="language-plaintext highlighter-rouge">@Service</code>, <code class="language-plaintext highlighter-rouge">@Repository</code>처럼 클래스의 계층별 역할을 나타내는 애너테이션</td>
-    </tr>
-    <tr>
-      <td>프록시(Proxy)</td>
-      <td>원본 객체를 감싸서 메서드 호출 전후에 트랜잭션, 로깅 같은 부가 기능을 수행하는 대리 객체</td>
-    </tr>
-    <tr>
-      <td>트랜잭션(Transaction)</td>
-      <td>여러 데이터 작업을 하나의 논리적 작업 단위로 묶어 모두 성공시키거나 모두 취소하는 처리 단위</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="3-spring-container">3. Spring Container</h3>
-
-<p><strong>Spring Container</strong>는 애플리케이션에 필요한 객체를 생성하고, 설정하고, 서로 연결하고, 생명주기를 관리하는 실행 환경이다. 일반적으로 <code class="language-plaintext highlighter-rouge">ApplicationContext</code>가 Spring IoC Container의 역할을 담당한다.</p>
-
-<p>Container는 설정 정보를 읽고 다음 작업을 수행한다.</p>
-
-<ol>
-  <li>관리할 클래스를 찾거나 <code class="language-plaintext highlighter-rouge">@Bean</code> 설정을 읽는다.</li>
-  <li>해당 클래스의 객체를 생성한다.</li>
-  <li>객체가 필요로 하는 의존성을 찾는다.</li>
-  <li>생성자 등을 통해 의존성을 주입한다.</li>
-  <li>완성된 객체를 Bean으로 보관하고 필요한 곳에 제공한다.</li>
-</ol>
-
-<p>예를 들어 Spring Boot 애플리케이션에서는 보통 <code class="language-plaintext highlighter-rouge">@SpringBootApplication</code>이 붙은 시작 클래스의 패키지와 그 하위 패키지를 대상으로 Component Scan이 이루어진다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>애플리케이션 실행
-    ↓
-설정 정보와 컴포넌트 탐색
-    ↓
-Bean 생성
-    ↓
-Bean 사이의 의존성 주입
-    ↓
-요청을 처리할 준비 완료
-</code></pre></div></div>
-
-<h4 id="container를-왜-사용하는가">Container를 왜 사용하는가</h4>
-
-<p>개발자가 객체 생성 순서와 공유 방법을 매번 직접 관리하면 객체가 많아질수록 코드가 복잡해진다. Container에 관리를 맡기면 애플리케이션 코드는 객체를 만드는 방법보다 각 객체가 맡은 비즈니스 역할에 집중할 수 있다.</p>
-
-<h3 id="4-bean">4. Bean</h3>
-
-<p><strong>Bean</strong>은 Spring Container가 생성하고 관리하는 객체다. 쉽게 말하면 Spring이 관리하고 있는 Java 객체다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Component Scan이 <code class="language-plaintext highlighter-rouge">UserService</code>를 발견해 객체를 생성하고 Container에 등록했다면 그 객체는 Spring Bean이다.</p>
-
-<p>반면 다음 객체는 개발자가 직접 생성했으므로 그 자체로는 Bean이 아니다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserService</span><span class="o">();</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 직접 new로 생성
-→ 일반 Java 객체
-
-Spring Container가 생성하거나 등록하여 관리
-→ Spring Bean
-</code></pre></div></div>
-
-<p>Bean은 기본적으로 하나의 Container 안에서 하나만 생성되는 <strong>singleton scope</strong>를 사용한다. 여기서 singleton은 JVM 전체에 무조건 객체가 하나라는 뜻이 아니라, 해당 Spring Container가 같은 Bean 정의에 대해 하나의 인스턴스를 관리한다는 뜻이다. 필요하면 prototype, request, session 같은 다른 scope도 사용할 수 있다.</p>
-
-<h4 id="bean으로-관리하면-좋은-이유">Bean으로 관리하면 좋은 이유</h4>
-
-<ul>
-  <li>동일한 객체를 여러 곳에서 일관되게 공유할 수 있다.</li>
-  <li>객체 생성과 종료 같은 생명주기를 Spring에 맡길 수 있다.</li>
-  <li>DI, 트랜잭션, AOP 같은 Spring 기능을 적용할 수 있다.</li>
-  <li>구현 교체와 테스트용 대체 객체 사용이 쉬워진다.</li>
-</ul>
-
-<h3 id="5-ioc-제어의-역전">5. IoC: 제어의 역전</h3>
-
-<p><strong>IoC(Inversion of Control)</strong>는 객체의 생성과 연결에 대한 제어권이 애플리케이션 코드에서 외부 Container로 이동하는 설계 원칙이다.</p>
-
-<h4 id="spring을-사용하지-않을-때">Spring을 사용하지 않을 때</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserService</span><span class="o">();</span>
-<span class="nc">UserController</span> <span class="n">userController</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserController</span><span class="o">(</span><span class="n">userService</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>개발자가 객체의 생성 순서와 연결 방법을 직접 결정한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 코드
-    ↓ 생성
-UserService
-    ↓ 전달
-UserController
-</code></pre></div></div>
-
-<h4 id="spring을-사용할-때">Spring을 사용할 때</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-<span class="o">}</span>
-
-<span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserController</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>개발자는 필요한 의존성을 생성자에 선언하고, 실제 객체 생성과 연결은 Spring Container가 담당한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Container
-    ├─ UserService Bean 생성
-    ├─ UserController Bean 생성
-    └─ UserService Bean을 UserController에 주입
-</code></pre></div></div>
-
-<p>여기서 중요한 점은 IoC와 DI가 완전히 같은 단어는 아니라는 것이다. <strong>IoC는 제어권이 뒤집힌 상태를 설명하는 원칙</strong>이고, <strong>DI는 그 원칙을 구현하는 대표적인 방법</strong>이다.</p>
-
-<h4 id="ioc가-필요한-이유">IoC가 필요한 이유</h4>
-
-<p>클래스가 사용할 구현체를 직접 생성하면 두 클래스가 강하게 결합된다. 생성 책임을 Container로 옮기면 각 클래스는 자신의 역할에 집중할 수 있고, 객체 구성 방법은 별도의 설정으로 관리할 수 있다.</p>
-
-<h3 id="6-di-의존성-주입">6. DI: 의존성 주입</h3>
-
-<p><strong>DI(Dependency Injection)</strong>는 객체가 필요로 하는 의존성을 객체 외부에서 전달하는 방식이다. 말 그대로 Dependency를 외부에서 Injection한다는 뜻이다.</p>
-
-<p>여기서 의존성이라는 말이 조금 어렵게 느껴질 수 있다. <code class="language-plaintext highlighter-rouge">UserController</code>가 회원 관련 기능을 수행하기 위해 <code class="language-plaintext highlighter-rouge">UserService</code>를 사용한다면, <code class="language-plaintext highlighter-rouge">UserService</code>가 <code class="language-plaintext highlighter-rouge">UserController</code>의 의존성이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserController</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">UserController</code> 내부에는 <code class="language-plaintext highlighter-rouge">new UserService()</code>가 없다. Spring이 이미 관리 중인 <code class="language-plaintext highlighter-rouge">UserService</code> Bean을 생성자 매개변수로 전달한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[UserService Bean]
-         │
-         │ DI
-         ▼
-[UserController Bean]
-</code></pre></div></div>
-
-<h4 id="생성자-주입을-권장하는-이유">생성자 주입을 권장하는 이유</h4>
-
-<p>Spring에는 생성자, setter, field를 이용한 여러 주입 방식이 있지만, 필수 의존성에는 생성자 주입을 주로 사용한다.</p>
-
-<ul>
-  <li>객체를 만들 때 필수 의존성이 반드시 전달된다.</li>
-  <li>필드를 <code class="language-plaintext highlighter-rouge">final</code>로 선언해 생성 후 변경을 막을 수 있다.</li>
-  <li>필요한 의존성이 생성자에 명확하게 드러난다.</li>
-  <li>Spring 없이도 테스트에서 가짜 객체를 직접 전달하기 쉽다.</li>
-</ul>
-
-<p>생성자가 하나뿐이라면 보통 <code class="language-plaintext highlighter-rouge">@Autowired</code>를 생략할 수 있다.</p>
-
-<h4 id="인터페이스와-함께-사용하면-더-유연해진다">인터페이스와 함께 사용하면 더 유연해진다</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MessageSender</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">send</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmailSender</span> <span class="kd">implements</span> <span class="nc">MessageSender</span> <span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">send</span><span class="o">(</span><span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 이메일 발송</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotificationService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">MessageSender</span> <span class="n">messageSender</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">NotificationService</span><span class="o">(</span><span class="nc">MessageSender</span> <span class="n">messageSender</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">messageSender</span> <span class="o">=</span> <span class="n">messageSender</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">NotificationService</code>는 <code class="language-plaintext highlighter-rouge">EmailSender</code>라는 구체 클래스가 아니라 <code class="language-plaintext highlighter-rouge">MessageSender</code>라는 역할에 의존한다. 따라서 구현 교체와 테스트가 쉬워진다. 단, 같은 인터페이스를 구현한 Bean이 여러 개라면 Spring이 어느 Bean을 주입할지 결정할 수 있도록 <code class="language-plaintext highlighter-rouge">@Primary</code>나 <code class="language-plaintext highlighter-rouge">@Qualifier</code> 같은 추가 정보가 필요하다.</p>
-
-<h3 id="7-bean을-등록하는-두-가지-대표-방법">7. Bean을 등록하는 두 가지 대표 방법</h3>
-
-<h4 id="71-component-scan과-스테레오타입-애너테이션">7.1 Component Scan과 스테레오타입 애너테이션</h4>
-
-<p>Component Scan은 지정된 패키지를 탐색해 Bean 후보 클래스를 자동으로 찾고 등록하는 기능이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EmailSender</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">@Component</code>는 해당 클래스를 Spring이 관리할 컴포넌트 후보로 표시한다. 다음 애너테이션들은 모두 <code class="language-plaintext highlighter-rouge">@Component</code>를 기반으로 하며 계층별 의미를 추가한 스테레오타입 애너테이션이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@Component
-    ├─ @Service
-    ├─ @Repository
-    └─ @Controller
-         └─ @RestController의 기반
-</code></pre></div></div>
-
-<h5 id="component"><code class="language-plaintext highlighter-rouge">@Component</code></h5>
-
-<p>특정 계층으로 분류하기 어려운 일반 컴포넌트에 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PasswordEncoder</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h5 id="service"><code class="language-plaintext highlighter-rouge">@Service</code></h5>
-
-<p>회원가입, 주문, 결제, 가격 계산 같은 <strong>비즈니스 로직</strong>을 담당하는 클래스에 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">register</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"회원가입"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">@Component</code>를 사용해도 Bean 등록은 가능하지만, <code class="language-plaintext highlighter-rouge">@Service</code>를 사용하면 클래스의 역할이 명확해져 계층 구조를 이해하기 쉽다.</p>
-
-<h5 id="repository"><code class="language-plaintext highlighter-rouge">@Repository</code></h5>
-
-<p>데이터베이스 조회, 저장, 수정, 삭제 같은 <strong>데이터 접근 책임</strong>을 맡는 클래스에 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRepository</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 데이터 저장</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>역할을 명확히 나타낼 뿐 아니라, 지원되는 데이터 접근 기술에서 발생한 예외를 Spring의 일관된 데이터 접근 예외 계층으로 변환하는 데에도 사용된다.</p>
-
-<h5 id="controller"><code class="language-plaintext highlighter-rouge">@Controller</code></h5>
-
-<p>Spring MVC에서 HTTP 요청을 받고, 처리 결과를 화면인 <strong>View</strong>로 연결하는 웹 계층 클래스에 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Controller</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PageController</span> <span class="o">{</span>
-
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/hello"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">hello</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"hello"</span><span class="o">;</span> <span class="c1">// View 이름</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h5 id="restcontroller"><code class="language-plaintext highlighter-rouge">@RestController</code></h5>
-
-<p>REST API처럼 메서드의 반환값을 HTTP 응답 본문에 직접 작성하는 Controller에 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/users"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUsers</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"users"</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">@RestController</code>는 <code class="language-plaintext highlighter-rouge">@Controller</code>와 <code class="language-plaintext highlighter-rouge">@ResponseBody</code>의 의미를 합친 <strong>조합 애너테이션(composed annotation)</strong>이다. 객체를 반환하면 일반적으로 등록된 메시지 변환기가 객체를 JSON 같은 응답 형식으로 직렬화한다.</p>
-
-<h4 id="72-configuration과-bean">7.2 <code class="language-plaintext highlighter-rouge">@Configuration</code>과 <code class="language-plaintext highlighter-rouge">@Bean</code></h4>
-
-<p>외부 라이브러리의 클래스처럼 소스에 <code class="language-plaintext highlighter-rouge">@Component</code>를 붙일 수 없거나, 객체 생성 과정을 직접 설정해야 할 때 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppConfig</span> <span class="o">{</span>
-
-    <span class="nd">@Bean</span>
-    <span class="kd">public</span> <span class="nc">PasswordEncoder</span> <span class="nf">passwordEncoder</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">PasswordEncoder</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@Configuration</code>: Bean 설정을 정의하는 클래스임을 나타낸다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@Bean</code>: 메서드가 반환한 객체를 Spring Bean으로 등록한다.</li>
-</ul>
-
-<p>기본 Bean 이름은 메서드 이름인 <code class="language-plaintext highlighter-rouge">passwordEncoder</code>가 된다.</p>
-
-<p>두 등록 방법의 선택 기준은 다음과 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>상황</th>
-      <th>적합한 방법</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>직접 작성한 Controller, Service, Repository</td>
-      <td><code class="language-plaintext highlighter-rouge">@Component</code> 계열 + Component Scan</td>
-    </tr>
-    <tr>
-      <td>외부 라이브러리 객체 등록</td>
-      <td><code class="language-plaintext highlighter-rouge">@Configuration</code> + <code class="language-plaintext highlighter-rouge">@Bean</code></td>
-    </tr>
-    <tr>
-      <td>생성 과정에 세부 설정이 필요한 객체</td>
-      <td><code class="language-plaintext highlighter-rouge">@Configuration</code> + <code class="language-plaintext highlighter-rouge">@Bean</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="8-애너테이션은-무엇이며-왜-사용하는가">8. 애너테이션은 무엇이며 왜 사용하는가</h3>
-
-<p>Java <strong>애너테이션(Annotation)</strong>은 클래스, 메서드, 필드, 매개변수 등에 부가적인 의미나 처리 정보를 붙이는 메타데이터다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>여기서 <code class="language-plaintext highlighter-rouge">@Service</code>를 붙였다고 Annotation이 알아서 <code class="language-plaintext highlighter-rouge">new UserService()</code>를 실행하는 것은 아니다. Spring의 기반 기능이 Annotation 정보를 읽고, 그 의미에 따라 Bean을 등록하거나 기능을 적용한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>애너테이션으로 역할이나 설정 표시
-    ↓
-Spring이 메타데이터 확인
-    ↓
-Bean 등록, 요청 매핑, 트랜잭션 등의 기능 적용
-</code></pre></div></div>
-
-<h4 id="애너테이션을-사용하는-이유">애너테이션을 사용하는 이유</h4>
-
-<ul>
-  <li>설정 의도가 코드 가까이에 드러난다.</li>
-  <li>반복적인 설정 코드를 줄일 수 있다.</li>
-  <li>“무엇을 적용할지”만 선언하고 세부 실행은 프레임워크에 맡길 수 있다.</li>
-  <li>클래스와 메서드의 역할을 빠르게 파악할 수 있다.</li>
-</ul>
-
-<p>Spring은 기능에 따라 클래스 메타데이터 읽기, Reflection, Bean 후처리기, AOP Proxy 등 여러 기술을 함께 사용한다. 따라서 “모든 Spring 애너테이션은 Reflection만으로 동작한다”고 이해하면 정확하지 않다. 예를 들어 <code class="language-plaintext highlighter-rouge">@Transactional</code>은 애너테이션이 트랜잭션 정보를 제공하고, 기본적으로 AOP Proxy가 메서드 호출을 가로채 실제 트랜잭션을 처리한다.</p>
-
-<h3 id="9-spring-mvc와-rest-api">9. Spring MVC와 REST API</h3>
-
-<p><strong>Spring MVC</strong>는 HTTP 요청을 Controller 메서드에 연결하고, 입력값 변환과 응답 생성을 지원하는 Spring의 웹 프레임워크다.</p>
-
-<ul>
-  <li><strong>HTTP</strong>: 클라이언트와 서버가 요청과 응답을 주고받는 통신 규칙</li>
-  <li><strong>API</strong>: 프로그램이 다른 프로그램의 기능이나 데이터를 사용하기 위한 접점</li>
-  <li><strong>REST API</strong>: 자원을 URL로 표현하고 HTTP 메서드로 조회, 생성, 수정, 삭제 의도를 나타내는 API 방식</li>
-  <li><strong>Mapping</strong>: 특정 HTTP 요청을 실행할 Java 메서드와 연결하는 것</li>
-</ul>
-
-<p>일반적인 요청 처리 흐름은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>클라이언트
-    ↓ HTTP 요청
-DispatcherServlet
-    ↓ 요청에 맞는 메서드 탐색
-Controller
-    ↓ 비즈니스 로직 호출
-Service
-    ↓ 데이터 접근
-Repository
-    ↓
-Database
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">DispatcherServlet</code>은 Spring MVC의 앞단에서 요청을 받아 알맞은 Controller로 전달하는 <strong>Front Controller</strong>다.</p>
-
-<h4 id="요청-mapping-애너테이션">요청 Mapping 애너테이션</h4>
-
-<p><code class="language-plaintext highlighter-rouge">@RequestMapping</code>은 URL, HTTP 메서드, 요청 매개변수, 헤더, 미디어 타입 등을 기준으로 요청을 Controller 메서드에 연결한다. 다음 애너테이션들은 HTTP 메서드별 축약형이다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>애너테이션</th>
-      <th>HTTP 메서드</th>
-      <th>주된 의미</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@GetMapping</code></td>
-      <td>GET</td>
-      <td>자원 조회</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@PostMapping</code></td>
-      <td>POST</td>
-      <td>자원 생성 또는 처리 요청</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@PutMapping</code></td>
-      <td>PUT</td>
-      <td>자원 전체 수정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@PatchMapping</code></td>
-      <td>PATCH</td>
-      <td>자원 일부 수정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@DeleteMapping</code></td>
-      <td>DELETE</td>
-      <td>자원 삭제</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="nd">@GetMapping</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getUsers</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="s">"users"</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@PostMapping</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createUser</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">CreateUserRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="nd">@DeleteMapping</span><span class="o">(</span><span class="s">"/{id}"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">deleteUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>클래스의 <code class="language-plaintext highlighter-rouge">@RequestMapping("/users")</code>는 공통 경로를 지정한다. 따라서 각 메서드는 다음 요청을 처리한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GET    /users
-POST   /users
-DELETE /users/10
-</code></pre></div></div>
-
-<h3 id="10-http-요청값을-받는-방법">10. HTTP 요청값을 받는 방법</h3>
-
-<h4 id="pathvariable"><code class="language-plaintext highlighter-rouge">@PathVariable</code></h4>
-
-<p>URL 경로 자체에 포함된 값을 받는다. 특정 자원을 식별할 때 주로 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/users/{id}"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@PathVariable</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// GET /users/10 요청이면 id는 10</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="requestparam"><code class="language-plaintext highlighter-rouge">@RequestParam</code></h4>
-
-<p>URL의 Query Parameter를 받는다. 검색, 필터, 정렬, 페이지 번호처럼 선택 조건을 전달할 때 주로 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="nc">UserResponse</span> <span class="nf">getUser</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// GET /users?name=min 요청이면 name은 "min"</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="requestbody"><code class="language-plaintext highlighter-rouge">@RequestBody</code></h4>
-
-<p>HTTP 요청 본문의 JSON 같은 데이터를 Java 객체로 변환해 받는다. 자원을 생성하거나 수정할 때 주로 사용한다.</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"민형"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CreateUserRequest</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-
-    <span class="c1">// getter, setter 또는 생성자</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">createUser</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">CreateUserRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Spring MVC는 등록된 메시지 변환기를 이용해 요청 본문을 <code class="language-plaintext highlighter-rouge">CreateUserRequest</code> 객체로 역직렬화한다.</p>
-
-<p>그래서 세 방식의 차이를 정리하면 다음과 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>방식</th>
-      <th>요청 예시</th>
-      <th>용도</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@PathVariable</code></td>
-      <td><code class="language-plaintext highlighter-rouge">/users/10</code></td>
-      <td>특정 자원의 식별자</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@RequestParam</code></td>
-      <td><code class="language-plaintext highlighter-rouge">/users?name=min</code></td>
-      <td>검색, 필터 같은 부가 조건</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@RequestBody</code></td>
-      <td>JSON 요청 본문</td>
-      <td>생성, 수정할 데이터</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="11-controller-service-repository를-나누는-이유">11. Controller, Service, Repository를 나누는 이유</h3>
-
-<p>각 계층이 하나의 책임에 집중하도록 나누면 변경 이유가 다른 코드가 뒤섞이는 것을 막을 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Controller
-→ HTTP 요청과 응답을 담당
-
-Service
-→ 비즈니스 규칙과 작업 순서를 담당
-
-Repository
-→ 데이터 저장소 접근을 담당
-</code></pre></div></div>
-
-<p>예를 들어 회원가입 흐름은 다음처럼 구성할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserController</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserController</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">userService</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@PostMapping</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createUser</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">CreateUserRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">userService</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">request</span><span class="o">.</span><span class="na">getAge</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserService</span><span class="o">(</span><span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">register</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
-        <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRepository</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// DB 저장 로직</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>이 구조에서는 웹 통신 방식이 바뀌어도 Service의 비즈니스 규칙에 미치는 영향을 줄일 수 있고, 데이터 저장 기술이 바뀌어도 Controller까지 수정할 가능성이 작아진다.</p>
-
-<h3 id="12-transactional">12. <code class="language-plaintext highlighter-rouge">@Transactional</code></h3>
-
-<p><strong>트랜잭션</strong>은 여러 데이터 변경을 하나의 작업 단위로 묶는 기능이다. 모든 작업이 성공하면 <strong>commit</strong>하여 결과를 확정하고, 중간에 실패하면 <strong>rollback</strong>하여 이전 상태로 되돌린다.</p>
-
-<p>왜 필요한지는 계좌 이체를 생각하면 바로 이해할 수 있다. 출금만 성공하고 입금이 실패한 상태가 남아서는 안 된다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">transfer</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">accountA</span><span class="o">.</span><span class="na">withdraw</span><span class="o">(</span><span class="mi">10_000</span><span class="o">);</span>
-    <span class="n">accountB</span><span class="o">.</span><span class="na">deposit</span><span class="o">(</span><span class="mi">10_000</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>트랜잭션 시작
-    ↓
-A 계좌에서 10,000원 출금
-    ↓
-B 계좌에 10,000원 입금
-    ↓
-모두 성공 → COMMIT
-하나라도 실패 → ROLLBACK
-</code></pre></div></div>
-
-<h4 id="왜-transactional을-사용하는가">왜 <code class="language-plaintext highlighter-rouge">@Transactional</code>을 사용하는가</h4>
-
-<p>개발자가 메서드마다 트랜잭션 시작, commit, rollback, 자원 정리 코드를 반복하지 않아도 된다. 비즈니스 코드는 실제 작업에 집중하고, 트랜잭션 경계는 선언적으로 표현할 수 있다.</p>
-
-<h4 id="동작-원리">동작 원리</h4>
-
-<p>기본적인 Proxy 방식에서는 Spring이 원본 Bean을 감싸는 Proxy를 만들고 메서드 호출 전후에 트랜잭션 처리를 추가한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>호출자
-  ↓
-Transaction Proxy
-  ├─ 트랜잭션 시작
-  ├─ 실제 메서드 호출
-  └─ 성공 시 commit / 실패 시 rollback
-</code></pre></div></div>
-
-<h4 id="주의할-점">주의할 점</h4>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@Transactional</code>이 실제로 적용되려면 대상 객체가 Spring Bean으로 관리되어야 한다.</li>
-  <li>기본 Proxy 방식에서는 외부에서 Proxy를 거쳐 들어오는 호출이 대상이다. 같은 클래스의 메서드가 내부에서 다른 <code class="language-plaintext highlighter-rouge">@Transactional</code> 메서드를 직접 호출하는 <strong>self-invocation</strong>에는 트랜잭션이 적용되지 않을 수 있다.</li>
-  <li>기본 설정에서는 <code class="language-plaintext highlighter-rouge">RuntimeException</code>과 <code class="language-plaintext highlighter-rouge">Error</code>가 rollback 대상이고, checked exception은 자동 rollback 대상이 아니다. 필요하면 <code class="language-plaintext highlighter-rouge">rollbackFor</code> 등을 명시한다.</li>
-</ul>
-
-<h3 id="13-전체-흐름-다시-보기">13. 전체 흐름 다시 보기</h3>
-
-<p>애플리케이션 시작 과정은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Spring 애플리케이션 실행
-2. Container 생성
-3. 설정 정보와 Component Scan으로 Bean 후보 탐색
-4. Controller, Service, Repository Bean 생성
-5. 생성자 주입으로 Bean 사이의 의존 관계 연결
-6. 웹 요청을 받을 준비 완료
-</code></pre></div></div>
-
-<p>요청 처리 과정은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 클라이언트가 POST /users와 JSON을 전송
-2. Spring MVC가 UserController.createUser()에 요청을 Mapping
-3. @RequestBody가 JSON을 CreateUserRequest로 변환
-4. Controller가 UserService 호출
-5. @Transactional Proxy가 트랜잭션 시작
-6. Service가 비즈니스 로직 수행
-7. Repository가 DB에 데이터 저장
-8. 성공 시 commit 후 HTTP 응답 반환
-</code></pre></div></div>
-
-<h3 id="14-핵심-애너테이션-요약">14. 핵심 애너테이션 요약</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>애너테이션</th>
-      <th>정의</th>
-      <th>사용하는 이유</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Component</code></td>
-      <td>일반적인 Spring 관리 컴포넌트 후보</td>
-      <td>Component Scan으로 Bean을 자동 등록하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Service</code></td>
-      <td>비즈니스 로직 계층의 컴포넌트</td>
-      <td>역할을 명확히 하고 Service를 Bean으로 관리하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Repository</code></td>
-      <td>데이터 접근 계층의 컴포넌트</td>
-      <td>데이터 접근 책임을 표시하고 예외 변환 같은 지원을 받기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Controller</code></td>
-      <td>View 기반 MVC Controller</td>
-      <td>HTTP 요청을 처리하고 View로 연결하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@RestController</code></td>
-      <td>응답 본문을 직접 반환하는 Controller</td>
-      <td>REST API 응답을 JSON 등으로 반환하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@RequestMapping</code></td>
-      <td>공통적인 요청 Mapping</td>
-      <td>경로, HTTP 메서드, 헤더 등 다양한 조건으로 요청을 연결하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@GetMapping</code></td>
-      <td>GET 요청 Mapping</td>
-      <td>조회 요청을 메서드와 연결하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@PostMapping</code></td>
-      <td>POST 요청 Mapping</td>
-      <td>생성, 처리 요청을 메서드와 연결하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@RequestBody</code></td>
-      <td>요청 본문을 객체로 변환</td>
-      <td>JSON 등의 본문 데이터를 Java 객체로 받기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@PathVariable</code></td>
-      <td>URL 경로 값을 매개변수에 연결</td>
-      <td>특정 자원의 식별자를 받기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@RequestParam</code></td>
-      <td>Query Parameter를 매개변수에 연결</td>
-      <td>검색, 필터, 정렬 조건을 받기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Configuration</code></td>
-      <td>Java 기반 Bean 설정 클래스</td>
-      <td>객체 생성과 설정 방법을 코드로 정의하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Bean</code></td>
-      <td>메서드 반환 객체를 Bean으로 등록</td>
-      <td>직접 생성하거나 외부 라이브러리 객체를 등록하기 위해</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Transactional</code></td>
-      <td>트랜잭션 경계를 나타내는 메타데이터</td>
-      <td>여러 데이터 작업의 원자성을 선언적으로 보장하기 위해</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="15-최종-정리">15. 최종 정리</h3>
-
-<blockquote>
-  <p>Spring은 Java 객체의 생성, 설정, 생명주기와 의존 관계를 IoC Container가 관리하도록 하고, 웹 요청 처리와 데이터 접근, 트랜잭션 같은 애플리케이션 공통 기능을 제공하는 프레임워크다.</p>
-</blockquote>
-
-<blockquote>
-  <p>Bean은 Spring Container가 관리하는 객체이고, IoC는 객체 관리의 제어권을 Container로 옮기는 원칙이며, DI는 객체가 필요로 하는 의존성을 외부에서 주입하는 구현 방식이다.</p>
-</blockquote>
-
-<blockquote>
-  <p>Spring 애너테이션은 클래스와 메서드의 역할 또는 처리 방법을 표시하는 메타데이터다. Spring은 이 정보를 해석해 Bean 등록, 의존성 주입, HTTP 요청 Mapping, 트랜잭션 같은 실제 기능을 적용한다.</p>
-</blockquote>
-
-<p>결국 핵심 연결 순서만 다시 보면 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Annotation과 Configuration
-        ↓
-Bean 등록
-        ↓
-IoC Container가 관리
-        ↓
-DI로 객체 연결
-        ↓
-Controller → Service → Repository
-        ↓
-웹 요청과 비즈니스 로직, 데이터 처리 수행
-</code></pre></div></div>
-
-<h3 id="참고-자료">참고 자료</h3>
-
-<ul>
-  <li><a href="https://docs.spring.io/spring-framework/reference/core/beans.html">Spring Framework: IoC Container</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/core/beans/basics.html">Spring Framework: Container Overview</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/core/beans/classpath-scanning.html">Spring Framework: Classpath Scanning and Managed Components</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller.html">Spring Framework: Annotated Controllers</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-requestmapping.html">Spring Framework: Mapping Requests</a></li>
-  <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/annotations.html">Spring Framework: Using <code class="language-plaintext highlighter-rouge">@Transactional</code></a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Framework" /><category term="IoC" /><category term="DI" /><category term="Bean" /><category term="Annotation" /><category term="Spring MVC" /><category term="Transaction" /><summary type="html"><![CDATA[Spring을 사용하는 이유와 IoC Container, Bean, DI, Component Scan, Spring MVC, Transaction의 관계를 정리한다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Spring Boot" /><category term="REST API" /><category term="Validation" /><category term="DTO" /><category term="RequestBody" /><summary type="html"><![CDATA[PathVariable, RequestParam, RequestBody로 요청값을 받고 DTO와 Bean Validation으로 검증하는 흐름을 정리한다.]]></summary></entry></feed>

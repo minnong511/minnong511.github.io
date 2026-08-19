@@ -8,24 +8,24 @@
     
     
     
-    <title>Spring 기초 Part 4: JPA, Entity와 Repository · Minnong's Study Log</title>
-    <meta name="description" content="ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다." />
+    <title>Spring 기초 Part 6: JPA 연관관계 매핑 · Minnong's Study Log</title>
+    <meta name="description" content="객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다." />
     
-    <link rel="canonical" href="http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" />
+    <link rel="canonical" href="http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Spring 기초 Part 4: JPA, Entity와 Repository" />
-    <meta property="og:description" content="ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다." />
-    <meta property="og:url" content="http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" />
+    <meta property="og:title" content="Spring 기초 Part 6: JPA 연관관계 매핑" />
+    <meta property="og:description" content="객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다." />
+    <meta property="og:url" content="http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
-      <meta property="article:published_time" content="2026-08-16T09:00:00+09:00" />
-      <meta property="article:modified_time" content="2026-08-16T09:00:00+09:00" />
+      <meta property="article:published_time" content="2026-08-18T09:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-18T09:00:00+09:00" />
       <meta property="article:section" content="java" />
-      <meta property="article:tag" content="Java" /><meta property="article:tag" content="Spring" /><meta property="article:tag" content="Spring Boot" /><meta property="article:tag" content="JPA" /><meta property="article:tag" content="Hibernate" /><meta property="article:tag" content="Spring Data JPA" /><meta property="article:tag" content="Entity" />
+      <meta property="article:tag" content="Java" /><meta property="article:tag" content="Spring" /><meta property="article:tag" content="JPA" /><meta property="article:tag" content="Relationship Mapping" /><meta property="article:tag" content="ManyToOne" /><meta property="article:tag" content="OneToMany" /><meta property="article:tag" content="Foreign Key" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Spring 기초 Part 4: JPA, Entity와 Repository" />
-    <meta name="twitter:description" content="ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다." />
+    <meta name="twitter:title" content="Spring 기초 Part 6: JPA 연관관계 매핑" />
+    <meta name="twitter:description" content="객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다." />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=11"></script>
@@ -34,15 +34,15 @@
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" },
-          "headline": "Spring 기초 Part 4: JPA, Entity와 Repository",
-          "description": "ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다.",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/" },
+          "headline": "Spring 기초 Part 6: JPA 연관관계 매핑",
+          "description": "객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다.",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
-          "datePublished": "2026-08-16T09:00:00+09:00",
-          "dateModified": "2026-08-16T09:00:00+09:00",
+          "datePublished": "2026-08-18T09:00:00+09:00",
+          "dateModified": "2026-08-18T09:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
           "articleSection": "java",
-          "keywords": ["Java", "Spring", "Spring Boot", "JPA", "Hibernate", "Spring Data JPA", "Entity"]
+          "keywords": ["Java", "Spring", "JPA", "Relationship Mapping", "ManyToOne", "OneToMany", "Foreign Key"]
         }
       </script>
     
@@ -60,8 +60,8 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/java/spring/2026/08/16/spring-data-jpa-basics/"
-    data-page-title="Spring 기초 Part 4: JPA, Entity와 Repository"
+    data-page-url="/java/spring/2026/08/18/jpa-relationship-mapping/"
+    data-page-title="Spring 기초 Part 6: JPA 연관관계 매핑"
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / spring-기초-part-4-jpa-entity와-repository</span>
+    <span>http://localhost:4000 / posts / spring-기초-part-6-jpa-연관관계-매핑</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Spring 기초 Part 4: JPA, Entity와 Repository</span>
+    <span class="ide-mobile-title">Spring 기초 Part 6: JPA 연관관계 매핑</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -779,7 +779,7 @@ vue의 반응성 시스템
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</span>
                     </a>
                   
-                    <a class="ide-tree-post" href="/java/spring/2026/08/18/jpa-relationship-mapping/" role="treeitem" data-date="1787011200" data-title="spring 기초 part 6: jpa 연관관계 매핑" data-search="spring 기초 part 6: jpa 연관관계 매핑 &lt;h2 id=&quot;spring-기초-part-6-jpa-연관관계-매핑&quot;&gt;spring 기초 part 6: jpa 연관관계 매핑&lt;/h2&gt;
+                    <a class="ide-tree-post is-current" href="/java/spring/2026/08/18/jpa-relationship-mapping/" role="treeitem" data-date="1787011200" data-title="spring 기초 part 6: jpa 연관관계 매핑" data-search="spring 기초 part 6: jpa 연관관계 매핑 &lt;h2 id=&quot;spring-기초-part-6-jpa-연관관계-매핑&quot;&gt;spring 기초 part 6: jpa 연관관계 매핑&lt;/h2&gt;
 
  [&quot;java&quot;, &quot;spring&quot;, &quot;jpa&quot;, &quot;relationship mapping&quot;, &quot;manytoone&quot;, &quot;onetomany&quot;, &quot;foreign key&quot;]" title="Spring 기초 Part 6: JPA 연관관계 매핑">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 6: JPA 연관관계 매핑</span>
@@ -791,7 +791,7 @@ vue의 반응성 시스템
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</span>
                     </a>
                   
-                    <a class="ide-tree-post is-current" href="/java/spring/2026/08/16/spring-data-jpa-basics/" role="treeitem" data-date="1786838400" data-title="spring 기초 part 4: jpa, entity와 repository" data-search="spring 기초 part 4: jpa, entity와 repository &lt;h2 id=&quot;spring-기초-part-4-jpa-entity와-repository&quot;&gt;spring 기초 part 4: jpa, entity와 repository&lt;/h2&gt;
+                    <a class="ide-tree-post" href="/java/spring/2026/08/16/spring-data-jpa-basics/" role="treeitem" data-date="1786838400" data-title="spring 기초 part 4: jpa, entity와 repository" data-search="spring 기초 part 4: jpa, entity와 repository &lt;h2 id=&quot;spring-기초-part-4-jpa-entity와-repository&quot;&gt;spring 기초 part 4: jpa, entity와 repository&lt;/h2&gt;
 
  [&quot;java&quot;, &quot;spring&quot;, &quot;spring boot&quot;, &quot;jpa&quot;, &quot;hibernate&quot;, &quot;spring data jpa&quot;, &quot;entity&quot;]" title="Spring 기초 Part 4: JPA, Entity와 Repository">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 4: JPA, Entity와 Repository</span>
@@ -1242,37 +1242,34 @@ vue의 반응성 시스템
     
       <span>spring</span><span>&gt;</span>
     
-    <span aria-current="page">spring-기초-part-4-jpa-entity와-repository.md</span>
+    <span aria-current="page">spring-기초-part-6-jpa-연관관계-매핑.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>java / spring</strong><time datetime="2026-08-16T09:00:00+09:00">2026.08.16</time><span data-reading-time>—</span><span>7 tags</span></div>
-    <h1>Spring 기초 Part 4: JPA, Entity와 Repository</h1>
+    <div class="ide-document-meta"><strong>java / spring</strong><time datetime="2026-08-18T09:00:00+09:00">2026.08.18</time><span data-reading-time>—</span><span>7 tags</span></div>
+    <h1>Spring 기초 Part 6: JPA 연관관계 매핑</h1>
   </header>
   
-  <div class="ide-document-content prose" id="postContent"><h2 id="spring-기초-part-4-jpa-entity와-repository">Spring 기초 Part 4: JPA, Entity와 Repository</h2>
+  <div class="ide-document-content prose" id="postContent"><h2 id="spring-기초-part-6-jpa-연관관계-매핑">Spring 기초 Part 6: JPA 연관관계 매핑</h2>
 
 <blockquote>
-  <p>JPA는 자바 객체와 데이터베이스 테이블을 매핑하여 객체 중심으로 데이터를 다룰 수 있게 해주는 자바 표준이다.</p>
+  <p>연관관계 매핑은 자바 객체의 참조와 데이터베이스 테이블의 외래키를 연결하는 작업이다.</p>
 </blockquote>
 
-<p>개발자는 Entity와 Repository를 작성하고, JPA 구현체는 객체 정보를 바탕으로 SQL을 만든다.</p>
+<p>자바 객체는 다른 객체를 필드로 참조한다.</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Java 객체
-   ↓
-Spring Data JPA
-   ↓
-JPA
-   ↓
-Hibernate
-   ↓
-JDBC
-   ↓
-Database
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>
 </code></pre></div></div>
+
+<p>관계형 데이터베이스는 외래키로 다른 테이블을 참조한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>members.team_id → teams.id
+</code></pre></div></div>
+
+<p>JPA는 이 두 관계를 어노테이션으로 연결한다.</p>
 
 <hr />
 
@@ -1283,527 +1280,338 @@ Database
     <tr>
       <th>용어</th>
       <th>정의</th>
-      <th>쉽게 말하면</th>
+      <th>쉬운 설명</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>관계형 데이터베이스</td>
-      <td>데이터를 테이블 사이의 관계로 저장하는 시스템</td>
-      <td>H2, MySQL, PostgreSQL</td>
-    </tr>
-    <tr>
-      <td>테이블</td>
-      <td>데이터를 행과 열로 저장하는 구조</td>
-      <td>사용자 목록을 저장하는 표</td>
-    </tr>
-    <tr>
-      <td>행(Row)</td>
-      <td>테이블에 저장된 데이터 한 건</td>
-      <td>사용자 한 명</td>
-    </tr>
-    <tr>
-      <td>컬럼(Column)</td>
-      <td>데이터가 가지는 속성</td>
-      <td>이름, 이메일, 나이</td>
-    </tr>
     <tr>
       <td>기본키(PK)</td>
-      <td>각 행을 유일하게 구분하는 값</td>
-      <td>사용자 <code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>테이블의 각 행을 유일하게 구분하는 값</td>
+      <td><code class="language-plaintext highlighter-rouge">teams.id</code></td>
     </tr>
     <tr>
-      <td>ORM</td>
-      <td>객체와 관계형 테이블을 연결하는 기술</td>
-      <td><code class="language-plaintext highlighter-rouge">User</code>와 <code class="language-plaintext highlighter-rouge">users</code>를 연결</td>
+      <td>외래키(FK)</td>
+      <td>다른 테이블의 기본키를 참조하는 컬럼</td>
+      <td><code class="language-plaintext highlighter-rouge">members.team_id</code></td>
     </tr>
     <tr>
-      <td>JPA</td>
-      <td>자바 ORM 사용법을 정의한 표준</td>
-      <td>Entity와 관련 어노테이션 규칙</td>
+      <td>연관관계</td>
+      <td>한 객체나 테이블이 다른 대상과 연결된 관계</td>
+      <td>회원이 팀에 소속됨</td>
     </tr>
     <tr>
-      <td>Hibernate</td>
-      <td>JPA 표준을 실제로 구현한 라이브러리</td>
-      <td>객체를 보고 SQL을 생성</td>
+      <td>다중성</td>
+      <td>관계에 참여하는 대상의 수</td>
+      <td>일대일, 일대다, 다대일, 다대다</td>
     </tr>
     <tr>
-      <td>JDBC</td>
-      <td>자바가 DB에 SQL을 전달하는 API</td>
-      <td>Hibernate가 생성한 SQL 전달</td>
+      <td>방향성</td>
+      <td>객체에서 어느 방향으로 참조할 수 있는지 나타내는 것</td>
+      <td><code class="language-plaintext highlighter-rouge">Member → Team</code>, 또는 양쪽 모두</td>
     </tr>
     <tr>
-      <td>Entity</td>
-      <td>JPA가 관리하고 테이블과 매핑하는 객체</td>
-      <td><code class="language-plaintext highlighter-rouge">User</code> 클래스</td>
+      <td>연관관계의 주인</td>
+      <td>외래키 값을 실제로 저장하고 변경하는 쪽</td>
+      <td><code class="language-plaintext highlighter-rouge">Member.team</code></td>
     </tr>
     <tr>
-      <td>Repository</td>
-      <td>데이터 저장과 조회를 담당하는 계층</td>
-      <td><code class="language-plaintext highlighter-rouge">UserRepository</code></td>
+      <td><code class="language-plaintext highlighter-rouge">mappedBy</code></td>
+      <td>주인이 아닌 쪽에서 주인 필드의 이름을 지정하는 속성</td>
+      <td><code class="language-plaintext highlighter-rouge">mappedBy = "team"</code></td>
+    </tr>
+    <tr>
+      <td>Join</td>
+      <td>외래키를 기준으로 여러 테이블의 데이터를 연결하는 것</td>
+      <td>회원과 팀을 함께 조회</td>
     </tr>
   </tbody>
 </table>
 
 <hr />
 
-<h3 id="2-orm은-왜-필요한가">2. ORM은 왜 필요한가</h3>
-
-<p>자바는 객체를 사용하고 관계형 데이터베이스는 테이블을 사용한다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>자바 객체</th>
-      <th>데이터베이스</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>클래스</td>
-      <td>테이블</td>
-    </tr>
-    <tr>
-      <td>객체</td>
-      <td>행</td>
-    </tr>
-    <tr>
-      <td>필드</td>
-      <td>컬럼</td>
-    </tr>
-    <tr>
-      <td>객체 참조</td>
-      <td>외래키</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>두 구조가 다르기 때문에 JDBC만 사용하면 SQL 작성과 결과 변환을 직접 처리해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT id, name, email FROM users WHERE id = ?"</span><span class="o">;</span>
-
-<span class="c1">// Connection, PreparedStatement, ResultSet 처리</span>
-<span class="c1">// ResultSet 값을 꺼내 User 객체로 직접 변환</span>
-</code></pre></div></div>
-
-<p>ORM을 사용하면 매핑 정보를 기준으로 반복 코드를 줄일 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>ORM이 SQL 지식을 없애주는 것은 아니다. 생성되는 SQL과 데이터베이스 구조를 이해해야 성능 문제를 찾을 수 있다.</p>
-
-<hr />
-
-<h3 id="3-jpa-hibernate-spring-data-jpa의-차이">3. JPA, Hibernate, Spring Data JPA의 차이</h3>
-
-<p>세 단어는 같은 뜻이 아니다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>JPA</td>
-      <td>ORM을 사용하는 인터페이스와 어노테이션을 정의한 표준</td>
-    </tr>
-    <tr>
-      <td>Hibernate</td>
-      <td>JPA 표준을 구현하여 실제 SQL을 생성하고 Entity를 관리</td>
-    </tr>
-    <tr>
-      <td>Spring Data JPA</td>
-      <td>Repository 인터페이스를 쉽게 작성하도록 도와주는 Spring 프로젝트</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 UserRepository 호출
-          ↓
-Spring Data JPA가 Repository 구현 제공
-          ↓
-JPA 표준 방식으로 Entity 관리 요청
-          ↓
-Hibernate가 SQL 생성
-          ↓
-JDBC가 DB에 SQL 전달
-</code></pre></div></div>
-
-<blockquote>
-  <p>JPA는 규칙이고, Hibernate는 그 규칙의 구현체이며, Spring Data JPA는 JPA를 편하게 사용하도록 도와준다.</p>
-</blockquote>
-
-<hr />
-
-<h3 id="4-entity-만들기">4. Entity 만들기</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.persistence.Column</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.Table</span><span class="o">;</span>
-
-<span class="nd">@Entity</span>
-<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">50</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">unique</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
-
-    <span class="kd">protected</span> <span class="nf">User</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Entity 클래스에는 다음 조건이 필요하다.</p>
-
-<ul>
-  <li>클래스에 <code class="language-plaintext highlighter-rouge">@Entity</code>를 붙인다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@Id</code>로 기본키를 지정한다.</li>
-  <li>JPA가 사용할 <code class="language-plaintext highlighter-rouge">public</code> 또는 <code class="language-plaintext highlighter-rouge">protected</code> 기본 생성자가 필요하다.</li>
-  <li>Entity 클래스 자체를 <code class="language-plaintext highlighter-rouge">final</code>로 선언하지 않는다.</li>
-</ul>
-
-<h4 id="주요-어노테이션">주요 어노테이션</h4>
+<h3 id="2-연관관계의-종류">2. 연관관계의 종류</h3>
 
 <table>
   <thead>
     <tr>
       <th>어노테이션</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Entity</code></td>
-      <td>클래스를 JPA가 관리할 Entity로 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Table</code></td>
-      <td>매핑할 테이블 이름 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Id</code></td>
-      <td>기본키 필드 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@GeneratedValue</code></td>
-      <td>기본키 자동 생성 전략 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Column</code></td>
-      <td>컬럼 이름과 제약조건 설정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Enumerated</code></td>
-      <td>Enum을 저장할 방식 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Transient</code></td>
-      <td>DB 컬럼과 매핑하지 않을 필드 지정</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="generatedvalue"><code class="language-plaintext highlighter-rouge">@GeneratedValue</code></h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Id</span>
-<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">IDENTITY</code> 전략은 기본키 생성을 데이터베이스에 맡긴다. 새로운 사용자를 만들 때 개발자가 <code class="language-plaintext highlighter-rouge">id</code>를 직접 지정하지 않는다.</p>
-
-<h4 id="column"><code class="language-plaintext highlighter-rouge">@Column</code></h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>속성</th>
-      <th>의미</th>
+      <th>관계</th>
       <th>예시</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">name</code></td>
-      <td>매핑할 컬럼명</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(name = "user_name")</code></td>
+      <td><code class="language-plaintext highlighter-rouge">@OneToOne</code></td>
+      <td>일대일(1:1)</td>
+      <td>사용자와 프로필</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">nullable</code></td>
-      <td><code class="language-plaintext highlighter-rouge">NULL</code> 허용 여부</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(nullable = false)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">@OneToMany</code></td>
+      <td>일대다(1:N)</td>
+      <td>하나의 팀과 여러 회원</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">length</code></td>
-      <td>문자열 컬럼 길이</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(length = 50)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">@ManyToOne</code></td>
+      <td>다대일(N:1)</td>
+      <td>여러 회원과 하나의 팀</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">unique</code></td>
-      <td>중복 허용 여부</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(unique = true)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">@ManyToMany</code></td>
+      <td>다대다(N:M)</td>
+      <td>여러 사용자와 여러 관심 종목</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">@JoinColumn</code></td>
+      <td>외래키 컬럼 지정</td>
+      <td><code class="language-plaintext highlighter-rouge">team_id</code>, <code class="language-plaintext highlighter-rouge">user_id</code></td>
     </tr>
   </tbody>
 </table>
 
-<p><code class="language-plaintext highlighter-rouge">@Column</code> 설정만 믿기보다 운영 DB에는 마이그레이션 도구 등을 이용해 실제 제약조건도 함께 관리해야 한다.</p>
+<p>실무에서는 다대다 관계를 바로 사용하기보다 중간 Entity로 분리하는 경우가 많다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User 1 ─── N Watchlist N ─── 1 Stock
+</code></pre></div></div>
+
+<p>중간 Entity를 만들면 등록 날짜, 알림 설정 같은 추가 정보도 저장할 수 있다.</p>
 
 <hr />
 
-<h3 id="5-repository-만들기">5. Repository 만들기</h3>
+<h3 id="3-다대일-단방향-매핑">3. 다대일 단방향 매핑</h3>
 
-<p>Spring Data JPA의 <code class="language-plaintext highlighter-rouge">JpaRepository</code>를 상속하면 기본 CRUD 기능을 사용할 수 있다.</p>
+<p>여러 회원이 하나의 팀에 소속된다고 해보자.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Team 1  ←────  N Member
+</code></pre></div></div>
+
+<p>외래키는 보통 다수 쪽 테이블인 <code class="language-plaintext highlighter-rouge">members</code>에 둔다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>teams                   members
+-------------           ----------------
+id (PK)       ←──────── team_id (FK)
+name                    id (PK)
+                        name
+</code></pre></div></div>
+
+<h4 id="team-entity">Team Entity</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="nf">Team</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>두 타입의 의미는 다음과 같다.</p>
+<h4 id="member-entity">Member Entity</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+
+    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+
+    <span class="kd">protected</span> <span class="nf">Member</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">team</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">team</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">User</code>: Repository가 관리할 Entity 타입</li>
-  <li><code class="language-plaintext highlighter-rouge">Long</code>: <code class="language-plaintext highlighter-rouge">User</code>의 기본키 타입</li>
+  <li><code class="language-plaintext highlighter-rouge">@ManyToOne</code>: 여러 <code class="language-plaintext highlighter-rouge">Member</code>가 하나의 <code class="language-plaintext highlighter-rouge">Team</code>과 연결된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">@JoinColumn(name = "team_id")</code>: <code class="language-plaintext highlighter-rouge">members.team_id</code>를 외래키로 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">FetchType.LAZY</code>: <code class="language-plaintext highlighter-rouge">team</code>이 실제로 필요할 때 조회하도록 설정한다.</li>
 </ul>
 
-<p>기본 제공 메서드는 다음과 같다.</p>
+<p>현재는 Member만 Team을 참조하므로 단방향 관계다.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>메서드</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">save(entity)</code></td>
-      <td>새 Entity 저장 또는 기존 Entity 반영</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">findById(id)</code></td>
-      <td>기본키로 한 건 조회</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">findAll()</code></td>
-      <td>전체 조회</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">existsById(id)</code></td>
-      <td>기본키에 해당하는 데이터 존재 여부 확인</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">delete(entity)</code></td>
-      <td>Entity 삭제</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">deleteById(id)</code></td>
-      <td>기본키로 삭제</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>메서드 이름을 분석해 조회 조건을 만들 수도 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
-
-<span class="kt">boolean</span> <span class="nf">existsByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
-
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByNameContaining</span><span class="o">(</span><span class="nc">String</span> <span class="n">keyword</span><span class="o">);</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>  <span class="c1">// 가능</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">();</span> <span class="c1">// Team에 members 필드가 없으므로 불가능</span>
 </code></pre></div></div>
 
 <hr />
 
-<h3 id="6-사용자-저장-흐름">6. 사용자 저장 흐름</h3>
+<h3 id="4-양방향-연관관계">4. 양방향 연관관계</h3>
 
-<h4 id="service">Service</h4>
+<p>Team에서도 소속 회원 목록을 조회하고 싶다면 <code class="language-plaintext highlighter-rouge">@OneToMany</code>를 추가한다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
 
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
 
-    <span class="kd">public</span> <span class="nf">UserService</span><span class="o">(</span><span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
-    <span class="o">}</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
 
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">createUser</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
-        <span class="nc">User</span> <span class="n">savedUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">savedUser</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="nf">getMembers</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">members</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>실행 흐름은 다음과 같다.</p>
+<p>이제 객체에서 양쪽 방향으로 이동할 수 있다.</p>
 
-<section class="mermaid-card">
-  <header class="mermaid-head">
-    <span>Spring Data JPA 저장 흐름</span>
-  </header>
-  <div class="mermaid js-mermaid">
-flowchart TD
-    S[Service가 User 생성] --&gt; R[UserRepository.save 호출]
-    R --&gt; SD[Spring Data JPA]
-    SD --&gt; H[Hibernate가 Entity 관리]
-    H --&gt; SQL[INSERT SQL 생성]
-    SQL --&gt; J[JDBC가 SQL 전달]
-    J --&gt; DB[(Database 저장)]
-</div>
-</section>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>  <span class="c1">// Member → Team</span>
+<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">();</span> <span class="c1">// Team → Member</span>
+</code></pre></div></div>
 
-<script>
-  (function () {
-    function render() {
-      if (window.mermaid && window.mermaid.run) {
-        window.mermaid.run({ querySelector: '.js-mermaid' });
-      }
-    }
+<p>양방향 객체 관계라고 해서 DB 외래키가 두 개 생기는 것은 아니다.</p>
 
-    if (!window.__mermaidLibInit) {
-      window.__mermaidLibInit = true;
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-      script.async = true;
-      script.onload = function () {
-        if (window.mermaid && window.mermaid.initialize) {
-          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-        }
-        render();
-      };
-      document.head.appendChild(script);
-    } else {
-      render();
-    }
-  })();
-</script>
-
-<p>Hibernate는 Entity의 매핑 정보를 보고 대략 다음과 같은 SQL을 실행한다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
-<span class="k">VALUES</span> <span class="p">(</span><span class="s1">'민형'</span><span class="p">,</span> <span class="s1">'min@example.com'</span><span class="p">);</span>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>객체: Member ↔ Team
+DB:   members.team_id → teams.id
 </code></pre></div></div>
 
 <hr />
 
-<h3 id="7-jpa와-jdbc-비교">7. JPA와 JDBC 비교</h3>
+<h3 id="5-연관관계의-주인">5. 연관관계의 주인</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>JPA</th>
-      <th>JDBC</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>객체와 테이블을 매핑한다.</td>
-      <td>SQL을 직접 작성한다.</td>
-    </tr>
-    <tr>
-      <td>반복적인 CRUD 코드를 줄인다.</td>
-      <td>결과를 객체로 직접 변환한다.</td>
-    </tr>
-    <tr>
-      <td>변경 감지와 연관관계 기능을 제공한다.</td>
-      <td>실행 흐름이 SQL 중심으로 명확하다.</td>
-    </tr>
-    <tr>
-      <td>잘못 사용하면 예상하지 못한 SQL이 발생할 수 있다.</td>
-      <td>반복 코드가 많아질 수 있다.</td>
-    </tr>
-  </tbody>
-</table>
+<p>객체에는 <code class="language-plaintext highlighter-rouge">Member.team</code>과 <code class="language-plaintext highlighter-rouge">Team.members</code>라는 참조가 두 개지만, DB 외래키는 <code class="language-plaintext highlighter-rouge">members.team_id</code> 하나다.</p>
 
-<p>JPA도 내부적으로 JDBC를 사용해 SQL을 전달한다.</p>
+<p>따라서 JPA는 어느 필드의 값을 기준으로 외래키를 변경할지 결정해야 한다. 외래키를 관리하는 쪽을 <strong>연관관계의 주인</strong>이라고 한다.</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JPA와 JDBC 중 하나만 선택
+<p>이 예제에서는 <code class="language-plaintext highlighter-rouge">Member.team</code>이 주인이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
 </code></pre></div></div>
 
-<p>이 아니라 다음 구조에 가깝다.</p>
+<p>주인이 아닌 <code class="language-plaintext highlighter-rouge">Team.members</code>에는 <code class="language-plaintext highlighter-rouge">mappedBy</code>를 작성한다.</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JPA / Hibernate
-      ↓
-    JDBC
-      ↓
-  Database
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">mappedBy = "team"</code>의 <code class="language-plaintext highlighter-rouge">team</code>은 DB 컬럼명이 아니라 <strong>Member 클래스의 필드명</strong>이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+             <span class="c1">// ↑ 이 필드명</span>
+</code></pre></div></div>
+
+<h4 id="외래키를-변경한다는-뜻">외래키를 변경한다는 뜻</h4>
+
+<p>외래키를 변경한다는 것은 객체의 소속 관계를 바꾼다는 뜻이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>변경 전: members.team_id = 1
+변경 후: members.team_id = 2
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">changeTeam</span><span class="o">(</span><span class="n">team2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>JPA는 주인인 <code class="language-plaintext highlighter-rouge">Member.team</code>의 변경을 기준으로 <code class="language-plaintext highlighter-rouge">team_id</code>를 수정한다.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">members</span>
+<span class="k">SET</span> <span class="n">team_id</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>반대편 컬렉션만 변경하면 메모리의 목록은 바뀌지만 외래키 변경이 반영되지 않을 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member</span><span class="o">);</span> <span class="c1">// 이것만으로는 부족함</span>
 </code></pre></div></div>
 
 <hr />
 
-<h3 id="8-h2-연결-설정">8. H2 연결 설정</h3>
+<h3 id="6-양쪽-객체를-함께-변경하기">6. 양쪽 객체를 함께 변경하기</h3>
 
-<p>H2는 학습과 테스트에 많이 사용하는 가벼운 관계형 데이터베이스다.</p>
+<p>DB 외래키는 주인 쪽 값으로 변경되지만, 현재 메모리의 두 객체도 일치시키는 것이 안전하다.</p>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
-  <span class="na">datasource</span><span class="pi">:</span>
-    <span class="na">url</span><span class="pi">:</span> <span class="s">jdbc:h2:mem:testdb</span>
-    <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.h2.Driver</span>
-    <span class="na">username</span><span class="pi">:</span> <span class="s">sa</span>
-    <span class="na">password</span><span class="pi">:</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">newTeam</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">remove</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
 
-  <span class="na">h2</span><span class="pi">:</span>
-    <span class="na">console</span><span class="pi">:</span>
-      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
-      <span class="na">path</span><span class="pi">:</span> <span class="s">/h2-console</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">newTeam</span><span class="o">;</span>
 
-  <span class="na">jpa</span><span class="pi">:</span>
-    <span class="na">hibernate</span><span class="pi">:</span>
-      <span class="na">ddl-auto</span><span class="pi">:</span> <span class="s">create-drop</span>
-    <span class="na">show-sql</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">newTeam</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">newTeam</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<table>
-  <thead>
-    <tr>
-      <th>설정</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">datasource</code></td>
-      <td>연결할 DB 주소와 계정 설정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ddl-auto</code></td>
-      <td>Entity를 기준으로 테이블을 관리하는 방식 설정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">create-drop</code></td>
-      <td>시작할 때 생성하고 종료할 때 삭제</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">show-sql</code></td>
-      <td>Hibernate가 실행하는 SQL 출력</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">h2.console.enabled</code></td>
-      <td>H2 웹 콘솔 활성화</td>
-    </tr>
-  </tbody>
-</table>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">changeTeam</span><span class="o">(</span><span class="n">team</span><span class="o">);</span>
+</code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">create-drop</code>은 애플리케이션 종료 시 테이블을 삭제하므로 운영 환경에서 사용하면 안 된다.</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Member.team에 Team 저장
+          ↓
+Team.members에 Member 추가
+          ↓
+메모리의 양쪽 관계 일치
+          ↓
+members.team_id 변경
+</code></pre></div></div>
+
+<p>이런 메서드를 연관관계 편의 메서드라고 한다. 양쪽 메서드가 서로를 계속 호출하면 무한 호출이 발생할 수 있으므로 한쪽에서 관계를 관리한다.</p>
+
+<hr />
+
+<h3 id="7-지연-로딩">7. 지연 로딩</h3>
+
+<p>지연 로딩(Lazy Loading)은 연관된 Entity를 처음부터 조회하지 않고 실제로 사용할 때 조회하는 방식이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Member 조회
+    ↓
+Team은 아직 조회하지 않음
+    ↓
+member.getTeam() 사용
+    ↓
+필요한 Team 조회
+</code></pre></div></div>
+
+<p>즉시 로딩(Eager Loading)은 원래 Entity를 조회할 때 연관된 Entity도 함께 조회한다.</p>
+
+<p>연관관계를 무조건 즉시 로딩하면 예상하지 못한 SQL이 많이 실행될 수 있으므로 일반적으로 지연 로딩을 우선 사용하고, 필요한 조회에서 fetch join이나 EntityGraph 등을 명시적으로 고려한다.</p>
+
+<p>지연 로딩된 Entity를 영속성 컨텍스트가 끝난 뒤 접근하면 예외가 발생할 수 있으므로 Service 안에서 필요한 데이터를 DTO로 변환하는 방식이 안전하다.</p>
+
+<hr />
+
+<h3 id="8-cascade와-orphanremoval">8. <code class="language-plaintext highlighter-rouge">cascade</code>와 <code class="language-plaintext highlighter-rouge">orphanRemoval</code></h3>
+
+<h4 id="cascade"><code class="language-plaintext highlighter-rouge">cascade</code></h4>
+
+<p>영속성 전이(Cascade)는 부모 Entity의 저장이나 삭제 작업을 연관된 Entity에도 전달한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>연관되어 있다는 이유만으로 무조건 사용하면 안 된다. 두 Entity의 생명주기를 함께 관리할 때 사용한다.</p>
+
+<h4 id="orphanremoval"><code class="language-plaintext highlighter-rouge">orphanRemoval</code></h4>
+
+<p>고아 객체 제거는 부모 컬렉션에서 제거된 자식 Entity를 DB에서도 삭제하는 기능이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">,</span> <span class="n">orphanRemoval</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>단순히 관계만 끊으려는 상황에서도 데이터가 삭제될 수 있으므로 주의해야 한다.</p>
 
 <hr />
 
@@ -1818,49 +1626,57 @@ flowchart TD
   </thead>
   <tbody>
     <tr>
-      <td>ORM</td>
-      <td>자바 객체와 관계형 테이블을 연결하는 기술</td>
+      <td>연관관계 매핑</td>
+      <td>객체 참조와 테이블 외래키를 연결</td>
     </tr>
     <tr>
-      <td>JPA</td>
-      <td>자바 ORM 사용법을 정의한 표준</td>
+      <td>다중성</td>
+      <td><code class="language-plaintext highlighter-rouge">1:1</code>, <code class="language-plaintext highlighter-rouge">1:N</code>, <code class="language-plaintext highlighter-rouge">N:1</code>, <code class="language-plaintext highlighter-rouge">N:M</code>처럼 관계의 수를 표현</td>
     </tr>
     <tr>
-      <td>Hibernate</td>
-      <td>JPA를 실제로 구현한 라이브러리</td>
+      <td>방향성</td>
+      <td>객체가 한쪽 또는 양쪽으로 참조할 수 있는지 표현</td>
     </tr>
     <tr>
-      <td>Spring Data JPA</td>
-      <td>Repository 작성을 편하게 도와주는 Spring 프로젝트</td>
+      <td>연관관계의 주인</td>
+      <td>외래키 값을 실제로 저장하고 변경하는 쪽</td>
     </tr>
     <tr>
-      <td>Entity</td>
-      <td>JPA가 관리하며 테이블과 매핑되는 객체</td>
+      <td><code class="language-plaintext highlighter-rouge">mappedBy</code></td>
+      <td>주인이 아닌 쪽에서 주인 필드명을 지정</td>
     </tr>
     <tr>
-      <td>Repository</td>
-      <td>Entity의 저장과 조회를 담당하는 데이터 접근 계층</td>
+      <td>지연 로딩</td>
+      <td>연관 Entity가 실제로 필요할 때 조회</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cascade</code></td>
+      <td>영속성 작업을 연관 Entity에 전달</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">orphanRemoval</code></td>
+      <td>관계에서 제거된 자식 Entity를 DB에서도 삭제</td>
     </tr>
   </tbody>
 </table>
 
 <blockquote>
-  <p>JPA를 사용한다는 것은 SQL을 몰라도 된다는 뜻이 아니라, 객체와 테이블의 매핑을 이용해 반복적인 데이터 접근 코드를 줄인다는 뜻이다.</p>
+  <p>Team과 Member의 양방향 관계에서는 외래키 <code class="language-plaintext highlighter-rouge">team_id</code>가 있는 <code class="language-plaintext highlighter-rouge">Member.team</code>이 연관관계의 주인이다.</p>
 </blockquote>
 
 <h3 id="참고-자료">참고 자료</h3>
 
 <ul>
-  <li><a href="https://docs.spring.io/spring-data/jpa/reference/">Spring Data JPA 공식 문서</a></li>
   <li><a href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence 공식 명세</a></li>
+  <li><a href="https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html">Hibernate ORM User Guide</a></li>
 </ul>
 </div>
   
-    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#java">#Java</a><a href="/tags/#spring">#Spring</a><a href="/tags/#spring-boot">#Spring Boot</a><a href="/tags/#jpa">#JPA</a><a href="/tags/#hibernate">#Hibernate</a><a href="/tags/#spring-data-jpa">#Spring Data JPA</a><a href="/tags/#entity">#Entity</a></footer>
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#java">#Java</a><a href="/tags/#spring">#Spring</a><a href="/tags/#jpa">#JPA</a><a href="/tags/#relationship-mapping">#Relationship Mapping</a><a href="/tags/#manytoone">#ManyToOne</a><a href="/tags/#onetomany">#OneToMany</a><a href="/tags/#foreign-key">#Foreign Key</a></footer>
   
   <nav class="ide-document-navigation" aria-label="게시물 이동">
-    <a href="/java/spring/2026/08/15/spring-rest-api-validation/"><span>PREVIOUS</span><strong>Spring 기초 Part 3: REST API 요청값과 입력값 검증</strong></a>
-    <a href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/"><span>NEXT</span><strong>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</strong></a>
+    <a href="/devops/2026/08/17/docker-deployment-operations/"><span>PREVIOUS</span><strong>CI/CD 기초 3편: 배포 전략과 운영</strong></a>
+    <a href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><span>NEXT</span><strong>현대 LLM 워크플로의 패턴</strong></a>
   </nav>
   
 <section
@@ -1885,7 +1701,7 @@ flowchart TD
     <h2 id="commentsTitle">COMMENTS</h2>
     <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
     <div class="ide-comments-actions">
-      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
       <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
   </header>
@@ -1911,13 +1727,13 @@ flowchart TD
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>2026.08.16</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.18</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
       <div><dt>CATEGORY</dt><dd>java / spring</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/java/spring/2026/08/16/spring-data-jpa-basics/" data-bookmark-title="Spring 기초 Part 4: JPA, Entity와 Repository"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/java/spring/2026/08/18/jpa-relationship-mapping/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/java/spring/2026/08/18/jpa-relationship-mapping/" data-bookmark-title="Spring 기초 Part 6: JPA 연관관계 매핑"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -1932,8 +1748,6 @@ flowchart TD
           <a href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span></a>
         
       
-        
-          <a href="/java/spring/2026/08/18/jpa-relationship-mapping/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 6: JPA 연관관계 매핑</span></a>
         
       
         

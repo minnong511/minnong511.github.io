@@ -8,24 +8,24 @@
     
     
     
-    <title>Spring 기초 Part 4: JPA, Entity와 Repository · Minnong's Study Log</title>
-    <meta name="description" content="ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다." />
+    <title>현대 LLM 워크플로의 패턴 · Minnong's Study Log</title>
+    <meta name="description" content="Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다." />
     
-    <link rel="canonical" href="http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" />
+    <link rel="canonical" href="http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Spring 기초 Part 4: JPA, Entity와 Repository" />
-    <meta property="og:description" content="ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다." />
-    <meta property="og:url" content="http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" />
+    <meta property="og:title" content="현대 LLM 워크플로의 패턴" />
+    <meta property="og:description" content="Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다." />
+    <meta property="og:url" content="http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/" />
     <meta property="og:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     
-      <meta property="article:published_time" content="2026-08-16T09:00:00+09:00" />
-      <meta property="article:modified_time" content="2026-08-16T09:00:00+09:00" />
-      <meta property="article:section" content="java" />
-      <meta property="article:tag" content="Java" /><meta property="article:tag" content="Spring" /><meta property="article:tag" content="Spring Boot" /><meta property="article:tag" content="JPA" /><meta property="article:tag" content="Hibernate" /><meta property="article:tag" content="Spring Data JPA" /><meta property="article:tag" content="Entity" />
+      <meta property="article:published_time" content="2026-08-19T00:00:00+09:00" />
+      <meta property="article:modified_time" content="2026-08-19T00:00:00+09:00" />
+      <meta property="article:section" content="Deep_Learning" />
+      <meta property="article:tag" content="Deep Learning" /><meta property="article:tag" content="LLM" /><meta property="article:tag" content="Workflow" /><meta property="article:tag" content="Agent" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Spring 기초 Part 4: JPA, Entity와 Repository" />
-    <meta name="twitter:description" content="ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다." />
+    <meta name="twitter:title" content="현대 LLM 워크플로의 패턴" />
+    <meta name="twitter:description" content="Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다." />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <script src="/assets/js/theme-init.js?v=11"></script>
@@ -34,15 +34,15 @@
         {
           "@context": "https://schema.org",
           "@type": "Article",
-          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" },
-          "headline": "Spring 기초 Part 4: JPA, Entity와 Repository",
-          "description": "ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다.",
+          "mainEntityOfPage": { "@type": "WebPage", "@id": "http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/" },
+          "headline": "현대 LLM 워크플로의 패턴",
+          "description": "Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다.",
           "image": ["http://localhost:4000/assets/base_image/og-study-blog.png"],
-          "datePublished": "2026-08-16T09:00:00+09:00",
-          "dateModified": "2026-08-16T09:00:00+09:00",
+          "datePublished": "2026-08-19T00:00:00+09:00",
+          "dateModified": "2026-08-19T00:00:00+09:00",
           "author": { "@type": "Person", "name": "Min Hyeong Lee" },
-          "articleSection": "java",
-          "keywords": ["Java", "Spring", "Spring Boot", "JPA", "Hibernate", "Spring Data JPA", "Entity"]
+          "articleSection": "Deep_Learning",
+          "keywords": ["Deep Learning", "LLM", "Workflow", "Agent"]
         }
       </script>
     
@@ -60,8 +60,8 @@
   <body
     class="site-body"
     data-baseurl=""
-    data-page-url="/java/spring/2026/08/16/spring-data-jpa-basics/"
-    data-page-title="Spring 기초 Part 4: JPA, Entity와 Repository"
+    data-page-url="/deep_learning/llm/2026/08/19/llm-workflow-patterns/"
+    data-page-title="현대 LLM 워크플로의 패턴"
     data-page-layout="post"
     data-owner-login="minnong511"
     data-owner-repository="minnong511.github.io"
@@ -80,11 +80,11 @@
   </div>
   <button class="ide-addressbar" id="ideAddressbar" type="button" aria-label="Command Palette 열기">
     <i class="ri-terminal-box-line" aria-hidden="true"></i>
-    <span>http://localhost:4000 / posts / spring-기초-part-4-jpa-entity와-repository</span>
+    <span>http://localhost:4000 / posts / 현대-llm-워크플로의-패턴</span>
     <kbd><span class="mac-only">⌘</span><span class="win-only">Ctrl</span>K</kbd>
   </button>
   <div class="ide-titlebar-actions">
-    <span class="ide-mobile-title">Spring 기초 Part 4: JPA, Entity와 Repository</span>
+    <span class="ide-mobile-title">현대 LLM 워크플로의 패턴</span>
     <button class="ide-icon-button ide-theme-toggle" id="ideThemeToggle" type="button" aria-label="테마 전환" title="테마 전환"><i class="ri-contrast-2-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button ide-context-toggle" id="ideContextToggle" type="button" aria-controls="contextPanel" aria-expanded="true" aria-label="목차 패널 숨기기" title="목차 패널 숨기기"><i class="ri-layout-right-line" aria-hidden="true"></i></button>
     <button class="ide-icon-button" id="ideFullscreen" type="button" aria-label="전체 화면" title="전체 화면"><i class="ri-fullscreen-line" aria-hidden="true"></i></button>
@@ -172,7 +172,7 @@
                 </button>
                 <div class="ide-tree-children" role="group">
                   
-                    <a class="ide-tree-post" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/" role="treeitem" data-date="1787065200" data-title="현대 llm 워크플로의 패턴" data-search="현대 llm 워크플로의 패턴 &lt;h1 id=&quot;현대-llm-워크플로의-패턴&quot;&gt;현대 llm 워크플로의 패턴&lt;/h1&gt;
+                    <a class="ide-tree-post is-current" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/" role="treeitem" data-date="1787065200" data-title="현대 llm 워크플로의 패턴" data-search="현대 llm 워크플로의 패턴 &lt;h1 id=&quot;현대-llm-워크플로의-패턴&quot;&gt;현대 llm 워크플로의 패턴&lt;/h1&gt;
 
  [&quot;deep learning&quot;, &quot;llm&quot;, &quot;workflow&quot;, &quot;agent&quot;]" title="현대 LLM 워크플로의 패턴">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span>
@@ -791,7 +791,7 @@ vue의 반응성 시스템
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</span>
                     </a>
                   
-                    <a class="ide-tree-post is-current" href="/java/spring/2026/08/16/spring-data-jpa-basics/" role="treeitem" data-date="1786838400" data-title="spring 기초 part 4: jpa, entity와 repository" data-search="spring 기초 part 4: jpa, entity와 repository &lt;h2 id=&quot;spring-기초-part-4-jpa-entity와-repository&quot;&gt;spring 기초 part 4: jpa, entity와 repository&lt;/h2&gt;
+                    <a class="ide-tree-post" href="/java/spring/2026/08/16/spring-data-jpa-basics/" role="treeitem" data-date="1786838400" data-title="spring 기초 part 4: jpa, entity와 repository" data-search="spring 기초 part 4: jpa, entity와 repository &lt;h2 id=&quot;spring-기초-part-4-jpa-entity와-repository&quot;&gt;spring 기초 part 4: jpa, entity와 repository&lt;/h2&gt;
 
  [&quot;java&quot;, &quot;spring&quot;, &quot;spring boot&quot;, &quot;jpa&quot;, &quot;hibernate&quot;, &quot;spring data jpa&quot;, &quot;entity&quot;]" title="Spring 기초 Part 4: JPA, Entity와 Repository">
                       <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 4: JPA, Entity와 Repository</span>
@@ -1238,629 +1238,241 @@ vue의 반응성 시스템
   
     <a href="/archive/">posts</a><span>&gt;</span>
     
-    <a href="/archive/?category=java">java</a><span>&gt;</span>
+    <a href="/archive/?category=deep-learning">deep learning</a><span>&gt;</span>
     
-      <span>spring</span><span>&gt;</span>
+      <span>llm</span><span>&gt;</span>
     
-    <span aria-current="page">spring-기초-part-4-jpa-entity와-repository.md</span>
+    <span aria-current="page">현대-llm-워크플로의-패턴.md</span>
   
 </nav>
 
           <div class="ide-document-area">
 <article class="ide-document" data-document="post">
   <header class="ide-document-header">
-    <div class="ide-document-meta"><strong>java / spring</strong><time datetime="2026-08-16T09:00:00+09:00">2026.08.16</time><span data-reading-time>—</span><span>7 tags</span></div>
-    <h1>Spring 기초 Part 4: JPA, Entity와 Repository</h1>
+    <div class="ide-document-meta"><strong>Deep Learning / LLM</strong><time datetime="2026-08-19T00:00:00+09:00">2026.08.19</time><span data-reading-time>—</span><span>4 tags</span></div>
+    <h1>현대 LLM 워크플로의 패턴</h1>
   </header>
   
-  <div class="ide-document-content prose" id="postContent"><h2 id="spring-기초-part-4-jpa-entity와-repository">Spring 기초 Part 4: JPA, Entity와 Repository</h2>
+    <aside class="ide-reading-summary" aria-labelledby="readingSummaryTitle">
+      
+        <section class="ide-summary-card ide-summary-card-primary reveal" aria-labelledby="readingSummaryTitle">
+          <span class="ide-panel-label">QUICK SUMMARY</span>
+          <h2 id="readingSummaryTitle">핵심 요약</h2>
+          <p>LLM Workflow의 주요 패턴과 자율 Agent를 통제하는 방법을 정리한다.</p>
+        </section>
+      
+      
+      
+    </aside>
+  
+  <div class="ide-document-content prose" id="postContent"><h1 id="현대-llm-워크플로의-패턴">현대 LLM 워크플로의 패턴</h1>
 
 <blockquote>
-  <p>JPA는 자바 객체와 데이터베이스 테이블을 매핑하여 객체 중심으로 데이터를 다룰 수 있게 해주는 자바 표준이다.</p>
+  <p>LLM 서비스는 도대체 어떻게 작동하는 걸까? 궁금해서 참을 수가 없단 말이지!</p>
 </blockquote>
 
-<p>개발자는 Entity와 Repository를 작성하고, JPA 구현체는 객체 정보를 바탕으로 SQL을 만든다.</p>
+<p>LLM 애플리케이션을 만들 때는 요청을 한 번 받고 바로 답을 내는 경우도 있지만, 실제로는 입력을 분류하고, 작업을 나누고, 결과를 평가하는 흐름으로 구성하는 경우가 많다.</p>
 
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Java 객체
-   ↓
-Spring Data JPA
-   ↓
-JPA
-   ↓
-Hibernate
-   ↓
-JDBC
-   ↓
-Database
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h3>
+<h2 id="자주-나오는-workflow-패턴">자주 나오는 Workflow 패턴</h2>
 
 <table>
   <thead>
     <tr>
-      <th>용어</th>
-      <th>정의</th>
-      <th>쉽게 말하면</th>
+      <th>패턴</th>
+      <th>설명</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>관계형 데이터베이스</td>
-      <td>데이터를 테이블 사이의 관계로 저장하는 시스템</td>
-      <td>H2, MySQL, PostgreSQL</td>
+      <td>Routing</td>
+      <td>입력을 분류해서 적절한 처리 경로 하나를 선택한다.</td>
     </tr>
     <tr>
-      <td>테이블</td>
-      <td>데이터를 행과 열로 저장하는 구조</td>
-      <td>사용자 목록을 저장하는 표</td>
+      <td>Parallelization</td>
+      <td>서로 의존하지 않는 AI 작업을 동시에 실행한다.</td>
     </tr>
     <tr>
-      <td>행(Row)</td>
-      <td>테이블에 저장된 데이터 한 건</td>
-      <td>사용자 한 명</td>
+      <td>Evaluator-Optimizer</td>
+      <td>결과를 평가하고 피드백을 기반으로 반복 개선한다.</td>
     </tr>
     <tr>
-      <td>컬럼(Column)</td>
-      <td>데이터가 가지는 속성</td>
-      <td>이름, 이메일, 나이</td>
+      <td>Orchestrator-Workers</td>
+      <td>큰 작업을 여러 하위 작업으로 분해하고 각각 처리한 후 합친다.</td>
     </tr>
     <tr>
-      <td>기본키(PK)</td>
-      <td>각 행을 유일하게 구분하는 값</td>
-      <td>사용자 <code class="language-plaintext highlighter-rouge">id</code></td>
-    </tr>
-    <tr>
-      <td>ORM</td>
-      <td>객체와 관계형 테이블을 연결하는 기술</td>
-      <td><code class="language-plaintext highlighter-rouge">User</code>와 <code class="language-plaintext highlighter-rouge">users</code>를 연결</td>
-    </tr>
-    <tr>
-      <td>JPA</td>
-      <td>자바 ORM 사용법을 정의한 표준</td>
-      <td>Entity와 관련 어노테이션 규칙</td>
-    </tr>
-    <tr>
-      <td>Hibernate</td>
-      <td>JPA 표준을 실제로 구현한 라이브러리</td>
-      <td>객체를 보고 SQL을 생성</td>
-    </tr>
-    <tr>
-      <td>JDBC</td>
-      <td>자바가 DB에 SQL을 전달하는 API</td>
-      <td>Hibernate가 생성한 SQL 전달</td>
-    </tr>
-    <tr>
-      <td>Entity</td>
-      <td>JPA가 관리하고 테이블과 매핑하는 객체</td>
-      <td><code class="language-plaintext highlighter-rouge">User</code> 클래스</td>
-    </tr>
-    <tr>
-      <td>Repository</td>
-      <td>데이터 저장과 조회를 담당하는 계층</td>
-      <td><code class="language-plaintext highlighter-rouge">UserRepository</code></td>
+      <td>Chaining</td>
+      <td>앞 단계의 출력을 다음 단계의 입력으로 연결한다.</td>
     </tr>
   </tbody>
 </table>
 
-<hr />
+<h2 id="개념적으로-이런-구조">개념적으로 이런 구조</h2>
 
-<h3 id="2-orm은-왜-필요한가">2. ORM은 왜 필요한가</h3>
-
-<p>자바는 객체를 사용하고 관계형 데이터베이스는 테이블을 사용한다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>자바 객체</th>
-      <th>데이터베이스</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>클래스</td>
-      <td>테이블</td>
-    </tr>
-    <tr>
-      <td>객체</td>
-      <td>행</td>
-    </tr>
-    <tr>
-      <td>필드</td>
-      <td>컬럼</td>
-    </tr>
-    <tr>
-      <td>객체 참조</td>
-      <td>외래키</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>두 구조가 다르기 때문에 JDBC만 사용하면 SQL 작성과 결과 변환을 직접 처리해야 한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">"SELECT id, name, email FROM users WHERE id = ?"</span><span class="o">;</span>
-
-<span class="c1">// Connection, PreparedStatement, ResultSet 처리</span>
-<span class="c1">// ResultSet 값을 꺼내 User 객체로 직접 변환</span>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자 요청
+  ↓
+Routing
+  ↓
+계획 / 작업 분해
+  ↓
+┌───────────────┐
+│ Worker A      │
+│ Worker B      │
+│ Worker C      │
+└───────────────┘
+  ↓
+결과 통합
+  ↓
+Evaluator
+  ↓
+필요하면 재시도
+  ↓
+최종 응답
 </code></pre></div></div>
 
-<p>ORM을 사용하면 매핑 정보를 기준으로 반복 코드를 줄일 수 있다.</p>
+<p>이건 지금도 LLM 애플리케이션에서 아주 전형적인 구조다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
+<p>다만, 실제 현대 시스템에서는 여기에 보통 다음 요소가 추가된다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LLM Workflow
+  + Tool Calling
+  + RAG
+  + Memory / State
+  + Retry / Timeout
+  + Observability
+  + Guardrails
+  + Model Selection
+  + Caching
 </code></pre></div></div>
 
-<p>ORM이 SQL 지식을 없애주는 것은 아니다. 생성되는 SQL과 데이터베이스 구조를 이해해야 성능 문제를 찾을 수 있다.</p>
+<p>현대적인 구조에서는 Spring Boot에서 했던 기능에 더해 다음과 같은 Tool을 사용할 수 있다.</p>
 
-<hr />
+<ul>
+  <li>웹 검색</li>
+  <li>DB 조회</li>
+  <li>사내 문서 검색</li>
+  <li>Python 실행</li>
+  <li>API 호출</li>
+  <li>파일 읽기</li>
+</ul>
 
-<h3 id="3-jpa-hibernate-spring-data-jpa의-차이">3. JPA, Hibernate, Spring Data JPA의 차이</h3>
+<h2 id="요즘은-이런-것도-만들-수-있다">요즘은 이런 것도 만들 수 있다</h2>
 
-<p>세 단어는 같은 뜻이 아니다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>JPA</td>
-      <td>ORM을 사용하는 인터페이스와 어노테이션을 정의한 표준</td>
-    </tr>
-    <tr>
-      <td>Hibernate</td>
-      <td>JPA 표준을 구현하여 실제 SQL을 생성하고 Entity를 관리</td>
-    </tr>
-    <tr>
-      <td>Spring Data JPA</td>
-      <td>Repository 인터페이스를 쉽게 작성하도록 도와주는 Spring 프로젝트</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자가 UserRepository 호출
-          ↓
-Spring Data JPA가 Repository 구현 제공
-          ↓
-JPA 표준 방식으로 Entity 관리 요청
-          ↓
-Hibernate가 SQL 생성
-          ↓
-JDBC가 DB에 SQL 전달
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자
+  ↓
+Router
+  ↓
+Planner
+  ↓
+Workers
+  ├─ Search Agent
+  ├─ SQL Agent
+  ├─ Code Agent
+  └─ Document Agent
+  ↓
+Aggregator
+  ↓
+Evaluator
+  ↓
+Final Answer
 </code></pre></div></div>
+
+<p>이런 형태가 된다.</p>
+
+<h2 id="정해진-로직으로-처리하는-workflow">정해진 로직으로 처리하는 Workflow</h2>
+
+<p>다만 나는 로직을 정해놓았는데,</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>분류
+  → switch
+  → 특정 처리
+</code></pre></div></div>
+
+<p>또는</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>계획
+  → worker 실행
+  → 통합
+</code></pre></div></div>
+
+<p>이런 방식으로 처리한다면 <code class="language-plaintext highlighter-rouge">deterministic workflow</code> 또는 <code class="language-plaintext highlighter-rouge">LLM workflow</code>라고 생각하면 된다.</p>
+
+<h2 id="llm이-다음-행동을-직접-선택하는-agent">LLM이 다음 행동을 직접 선택하는 Agent</h2>
+
+<p>다만 모던한 Agentic 시스템은 조금 다르게 동작한다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LLM: "검색이 필요하겠군"
+  ↓
+검색 Tool 호출
+  ↓
+LLM: "정보가 부족하군"
+  ↓
+다른 Tool 호출
+  ↓
+LLM: "이제 답할 수 있겠다"
+</code></pre></div></div>
+
+<p>이렇게 LLM이 알아서 다음 행동을 스스로 선택한다.</p>
+
+<p>요즘은 이런 식으로 가는 중이다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>고정 Workflow                                      자율 Agent
+──────────────────────────────────────────────────────→
+Chaining
+Routing
+Parallel
+Evaluator
+Orchestrator
+                      Tool Calling
+                              Planner
+                                      Agent Loop
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">WorkflowPatterns.java</code>에서 생각해볼 수 있는 위치는 다음과 같다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chaining
+Routing
+Parallel
+Evaluator
+Orchestrator
+        ↑
+     현재 위치
+</code></pre></div></div>
+
+<p>자율 Agent를 만드는 것보다 가능하면 Workflow로 통제하고, 필요한 부분만 Agent화하는 방식이 안정성, 비용, 디버깅 측면에서 훨씬 유리한 경우가 있다.</p>
 
 <blockquote>
-  <p>JPA는 규칙이고, Hibernate는 그 규칙의 구현체이며, Spring Data JPA는 JPA를 편하게 사용하도록 도와준다.</p>
+  <p>항상 자유가 좋은 결과를 내주는 것은 아니다.</p>
 </blockquote>
 
-<hr />
+<p>가끔은 행동에 제약을 걸어서 예측 가능한 결과를 낼 수 있어야 한다.</p>
 
-<h3 id="4-entity-만들기">4. Entity 만들기</h3>
+<p>예를 들어 다음처럼 반복 횟수를 Java 코드에서 제한하는 것은 상당히 프로덕션 지향적인 사고다.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jakarta.persistence.Column</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.Entity</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.GeneratedValue</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.GenerationType</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.Id</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">jakarta.persistence.Table</span><span class="o">;</span>
-
-<span class="nd">@Entity</span>
-<span class="nd">@Table</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"users"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">50</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nd">@Column</span><span class="o">(</span><span class="n">nullable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">unique</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">email</span><span class="o">;</span>
-
-    <span class="kd">protected</span> <span class="nf">User</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">email</span><span class="o">;</span>
-    <span class="o">}</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">round</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">round</span> <span class="o">&lt;=</span> <span class="n">maxRounds</span><span class="o">;</span> <span class="n">round</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="c1">// 작업 실행과 평가</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>Entity 클래스에는 다음 조건이 필요하다.</p>
+<p>LLM에게 그냥 “좋아질 때까지 반복해”라고 하는 것은 결과를 예측하기도 어렵고, 무한 루프 문제가 생길 수도 있다.</p>
 
-<ul>
-  <li>클래스에 <code class="language-plaintext highlighter-rouge">@Entity</code>를 붙인다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@Id</code>로 기본키를 지정한다.</li>
-  <li>JPA가 사용할 <code class="language-plaintext highlighter-rouge">public</code> 또는 <code class="language-plaintext highlighter-rouge">protected</code> 기본 생성자가 필요하다.</li>
-  <li>Entity 클래스 자체를 <code class="language-plaintext highlighter-rouge">final</code>로 선언하지 않는다.</li>
-</ul>
+<h2 id="학습-순서">학습 순서</h2>
 
-<h4 id="주요-어노테이션">주요 어노테이션</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>어노테이션</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Entity</code></td>
-      <td>클래스를 JPA가 관리할 Entity로 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Table</code></td>
-      <td>매핑할 테이블 이름 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Id</code></td>
-      <td>기본키 필드 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@GeneratedValue</code></td>
-      <td>기본키 자동 생성 전략 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Column</code></td>
-      <td>컬럼 이름과 제약조건 설정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Enumerated</code></td>
-      <td>Enum을 저장할 방식 지정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@Transient</code></td>
-      <td>DB 컬럼과 매핑하지 않을 필드 지정</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="generatedvalue"><code class="language-plaintext highlighter-rouge">@GeneratedValue</code></h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Id</span>
-<span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">IDENTITY</code> 전략은 기본키 생성을 데이터베이스에 맡긴다. 새로운 사용자를 만들 때 개발자가 <code class="language-plaintext highlighter-rouge">id</code>를 직접 지정하지 않는다.</p>
-
-<h4 id="column"><code class="language-plaintext highlighter-rouge">@Column</code></h4>
-
-<table>
-  <thead>
-    <tr>
-      <th>속성</th>
-      <th>의미</th>
-      <th>예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">name</code></td>
-      <td>매핑할 컬럼명</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(name = "user_name")</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">nullable</code></td>
-      <td><code class="language-plaintext highlighter-rouge">NULL</code> 허용 여부</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(nullable = false)</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">length</code></td>
-      <td>문자열 컬럼 길이</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(length = 50)</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">unique</code></td>
-      <td>중복 허용 여부</td>
-      <td><code class="language-plaintext highlighter-rouge">@Column(unique = true)</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p><code class="language-plaintext highlighter-rouge">@Column</code> 설정만 믿기보다 운영 DB에는 마이그레이션 도구 등을 이용해 실제 제약조건도 함께 관리해야 한다.</p>
-
-<hr />
-
-<h3 id="5-repository-만들기">5. Repository 만들기</h3>
-
-<p>Spring Data JPA의 <code class="language-plaintext highlighter-rouge">JpaRepository</code>를 상속하면 기본 CRUD 기능을 사용할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="nc">JpaRepository</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">,</span> <span class="nc">Long</span><span class="o">&gt;</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>두 타입의 의미는 다음과 같다.</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">User</code>: Repository가 관리할 Entity 타입</li>
-  <li><code class="language-plaintext highlighter-rouge">Long</code>: <code class="language-plaintext highlighter-rouge">User</code>의 기본키 타입</li>
-</ul>
-
-<p>기본 제공 메서드는 다음과 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>메서드</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">save(entity)</code></td>
-      <td>새 Entity 저장 또는 기존 Entity 반영</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">findById(id)</code></td>
-      <td>기본키로 한 건 조회</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">findAll()</code></td>
-      <td>전체 조회</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">existsById(id)</code></td>
-      <td>기본키에 해당하는 데이터 존재 여부 확인</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">delete(entity)</code></td>
-      <td>Entity 삭제</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">deleteById(id)</code></td>
-      <td>기본키로 삭제</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>메서드 이름을 분석해 조회 조건을 만들 수도 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Optional</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
-
-<span class="kt">boolean</span> <span class="nf">existsByEmail</span><span class="o">(</span><span class="nc">String</span> <span class="n">email</span><span class="o">);</span>
-
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">findByNameContaining</span><span class="o">(</span><span class="nc">String</span> <span class="n">keyword</span><span class="o">);</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="6-사용자-저장-흐름">6. 사용자 저장 흐름</h3>
-
-<h4 id="service">Service</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserService</span><span class="o">(</span><span class="nc">UserRepository</span> <span class="n">userRepository</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">userRepository</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">createUser</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">email</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">email</span><span class="o">);</span>
-        <span class="nc">User</span> <span class="n">savedUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">savedUser</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>실행 흐름은 다음과 같다.</p>
-
-<section class="mermaid-card">
-  <header class="mermaid-head">
-    <span>Spring Data JPA 저장 흐름</span>
-  </header>
-  <div class="mermaid js-mermaid">
-flowchart TD
-    S[Service가 User 생성] --&gt; R[UserRepository.save 호출]
-    R --&gt; SD[Spring Data JPA]
-    SD --&gt; H[Hibernate가 Entity 관리]
-    H --&gt; SQL[INSERT SQL 생성]
-    SQL --&gt; J[JDBC가 SQL 전달]
-    J --&gt; DB[(Database 저장)]
-</div>
-</section>
-
-<script>
-  (function () {
-    function render() {
-      if (window.mermaid && window.mermaid.run) {
-        window.mermaid.run({ querySelector: '.js-mermaid' });
-      }
-    }
-
-    if (!window.__mermaidLibInit) {
-      window.__mermaidLibInit = true;
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-      script.async = true;
-      script.onload = function () {
-        if (window.mermaid && window.mermaid.initialize) {
-          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-        }
-        render();
-      };
-      document.head.appendChild(script);
-    } else {
-      render();
-    }
-  })();
-</script>
-
-<p>Hibernate는 Entity의 매핑 정보를 보고 대략 다음과 같은 SQL을 실행한다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">users</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">email</span><span class="p">)</span>
-<span class="k">VALUES</span> <span class="p">(</span><span class="s1">'민형'</span><span class="p">,</span> <span class="s1">'min@example.com'</span><span class="p">);</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="7-jpa와-jdbc-비교">7. JPA와 JDBC 비교</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>JPA</th>
-      <th>JDBC</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>객체와 테이블을 매핑한다.</td>
-      <td>SQL을 직접 작성한다.</td>
-    </tr>
-    <tr>
-      <td>반복적인 CRUD 코드를 줄인다.</td>
-      <td>결과를 객체로 직접 변환한다.</td>
-    </tr>
-    <tr>
-      <td>변경 감지와 연관관계 기능을 제공한다.</td>
-      <td>실행 흐름이 SQL 중심으로 명확하다.</td>
-    </tr>
-    <tr>
-      <td>잘못 사용하면 예상하지 못한 SQL이 발생할 수 있다.</td>
-      <td>반복 코드가 많아질 수 있다.</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>JPA도 내부적으로 JDBC를 사용해 SQL을 전달한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JPA와 JDBC 중 하나만 선택
-</code></pre></div></div>
-
-<p>이 아니라 다음 구조에 가깝다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>JPA / Hibernate
-      ↓
-    JDBC
-      ↓
-  Database
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="8-h2-연결-설정">8. H2 연결 설정</h3>
-
-<p>H2는 학습과 테스트에 많이 사용하는 가벼운 관계형 데이터베이스다.</p>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
-  <span class="na">datasource</span><span class="pi">:</span>
-    <span class="na">url</span><span class="pi">:</span> <span class="s">jdbc:h2:mem:testdb</span>
-    <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.h2.Driver</span>
-    <span class="na">username</span><span class="pi">:</span> <span class="s">sa</span>
-    <span class="na">password</span><span class="pi">:</span>
-
-  <span class="na">h2</span><span class="pi">:</span>
-    <span class="na">console</span><span class="pi">:</span>
-      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
-      <span class="na">path</span><span class="pi">:</span> <span class="s">/h2-console</span>
-
-  <span class="na">jpa</span><span class="pi">:</span>
-    <span class="na">hibernate</span><span class="pi">:</span>
-      <span class="na">ddl-auto</span><span class="pi">:</span> <span class="s">create-drop</span>
-    <span class="na">show-sql</span><span class="pi">:</span> <span class="no">true</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>설정</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">datasource</code></td>
-      <td>연결할 DB 주소와 계정 설정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ddl-auto</code></td>
-      <td>Entity를 기준으로 테이블을 관리하는 방식 설정</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">create-drop</code></td>
-      <td>시작할 때 생성하고 종료할 때 삭제</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">show-sql</code></td>
-      <td>Hibernate가 실행하는 SQL 출력</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">h2.console.enabled</code></td>
-      <td>H2 웹 콘솔 활성화</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><code class="language-plaintext highlighter-rouge">create-drop</code>은 애플리케이션 종료 시 테이블을 삭제하므로 운영 환경에서 사용하면 안 된다.</p>
-
-<hr />
-
-<h3 id="핵심-정리">핵심 정리</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>개념</th>
-      <th>한 줄 정리</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>ORM</td>
-      <td>자바 객체와 관계형 테이블을 연결하는 기술</td>
-    </tr>
-    <tr>
-      <td>JPA</td>
-      <td>자바 ORM 사용법을 정의한 표준</td>
-    </tr>
-    <tr>
-      <td>Hibernate</td>
-      <td>JPA를 실제로 구현한 라이브러리</td>
-    </tr>
-    <tr>
-      <td>Spring Data JPA</td>
-      <td>Repository 작성을 편하게 도와주는 Spring 프로젝트</td>
-    </tr>
-    <tr>
-      <td>Entity</td>
-      <td>JPA가 관리하며 테이블과 매핑되는 객체</td>
-    </tr>
-    <tr>
-      <td>Repository</td>
-      <td>Entity의 저장과 조회를 담당하는 데이터 접근 계층</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>JPA를 사용한다는 것은 SQL을 몰라도 된다는 뜻이 아니라, 객체와 테이블의 매핑을 이용해 반복적인 데이터 접근 코드를 줄인다는 뜻이다.</p>
-</blockquote>
-
-<h3 id="참고-자료">참고 자료</h3>
-
-<ul>
-  <li><a href="https://docs.spring.io/spring-data/jpa/reference/">Spring Data JPA 공식 문서</a></li>
-  <li><a href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence 공식 명세</a></li>
-</ul>
+<ol>
+  <li>Tool Calling</li>
+  <li>RAG</li>
+  <li>Memory / State</li>
+  <li>Agent Loop</li>
+  <li>Observability</li>
+  <li>Guardrails</li>
+  <li>Model Routing</li>
+</ol>
 </div>
   
-    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#java">#Java</a><a href="/tags/#spring">#Spring</a><a href="/tags/#spring-boot">#Spring Boot</a><a href="/tags/#jpa">#JPA</a><a href="/tags/#hibernate">#Hibernate</a><a href="/tags/#spring-data-jpa">#Spring Data JPA</a><a href="/tags/#entity">#Entity</a></footer>
+    <footer class="ide-document-tags"><span class="ide-panel-label">TAGS</span><a href="/tags/#deep-learning">#Deep Learning</a><a href="/tags/#llm">#LLM</a><a href="/tags/#workflow">#Workflow</a><a href="/tags/#agent">#Agent</a></footer>
   
   <nav class="ide-document-navigation" aria-label="게시물 이동">
-    <a href="/java/spring/2026/08/15/spring-rest-api-validation/"><span>PREVIOUS</span><strong>Spring 기초 Part 3: REST API 요청값과 입력값 검증</strong></a>
-    <a href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/"><span>NEXT</span><strong>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</strong></a>
+    <a href="/java/spring/2026/08/18/jpa-relationship-mapping/"><span>PREVIOUS</span><strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong></a>
+    <a href="/java/spring/2026/08/19/spring-proxy/"><span>NEXT</span><strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong></a>
   </nav>
   
 <section
@@ -1885,7 +1497,7 @@ flowchart TD
     <h2 id="commentsTitle">COMMENTS</h2>
     <p>GitHub 계정으로 로그인하여 댓글을 남길 수 있습니다. 댓글은 GitHub Discussions에 공개 저장되며, 작성 내용과 GitHub 프로필 정보가 다른 방문자에게 보일 수 있습니다.</p>
     <div class="ide-comments-actions">
-      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
+      <a class="ide-comments-action" href="https://github.com/login?return_to=http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>GitHub 로그인 후 댓글 쓰기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
       <a class="ide-comments-action ide-comments-action-secondary" href="https://github.com/minnong511/minnong511.github.io/discussions" target="_blank" rel="noopener noreferrer"><i class="ri-discuss-line" aria-hidden="true"></i><span>Discussion 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
   </header>
@@ -1911,13 +1523,13 @@ flowchart TD
     <span class="ide-panel-label">DOCUMENT INFO</span>
     <dl class="ide-info-list">
       <div><dt>TYPE</dt><dd>Markdown</dd></div>
-      <div><dt>DATE</dt><dd>2026.08.16</dd></div>
+      <div><dt>DATE</dt><dd>2026.08.19</dd></div>
       <div><dt>READ</dt><dd><span data-reading-time>—</span></dd></div>
       <div><dt>WORDS</dt><dd><span data-word-count>—</span></dd></div>
-      <div><dt>CATEGORY</dt><dd>java / spring</dd></div>
+      <div><dt>CATEGORY</dt><dd>Deep Learning / LLM</dd></div>
     </dl>
-    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/java/spring/2026/08/16/spring-data-jpa-basics/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
-    <button class="ide-context-link" type="button" data-bookmark-page="/java/spring/2026/08/16/spring-data-jpa-basics/" data-bookmark-title="Spring 기초 Part 4: JPA, Entity와 Repository"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
+    <button class="ide-context-link" type="button" data-copy-link="http://localhost:4000/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><i class="ri-link" aria-hidden="true"></i> Copy page link</button>
+    <button class="ide-context-link" type="button" data-bookmark-page="/deep_learning/llm/2026/08/19/llm-workflow-patterns/" data-bookmark-title="현대 LLM 워크플로의 패턴"><i class="ri-bookmark-3-line" aria-hidden="true"></i> <span>Bookmark document</span></button>
   </section>
   <section class="ide-context-view" id="contextRelated" role="tabpanel" data-context-view="related" hidden>
     <span class="ide-panel-label">RELATED DOCUMENTS</span>
@@ -1928,8 +1540,6 @@ flowchart TD
           <a href="/java/spring/2026/08/19/spring-proxy/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</span></a>
         
       
-        
-          <a href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span></a>
         
       
         
@@ -1956,7 +1566,7 @@ flowchart TD
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> main</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> java / spring</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> main</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> Deep Learning / LLM</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>

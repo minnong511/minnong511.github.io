@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록" />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <script src="/assets/js/theme-init.js?v=10"></script>
+    <script src="/assets/js/theme-init.js?v=11"></script>
     
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,9 +31,9 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=10" />
-    <link rel="stylesheet" href="/assets/css/tokens.css?v=10" />
-    <link rel="stylesheet" href="/assets/css/ide.css?v=10" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=11" />
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=11" />
+    <link rel="stylesheet" href="/assets/css/ide.css?v=11" />
     
   </head>
   <body
@@ -100,7 +100,7 @@
       <kbd>ESC</kbd>
     </label>
     <div class="ide-explorer-toolbar">
-      <span id="explorerCount">56 POSTS</span>
+      <span id="explorerCount">59 POSTS</span>
       <label for="explorerSort" class="sr-only">게시물 정렬</label>
       <select id="explorerSort" aria-label="게시물 정렬">
         <option value="newest">최신순</option>
@@ -137,10 +137,29 @@
         
         <section class="ide-tree-folder is-open" data-category="deep-learning" data-folder-name="deep_learning" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Deep_Learning 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>17</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>18</small>
           </button>
           <div class="ide-tree-children" role="group">
             
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="deep-learning-llm" data-folder-name="deep_learning llm" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="LLM 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>LLM</span><small>1</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/" role="treeitem" data-date="1787065200" data-title="현대 llm 워크플로의 패턴" data-search="현대 llm 워크플로의 패턴 &lt;h1 id=&quot;현대-llm-워크플로의-패턴&quot;&gt;현대 llm 워크플로의 패턴&lt;/h1&gt;
+
+ [&quot;deep learning&quot;, &quot;llm&quot;, &quot;workflow&quot;, &quot;agent&quot;]" title="현대 LLM 워크플로의 패턴">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span>
+                    </a>
+                  
+                  
+                </div>
+              </section>
             
               
               
@@ -717,68 +736,9 @@ vue의 반응성 시스템
         
         
         
-        <section class="ide-tree-folder is-open" data-category="devops" data-folder-name="devops" role="treeitem" aria-expanded="true">
-          <button class="ide-tree-folder-toggle" type="button" aria-label="DevOps 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DevOps</span><small>5</small>
-          </button>
-          <div class="ide-tree-children" role="group">
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/docker-deployment-operations/" role="treeitem" data-date="1786946400" data-title="ci/cd 기초 3편: 배포 전략과 운영" data-search="ci/cd 기초 3편: 배포 전략과 운영 &lt;h2 id=&quot;배포-후에도-끝은-아니다&quot;&gt;배포 후에도 끝은 아니다&lt;/h2&gt;
-
- [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;health check&quot;, &quot;rollback&quot;, &quot;deployment&quot;, &quot;observability&quot;]" title="CI/CD 기초 3편: 배포 전략과 운영">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 3편: 배포 전략과 운영</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/docker-ci-cd-pipeline/" role="treeitem" data-date="1786942800" data-title="ci/cd 기초 2편: docker 이미지와 배포 파이프라인" data-search="ci/cd 기초 2편: docker 이미지와 배포 파이프라인 &lt;h2 id=&quot;docker-기반-cicd&quot;&gt;docker 기반 ci/cd&lt;/h2&gt;
-
- [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;github actions&quot;, &quot;container registry&quot;, &quot;deployment&quot;]" title="CI/CD 기초 2편: Docker 이미지와 배포 파이프라인">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 2편: Docker 이미지와 배포 파이프라인</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/ci-cd-basics/" role="treeitem" data-date="1786939200" data-title="ci/cd 기초 1편: 개념과 github actions" data-search="ci/cd 기초 1편: 개념과 github actions &lt;h2 id=&quot;cicd가-뭔가요&quot;&gt;ci/cd가 뭔가요?&lt;/h2&gt;
-
- [&quot;ci/cd&quot;, &quot;github actions&quot;, &quot;docker&quot;, &quot;deployment&quot;]" title="CI/CD 기초 1편: 개념과 GitHub Actions">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 1편: 개념과 GitHub Actions</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/docker-basics/" role="treeitem" data-date="1786935600" data-title="docker 기초 1편: image, container와 compose" data-search="docker 기초 1편: image, container와 compose &lt;h2 id=&quot;1-docker가-왜-필요할까&quot;&gt;1. docker가 왜 필요할까?&lt;/h2&gt;
-
- [&quot;docker&quot;, &quot;dockerfile&quot;, &quot;container&quot;, &quot;docker compose&quot;, &quot;devops&quot;]" title="Docker 기초 1편: Image, Container와 Compose">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>Docker 기초 1편: Image, Container와 Compose</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/07/Devops_1/" role="treeitem" data-date="1786060800" data-title="devops 기초 1편" data-search="devops 기초 1편 &lt;h2 id=&quot;devops-기초&quot;&gt;devops 기초&lt;/h2&gt;
-
- [&quot;devops&quot;]" title="DevOps 기초 1편">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>DevOps 기초 1편</span>
-              </a>
-            
-            
-              
-              
-              
-              <section class="ide-tree-folder is-open" data-category="devops-docker" data-folder-name="devops docker" role="treeitem" aria-expanded="true">
-                <button class="ide-tree-folder-toggle" type="button" aria-label="Docker 하위 폴더 열기/닫기">
-                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Docker</span><small>0</small>
-                </button>
-                <div class="ide-tree-children" role="group">
-                  
-                  <p class="ide-tree-empty">폴더가 비어 있습니다.</p>
-                </div>
-              </section>
-            
-            
-          </div>
-        </section>
-      
-        
-        
-        
-        
-        
         <section class="ide-tree-folder is-open" data-category="java" data-folder-name="java" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="java 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>java</span><small>23</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>java</span><small>25</small>
           </button>
           <div class="ide-tree-children" role="group">
             
@@ -788,9 +748,21 @@ vue의 반응성 시스템
               
               <section class="ide-tree-folder is-open" data-category="java-spring" data-folder-name="java spring" role="treeitem" aria-expanded="true">
                 <button class="ide-tree-folder-toggle" type="button" aria-label="spring 하위 폴더 열기/닫기">
-                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>spring</span><small>5</small>
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>spring</span><small>7</small>
                 </button>
                 <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post" href="/java/spring/2026/08/19/spring-proxy/" role="treeitem" data-date="1787097600" data-title="spring 기초 part 7: proxy 패턴과 spring proxy" data-search="spring 기초 part 7: proxy 패턴과 spring proxy &lt;h2 id=&quot;spring-기초-part-7-proxy-패턴과-spring-proxy&quot;&gt;spring 기초 part 7: proxy 패턴과 spring proxy&lt;/h2&gt;
+
+ [&quot;java&quot;, &quot;spring&quot;, &quot;proxy&quot;, &quot;dynamic proxy&quot;, &quot;jdk proxy&quot;, &quot;cglib&quot;, &quot;bean&quot;]" title="Spring 기초 Part 7: Proxy 패턴과 Spring Proxy">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/java/spring/2026/08/18/jpa-relationship-mapping/" role="treeitem" data-date="1787011200" data-title="spring 기초 part 6: jpa 연관관계 매핑" data-search="spring 기초 part 6: jpa 연관관계 매핑 &lt;h2 id=&quot;spring-기초-part-6-jpa-연관관계-매핑&quot;&gt;spring 기초 part 6: jpa 연관관계 매핑&lt;/h2&gt;
+
+ [&quot;java&quot;, &quot;spring&quot;, &quot;jpa&quot;, &quot;relationship mapping&quot;, &quot;manytoone&quot;, &quot;onetomany&quot;, &quot;foreign key&quot;]" title="Spring 기초 Part 6: JPA 연관관계 매핑">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 6: JPA 연관관계 매핑</span>
+                    </a>
                   
                     <a class="ide-tree-post" href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/" role="treeitem" data-date="1786924800" data-title="spring 기초 part 5: entitymanager와 영속성 컨텍스트" data-search="spring 기초 part 5: entitymanager와 영속성 컨텍스트 &lt;h2 id=&quot;spring-기초-part-5-entitymanager와-영속성-컨텍스트&quot;&gt;spring 기초 part 5: entitymanager와 영속성 컨텍스트&lt;/h2&gt;
 
@@ -1034,6 +1006,65 @@ vue의 반응성 시스템
         
         
         
+        <section class="ide-tree-folder is-open" data-category="devops" data-folder-name="devops" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="DevOps 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DevOps</span><small>5</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/docker-deployment-operations/" role="treeitem" data-date="1786946400" data-title="ci/cd 기초 3편: 배포 전략과 운영" data-search="ci/cd 기초 3편: 배포 전략과 운영 &lt;h2 id=&quot;배포-후에도-끝은-아니다&quot;&gt;배포 후에도 끝은 아니다&lt;/h2&gt;
+
+ [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;health check&quot;, &quot;rollback&quot;, &quot;deployment&quot;, &quot;observability&quot;]" title="CI/CD 기초 3편: 배포 전략과 운영">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 3편: 배포 전략과 운영</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/docker-ci-cd-pipeline/" role="treeitem" data-date="1786942800" data-title="ci/cd 기초 2편: docker 이미지와 배포 파이프라인" data-search="ci/cd 기초 2편: docker 이미지와 배포 파이프라인 &lt;h2 id=&quot;docker-기반-cicd&quot;&gt;docker 기반 ci/cd&lt;/h2&gt;
+
+ [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;github actions&quot;, &quot;container registry&quot;, &quot;deployment&quot;]" title="CI/CD 기초 2편: Docker 이미지와 배포 파이프라인">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 2편: Docker 이미지와 배포 파이프라인</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/ci-cd-basics/" role="treeitem" data-date="1786939200" data-title="ci/cd 기초 1편: 개념과 github actions" data-search="ci/cd 기초 1편: 개념과 github actions &lt;h2 id=&quot;cicd가-뭔가요&quot;&gt;ci/cd가 뭔가요?&lt;/h2&gt;
+
+ [&quot;ci/cd&quot;, &quot;github actions&quot;, &quot;docker&quot;, &quot;deployment&quot;]" title="CI/CD 기초 1편: 개념과 GitHub Actions">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 1편: 개념과 GitHub Actions</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/docker-basics/" role="treeitem" data-date="1786935600" data-title="docker 기초 1편: image, container와 compose" data-search="docker 기초 1편: image, container와 compose &lt;h2 id=&quot;1-docker가-왜-필요할까&quot;&gt;1. docker가 왜 필요할까?&lt;/h2&gt;
+
+ [&quot;docker&quot;, &quot;dockerfile&quot;, &quot;container&quot;, &quot;docker compose&quot;, &quot;devops&quot;]" title="Docker 기초 1편: Image, Container와 Compose">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Docker 기초 1편: Image, Container와 Compose</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/07/Devops_1/" role="treeitem" data-date="1786060800" data-title="devops 기초 1편" data-search="devops 기초 1편 &lt;h2 id=&quot;devops-기초&quot;&gt;devops 기초&lt;/h2&gt;
+
+ [&quot;devops&quot;]" title="DevOps 기초 1편">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>DevOps 기초 1편</span>
+              </a>
+            
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="devops-docker" data-folder-name="devops docker" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="Docker 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Docker</span><small>0</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                  <p class="ide-tree-empty">폴더가 비어 있습니다.</p>
+                </div>
+              </section>
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
         <section class="ide-tree-folder is-open" data-category="algorithm" data-folder-name="algorithm" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Algorithm 폴더 열기/닫기">
             <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Algorithm</span><small>1</small>
@@ -1142,7 +1173,7 @@ vue의 반응성 시스템
       <i class="ri-git-branch-line ide-panel-heading-icon" aria-hidden="true"></i>
     </div>
     <div class="ide-sidebar-content">
-      <div class="ide-source-status"><i class="ri-git-branch-line" aria-hidden="true"></i><strong>master</strong><span>clean</span></div>
+      <div class="ide-source-status"><i class="ri-git-branch-line" aria-hidden="true"></i><strong>main</strong><span>clean</span></div>
       <p class="ide-panel-empty">현재 작업 공간의 GitHub 저장소입니다.</p>
     <a class="ide-sidebar-action" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>저장소 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
@@ -1270,1162 +1301,1239 @@ vue의 반응성 시스템
         
           
           
-          <button class="tag-hub-chip" data-tag="algorithm" style="--tag-index: 5;" type="button">
+          <button class="tag-hub-chip" data-tag="agent" style="--tag-index: 5;" type="button">
+            <span>#Agent</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="algorithm" style="--tag-index: 6;" type="button">
             <span>#Algorithm</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="annotation" style="--tag-index: 6;" type="button">
+          <button class="tag-hub-chip" data-tag="annotation" style="--tag-index: 7;" type="button">
             <span>#Annotation</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="anonymous-class" style="--tag-index: 7;" type="button">
+          <button class="tag-hub-chip" data-tag="anonymous-class" style="--tag-index: 8;" type="button">
             <span>#Anonymous Class</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="arraylist" style="--tag-index: 8;" type="button">
+          <button class="tag-hub-chip" data-tag="arraylist" style="--tag-index: 9;" type="button">
             <span>#ArrayList</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="backend" style="--tag-index: 9;" type="button">
+          <button class="tag-hub-chip" data-tag="backend" style="--tag-index: 10;" type="button">
             <span>#Backend</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="bean" style="--tag-index: 10;" type="button">
+          <button class="tag-hub-chip" data-tag="bean" style="--tag-index: 11;" type="button">
             <span>#Bean</span>
-            <small>1</small>
+            <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="bytecode" style="--tag-index: 11;" type="button">
+          <button class="tag-hub-chip" data-tag="bytecode" style="--tag-index: 12;" type="button">
             <span>#Bytecode</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="ci" style="--tag-index: 12;" type="button">
+          <button class="tag-hub-chip" data-tag="cglib" style="--tag-index: 13;" type="button">
+            <span>#CGLIB</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="ci" style="--tag-index: 14;" type="button">
             <span>#CI</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="ci-cd" style="--tag-index: 13;" type="button">
+          <button class="tag-hub-chip" data-tag="ci-cd" style="--tag-index: 15;" type="button">
             <span>#CI/CD</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="cnn" style="--tag-index: 14;" type="button">
+          <button class="tag-hub-chip" data-tag="cnn" style="--tag-index: 16;" type="button">
             <span>#CNN</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="cpython" style="--tag-index: 15;" type="button">
+          <button class="tag-hub-chip" data-tag="cpython" style="--tag-index: 17;" type="button">
             <span>#CPython</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="career" style="--tag-index: 16;" type="button">
+          <button class="tag-hub-chip" data-tag="career" style="--tag-index: 18;" type="button">
             <span>#Career</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="class" style="--tag-index: 17;" type="button">
+          <button class="tag-hub-chip" data-tag="class" style="--tag-index: 19;" type="button">
             <span>#Class</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="classloader" style="--tag-index: 18;" type="button">
+          <button class="tag-hub-chip" data-tag="classloader" style="--tag-index: 20;" type="button">
             <span>#ClassLoader</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="classpath" style="--tag-index: 19;" type="button">
+          <button class="tag-hub-chip" data-tag="classpath" style="--tag-index: 21;" type="button">
             <span>#Classpath</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="code-cache" style="--tag-index: 20;" type="button">
+          <button class="tag-hub-chip" data-tag="code-cache" style="--tag-index: 22;" type="button">
             <span>#Code Cache</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="coding-agent" style="--tag-index: 21;" type="button">
+          <button class="tag-hub-chip" data-tag="coding-agent" style="--tag-index: 23;" type="button">
             <span>#Coding Agent</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="collection" style="--tag-index: 22;" type="button">
+          <button class="tag-hub-chip" data-tag="collection" style="--tag-index: 24;" type="button">
             <span>#Collection</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="collections" style="--tag-index: 23;" type="button">
+          <button class="tag-hub-chip" data-tag="collections" style="--tag-index: 25;" type="button">
             <span>#Collections</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="comment" style="--tag-index: 24;" type="button">
+          <button class="tag-hub-chip" data-tag="comment" style="--tag-index: 26;" type="button">
             <span>#Comment</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="compiler" style="--tag-index: 25;" type="button">
+          <button class="tag-hub-chip" data-tag="compiler" style="--tag-index: 27;" type="button">
             <span>#Compiler</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="component" style="--tag-index: 26;" type="button">
+          <button class="tag-hub-chip" data-tag="component" style="--tag-index: 28;" type="button">
             <span>#Component</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="composition-api" style="--tag-index: 27;" type="button">
+          <button class="tag-hub-chip" data-tag="composition-api" style="--tag-index: 29;" type="button">
             <span>#Composition API</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="computer-vision" style="--tag-index: 28;" type="button">
+          <button class="tag-hub-chip" data-tag="computer-vision" style="--tag-index: 30;" type="button">
             <span>#Computer Vision</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="constructor" style="--tag-index: 29;" type="button">
+          <button class="tag-hub-chip" data-tag="constructor" style="--tag-index: 31;" type="button">
             <span>#Constructor</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="container" style="--tag-index: 30;" type="button">
+          <button class="tag-hub-chip" data-tag="container" style="--tag-index: 32;" type="button">
             <span>#Container</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="container-registry" style="--tag-index: 31;" type="button">
+          <button class="tag-hub-chip" data-tag="container-registry" style="--tag-index: 33;" type="button">
             <span>#Container Registry</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="control-flow" style="--tag-index: 32;" type="button">
+          <button class="tag-hub-chip" data-tag="control-flow" style="--tag-index: 34;" type="button">
             <span>#Control Flow</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="counter" style="--tag-index: 33;" type="button">
+          <button class="tag-hub-chip" data-tag="counter" style="--tag-index: 35;" type="button">
             <span>#Counter</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="di" style="--tag-index: 34;" type="button">
+          <button class="tag-hub-chip" data-tag="di" style="--tag-index: 36;" type="button">
             <span>#DI</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="dto" style="--tag-index: 35;" type="button">
+          <button class="tag-hub-chip" data-tag="dto" style="--tag-index: 37;" type="button">
             <span>#DTO</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="data-augmentation" style="--tag-index: 36;" type="button">
+          <button class="tag-hub-chip" data-tag="data-augmentation" style="--tag-index: 38;" type="button">
             <span>#Data Augmentation</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="datastructure" style="--tag-index: 37;" type="button">
+          <button class="tag-hub-chip" data-tag="datastructure" style="--tag-index: 39;" type="button">
             <span>#DataStructure</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="dataset-engineering" style="--tag-index: 38;" type="button">
+          <button class="tag-hub-chip" data-tag="dataset-engineering" style="--tag-index: 40;" type="button">
             <span>#Dataset Engineering</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="debugging" style="--tag-index: 39;" type="button">
+          <button class="tag-hub-chip" data-tag="debugging" style="--tag-index: 41;" type="button">
             <span>#Debugging</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="deep-learning" style="--tag-index: 40;" type="button">
+          <button class="tag-hub-chip" data-tag="deep-learning" style="--tag-index: 42;" type="button">
             <span>#Deep Learning</span>
-            <small>17</small>
+            <small>18</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="deployment" style="--tag-index: 41;" type="button">
+          <button class="tag-hub-chip" data-tag="deployment" style="--tag-index: 43;" type="button">
             <span>#Deployment</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="devops" style="--tag-index: 42;" type="button">
+          <button class="tag-hub-chip" data-tag="devops" style="--tag-index: 44;" type="button">
             <span>#DevOps</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="devtools" style="--tag-index: 43;" type="button">
+          <button class="tag-hub-chip" data-tag="devtools" style="--tag-index: 45;" type="button">
             <span>#DevTools</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="developer" style="--tag-index: 44;" type="button">
+          <button class="tag-hub-chip" data-tag="developer" style="--tag-index: 46;" type="button">
             <span>#Developer</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="directive" style="--tag-index: 45;" type="button">
+          <button class="tag-hub-chip" data-tag="directive" style="--tag-index: 47;" type="button">
             <span>#Directive</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="dirty-checking" style="--tag-index: 46;" type="button">
+          <button class="tag-hub-chip" data-tag="dirty-checking" style="--tag-index: 48;" type="button">
             <span>#Dirty Checking</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="dispatcherservlet" style="--tag-index: 47;" type="button">
+          <button class="tag-hub-chip" data-tag="dispatcherservlet" style="--tag-index: 49;" type="button">
             <span>#DispatcherServlet</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="distributed-training" style="--tag-index: 48;" type="button">
+          <button class="tag-hub-chip" data-tag="distributed-training" style="--tag-index: 50;" type="button">
             <span>#Distributed Training</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="docker" style="--tag-index: 49;" type="button">
+          <button class="tag-hub-chip" data-tag="docker" style="--tag-index: 51;" type="button">
             <span>#Docker</span>
             <small>4</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="docker-compose" style="--tag-index: 50;" type="button">
+          <button class="tag-hub-chip" data-tag="docker-compose" style="--tag-index: 52;" type="button">
             <span>#Docker Compose</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="dockerfile" style="--tag-index: 51;" type="button">
+          <button class="tag-hub-chip" data-tag="dockerfile" style="--tag-index: 53;" type="button">
             <span>#Dockerfile</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="eda" style="--tag-index: 52;" type="button">
+          <button class="tag-hub-chip" data-tag="dynamic-proxy" style="--tag-index: 54;" type="button">
+            <span>#Dynamic Proxy</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="eda" style="--tag-index: 55;" type="button">
             <span>#EDA</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="emits" style="--tag-index: 53;" type="button">
+          <button class="tag-hub-chip" data-tag="emits" style="--tag-index: 56;" type="button">
             <span>#Emits</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="encapsulation" style="--tag-index: 54;" type="button">
+          <button class="tag-hub-chip" data-tag="encapsulation" style="--tag-index: 57;" type="button">
             <span>#Encapsulation</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="entity" style="--tag-index: 55;" type="button">
+          <button class="tag-hub-chip" data-tag="entity" style="--tag-index: 58;" type="button">
             <span>#Entity</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="entitymanager" style="--tag-index: 56;" type="button">
+          <button class="tag-hub-chip" data-tag="entitymanager" style="--tag-index: 59;" type="button">
             <span>#EntityManager</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="exception" style="--tag-index: 57;" type="button">
+          <button class="tag-hub-chip" data-tag="exception" style="--tag-index: 60;" type="button">
             <span>#Exception</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="fixme" style="--tag-index: 58;" type="button">
+          <button class="tag-hub-chip" data-tag="fixme" style="--tag-index: 61;" type="button">
             <span>#FIXME</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="field" style="--tag-index: 59;" type="button">
+          <button class="tag-hub-chip" data-tag="field" style="--tag-index: 62;" type="button">
             <span>#Field</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="filter" style="--tag-index: 60;" type="button">
+          <button class="tag-hub-chip" data-tag="filter" style="--tag-index: 63;" type="button">
             <span>#Filter</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="for" style="--tag-index: 61;" type="button">
+          <button class="tag-hub-chip" data-tag="for" style="--tag-index: 64;" type="button">
             <span>#For</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="foundation-model" style="--tag-index: 62;" type="button">
+          <button class="tag-hub-chip" data-tag="foreign-key" style="--tag-index: 65;" type="button">
+            <span>#Foreign Key</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="foundation-model" style="--tag-index: 66;" type="button">
             <span>#Foundation Model</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="frontend" style="--tag-index: 63;" type="button">
+          <button class="tag-hub-chip" data-tag="frontend" style="--tag-index: 67;" type="button">
             <span>#Frontend</span>
             <small>5</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="functional-programming" style="--tag-index: 64;" type="button">
+          <button class="tag-hub-chip" data-tag="functional-programming" style="--tag-index: 68;" type="button">
             <span>#Functional Programming</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="generic" style="--tag-index: 65;" type="button">
+          <button class="tag-hub-chip" data-tag="generic" style="--tag-index: 69;" type="button">
             <span>#Generic</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="github-actions" style="--tag-index: 66;" type="button">
+          <button class="tag-hub-chip" data-tag="github-actions" style="--tag-index: 70;" type="button">
             <span>#GitHub Actions</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="gradle" style="--tag-index: 67;" type="button">
+          <button class="tag-hub-chip" data-tag="gradle" style="--tag-index: 71;" type="button">
             <span>#Gradle</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="health-check" style="--tag-index: 68;" type="button">
+          <button class="tag-hub-chip" data-tag="health-check" style="--tag-index: 72;" type="button">
             <span>#Health Check</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="heap" style="--tag-index: 69;" type="button">
+          <button class="tag-hub-chip" data-tag="heap" style="--tag-index: 73;" type="button">
             <span>#Heap</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="hibernate" style="--tag-index: 70;" type="button">
+          <button class="tag-hub-chip" data-tag="hibernate" style="--tag-index: 74;" type="button">
             <span>#Hibernate</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="if" style="--tag-index: 71;" type="button">
+          <button class="tag-hub-chip" data-tag="if" style="--tag-index: 75;" type="button">
             <span>#If</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="image-segmentation" style="--tag-index: 72;" type="button">
+          <button class="tag-hub-chip" data-tag="image-segmentation" style="--tag-index: 76;" type="button">
             <span>#Image Segmentation</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="import" style="--tag-index: 73;" type="button">
+          <button class="tag-hub-chip" data-tag="import" style="--tag-index: 77;" type="button">
             <span>#Import</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="inheritance" style="--tag-index: 74;" type="button">
+          <button class="tag-hub-chip" data-tag="inheritance" style="--tag-index: 78;" type="button">
             <span>#Inheritance</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="inner-class" style="--tag-index: 75;" type="button">
+          <button class="tag-hub-chip" data-tag="inner-class" style="--tag-index: 79;" type="button">
             <span>#Inner Class</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="instance" style="--tag-index: 76;" type="button">
+          <button class="tag-hub-chip" data-tag="instance" style="--tag-index: 80;" type="button">
             <span>#Instance</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="interface" style="--tag-index: 77;" type="button">
+          <button class="tag-hub-chip" data-tag="interface" style="--tag-index: 81;" type="button">
             <span>#Interface</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="ioc" style="--tag-index: 78;" type="button">
+          <button class="tag-hub-chip" data-tag="ioc" style="--tag-index: 82;" type="button">
             <span>#IoC</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="jdk" style="--tag-index: 79;" type="button">
+          <button class="tag-hub-chip" data-tag="jdk" style="--tag-index: 83;" type="button">
             <span>#JDK</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="jpa" style="--tag-index: 80;" type="button">
-            <span>#JPA</span>
-            <small>2</small>
+          <button class="tag-hub-chip" data-tag="jdk-proxy" style="--tag-index: 84;" type="button">
+            <span>#JDK Proxy</span>
+            <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="json" style="--tag-index: 81;" type="button">
+          <button class="tag-hub-chip" data-tag="jpa" style="--tag-index: 85;" type="button">
+            <span>#JPA</span>
+            <small>3</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="json" style="--tag-index: 86;" type="button">
             <span>#JSON</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="jvm" style="--tag-index: 82;" type="button">
+          <button class="tag-hub-chip" data-tag="jvm" style="--tag-index: 87;" type="button">
             <span>#JVM</span>
             <small>4</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="java" style="--tag-index: 83;" type="button">
+          <button class="tag-hub-chip" data-tag="java" style="--tag-index: 88;" type="button">
             <span>#Java</span>
-            <small>23</small>
+            <small>25</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="javascript" style="--tag-index: 84;" type="button">
+          <button class="tag-hub-chip" data-tag="javascript" style="--tag-index: 89;" type="button">
             <span>#JavaScript</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="javadoc" style="--tag-index: 85;" type="button">
+          <button class="tag-hub-chip" data-tag="javadoc" style="--tag-index: 90;" type="button">
             <span>#Javadoc</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="lambda" style="--tag-index: 86;" type="button">
+          <button class="tag-hub-chip" data-tag="llm" style="--tag-index: 91;" type="button">
+            <span>#LLM</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="lambda" style="--tag-index: 92;" type="button">
             <span>#Lambda</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="lifecycle" style="--tag-index: 87;" type="button">
+          <button class="tag-hub-chip" data-tag="lifecycle" style="--tag-index: 93;" type="button">
             <span>#Lifecycle</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="logging" style="--tag-index: 88;" type="button">
+          <button class="tag-hub-chip" data-tag="logging" style="--tag-index: 94;" type="button">
             <span>#Logging</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="mlops" style="--tag-index: 89;" type="button">
+          <button class="tag-hub-chip" data-tag="mlops" style="--tag-index: 95;" type="button">
             <span>#MLOps</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="machine-learning" style="--tag-index: 90;" type="button">
+          <button class="tag-hub-chip" data-tag="machine-learning" style="--tag-index: 96;" type="button">
             <span>#Machine Learning</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="mamba" style="--tag-index: 91;" type="button">
+          <button class="tag-hub-chip" data-tag="mamba" style="--tag-index: 97;" type="button">
             <span>#Mamba</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="map" style="--tag-index: 92;" type="button">
+          <button class="tag-hub-chip" data-tag="manytoone" style="--tag-index: 98;" type="button">
+            <span>#ManyToOne</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="map" style="--tag-index: 99;" type="button">
             <span>#Map</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="maven" style="--tag-index: 93;" type="button">
+          <button class="tag-hub-chip" data-tag="maven" style="--tag-index: 100;" type="button">
             <span>#Maven</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="metadata" style="--tag-index: 94;" type="button">
+          <button class="tag-hub-chip" data-tag="metadata" style="--tag-index: 101;" type="button">
             <span>#Metadata</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="method" style="--tag-index: 95;" type="button">
+          <button class="tag-hub-chip" data-tag="method" style="--tag-index: 102;" type="button">
             <span>#Method</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="method-area" style="--tag-index: 96;" type="button">
+          <button class="tag-hub-chip" data-tag="method-area" style="--tag-index: 103;" type="button">
             <span>#Method Area</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="mixture-of-experts" style="--tag-index: 97;" type="button">
+          <button class="tag-hub-chip" data-tag="mixture-of-experts" style="--tag-index: 104;" type="button">
             <span>#Mixture of Experts</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="moe" style="--tag-index: 98;" type="button">
+          <button class="tag-hub-chip" data-tag="moe" style="--tag-index: 105;" type="button">
             <span>#MoE</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="model-debugging" style="--tag-index: 99;" type="button">
+          <button class="tag-hub-chip" data-tag="model-debugging" style="--tag-index: 106;" type="button">
             <span>#Model Debugging</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="model-optimization" style="--tag-index: 100;" type="button">
+          <button class="tag-hub-chip" data-tag="model-optimization" style="--tag-index: 107;" type="button">
             <span>#Model Optimization</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="multimodal" style="--tag-index: 101;" type="button">
+          <button class="tag-hub-chip" data-tag="multimodal" style="--tag-index: 108;" type="button">
             <span>#Multimodal</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="nested-class" style="--tag-index: 102;" type="button">
+          <button class="tag-hub-chip" data-tag="nested-class" style="--tag-index: 109;" type="button">
             <span>#Nested Class</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="network" style="--tag-index: 103;" type="button">
+          <button class="tag-hub-chip" data-tag="network" style="--tag-index: 110;" type="button">
             <span>#Network</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="oop" style="--tag-index: 104;" type="button">
+          <button class="tag-hub-chip" data-tag="oop" style="--tag-index: 111;" type="button">
             <span>#OOP</span>
             <small>4</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="object" style="--tag-index: 105;" type="button">
+          <button class="tag-hub-chip" data-tag="object" style="--tag-index: 112;" type="button">
             <span>#Object</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="object-detection" style="--tag-index: 106;" type="button">
+          <button class="tag-hub-chip" data-tag="object-detection" style="--tag-index: 113;" type="button">
             <span>#Object Detection</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="observability" style="--tag-index: 107;" type="button">
+          <button class="tag-hub-chip" data-tag="observability" style="--tag-index: 114;" type="button">
             <span>#Observability</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="optimization" style="--tag-index: 108;" type="button">
+          <button class="tag-hub-chip" data-tag="onetomany" style="--tag-index: 115;" type="button">
+            <span>#OneToMany</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="optimization" style="--tag-index: 116;" type="button">
             <span>#Optimization</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="override" style="--tag-index: 109;" type="button">
+          <button class="tag-hub-chip" data-tag="override" style="--tag-index: 117;" type="button">
             <span>#Override</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="package" style="--tag-index: 110;" type="button">
+          <button class="tag-hub-chip" data-tag="package" style="--tag-index: 118;" type="button">
             <span>#Package</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="persistence-context" style="--tag-index: 111;" type="button">
+          <button class="tag-hub-chip" data-tag="persistence-context" style="--tag-index: 119;" type="button">
             <span>#Persistence Context</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="pinia" style="--tag-index: 112;" type="button">
+          <button class="tag-hub-chip" data-tag="pinia" style="--tag-index: 120;" type="button">
             <span>#Pinia</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="pipeline" style="--tag-index: 113;" type="button">
+          <button class="tag-hub-chip" data-tag="pipeline" style="--tag-index: 121;" type="button">
             <span>#PipeLine</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="polymorphism" style="--tag-index: 114;" type="button">
+          <button class="tag-hub-chip" data-tag="polymorphism" style="--tag-index: 122;" type="button">
             <span>#Polymorphism</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="postgresql" style="--tag-index: 115;" type="button">
+          <button class="tag-hub-chip" data-tag="postgresql" style="--tag-index: 123;" type="button">
             <span>#PostgreSQL</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="pre-commit" style="--tag-index: 116;" type="button">
+          <button class="tag-hub-chip" data-tag="pre-commit" style="--tag-index: 124;" type="button">
             <span>#Pre-commit</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="props" style="--tag-index: 117;" type="button">
+          <button class="tag-hub-chip" data-tag="props" style="--tag-index: 125;" type="button">
             <span>#Props</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="pruning" style="--tag-index: 118;" type="button">
+          <button class="tag-hub-chip" data-tag="proxy" style="--tag-index: 126;" type="button">
+            <span>#Proxy</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="pruning" style="--tag-index: 127;" type="button">
             <span>#Pruning</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="pure-function" style="--tag-index: 119;" type="button">
+          <button class="tag-hub-chip" data-tag="pure-function" style="--tag-index: 128;" type="button">
             <span>#Pure Function</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="pytest" style="--tag-index: 120;" type="button">
+          <button class="tag-hub-chip" data-tag="pytest" style="--tag-index: 129;" type="button">
             <span>#Pytest</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="python" style="--tag-index: 121;" type="button">
+          <button class="tag-hub-chip" data-tag="python" style="--tag-index: 130;" type="button">
             <span>#Python</span>
             <small>4</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="quantization" style="--tag-index: 122;" type="button">
+          <button class="tag-hub-chip" data-tag="quantization" style="--tag-index: 131;" type="button">
             <span>#Quantization</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="rest-api" style="--tag-index: 123;" type="button">
+          <button class="tag-hub-chip" data-tag="rest-api" style="--tag-index: 132;" type="button">
             <span>#REST API</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="reflection" style="--tag-index: 124;" type="button">
+          <button class="tag-hub-chip" data-tag="reflection" style="--tag-index: 133;" type="button">
             <span>#Reflection</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="rendering" style="--tag-index: 125;" type="button">
+          <button class="tag-hub-chip" data-tag="relationship-mapping" style="--tag-index: 134;" type="button">
+            <span>#Relationship Mapping</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="rendering" style="--tag-index: 135;" type="button">
             <span>#Rendering</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="requestbody" style="--tag-index: 126;" type="button">
+          <button class="tag-hub-chip" data-tag="requestbody" style="--tag-index: 136;" type="button">
             <span>#RequestBody</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="rollback" style="--tag-index: 127;" type="button">
+          <button class="tag-hub-chip" data-tag="rollback" style="--tag-index: 137;" type="button">
             <span>#Rollback</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="ruff" style="--tag-index: 128;" type="button">
+          <button class="tag-hub-chip" data-tag="ruff" style="--tag-index: 138;" type="button">
             <span>#Ruff</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="spa" style="--tag-index: 129;" type="button">
+          <button class="tag-hub-chip" data-tag="spa" style="--tag-index: 139;" type="button">
             <span>#SPA</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="ssm" style="--tag-index: 130;" type="button">
+          <button class="tag-hub-chip" data-tag="ssm" style="--tag-index: 140;" type="button">
             <span>#SSM</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="slots" style="--tag-index: 131;" type="button">
+          <button class="tag-hub-chip" data-tag="slots" style="--tag-index: 141;" type="button">
             <span>#Slots</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="software-engineering" style="--tag-index: 132;" type="button">
+          <button class="tag-hub-chip" data-tag="software-engineering" style="--tag-index: 142;" type="button">
             <span>#Software Engineering</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="spring" style="--tag-index: 133;" type="button">
+          <button class="tag-hub-chip" data-tag="spring" style="--tag-index: 143;" type="button">
             <span>#Spring</span>
-            <small>7</small>
+            <small>9</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="spring-boot" style="--tag-index: 134;" type="button">
+          <button class="tag-hub-chip" data-tag="spring-boot" style="--tag-index: 144;" type="button">
             <span>#Spring Boot</span>
             <small>4</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="spring-data-jpa" style="--tag-index: 135;" type="button">
+          <button class="tag-hub-chip" data-tag="spring-data-jpa" style="--tag-index: 145;" type="button">
             <span>#Spring Data JPA</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="spring-framework" style="--tag-index: 136;" type="button">
+          <button class="tag-hub-chip" data-tag="spring-framework" style="--tag-index: 146;" type="button">
             <span>#Spring Framework</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="spring-mvc" style="--tag-index: 137;" type="button">
+          <button class="tag-hub-chip" data-tag="spring-mvc" style="--tag-index: 147;" type="button">
             <span>#Spring MVC</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="stack" style="--tag-index: 138;" type="button">
+          <button class="tag-hub-chip" data-tag="stack" style="--tag-index: 148;" type="button">
             <span>#Stack</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="state-management" style="--tag-index: 139;" type="button">
+          <button class="tag-hub-chip" data-tag="state-management" style="--tag-index: 149;" type="button">
             <span>#State Management</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="state-space-model" style="--tag-index: 140;" type="button">
+          <button class="tag-hub-chip" data-tag="state-space-model" style="--tag-index: 150;" type="button">
             <span>#State Space Model</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="static" style="--tag-index: 141;" type="button">
+          <button class="tag-hub-chip" data-tag="static" style="--tag-index: 151;" type="button">
             <span>#Static</span>
             <small>4</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="stream" style="--tag-index: 142;" type="button">
+          <button class="tag-hub-chip" data-tag="stream" style="--tag-index: 152;" type="button">
             <span>#Stream</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="stream-api" style="--tag-index: 143;" type="button">
+          <button class="tag-hub-chip" data-tag="stream-api" style="--tag-index: 153;" type="button">
             <span>#Stream API</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="stringbuilder" style="--tag-index: 144;" type="button">
+          <button class="tag-hub-chip" data-tag="stringbuilder" style="--tag-index: 154;" type="button">
             <span>#StringBuilder</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="super" style="--tag-index: 145;" type="button">
+          <button class="tag-hub-chip" data-tag="super" style="--tag-index: 155;" type="button">
             <span>#Super</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="switch" style="--tag-index: 146;" type="button">
+          <button class="tag-hub-chip" data-tag="switch" style="--tag-index: 156;" type="button">
             <span>#Switch</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="synchronized" style="--tag-index: 147;" type="button">
+          <button class="tag-hub-chip" data-tag="synchronized" style="--tag-index: 157;" type="button">
             <span>#Synchronized</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="todo" style="--tag-index: 148;" type="button">
+          <button class="tag-hub-chip" data-tag="todo" style="--tag-index: 158;" type="button">
             <span>#TODO</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="template" style="--tag-index: 149;" type="button">
+          <button class="tag-hub-chip" data-tag="template" style="--tag-index: 159;" type="button">
             <span>#Template</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="this" style="--tag-index: 150;" type="button">
+          <button class="tag-hub-chip" data-tag="this" style="--tag-index: 160;" type="button">
             <span>#This</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="thread" style="--tag-index: 151;" type="button">
+          <button class="tag-hub-chip" data-tag="thread" style="--tag-index: 161;" type="button">
             <span>#Thread</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="training" style="--tag-index: 152;" type="button">
+          <button class="tag-hub-chip" data-tag="training" style="--tag-index: 162;" type="button">
             <span>#Training</span>
             <small>3</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="training-basics" style="--tag-index: 153;" type="button">
+          <button class="tag-hub-chip" data-tag="training-basics" style="--tag-index: 163;" type="button">
             <span>#Training Basics</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="transaction" style="--tag-index: 154;" type="button">
+          <button class="tag-hub-chip" data-tag="transaction" style="--tag-index: 164;" type="button">
             <span>#Transaction</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="transformer" style="--tag-index: 155;" type="button">
+          <button class="tag-hub-chip" data-tag="transformer" style="--tag-index: 165;" type="button">
             <span>#Transformer</span>
             <small>2</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="type-safety" style="--tag-index: 156;" type="button">
+          <button class="tag-hub-chip" data-tag="type-safety" style="--tag-index: 166;" type="button">
             <span>#Type Safety</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="typehint" style="--tag-index: 157;" type="button">
+          <button class="tag-hub-chip" data-tag="typehint" style="--tag-index: 167;" type="button">
             <span>#TypeHint</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="vs-code" style="--tag-index: 158;" type="button">
+          <button class="tag-hub-chip" data-tag="vs-code" style="--tag-index: 168;" type="button">
             <span>#VS Code</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="validation" style="--tag-index: 159;" type="button">
+          <button class="tag-hub-chip" data-tag="validation" style="--tag-index: 169;" type="button">
             <span>#Validation</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="vit" style="--tag-index: 160;" type="button">
+          <button class="tag-hub-chip" data-tag="vit" style="--tag-index: 170;" type="button">
             <span>#ViT</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="virtual-dom" style="--tag-index: 161;" type="button">
+          <button class="tag-hub-chip" data-tag="virtual-dom" style="--tag-index: 171;" type="button">
             <span>#Virtual DOM</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="vision-language-model" style="--tag-index: 162;" type="button">
+          <button class="tag-hub-chip" data-tag="vision-language-model" style="--tag-index: 172;" type="button">
             <span>#Vision Language Model</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="vision-transformer" style="--tag-index: 163;" type="button">
+          <button class="tag-hub-chip" data-tag="vision-transformer" style="--tag-index: 173;" type="button">
             <span>#Vision Transformer</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="vue-js" style="--tag-index: 164;" type="button">
+          <button class="tag-hub-chip" data-tag="vue-js" style="--tag-index: 174;" type="button">
             <span>#Vue.js</span>
             <small>5</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="while" style="--tag-index: 165;" type="button">
+          <button class="tag-hub-chip" data-tag="while" style="--tag-index: 175;" type="button">
             <span>#While</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="yaml" style="--tag-index: 166;" type="button">
+          <button class="tag-hub-chip" data-tag="workflow" style="--tag-index: 176;" type="button">
+            <span>#Workflow</span>
+            <small>1</small>
+          </button>
+        
+          
+          
+          <button class="tag-hub-chip" data-tag="yaml" style="--tag-index: 177;" type="button">
             <span>#YAML</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="computed" style="--tag-index: 167;" type="button">
+          <button class="tag-hub-chip" data-tag="computed" style="--tag-index: 178;" type="button">
             <span>#computed</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="reactive" style="--tag-index: 168;" type="button">
+          <button class="tag-hub-chip" data-tag="reactive" style="--tag-index: 179;" type="button">
             <span>#reactive</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="ref" style="--tag-index: 169;" type="button">
+          <button class="tag-hub-chip" data-tag="ref" style="--tag-index: 180;" type="button">
             <span>#ref</span>
             <small>1</small>
           </button>
         
           
           
-          <button class="tag-hub-chip" data-tag="watch" style="--tag-index: 170;" type="button">
+          <button class="tag-hub-chip" data-tag="watch" style="--tag-index: 181;" type="button">
             <span>#watch</span>
             <small>1</small>
           </button>
@@ -2440,6 +2548,30 @@ vue의 반응성 시스템
           <h2>최근 기록</h2>
         </div>
         <div class="archive-list">
+          
+            <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+              <time>2026.08.19</time>
+              <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+              <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+            </a>
+          
+            <a class="archive-item" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/">
+              <time>2026.08.19</time>
+              <strong>현대 LLM 워크플로의 패턴</strong>
+              <span>현대 LLM 워크플로의 패턴
+
+</span>
+            </a>
+          
+            <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+              <time>2026.08.18</time>
+              <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+              <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
+            </a>
           
             <a class="archive-item" href="/devops/2026/08/17/docker-deployment-operations/">
               <time>2026.08.17</time>
@@ -2465,30 +2597,6 @@ vue의 반응성 시스템
 </span>
             </a>
           
-            <a class="archive-item" href="/devops/2026/08/17/docker-basics/">
-              <time>2026.08.17</time>
-              <strong>Docker 기초 1편: Image, Container와 Compose</strong>
-              <span>1. Docker가 왜 필요할까?
-
-</span>
-            </a>
-          
-            <a class="archive-item" href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/">
-              <time>2026.08.17</time>
-              <strong>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</strong>
-              <span>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트
-
-</span>
-            </a>
-          
-            <a class="archive-item" href="/java/spring/2026/08/16/spring-data-jpa-basics/">
-              <time>2026.08.16</time>
-              <strong>Spring 기초 Part 4: JPA, Entity와 Repository</strong>
-              <span>Spring 기초 Part 4: JPA, Entity와 Repository
-
-</span>
-            </a>
-          
         </div>
       </div>
       
@@ -2502,6 +2610,32 @@ vue의 반응성 시스템
             <h2>AI</h2>
           </div>
           <div class="archive-list">
+            
+              
+              
+              
+              
+            
+              
+              
+              
+              
+                
+                  <a class="archive-item" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/">
+                    <time>2026.08.19</time>
+                    <strong>현대 LLM 워크플로의 패턴</strong>
+                    <span>현대 LLM 워크플로의 패턴
+
+</span>
+                  </a>
+                  
+                
+              
+            
+              
+              
+              
+              
             
               
               
@@ -3018,6 +3152,21 @@ For...</span>
             <h2>Computer Science</h2>
           </div>
           <div class="archive-list">
+            
+              
+              
+              
+              
+            
+              
+              
+              
+              
+            
+              
+              
+              
+              
             
               
               
@@ -3604,6 +3753,21 @@ For...</span>
               
               
             
+              
+              
+              
+              
+            
+              
+              
+              
+              
+            
+              
+              
+              
+              
+            
           </div>
         </div>
       
@@ -3617,6 +3781,21 @@ For...</span>
             <h2>Places</h2>
           </div>
           <div class="archive-list">
+            
+              
+              
+              
+              
+            
+              
+              
+              
+              
+            
+              
+              
+              
+              
             
               
               
@@ -3979,6 +4158,23 @@ Hard ...</span>
       
         
         
+        <div id="agent" class="tag-result is-hidden" data-tag="agent">
+          <h2 class="tag-section-title">#Agent</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/">
+                <time>2026.08.19</time>
+                <strong>현대 LLM 워크플로의 패턴</strong>
+                <span>현대 LLM 워크플로의 패턴
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="algorithm" class="tag-result is-hidden" data-tag="algorithm">
           <h2 class="tag-section-title">#Algorithm</h2>
           <div class="archive-list">
@@ -4084,6 +4280,14 @@ Hard ...</span>
           <h2 class="tag-section-title">#Bean</h2>
           <div class="archive-list">
             
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+              </a>
+            
               <a class="archive-item" href="/java/spring/2026/08/11/spring-ioc-bean-di/">
                 <time>2026.08.11</time>
                 <strong>Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation</strong>
@@ -4105,6 +4309,23 @@ Hard ...</span>
                 <time>2026.08.10</time>
                 <strong>Java 실행과 JVM Part 1: Java와 Python 컴파일 비교</strong>
                 <span>Java 실행과 JVM Part 1: Java와 Python 컴파일 비교
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
+        <div id="cglib" class="tag-result is-hidden" data-tag="cglib">
+          <h2 class="tag-section-title">#CGLIB</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
 
 </span>
               </a>
@@ -4727,6 +4948,14 @@ Train과 Validation 데이터 누수를 방지하는 방법
           <h2 class="tag-section-title">#Deep Learning</h2>
           <div class="archive-list">
             
+              <a class="archive-item" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/">
+                <time>2026.08.19</time>
+                <strong>현대 LLM 워크플로의 패턴</strong>
+                <span>현대 LLM 워크플로의 패턴
+
+</span>
+              </a>
+            
               <a class="archive-item" href="/deep_learning/transformer/2026/08/06/transformer-vision-transformer/">
                 <time>2026.08.06</time>
                 <strong>Transformer와 Vision Transformer</strong>
@@ -5144,6 +5373,23 @@ Tens...</span>
       
         
         
+        <div id="dynamic-proxy" class="tag-result is-hidden" data-tag="dynamic-proxy">
+          <h2 class="tag-section-title">#Dynamic Proxy</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="eda" class="tag-result is-hidden" data-tag="eda">
           <h2 class="tag-section-title">#EDA</h2>
           <div class="archive-list">
@@ -5321,6 +5567,23 @@ Vue 컴포넌트는 화면과 동작을 독립적이고 재사용 가능한 단�
                 <time>2026.08.10</time>
                 <strong>Java 기초 Part 3: 제어문</strong>
                 <span>Java 기초 Part 3: 제어문
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
+        <div id="foreign-key" class="tag-result is-hidden" data-tag="foreign-key">
+          <h2 class="tag-section-title">#Foreign Key</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
 
 </span>
               </a>
@@ -5718,9 +5981,34 @@ Skip ...</span>
       
         
         
+        <div id="jdk-proxy" class="tag-result is-hidden" data-tag="jdk-proxy">
+          <h2 class="tag-section-title">#JDK Proxy</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="jpa" class="tag-result is-hidden" data-tag="jpa">
           <h2 class="tag-section-title">#JPA</h2>
           <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
+              </a>
             
               <a class="archive-item" href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/">
                 <time>2026.08.17</time>
@@ -5804,6 +6092,22 @@ Skip ...</span>
         <div id="java" class="tag-result is-hidden" data-tag="java">
           <h2 class="tag-section-title">#Java</h2>
           <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+              </a>
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
+              </a>
             
               <a class="archive-item" href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/">
                 <time>2026.08.17</time>
@@ -6030,6 +6334,23 @@ Vue를 시작하기 전에 진짜~ 기본적인 JavaScript를 알아보고 가�
       
         
         
+        <div id="llm" class="tag-result is-hidden" data-tag="llm">
+          <h2 class="tag-section-title">#LLM</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/">
+                <time>2026.08.19</time>
+                <strong>현대 LLM 워크플로의 패턴</strong>
+                <span>현대 LLM 워크플로의 패턴
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="lambda" class="tag-result is-hidden" data-tag="lambda">
           <h2 class="tag-section-title">#Lambda</h2>
           <div class="archive-list">
@@ -6138,6 +6459,23 @@ State Space Model의 기본 아이디어
 SSM과 Transformer 비교
 Mamba 계열 구조
 Selective ...</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
+        <div id="manytoone" class="tag-result is-hidden" data-tag="manytoone">
+          <h2 class="tag-section-title">#ManyToOne</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
               </a>
             
           </div>
@@ -6490,6 +6828,23 @@ YO...</span>
       
         
         
+        <div id="onetomany" class="tag-result is-hidden" data-tag="onetomany">
+          <h2 class="tag-section-title">#OneToMany</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="optimization" class="tag-result is-hidden" data-tag="optimization">
           <h2 class="tag-section-title">#Optimization</h2>
           <div class="archive-list">
@@ -6729,6 +7084,23 @@ Vue 컴포넌트는 화면과 동작을 독립적이고 재사용 가능한 단�
       
         
         
+        <div id="proxy" class="tag-result is-hidden" data-tag="proxy">
+          <h2 class="tag-section-title">#Proxy</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="pruning" class="tag-result is-hidden" data-tag="pruning">
           <h2 class="tag-section-title">#Pruning</h2>
           <div class="archive-list">
@@ -6892,6 +7264,23 @@ Post-Tr...</span>
       
         
         
+        <div id="relationship-mapping" class="tag-result is-hidden" data-tag="relationship-mapping">
+          <h2 class="tag-section-title">#Relationship Mapping</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="rendering" class="tag-result is-hidden" data-tag="rendering">
           <h2 class="tag-section-title">#Rendering</h2>
           <div class="archive-list">
@@ -7035,6 +7424,22 @@ Vue 컴포넌트는 화면과 동작을 독립적이고 재사용 가능한 단�
         <div id="spring" class="tag-result is-hidden" data-tag="spring">
           <h2 class="tag-section-title">#Spring</h2>
           <div class="archive-list">
+            
+              <a class="archive-item" href="/java/spring/2026/08/19/spring-proxy/">
+                <time>2026.08.19</time>
+                <strong>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</strong>
+                <span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy
+
+</span>
+              </a>
+            
+              <a class="archive-item" href="/java/spring/2026/08/18/jpa-relationship-mapping/">
+                <time>2026.08.18</time>
+                <strong>Spring 기초 Part 6: JPA 연관관계 매핑</strong>
+                <span>Spring 기초 Part 6: JPA 연관관계 매핑
+
+</span>
+              </a>
             
               <a class="archive-item" href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/">
                 <time>2026.08.17</time>
@@ -7790,6 +8195,23 @@ Vue.js는 사용자 인터페이스를 만들기 위한 JavaScript 프레임워�
       
         
         
+        <div id="workflow" class="tag-result is-hidden" data-tag="workflow">
+          <h2 class="tag-section-title">#Workflow</h2>
+          <div class="archive-list">
+            
+              <a class="archive-item" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/">
+                <time>2026.08.19</time>
+                <strong>현대 LLM 워크플로의 패턴</strong>
+                <span>현대 LLM 워크플로의 패턴
+
+</span>
+              </a>
+            
+          </div>
+        </div>
+      
+        
+        
         <div id="yaml" class="tag-result is-hidden" data-tag="yaml">
           <h2 class="tag-section-title">#YAML</h2>
           <div class="archive-list">
@@ -8034,6 +8456,18 @@ Vue 컴포넌트에는 보통 다음과 같은 로직이 들어간다...</span>
       
       
         
+          <a href="/java/spring/2026/08/19/spring-proxy/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</span></a>
+        
+      
+        
+          <a href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span></a>
+        
+      
+        
+          <a href="/java/spring/2026/08/18/jpa-relationship-mapping/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 6: JPA 연관관계 매핑</span></a>
+        
+      
+        
           <a href="/devops/2026/08/17/docker-deployment-operations/"><i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 3편: 배포 전략과 운영</span></a>
         
       
@@ -8045,18 +8479,6 @@ Vue 컴포넌트에는 보통 다음과 같은 로직이 들어간다...</span>
           <a href="/devops/2026/08/17/ci-cd-basics/"><i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 1편: 개념과 GitHub Actions</span></a>
         
       
-        
-          <a href="/devops/2026/08/17/docker-basics/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Docker 기초 1편: Image, Container와 Compose</span></a>
-        
-      
-        
-          <a href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</span></a>
-        
-      
-        
-          <a href="/java/spring/2026/08/16/spring-data-jpa-basics/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 4: JPA, Entity와 Repository</span></a>
-        
-      
       
     </div>
   </section>
@@ -8065,7 +8487,7 @@ Vue 컴포넌트에는 보통 다음과 같은 로직이 들어간다...</span>
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> workspace</span><span>56 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> main</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> workspace</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>
@@ -8103,18 +8525,18 @@ Vue 컴포넌트에는 보통 다음과 같은 로직이 들어간다...</span>
 </div>
 
     
-    <script defer src="/assets/js/blog-ui.js?v=10"></script>
+    <script defer src="/assets/js/blog-ui.js?v=11"></script>
     
-      <script defer src="/assets/js/preferences.js?v=10"></script>
-      <script defer src="/assets/js/explorer.js?v=10"></script>
-      <script defer src="/assets/js/activity-panels.js?v=10"></script>
-      <script defer src="/assets/js/tabs.js?v=10"></script>
-      <script defer src="/assets/js/outline.js?v=10"></script>
-      <script defer src="/assets/js/code-blocks.js?v=10"></script>
-      <script defer src="/assets/js/panel-resize.js?v=10"></script>
-      <script defer src="/assets/js/command-palette.js?v=10"></script>
-      <script defer src="/assets/js/ide-shell.js?v=10"></script>
-      <script defer src="/assets/js/comments.js?v=10"></script>
+      <script defer src="/assets/js/preferences.js?v=11"></script>
+      <script defer src="/assets/js/explorer.js?v=11"></script>
+      <script defer src="/assets/js/activity-panels.js?v=11"></script>
+      <script defer src="/assets/js/tabs.js?v=11"></script>
+      <script defer src="/assets/js/outline.js?v=11"></script>
+      <script defer src="/assets/js/code-blocks.js?v=11"></script>
+      <script defer src="/assets/js/panel-resize.js?v=11"></script>
+      <script defer src="/assets/js/command-palette.js?v=11"></script>
+      <script defer src="/assets/js/ide-shell.js?v=11"></script>
+      <script defer src="/assets/js/comments.js?v=11"></script>
       
     
     

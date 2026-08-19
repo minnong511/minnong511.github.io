@@ -28,7 +28,7 @@
     <meta name="twitter:description" content="CI와 CD의 차이, GitHub Actions의 기본 구조, 라즈베리파이 배포 방법을 정리한다." />
     <meta name="twitter:image" content="http://localhost:4000/assets/base_image/og-study-blog.png" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <script src="/assets/js/theme-init.js?v=10"></script>
+    <script src="/assets/js/theme-init.js?v=11"></script>
     
       <script type="application/ld+json">
         {
@@ -52,9 +52,9 @@
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/home-mag.css?v=10" />
-    <link rel="stylesheet" href="/assets/css/tokens.css?v=10" />
-    <link rel="stylesheet" href="/assets/css/ide.css?v=10" />
+    <link rel="stylesheet" href="/assets/css/home-mag.css?v=11" />
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=11" />
+    <link rel="stylesheet" href="/assets/css/ide.css?v=11" />
     
   </head>
   <body
@@ -121,7 +121,7 @@
       <kbd>ESC</kbd>
     </label>
     <div class="ide-explorer-toolbar">
-      <span id="explorerCount">56 POSTS</span>
+      <span id="explorerCount">59 POSTS</span>
       <label for="explorerSort" class="sr-only">게시물 정렬</label>
       <select id="explorerSort" aria-label="게시물 정렬">
         <option value="newest">최신순</option>
@@ -158,10 +158,29 @@
         
         <section class="ide-tree-folder is-open" data-category="deep-learning" data-folder-name="deep_learning" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Deep_Learning 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>17</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Deep Learning</span><small>18</small>
           </button>
           <div class="ide-tree-children" role="group">
             
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="deep-learning-llm" data-folder-name="deep_learning llm" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="LLM 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>LLM</span><small>1</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post" href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/" role="treeitem" data-date="1787065200" data-title="현대 llm 워크플로의 패턴" data-search="현대 llm 워크플로의 패턴 &lt;h1 id=&quot;현대-llm-워크플로의-패턴&quot;&gt;현대 llm 워크플로의 패턴&lt;/h1&gt;
+
+ [&quot;deep learning&quot;, &quot;llm&quot;, &quot;workflow&quot;, &quot;agent&quot;]" title="현대 LLM 워크플로의 패턴">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span>
+                    </a>
+                  
+                  
+                </div>
+              </section>
             
               
               
@@ -738,68 +757,9 @@ vue의 반응성 시스템
         
         
         
-        <section class="ide-tree-folder is-open" data-category="devops" data-folder-name="devops" role="treeitem" aria-expanded="true">
-          <button class="ide-tree-folder-toggle" type="button" aria-label="DevOps 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DevOps</span><small>5</small>
-          </button>
-          <div class="ide-tree-children" role="group">
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/docker-deployment-operations/" role="treeitem" data-date="1786946400" data-title="ci/cd 기초 3편: 배포 전략과 운영" data-search="ci/cd 기초 3편: 배포 전략과 운영 &lt;h2 id=&quot;배포-후에도-끝은-아니다&quot;&gt;배포 후에도 끝은 아니다&lt;/h2&gt;
-
- [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;health check&quot;, &quot;rollback&quot;, &quot;deployment&quot;, &quot;observability&quot;]" title="CI/CD 기초 3편: 배포 전략과 운영">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 3편: 배포 전략과 운영</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/docker-ci-cd-pipeline/" role="treeitem" data-date="1786942800" data-title="ci/cd 기초 2편: docker 이미지와 배포 파이프라인" data-search="ci/cd 기초 2편: docker 이미지와 배포 파이프라인 &lt;h2 id=&quot;docker-기반-cicd&quot;&gt;docker 기반 ci/cd&lt;/h2&gt;
-
- [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;github actions&quot;, &quot;container registry&quot;, &quot;deployment&quot;]" title="CI/CD 기초 2편: Docker 이미지와 배포 파이프라인">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 2편: Docker 이미지와 배포 파이프라인</span>
-              </a>
-            
-              <a class="ide-tree-post is-current" href="/devops/2026/08/17/ci-cd-basics/" role="treeitem" data-date="1786939200" data-title="ci/cd 기초 1편: 개념과 github actions" data-search="ci/cd 기초 1편: 개념과 github actions &lt;h2 id=&quot;cicd가-뭔가요&quot;&gt;ci/cd가 뭔가요?&lt;/h2&gt;
-
- [&quot;ci/cd&quot;, &quot;github actions&quot;, &quot;docker&quot;, &quot;deployment&quot;]" title="CI/CD 기초 1편: 개념과 GitHub Actions">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 1편: 개념과 GitHub Actions</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/17/docker-basics/" role="treeitem" data-date="1786935600" data-title="docker 기초 1편: image, container와 compose" data-search="docker 기초 1편: image, container와 compose &lt;h2 id=&quot;1-docker가-왜-필요할까&quot;&gt;1. docker가 왜 필요할까?&lt;/h2&gt;
-
- [&quot;docker&quot;, &quot;dockerfile&quot;, &quot;container&quot;, &quot;docker compose&quot;, &quot;devops&quot;]" title="Docker 기초 1편: Image, Container와 Compose">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>Docker 기초 1편: Image, Container와 Compose</span>
-              </a>
-            
-              <a class="ide-tree-post" href="/devops/2026/08/07/Devops_1/" role="treeitem" data-date="1786060800" data-title="devops 기초 1편" data-search="devops 기초 1편 &lt;h2 id=&quot;devops-기초&quot;&gt;devops 기초&lt;/h2&gt;
-
- [&quot;devops&quot;]" title="DevOps 기초 1편">
-                <i class="ri-markdown-line" aria-hidden="true"></i><span>DevOps 기초 1편</span>
-              </a>
-            
-            
-              
-              
-              
-              <section class="ide-tree-folder is-open" data-category="devops-docker" data-folder-name="devops docker" role="treeitem" aria-expanded="true">
-                <button class="ide-tree-folder-toggle" type="button" aria-label="Docker 하위 폴더 열기/닫기">
-                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Docker</span><small>0</small>
-                </button>
-                <div class="ide-tree-children" role="group">
-                  
-                  <p class="ide-tree-empty">폴더가 비어 있습니다.</p>
-                </div>
-              </section>
-            
-            
-          </div>
-        </section>
-      
-        
-        
-        
-        
-        
         <section class="ide-tree-folder is-open" data-category="java" data-folder-name="java" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="java 폴더 열기/닫기">
-            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>java</span><small>23</small>
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>java</span><small>25</small>
           </button>
           <div class="ide-tree-children" role="group">
             
@@ -809,9 +769,21 @@ vue의 반응성 시스템
               
               <section class="ide-tree-folder is-open" data-category="java-spring" data-folder-name="java spring" role="treeitem" aria-expanded="true">
                 <button class="ide-tree-folder-toggle" type="button" aria-label="spring 하위 폴더 열기/닫기">
-                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>spring</span><small>5</small>
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>spring</span><small>7</small>
                 </button>
                 <div class="ide-tree-children" role="group">
+                  
+                    <a class="ide-tree-post" href="/java/spring/2026/08/19/spring-proxy/" role="treeitem" data-date="1787097600" data-title="spring 기초 part 7: proxy 패턴과 spring proxy" data-search="spring 기초 part 7: proxy 패턴과 spring proxy &lt;h2 id=&quot;spring-기초-part-7-proxy-패턴과-spring-proxy&quot;&gt;spring 기초 part 7: proxy 패턴과 spring proxy&lt;/h2&gt;
+
+ [&quot;java&quot;, &quot;spring&quot;, &quot;proxy&quot;, &quot;dynamic proxy&quot;, &quot;jdk proxy&quot;, &quot;cglib&quot;, &quot;bean&quot;]" title="Spring 기초 Part 7: Proxy 패턴과 Spring Proxy">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</span>
+                    </a>
+                  
+                    <a class="ide-tree-post" href="/java/spring/2026/08/18/jpa-relationship-mapping/" role="treeitem" data-date="1787011200" data-title="spring 기초 part 6: jpa 연관관계 매핑" data-search="spring 기초 part 6: jpa 연관관계 매핑 &lt;h2 id=&quot;spring-기초-part-6-jpa-연관관계-매핑&quot;&gt;spring 기초 part 6: jpa 연관관계 매핑&lt;/h2&gt;
+
+ [&quot;java&quot;, &quot;spring&quot;, &quot;jpa&quot;, &quot;relationship mapping&quot;, &quot;manytoone&quot;, &quot;onetomany&quot;, &quot;foreign key&quot;]" title="Spring 기초 Part 6: JPA 연관관계 매핑">
+                      <i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 6: JPA 연관관계 매핑</span>
+                    </a>
                   
                     <a class="ide-tree-post" href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/" role="treeitem" data-date="1786924800" data-title="spring 기초 part 5: entitymanager와 영속성 컨텍스트" data-search="spring 기초 part 5: entitymanager와 영속성 컨텍스트 &lt;h2 id=&quot;spring-기초-part-5-entitymanager와-영속성-컨텍스트&quot;&gt;spring 기초 part 5: entitymanager와 영속성 컨텍스트&lt;/h2&gt;
 
@@ -1055,6 +1027,65 @@ vue의 반응성 시스템
         
         
         
+        <section class="ide-tree-folder is-open" data-category="devops" data-folder-name="devops" role="treeitem" aria-expanded="true">
+          <button class="ide-tree-folder-toggle" type="button" aria-label="DevOps 폴더 열기/닫기">
+            <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>DevOps</span><small>5</small>
+          </button>
+          <div class="ide-tree-children" role="group">
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/docker-deployment-operations/" role="treeitem" data-date="1786946400" data-title="ci/cd 기초 3편: 배포 전략과 운영" data-search="ci/cd 기초 3편: 배포 전략과 운영 &lt;h2 id=&quot;배포-후에도-끝은-아니다&quot;&gt;배포 후에도 끝은 아니다&lt;/h2&gt;
+
+ [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;health check&quot;, &quot;rollback&quot;, &quot;deployment&quot;, &quot;observability&quot;]" title="CI/CD 기초 3편: 배포 전략과 운영">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 3편: 배포 전략과 운영</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/docker-ci-cd-pipeline/" role="treeitem" data-date="1786942800" data-title="ci/cd 기초 2편: docker 이미지와 배포 파이프라인" data-search="ci/cd 기초 2편: docker 이미지와 배포 파이프라인 &lt;h2 id=&quot;docker-기반-cicd&quot;&gt;docker 기반 ci/cd&lt;/h2&gt;
+
+ [&quot;ci/cd&quot;, &quot;docker&quot;, &quot;github actions&quot;, &quot;container registry&quot;, &quot;deployment&quot;]" title="CI/CD 기초 2편: Docker 이미지와 배포 파이프라인">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 2편: Docker 이미지와 배포 파이프라인</span>
+              </a>
+            
+              <a class="ide-tree-post is-current" href="/devops/2026/08/17/ci-cd-basics/" role="treeitem" data-date="1786939200" data-title="ci/cd 기초 1편: 개념과 github actions" data-search="ci/cd 기초 1편: 개념과 github actions &lt;h2 id=&quot;cicd가-뭔가요&quot;&gt;ci/cd가 뭔가요?&lt;/h2&gt;
+
+ [&quot;ci/cd&quot;, &quot;github actions&quot;, &quot;docker&quot;, &quot;deployment&quot;]" title="CI/CD 기초 1편: 개념과 GitHub Actions">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 1편: 개념과 GitHub Actions</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/17/docker-basics/" role="treeitem" data-date="1786935600" data-title="docker 기초 1편: image, container와 compose" data-search="docker 기초 1편: image, container와 compose &lt;h2 id=&quot;1-docker가-왜-필요할까&quot;&gt;1. docker가 왜 필요할까?&lt;/h2&gt;
+
+ [&quot;docker&quot;, &quot;dockerfile&quot;, &quot;container&quot;, &quot;docker compose&quot;, &quot;devops&quot;]" title="Docker 기초 1편: Image, Container와 Compose">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>Docker 기초 1편: Image, Container와 Compose</span>
+              </a>
+            
+              <a class="ide-tree-post" href="/devops/2026/08/07/Devops_1/" role="treeitem" data-date="1786060800" data-title="devops 기초 1편" data-search="devops 기초 1편 &lt;h2 id=&quot;devops-기초&quot;&gt;devops 기초&lt;/h2&gt;
+
+ [&quot;devops&quot;]" title="DevOps 기초 1편">
+                <i class="ri-markdown-line" aria-hidden="true"></i><span>DevOps 기초 1편</span>
+              </a>
+            
+            
+              
+              
+              
+              <section class="ide-tree-folder is-open" data-category="devops-docker" data-folder-name="devops docker" role="treeitem" aria-expanded="true">
+                <button class="ide-tree-folder-toggle" type="button" aria-label="Docker 하위 폴더 열기/닫기">
+                  <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Docker</span><small>0</small>
+                </button>
+                <div class="ide-tree-children" role="group">
+                  
+                  <p class="ide-tree-empty">폴더가 비어 있습니다.</p>
+                </div>
+              </section>
+            
+            
+          </div>
+        </section>
+      
+        
+        
+        
+        
+        
         <section class="ide-tree-folder is-open" data-category="algorithm" data-folder-name="algorithm" role="treeitem" aria-expanded="true">
           <button class="ide-tree-folder-toggle" type="button" aria-label="Algorithm 폴더 열기/닫기">
             <i class="ri-arrow-right-s-line" aria-hidden="true"></i><i class="ri-folder-3-line" aria-hidden="true"></i><span>Algorithm</span><small>1</small>
@@ -1163,7 +1194,7 @@ vue의 반응성 시스템
       <i class="ri-git-branch-line ide-panel-heading-icon" aria-hidden="true"></i>
     </div>
     <div class="ide-sidebar-content">
-      <div class="ide-source-status"><i class="ri-git-branch-line" aria-hidden="true"></i><strong>master</strong><span>clean</span></div>
+      <div class="ide-source-status"><i class="ri-git-branch-line" aria-hidden="true"></i><strong>main</strong><span>clean</span></div>
       <p class="ide-panel-empty">현재 작업 공간의 GitHub 저장소입니다.</p>
     <a class="ide-sidebar-action" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" aria-hidden="true"></i><span>저장소 열기</span><i class="ri-external-link-line" aria-hidden="true"></i></a>
     </div>
@@ -1529,6 +1560,18 @@ npm <span class="nb">test
       
       
         
+          <a href="/java/spring/2026/08/19/spring-proxy/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</span></a>
+        
+      
+        
+          <a href="/deep_learning/llm/2026/08/19/llm-workflow-patterns/"><i class="ri-markdown-line" aria-hidden="true"></i><span>현대 LLM 워크플로의 패턴</span></a>
+        
+      
+        
+          <a href="/java/spring/2026/08/18/jpa-relationship-mapping/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 6: JPA 연관관계 매핑</span></a>
+        
+      
+        
           <a href="/devops/2026/08/17/docker-deployment-operations/"><i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 3편: 배포 전략과 운영</span></a>
         
       
@@ -1536,18 +1579,6 @@ npm <span class="nb">test
           <a href="/devops/2026/08/17/docker-ci-cd-pipeline/"><i class="ri-markdown-line" aria-hidden="true"></i><span>CI/CD 기초 2편: Docker 이미지와 배포 파이프라인</span></a>
         
       
-        
-      
-        
-          <a href="/devops/2026/08/17/docker-basics/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Docker 기초 1편: Image, Container와 Compose</span></a>
-        
-      
-        
-          <a href="/java/spring/2026/08/17/jpa-entity-manager-persistence-context/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 5: EntityManager와 영속성 컨텍스트</span></a>
-        
-      
-        
-          <a href="/java/spring/2026/08/16/spring-data-jpa-basics/"><i class="ri-markdown-line" aria-hidden="true"></i><span>Spring 기초 Part 4: JPA, Entity와 Repository</span></a>
         
       
       
@@ -1558,7 +1589,7 @@ npm <span class="nb">test
 </aside>
 
         <footer class="ide-statusbar" aria-label="문서 상태">
-  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> master</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> DevOps</span><span>56 posts</span></div>
+  <div><span><i class="ri-git-branch-line" aria-hidden="true"></i> main</span><span><i class="ri-folder-2-line" aria-hidden="true"></i> DevOps</span></div>
   <div>
     <button class="ide-mobile-context" type="button" data-toggle-context aria-expanded="false" aria-controls="contextPanel" aria-label="목차 열기"><i class="ri-list-ordered-2" aria-hidden="true"></i><span>목차</span></button>
     <span data-status-reading>—</span>
@@ -1596,18 +1627,18 @@ npm <span class="nb">test
 </div>
 
     
-    <script defer src="/assets/js/blog-ui.js?v=10"></script>
+    <script defer src="/assets/js/blog-ui.js?v=11"></script>
     
-      <script defer src="/assets/js/preferences.js?v=10"></script>
-      <script defer src="/assets/js/explorer.js?v=10"></script>
-      <script defer src="/assets/js/activity-panels.js?v=10"></script>
-      <script defer src="/assets/js/tabs.js?v=10"></script>
-      <script defer src="/assets/js/outline.js?v=10"></script>
-      <script defer src="/assets/js/code-blocks.js?v=10"></script>
-      <script defer src="/assets/js/panel-resize.js?v=10"></script>
-      <script defer src="/assets/js/command-palette.js?v=10"></script>
-      <script defer src="/assets/js/ide-shell.js?v=10"></script>
-      <script defer src="/assets/js/comments.js?v=10"></script>
+      <script defer src="/assets/js/preferences.js?v=11"></script>
+      <script defer src="/assets/js/explorer.js?v=11"></script>
+      <script defer src="/assets/js/activity-panels.js?v=11"></script>
+      <script defer src="/assets/js/tabs.js?v=11"></script>
+      <script defer src="/assets/js/outline.js?v=11"></script>
+      <script defer src="/assets/js/code-blocks.js?v=11"></script>
+      <script defer src="/assets/js/panel-resize.js?v=11"></script>
+      <script defer src="/assets/js/command-palette.js?v=11"></script>
+      <script defer src="/assets/js/ide-shell.js?v=11"></script>
+      <script defer src="/assets/js/comments.js?v=11"></script>
       
     
     
