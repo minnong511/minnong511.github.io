@@ -104,3 +104,23 @@ A → B → C
 
 한을 부여한 사용자는 자신이 부여한 권한을 취소할 수 있습니다.
 REVOKE SELECT ON EMP FROM USER2;
+
+
+--- 2과목 오답 노트 
+
+SUM(COL2) + SUM(COL3)
+= NULL + 20
+= NULL
+
+전체 결과는 차례대로:
+1. 60 + 30 = 90
+2. NULL + 20 = NULL
+3. 10 + 20 = 30
+4. 50 + 10 = 60
+즉 90, NULL, 30, 60 → ③번입니다. SUM()은 NULL을 제외하지만, 집계할 값이 전부 NULL이면 0이 아니라 NULL을 반환합니
+
+LTRIM('xxYYZZxYZxx', 'x')
+
+xxYYZZxYZxx
+↓ 왼쪽 xx만 제거
+YYZZxYZxx
