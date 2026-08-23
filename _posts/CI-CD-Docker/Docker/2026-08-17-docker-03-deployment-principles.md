@@ -169,7 +169,7 @@ Dockerfile 수정
 | Network | Container 간 통신 |
 | Compose | 여러 Container를 한 번에 관리 |
 
-## 5. 한 문장씩 정리하면 된다.
+## 5. 요약 
 
 - **Docker:** 애플리케이션과 실행 환경을 Container 라는 격리된 환경 패키징하고 실행하기 위한 플랫폼
 - **Dockerfile:** Docker Image를 어떤 환경과 파일, 명령으로 구성할지 선언하는 파일

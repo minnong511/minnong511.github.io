@@ -72,6 +72,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ### 이미지 레이어 공유
 
 동일한 레이어는 이미지끼리 공유하기 때문에 중복 다운로드와 업로드가 필요하지 않다.
+(docker는 재탕의 신이라고 할 수 있다.)
 
 ```mermaid
 flowchart TB
@@ -104,6 +105,10 @@ flowchart TB
 
 ### Docker가 동일한 레이어를 판별하는 방법
 
+그렇다면 Docker는 어떻게 동일한 레이어인지 판별하는 것일까? 
+
+솔직히.. 궁금하지 않은가? 난 궁금한데
+
 Docker는 레이어의 내용을 SHA-256 방식으로 계산한 `Digest`를 이용해 동일한 레이어인지 판별한다.
 
 ```mermaid
@@ -116,7 +121,7 @@ flowchart LR
     L -->|없음| P[레이어 Push 또는 Pull]
 ```
 
-쉽게 말하면 레이어는 포장된 택배 상자이고, Digest는 상자 내용으로 만든 고유한 디지털 지문이다.
+쉽게 말하면 레이어는 포장된 택배 상자이고, Digest는 상자 내용으로 만든 고유한 디지털 송장이라고 생각하면 편할 것 같다.
 
 ```text
 Layer  = 파일 변경분을 담은 택배 상자
@@ -159,7 +164,7 @@ docker image inspect nginx \
   --format '{{json .RootFS.Layers}}'
 ```
 
-> `docker image inspect`의 `RootFS.Layers`에는 압축을 해제한 레이어 내용의 식별값인 `diff_id`가 표시된다. Registry Manifest에서 Push와 Pull에 사용하는 압축된 Layer Blob의 Digest와는 값이 다를 수 있지만, 둘 다 콘텐츠를 기반으로 계산한 식별값이다.
+> `docker image inspect`의 `RootFS.Layers`에는 압축을 해제한 레이어 내용의 식별값인 `diff_id`가 표시된다. Registry Manifest에서 Push와 Pull에 사용하는 압축된 Layer Blob의 Digest와는 값이 다를 수 있지만, 둘 다 콘텐츠를 기반으로 계산한 식별값.
 
 같은 Dockerfile 명령을 사용했다고 해서 항상 같은 레이어가 만들어지는 것은 아니다.
 
@@ -176,7 +181,7 @@ RUN apt-get update
 | 레이어 저장,Push,Pull | Layer Blob의 Digest |
 | Dockerfile 빌드 캐시 | Dockerfile 명령, 부모 상태, 입력 파일과 빌드 설정 |
 
-즉, Digest는 레이어를 잘게 나누는 도구가 아니라 **이미 만들어진 레이어가 같은 내용인지 확인하는 디지털 지문**이다.
+즉, Digest는 레이어를 잘게 나누는 도구가 아니라 **이미 만들어진 레이어가 같은 내용인지 확인하는 디지털 식별자**.
 
 ## 컨테이너 이미지 Push/Pull
 
@@ -237,6 +242,11 @@ flowchart LR
 ## 멀티 스테이지 빌드
 
 멀티 스테이지 빌드는 빌드 환경과 실행 환경을 분리한다.
+(쓸모없는 파일을 굳이 컨테이너에 올릴 필요가 없지 않는가!)
+
+Vue를 에시로 들어보자.
+
+아래와 같이 진행하면 멀---티 스테이지 빌드이다.
 
 1. Node.js, npm, Vite로 Vue 소스 코드를 빌드해 `dist` 디렉터리를 만든다.
 2. 실행 단계의 Nginx 이미지에는 `dist` 디렉터리만 복사한다.
@@ -309,6 +319,8 @@ RUN mkdir -p /app && chmod 755 /app
 
 `RUN`으로 파일 시스템에 적용된 변경 사항은 이미지 레이어에 저장된다. 서로 관련된 명령은 하나의 `RUN`으로 묶으면 불필요한 중간 파일을 같은 레이어에서 제거할 수 있다.
 
+> 레이어를 너무 많이 만드는 것도 좋지 않다. 최대한 서로 관련된 기능은 최대한 묶는 것을 추천한다.
+
 ## 빌드 캐시
 
 Docker는 이전 빌드 결과를 캐시한다. Dockerfile 명령과 관련 파일이 바뀌지 않았다면 기존 결과를 재사용해 빌드 시간을 줄인다.
@@ -344,24 +356,5 @@ CMD ["python3", "webserver.py"]
 
 > 여기서 앞뒤 관계는 Dockerfile 명령과 이미지 레이어의 순서를 설명하는 표현이다. 공식적인 "부모,자식 컨테이너" 종류가 따로 있는 것은 아니다.
 
-## CMD 명령어 최적화 
 
-컨테이너 프로세스의 실행 방법
 
-1. 컨테이너 즉시 종료되지 않고,멈춰 강제 종료되는 문제 
-2. 트래픽을 받고 처리중 Graceful shutdown 되지 않고 KILL 되는 현상
-3. 이로인한 트래픽 유실 발생 및 배포 속도 저하 
-
-CMD 한줄 잘못 사용하는 경우 발생 
-
-### CMD 최적화 방법
-
-| 표준 명칭 | 사용 방법 | 특징 | 권고 |
-|---|---|---|---|
-| Exec Form | `CMD ["python3", "webserver.py"]` | 쉘을 거치지 않고 앱이 직접 PID 1로 실행됩니다. 신호 처리와 종료가 명확합니다. | 강력 권고 |
-| Shell Form | `CMD ["/bin/sh", "-c", "python3 webserver.py"]` 또는 `CMD python3 webserver.py` | `/bin/sh`가 PID 1이 되고, 실제 앱은 자식 프로세스로 실행됩니다. 종료 신호 전달 등이 불명확해질 수 있습니다. | 비권고 |
-| Shell with Exec | `CMD ["/bin/sh", "-c", "exec python3 webserver.py"]` | 쉘에서 환경변수 처리,명령 조합 등을 한 뒤 `exec`가 쉘을 앱으로 교체합니다. 결과적으로 앱이 PID 1이 됩니다. | 조건부 권고 |
-
-### SIGTERM 신호 수신 코드 넣기
-
-webserver.py에 SIGTERM 처리 handler를 등록

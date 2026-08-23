@@ -1,82 +1,21 @@
 ---
 layout: post
 title: "Docker 기초 5편: 컨테이너 기본 명령어와 Volume"
-description: "MariaDB 컨테이너 실행 실습을 중심으로 Docker Network, 컨테이너 명령어와 Volume을 정리한다."
+description: " Docker Network, 컨테이너 명령어와 Volume."
 date: 2026-08-17 12:20:00 +0900
 categories: [DevOps, Docker]
-tags: [Docker, Container, MariaDB, Network, Volume, Docker CLI]
+tags: [Docker, Container, Network, Volume, Docker CLI]
 series: "Docker 기초"
 part: 5
 ---
-
-## 실습: MariaDB 컨테이너 만들기
-
-### Docker 네트워크 확인 및 생성
-
-```bash
-# skala 네트워크가 존재하는지 확인하고, 없으면 bridge 방식으로 생성
-# > /dev/null 2>&1: 정상 출력과 오류 출력을 화면에 표시하지 않음
-# ||: 앞의 네트워크 확인 명령이 실패했을 때만 다음 명령을 실행
-docker network inspect skala > /dev/null 2>&1 || \
-docker network create --driver bridge skala
-```
-
-### MariaDB 컨테이너 실행
-
-```bash
-# MariaDB 컨테이너를 백그라운드에서 실행
-# --name: 컨테이너 이름을 mariadb로 지정
-# MYSQL_ROOT_PASSWORD: MariaDB root 사용자의 비밀번호 설정
-# MYSQL_DATABASE: 컨테이너가 처음 실행될 때 skala 데이터베이스 생성
-# MYSQL_USER: 일반 사용자 이름 설정
-# MYSQL_PASSWORD: 일반 사용자의 비밀번호 설정
-# --network: 컨테이너를 skala 네트워크에 연결
-# -p: 호스트의 3306 포트를 컨테이너의 3306 포트와 연결
-# mariadb:latest: Docker Hub의 최신 MariaDB 이미지를 사용
-docker run -d \
-  --name mariadb \
-  -e MYSQL_ROOT_PASSWORD=password \
-  -e MYSQL_DATABASE=skala \
-  -e MYSQL_USER=user \
-  -e MYSQL_PASSWORD=password \
-  --network skala \
-  -p 3306:3306 \
-  mariadb:latest
-```
-
-### 실행 중인 컨테이너 확인
-
-```bash
-# 현재 실행 중인 컨테이너 목록 확인
-docker ps
-```
-
-```text
-CONTAINER ID   IMAGE                                COMMAND      CREATED          STATUS
-be913f24c917   docker.io/library/mariadb:latest     mariadbd     53 minutes ago
-```
-
-### MariaDB 컨테이너 중지
-
-```bash
-# 컨테이너 ID가 be913f24c917인 컨테이너 중지
-docker stop be913f24c917
-```
-
-### 사용하지 않는 Docker 이미지 정리
-
-```bash
-# 컨테이너에서 참조하지 않는 Docker 이미지를 모두 정리
-docker image prune -a
-```
-
-> `docker image prune -a`는 사용하지 않는 이미지를 삭제한다. 삭제 대상을 확인한 뒤 실행한다.
 
 ## Docker 볼륨
 
 Docker 볼륨은 컨테이너의 데이터를 컨테이너 밖에 따로 보관하는 저장 공간이다.
 
 컨테이너를 임시 작업실이라고 보면 볼륨은 작업실이 철거되어도 남아 있는 외부 창고와 같다.
+
+> 컨테이너의 화물이 잘 보관되려면 창고에 가야하지 않겠는가? 그 창고 역할을 하는 것이 Volume이다. 
 
 ```text
 컨테이너 삭제
@@ -86,7 +25,9 @@ Docker 볼륨은 컨테이너의 데이터를 컨테이너 밖에 따로 보관�
   └── 볼륨에 저장한 데이터 유지
 ```
 
-MariaDB 컨테이너를 볼륨 없이 삭제하면 데이터베이스 데이터도 함께 사라진다. 볼륨을 연결하면 새 컨테이너에서도 기존 데이터를 다시 사용할 수 있다.
+DB 컨테이너를 볼륨 없이 삭제하면 데이터베이스 데이터도 함께 사라진다. 볼륨을 연결하면 새 컨테이너에서도 기존 데이터를 다시 사용할 수 있다.
+
+> 어때요, 참 쉽죠?
 
 ```bash
 # mariadb-data 볼륨 생성

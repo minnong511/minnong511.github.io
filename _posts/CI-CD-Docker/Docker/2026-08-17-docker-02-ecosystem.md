@@ -11,7 +11,7 @@ part: 2
 
 ## 1. Docker Image는 Layer 구조
 
-> Docker Image 내부는 하나의 거대한 파일이라기보다 여러 Layer로 구성
+> Docker Image 내부는 하나의 거대한 파일이라기보다 여러 Layer로 구성되어있다.
 
 ```dockerfile
 FROM eclipse-temurin:21-jre
@@ -38,6 +38,7 @@ JAVA 21 Runtime
 ```
 
 그래서 변경되지 않은 Layer는 재사용할 수 있다.
+(재탕이 가능하다!)
 
 Docker Layer Cache
 
@@ -50,6 +51,7 @@ app.jar -> 변경됨
 ```
 
 이라면 전체를 처음부터 다시 만들지 않고, 변경된 위주로만 Build하면 된다. 
+(리소스를 덜 잡아먹는 좋은 설계이다.)
 
 이 특성을 이용해서 CI/CD에서 Build 속도를 높일 수 있다. 
 
@@ -87,6 +89,8 @@ docker pull
     ↓
 Production Server
 ```
+
+> Registry >> Repository 이므로 잘 기억하자. 
 
 ## 3. GitHub와 Docker Registry 차이
 

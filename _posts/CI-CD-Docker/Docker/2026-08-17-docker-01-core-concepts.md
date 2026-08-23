@@ -292,6 +292,7 @@ localhost:9000
 ## 9. Container는 격리된 환경 
 
 Docker의 중요한 특징이다. 컨테이너끼리 격리되어있다. 
+(추후에 namespace 개념에서 한 번 더 나오므로 잘 기억하자)
 
 ```text
 Container A
