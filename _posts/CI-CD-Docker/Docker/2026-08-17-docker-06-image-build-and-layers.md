@@ -130,10 +130,10 @@ Dockerfile 명령 실행
 → 파일 시스템 변경분 생성
 → 하나의 Layer로 묶음
 → SHA-256 Digest 계산
-→ 저장·공유·중복 확인
+→ 저장,공유,중복 확인
 ```
 
-따라서 레이어는 Docker가 저장·전송·캐시하는 기본 단위이지만 반드시 크기가 작지는 않다. 하나의 `RUN` 명령에서 많은 파일을 설치하면 하나의 레이어가 수백 MB가 될 수도 있다.
+따라서 레이어는 Docker가 저장,전송,캐시하는 기본 단위이지만 반드시 크기가 작지는 않다. 하나의 `RUN` 명령에서 많은 파일을 설치하면 하나의 레이어가 수백 MB가 될 수도 있다.
 
 Registry의 Image Manifest에는 이미지가 사용하는 레이어의 Digest가 순서대로 기록된다. Docker는 Image를 Pull할 때 Manifest의 Digest와 로컬에 저장된 레이어를 비교한다.
 
@@ -173,7 +173,7 @@ RUN apt-get update
 
 | 구분 | 주로 확인하는 정보 |
 | --- | --- |
-| 레이어 저장·Push·Pull | Layer Blob의 Digest |
+| 레이어 저장,Push,Pull | Layer Blob의 Digest |
 | Dockerfile 빌드 캐시 | Dockerfile 명령, 부모 상태, 입력 파일과 빌드 설정 |
 
 즉, Digest는 레이어를 잘게 나누는 도구가 아니라 **이미 만들어진 레이어가 같은 내용인지 확인하는 디지털 지문**이다.
@@ -342,7 +342,7 @@ CMD ["python3", "webserver.py"]
 
 예를 들어 `webserver.py`만 변경되면 앞의 패키지 설치 단계는 캐시를 재사용하고, `COPY webserver.py .` 이후 단계만 다시 처리할 수 있다. 이를 활용하려면 자주 바뀌지 않는 명령을 앞쪽에, 자주 바뀌는 소스 코드 복사를 뒤쪽에 배치한다.
 
-> 여기서 앞뒤 관계는 Dockerfile 명령과 이미지 레이어의 순서를 설명하는 표현이다. 공식적인 "부모·자식 컨테이너" 종류가 따로 있는 것은 아니다.
+> 여기서 앞뒤 관계는 Dockerfile 명령과 이미지 레이어의 순서를 설명하는 표현이다. 공식적인 "부모,자식 컨테이너" 종류가 따로 있는 것은 아니다.
 
 ## CMD 명령어 최적화 
 
@@ -360,7 +360,7 @@ CMD 한줄 잘못 사용하는 경우 발생
 |---|---|---|---|
 | Exec Form | `CMD ["python3", "webserver.py"]` | 쉘을 거치지 않고 앱이 직접 PID 1로 실행됩니다. 신호 처리와 종료가 명확합니다. | 강력 권고 |
 | Shell Form | `CMD ["/bin/sh", "-c", "python3 webserver.py"]` 또는 `CMD python3 webserver.py` | `/bin/sh`가 PID 1이 되고, 실제 앱은 자식 프로세스로 실행됩니다. 종료 신호 전달 등이 불명확해질 수 있습니다. | 비권고 |
-| Shell with Exec | `CMD ["/bin/sh", "-c", "exec python3 webserver.py"]` | 쉘에서 환경변수 처리·명령 조합 등을 한 뒤 `exec`가 쉘을 앱으로 교체합니다. 결과적으로 앱이 PID 1이 됩니다. | 조건부 권고 |
+| Shell with Exec | `CMD ["/bin/sh", "-c", "exec python3 webserver.py"]` | 쉘에서 환경변수 처리,명령 조합 등을 한 뒤 `exec`가 쉘을 앱으로 교체합니다. 결과적으로 앱이 PID 1이 됩니다. | 조건부 권고 |
 
 ### SIGTERM 신호 수신 코드 넣기
 

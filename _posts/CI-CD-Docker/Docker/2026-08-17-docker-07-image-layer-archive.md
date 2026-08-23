@@ -34,7 +34,7 @@ flowchart LR
 | 단어 | 뜻 | 쉬운 비유 |
 |---|---|---|
 | Image | 애플리케이션 실행 파일, 라이브러리, 설정을 묶은 읽기 전용 패키지 | 프로그램을 찍어내는 설계도 |
-| Layer | 이전 상태에서 추가·수정·삭제된 파일의 묶음 | 투명 필름 한 장 |
+| Layer | 이전 상태에서 추가,수정,삭제된 파일의 묶음 | 투명 필름 한 장 |
 | rootfs | 컨테이너가 `/`로 보는 루트 파일 시스템 | 컨테이너 전용 서랍장 |
 | Metadata | 실행 명령, 환경 변수, 포트 등 이미지의 설정 정보 | 제품 사용 설명서 |
 | Digest | 콘텐츠를 해시한 고유 식별값 | 내용이 바뀌면 함께 바뀌는 디지털 지문 |
@@ -58,7 +58,7 @@ Docker 이미지는 애플리케이션을 실행하는 데 필요한 다음 요�
 flowchart BT
     L1["Layer 1<br/>Base OS 파일"] --> L2["Layer 2<br/>패키지 설치"]
     L2 --> L3["Layer 3<br/>애플리케이션 복사"]
-    L3 --> CFG["Image Config<br/>CMD·환경 변수·포트"]
+    L3 --> CFG["Image Config<br/>CMD,환경 변수,포트"]
 ```
 
 다음 Dockerfile을 예로 들어 보겠습니다.
@@ -100,7 +100,7 @@ CMD ["python", "webserver.py"]
 flowchart BT
     B["Base image layer<br/>읽기 전용"] --> L1["Package layer<br/>읽기 전용"]
     L1 --> L2["Application layer<br/>읽기 전용"]
-    L2 --> U["Container writable layer<br/>컨테이너별 읽기·쓰기"]
+    L2 --> U["Container writable layer<br/>컨테이너별 읽기,쓰기"]
     V["Volume<br/>영구 데이터"] -. 별도 마운트 .-> U
 ```
 

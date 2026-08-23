@@ -9,7 +9,7 @@ series: "Docker 기초"
 part: 10
 ---
 
-Docker Compose는 여러 컨테이너로 구성된 애플리케이션을 하나의 YAML 파일로 정의하고, 한 번의 명령으로 함께 실행·중지·관리하는 도구입니다.
+Docker Compose는 여러 컨테이너로 구성된 애플리케이션을 하나의 YAML 파일로 정의하고, 한 번의 명령으로 함께 실행,중지,관리하는 도구입니다.
 
 ```mermaid
 flowchart LR
@@ -21,7 +21,7 @@ flowchart LR
     D --> V["volume"]
 ```
 
-> 쉬운 비유: `docker run`이 가전제품을 하나씩 직접 설치하는 일이라면, Docker Compose는 집 전체의 가전제품·배선·수도 연결을 설계도 한 장으로 한꺼번에 설치하는 작업입니다.
+> 쉬운 비유: `docker run`이 가전제품을 하나씩 직접 설치하는 일이라면, Docker Compose는 집 전체의 가전제품,배선,수도 연결을 설계도 한 장으로 한꺼번에 설치하는 작업입니다.
 
 Compose는 여러 컨테이너를 편리하게 조율하지만, Kubernetes처럼 여러 노드에 컨테이너를 스케줄링하고 장애 시 자동으로 재배치하는 완전한 클러스터 오케스트레이터는 아닙니다. 로컬 개발, 교육, 통합 테스트, 단일 Docker 호스트 애플리케이션에 특히 적합합니다.
 
@@ -33,8 +33,8 @@ Compose는 여러 컨테이너를 편리하게 조율하지만, Kubernetes처럼
 
 | 단어 | 뜻 | 쉬운 비유 |
 |---|---|---|
-| Compose file | 서비스·네트워크·볼륨 구성을 선언한 YAML 파일 | 건물 설계도 |
-| Service | 동일한 설정으로 실행할 컨테이너의 논리적 정의 | 식당의 주방·홀·창고 역할 |
+| Compose file | 서비스,네트워크,볼륨 구성을 선언한 YAML 파일 | 건물 설계도 |
+| Service | 동일한 설정으로 실행할 컨테이너의 논리적 정의 | 식당의 주방,홀,창고 역할 |
 | Project | 하나의 Compose 애플리케이션에 속한 리소스 묶음 | 건물 단지 이름 |
 | Network | 서비스끼리 통신하는 가상 네트워크 | 건물 내부 통로 |
 | Volume | 컨테이너가 사라져도 데이터를 보존하는 저장소 | 별도 창고 |
@@ -100,7 +100,7 @@ flowchart TD
 | `environment` | 컨테이너 프로세스에 전달할 환경 변수 | 작업자에게 전달하는 업무 메모 |
 | `volumes` | 데이터 또는 파일 마운트 | 외부 창고 연결 |
 | `networks` | 서비스가 참여할 네트워크 | 출입 가능한 통로 지정 |
-| `depends_on` | 서비스 생성·시작 의존 관계 | 선행 작업 확인표 |
+| `depends_on` | 서비스 생성,시작 의존 관계 | 선행 작업 확인표 |
 
 > 쉬운 비유: 최상위 `services`, `networks`, `volumes`는 각각 입주자, 도로, 창고를 정의하는 설계도 영역입니다.
 
@@ -256,7 +256,7 @@ services:
 ```mermaid
 flowchart LR
     I["Image 설정"] --> EP["ENTRYPOINT<br/>실행 파일"]
-    I --> CMD["CMD<br/>기본 명령·인자"]
+    I --> CMD["CMD<br/>기본 명령,인자"]
     CE["Compose entrypoint"] -. 대체 .-> EP
     CC["Compose command"] -. 대체 .-> CMD
     EP --> RUN["최종 실행 명령"]

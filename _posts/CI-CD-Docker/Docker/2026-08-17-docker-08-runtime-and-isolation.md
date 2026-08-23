@@ -16,7 +16,7 @@ part: 8
 | 단어 | 뜻 | 쉬운 비유 |
 |---|---|---|
 | Docker Client | 사용자의 `docker` 명령을 API 요청으로 바꾸는 도구 | 주문을 받는 직원 |
-| `dockerd` | 이미지·컨테이너·네트워크·볼륨을 관리하는 데몬 | 전체 매장을 관리하는 점장 |
+| `dockerd` | 이미지,컨테이너,네트워크,볼륨을 관리하는 데몬 | 전체 매장을 관리하는 점장 |
 | `containerd` | 이미지와 컨테이너 생명주기를 관리하는 고수준 런타임 | 작업을 배정하는 현장 관리자 |
 | `containerd-shim` | 실행 중인 컨테이너의 I/O와 종료 상태를 지키는 중간 프로세스 | 작업자 곁에 남는 담당자 |
 | `runc` | OCI 설정대로 컨테이너를 생성하는 저수준 런타임 | 실제 작업 공간을 만드는 기술자 |
@@ -31,7 +31,7 @@ part: 8
 flowchart TD
     CLI["Docker Client<br/>docker run nginx"] -->|"Docker API<br/>docker.sock"| D["dockerd<br/>Docker 전체 관리"]
     D -->|"gRPC"| CTD["containerd<br/>생명주기 관리"]
-    CTD --> SHIM["containerd-shim<br/>I/O·종료 상태 관리"]
+    CTD --> SHIM["containerd-shim<br/>I/O,종료 상태 관리"]
     SHIM --> RUNC["runc<br/>OCI 컨테이너 생성"]
     RUNC --> K["Linux Kernel"]
     K --> P["Container Process<br/>예: nginx"]
@@ -98,13 +98,13 @@ TCP가 `127.0.0.1:8080`처럼 IP와 포트를 주소로 사용하는 반면, Uni
 | 단어 | 뜻 | 쉬운 비유 |
 |---|---|---|
 | Namespace | 프로세스마다 보이는 시스템 범위를 분리 | 같은 건물 안의 칸막이 방 |
-| cgroups | 프로세스 그룹의 CPU·메모리 등 사용량 제한 | 방마다 정해 둔 전기 사용 한도 |
+| cgroups | 프로세스 그룹의 CPU,메모리 등 사용량 제한 | 방마다 정해 둔 전기 사용 한도 |
 | OverlayFS | 여러 디렉터리 레이어를 하나처럼 보여주는 파일 시스템 | 여러 투명 필름을 겹친 완성 화면 |
 | Copy-on-Write | 원본 대신 복사본을 만들어 수정하는 방식 | 공용 원본은 두고 개인 복사본에 필기 |
 | Capability | root 권한을 세부 기능으로 나눈 권한 | 마스터키 대신 필요한 방의 열쇠만 지급 |
 | SELinux/AppArmor | 프로세스가 접근할 대상을 정책으로 제한 | 출입증으로 접근 가능한 구역 제한 |
 
-> 쉬운 비유: 컨테이너는 별도의 건물이 아니라 한 건물 안의 독립 사무실입니다. Namespace는 벽, cgroups는 전기·수도 한도, rootfs는 사무실 서류함, 보안 정책은 출입 카드입니다.
+> 쉬운 비유: 컨테이너는 별도의 건물이 아니라 한 건물 안의 독립 사무실입니다. Namespace는 벽, cgroups는 전기,수도 한도, rootfs는 사무실 서류함, 보안 정책은 출입 카드입니다.
 
 ```mermaid
 flowchart TD
@@ -139,7 +139,7 @@ Namespace는 같은 커널을 사용하는 프로세스들이 서로 다른 시�
 |---|---|
 | CPU | 사용 시간, 가중치, 할당량 제한 |
 | Memory | 메모리와 Swap 사용량 제한 |
-| Block I/O | 디스크 읽기·쓰기 대역폭 또는 IOPS 제한 |
+| Block I/O | 디스크 읽기,쓰기 대역폭 또는 IOPS 제한 |
 | PIDs | 생성 가능한 프로세스 수 제한 |
 | CPU set | 사용할 CPU 코어와 메모리 노드 지정 |
 

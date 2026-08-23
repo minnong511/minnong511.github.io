@@ -24,6 +24,28 @@ part: 11
 
 > 쉬운 비유: `stop`은 주차, `down`은 차량 폐차에 가깝습니다. `down`을 해도 기본적으로 named volume이라는 별도 창고는 남지만, `down -v`는 그 창고까지 없앱니다.
 
+### 명령어 이름의 유래와 기억법
+
+Compose 명령어는 대부분 영어 동사나 Unix 명령어에서 가져왔습니다. 짧은 옵션은 긴 옵션의 앞글자를 딴 경우가 많습니다. 원래 단어를 알면 명령어를 외우기보다 뜻으로 이해할 수 있습니다.
+
+| 명령어,옵션 | 원래 말 | 왜 이렇게 쓰나 |
+|---|---|---|
+| `up` / `down` | bring **up** / take **down** | 시스템을 올려 사용할 수 있게 하거나 내려서 정리한다는 표현입니다. 서버와 네트워크 분야에서도 흔히 사용합니다. |
+| `-d` | `--detach` | **detach**는 분리한다는 뜻입니다. 터미널에서 프로세스를 분리해 백그라운드로 실행합니다. |
+| `ps` | **process status** | Unix의 `ps` 명령에서 온 이름입니다. 원래는 실행 중인 프로세스 상태를 보여 주며, Compose에서는 서비스 컨테이너 상태를 보여 줍니다. |
+| `-a` | `--all` | 실행 중인 컨테이너뿐 아니라 중지된 컨테이너까지 **모두** 표시합니다. |
+| `logs` | log의 복수형 | 여러 서비스와 컨테이너가 남긴 로그를 모아서 보여 주므로 하위 명령 이름이 `log`가 아니라 `logs`입니다. |
+| `-f` | `--follow` | 새 로그가 생길 때마다 계속 **따라가며** 출력합니다. Unix의 `tail -f`와 같은 감각입니다. |
+| `--tail=100` | 로그의 tail | **tail**은 꼬리라는 뜻으로, 로그의 끝부분 100줄만 봅니다. |
+| `exec` | **execute** | 이미 실행 중인 컨테이너 안에서 명령을 **실행**합니다. |
+| `-q` | `--quiet` | 부가 설명 없이 조용히 ID만 출력합니다. 다른 명령에 결과를 넘길 때 편리합니다. |
+| `rm` | **remove** | Unix의 파일 삭제 명령 `rm`처럼 대상을 제거한다는 뜻입니다. Compose에서는 중지된 서비스 컨테이너를 제거합니다. |
+| `-v` | `--volumes` | 컨테이너와 네트워크뿐 아니라 연결된 Compose Volume도 함께 제거합니다. 데이터 삭제에 주의해야 합니다. |
+| `-f` | `--file` | `docker compose -f compose.yaml`에서는 사용할 Compose **파일**을 지정합니다. 같은 `-f`라도 `logs -f`의 `follow`와는 문맥이 다릅니다. |
+| `-p` | `--project-name` | Compose **프로젝트 이름**을 지정해 같은 설정을 서로 다른 묶음으로 실행합니다. |
+
+긴 옵션도 단어를 `-`로 연결해 그대로 읽으면 이해하기 쉽습니다. 예를 들어 `--no-deps`는 "dependencies(의존 서비스) 없이", `--no-cache`는 "cache 없이", `--force-recreate`는 "강제로 다시 생성"이라는 뜻입니다.
+
 ### 1.1 빌드와 실행
 
 ```bash
@@ -80,6 +102,8 @@ docker compose exec backend cat /etc/resolv.conf
 docker compose exec backend getent hosts db
 ```
 
+`logs -f`는 로그 출력을 끝내지 않고 새 로그를 계속 기다립니다. 빠져나올 때는 `Ctrl+C`를 누릅니다. `ps -a`의 `-a`는 `all`, `ps -q`의 `-q`는 `quiet`를 뜻하므로 각각 "전부 보기", "ID만 간단히 보기"로 기억하면 됩니다.
+
 이미지에 `bash`, `ping`, `curl` 등이 설치되어 있지 않을 수 있습니다. 이런 경우 `sh`, `getent`, 애플리케이션 자체 진단 명령을 사용하거나 별도의 디버깅 컨테이너를 실행해야 합니다.
 
 컨테이너 단위의 상세 정보는 실제 컨테이너 이름 또는 ID를 구한 뒤 확인합니다.
@@ -128,10 +152,65 @@ docker compose \
 
 # 프로젝트 이름 지정
 docker compose -p app1 up -d
-docker compose -p app2 logs -f
+docker compose -p app1 logs -f
+docker compose -p app1 down
+
+# 같은 Compose 파일을 app2라는 별도 환경으로 실행
+docker compose -p app2 up -d
 ```
 
-여러 Compose 파일을 사용하면 뒤쪽 파일이 앞쪽 설정을 보완하거나 덮어씁니다. 병합 규칙은 필드에 따라 다르므로 실행 전 `docker compose config`로 최종 결과를 확인하는 것이 안전합니다.
+#### 왜 `-f`를 사용하는가?
+
+Compose는 `-f`를 생략하면 현재 디렉터리를 기준으로 `compose.yaml` 같은 기본 파일을 찾습니다. `-f`는 **file**의 약자로, 기본 파일이 아닌 다른 Compose 파일을 선택할 때 사용합니다.
+
+개발과 운영처럼 환경마다 설정이 다르면 모든 내용을 한 파일에 넣기보다 공통 설정과 환경별 설정을 나눌 수 있습니다.
+
+```text
+compose.yaml          공통 기본 설정
+        +
+compose.prod.yaml     운영 환경에서 추가하거나 바꿀 설정
+        =
+운영 환경의 최종 Compose 설정
+```
+
+여러 `-f`를 사용하면 앞쪽 파일부터 순서대로 병합하며, 뒤쪽 파일이 앞쪽 설정을 보완하거나 덮어씁니다. 이를 이용하면 `compose.yaml`에는 공통 서비스 설정을 두고 `compose.prod.yaml`에는 운영용 포트, 재시작 정책 같은 차이만 둘 수 있습니다.
+
+병합 규칙은 필드에 따라 다르므로 실행 전에 같은 `-f` 옵션과 `config` 명령으로 최종 결과를 확인하는 것이 안전합니다.
+
+```bash
+docker compose \
+  -f compose.yaml \
+  -f compose.prod.yaml \
+  config
+```
+
+#### 왜 `-p`를 사용하는가?
+
+Compose는 컨테이너, 네트워크, Volume 같은 관련 리소스를 하나의 **프로젝트**로 묶어 관리합니다. `-p`는 **project name**의 약자로, 이 묶음의 이름을 직접 지정할 때 사용합니다. 생략하면 일반적으로 Compose 파일이 있는 디렉터리 이름을 기준으로 프로젝트 이름을 정합니다.
+
+같은 Compose 파일이라도 프로젝트 이름이 다르면 서로 독립된 환경으로 실행할 수 있습니다.
+
+```text
+app1 프로젝트 → app1-web-1 컨테이너, app1_default 네트워크
+app2 프로젝트 → app2-web-1 컨테이너, app2_default 네트워크
+```
+
+따라서 같은 설정으로 개발 환경을 여러 개 띄우거나 개발, 테스트, CI 환경의 리소스가 서로 충돌하지 않게 할 때 유용합니다. `-p app1`로 실행했다면 상태 확인, 로그 확인, 종료에도 같은 프로젝트 이름을 지정해야 해당 리소스를 찾을 수 있습니다.
+
+```bash
+docker compose -p app1 ps
+docker compose -p app1 logs -f
+docker compose -p app1 down
+```
+
+여기서 두 종류의 `-f`는 위치에 따라 의미가 다릅니다.
+
+```bash
+docker compose -f compose.yaml logs -f
+#              └ file 지정       └ follow: 새 로그 계속 보기
+```
+
+> 쉬운 비유: `-f`는 "어떤 설계도를 사용할지", `-p`는 "그 설계도로 만든 건물을 어떤 단지 이름으로 관리할지" 정하는 옵션입니다.
 
 ---
 
@@ -145,7 +224,7 @@ docker compose -p app2 logs -f
 | `.env` | Compose 파일의 변수 치환에 기본적으로 사용하는 파일 | 설계도 작성용 값 목록 |
 | `environment` | 컨테이너에 직접 전달할 환경 변수 | 작업자 주머니에 넣는 지시서 |
 | `env_file` | 컨테이너 환경 변수를 여러 개 읽어올 파일 | 지시사항 묶음 파일 |
-| Secret | 비밀번호·토큰 같은 민감한 값을 파일로 전달하는 기능 | 봉인된 보안 문서 |
+| Secret | 비밀번호,토큰 같은 민감한 값을 파일로 전달하는 기능 | 봉인된 보안 문서 |
 
 > 쉬운 비유: `.env`는 설계도의 빈칸을 채우는 메모이고, `environment`와 `env_file`은 완성된 건물 안의 작업자에게 전달되는 값입니다. 둘은 목적이 다릅니다.
 
@@ -260,6 +339,6 @@ secrets:
     file: ./secrets/db_password.txt
 ```
 
-컨테이너에서는 `/run/secrets/db_password` 파일로 값을 읽습니다. 로컬 Secret 원본 파일은 Git에 커밋하지 않아야 합니다. 일반 Docker Compose의 파일 기반 Secret은 전문 Secret Manager와 동일한 보안·감사 기능을 제공하지 않으므로 운영 환경에서는 별도 비밀 관리 도구도 고려해야 합니다.
+컨테이너에서는 `/run/secrets/db_password` 파일로 값을 읽습니다. 로컬 Secret 원본 파일은 Git에 커밋하지 않아야 합니다. 일반 Docker Compose의 파일 기반 Secret은 전문 Secret Manager와 동일한 보안,감사 기능을 제공하지 않으므로 운영 환경에서는 별도 비밀 관리 도구도 고려해야 합니다.
 
 ---

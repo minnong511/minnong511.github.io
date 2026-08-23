@@ -15,13 +15,13 @@ part: 9
 
 | 단어 | 뜻 | 쉬운 비유 |
 |---|---|---|
-| Network Namespace | 컨테이너만의 네트워크 장치·IP·라우팅 공간 | 세대별로 분리된 집안 배선 |
+| Network Namespace | 컨테이너만의 네트워크 장치, IP, 라우팅 공간 | 세대별로 분리된 집안 배선 |
 | veth pair | 두 끝이 서로 연결된 가상 네트워크 인터페이스 쌍 | 벽 양쪽을 잇는 랜 케이블 |
 | Linux Bridge | 여러 인터페이스를 연결해 프레임을 전달하는 가상 스위치 | 멀티탭 또는 네트워크 스위치 |
 | NAT | 패킷의 IP 주소를 변환 | 우편물의 주소를 바꿔 적기 |
 | NAPT | IP와 포트를 함께 변환 | 대표 전화번호와 내선번호 사용 |
 | Port Publishing | 호스트 포트를 컨테이너 포트에 연결 | 건물 대표번호를 특정 내선에 연결 |
-| Netfilter | 커널에서 패킷을 검사·변환·차단하는 체계 | 도로의 검문소와 방향 안내판 |
+| Netfilter | 커널에서 패킷을 검사,변환,차단하는 체계 | 도로의 검문소와 방향 안내판 |
 
 > 쉬운 비유: Bridge 네트워크는 가상 공유기에 여러 컨테이너를 연결한 모습입니다. 컨테이너는 내부 주소를 쓰고, 외부로 나갈 때 호스트가 주소를 바꿉니다.
 
@@ -33,7 +33,7 @@ flowchart LR
     E0 --> V1["veth pair"]
     V1 --> BR["docker0 또는<br/>사용자 정의 bridge"]
     BR --> IP["Host IP stack"]
-    IP --> NAT["Netfilter<br/>NAT·필터링"]
+    IP --> NAT["Netfilter<br/>NAT,필터링"]
     NAT --> NIC["Physical NIC"]
     NIC --> INTERNET["Internet"]
 ```
@@ -54,7 +54,7 @@ Bridge 네트워크의 특징은 다음과 같습니다.
 | 사용자 정의 Bridge | O | O | 같은 애플리케이션의 컨테이너 그룹 |
 | `host` | X | 해당 없음 | 네트워크 격리보다 낮은 오버헤드가 중요한 경우 |
 
-사용자 정의 Bridge를 만드는 예입니다.
+사용자 정의 Bridge를 만드는 예.
 
 ```bash
 docker network create my-bridge
@@ -84,7 +84,7 @@ docker run -d -p 8080:80 nginx
 ```mermaid
 flowchart LR
     C["External Client"] --> H["HostIP:8080"]
-    H -->|"DNAT<br/>목적지 변경"| R["Routing·Forwarding"]
+    H -->|"DNAT<br/>목적지 변경"| R["Routing,Forwarding"]
     R --> BR["Linux Bridge"]
     BR --> V["veth pair"]
     V --> N["ContainerIP:80<br/>nginx"]
@@ -125,7 +125,7 @@ Docker 네트워크를 이해하려면 가정용 공유기를 떠올리면 쉽�
 
 ```mermaid
 flowchart LR
-    A["노트북<br/>192.168.1.42:5000"] --> R["공유기<br/>DHCP·Gateway·NAPT"]
+    A["노트북<br/>192.168.1.42:5000"] --> R["공유기<br/>DHCP,Gateway,NAPT"]
     B["태블릿<br/>192.168.1.23:5000"] --> R
     R --> P["공인 IP<br/>203.0.113.57"]
     P --> I["Internet"]
@@ -140,8 +140,8 @@ flowchart LR
 | DNS | 도메인 이름을 IP 주소로 변환 | 이름을 주소로 변환 |
 | NAT | IP 주소를 변환 | 주소 바꾸기 |
 | NAPT | IP와 포트를 함께 변환 | 대표번호와 내선번호 |
-| DNAT | 목적지 주소·포트를 변환 | 들어오는 우편의 수신지 변경 |
-| SNAT | 출발지 주소·포트를 변환 | 나가는 우편의 발신지 변경 |
+| DNAT | 목적지 주소,포트를 변환 | 들어오는 우편의 수신지 변경 |
+| SNAT | 출발지 주소,포트를 변환 | 나가는 우편의 발신지 변경 |
 
 NAPT의 예는 다음과 같습니다.
 
@@ -175,7 +175,7 @@ NAPT의 예는 다음과 같습니다.
 flowchart LR
     K["Kubernetes가 Pod 생성"] --> CNI["CNI 플러그인 호출"]
     CNI --> IP["Pod IP 할당"]
-    IP --> V["veth·route 구성"]
+    IP --> V["veth,route 구성"]
     V --> READY["Pod 네트워크 준비"]
 ```
 
@@ -187,7 +187,7 @@ Calico는 CNI를 통해 Pod 인터페이스와 경로를 구성하며, NetworkPo
 flowchart LR
     PA["Pod A"] --> VA["veth"]
     VA --> RA["Node A routing"]
-    RA -->|"직접 라우팅·IP-in-IP·VXLAN 등"| RB["Node B routing"]
+    RA -->|"직접 라우팅,IP-in-IP,VXLAN 등"| RB["Node B routing"]
     RB --> VB["veth"]
     VB --> PB["Pod B"]
 ```
@@ -259,8 +259,8 @@ flowchart TD
     P --> NS["Namespace"]
     P --> CG["cgroups"]
     P --> FS["OverlayFS rootfs"]
-    P --> SEC["Capabilities·SELinux/AppArmor"]
-    P --> NET["veth·Bridge·Netfilter"]
+    P --> SEC["Capabilities,SELinux/AppArmor"]
+    P --> NET["veth,Bridge,Netfilter"]
 ```
 
 ### 초압축 암기
