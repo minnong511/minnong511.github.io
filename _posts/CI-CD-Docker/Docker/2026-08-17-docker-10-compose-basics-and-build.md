@@ -9,7 +9,7 @@ series: "Docker 기초"
 part: 10
 ---
 
-Docker Compose는 여러 컨테이너로 구성된 애플리케이션을 하나의 YAML 파일로 정의하고, 한 번의 명령으로 함께 실행,중지,관리하는 도구입니다.
+Docker Compose는 여러 컨테이너로 구성된 애플리케이션을 하나의 YAML 파일로 정의하고, 한 번의 명령으로 함께 실행,중지,관리하는 도구.
 
 ```mermaid
 flowchart LR
@@ -21,9 +21,9 @@ flowchart LR
     D --> V["volume"]
 ```
 
-> 쉬운 비유: `docker run`이 가전제품을 하나씩 직접 설치하는 일이라면, Docker Compose는 집 전체의 가전제품,배선,수도 연결을 설계도 한 장으로 한꺼번에 설치하는 작업입니다.
+> `docker run`이 가전제품을 하나씩 직접 설치하는 일이라면, Docker Compose는 집 전체의 가전제품,배선,수도 연결을 설계도 한 장으로 한꺼번에 설치하는 작업.
 
-Compose는 여러 컨테이너를 편리하게 조율하지만, Kubernetes처럼 여러 노드에 컨테이너를 스케줄링하고 장애 시 자동으로 재배치하는 완전한 클러스터 오케스트레이터는 아닙니다. 로컬 개발, 교육, 통합 테스트, 단일 Docker 호스트 애플리케이션에 특히 적합합니다.
+Compose는 여러 컨테이너를 편리하게 조율하지만, Kubernetes처럼 여러 노드에 컨테이너를 스케줄링하고 장애 시 자동으로 재배치하는 완전한 클러스터 오케스트레이터는 아니고. 로컬 개발, 교육, 통합 테스트, 단일 Docker 호스트 애플리케이션에 특히 적합하다.
 
 ---
 
@@ -42,7 +42,7 @@ Compose는 여러 컨테이너를 편리하게 조율하지만, Kubernetes처럼
 
 ### 1.1 Compose가 필요한 이유
 
-Compose 없이 세 개의 컨테이너를 실행하려면 네트워크와 볼륨을 만들고, 각 컨테이너에 환경 변수와 포트를 반복해서 지정해야 합니다.
+Compose 없이 세 개의 컨테이너를 실행하려면 네트워크와 볼륨을 만들고, 각 컨테이너에 환경 변수와 포트를 반복해서 지정해야 한다.
 
 ```text
 docker network create ...
@@ -52,13 +52,13 @@ docker run ... backend
 docker run ... frontend
 ```
 
-Compose에서는 이 구성을 `compose.yaml`에 저장한 뒤 다음 명령으로 실행합니다.
+Compose에서는 이 구성을 `compose.yaml`에 저장한 뒤 다음 명령으로 실행한다.
 
 ```bash
 docker compose up -d
 ```
 
-Compose가 관리하는 대표 항목은 다음과 같습니다.
+Compose가 관리하는 대표 항목은 다음과 같다.
 
 - 컨테이너 이미지 또는 빌드 방법
 - 환경 변수와 Secret
@@ -70,7 +70,7 @@ Compose가 관리하는 대표 항목은 다음과 같습니다.
 
 ### 1.2 서비스와 컨테이너의 관계
 
-서비스는 **컨테이너 그 자체가 아니라 컨테이너 실행 설정**입니다. 기본적으로 서비스당 컨테이너 하나가 만들어지지만, 필요하면 같은 서비스의 컨테이너 수를 늘릴 수 있습니다.
+서비스는 **컨테이너 그 자체가 아니라 컨테이너 실행 설정**이다. 기본적으로 서비스당 컨테이너 하나가 만들어지지만, 필요하면 같은 서비스의 컨테이너 수를 늘릴 수 있다.
 
 ```bash
 docker compose up -d --scale worker=3
@@ -83,7 +83,7 @@ flowchart TD
     S --> C3["worker container 3"]
 ```
 
-고정된 호스트 포트를 사용하는 서비스를 여러 개로 확장하면 포트 충돌이 발생할 수 있습니다. 여러 복제본 앞에는 별도의 프록시나 로드 밸런서가 필요할 수 있습니다.
+고정된 호스트 포트를 사용하는 서비스를 여러 개로 확장하면 포트 충돌이 발생할 수 있다. 여러 복제본 앞에는 별도의 프록시나 로드 밸런서가 필요할 수 있다.
 
 ---
 
@@ -102,7 +102,7 @@ flowchart TD
 | `networks` | 서비스가 참여할 네트워크 | 출입 가능한 통로 지정 |
 | `depends_on` | 서비스 생성,시작 의존 관계 | 선행 작업 확인표 |
 
-> 쉬운 비유: 최상위 `services`, `networks`, `volumes`는 각각 입주자, 도로, 창고를 정의하는 설계도 영역입니다.
+> 쉬운 비유: 최상위 `services`, `networks`, `volumes`는 각각 입주자, 도로, 창고를 정의하는 설계도 영역.
 
 ### 2.1 최소 예제
 
@@ -132,7 +132,7 @@ volumes:
   db-data:
 ```
 
-들여쓰기가 구조를 결정하므로 Tab 대신 공백을 사용해야 합니다. 최신 Compose Specification에서는 최상위 `version` 필드가 필요하지 않습니다.
+들여쓰기가 구조를 결정하므로 Tab 대신 공백을 사용해야 한다. 최신 Compose Specification에서는 최상위 `version` 필드가 필요하지 않다.
 
 ### 2.2 전체 구조
 
@@ -147,7 +147,7 @@ flowchart TD
     S --> WEB["frontend"]
 ```
 
-Compose는 별도로 지정하지 않으면 현재 디렉터리 이름을 프로젝트 이름으로 사용합니다. 생성되는 리소스에는 일반적으로 프로젝트 이름이 접두사로 붙습니다.
+Compose는 별도로 지정하지 않으면 현재 디렉터리 이름을 프로젝트 이름으로 사용한다. 생성되는 리소스에는 일반적으로 프로젝트 이름이 접두사로 붙는다.
 
 ```text
 myapp_default
@@ -155,7 +155,7 @@ myapp-db-1
 myapp_db-data
 ```
 
-실제 이름은 Compose 버전, 설정한 `container_name`, 리소스 종류에 따라 달라질 수 있습니다. 서비스 검색에는 컨테이너 이름보다 **서비스 이름**을 사용하는 것이 좋습니다.
+실제 이름은 Compose 버전, 설정한 `container_name`, 리소스 종류에 따라 달라질 수 있다. 서비스 검색에는 컨테이너 이름보다 **서비스 이름**을 사용하는 것이 좋다.
 
 ---
 
@@ -173,11 +173,11 @@ myapp_db-data
 | `command` | Compose에서 이미지의 `CMD`를 대체하는 값 | 기본 옵션 교체 |
 | `entrypoint` | Compose에서 이미지의 `ENTRYPOINT`를 대체하는 값 | 실행 본체 교체 |
 
-> 쉬운 비유: `ENTRYPOINT`가 커피 머신이라면 `CMD`는 기본 메뉴인 아메리카노입니다. `command`는 메뉴를 라테로 바꾸고, `entrypoint`는 커피 머신 자체를 다른 기계로 교체합니다.
+> 쉬운 비유: `ENTRYPOINT`가 커피 머신이라면 `CMD`는 기본 메뉴인 아메리카노. `command`는 메뉴를 라테로 바꾸고, `entrypoint`는 커피 머신 자체를 다른 기계로 교체한다.
 
 ### 3.1 기존 이미지 사용과 직접 빌드
 
-Registry의 이미지를 그대로 사용할 때는 `image`를 지정합니다.
+Registry의 이미지를 그대로 사용할 때는 `image`를 지정한다.
 
 ```yaml
 services:
@@ -185,7 +185,7 @@ services:
     image: nginx:alpine
 ```
 
-로컬 Dockerfile로 이미지를 만들 때는 `build`를 지정합니다.
+로컬 Dockerfile로 이미지를 만들 때는 `build`를 지정한다.
 
 ```yaml
 services:
@@ -218,12 +218,12 @@ COPY app.jar /app/app.jar
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 ```
 
-- `context: ./app`: 빌더에 전달할 디렉터리입니다.
-- `dockerfile`: Context를 기준으로 사용할 Dockerfile 경로입니다.
-- `args`: Dockerfile의 `ARG`에 전달할 빌드 시점 값입니다.
-- `image`: 빌드 결과에 붙일 이미지 이름과 태그입니다.
+- `context: ./app`: 빌더에 전달할 디렉터리.
+- `dockerfile`: Context를 기준으로 사용할 Dockerfile 경로.
+- `args`: Dockerfile의 `ARG`에 전달할 빌드 시점 값.
+- `image`: 빌드 결과에 붙일 이미지 이름과 태그.
 
-Build Argument는 비밀값 전달 수단이 아닙니다. 이미지 이력이나 빌드 캐시에 남을 수 있으므로 비밀번호와 토큰을 넣지 않아야 합니다.
+Build Argument는 비밀값 전달 수단이 아니다. 이미지 이력이나 빌드 캐시에 남을 수 있으므로 비밀번호와 토큰을 넣지 않아야 한다.
 
 ### 3.2 `command`와 `entrypoint`
 
@@ -234,7 +234,7 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-`command`만 지정하면 이미지의 `CMD`를 대체하고 `ENTRYPOINT`는 유지합니다.
+`command`만 지정하면 이미지의 `CMD`를 대체하고 `ENTRYPOINT`는 유지한다.
 
 ```yaml
 services:
@@ -243,7 +243,7 @@ services:
     command: ["nginx", "-g", "daemon off;"]
 ```
 
-`entrypoint`를 지정하면 이미지의 `ENTRYPOINT`를 대체합니다. Compose에서는 이미지의 기본 `CMD`도 무시되므로 필요한 인자를 `command`로 명시해야 합니다.
+`entrypoint`를 지정하면 이미지의 `ENTRYPOINT`를 대체한다. Compose에서는 이미지의 기본 `CMD`도 무시되므로 필요한 인자를 `command`로 명시해야 한다.
 
 ```yaml
 services:
@@ -263,6 +263,6 @@ flowchart LR
     CMD --> RUN
 ```
 
-배열 형태는 Shell의 문자열 해석 차이를 줄여 주므로 실행 파일과 인자가 명확할 때 유용합니다.
+배열 형태는 Shell의 문자열 해석 차이를 줄여 주므로 실행 파일과 인자가 명확할 때 유용하다.
 
 ---
