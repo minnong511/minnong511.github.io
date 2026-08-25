@@ -1,4 +1,1927 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-08-23T00:05:03+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">Spring 기초 Part 11: Actuator와 애플리케이션 모니터링</title><link href="http://0.0.0.0:4000/java/spring/2026/08/23/spring-boot-actuator/" rel="alternate" type="text/html" title="Spring 기초 Part 11: Actuator와 애플리케이션 모니터링" /><published>2026-08-23T00:00:00+00:00</published><updated>2026-08-23T00:00:00+00:00</updated><id>http://0.0.0.0:4000/java/spring/2026/08/23/spring-boot-actuator</id><content type="html" xml:base="http://0.0.0.0:4000/java/spring/2026/08/23/spring-boot-actuator/"><![CDATA[<h2 id="spring-기초-part-11-actuator와-애플리케이션-모니터링">Spring 기초 Part 11: Actuator와 애플리케이션 모니터링</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-08-25T08:08:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Minnong’s Study Log</title><subtitle>개발과 AI를 배우고, 실험하고, 이해한 내용을 연결하는 공부 기록</subtitle><author><name>Min Hyeong Lee</name></author><entry><title type="html">OCI: 컨테이너 이미지와 런타임의 공통 표준</title><link href="http://localhost:4000/devops/docker/2026/08/24/oci-container-standard/" rel="alternate" type="text/html" title="OCI: 컨테이너 이미지와 런타임의 공통 표준" /><published>2026-08-24T00:50:00+09:00</published><updated>2026-08-24T00:50:00+09:00</updated><id>http://localhost:4000/devops/docker/2026/08/24/oci-container-standard</id><content type="html" xml:base="http://localhost:4000/devops/docker/2026/08/24/oci-container-standard/"><![CDATA[<h2 id="ociopen-container-initiative란">OCI(Open Container Initiative)란?</h2>
+
+<blockquote>
+  <p>OCI는 “컨테이너 이미지와 컨테이너 실행 방식에 대한 국제 공통 규격”</p>
+</blockquote>
+
+<p>Docker가 만든 이미지를 Docker에서만 실행하는 게 아니라, containerd, CRI-O, Kubernetes, Podman 같은 다른 생태계에서도 동일하게 사용할 수 있게 해주는 표준</p>
+
+<h1 id="1-oci는-왜-등장했는가">1. OCI는 왜 등장했는가?</h1>
+
+<p>초창기 컨테이너 시장 -&gt; Docker가 거의 표준처럼 쓰임</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker Image
+    ↓
+Docker Engine
+    ↓
+Container
+</code></pre></div></div>
+
+<p>문제는 이러면 Docker라는 특정 회사와 구현체에 생태계가 강하게 종속될 수 있다는 것</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker Image
+    ↓
+Docker에서만 실행 가능
+
+A회사 Image
+    ↓
+A회사 Runtime에서만 실행 가능
+
+B회사 Image
+    ↓
+B회사 Runtime에서만 실행 가능
+</code></pre></div></div>
+
+<p>따라서 Docker, Google, Red Hat, IBM, Microsoft 등 여러 기업이 참여해서 만든 표준화 프로젝트가 OCI(Open Container Initiative)</p>
+
+<p>이와 같이 모인 목적은</p>
+
+<blockquote>
+  <p>컨테이너를 어떤 형식으로 만들고, 어떻게 실행하면 좋을까하는 공통 규격을 만들자.</p>
+</blockquote>
+
+<p>라는 일념하에 힘을 합치게 된다.</p>
+
+<h1 id="2-oci는-프로그램이-아니다">2. OCI는 프로그램이 아니다.</h1>
+
+<blockquote>
+  <p>OCI는 설계도 / 규격이고 runc 같은 프로그램이 그 규격을 구현</p>
+</blockquote>
+
+<p>OCI 자체는 Docker나 containerd처럼 실행되는 프로그램이 아니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker      → 프로그램
+containerd  → 프로그램
+runc        → 프로그램
+
+OCI         → 표준 Specification
+</code></pre></div></div>
+
+<p>비유를 해보자면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP   = 웹 통신 규칙
+Chrome = HTTP를 사용하는 프로그램
+
+OCI    = 컨테이너 규칙
+runc   = OCI 규칙을 구현한 프로그램
+</code></pre></div></div>
+
+<h1 id="3-oci의-핵심-3가지-표준">3. OCI의 핵심 3가지 표준</h1>
+
+<p>OCI에서는 크게 세 가지를 정의</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OCI
+├── Image Specification
+├── Runtime Specification
+└── Distribution Specification
+</code></pre></div></div>
+
+<p>각각이 약간씩 다르므로 아래서 좀 설명을 해보려 한다.</p>
+
+<h1 id="4-oci-image-specification">4. OCI Image Specification</h1>
+
+<p>컨테이너 이미지를 어떤 구조로 저장할 것인가를 정의</p>
+
+<p>Docker 이미지를 생각하면 된다.</p>
+
+<p>예를 들어</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nginx image
+├── Layer 4  nginx 설정
+├── Layer 3  nginx 설치
+├── Layer 2  라이브러리
+└── Layer 1  Ubuntu filesystem
+</code></pre></div></div>
+
+<p>OCI Image Spec은 다음과 같은 것을 정의</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Image
+├── Manifest
+├── Config
+└── Layers
+</code></pre></div></div>
+
+<p>예를 들면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Manifest
+    ↓
+어떤 Config와 Layer를 사용하는지 기록
+
+Config
+    ├── 환경변수
+    ├── 실행 명령어
+    ├── Working Directory
+    └── Architecture
+
+Layers
+    ↓
+실제 파일 시스템 데이터
+</code></pre></div></div>
+
+<p>이런 식으로 규격을 표준화했기 때문에, 덕분에 Docker에서 만든 이미지도 다른 OCI 호환 프로그램에서 사용할 수 있다. (오우? 굉장히 좋다고 할 수 있다.)</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker build
+    ↓
+OCI Image
+    ├── Docker
+    ├── Podman
+    └── containerd
+</code></pre></div></div>
+
+<h1 id="5-oci-runtime-specification">5. OCI Runtime Specification</h1>
+
+<p>Runtime Spec은:</p>
+
+<blockquote>
+  <p>“컨테이너를 실제 Linux 프로세스로 어떻게 실행할 것인가?”</p>
+</blockquote>
+
+<p>를 정의</p>
+
+<p>예를 들어 컨테이너 실행하려면 이런 정보가 필요하다</p>
+
+<p>어떤 프로그램을 실행할 것인가?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nginx
+</code></pre></div></div>
+
+<p>어떤 환경변수를 사용할 것인가?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT=80
+</code></pre></div></div>
+
+<p>어떤 namespace를 만들 것인가?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PID Namespace
+Network Namespace
+Mount Namespace
+</code></pre></div></div>
+
+<p>어떤 resource 제한을 적용할 것인가?</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CPU
+Memory
+</code></pre></div></div>
+
+<p>이런 실행 정보를 OCI Runtime Spec에서 규정</p>
+
+<p>대표적인 설정 파일이</p>
+
+<p><code class="language-plaintext highlighter-rouge">config.json</code></p>
+
+<p>개념적으로</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"nginx"</span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"linux"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"namespaces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"..."</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>이런 정보를 Runtime이 읽는다.</p>
+
+<p>대표적인 OCI Runtime 구현체가</p>
+
+<p><code class="language-plaintext highlighter-rouge">runc</code></p>
+
+<h2 id="runc가-중요한-이유">runc가 중요한 이유</h2>
+
+<p>Docker에서</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run nginx
+</code></pre></div></div>
+
+<p>를 실행한다고, Docker가 직접 Linux Namespace와 cgroup을 전부 만드는 구조는 아니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자
+    │
+    │ docker run nginx
+    ▼
+Docker CLI
+    │
+    ▼
+dockerd
+    │
+    ▼
+containerd
+    │
+    ▼
+runc
+    │
+    ▼
+Linux Kernel
+    ├── Namespace
+    ├── cgroup
+    ├── capabilities
+    └── filesystem
+    │
+    ▼
+nginx process
+</code></pre></div></div>
+
+<p>여기서</p>
+
+<p><code class="language-plaintext highlighter-rouge">runc</code></p>
+
+<p>가 OCI Runtime Specification을 구현한 프로그램이다.</p>
+
+<blockquote>
+  <p>Docker가 최종적으로 컨테이너라는 특별한 VM을 만드는 것이 아니라, runc를 통해 Linux Kernel 기능을 이용해서 격리된 프로세스를 만들어낸다.</p>
+</blockquote>
+
+<p>결국은</p>
+
+<blockquote>
+  <p>“컨테이너의 실체는 결국 Linux에서 실행되는 프로세스다”</p>
+</blockquote>
+
+<p>라는 개념을 구현하는 것은 OCI Runtime</p>
+
+<h1 id="6-kubernetes에서도-oci가-사용된다">6. Kubernetes에서도 OCI가 사용된다</h1>
+
+<p>OCI가 중요한 이유는 Docker만의 이야기가 아니기 때문.</p>
+
+<p>Kubernetes에서 사용되기 때문이다.</p>
+
+<p>에를 들어 Kubernetes에서 Pod를 생성</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> nginx.yaml
+</code></pre></div></div>
+
+<p>라고 하면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl
+    │
+    ▼
+Kubernetes API Server
+    │
+    ▼
+kubelet
+    │
+    ▼
+CRI
+    │
+    ▼
+containerd
+    │
+    ▼
+OCI Runtime
+    │
+    ▼
+runc
+    │
+    ▼
+Linux Kernel
+    │
+    ▼
+nginx process
+</code></pre></div></div>
+
+<p>라고 하면서,</p>
+
+<p>OCI Runtime을 사용하게 된다.</p>
+
+<h1 id="7-cri와-oci는-다른-것">7. CRI와 OCI는 다른 것</h1>
+
+<p>CRI
+OCI</p>
+
+<h3 id="cri">CRI</h3>
+<ul>
+  <li>Container Runtime Interface</li>
+</ul>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Kubernetes
+    ↕
+containerd / CRI-O
+</code></pre></div></div>
+
+<blockquote>
+  <p>Kubernetes와 Container Runtime 사이의 API 규격</p>
+</blockquote>
+
+<h3 id="oci">OCI</h3>
+<ul>
+  <li>Open Container Initiative</li>
+</ul>
+
+<blockquote>
+  <p>컨테이너 이미지와 실제 실행 규격</p>
+</blockquote>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Kubernetes
+    │
+    ▼
+kubelet
+    │ CRI
+    ▼
+containerd
+    │ OCI
+    ▼
+runc
+    │
+    ▼
+Linux Kernel
+</code></pre></div></div>
+
+<h1 id="8-oci가-실제로-어디에-응용">8. OCI가 실제로 어디에 응용?</h1>
+
+<p>OCI 표준 덕분에 다양한 컨테이너 기술이 서로 호환</p>
+
+<p>Docker 
+Podman 
+containerd 
+CRI-0 
+Kubernetes 
+AWS ECS / EKS 
+Google GKE 
+Azure AKS 
+Github Actions 
+CI/CD 시스템</p>
+
+<p>등이 컨테이너 이미지를 다룰 수 있음</p>
+
+<p>예를 들어</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker build <span class="nt">-t</span> myapp <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>해서 이미지를 만들고 Registry에 올리면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Developer Laptop
+    │ docker build
+    ▼
+OCI Image
+    │
+    ▼
+Container Registry
+    ├── Docker
+    ├── Kubernetes
+    ├── AWS ECS
+    ├── GKE
+    └── Azure AKS
+</code></pre></div></div>
+
+<p>어디에서 실행하든 OCI 규격을 이해하기 때문에 동일한 이미지를 사용할 수 있다.</p>
+
+<h1 id="9-docker-registry에서도-oci가-응용">9. Docker Registry에서도 OCI가 응용</h1>
+
+<p>OCI에는 Distribution Specification도 있다.</p>
+
+<p>이건</p>
+
+<blockquote>
+  <p>“컨테이너 이미지를 Registry와 어떻게 주고받을 것인가”</p>
+</blockquote>
+
+<p>를 정의</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull nginx
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker
+    │ Registry API
+    ▼
+Docker Hub
+    ├── Manifest
+    ├── Config
+    └── Layers
+</code></pre></div></div>
+
+<p>그래서 다음과 같은 Registry들이 서로 비슷한 방식으로 OCI 이미지를 저장</p>
+
+<p>Docker Hub</p>
+
+<p>GitHub Container Registry</p>
+
+<p>Amazon ECR</p>
+
+<p>Google Artifact Registry</p>
+
+<p>Azure Container Registry</p>
+
+<p>Harbor</p>
+
+<h1 id="10-oci-때문에-docker가-없어도-된다">10. OCI 때문에 Docker가 없어도 된다.</h1>
+
+<p>OCI 표준이 있기 때문에</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker Build
+    ↓
+OCI Image
+    ├── Podman
+    ├── containerd
+    └── Kubernetes
+</code></pre></div></div>
+
+<p>처럼 사용할 수 있다.</p>
+
+<p>이는 Vendor Lock-in을 줄이는 역할을 한다.</p>
+
+<h1 id="결론">결론</h1>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker CLI
+    │
+    ▼
+dockerd
+    │
+    ▼
+containerd
+    │ OCI Runtime Specification
+    ▼
+runc
+    │
+    ▼
+Linux Kernel
+    ├── Namespace
+    ├── cgroup
+    └── capability
+    │
+    ▼
+Container
+(= isolated process)
+</code></pre></div></div>
+
+<p>이미지는</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile
+    │
+    ▼
+docker build
+    │
+    ▼
+OCI Image
+    ├── Manifest
+    ├── Config
+    └── Layers
+    │
+    ▼
+Container Registry
+    │
+    ▼
+containerd
+    │
+    ▼
+runc
+    │
+    ▼
+Linux Process
+</code></pre></div></div>
+
+<p>면접에서 나온다면 …</p>
+
+<p>OCI는 Open Container Initiative로, 컨테이너 이미지 형식과 컨테이너 실행 방식 등을 표준화한 규격입니다. 대표적으로 OCI Image Spec, Runtime Spec, Distribution Spec이 있습니다. Docker나 Kubernetes 생태계에서 서로 다른 Runtime과 Registry가 동일한 컨테이너 이미지를 호환해서 사용할 수 있도록 해줍니다. 대표적인 OCI Runtime 구현체가 runc입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker       = 컨테이너를 사용하는 플랫폼
+containerd   = 컨테이너 생명주기 관리자
+OCI          = 컨테이너 표준 규격
+runc         = OCI Runtime 규격 구현체
+Linux Kernel = 실제 격리를 수행하는 주체
+Container    = 결국 격리된 Linux Process
+</code></pre></div></div>
+
+<p>여기까지 연결하면</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Kubernetes
+    ↓
+CRI
+    ↓
+containerd
+    ↓
+OCI
+    ↓
+runc
+    ↓
+Linux Kernel
+    ↓
+Process
+</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="Docker" /><category term="OCI" /><category term="Docker" /><category term="Container" /><category term="containerd" /><category term="runc" /><category term="Kubernetes" /><summary type="html"><![CDATA[OCI가 등장한 배경과 Image, Runtime, Distribution Specification의 역할, Docker와 Kubernetes에서 OCI가 사용되는 흐름을 정리한다.]]></summary></entry><entry><title type="html">Nginx 로드 밸런싱과 HTTPS</title><link href="http://localhost:4000/devops/nginx/2026/08/24/nginx-load-balancing-https/" rel="alternate" type="text/html" title="Nginx 로드 밸런싱과 HTTPS" /><published>2026-08-24T00:40:00+09:00</published><updated>2026-08-24T00:40:00+09:00</updated><id>http://localhost:4000/devops/nginx/2026/08/24/nginx-load-balancing-https</id><content type="html" xml:base="http://localhost:4000/devops/nginx/2026/08/24/nginx-load-balancing-https/"><![CDATA[<h2 id="1-로드-밸런싱이란">1. 로드 밸런싱이란?</h2>
+
+<p>로드 밸런싱은 하나의 서버에 요청이 몰리지 않도록 여러 서버에 요청을 나누어 전달하는 방식입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                   ┌─ Spring Boot 1 :8081
+Client → Nginx ────┼─ Spring Boot 2 :8082
+                   └─ Spring Boot 3 :8083
+</code></pre></div></div>
+
+<h2 id="2-upstream-설정">2. <code class="language-plaintext highlighter-rouge">upstream</code> 설정</h2>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">upstream</span> <span class="s">backend_servers</span> <span class="p">{</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">8081</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">8082</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="nf">127.0.0.1</span><span class="p">:</span><span class="mi">8083</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://backend_servers</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="3-https와-tls-인증서">3. HTTPS와 TLS 인증서</h2>
+
+<p>HTTPS를 사용하면 클라이언트와 Nginx 사이에서 주고받는 데이터를 암호화할 수 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  ↓ HTTPS
+Nginx
+  ↓ HTTP 또는 HTTPS
+Backend Server
+</code></pre></div></div>
+
+<h2 id="4-https-설정-구조">4. HTTPS 설정 구조</h2>
+
+<!-- 인증서 경로와 80 포트에서 443 포트로 리다이렉트하는 설정을 정리합니다. -->
+
+<h2 id="5-핵심-정리">5. 핵심 정리</h2>
+
+<ul>
+  <li>Nginx는 여러 Backend Server에 요청을 분산할 수 있습니다.</li>
+  <li>HTTPS 인증서를 Nginx에서 관리할 수 있습니다.</li>
+  <li>Backend Server는 비즈니스 로직에 집중할 수 있습니다.</li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="Nginx" /><category term="Nginx" /><category term="LoadBalancing" /><category term="HTTPS" /><category term="TLS" /><category term="DevOps" /><summary type="html"><![CDATA[Nginx가 요청을 여러 서버로 분산하는 방법과 HTTPS 인증서를 처리하는 구조를 정리한다.]]></summary></entry><entry><title type="html">Nginx 리버스 프록시와 Spring Boot 연결</title><link href="http://localhost:4000/devops/nginx/2026/08/24/nginx-reverse-proxy/" rel="alternate" type="text/html" title="Nginx 리버스 프록시와 Spring Boot 연결" /><published>2026-08-24T00:30:00+09:00</published><updated>2026-08-24T00:30:00+09:00</updated><id>http://localhost:4000/devops/nginx/2026/08/24/nginx-reverse-proxy</id><content type="html" xml:base="http://localhost:4000/devops/nginx/2026/08/24/nginx-reverse-proxy/"><![CDATA[<h2 id="1-리버스-프록시란">1. 리버스 프록시란?</h2>
+
+<p>리버스 프록시는 클라이언트의 요청을 대신 받은 뒤 내부 Backend Server로 전달하는 서버입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  ↓ example.com
+Nginx :80
+  ↓ proxy_pass
+Spring Boot :8080
+</code></pre></div></div>
+
+<p>클라이언트는 Spring Boot의 주소와 포트를 직접 알지 않아도 Nginx를 통해 API를 호출할 수 있습니다.</p>
+
+<h2 id="2-nginx와-spring-boot의-역할">2. Nginx와 Spring Boot의 역할</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구성 요소</th>
+      <th>역할</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nginx</td>
+      <td>외부 요청 수신, 정적 파일 제공, 요청 전달</td>
+    </tr>
+    <tr>
+      <td>Spring Boot</td>
+      <td>비즈니스 로직 실행, API 응답 생성</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-proxy_pass-설정">3. <code class="language-plaintext highlighter-rouge">proxy_pass</code> 설정</h2>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/api/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:8080</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+        <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="4-요청-전달-흐름">4. 요청 전달 흐름</h2>
+
+<!-- 실제 요청 URL과 Spring Controller 예제를 사용해서 흐름을 정리합니다. -->
+
+<h2 id="5-핵심-정리">5. 핵심 정리</h2>
+
+<ul>
+  <li>사용자는 Nginx의 주소로 요청합니다.</li>
+  <li>Nginx는 설정된 Backend Server로 요청을 전달합니다.</li>
+  <li>Spring Boot가 생성한 응답은 Nginx를 거쳐 사용자에게 돌아갑니다.</li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="Nginx" /><category term="Nginx" /><category term="ReverseProxy" /><category term="SpringBoot" /><category term="DevOps" /><summary type="html"><![CDATA[리버스 프록시의 의미와 Nginx가 클라이언트 요청을 Spring Boot 서버로 전달하는 과정을 정리한다.]]></summary></entry><entry><title type="html">Nginx 기초와 동작 구조</title><link href="http://localhost:4000/devops/nginx/2026/08/24/nginx-basics/" rel="alternate" type="text/html" title="Nginx 기초와 동작 구조" /><published>2026-08-24T00:20:00+09:00</published><updated>2026-08-24T00:20:00+09:00</updated><id>http://localhost:4000/devops/nginx/2026/08/24/nginx-basics</id><content type="html" xml:base="http://localhost:4000/devops/nginx/2026/08/24/nginx-basics/"><![CDATA[<h2 id="1-nginx란">1. Nginx란?</h2>
+
+<p>Nginx는 클라이언트의 HTTP 요청을 받아 정적 파일을 제공하거나 요청을 다른 서버로 전달하는 Web Server입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
+  ↓ HTTP Request
+Nginx
+  ├─ HTML, CSS, JavaScript 제공
+  └─ Backend Server로 요청 전달
+</code></pre></div></div>
+
+<h2 id="2-nginx를-사용하는-이유">2. Nginx를 사용하는 이유</h2>
+
+<!-- 정적 파일 제공, 동시 요청 처리, 리버스 프록시 등의 내용을 정리합니다. -->
+
+<h2 id="3-nginx의-요청-처리-흐름">3. Nginx의 요청 처리 흐름</h2>
+
+<!-- Client부터 Nginx를 거쳐 응답이 돌아오는 과정을 정리합니다. -->
+
+<h2 id="4-기본-설정-파일-구조">4. 기본 설정 파일 구조</h2>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">root</span> <span class="n">/usr/share/nginx/html</span><span class="p">;</span>
+        <span class="kn">index</span> <span class="s">index.html</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="5-핵심-정리">5. 핵심 정리</h2>
+
+<ul>
+  <li>Nginx는 클라이언트의 HTTP 요청을 가장 먼저 받을 수 있습니다.</li>
+  <li>정적 파일을 직접 제공할 수 있습니다.</li>
+  <li>요청을 Spring Boot와 같은 Backend Server로 전달할 수 있습니다.</li>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="Nginx" /><category term="Nginx" /><category term="WebServer" /><category term="DevOps" /><category term="Network" /><summary type="html"><![CDATA[Nginx가 무엇인지 알아보고 Web Server, 정적 파일 제공, 요청 처리 구조를 정리한다.]]></summary></entry><entry><title type="html">Docker를 이해하기 위한 운영체제 기초</title><link href="http://localhost:4000/basic/os/2026/08/24/docker-os-basics/" rel="alternate" type="text/html" title="Docker를 이해하기 위한 운영체제 기초" /><published>2026-08-24T00:10:00+09:00</published><updated>2026-08-24T00:10:00+09:00</updated><id>http://localhost:4000/basic/os/2026/08/24/docker-os-basics</id><content type="html" xml:base="http://localhost:4000/basic/os/2026/08/24/docker-os-basics/"><![CDATA[<p>Docker를 이해하려면 먼저 <code class="language-plaintext highlighter-rouge">Process</code>, <code class="language-plaintext highlighter-rouge">Kernel</code>, <code class="language-plaintext highlighter-rouge">Memory</code>, <code class="language-plaintext highlighter-rouge">CPU</code>, <code class="language-plaintext highlighter-rouge">Thread</code>, <code class="language-plaintext highlighter-rouge">Filesystem</code>, <code class="language-plaintext highlighter-rouge">Network</code>가 무엇인지 알아야 합니다.</p>
+
+<p>이 글에서는 Docker를 공부할 때 자주 만나는 개념을 <strong>운영체제 기초 단어장</strong>처럼 정리합니다. 처음부터 모든 내용을 외우기보다는 각 개념이 어떻게 연결되는지 이해하는 것이 중요합니다.</p>
+
+<h2 id="1-program">1. Program</h2>
+
+<p><strong>프로그램 = 실행 가능한 코드가 저장된 파일</strong></p>
+
+<p>예:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nginx
+java
+python
+chrome
+</code></pre></div></div>
+
+<p>아직 실행되지 않았다면 디스크에 저장된 파일일 뿐입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSD
+
+/usr/bin/python
+/usr/bin/nginx
+/app/my-server.jar
+
+→ 아직 실행되지 않음
+</code></pre></div></div>
+
+<p>프로그램을 실행하면 <strong>Process</strong>가 됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Program
+   ↓ 실행
+Process
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="2-process">2. Process</h2>
+
+<p><strong>프로세스 = 실행 중인 프로그램</strong></p>
+
+<p>예를 들어:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python server.py
+</code></pre></div></div>
+
+<p>를 실행하면 Linux Kernel이 Python 프로세스를 만듭니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Program
+server.py
+   ↓
+Python 실행
+   ↓
+Process 생성
+</code></pre></div></div>
+
+<p>프로세스에는 보통 다음과 같은 정보와 자원이 포함됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process
+
+PID
+CPU 실행 상태
+Memory
+File Descriptor
+Network Socket
+환경 변수
+권한
+</code></pre></div></div>
+
+<p>예를 들어 Chrome을 3개 실행했다고 생각해보면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chrome 프로그램 파일
+        ↓
+ ┌──────┼──────┐
+ ↓      ↓      ↓
+PID 101 PID 102 PID 103
+Process Process Process
+</code></pre></div></div>
+
+<p>같은 프로그램이라도 <strong>여러 프로세스가 존재할 수 있습니다.</strong></p>
+
+<p>Docker에서 가장 중요한 연결점:</p>
+
+<blockquote>
+  <p><strong>컨테이너도 결국 Linux에서 실행되는 프로세스입니다.</strong></p>
+</blockquote>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker Container
+       ↓
+격리된 Process
+       ↓
+Linux Kernel
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="3-pid">3. PID</h2>
+
+<p><strong>PID = Process ID</strong></p>
+
+<p>Linux가 프로세스를 구분하기 위해 붙이는 번호입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PID 1    systemd
+PID 421  nginx
+PID 532  java
+PID 991  postgres
+</code></pre></div></div>
+
+<p>Linux에서:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps
+</code></pre></div></div>
+
+<p>를 입력하면 실행 중인 프로세스를 확인할 수 있습니다.</p>
+
+<p>Docker Container 내부에서는 PID Namespace 때문에 Host와 다른 PID 목록을 볼 수 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host
+
+PID 1000 nginx
+
+        ↓ PID Namespace
+
+Container 내부에서는
+
+PID 1 nginx
+</code></pre></div></div>
+
+<p>실제 프로세스는 같지만 <strong>보이는 프로세스 공간을 격리</strong>한 것입니다.</p>
+
+<hr />
+
+<h2 id="4-cpu">4. CPU</h2>
+
+<p><strong>CPU = 명령어를 실제로 실행하는 장치</strong></p>
+
+<p>프로그램 코드가:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>라면 CPU가 실제 계산을 수행합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Program Code
+     ↓
+Process
+     ↓
+CPU
+     ↓
+명령어 실행
+</code></pre></div></div>
+
+<p>CPU에는 Core가 있습니다.</p>
+
+<p>예:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>8 Core CPU
+
+Core 1
+Core 2
+Core 3
+Core 4
+Core 5
+Core 6
+Core 7
+Core 8
+</code></pre></div></div>
+
+<p>여러 프로세스가 CPU를 번갈아 사용합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CPU Core
+
+시간 →
+────────────────────────
+
+Chrome
+       Java
+             Python
+                    Chrome
+</code></pre></div></div>
+
+<p>이렇게 실행 대상을 바꾸는 것을 <strong>Context Switching</strong>이라고 합니다.</p>
+
+<hr />
+
+<h2 id="5-memory--ram">5. Memory / RAM</h2>
+
+<p><strong>Memory = 실행 중인 프로그램이 데이터를 임시로 저장하는 공간</strong></p>
+
+<p>디스크보다 훨씬 빠르지만 전원을 끄면 내용이 사라집니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSD
+프로그램 저장
+
+        ↓ 실행
+
+RAM
+Process 데이터 저장
+
+        ↓
+
+CPU
+계산
+</code></pre></div></div>
+
+<p>전체 구조:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SSD
+ │
+ │ 프로그램 읽기
+ ↓
+RAM
+ │
+ │ 데이터 전달
+ ↓
+CPU
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RAM 16GB
+
+Chrome       3GB
+IntelliJ     2GB
+Docker       4GB
+PostgreSQL   1GB
+OS           3GB
+기타         3GB
+</code></pre></div></div>
+
+<p>Docker에서:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">--memory</span><span class="o">=</span>512m nginx
+</code></pre></div></div>
+
+<p>처럼 메모리 사용량을 제한할 수 있습니다.</p>
+
+<p>이 제한은 <strong>cgroup</strong>을 통해 Kernel이 수행합니다.</p>
+
+<hr />
+
+<h2 id="6-kernel">6. Kernel</h2>
+
+<p>Docker를 이해할 때 특히 중요한 개념입니다.</p>
+
+<p><strong>Kernel = 운영체제의 핵심 부분으로, 하드웨어와 프로그램 사이를 관리하는 소프트웨어</strong></p>
+
+<p>쉽게 말하면 다음과 같습니다.</p>
+
+<blockquote>
+  <p>Kernel은 모든 프로세스와 하드웨어 자원을 관리하는 관리자입니다.</p>
+</blockquote>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Application
+
+Chrome
+Spring
+PostgreSQL
+Docker Container
+      ↓
+────────────────
+Linux Kernel
+────────────────
+CPU
+RAM
+Disk
+Network
+</code></pre></div></div>
+
+<p>프로그램이 직접 RAM이나 SSD를 마음대로 제어하면 위험합니다.</p>
+
+<p>그래서 Kernel이 중간에서 관리합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process
+
+"파일 읽어줘"
+"메모리 줘"
+"네트워크 보내줘"
+"새 Process 만들어줘"
+
+        ↓
+
+Kernel
+
+        ↓
+
+CPU / RAM / SSD / Network
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="7-user-space와-kernel-space">7. User Space와 Kernel Space</h2>
+
+<p>운영체제는 크게 두 영역으로 생각할 수 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User Space
+
+Chrome
+Java
+Python
+nginx
+PostgreSQL
+
+──────────────────
+
+Kernel Space
+
+Linux Kernel
+
+──────────────────
+
+Hardware
+
+CPU
+RAM
+SSD
+NIC
+</code></pre></div></div>
+
+<p>일반 프로그램은 <strong>User Space</strong>에서 실행됩니다.</p>
+
+<p>Kernel만 <strong>Kernel Space</strong>에서 실행됩니다.</p>
+
+<p>두 공간을 분리하는 이유는 일반 프로그램의 문제가 운영체제 전체에 영향을 주는 것을 막기 위해서입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chrome 버그 발생
+→ Chrome만 죽음
+
+Chrome이 Kernel 메모리에 직접 접근 가능
+→ OS 전체가 죽을 수도 있음
+</code></pre></div></div>
+
+<p>그래서 두 공간의 권한을 분리합니다.</p>
+
+<hr />
+
+<h2 id="8-system-call">8. System Call</h2>
+
+<p>그렇다면 프로그램은 Kernel의 기능을 어떻게 사용할까요?</p>
+
+<p>프로그램은 <strong>System Call</strong>을 사용합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Application
+    ↓
+System Call
+    ↓
+Kernel
+    ↓
+Hardware
+</code></pre></div></div>
+
+<p>대표적인 System Call:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>open()   → 파일 열기
+read()   → 데이터 읽기
+write()  → 데이터 쓰기
+fork()   → 프로세스 생성
+exec()   → 프로그램 실행
+socket() → 네트워크 Socket 생성
+</code></pre></div></div>
+
+<p>예:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"hello.txt"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Python 코드에서는 <code class="language-plaintext highlighter-rouge">open()</code>으로 보이지만 내부적으로는 Kernel에 파일을 열어달라고 요청합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Python
+   ↓
+open()
+   ↓
+System Call
+   ↓
+Linux Kernel
+   ↓
+Filesystem
+   ↓
+SSD
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="9-thread">9. Thread</h2>
+
+<p><strong>Thread = 프로세스 내부의 실행 흐름</strong></p>
+
+<p>프로세스 하나 안에 여러 Thread가 존재할 수 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process
+
+Memory
+Heap
+Files
+
+ ├── Thread 1
+ ├── Thread 2
+ ├── Thread 3
+ └── Thread 4
+</code></pre></div></div>
+
+<p>예를 들어 Spring 서버:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Process
+
+Thread 1 → 사용자 A 요청
+Thread 2 → 사용자 B 요청
+Thread 3 → 사용자 C 요청
+Thread 4 → 사용자 D 요청
+</code></pre></div></div>
+
+<p>Process와 Thread 차이:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>개념</th>
+      <th>의미</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Process</td>
+      <td>실행 중인 프로그램 단위</td>
+    </tr>
+    <tr>
+      <td>Thread</td>
+      <td>Process 내부의 실행 단위</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="10-stack">10. Stack</h2>
+
+<p><strong>Stack = 함수 호출과 지역 변수를 저장하는 메모리 영역</strong></p>
+
+<p>예:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">hello</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실행하면 대략:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Stack
+
+hello()
+ ├── x = 10
+ └── return address
+</code></pre></div></div>
+
+<p>함수가 끝나면 자동으로 제거됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>함수 호출
+
+Stack
+↓
+생성
+
+함수 종료
+↓
+제거
+</code></pre></div></div>
+
+<p>Thread마다 자신의 Stack을 가지고 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process
+
+Heap
+
+Thread 1 Stack
+Thread 2 Stack
+Thread 3 Stack
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="11-heap">11. Heap</h2>
+
+<p><strong>Heap = 동적으로 생성된 객체를 저장하는 메모리 영역</strong></p>
+
+<p>Java 예:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>대략:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Stack
+
+user
+ │
+ │ reference
+ ↓
+
+Heap
+
+User Object
+</code></pre></div></div>
+
+<p>Spring에서:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="nc">UserService</span>
+</code></pre></div></div>
+
+<p>같은 객체들도 JVM Heap에 존재합니다.</p>
+
+<p>Java에서는 Garbage Collector가 Heap을 관리합니다.</p>
+
+<hr />
+
+<h2 id="12-virtual-memory">12. Virtual Memory</h2>
+
+<p>Virtual Memory는 프로세스가 실제 RAM 주소를 직접 사용하지 않고 <strong>자신만의 메모리 공간이 있다고 생각하게 만드는 기술</strong>입니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process A
+
+0x0000
+0x0001
+0x0002
+...
+
+Process B
+
+0x0000
+0x0001
+0x0002
+...
+</code></pre></div></div>
+
+<p>둘 다 같은 주소를 사용하는 것처럼 보이지만 Kernel이 실제 RAM 주소로 변환합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process Virtual Address
+
+       ↓
+
+Kernel
+
+Page Table
+
+       ↓
+
+Physical RAM
+</code></pre></div></div>
+
+<p>덕분에:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process A
+</code></pre></div></div>
+
+<p>가</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process B
+</code></pre></div></div>
+
+<p>의 메모리를 마음대로 읽지 못합니다.</p>
+
+<p>즉 <strong>프로세스 격리의 핵심 기술 중 하나</strong>입니다.</p>
+
+<hr />
+
+<h2 id="13-file-system">13. File System</h2>
+
+<p><strong>File System = 파일과 디렉터리를 저장하고 관리하는 방식</strong></p>
+
+<p>Linux:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/
+├── bin
+├── etc
+├── home
+├── usr
+├── var
+└── tmp
+</code></pre></div></div>
+
+<p>Docker 컨테이너도 자기만의 파일시스템이 있는 것처럼 보인다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Container A
+
+/
+├── bin
+├── app
+└── etc
+
+Container B
+
+/
+├── bin
+├── app
+└── etc
+</code></pre></div></div>
+
+<p>하지만 실제로는 Linux Kernel의 Filesystem 기능과 Namespace를 이용합니다.</p>
+
+<hr />
+
+<h2 id="14-file-descriptor">14. File Descriptor</h2>
+
+<p>File Descriptor는 Linux에서 중요한 개념입니다.</p>
+
+<p><strong>File Descriptor = 프로세스가 열어놓은 파일이나 I/O 자원을 나타내는 번호</strong></p>
+
+<p>기본적으로:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 = stdin
+1 = stdout
+2 = stderr
+</code></pre></div></div>
+
+<p>그래서:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo </span>hello
+</code></pre></div></div>
+
+<p>를 실행하면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process
+   ↓
+stdout
+FD 1
+   ↓
+Terminal
+</code></pre></div></div>
+
+<p>Docker가 로그를 받을 수 있는 것도 이 구조와 관련이 있습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Container nginx
+
+stdout
+stderr
+   ↓
+containerd-shim
+   ↓
+Docker logs
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="15-socket">15. Socket</h2>
+
+<p><strong>Socket = 네트워크 통신을 위한 프로세스의 통신 endpoint</strong></p>
+
+<p>Spring 서버가:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>localhost:8080
+</code></pre></div></div>
+
+<p>에서 기다린다고 하면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Process
+
+Socket
+IP : 0.0.0.0
+Port : 8080
+</code></pre></div></div>
+
+<p>클라이언트가 연결하면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Browser
+   ↓
+TCP
+   ↓
+Socket :8080
+   ↓
+Spring Process
+</code></pre></div></div>
+
+<p>Docker에서는 Network Namespace를 이용해서 컨테이너마다 네트워크 환경을 분리합니다.</p>
+
+<hr />
+
+<h2 id="16-port">16. Port</h2>
+
+<p><strong>Port = 한 컴퓨터에서 어떤 프로세스로 네트워크 데이터를 전달할지 구분하는 번호</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Computer
+IP 192.168.0.10
+
+22   → SSH
+80   → nginx
+3306 → MySQL
+8080 → Spring
+</code></pre></div></div>
+
+<p>Docker:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-p</span> 8080:80 nginx
+</code></pre></div></div>
+
+<p>이면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host
+
+8080
+ ↓
+Docker Network
+ ↓
+Container
+80
+ ↓
+nginx
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="17-namespace">17. Namespace</h2>
+
+<p>Namespace는 Docker의 격리 구조를 이해할 때 매우 중요합니다.</p>
+
+<p><strong>Namespace = 프로세스가 볼 수 있는 시스템 자원을 격리하는 Linux Kernel 기능</strong></p>
+
+<p>예:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PID Namespace
+→ 다른 프로세스 안 보이게
+
+Network Namespace
+→ 네트워크 따로
+
+Mount Namespace
+→ 파일시스템 따로
+
+UTS Namespace
+→ hostname 따로
+
+IPC Namespace
+→ IPC 따로
+</code></pre></div></div>
+
+<p>이러한 격리를 통해 컨테이너는 다음과 같이 독립된 환경을 사용하는 것처럼 느낍니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"나 혼자 컴퓨터를 사용하는 것 같은데?"
+</code></pre></div></div>
+
+<p>라고 느끼게 만듭니다.</p>
+
+<hr />
+
+<h2 id="18-cgroup">18. cgroup</h2>
+
+<p><strong>cgroup = 프로세스가 사용할 수 있는 자원의 양을 제한하고 측정하는 Linux Kernel 기능</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Container A
+
+CPU ≤ 2 Core
+Memory ≤ 2GB
+
+Container B
+
+CPU ≤ 4 Core
+Memory ≤ 8GB
+</code></pre></div></div>
+
+<p>Kernel이 실제로 자원 사용량을 제한합니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process
+   ↓
+cgroup
+   ↓
+CPU / RAM 제한
+</code></pre></div></div>
+
+<p>그래서:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Namespace
+= 무엇을 볼 수 있는가
+
+cgroup
+= 얼마나 사용할 수 있는가
+</code></pre></div></div>
+
+<p>이렇게 구분하면 두 개념을 쉽게 이해할 수 있습니다.</p>
+
+<hr />
+
+<h2 id="19-context-switch">19. Context Switch</h2>
+
+<p>CPU 하나가 여러 프로세스를 실행할 때 아주 빠르게 실행 대상을 바꾼다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CPU
+
+시간 →
+
+Process A
+        Process B
+                  Process C
+                            Process A
+</code></pre></div></div>
+
+<p>전환할 때 CPU 상태를 저장하고 다시 불러와야 합니다.</p>
+
+<p>이 과정을 <strong>Context Switch</strong>라고 합니다.</p>
+
+<p>Context Switch가 너무 많으면 성능 비용, 즉 <strong>Overhead</strong>가 발생합니다.</p>
+
+<hr />
+
+<h2 id="20-전체-연결">20. 전체 연결</h2>
+
+<p>지금까지 살펴본 개념을 하나로 연결하면 다음과 같습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                   Application
+              Spring / nginx / DB
+                       │
+                       │ Process
+                       ▼
+              ┌─────────────────┐
+              │   User Space    │
+              │                 │
+              │ Process         │
+              │ ├─ Thread       │
+              │ ├─ Stack        │
+              │ ├─ Heap         │
+              │ ├─ Socket       │
+              │ └─ File         │
+              └────────┬────────┘
+                       │
+                   System Call
+                       │
+───────────────────────┼────────────────────
+                       ▼
+              ┌─────────────────┐
+              │  Linux Kernel   │
+              │                 │
+              │ Process 관리    │
+              │ Memory 관리     │
+              │ Filesystem      │
+              │ Network         │
+              │ Namespace       │
+              │ cgroup          │
+              └────────┬────────┘
+                       │
+───────────────────────┼────────────────────
+                       ▼
+              ┌─────────────────┐
+              │    Hardware     │
+              │                 │
+              │ CPU             │
+              │ RAM             │
+              │ SSD             │
+              │ Network Card    │
+              └─────────────────┘
+</code></pre></div></div>
+
+<p>그리고 Docker를 여기다 올리면:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Docker
+
+docker run nginx
+        ↓
+dockerd
+        ↓
+containerd
+        ↓
+runc
+        ↓
+
+Linux Kernel
+
+Namespace 설정
+cgroup 설정
+rootfs 설정
+        ↓
+
+nginx Process
+        ↓
+
+CPU / RAM / Network / Disk 사용
+</code></pre></div></div>
+
+<h2 id="학습-우선순위">학습 우선순위</h2>
+
+<p>처음부터 전부 외울 필요는 없습니다. <strong>아래 순서대로 개념의 연결 관계를 익히는 것을 추천합니다.</strong></p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. Program
+   ↓
+2. Process
+   ↓
+3. Thread
+   ↓
+4. CPU
+   ↓
+5. Memory
+   ↓
+6. Kernel
+   ↓
+7. User Space / Kernel Space
+   ↓
+8. System Call
+   ↓
+9. Filesystem
+   ↓
+10. Network / Socket / Port
+    ↓
+11. Namespace
+    ↓
+12. cgroup
+</code></pre></div></div>
+
+<p>특히 Docker를 공부하고 있다면 다음 관계를 먼저 기억하면 됩니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Program
+→ 실행하면 Process
+
+Process
+→ CPU에서 실행되고 Memory를 사용함
+
+Kernel
+→ Process와 CPU/Memory/Network를 관리함
+
+Docker Container
+→ Kernel이 실행하는 Process를
+   Namespace로 격리하고
+   cgroup으로 자원을 제한한 것
+</code></pre></div></div>
+
+<p>이 <strong>4줄이 Docker를 이해하기 위한 운영체제 기초의 핵심</strong>입니다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Basic" /><category term="OS" /><category term="OS" /><category term="Linux" /><category term="Docker" /><category term="Process" /><category term="Kernel" /><category term="Namespace" /><category term="cgroup" /><summary type="html"><![CDATA[Program, Process, CPU, Memory, Kernel부터 Namespace와 cgroup까지 Docker 학습에 필요한 운영체제 핵심 개념을 흐름에 따라 정리한다.]]></summary></entry><entry><title type="html">개발 문서를 읽기 위한 핵심 기술 용어</title><link href="http://localhost:4000/basic/cs/2026/08/24/essential-development-terms/" rel="alternate" type="text/html" title="개발 문서를 읽기 위한 핵심 기술 용어" /><published>2026-08-24T00:05:00+09:00</published><updated>2026-08-24T00:05:00+09:00</updated><id>http://localhost:4000/basic/cs/2026/08/24/essential-development-terms</id><content type="html" xml:base="http://localhost:4000/basic/cs/2026/08/24/essential-development-terms/"><![CDATA[<p>Docker, Linux, 백엔드, 네트워크를 배우는 단계에서는 개별 기술뿐 아니라 여러 분야에서 공통으로 사용하는 기술 용어를 알아두는 것이 중요합니다. 같은 단어가 여러 문서에서 반복되기 때문에 용어를 이해하면 새로운 설명도 훨씬 빠르게 읽을 수 있습니다.</p>
+
+<p>중요한 것은 모든 단어를 한 번에 외우는 것이 아닙니다. <strong>개발 문서에서 반복해서 나오는 표현을 문장 속에서 익히는 것</strong>이 목표입니다.</p>
+
+<h2 id="1-자주-나오는-핵심-기술-용어">1. 자주 나오는 핵심 기술 용어</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>용어</th>
+      <th>쉬운 뜻</th>
+      <th>자주 나오는 곳</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Overhead</td>
+      <td>본 작업 외에 추가로 드는 비용</td>
+      <td>성능, 네트워크, Docker</td>
+    </tr>
+    <tr>
+      <td>Latency</td>
+      <td>요청한 뒤 응답을 받을 때까지 걸리는 지연 시간</td>
+      <td>네트워크, API, DB</td>
+    </tr>
+    <tr>
+      <td>Throughput</td>
+      <td>일정 시간 동안 처리할 수 있는 작업량</td>
+      <td>서버, 네트워크, DB</td>
+    </tr>
+    <tr>
+      <td>Bottleneck</td>
+      <td>전체 성능을 제한하는 가장 느린 지점</td>
+      <td>성능 분석</td>
+    </tr>
+    <tr>
+      <td>I/O</td>
+      <td>파일, 디스크, 네트워크와 데이터를 주고받는 작업</td>
+      <td>DB, OS, Docker</td>
+    </tr>
+    <tr>
+      <td>Resource</td>
+      <td>CPU, 메모리, 디스크 같은 자원</td>
+      <td>OS, Cloud</td>
+    </tr>
+    <tr>
+      <td>Allocation</td>
+      <td>필요한 대상에 자원을 할당하는 것</td>
+      <td>메모리, CPU</td>
+    </tr>
+    <tr>
+      <td>Utilization</td>
+      <td>할당된 자원을 실제로 얼마나 사용하는지 나타내는 정도</td>
+      <td>모니터링</td>
+    </tr>
+    <tr>
+      <td>Isolation</td>
+      <td>여러 대상이 서로 영향을 덜 주도록 격리하는 것</td>
+      <td>Docker, VM</td>
+    </tr>
+    <tr>
+      <td>Abstraction</td>
+      <td>복잡한 내부 구현을 감추고 쉽게 사용할 수 있게 만든 구조</td>
+      <td>거의 모든 CS 분야</td>
+    </tr>
+    <tr>
+      <td>Layer</td>
+      <td>기능이나 구조를 역할에 따라 나눈 계층</td>
+      <td>Docker, Network, Software</td>
+    </tr>
+    <tr>
+      <td>Runtime</td>
+      <td>프로그램이 실제로 실행되는 환경 또는 실행 시점</td>
+      <td>Java, Docker</td>
+    </tr>
+    <tr>
+      <td>Dependency</td>
+      <td>어떤 구성 요소가 실행되기 위해 필요로 하는 다른 요소</td>
+      <td>Spring, 패키지 관리</td>
+    </tr>
+    <tr>
+      <td>Lifecycle</td>
+      <td>생성부터 실행과 종료까지 이어지는 과정</td>
+      <td>Spring, Docker</td>
+    </tr>
+    <tr>
+      <td>Persistent</td>
+      <td>프로세스나 컨테이너가 종료돼도 데이터가 유지되는 성질</td>
+      <td>DB, Volume</td>
+    </tr>
+    <tr>
+      <td>Ephemeral</td>
+      <td>일시적이며 종료나 교체 과정에서 사라질 수 있는 성질</td>
+      <td>Container, Cloud</td>
+    </tr>
+    <tr>
+      <td>Immutable</td>
+      <td>생성한 뒤 직접 변경하지 않고 새 버전으로 교체하는 성질</td>
+      <td>Docker Image, Infrastructure</td>
+    </tr>
+    <tr>
+      <td>State</td>
+      <td>현재 상태나 이전 작업을 이어가는 데 필요한 저장 정보</td>
+      <td>서버, DB</td>
+    </tr>
+    <tr>
+      <td>Stateless</td>
+      <td>요청 사이의 상태를 서버 내부에 유지하지 않는 구조</td>
+      <td>API, Cloud</td>
+    </tr>
+    <tr>
+      <td>Stateful</td>
+      <td>이전 상태를 저장하고 다음 작업에서도 사용하는 구조</td>
+      <td>DB, Session Server</td>
+    </tr>
+    <tr>
+      <td>Scalability</td>
+      <td>부하가 커졌을 때 자원을 늘려 대응할 수 있는 정도</td>
+      <td>Cloud, Architecture</td>
+    </tr>
+    <tr>
+      <td>Availability</td>
+      <td>사용자가 서비스를 정상적으로 사용할 수 있는 정도</td>
+      <td>서버 운영</td>
+    </tr>
+    <tr>
+      <td>Fault Tolerance</td>
+      <td>일부 구성 요소가 고장 나도 서비스를 계속 제공하는 능력</td>
+      <td>분산 시스템</td>
+    </tr>
+    <tr>
+      <td>Redundancy</td>
+      <td>장애에 대비해 서버나 경로 등을 중복으로 구성하는 것</td>
+      <td>서버, 네트워크</td>
+    </tr>
+    <tr>
+      <td>Concurrency</td>
+      <td>여러 작업의 실행 시간이 겹치도록 번갈아 처리하는 성질</td>
+      <td>Java, 서버</td>
+    </tr>
+    <tr>
+      <td>Parallelism</td>
+      <td>여러 작업을 여러 실행 자원에서 실제로 동시에 처리하는 성질</td>
+      <td>CPU, Thread</td>
+    </tr>
+    <tr>
+      <td>Blocking</td>
+      <td>진행 중인 작업이 끝날 때까지 호출한 쪽이 기다리는 방식</td>
+      <td>I/O, Java</td>
+    </tr>
+    <tr>
+      <td>Non-blocking</td>
+      <td>작업 완료를 기다리지 않고 즉시 제어권을 돌려주는 방식</td>
+      <td>서버, Async I/O</td>
+    </tr>
+    <tr>
+      <td>Synchronous</td>
+      <td>작업 완료를 현재 흐름에서 확인한 뒤 다음 단계로 진행하는 방식</td>
+      <td>API, Java</td>
+    </tr>
+    <tr>
+      <td>Asynchronous</td>
+      <td>작업 완료를 나중에 알림, 이벤트, 콜백 등으로 전달받는 방식</td>
+      <td>Message Queue, Event 처리</td>
+    </tr>
+    <tr>
+      <td>Cache</td>
+      <td>자주 쓰는 데이터를 더 빠른 저장 공간에 임시로 보관하는 것</td>
+      <td>Redis, CPU, Web</td>
+    </tr>
+    <tr>
+      <td>Serialization</td>
+      <td>객체나 데이터를 저장하거나 전송할 수 있는 형태로 변환하는 것</td>
+      <td>JSON, API</td>
+    </tr>
+    <tr>
+      <td>Deserialization</td>
+      <td>저장하거나 전송한 데이터를 프로그램이 사용할 형태로 복원하는 것</td>
+      <td>JSON, API</td>
+    </tr>
+    <tr>
+      <td>Idempotent</td>
+      <td>같은 요청을 여러 번 실행해도 시스템의 최종 상태가 같아지는 성질</td>
+      <td>HTTP, API</td>
+    </tr>
+    <tr>
+      <td>Atomic</td>
+      <td>작업 전체가 성공하거나 실패하며 일부만 반영된 중간 결과를 남기지 않는 성질</td>
+      <td>DB, Thread</td>
+    </tr>
+    <tr>
+      <td>Consistency</td>
+      <td>데이터가 정해진 규칙과 제약 조건을 만족하는 상태</td>
+      <td>DB, 분산 시스템</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-먼저-익힐-10개">2. 먼저 익힐 10개</h2>
+
+<p>처음부터 모든 단어를 외우기보다 다음 10개를 먼저 익히는 것이 좋습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Overhead
+Latency
+Throughput
+Bottleneck
+I/O
+Isolation
+Abstraction
+Runtime
+Dependency
+Lifecycle
+</code></pre></div></div>
+
+<p>이 단어들은 Docker와 Linux뿐 아니라 Spring, Kubernetes, AWS 문서에서도 반복해서 등장합니다.</p>
+
+<h2 id="3-문장을-용어-단위로-해석하기">3. 문장을 용어 단위로 해석하기</h2>
+
+<p>Docker 문서에서 다음과 같은 문장을 만났다고 가정해 봅니다.</p>
+
+<blockquote>
+  <p>Container isolation introduces relatively low runtime overhead.</p>
+</blockquote>
+
+<p>문장을 용어 단위로 나누면 이해하기 쉽습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Container isolation
+→ 컨테이너 격리
+
+runtime overhead
+→ 실행 중 발생하는 추가 비용
+
+relatively low
+→ 비교적 적다
+</code></pre></div></div>
+
+<p>따라서 전체 문장은 다음과 같이 해석할 수 있습니다.</p>
+
+<blockquote>
+  <p>컨테이너 격리는 실행 시 발생하는 추가 비용이 비교적 적다.</p>
+</blockquote>
+
+<p>영어 문장을 처음부터 완벽하게 번역하려 하기보다 익숙한 기술 용어를 먼저 찾으면 문서의 핵심을 더 빠르게 파악할 수 있습니다.</p>
+
+<h2 id="4-백엔드에서-자주-보는-표현">4. 백엔드에서 자주 보는 표현</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>High latency
+→ 응답이 느리다
+
+High throughput
+→ 일정 시간 동안 많은 요청을 처리할 수 있다
+
+I/O bottleneck
+→ 디스크 또는 네트워크 입출력이 전체 성능을 제한하고 있다
+
+Memory overhead
+→ 핵심 작업 외에 메모리가 추가로 사용된다
+
+Runtime dependency
+→ 프로그램을 실행할 때 필요한 의존 요소
+
+Persistent storage
+→ 프로세스나 컨테이너가 종료돼도 데이터가 유지되는 저장소
+</code></pre></div></div>
+
+<h2 id="5-단어보다-표현으로-기억하기">5. 단어보다 표현으로 기억하기</h2>
+
+<p>기술 용어는 영어사전처럼 단어 하나만 외우기보다 자주 함께 사용하는 동사와 묶어서 기억하는 것이 좋습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reduce overhead
+→ 오버헤드를 줄인다
+
+improve throughput
+→ 처리량을 높인다
+
+reduce latency
+→ 지연 시간을 줄인다
+
+allocate resources
+→ 자원을 할당한다
+
+isolate processes
+→ 프로세스를 격리한다
+
+persist data
+→ 데이터를 영속적으로 저장한다
+
+resolve dependencies
+→ 의존성을 해결한다
+
+manage lifecycle
+→ 생명주기를 관리한다
+</code></pre></div></div>
+
+<p>이런 표현은 개발 문서, 오류 메시지, 기술 발표에서 반복적으로 등장합니다.</p>
+
+<h2 id="6-단계별-학습-순서">6. 단계별 학습 순서</h2>
+
+<p>Docker 공부 흐름을 기준으로 다음 순서로 익히면 개념을 연결하기 쉽습니다.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1단계: 프로그램 실행의 기본
+Process → Thread → Daemon → Runtime → Lifecycle
+
+2단계: 실행 환경과 비용
+Resource → Allocation → Isolation → Overhead → I/O
+
+3단계: 성능
+Latency → Throughput → Bottleneck → Cache
+
+4단계: 상태와 데이터
+Stateful → Stateless → Persistent → Ephemeral → Immutable
+
+5단계: 여러 작업 처리
+Concurrency → Parallelism → Blocking → Non-blocking → Sync → Async
+</code></pre></div></div>
+
+<p>이 단어들이 익숙해지면 Docker뿐 아니라 Spring, Kubernetes, AWS, 시스템 설계 문서를 읽을 때 느끼는 난도가 크게 낮아집니다.</p>
+
+<h2 id="7-반드시-구분할-네-쌍">7. 반드시 구분할 네 쌍</h2>
+
+<h3 id="71-latency와-throughput">7.1 Latency와 Throughput</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Latency    = 요청 하나가 얼마나 빨리 끝나는가?
+Throughput = 일정 시간 동안 요청을 몇 개 처리하는가?
+</code></pre></div></div>
+
+<p>처리량이 높아도 요청 하나의 지연 시간은 길 수 있습니다. 반대로 요청 하나는 빨리 처리하지만 동시에 처리할 수 있는 요청 수가 적을 수도 있습니다.</p>
+
+<h3 id="72-concurrency와-parallelism">7.2 Concurrency와 Parallelism</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Concurrency = 여러 작업을 겹치는 시간 동안 다루는 구조
+Parallelism = 여러 작업을 실제로 같은 순간에 실행하는 구조
+</code></pre></div></div>
+
+<p>한 명의 요리사가 여러 요리를 번갈아 만드는 것은 Concurrency이고, 여러 요리사가 각 요리를 동시에 만드는 것은 Parallelism에 가깝습니다.</p>
+
+<h3 id="73-blocking과-non-blocking">7.3 Blocking과 Non-blocking</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Blocking     = 작업이 끝날 때까지 제어권을 돌려받지 못함
+Non-blocking = 작업 완료 여부와 관계없이 제어권을 바로 돌려받음
+</code></pre></div></div>
+
+<p>이 구분은 호출한 작업이 제어권을 언제 돌려주는지에 초점을 맞춥니다.</p>
+
+<h3 id="74-stateful과-stateless">7.4 Stateful과 Stateless</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Stateful  = 이전 요청의 상태를 저장하고 사용함
+Stateless = 각 요청을 독립적으로 처리함
+</code></pre></div></div>
+
+<p>DB처럼 데이터를 유지해야 하는 서비스는 Stateful한 경우가 많습니다. 요청마다 필요한 정보를 모두 전달받는 일반적인 REST API 서버는 Stateless하게 설계하기 좋습니다.</p>
+
+<hr />
+
+<p>핵심은 용어의 번역만 암기하는 것이 아니라 실제 문장과 상황 속에서 의미를 연결하는 것입니다. 모르는 기술을 만나더라도 공통 용어가 익숙하면 설명의 구조부터 파악할 수 있습니다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="Basic" /><category term="CS" /><category term="CS" /><category term="Backend" /><category term="Docker" /><category term="Linux" /><category term="Network" /><category term="Terminology" /><summary type="html"><![CDATA[Docker, Linux, 백엔드, 네트워크 문서에서 반복해서 등장하는 공통 기술 용어와 자주 쓰는 표현을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 11: Actuator와 애플리케이션 모니터링</title><link href="http://localhost:4000/java/spring/2026/08/23/spring-boot-actuator/" rel="alternate" type="text/html" title="Spring 기초 Part 11: Actuator와 애플리케이션 모니터링" /><published>2026-08-23T09:00:00+09:00</published><updated>2026-08-23T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/23/spring-boot-actuator</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/23/spring-boot-actuator/"><![CDATA[<h2 id="spring-기초-part-11-actuator와-애플리케이션-모니터링">Spring 기초 Part 11: Actuator와 애플리케이션 모니터링</h2>
 
 <blockquote>
   <p>Spring Boot Actuator는 실행 중인 애플리케이션의 상태와 성능 지표를 확인하고 관리할 수 있도록 운영용 엔드포인트를 제공한다.</p>
@@ -446,7 +2369,7 @@ Actuator 관리 Endpoint
   <li><a href="https://docs.spring.io/spring-boot/reference/actuator/endpoints.html">Spring Boot Actuator Endpoint 공식 문서</a></li>
   <li><a href="https://docs.spring.io/spring-boot/reference/actuator/metrics.html">Spring Boot Actuator Metrics 공식 문서</a></li>
   <li><a href="https://docs.spring.io/spring-boot/reference/actuator/monitoring.html">Spring Boot HTTP Monitoring 공식 문서</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring Boot" /><category term="Actuator" /><category term="Monitoring" /><category term="Metrics" /><category term="Micrometer" /><category term="Prometheus" /><summary type="html"><![CDATA[Spring Boot Actuator의 Health, Metrics, Prometheus 엔드포인트와 노출 설정, 운영 환경 보안 주의사항을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 10: 비동기 처리와 @Async</title><link href="http://0.0.0.0:4000/java/spring/2026/08/22/spring-async/" rel="alternate" type="text/html" title="Spring 기초 Part 10: 비동기 처리와 @Async" /><published>2026-08-22T00:00:00+00:00</published><updated>2026-08-22T00:00:00+00:00</updated><id>http://0.0.0.0:4000/java/spring/2026/08/22/spring-async</id><content type="html" xml:base="http://0.0.0.0:4000/java/spring/2026/08/22/spring-async/"><![CDATA[<h2 id="spring-기초-part-10-비동기-처리와-async">Spring 기초 Part 10: 비동기 처리와 <code class="language-plaintext highlighter-rouge">@Async</code></h2>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring Boot" /><category term="Actuator" /><category term="Monitoring" /><category term="Metrics" /><category term="Micrometer" /><category term="Prometheus" /><summary type="html"><![CDATA[Spring Boot Actuator의 Health, Metrics, Prometheus 엔드포인트와 노출 설정, 운영 환경 보안 주의사항을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 10: 비동기 처리와 @Async</title><link href="http://localhost:4000/java/spring/2026/08/22/spring-async/" rel="alternate" type="text/html" title="Spring 기초 Part 10: 비동기 처리와 @Async" /><published>2026-08-22T09:00:00+09:00</published><updated>2026-08-22T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/22/spring-async</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/22/spring-async/"><![CDATA[<h2 id="spring-기초-part-10-비동기-처리와-async">Spring 기초 Part 10: 비동기 처리와 <code class="language-plaintext highlighter-rouge">@Async</code></h2>
 
 <blockquote>
   <p>비동기 처리는 작업의 완료를 기다리는 대신 다른 실행 흐름에 작업을 맡기고, 호출한 쪽은 다음 작업을 진행하는 방식이다.</p>
@@ -910,7 +2833,7 @@ sequenceDiagram
 
 <ul>
   <li><a href="https://docs.spring.io/spring-framework/reference/integration/scheduling.html">Spring Framework Task Execution and Scheduling</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Async" /><category term="EnableAsync" /><category term="CompletableFuture" /><category term="TaskExecutor" /><category term="Thread Pool" /><summary type="html"><![CDATA[동기와 비동기, Thread와 Executor의 차이를 이해하고 Spring @Async의 설정, 반환값, 예외와 트랜잭션 경계를 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어</title><link href="http://0.0.0.0:4000/java/spring/2026/08/21/jpa-transaction-concurrency/" rel="alternate" type="text/html" title="Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어" /><published>2026-08-21T00:00:00+00:00</published><updated>2026-08-21T00:00:00+00:00</updated><id>http://0.0.0.0:4000/java/spring/2026/08/21/jpa-transaction-concurrency</id><content type="html" xml:base="http://0.0.0.0:4000/java/spring/2026/08/21/jpa-transaction-concurrency/"><![CDATA[<h2 id="spring-기초-part-9-jpa-트랜잭션과-동시성-제어">Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어</h2>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Async" /><category term="EnableAsync" /><category term="CompletableFuture" /><category term="TaskExecutor" /><category term="Thread Pool" /><summary type="html"><![CDATA[동기와 비동기, Thread와 Executor의 차이를 이해하고 Spring @Async의 설정, 반환값, 예외와 트랜잭션 경계를 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어</title><link href="http://localhost:4000/java/spring/2026/08/21/jpa-transaction-concurrency/" rel="alternate" type="text/html" title="Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어" /><published>2026-08-21T09:00:00+09:00</published><updated>2026-08-21T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/21/jpa-transaction-concurrency</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/21/jpa-transaction-concurrency/"><![CDATA[<h2 id="spring-기초-part-9-jpa-트랜잭션과-동시성-제어">Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어</h2>
 
 <blockquote>
   <p>트랜잭션은 여러 데이터베이스 작업을 하나의 성공 또는 실패 단위로 묶는 것이다.</p>
@@ -1618,7 +3541,7 @@ B가 version = 1 조건으로 수정
 <ul>
   <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative.html">Spring Framework 선언적 트랜잭션 공식 문서</a></li>
   <li><a href="https://docs.spring.io/spring-framework/reference/data-access/transaction/declarative/tx-propagation.html">Spring Framework 트랜잭션 전파 공식 문서</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="JPA" /><category term="Transaction" /><category term="Transactional" /><category term="Concurrency" /><category term="Lock" /><summary type="html"><![CDATA[Transactional의 동작, 커밋과 롤백, 전파, 격리 수준, 낙관적 락과 비관적 락을 하나의 흐름으로 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 8: AOP와 공통 관심사 분리</title><link href="http://0.0.0.0:4000/java/spring/2026/08/20/spring-aop/" rel="alternate" type="text/html" title="Spring 기초 Part 8: AOP와 공통 관심사 분리" /><published>2026-08-20T00:00:00+00:00</published><updated>2026-08-20T00:00:00+00:00</updated><id>http://0.0.0.0:4000/java/spring/2026/08/20/spring-aop</id><content type="html" xml:base="http://0.0.0.0:4000/java/spring/2026/08/20/spring-aop/"><![CDATA[<h2 id="spring-기초-part-8-aop와-공통-관심사-분리">Spring 기초 Part 8: AOP와 공통 관심사 분리</h2>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="JPA" /><category term="Transaction" /><category term="Transactional" /><category term="Concurrency" /><category term="Lock" /><summary type="html"><![CDATA[Transactional의 동작, 커밋과 롤백, 전파, 격리 수준, 낙관적 락과 비관적 락을 하나의 흐름으로 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 8: AOP와 공통 관심사 분리</title><link href="http://localhost:4000/java/spring/2026/08/20/spring-aop/" rel="alternate" type="text/html" title="Spring 기초 Part 8: AOP와 공통 관심사 분리" /><published>2026-08-20T09:00:00+09:00</published><updated>2026-08-20T09:00:00+09:00</updated><id>http://localhost:4000/java/spring/2026/08/20/spring-aop</id><content type="html" xml:base="http://localhost:4000/java/spring/2026/08/20/spring-aop/"><![CDATA[<h2 id="spring-기초-part-8-aop와-공통-관심사-분리">Spring 기초 Part 8: AOP와 공통 관심사 분리</h2>
 
 <blockquote>
   <p>AOP는 여러 기능에서 반복되는 공통 관심사를 핵심 비즈니스 로직과 분리하는 프로그래밍 방식이다.</p>
@@ -2106,1974 +4029,4 @@ Target
 
 <ul>
   <li><a href="https://docs.spring.io/spring-framework/reference/core/aop.html">Spring Framework AOP 공식 문서</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="AOP" /><category term="Aspect" /><category term="Pointcut" /><category term="Advice" /><category term="Proxy" /><summary type="html"><![CDATA[Aspect, Pointcut, Advice, JoinPoint의 의미와 Before, After, Around Advice가 Proxy를 통해 동작하는 흐름을 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</title><link href="http://0.0.0.0:4000/java/spring/2026/08/19/spring-proxy/" rel="alternate" type="text/html" title="Spring 기초 Part 7: Proxy 패턴과 Spring Proxy" /><published>2026-08-19T00:00:00+00:00</published><updated>2026-08-19T00:00:00+00:00</updated><id>http://0.0.0.0:4000/java/spring/2026/08/19/spring-proxy</id><content type="html" xml:base="http://0.0.0.0:4000/java/spring/2026/08/19/spring-proxy/"><![CDATA[<h2 id="spring-기초-part-7-proxy-패턴과-spring-proxy">Spring 기초 Part 7: Proxy 패턴과 Spring Proxy</h2>
-
-<blockquote>
-  <p>Proxy는 Client와 실제 객체 사이에서 요청을 먼저 받고, 실제 메서드 호출 전후에 부가 기능을 수행하는 대리 객체다.</p>
-</blockquote>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client
-  → Proxy
-  → 실제 객체
-</code></pre></div></div>
-
-<p>Proxy를 이해하면 <code class="language-plaintext highlighter-rouge">@Transactional</code>, <code class="language-plaintext highlighter-rouge">@Async</code>, <code class="language-plaintext highlighter-rouge">@Cacheable</code>, Spring AOP가 왜 같은 클래스의 내부 호출에서 동작하지 않을 수 있는지도 이해할 수 있다.</p>
-
-<hr />
-
-<h3 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>정의</th>
-      <th>쉽게 말하면</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Client</td>
-      <td>기능을 요청하는 객체</td>
-      <td>Service를 호출하는 Controller</td>
-    </tr>
-    <tr>
-      <td>Subject</td>
-      <td>Proxy와 실제 객체가 함께 따르는 인터페이스</td>
-      <td>두 객체의 공통 사용법</td>
-    </tr>
-    <tr>
-      <td>RealSubject</td>
-      <td>핵심 기능을 실제로 처리하는 객체</td>
-      <td>실제 Service</td>
-    </tr>
-    <tr>
-      <td>Proxy</td>
-      <td>실제 객체 대신 요청을 먼저 받는 객체</td>
-      <td>대리인</td>
-    </tr>
-    <tr>
-      <td>Target</td>
-      <td>Proxy가 감싸고 있는 실제 대상 객체</td>
-      <td>Proxy 내부의 Service</td>
-    </tr>
-    <tr>
-      <td>Wrapping</td>
-      <td>한 객체가 다른 객체를 내부에 보관하는 구조</td>
-      <td>Proxy가 Target을 감쌈</td>
-    </tr>
-    <tr>
-      <td>Delegation</td>
-      <td>받은 작업을 다른 객체에 넘기는 것</td>
-      <td>Proxy가 실제 작업을 Target에 전달</td>
-    </tr>
-    <tr>
-      <td>전처리</td>
-      <td>실제 메서드 실행 전에 수행하는 작업</td>
-      <td>트랜잭션 시작, 권한 확인</td>
-    </tr>
-    <tr>
-      <td>후처리</td>
-      <td>실제 메서드 실행 후 수행하는 작업</td>
-      <td>커밋, 로그 기록</td>
-    </tr>
-    <tr>
-      <td>동적 Proxy</td>
-      <td>실행 시점에 자동으로 생성되는 Proxy</td>
-      <td>개발자가 Proxy 클래스를 직접 작성하지 않음</td>
-    </tr>
-    <tr>
-      <td>Bean</td>
-      <td>Spring Container가 생성하고 관리하는 객체</td>
-      <td>Spring이 보관하고 주입하는 객체</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="2-proxy-패턴의-기본-구조">2. Proxy 패턴의 기본 구조</h3>
-
-<p>Proxy와 실제 객체는 같은 인터페이스를 사용한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserService</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="nf">findUserName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="실제-객체">실제 객체</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="nc">UserService</span> <span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">findUserName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"실제 사용자 조회"</span><span class="o">);</span>
-        <span class="k">return</span> <span class="s">"민형"</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="proxy-객체">Proxy 객체</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceProxy</span> <span class="kd">implements</span> <span class="nc">UserService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">UserService</span> <span class="n">target</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">UserServiceProxy</span><span class="o">(</span><span class="nc">UserService</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">findUserName</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"조회 시작"</span><span class="o">);</span>
-
-        <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">findUserName</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"조회 종료"</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="client">Client</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyExample</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">UserService</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserServiceImpl</span><span class="o">();</span>
-        <span class="nc">UserService</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserServiceProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
-
-        <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="na">findUserName</span><span class="o">(</span><span class="mi">1L</span><span class="o">);</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Client가 proxy.findUserName() 호출
-          ↓
-Proxy가 "조회 시작" 출력
-          ↓
-target.findUserName()에 실제 작업 위임
-          ↓
-Proxy가 "조회 종료" 출력
-          ↓
-결과 반환
-</code></pre></div></div>
-
-<p>Proxy 안의 다음 코드가 위임이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="na">findUserName</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="3-proxy를-사용하는-이유">3. Proxy를 사용하는 이유</h3>
-
-<p>회원 조회 Service의 핵심 목적은 회원을 조회하는 것이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>여기에 로그, 실행 시간, 권한 검사, 트랜잭션 코드를 모두 넣으면 핵심 로직이 흐려진다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">User</span> <span class="nf">findUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">long</span> <span class="n">startTime</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
-    <span class="n">checkPermission</span><span class="o">();</span>
-    <span class="n">beginTransaction</span><span class="o">();</span>
-
-    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
-
-    <span class="n">commitTransaction</span><span class="o">();</span>
-    <span class="n">logExecutionTime</span><span class="o">(</span><span class="n">startTime</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Proxy가 공통 기능을 맡으면 실제 Service는 업무 로직에 집중할 수 있다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>실제 Service</th>
-      <th>Proxy</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>회원 조회, 주문 처리, 재고 감소</td>
-      <td>로그, 권한, 트랜잭션, 캐시</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Proxy가 처리할 수 있는 기능은 다음과 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>기능</th>
-      <th>Proxy가 하는 일</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>트랜잭션</td>
-      <td>메서드 전후에 시작, 커밋, 롤백 처리</td>
-    </tr>
-    <tr>
-      <td>로그</td>
-      <td>메서드 실행 정보 기록</td>
-    </tr>
-    <tr>
-      <td>권한 검사</td>
-      <td>실제 메서드 실행 전에 접근 권한 확인</td>
-    </tr>
-    <tr>
-      <td>캐시</td>
-      <td>저장된 결과가 있으면 실제 메서드 호출 생략</td>
-    </tr>
-    <tr>
-      <td>실행 시간 측정</td>
-      <td>시작과 종료 시각 비교</td>
-    </tr>
-    <tr>
-      <td>비동기 실행</td>
-      <td>작업을 Executor에 제출</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="4-bean과-proxy의-관계">4. Bean과 Proxy의 관계</h3>
-
-<p>Bean은 Spring Container가 관리하는 객체다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TransferService</span> <span class="o">{</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">@Service</code>가 붙었다고 항상 Proxy가 생성되는 것은 아니다. Spring이 적용해야 할 부가 기능을 발견했을 때 Proxy로 감쌀 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TransferService</span> <span class="o">{</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">transfer</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 출금과 입금</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Component Scan
-   ↓
-TransferService 객체 생성
-   ↓
-@Transactional 적용 대상 확인
-   ↓
-Proxy가 Target을 감쌈
-   ↓
-다른 Bean에는 Proxy가 주입됨
-</code></pre></div></div>
-
-<p>Controller가 <code class="language-plaintext highlighter-rouge">TransferService</code>를 호출한다고 생각하지만, 실제 참조가 Proxy일 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Controller
-   ↓
-TransferService Proxy
-   ↓ 트랜잭션 시작
-실제 TransferService
-   ↓
-Proxy가 커밋 또는 롤백
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="5-spring의-동적-proxy">5. Spring의 동적 Proxy</h3>
-
-<p>Spring은 실행 시점에 Proxy 객체를 자동으로 만들 수 있다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>JDK Dynamic Proxy</th>
-      <th>CGLIB Proxy</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>기준</td>
-      <td>인터페이스</td>
-      <td>클래스</td>
-    </tr>
-    <tr>
-      <td>인터페이스 필요 여부</td>
-      <td>필요</td>
-      <td>없어도 됨</td>
-    </tr>
-    <tr>
-      <td>생성 방식</td>
-      <td>Reflection을 이용한 Proxy 생성</td>
-      <td>대상 클래스를 상속한 하위 클래스 생성</td>
-    </tr>
-    <tr>
-      <td>주요 제약</td>
-      <td>인터페이스에 선언된 호출 중심</td>
-      <td><code class="language-plaintext highlighter-rouge">final</code> 클래스와 <code class="language-plaintext highlighter-rouge">final</code> 메서드 재정의 불가</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>Spring Boot에서는 클래스 기반 Proxy가 널리 사용되지만, 실제 방식은 설정과 대상 구조에 따라 달라질 수 있다. 코드를 작성할 때 특정 Proxy 방식에 과도하게 의존하지 않는 것이 좋다.</p>
-
-<hr />
-
-<h3 id="6-transactional-호출-흐름">6. <code class="language-plaintext highlighter-rouge">@Transactional</code> 호출 흐름</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Transactional</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateUser</span><span class="o">(</span><span class="nc">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">).</span><span class="na">orElseThrow</span><span class="o">();</span>
-    <span class="n">user</span><span class="o">.</span><span class="na">changeName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>개발자가 작성한 메서드에는 회원 수정 로직만 있다. 트랜잭션 처리는 Proxy가 앞뒤에서 수행한다.</p>
-
-<section class="mermaid-card">
-  <header class="mermaid-head">
-    <span>Transactional Proxy 호출 흐름</span>
-  </header>
-  <div class="mermaid js-mermaid">
-flowchart TD
-    C[Controller] --&gt; P[Transactional Proxy]
-    P --&gt; B[트랜잭션 시작]
-    B --&gt; T[실제 updateUser 실행]
-    T --&gt; Q{정상 종료?}
-    Q --&gt;|예| COMMIT[Commit]
-    Q --&gt;|아니오| ROLLBACK[Rollback]
-    COMMIT --&gt; C
-    ROLLBACK --&gt; C
-</div>
-</section>
-
-<script>
-  (function () {
-    function render() {
-      if (window.mermaid && window.mermaid.run) {
-        window.mermaid.run({ querySelector: '.js-mermaid' });
-      }
-    }
-
-    if (!window.__mermaidLibInit) {
-      window.__mermaidLibInit = true;
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
-      script.async = true;
-      script.onload = function () {
-        if (window.mermaid && window.mermaid.initialize) {
-          window.mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-        }
-        render();
-      };
-      document.head.appendChild(script);
-    } else {
-      render();
-    }
-  })();
-</script>
-
-<hr />
-
-<h3 id="7-자기-호출-문제">7. 자기 호출 문제</h3>
-
-<p>Spring Proxy는 <strong>Proxy를 거쳐 들어오는 호출</strong>을 가로챈다.</p>
-
-<p>같은 객체 안에서 자신의 메서드를 직접 호출하면 Proxy를 거치지 않는다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PaymentService</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">order</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">pay</span><span class="o">();</span> <span class="c1">// 같은 객체의 내부 호출</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pay</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 결제 처리</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>외부 호출
-→ Proxy
-→ @Transactional 적용 가능
-
-같은 객체의 pay() 내부 호출
-→ Proxy를 다시 거치지 않음
-→ 새 트랜잭션 설정이 적용되지 않을 수 있음
-</code></pre></div></div>
-
-<p>이것을 Self-invocation, 자기 호출 문제라고 한다.</p>
-
-<p>트랜잭션 경계가 분명히 달라야 한다면 별도 Bean으로 분리하는 방법을 사용할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PaymentProcessor</span> <span class="o">{</span>
-
-    <span class="nd">@Transactional</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">pay</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 결제 처리</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderService</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">PaymentProcessor</span> <span class="n">paymentProcessor</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">OrderService</span><span class="o">(</span><span class="nc">PaymentProcessor</span> <span class="n">paymentProcessor</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">paymentProcessor</span> <span class="o">=</span> <span class="n">paymentProcessor</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">order</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">paymentProcessor</span><span class="o">.</span><span class="na">pay</span><span class="o">();</span> <span class="c1">// 다른 Bean의 Proxy를 통해 호출</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="8-proxy와-aop의-차이">8. Proxy와 AOP의 차이</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>역할</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AOP</td>
-      <td>어떤 공통 기능을 어디에 적용할지 정의하는 설계 방식</td>
-    </tr>
-    <tr>
-      <td>Proxy</td>
-      <td>실제 메서드 호출을 가로채 공통 기능을 실행하는 객체</td>
-    </tr>
-    <tr>
-      <td>Spring</td>
-      <td>AOP 설정을 읽고 Proxy를 자동 생성하고 관리</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>AOP가 곧 Proxy인 것은 아니다. Spring AOP가 공통 기능을 적용하는 핵심 구현 방식으로 Proxy를 사용하는 것이다.</p>
-</blockquote>
-
-<hr />
-
-<h3 id="핵심-정리">핵심 정리</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>개념</th>
-      <th>한 줄 정리</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Proxy</td>
-      <td>실제 객체 대신 요청을 먼저 받는 대리 객체</td>
-    </tr>
-    <tr>
-      <td>Target</td>
-      <td>Proxy가 감싸고 있는 실제 객체</td>
-    </tr>
-    <tr>
-      <td>Wrapping</td>
-      <td>Proxy가 Target을 내부에 보관하는 구조</td>
-    </tr>
-    <tr>
-      <td>Delegation</td>
-      <td>Proxy가 실제 작업을 Target에 전달하는 것</td>
-    </tr>
-    <tr>
-      <td>동적 Proxy</td>
-      <td>실행 시점에 자동으로 생성되는 Proxy</td>
-    </tr>
-    <tr>
-      <td>자기 호출</td>
-      <td>같은 객체 내부 호출이 Proxy를 거치지 않는 문제</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Proxy의 핵심은 실제 업무 코드를 크게 바꾸지 않고 메서드 호출 앞뒤에 공통 기능을 추가하는 것이다.</p>
-</blockquote>
-
-<h3 id="참고-자료">참고 자료</h3>
-
-<ul>
-  <li><a href="https://docs.spring.io/spring-framework/reference/core/aop/proxying.html">Spring Framework AOP Proxying Mechanisms</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="Proxy" /><category term="Dynamic Proxy" /><category term="JDK Proxy" /><category term="CGLIB" /><category term="Bean" /><summary type="html"><![CDATA[대리 객체인 Proxy가 실제 객체의 호출을 감싸는 원리와 Spring의 JDK Dynamic Proxy, CGLIB, 자기 호출 문제를 정리한다.]]></summary></entry><entry><title type="html">현대 LLM 워크플로의 패턴</title><link href="http://0.0.0.0:4000/deep_learning/llm/2026/08/18/llm-workflow-patterns/" rel="alternate" type="text/html" title="현대 LLM 워크플로의 패턴" /><published>2026-08-18T15:00:00+00:00</published><updated>2026-08-18T15:00:00+00:00</updated><id>http://0.0.0.0:4000/deep_learning/llm/2026/08/18/llm-workflow-patterns</id><content type="html" xml:base="http://0.0.0.0:4000/deep_learning/llm/2026/08/18/llm-workflow-patterns/"><![CDATA[<h1 id="현대-llm-워크플로의-패턴">현대 LLM 워크플로의 패턴</h1>
-
-<blockquote>
-  <p>LLM 서비스는 도대체 어떻게 작동하는 걸까? 궁금해서 참을 수가 없단 말이지!</p>
-</blockquote>
-
-<p>LLM 애플리케이션을 만들 때는 요청을 한 번 받고 바로 답을 내는 경우도 있지만, 실제로는 입력을 분류하고, 작업을 나누고, 결과를 평가하는 흐름으로 구성하는 경우가 많다.</p>
-
-<h2 id="자주-나오는-workflow-패턴">자주 나오는 Workflow 패턴</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>패턴</th>
-      <th>설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Routing</td>
-      <td>입력을 분류해서 적절한 처리 경로 하나를 선택한다.</td>
-    </tr>
-    <tr>
-      <td>Parallelization</td>
-      <td>서로 의존하지 않는 AI 작업을 동시에 실행한다.</td>
-    </tr>
-    <tr>
-      <td>Evaluator-Optimizer</td>
-      <td>결과를 평가하고 피드백을 기반으로 반복 개선한다.</td>
-    </tr>
-    <tr>
-      <td>Orchestrator-Workers</td>
-      <td>큰 작업을 여러 하위 작업으로 분해하고 각각 처리한 후 합친다.</td>
-    </tr>
-    <tr>
-      <td>Chaining</td>
-      <td>앞 단계의 출력을 다음 단계의 입력으로 연결한다.</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2 id="개념적으로-이런-구조">개념적으로 이런 구조</h2>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자 요청
-  ↓
-Routing
-  ↓
-계획 / 작업 분해
-  ↓
-┌───────────────┐
-│ Worker A      │
-│ Worker B      │
-│ Worker C      │
-└───────────────┘
-  ↓
-결과 통합
-  ↓
-Evaluator
-  ↓
-필요하면 재시도
-  ↓
-최종 응답
-</code></pre></div></div>
-
-<p>이건 지금도 LLM 애플리케이션에서 아주 전형적인 구조다.</p>
-
-<p>다만, 실제 현대 시스템에서는 여기에 보통 다음 요소가 추가된다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LLM Workflow
-  + Tool Calling
-  + RAG
-  + Memory / State
-  + Retry / Timeout
-  + Observability
-  + Guardrails
-  + Model Selection
-  + Caching
-</code></pre></div></div>
-
-<p>현대적인 구조에서는 Spring Boot에서 했던 기능에 더해 다음과 같은 Tool을 사용할 수 있다.</p>
-
-<ul>
-  <li>웹 검색</li>
-  <li>DB 조회</li>
-  <li>사내 문서 검색</li>
-  <li>Python 실행</li>
-  <li>API 호출</li>
-  <li>파일 읽기</li>
-</ul>
-
-<h2 id="요즘은-이런-것도-만들-수-있다">요즘은 이런 것도 만들 수 있다</h2>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사용자
-  ↓
-Router
-  ↓
-Planner
-  ↓
-Workers
-  ├─ Search Agent
-  ├─ SQL Agent
-  ├─ Code Agent
-  └─ Document Agent
-  ↓
-Aggregator
-  ↓
-Evaluator
-  ↓
-Final Answer
-</code></pre></div></div>
-
-<p>이런 형태가 된다.</p>
-
-<h2 id="정해진-로직으로-처리하는-workflow">정해진 로직으로 처리하는 Workflow</h2>
-
-<p>다만 나는 로직을 정해놓았는데,</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>분류
-  → switch
-  → 특정 처리
-</code></pre></div></div>
-
-<p>또는</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>계획
-  → worker 실행
-  → 통합
-</code></pre></div></div>
-
-<p>이런 방식으로 처리한다면 <code class="language-plaintext highlighter-rouge">deterministic workflow</code> 또는 <code class="language-plaintext highlighter-rouge">LLM workflow</code>라고 생각하면 된다.</p>
-
-<h2 id="llm이-다음-행동을-직접-선택하는-agent">LLM이 다음 행동을 직접 선택하는 Agent</h2>
-
-<p>다만 모던한 Agentic 시스템은 조금 다르게 동작한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LLM: "검색이 필요하겠군"
-  ↓
-검색 Tool 호출
-  ↓
-LLM: "정보가 부족하군"
-  ↓
-다른 Tool 호출
-  ↓
-LLM: "이제 답할 수 있겠다"
-</code></pre></div></div>
-
-<p>이렇게 LLM이 알아서 다음 행동을 스스로 선택한다.</p>
-
-<p>요즘은 이런 식으로 가는 중이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>고정 Workflow                                      자율 Agent
-──────────────────────────────────────────────────────→
-Chaining
-Routing
-Parallel
-Evaluator
-Orchestrator
-                      Tool Calling
-                              Planner
-                                      Agent Loop
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">WorkflowPatterns.java</code>에서 생각해볼 수 있는 위치는 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Chaining
-Routing
-Parallel
-Evaluator
-Orchestrator
-        ↑
-     현재 위치
-</code></pre></div></div>
-
-<p>자율 Agent를 만드는 것보다 가능하면 Workflow로 통제하고, 필요한 부분만 Agent화하는 방식이 안정성, 비용, 디버깅 측면에서 훨씬 유리한 경우가 있다.</p>
-
-<blockquote>
-  <p>항상 자유가 좋은 결과를 내주는 것은 아니다.</p>
-</blockquote>
-
-<p>가끔은 행동에 제약을 걸어서 예측 가능한 결과를 낼 수 있어야 한다.</p>
-
-<p>예를 들어 다음처럼 반복 횟수를 Java 코드에서 제한하는 것은 상당히 프로덕션 지향적인 사고다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">round</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">round</span> <span class="o">&lt;=</span> <span class="n">maxRounds</span><span class="o">;</span> <span class="n">round</span><span class="o">++)</span> <span class="o">{</span>
-    <span class="c1">// 작업 실행과 평가</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>LLM에게 그냥 “좋아질 때까지 반복해”라고 하는 것은 결과를 예측하기도 어렵고, 무한 루프 문제가 생길 수도 있다.</p>
-
-<h2 id="학습-순서">학습 순서</h2>
-
-<ol>
-  <li>Tool Calling</li>
-  <li>RAG</li>
-  <li>Memory / State</li>
-  <li>Agent Loop</li>
-  <li>Observability</li>
-  <li>Guardrails</li>
-  <li>Model Routing</li>
-</ol>]]></content><author><name>Min Hyeong Lee</name></author><category term="Deep_Learning" /><category term="LLM" /><category term="Deep Learning" /><category term="LLM" /><category term="Workflow" /><category term="Agent" /><summary type="html"><![CDATA[Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다.]]></summary></entry><entry><title type="html">Spring 기초 Part 6: JPA 연관관계 매핑</title><link href="http://0.0.0.0:4000/java/spring/2026/08/18/jpa-relationship-mapping/" rel="alternate" type="text/html" title="Spring 기초 Part 6: JPA 연관관계 매핑" /><published>2026-08-18T00:00:00+00:00</published><updated>2026-08-18T00:00:00+00:00</updated><id>http://0.0.0.0:4000/java/spring/2026/08/18/jpa-relationship-mapping</id><content type="html" xml:base="http://0.0.0.0:4000/java/spring/2026/08/18/jpa-relationship-mapping/"><![CDATA[<h2 id="spring-기초-part-6-jpa-연관관계-매핑">Spring 기초 Part 6: JPA 연관관계 매핑</h2>
-
-<blockquote>
-  <p>연관관계 매핑은 자바 객체의 참조와 데이터베이스 테이블의 외래키를 연결하는 작업이다.</p>
-</blockquote>
-
-<p>자바 객체는 다른 객체를 필드로 참조한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>
-</code></pre></div></div>
-
-<p>관계형 데이터베이스는 외래키로 다른 테이블을 참조한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>members.team_id → teams.id
-</code></pre></div></div>
-
-<p>JPA는 이 두 관계를 어노테이션으로 연결한다.</p>
-
-<hr />
-
-<h3 id="1-먼저-알아둘-단어">1. 먼저 알아둘 단어</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>용어</th>
-      <th>정의</th>
-      <th>쉬운 설명</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>기본키(PK)</td>
-      <td>테이블의 각 행을 유일하게 구분하는 값</td>
-      <td><code class="language-plaintext highlighter-rouge">teams.id</code></td>
-    </tr>
-    <tr>
-      <td>외래키(FK)</td>
-      <td>다른 테이블의 기본키를 참조하는 컬럼</td>
-      <td><code class="language-plaintext highlighter-rouge">members.team_id</code></td>
-    </tr>
-    <tr>
-      <td>연관관계</td>
-      <td>한 객체나 테이블이 다른 대상과 연결된 관계</td>
-      <td>회원이 팀에 소속됨</td>
-    </tr>
-    <tr>
-      <td>다중성</td>
-      <td>관계에 참여하는 대상의 수</td>
-      <td>일대일, 일대다, 다대일, 다대다</td>
-    </tr>
-    <tr>
-      <td>방향성</td>
-      <td>객체에서 어느 방향으로 참조할 수 있는지 나타내는 것</td>
-      <td><code class="language-plaintext highlighter-rouge">Member → Team</code>, 또는 양쪽 모두</td>
-    </tr>
-    <tr>
-      <td>연관관계의 주인</td>
-      <td>외래키 값을 실제로 저장하고 변경하는 쪽</td>
-      <td><code class="language-plaintext highlighter-rouge">Member.team</code></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mappedBy</code></td>
-      <td>주인이 아닌 쪽에서 주인 필드의 이름을 지정하는 속성</td>
-      <td><code class="language-plaintext highlighter-rouge">mappedBy = "team"</code></td>
-    </tr>
-    <tr>
-      <td>Join</td>
-      <td>외래키를 기준으로 여러 테이블의 데이터를 연결하는 것</td>
-      <td>회원과 팀을 함께 조회</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="2-연관관계의-종류">2. 연관관계의 종류</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>어노테이션</th>
-      <th>관계</th>
-      <th>예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@OneToOne</code></td>
-      <td>일대일(1:1)</td>
-      <td>사용자와 프로필</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@OneToMany</code></td>
-      <td>일대다(1:N)</td>
-      <td>하나의 팀과 여러 회원</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@ManyToOne</code></td>
-      <td>다대일(N:1)</td>
-      <td>여러 회원과 하나의 팀</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@ManyToMany</code></td>
-      <td>다대다(N:M)</td>
-      <td>여러 사용자와 여러 관심 종목</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">@JoinColumn</code></td>
-      <td>외래키 컬럼 지정</td>
-      <td><code class="language-plaintext highlighter-rouge">team_id</code>, <code class="language-plaintext highlighter-rouge">user_id</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>실무에서는 다대다 관계를 바로 사용하기보다 중간 Entity로 분리하는 경우가 많다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User 1 ─── N Watchlist N ─── 1 Stock
-</code></pre></div></div>
-
-<p>중간 Entity를 만들면 등록 날짜, 알림 설정 같은 추가 정보도 저장할 수 있다.</p>
-
-<hr />
-
-<h3 id="3-다대일-단방향-매핑">3. 다대일 단방향 매핑</h3>
-
-<p>여러 회원이 하나의 팀에 소속된다고 해보자.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Team 1  ←────  N Member
-</code></pre></div></div>
-
-<p>외래키는 보통 다수 쪽 테이블인 <code class="language-plaintext highlighter-rouge">members</code>에 둔다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>teams                   members
--------------           ----------------
-id (PK)       ←──────── team_id (FK)
-name                    id (PK)
-                        name
-</code></pre></div></div>
-
-<h4 id="team-entity">Team Entity</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="kd">protected</span> <span class="nf">Team</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="member-entity">Member Entity</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Member</span> <span class="o">{</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
-    <span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
-
-    <span class="kd">protected</span> <span class="nf">Member</span><span class="o">()</span> <span class="o">{</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">team</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">team</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">@ManyToOne</code>: 여러 <code class="language-plaintext highlighter-rouge">Member</code>가 하나의 <code class="language-plaintext highlighter-rouge">Team</code>과 연결된다.</li>
-  <li><code class="language-plaintext highlighter-rouge">@JoinColumn(name = "team_id")</code>: <code class="language-plaintext highlighter-rouge">members.team_id</code>를 외래키로 사용한다.</li>
-  <li><code class="language-plaintext highlighter-rouge">FetchType.LAZY</code>: <code class="language-plaintext highlighter-rouge">team</code>이 실제로 필요할 때 조회하도록 설정한다.</li>
-</ul>
-
-<p>현재는 Member만 Team을 참조하므로 단방향 관계다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>  <span class="c1">// 가능</span>
-<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">();</span> <span class="c1">// Team에 members 필드가 없으므로 불가능</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="4-양방향-연관관계">4. 양방향 연관관계</h3>
-
-<p>Team에서도 소속 회원 목록을 조회하고 싶다면 <code class="language-plaintext highlighter-rouge">@OneToMany</code>를 추가한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Team</span> <span class="o">{</span>
-
-    <span class="nd">@Id</span>
-    <span class="nd">@GeneratedValue</span><span class="o">(</span><span class="n">strategy</span> <span class="o">=</span> <span class="nc">GenerationType</span><span class="o">.</span><span class="na">IDENTITY</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
-
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
-
-    <span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-
-    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="nf">getMembers</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">members</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>이제 객체에서 양쪽 방향으로 이동할 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">getTeam</span><span class="o">();</span>  <span class="c1">// Member → Team</span>
-<span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">();</span> <span class="c1">// Team → Member</span>
-</code></pre></div></div>
-
-<p>양방향 객체 관계라고 해서 DB 외래키가 두 개 생기는 것은 아니다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>객체: Member ↔ Team
-DB:   members.team_id → teams.id
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="5-연관관계의-주인">5. 연관관계의 주인</h3>
-
-<p>객체에는 <code class="language-plaintext highlighter-rouge">Member.team</code>과 <code class="language-plaintext highlighter-rouge">Team.members</code>라는 참조가 두 개지만, DB 외래키는 <code class="language-plaintext highlighter-rouge">members.team_id</code> 하나다.</p>
-
-<p>따라서 JPA는 어느 필드의 값을 기준으로 외래키를 변경할지 결정해야 한다. 외래키를 관리하는 쪽을 <strong>연관관계의 주인</strong>이라고 한다.</p>
-
-<p>이 예제에서는 <code class="language-plaintext highlighter-rouge">Member.team</code>이 주인이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
-<span class="nd">@JoinColumn</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"team_id"</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
-</code></pre></div></div>
-
-<p>주인이 아닌 <code class="language-plaintext highlighter-rouge">Team.members</code>에는 <code class="language-plaintext highlighter-rouge">mappedBy</code>를 작성한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-</code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">mappedBy = "team"</code>의 <code class="language-plaintext highlighter-rouge">team</code>은 DB 컬럼명이 아니라 <strong>Member 클래스의 필드명</strong>이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
-             <span class="c1">// ↑ 이 필드명</span>
-</code></pre></div></div>
-
-<h4 id="외래키를-변경한다는-뜻">외래키를 변경한다는 뜻</h4>
-
-<p>외래키를 변경한다는 것은 객체의 소속 관계를 바꾼다는 뜻이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>변경 전: members.team_id = 1
-변경 후: members.team_id = 2
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">changeTeam</span><span class="o">(</span><span class="n">team2</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>JPA는 주인인 <code class="language-plaintext highlighter-rouge">Member.team</code>의 변경을 기준으로 <code class="language-plaintext highlighter-rouge">team_id</code>를 수정한다.</p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">UPDATE</span> <span class="n">members</span>
-<span class="k">SET</span> <span class="n">team_id</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="k">WHERE</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</code></pre></div></div>
-
-<p>반대편 컬렉션만 변경하면 메모리의 목록은 바뀌지만 외래키 변경이 반영되지 않을 수 있다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="n">member</span><span class="o">);</span> <span class="c1">// 이것만으로는 부족함</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="6-양쪽-객체를-함께-변경하기">6. 양쪽 객체를 함께 변경하기</h3>
-
-<p>DB 외래키는 주인 쪽 값으로 변경되지만, 현재 메모리의 두 객체도 일치시키는 것이 안전하다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeTeam</span><span class="o">(</span><span class="nc">Team</span> <span class="n">newTeam</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">team</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">remove</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">this</span><span class="o">.</span><span class="na">team</span> <span class="o">=</span> <span class="n">newTeam</span><span class="o">;</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="n">newTeam</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">newTeam</span><span class="o">.</span><span class="na">getMembers</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">member</span><span class="o">.</span><span class="na">changeTeam</span><span class="o">(</span><span class="n">team</span><span class="o">);</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Member.team에 Team 저장
-          ↓
-Team.members에 Member 추가
-          ↓
-메모리의 양쪽 관계 일치
-          ↓
-members.team_id 변경
-</code></pre></div></div>
-
-<p>이런 메서드를 연관관계 편의 메서드라고 한다. 양쪽 메서드가 서로를 계속 호출하면 무한 호출이 발생할 수 있으므로 한쪽에서 관계를 관리한다.</p>
-
-<hr />
-
-<h3 id="7-지연-로딩">7. 지연 로딩</h3>
-
-<p>지연 로딩(Lazy Loading)은 연관된 Entity를 처음부터 조회하지 않고 실제로 사용할 때 조회하는 방식이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ManyToOne</span><span class="o">(</span><span class="n">fetch</span> <span class="o">=</span> <span class="nc">FetchType</span><span class="o">.</span><span class="na">LAZY</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">Team</span> <span class="n">team</span><span class="o">;</span>
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Member 조회
-    ↓
-Team은 아직 조회하지 않음
-    ↓
-member.getTeam() 사용
-    ↓
-필요한 Team 조회
-</code></pre></div></div>
-
-<p>즉시 로딩(Eager Loading)은 원래 Entity를 조회할 때 연관된 Entity도 함께 조회한다.</p>
-
-<p>연관관계를 무조건 즉시 로딩하면 예상하지 못한 SQL이 많이 실행될 수 있으므로 일반적으로 지연 로딩을 우선 사용하고, 필요한 조회에서 fetch join이나 EntityGraph 등을 명시적으로 고려한다.</p>
-
-<p>지연 로딩된 Entity를 영속성 컨텍스트가 끝난 뒤 접근하면 예외가 발생할 수 있으므로 Service 안에서 필요한 데이터를 DTO로 변환하는 방식이 안전하다.</p>
-
-<hr />
-
-<h3 id="8-cascade와-orphanremoval">8. <code class="language-plaintext highlighter-rouge">cascade</code>와 <code class="language-plaintext highlighter-rouge">orphanRemoval</code></h3>
-
-<h4 id="cascade"><code class="language-plaintext highlighter-rouge">cascade</code></h4>
-
-<p>영속성 전이(Cascade)는 부모 Entity의 저장이나 삭제 작업을 연관된 Entity에도 전달한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">,</span> <span class="n">cascade</span> <span class="o">=</span> <span class="nc">CascadeType</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-</code></pre></div></div>
-
-<p>연관되어 있다는 이유만으로 무조건 사용하면 안 된다. 두 Entity의 생명주기를 함께 관리할 때 사용한다.</p>
-
-<h4 id="orphanremoval"><code class="language-plaintext highlighter-rouge">orphanRemoval</code></h4>
-
-<p>고아 객체 제거는 부모 컬렉션에서 제거된 자식 Entity를 DB에서도 삭제하는 기능이다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@OneToMany</span><span class="o">(</span><span class="n">mappedBy</span> <span class="o">=</span> <span class="s">"team"</span><span class="o">,</span> <span class="n">orphanRemoval</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="n">members</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-</code></pre></div></div>
-
-<p>단순히 관계만 끊으려는 상황에서도 데이터가 삭제될 수 있으므로 주의해야 한다.</p>
-
-<hr />
-
-<h3 id="핵심-정리">핵심 정리</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>개념</th>
-      <th>한 줄 정리</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>연관관계 매핑</td>
-      <td>객체 참조와 테이블 외래키를 연결</td>
-    </tr>
-    <tr>
-      <td>다중성</td>
-      <td><code class="language-plaintext highlighter-rouge">1:1</code>, <code class="language-plaintext highlighter-rouge">1:N</code>, <code class="language-plaintext highlighter-rouge">N:1</code>, <code class="language-plaintext highlighter-rouge">N:M</code>처럼 관계의 수를 표현</td>
-    </tr>
-    <tr>
-      <td>방향성</td>
-      <td>객체가 한쪽 또는 양쪽으로 참조할 수 있는지 표현</td>
-    </tr>
-    <tr>
-      <td>연관관계의 주인</td>
-      <td>외래키 값을 실제로 저장하고 변경하는 쪽</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">mappedBy</code></td>
-      <td>주인이 아닌 쪽에서 주인 필드명을 지정</td>
-    </tr>
-    <tr>
-      <td>지연 로딩</td>
-      <td>연관 Entity가 실제로 필요할 때 조회</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">cascade</code></td>
-      <td>영속성 작업을 연관 Entity에 전달</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">orphanRemoval</code></td>
-      <td>관계에서 제거된 자식 Entity를 DB에서도 삭제</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Team과 Member의 양방향 관계에서는 외래키 <code class="language-plaintext highlighter-rouge">team_id</code>가 있는 <code class="language-plaintext highlighter-rouge">Member.team</code>이 연관관계의 주인이다.</p>
-</blockquote>
-
-<h3 id="참고-자료">참고 자료</h3>
-
-<ul>
-  <li><a href="https://jakarta.ee/specifications/persistence/">Jakarta Persistence 공식 명세</a></li>
-  <li><a href="https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html">Hibernate ORM User Guide</a></li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="JPA" /><category term="Relationship Mapping" /><category term="ManyToOne" /><category term="OneToMany" /><category term="Foreign Key" /><summary type="html"><![CDATA[객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다.]]></summary></entry><entry><title type="html">CI/CD 기초 4편: 배포 전략과 운영</title><link href="http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/" rel="alternate" type="text/html" title="CI/CD 기초 4편: 배포 전략과 운영" /><published>2026-08-17T06:00:00+00:00</published><updated>2026-08-17T06:00:00+00:00</updated><id>http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations</id><content type="html" xml:base="http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/"><![CDATA[<h2 id="배포-후에도-끝은-아니다">배포 후에도 끝은 아니다</h2>
-
-<p>CI/CD를 처음 접하면 <code class="language-plaintext highlighter-rouge">docker run</code>이 성공한 것을 배포 성공으로 생각하기 쉽다. 하지만 컨테이너 프로세스가 실행됐더라도 Spring Boot 애플리케이션은 정상적으로 동작하지 않을 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Deploy
-→ Container Start
-→ Health Check
-→ Application 정상 확인
-→ Traffic 연결
-</code></pre></div></div>
-
-<p>배포 이후에는 위와 같은 확인 과정이 필요하다.</p>
-
-<h3 id="1-health-check">1. Health Check</h3>
-
-<p>Spring Boot Actuator를 사용한다면 <code class="language-plaintext highlighter-rouge">/actuator/health</code> 엔드포인트로 애플리케이션 상태를 확인할 수 있다.</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UP"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>컨테이너에는 크게 두 가지 상태가 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>프로세스가 살아 있음
-애플리케이션이 정상 작동함
-</code></pre></div></div>
-
-<p>이 둘은 항상 같지 않다. Java 프로세스는 살아 있지만 DB 연결에 실패한 상태일 수도 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HTTP 요청
-→ /actuator/health
-→ DB 연결 등 상태 확인
-→ HTTP 200 OK
-</code></pre></div></div>
-
-<p>따라서 단순히 컨테이너가 실행 중인지 확인하는 것보다 애플리케이션이 실제 요청을 처리할 수 있는지 검사하는 것이 중요하다.</p>
-
-<h3 id="2-rollback">2. Rollback</h3>
-
-<p>Health Check에서 문제가 발견되면 이전 정상 버전으로 되돌려야 한다. 이때 Docker 이미지의 버전 관리가 도움이 된다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>기존 버전: myapp:1.4.1  → GOOD
-새 버전:   myapp:1.4.2  → ERROR
-
-myapp:1.4.2 중지
-→ myapp:1.4.1 실행
-→ Health Check
-</code></pre></div></div>
-
-<p>Registry에 이전 이미지가 남아 있으면 빠르게 Rollback할 수 있다. 따라서 운영 정책과 보관 기간을 정하지 않은 상태에서 이전 이미지를 무조건 삭제하면 안 된다.</p>
-
-<h3 id="3-컨테이너는-수정하지-않고-교체한다">3. 컨테이너는 수정하지 않고 교체한다</h3>
-
-<p>Docker의 중요한 철학 중 하나는 고장 난 컨테이너 내부를 직접 고치는 대신 새 이미지로 컨테이너를 교체하는 것이다.</p>
-
-<p>컨테이너에 접속해 다음과 같은 작업을 하면 변경 사항을 재현하기 어렵다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi config
-apt <span class="nb">install </span>some-package
-</code></pre></div></div>
-
-<p>대신 원인이 되는 설정이나 Dockerfile을 수정하고 새 이미지를 만든다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile 또는 설정 수정
-→ 새 Image 생성
-→ myapp:1.1
-→ 새 Container 실행
-→ 검증 후 기존 Container 제거
-</code></pre></div></div>
-
-<p>실행 중인 서버를 계속 수정하는 Mutable Server 방식보다, 변경 사항을 이미지에 반영해 통째로 교체하는 <strong>Immutable Infrastructure</strong> 방식에 가깝다.</p>
-
-<h3 id="4-production에서-컨테이너-교체하기">4. Production에서 컨테이너 교체하기</h3>
-
-<p>컨테이너 한 개만 운영한다면 다음 교체 과정에서 잠깐 서비스가 끊길 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Old Container Stop
-→ New Container Start
-</code></pre></div></div>
-
-<p>서비스 중단을 줄이기 위해 Rolling, Blue-Green, Canary 같은 배포 전략을 사용한다.</p>
-
-<h3 id="5-rolling-deployment">5. Rolling Deployment</h3>
-
-<p>여러 서버 또는 컨테이너를 하나씩 새 버전으로 교체하는 방식이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1단계: A=v1, B=v1, C=v1
-2단계: A=v2, B=v1, C=v1
-3단계: A=v2, B=v2, C=v1
-4단계: A=v2, B=v2, C=v2
-</code></pre></div></div>
-
-<p>기존 인스턴스를 순차적으로 교체하므로 서비스 중단을 줄이고 리소스를 효율적으로 사용할 수 있다. Kubernetes에서 흔히 사용하는 방식이다.</p>
-
-<h3 id="6-blue-green-deployment">6. Blue-Green Deployment</h3>
-
-<p>현재 운영 중인 Blue 환경 옆에 새 버전인 Green 환경을 별도로 만든다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>BLUE                    GREEN
-v1                      v2
-현재 서비스             새 버전 검증
-</code></pre></div></div>
-
-<p>Green 검증이 끝나면 Load Balancer가 보낼 대상을 바꾼다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Users
-→ Load Balancer
-→ GREEN v2
-</code></pre></div></div>
-
-<p>문제가 발생하면 트래픽을 다시 Blue로 돌릴 수 있어 Rollback이 빠르다. 다만 두 환경을 동시에 유지할 리소스가 필요하다.</p>
-
-<h3 id="7-canary-deployment">7. Canary Deployment</h3>
-
-<p>새 버전을 일부 사용자에게 먼저 제공하는 방식이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>초기: v1 90%, v2 10%
-확대: v1 50%, v2 50%
-완료:          v2 100%
-</code></pre></div></div>
-
-<p>Canary 배포를 사용하는 이유는 모든 서버의 가용성을 높이기 위해서라기보다 <strong>새 버전의 위험을 일부 트래픽으로 제한하기 위해서</strong>다. 오류율이나 지연 시간이 나빠지면 전체 사용자에게 영향을 주기 전에 배포를 중단하거나 되돌릴 수 있다.</p>
-
-<p>대규모 서비스에서는 사용자 그룹, 지역 또는 트래픽 비율을 기준으로 점진적으로 범위를 넓힌다.</p>
-
-<h3 id="8-cicd-pipeline의-stage">8. CI/CD Pipeline의 Stage</h3>
-
-<p>실무에서는 Pipeline을 Stage 단위로 생각하면 이해하기 쉽다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Source
-  ↓
-Test
-  ↓
-Build
-  ↓
-Image Build
-  ↓
-Image Push
-  ↓
-Deploy
-  ↓
-Health Check
-  ↓
-Monitoring
-</code></pre></div></div>
-
-<p>이것이 Docker 기반 CI/CD의 전체 뼈대다.</p>
-
-<h3 id="9-배포-시스템에서-흐르는-것">9. 배포 시스템에서 흐르는 것</h3>
-
-<p>CI/CD 시스템에서는 다음 항목들이 각 단계를 거쳐 이동하거나 참조된다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>항목</th>
-      <th>예시</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Source Code</td>
-      <td>GitHub Repository</td>
-    </tr>
-    <tr>
-      <td>Build Artifact</td>
-      <td><code class="language-plaintext highlighter-rouge">app.jar</code></td>
-    </tr>
-    <tr>
-      <td>Container Artifact</td>
-      <td>Docker Image</td>
-    </tr>
-    <tr>
-      <td>Configuration</td>
-      <td>Environment Variables</td>
-    </tr>
-    <tr>
-      <td>Secrets</td>
-      <td>Password, API Key</td>
-    </tr>
-    <tr>
-      <td>Runtime Data</td>
-      <td>Database Data</td>
-    </tr>
-    <tr>
-      <td>Logs</td>
-      <td>Application Log</td>
-    </tr>
-    <tr>
-      <td>Metrics</td>
-      <td>CPU, Memory, Latency, Error Rate</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>이들은 성격에 맞게 분리해서 관리해야 한다. 특히 Docker 이미지와 데이터베이스 데이터는 서로 다르다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Container 삭제
-      │
-      └─ Database Data는 유지
-</code></pre></div></div>
-
-<p>컨테이너를 삭제해도 데이터가 사라지지 않도록 DB는 Docker Volume이나 외부 데이터베이스를 사용한다.</p>
-
-<h3 id="10-운영에서는-observability가-중요하다">10. 운영에서는 Observability가 중요하다</h3>
-
-<p>배포 이후에는 서비스가 정상적으로 동작하는지 지속해서 관찰해야 한다. 최소한 다음 정보를 확인할 필요가 있다.</p>
-
-<ul>
-  <li>CPU, Memory, Disk, Network</li>
-  <li>Request Count, Latency, Error Rate</li>
-  <li>Application Log, Database Connection</li>
-  <li>Container Restart Count</li>
-</ul>
-
-<p>대표적인 도구로 Prometheus, Grafana, ELK, Loki, Datadog, CloudWatch 등이 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CI        → Build
-CD        → Deploy
-Operation → Observe
-Problem   → Fix
-git push  → 다시 CI
-</code></pre></div></div>
-
-<h3 id="11-devops는-하나의-loop다">11. DevOps는 하나의 Loop다</h3>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PLAN
-→ CODE
-→ BUILD
-→ TEST
-→ RELEASE
-→ DEPLOY
-→ OPERATE
-→ MONITOR
-→ PLAN
-</code></pre></div></div>
-
-<p>Docker는 이 과정에서 Build, Release, Deploy, Operate를 연결해 주는 핵심 기술이다.</p>
-
-<h3 id="12-spring-boot-프로젝트에-적용한다면">12. Spring Boot 프로젝트에 적용한다면</h3>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Spring Boot Source Code
-→ git push
-→ GitHub
-→ GitHub Actions Runner
-   ├─ JDK 설치
-   ├─ Gradle Test
-   ├─ bootJar
-   └─ docker build
-→ Docker Image: myapp:a8df329
-→ docker push
-→ Container Registry
-→ Production Server에서 docker pull
-→ Container 실행
-→ Spring Boot
-   ├─ Redis
-   └─ PostgreSQL
-→ Nginx
-→ Internet
-→ User
-</code></pre></div></div>
-
-<p>핵심 개념을 다시 정리하면 다음과 같다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>개념</th>
-      <th>핵심 의미</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CI</td>
-      <td>코드를 지속적으로 통합하고 자동 검증</td>
-    </tr>
-    <tr>
-      <td>CD</td>
-      <td>검증된 결과물을 서버에 배포</td>
-    </tr>
-    <tr>
-      <td>Artifact</td>
-      <td>Build 결과물</td>
-    </tr>
-    <tr>
-      <td>Docker Image</td>
-      <td>실행 환경까지 포함한 배포 Artifact</td>
-    </tr>
-    <tr>
-      <td>Container</td>
-      <td>Image를 실행한 Runtime Instance</td>
-    </tr>
-    <tr>
-      <td>Registry</td>
-      <td>Docker Image 저장소</td>
-    </tr>
-    <tr>
-      <td>Image Tag</td>
-      <td>Image 버전 식별자</td>
-    </tr>
-    <tr>
-      <td>Immutable</td>
-      <td>실행 중인 서버를 수정하지 않고 교체하는 방식</td>
-    </tr>
-    <tr>
-      <td>Health Check</td>
-      <td>실제 서비스가 정상인지 검사</td>
-    </tr>
-    <tr>
-      <td>Rollback</td>
-      <td>이전 정상 버전으로 복귀</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="13-cicd를-공부할-때의-질문">13. CI/CD를 공부할 때의 질문</h3>
-
-<p>Workflow 문법만 외우기보다 다음 흐름을 이해하는 것이 중요하다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>누가 Trigger하는가?
-→ 무엇을 Test하는가?
-→ 무엇을 Build하는가?
-→ 어떤 Artifact가 만들어지는가?
-→ Artifact는 어디에 저장되는가?
-→ 서버는 무엇을 가져오는가?
-→ 어떻게 실행하는가?
-→ 정상인지 어떻게 판단하는가?
-→ 실패하면 어떻게 되돌리는가?
-</code></pre></div></div>
-
-<p>헷갈린다면 각 도구의 역할을 다음처럼 구분하면 된다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GitHub          = 코드를 저장
-Docker Registry = 이미지를 저장
-Docker          = 이미지를 Container로 실행
-CI/CD           = 이 전체 이동과 검증을 자동화
-</code></pre></div></div>
-
-<h3 id="14-다음-실습에서-확인할-것">14. 다음 실습에서 확인할 것</h3>
-
-<ol>
-  <li>Spring Boot 애플리케이션 작성</li>
-  <li><code class="language-plaintext highlighter-rouge">./gradlew bootJar</code> 실행</li>
-  <li>Dockerfile 작성</li>
-  <li><code class="language-plaintext highlighter-rouge">docker build</code>와 <code class="language-plaintext highlighter-rouge">docker run</code> 실행</li>
-  <li>Docker Hub 또는 GHCR에 Push</li>
-  <li>GitHub Actions로 Test, Build, Docker Build, Docker Push 자동화</li>
-  <li>Linux 서버에서 <code class="language-plaintext highlighter-rouge">docker pull</code> 실행</li>
-  <li>컨테이너 실행 후 <code class="language-plaintext highlighter-rouge">/actuator/health</code> 확인</li>
-  <li>v2 이미지 배포</li>
-  <li>오류를 발생시킨 뒤 v1으로 Rollback</li>
-</ol>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Git
-→ CI
-→ Artifact
-→ Docker
-→ Registry
-→ Server
-→ Container
-→ Monitoring
-→ Rollback
-</code></pre></div></div>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="CI-CD" /><category term="CI/CD" /><category term="Docker" /><category term="Health Check" /><category term="Rollback" /><category term="Deployment" /><category term="Observability" /><summary type="html"><![CDATA[컨테이너 배포 이후 필요한 Health Check, Rollback, 무중단 배포 전략과 모니터링을 정리한다.]]></summary></entry><entry><title type="html">CI/CD 기초 3편: Jenkins와 Argo CD를 이용한 GitOps 배포</title><link href="http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/" rel="alternate" type="text/html" title="CI/CD 기초 3편: Jenkins와 Argo CD를 이용한 GitOps 배포" /><published>2026-08-17T05:30:00+00:00</published><updated>2026-08-17T05:30:00+00:00</updated><id>http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment</id><content type="html" xml:base="http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/"><![CDATA[<h2 id="참고-cicdcontinuous-integration--continuous-deployment">참고: CI/CD(Continuous Integration &amp; Continuous Deployment)</h2>
-
-<p>애플리케이션을 컨테이너 이미지로 Build, Push한 후 실행 환경에 배포하는 흐름이다.</p>
-
-<pre><code class="language-mermaid">flowchart LR
-    DEV[개발자&lt;br/&gt;코드 작성]
-    SRC[(Source Repository&lt;br/&gt;애플리케이션 소스 코드)]
-    CI[Jenkins&lt;br/&gt;CI/CD Pipeline]
-    REG[(Docker Registry&lt;br/&gt;컨테이너 이미지 저장)]
-    GITOPS[(GitOps Repository&lt;br/&gt;배포 설정 저장)]
-    ARGO[Argo CD&lt;br/&gt;배포 상태 동기화]
-
-    subgraph K8S[Kubernetes 실행 환경]
-        DEV_CLUSTER[DEV Cluster&lt;br/&gt;개발 환경]
-        UAT_CLUSTER[UAT Cluster&lt;br/&gt;검증 환경]
-        RELEASE_CLUSTER[Release Cluster&lt;br/&gt;운영 환경]
-    end
-
-    DEV --&gt;|1. Commit &amp; Push| SRC
-    SRC --&gt;|2. 변경 감지| CI
-    CI --&gt;|3. Build &amp; Push| REG
-    CI --&gt;|4. Image Tag 등&lt;br/&gt;배포 값 변경| GITOPS
-    GITOPS --&gt;|5. Webhook 또는 Poll| ARGO
-    ARGO --&gt;|6. Sync| DEV_CLUSTER
-    ARGO --&gt;|6. Sync| UAT_CLUSTER
-    ARGO --&gt;|6. Sync| RELEASE_CLUSTER
-    REG -.-&gt;|7. Image Pull| DEV_CLUSTER
-    REG -.-&gt;|7. Image Pull| UAT_CLUSTER
-    REG -.-&gt;|7. Image Pull| RELEASE_CLUSTER
-</code></pre>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 → Source Repository → Jenkins → Docker Registry
-                              │
-                              └→ GitOps Repository ↔ Argo CD
-                                                       ├→ DEV Cluster
-                                                       ├→ UAT Cluster
-                                                       └→ Release Cluster
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>단계</th>
-      <th>동작</th>
-      <th>결과</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>개발자가 코드를 Commit하고 Source Repository에 Push</td>
-      <td>소스 코드 변경</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jenkins가 변경을 감지하여 CI/CD Pipeline 실행</td>
-      <td>Build와 테스트 시작</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>컨테이너 이미지를 Build하고 Docker Registry에 Push</td>
-      <td>배포할 이미지 저장</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>GitOps Repository의 Image Tag 등 배포 설정 갱신</td>
-      <td>원하는 배포 상태 기록</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Argo CD가 Webhook 또는 Poll 방식으로 변경 감지</td>
-      <td>실제 상태와 원하는 상태 비교</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Argo CD가 각 Kubernetes Cluster에 설정 동기화</td>
-      <td>DEV, UAT, Release 환경에 배포</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Kubernetes가 Registry에서 컨테이너 이미지를 Pull</td>
-      <td>새 버전 컨테이너 실행</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="ci와-cd의-역할">CI와 CD의 역할</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>의미</th>
-      <th>담당 작업</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CI</td>
-      <td>Continuous Integration, 지속적 통합</td>
-      <td>코드 통합, Build, 테스트, 이미지 생성과 Push</td>
-    </tr>
-    <tr>
-      <td>CD</td>
-      <td>Continuous Deployment, 지속적 배포</td>
-      <td>배포 설정 변경 감지, 실행 환경 동기화, 컨테이너 배포</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>Jenkins는 애플리케이션을 Build하고 컨테이너 이미지를 Registry에 Push한다.</li>
-  <li>GitOps Repository에는 Kubernetes가 어떤 이미지 버전을 실행해야 하는지 기록한다.</li>
-  <li>Argo CD는 GitOps Repository의 원하는 상태와 Kubernetes의 실제 상태를 비교하고 동기화한다.</li>
-  <li>DEV, UAT, Release Cluster는 목적이 다른 실행 환경이며 동일한 방식으로 배포할 수 있다.</li>
-</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="CI-CD" /><category term="CI/CD" /><category term="Docker" /><category term="Jenkins" /><category term="GitOps" /><category term="Argo CD" /><category term="Kubernetes" /><summary type="html"><![CDATA[컨테이너 이미지를 Build, Push하고 GitOps Repository와 Argo CD를 통해 Kubernetes에 배포하는 흐름을 정리한다.]]></summary></entry><entry><title type="html">CI/CD 기초 2편: Docker 이미지와 배포 파이프라인</title><link href="http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/" rel="alternate" type="text/html" title="CI/CD 기초 2편: Docker 이미지와 배포 파이프라인" /><published>2026-08-17T05:00:00+00:00</published><updated>2026-08-17T05:00:00+00:00</updated><id>http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline</id><content type="html" xml:base="http://0.0.0.0:4000/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/"><![CDATA[<h2 id="docker-기반-cicd">Docker 기반 CI/CD</h2>
-
-<p>먼저 Docker 기반 배포의 전체 흐름을 살펴보자.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Developer
-   │ git push
-   ▼
-GitHub Repository
-   │
-   ▼
-CI Pipeline
-   ├── Source Checkout
-   ├── Dependency Install
-   ├── Test
-   ├── Build
-   └── Docker Image Build
-            │
-            ▼
-      Container Registry
-      (Docker Hub, GHCR, ECR)
-            │
-            ▼
-       Production Server
-            │ docker pull
-            ▼
-      Docker Container
-            │
-            ▼
-        Application
-            │
-            ▼
-          Users
-</code></pre></div></div>
-
-<p>핵심 흐름은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Source Code
-→ Executable Artifact
-→ Docker Image
-→ Registry
-→ Container
-→ Running Service
-</code></pre></div></div>
-
-<h3 id="1-ci와-cd-다시-구분하기">1. CI와 CD 다시 구분하기</h3>
-
-<h4 id="cicontinuous-integration">CI(Continuous Integration)</h4>
-
-<p>개발자가 작성한 코드를 지속적으로 통합하고 검증하는 과정이다.</p>
-
-<blockquote>
-  <p>이 코드를 배포 가능한 상태로 신뢰해도 되는가?</p>
-</blockquote>
-
-<p>Spring Boot 프로젝트라면 다음과 같은 작업을 수행할 수 있다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./gradlew <span class="nb">test</span>
-./gradlew bootJar
-docker build <span class="nt">-t</span> myapp:1.0 <span class="nb">.</span>
-</code></pre></div></div>
-
-<h4 id="cdcontinuous-delivery-또는-deployment">CD(Continuous Delivery 또는 Deployment)</h4>
-
-<p><strong>Continuous Delivery</strong>는 배포 가능한 상태까지 자동화하고 실제 배포는 사람이 승인하는 방식이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Code
-→ Test
-→ Build
-→ Image
-→ Registry
-→ 배포 준비 완료
-</code></pre></div></div>
-
-<p><strong>Continuous Deployment</strong>는 Production 배포까지 완전히 자동화하는 방식이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push
-→ CI
-→ Docker Image
-→ Production
-→ Health Check
-→ 서비스
-</code></pre></div></div>
-
-<p>간단히 정리하면 CI는 배포 가능한 결과물을 만들고, CD는 그 결과물을 실제 환경에 배포한다.</p>
-
-<h3 id="2-docker에서-cicd가-중요한-이유">2. Docker에서 CI/CD가 중요한 이유</h3>
-
-<p>서버에 직접 접속해서 코드를 받고 환경을 구성하면 개발 환경과 운영 환경의 차이로 문제가 생길 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>개발자 PC
-├── Java 21
-├── PostgreSQL 16
-└── Library A 2.1
-
-Production
-├── Java 17
-├── PostgreSQL 14
-└── Library A 1.9
-</code></pre></div></div>
-
-<p>바로 유명한 “내 컴퓨터에서는 되는데?” 문제다.</p>
-
-<p>Docker는 애플리케이션과 실행에 필요한 환경을 하나의 이미지로 묶어 이 차이를 줄인다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Application
-+ Runtime
-+ Library
-+ Dependency
-+ Environment
-= Docker Image
-</code></pre></div></div>
-
-<p>개발 및 검증 환경에서 확인한 이미지를 Production에서도 동일하게 실행할 수 있다.</p>
-
-<h3 id="3-docker-image와-container">3. Docker Image와 Container</h3>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dockerfile
-→ docker build
-→ Docker Image
-→ docker run
-→ Container
-</code></pre></div></div>
-
-<p><strong>Image</strong>는 실행에 필요한 파일을 담은 불변 배포 패키지다. <strong>Container</strong>는 이미지를 실제로 실행한 인스턴스다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Image: myapp:1.0
-       │
-       ├─ Container A
-       ├─ Container B
-       └─ Container C
-</code></pre></div></div>
-
-<p>하나의 이미지에서 여러 컨테이너를 만들 수 있다. 객체 지향에 비유하면 Class와 Instance의 관계와 비슷하다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Class     → Docker Image
-Instance  → Docker Container
-</code></pre></div></div>
-
-<h3 id="4-dockerfile">4. Dockerfile</h3>
-
-<p>Dockerfile은 Docker 이미지를 어떻게 만들지 선언하는 파일이다. Spring Boot라면 다음과 같이 작성할 수 있다.</p>
-
-<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> eclipse-temurin:21-jre</span>
-
-<span class="k">WORKDIR</span><span class="s"> /app</span>
-
-<span class="k">COPY</span><span class="s"> build/libs/app.jar app.jar</span>
-
-<span class="k">EXPOSE</span><span class="s"> 8080</span>
-
-<span class="k">ENTRYPOINT</span><span class="s"> ["java", "-jar", "app.jar"]</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>명령</th>
-      <th>의미</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">FROM</code></td>
-      <td>사용할 기본 실행 환경</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">WORKDIR</code></td>
-      <td>컨테이너 내부 작업 디렉터리</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">COPY</code></td>
-      <td>애플리케이션 파일 복사</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">EXPOSE</code></td>
-      <td>애플리케이션이 사용하는 포트 명시</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ENTRYPOINT</code></td>
-      <td>컨테이너가 시작될 때 실행할 명령</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>즉, Dockerfile을 보면 애플리케이션을 실행할 서버 환경이 어떻게 구성되는지 알 수 있다.</p>
-
-<h3 id="5-build-artifact">5. Build Artifact</h3>
-
-<p>Build Artifact는 소스 코드를 컴파일·테스트·패키징하는 과정에서 만들어지는 배포 가능한 결과물이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Source Code
-→ Compile
-→ Test
-→ Build
-→ app.jar
-</code></pre></div></div>
-
-<p>여기서 <code class="language-plaintext highlighter-rouge">app.jar</code>가 Build Artifact다. Docker를 사용하면 한 단계 더 나아간다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Source Code
-→ JAR
-→ Docker Image
-</code></pre></div></div>
-
-<p>Docker 기반 시스템에서는 Docker 이미지를 최종 Release Artifact로 사용할 수 있다.</p>
-
-<h3 id="6-container-registry">6. Container Registry</h3>
-
-<p>Release Artifact인 Docker 이미지는 어딘가에 저장해야 한다. 이때 사용하는 저장소가 Container Registry다.</p>
-
-<ul>
-  <li>Docker Hub</li>
-  <li>GitHub Container Registry(GHCR)</li>
-  <li>AWS ECR</li>
-  <li>Google Artifact Registry</li>
-  <li>Azure Container Registry</li>
-</ul>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CI Server
-→ docker push
-→ Registry
-→ docker pull
-→ Production Server
-</code></pre></div></div>
-
-<p>GitHub가 소스 코드 저장소라면 Registry는 Docker 이미지 저장소다.</p>
-
-<h3 id="7-실제-데이터-흐름">7. 실제 데이터 흐름</h3>
-
-<p>개발자가 Spring Boot 코드를 수정하고 Push하면 GitHub Actions가 CI를 실행한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GitHub Actions Runner
-→ Checkout
-→ JDK 설치
-→ ./gradlew test
-→ ./gradlew bootJar
-→ docker build
-</code></pre></div></div>
-
-<p>만들어진 이미지를 Registry에 Push한다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker push registry.example.com/myapp:1.4.2
-</code></pre></div></div>
-
-<p>Registry에는 여러 버전의 이미지가 존재할 수 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>myapp
-├── 1.4.0
-├── 1.4.1
-├── 1.4.2
-└── latest
-</code></pre></div></div>
-
-<p>Production Server는 지정한 버전의 이미지를 받아 실행한다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull registry.example.com/myapp:1.4.2
-docker run registry.example.com/myapp:1.4.2
-</code></pre></div></div>
-
-<p>최종 요청 흐름은 다음과 같다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>User
-→ Internet
-→ Load Balancer / Nginx
-→ Container
-→ Spring Boot
-→ Database
-</code></pre></div></div>
-
-<h3 id="8-build-once-deploy-many">8. Build Once, Deploy Many</h3>
-
-<p>CI/CD에서 중요한 원칙은 <strong>한 번 빌드한 결과물을 여러 환경에 배포하는 것</strong>이다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dev용 Image Build
-Stage용 Image Build
-Prod용 Image Build
-</code></pre></div></div>
-
-<p>환경마다 이미지를 다시 빌드하면 Staging에서 검증한 이미지와 Production에 올린 이미지가 달라질 수 있다. 따라서 한 번 만든 동일한 이미지를 여러 환경에서 사용한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Source
-  ↓
-Build
-  ↓
-Image: abc123
-  ├── Dev
-  ├── Staging
-  └── Production
-</code></pre></div></div>
-
-<h3 id="9-환경-설정-분리">9. 환경 설정 분리</h3>
-
-<p>개발, Staging, Production의 DB 주소와 설정은 서로 다르다. 이미지는 동일하게 유지하고 환경별 값은 컨테이너 실행 시 외부에서 주입한다.</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="se">\</span>
-  <span class="nt">-e</span> <span class="nv">SPRING_PROFILES_ACTIVE</span><span class="o">=</span>prod <span class="se">\</span>
-  <span class="nt">-e</span> <span class="nv">DB_HOST</span><span class="o">=</span>prod-db <span class="se">\</span>
-  myapp:1.4.2
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              Docker Image
-              myapp:1.4.2
-                   │
-       ┌───────────┼───────────┐
-       ↓           ↓           ↓
- DEV Container  STAGE Container  PROD Container
- DB=dev         DB=stage         DB=prod
-</code></pre></div></div>
-
-<p>이미지와 환경 설정을 분리해서 생각해야 한다.</p>
-
-<h3 id="10-secret은-이미지에-넣지-않기">10. Secret은 이미지에 넣지 않기</h3>
-
-<p>다음처럼 비밀번호나 API Key를 이미지에 넣으면 이미지를 받은 사람이 값을 확인할 수 있다.</p>
-
-<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">ENV</span><span class="s"> DB_PASSWORD=123456</span>
-<span class="k">ENV</span><span class="s"> AWS_SECRET_KEY=example</span>
-</code></pre></div></div>
-
-<p>다음 값은 이미지 외부의 Secret 관리 시스템에서 관리하고 배포 시점에 주입해야 한다.</p>
-
-<ul>
-  <li>DB Password</li>
-  <li>API Key</li>
-  <li>AWS Secret Key</li>
-  <li>JWT Secret</li>
-</ul>
-
-<p>대표적인 관리 방법으로 GitHub Actions Secrets, AWS Secrets Manager, Kubernetes Secrets, Vault 등이 있다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Secret Storage
-→ Deployment
-→ Container Environment
-</code></pre></div></div>
-
-<h3 id="11-image-tagging">11. Image Tagging</h3>
-
-<p><code class="language-plaintext highlighter-rouge">myapp:latest</code>만 사용하면 현재 실행 중인 이미지가 정확히 어떤 버전인지 추적하기 어렵다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>오늘 latest  → v1.5
-내일 latest  → v1.6
-</code></pre></div></div>
-
-<p>따라서 명시적인 버전이나 Git commit SHA를 태그로 사용한다.</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>myapp:1.4.2
-myapp:a8df329
-</code></pre></div></div>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Production Error
-→ 실행 중인 Image 확인
-→ myapp:a8df329
-→ Git commit a8df329 확인
-→ 정확한 Source Code 추적
-</code></pre></div></div>
-
-<p>이처럼 배포 결과물과 소스 코드의 관계를 추적할 수 있는 성질을 <strong>Traceability(추적 가능성)</strong>라고 한다.</p>
-
-<p>다음 글에서는 배포 이후의 Health Check, Rollback과 무중단 배포 전략을 살펴본다.</p>]]></content><author><name>Min Hyeong Lee</name></author><category term="DevOps" /><category term="CI-CD" /><category term="CI/CD" /><category term="Docker" /><category term="GitHub Actions" /><category term="Container Registry" /><category term="Deployment" /><summary type="html"><![CDATA[Docker 기반 CI/CD의 흐름과 이미지, 컨테이너, Registry, 환경 설정 및 태그 관리 원칙을 정리한다.]]></summary></entry></feed>
+</ul>]]></content><author><name>Min Hyeong Lee</name></author><category term="java" /><category term="spring" /><category term="Java" /><category term="Spring" /><category term="AOP" /><category term="Aspect" /><category term="Pointcut" /><category term="Advice" /><category term="Proxy" /><summary type="html"><![CDATA[Aspect, Pointcut, Advice, JoinPoint의 의미와 Before, After, Around Advice가 Proxy를 통해 동작하는 흐름을 정리한다.]]></summary></entry></feed>
