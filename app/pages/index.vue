@@ -52,14 +52,6 @@ useSiteSeo({
     <h1 id="homeTitle">MINNONG'S Blog</h1>
     <p class="ide-home-intro">이민형의 블로그입니다</p>
 
-    <div class="ide-home-visual" aria-hidden="true">
-      <IdeAmbientThree />
-      <div class="ide-home-visual-frame">
-        <span>STUDY SPACE / LIVE MODEL</span>
-        <strong>BUILD · LEARN · LOG</strong>
-      </div>
-    </div>
-
     <div class="ide-home-actions" aria-label="빠른 작업">
       <NuxtLink class="ide-home-action" to="/archive/">
         <i class="ri-file-search-line" aria-hidden="true" />

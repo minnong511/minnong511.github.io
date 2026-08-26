@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "totals": {
-    "publicPosts": 134
+    "publicPosts": 135
   },
   "entries": [
     {
@@ -683,6 +683,27 @@
       "warnings": [
         "title을 첫 H1에서 추론했습니다."
       ]
+    },
+    {
+      "source": "content/posts/Backend/Kafka/kafka-messaging-system.md",
+      "target": "content/posts/Backend/Kafka/kafka-messaging-system.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Kafka 메시징 시스템의 구성과 동작 방식",
+      "description": "Kafka 기반 메시징 시스템에서 Publish/Subscribe, Broker, Topic, Partition, Producer, Consumer와 Offset이 동작하는 방식을 정리한다.",
+      "date": "2026-08-26T14:08:02+09:00",
+      "categories": [
+        "Backend",
+        "Kafka"
+      ],
+      "tags": [
+        "Kafka",
+        "Messaging",
+        "Producer",
+        "Consumer"
+      ],
+      "legacyPath": "/backend/kafka/2026/08/26/kafka-messaging-system/",
+      "route": "/backend/kafka/2026/08/26/kafka-messaging-system/"
     },
     {
       "source": "_posts/Backend/Kafka/temp.md",
