@@ -1,3 +1,13 @@
+---
+title: "Kafka 기본 개념과 EC2 Docker 구성"
+description: "Kafka의 Producer, Consumer, Topic, Partition, Offset과 KRaft 기반 Docker 구성을 정리한다."
+date: "2026-08-26T14:08:02+09:00"
+categories: ["Backend", "Kafka"]
+tags: ["Kafka", "KRaft", "Docker", "EC2"]
+legacyPath: "/backend/kafka/2026/08/26/temp/"
+published: true
+---
+
 https://rainbow-beard-524.notion.site/Kafka-28775575898d8025a9c6e53ff533b89c
 
 네. 이 Notion 페이지는 크게 두 부분입니다.
