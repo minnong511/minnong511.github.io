@@ -1,0 +1,4180 @@
+{
+  "schemaVersion": 1,
+  "totals": {
+    "sourceFiles": 137,
+    "publicPosts": 134,
+    "drafts": 3,
+    "legacyPublicPosts": 82,
+    "inferredPublicPosts": 52,
+    "manifestEntries": 137,
+    "legacyRoutes": 82
+  },
+  "entries": [
+    {
+      "source": "_posts/면접/면접질문.md",
+      "target": "content/posts/면접/면접질문.md",
+      "visibility": "public",
+      "published": true,
+      "title": "면접질문",
+      "description": "// (동기, blocking),(비동기, non-blocking) - 요청흐름",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "면접"
+      ],
+      "tags": [],
+      "legacyPath": "/면접/2026/08/14/면접질문/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/면접/2026/08/14/면접질문/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Agile/회의록_0826_점심.md",
+      "target": "content/posts/Agile/회의록_0826_점심.md",
+      "visibility": "public",
+      "published": true,
+      "title": "해야하는 거",
+      "description": "PPT",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "Agile"
+      ],
+      "tags": [],
+      "legacyPath": "/agile/2026/08/26/회의록_0826_점심/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/agile/2026/08/26/회의록_0826_점심/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Algorithm/정렬/정렬.md",
+      "target": "content/posts/Algorithm/정렬/정렬.md",
+      "visibility": "public",
+      "published": true,
+      "title": "정렬",
+      "description": "실무나 코딩테스트에서는 sorted(), sort()를 사용하지만, 정렬 원리를 공부해야 할 필요가 있다면, 버블 정렬, 선택 정렬, 삽입 정렬, 병합 정렬, 퀵 정렬 등을 직접 구현하는 것이 좋다",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "Algorithm",
+        "정렬"
+      ],
+      "tags": [],
+      "legacyPath": "/algorithm/정렬/2026/08/26/정렬/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/algorithm/정렬/2026/08/26/정렬/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Algorithm/투포인터_슬라이딩윈도우/투포인터_슬라이딩윈도우.md",
+      "target": "content/posts/Algorithm/투포인터_슬라이딩윈도우/투포인터_슬라이딩윈도우.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. 투 포인터",
+      "description": "투 포인터, Two Pointers는 배열이나 문자열에서 두 개의 위치를 가리키는 변수를 움직이며 답을 찾는 알고리즘",
+      "date": "2026-08-26 07:11:14 +0900",
+      "categories": [
+        "Algorithm",
+        "투포인터_슬라이딩윈도우"
+      ],
+      "tags": [],
+      "legacyPath": "/algorithm/투포인터_슬라이딩윈도우/2026/08/26/투포인터_슬라이딩윈도우/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/algorithm/투포인터_슬라이딩윈도우/2026/08/26/투포인터_슬라이딩윈도우/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Algorithm/Greedy/알고리즘 논리.md",
+      "target": "content/posts/Algorithm/Greedy/알고리즘 논리.md",
+      "visibility": "public",
+      "published": true,
+      "title": "알고리즘 논리",
+      "description": "알고리즘 논리",
+      "date": "2026-08-12 07:20:07 +0900",
+      "categories": [
+        "Algorithm",
+        "Greedy"
+      ],
+      "tags": [],
+      "legacyPath": "/algorithm/greedy/2026/08/12/알고리즘-논리/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/algorithm/greedy/2026/08/12/알고리즘-논리/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Algorithm/Python 코테/2026-08-14-counter.md",
+      "target": "content/posts/Algorithm/Python 코테/2026-08-14-counter.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Python Counter, 빈도수를 쉽게 세는 방법",
+      "description": "Python collections.Counter로 원소의 빈도수를 세고 알고리즘 문제에 활용하는 방법을 정리한다.",
+      "date": "2026-08-14 09:00:00 +0900",
+      "categories": [
+        "Algorithm"
+      ],
+      "tags": [
+        "Python",
+        "Algorithm",
+        "Counter",
+        "Collections"
+      ],
+      "legacyPath": "/algorithm/2026/08/14/counter/",
+      "inferredFields": [],
+      "route": "/algorithm/2026/08/14/counter/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
+      "target": "content/posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 심화 Part 2: Annotation",
+      "description": "Java Annotation의 메타데이터 역할과 Override, Spring 컴포넌트, 요청 매핑, Reflection의 연결을 정리한다.",
+      "date": "2026-08-11 11:00:00 +0900",
+      "categories": [
+        "java",
+        "advanced"
+      ],
+      "tags": [
+        "Java",
+        "Annotation",
+        "Reflection",
+        "Spring",
+        "Override",
+        "Metadata"
+      ],
+      "legacyPath": "/java/advanced/2026/08/11/java-annotations/",
+      "inferredFields": [],
+      "route": "/java/advanced/2026/08/11/java-annotations/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-functional-programming-lambda.md",
+      "target": "content/posts/Backend/JAVA/advanced/2026-08-11-java-functional-programming-lambda.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 심화 Part 3: 함수형 프로그래밍과 Lambda",
+      "description": "Java의 함수형 프로그래밍, 순수 함수, 익명 클래스, 람다식과 함수형 인터페이스를 정리한다.",
+      "date": "2026-08-11 11:40:00 +0900",
+      "categories": [
+        "java",
+        "advanced"
+      ],
+      "tags": [
+        "Java",
+        "Functional Programming",
+        "Lambda",
+        "Anonymous Class",
+        "Stream",
+        "Pure Function"
+      ],
+      "legacyPath": "/java/advanced/2026/08/11/java-functional-programming-lambda/",
+      "inferredFields": [],
+      "route": "/java/advanced/2026/08/11/java-functional-programming-lambda/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-reflection.md",
+      "target": "content/posts/Backend/JAVA/advanced/2026-08-11-java-reflection.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 심화 Part 1: Reflection",
+      "description": "Java Reflection으로 런타임에 클래스, 필드, 메서드, 애너테이션 정보를 조회하고 호출하는 방법을 정리한다.",
+      "date": "2026-08-11 10:40:00 +0900",
+      "categories": [
+        "java",
+        "advanced"
+      ],
+      "tags": [
+        "Java",
+        "Reflection",
+        "Metadata",
+        "Annotation",
+        "Spring",
+        "DI"
+      ],
+      "legacyPath": "/java/advanced/2026/08/11/java-reflection/",
+      "inferredFields": [],
+      "route": "/java/advanced/2026/08/11/java-reflection/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/basics/2026-08-10-java-basics.md",
+      "target": "content/posts/Backend/JAVA/basics/2026-08-10-java-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 기초 Part 1: 백엔드 배경과 Java 실행 구조",
+      "description": "네트워크와 데이터 형식부터 Java의 등장 배경, 컴파일 방식, 프로그램 구조까지 기초 흐름을 정리한다.",
+      "date": "2026-08-10 09:00:00 +0900",
+      "categories": [
+        "java",
+        "basics"
+      ],
+      "tags": [
+        "Java",
+        "Backend",
+        "Network",
+        "JSON",
+        "YAML",
+        "Compiler",
+        "JVM"
+      ],
+      "legacyPath": "/java/basics/2026/08/10/java-basics/",
+      "inferredFields": [],
+      "route": "/java/basics/2026/08/10/java-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 1
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/basics/2026-08-10-java-comments-javadoc.md",
+      "target": "content/posts/Backend/JAVA/basics/2026-08-10-java-comments-javadoc.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 기초 Part 2: 주석과 Javadoc",
+      "description": "Java의 한 줄 주석, 블록 주석, Javadoc 문법과 TODO, FIXME 사용법을 정리한다.",
+      "date": "2026-08-10 09:20:00 +0900",
+      "categories": [
+        "java",
+        "basics"
+      ],
+      "tags": [
+        "Java",
+        "Comment",
+        "Javadoc",
+        "TODO",
+        "FIXME"
+      ],
+      "legacyPath": "/java/basics/2026/08/10/java-comments-javadoc/",
+      "inferredFields": [],
+      "route": "/java/basics/2026/08/10/java-comments-javadoc/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/basics/2026-08-10-java-control-flow.md",
+      "target": "content/posts/Backend/JAVA/basics/2026-08-10-java-control-flow.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 기초 Part 3: 제어문",
+      "description": "Java의 조건문, 반복문, 분기문과 예외 처리에 사용하는 기본 제어 흐름을 정리한다.",
+      "date": "2026-08-10 09:40:00 +0900",
+      "categories": [
+        "java",
+        "basics"
+      ],
+      "tags": [
+        "Java",
+        "Control Flow",
+        "If",
+        "Switch",
+        "For",
+        "While",
+        "Exception"
+      ],
+      "legacyPath": "/java/basics/2026/08/10/java-control-flow/",
+      "inferredFields": [],
+      "route": "/java/basics/2026/08/10/java-control-flow/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/basics/2026-08-11-java-generics.md",
+      "target": "content/posts/Backend/JAVA/basics/2026-08-11-java-generics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 기초 Part 4: 제네릭",
+      "description": "Java 제네릭으로 컬렉션이 다룰 데이터 타입을 지정하는 방법을 ArrayList 예제로 정리한다.",
+      "date": "2026-08-11 10:00:00 +0900",
+      "categories": [
+        "java",
+        "basics"
+      ],
+      "tags": [
+        "Java",
+        "Generic",
+        "ArrayList",
+        "Collection",
+        "Type Safety"
+      ],
+      "legacyPath": "/java/basics/2026/08/11/java-generics/",
+      "inferredFields": [],
+      "route": "/java/basics/2026/08/11/java-generics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/basics/2026-08-11-java-stream-api.md",
+      "target": "content/posts/Backend/JAVA/basics/2026-08-11-java-stream-api.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 기초 Part 5: Stream API",
+      "description": "Java Stream API의 파이프라인, 중간 연산과 최종 연산을 filter, map, sorted 예제로 정리한다.",
+      "date": "2026-08-11 10:20:00 +0900",
+      "categories": [
+        "java",
+        "basics"
+      ],
+      "tags": [
+        "Java",
+        "Stream API",
+        "Collection",
+        "Lambda",
+        "Filter",
+        "Map"
+      ],
+      "legacyPath": "/java/basics/2026/08/11/java-stream-api/",
+      "inferredFields": [],
+      "route": "/java/basics/2026/08/11/java-stream-api/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/debugging/2026-08-11-java-confusing-concepts-debugging.md",
+      "target": "content/posts/Backend/JAVA/debugging/2026-08-11-java-confusing-concepts-debugging.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념",
+      "description": "Java에서 자주 헷갈리는 클래스와 객체, 생성자와 this, static final, package import, 추상화 개념을 디버깅 관점에서 정리한다.",
+      "date": "2026-08-11 09:00:00 +0900",
+      "categories": [
+        "java",
+        "debugging"
+      ],
+      "tags": [
+        "Java",
+        "Debugging",
+        "OOP",
+        "Class",
+        "Constructor",
+        "Static",
+        "Package",
+        "Import",
+        "Abstract"
+      ],
+      "legacyPath": "/java/debugging/2026/08/11/java-confusing-concepts-debugging/",
+      "inferredFields": [],
+      "route": "/java/debugging/2026/08/11/java-confusing-concepts-debugging/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
+      "target": "content/posts/Backend/JAVA/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 디버깅 Part 2: VS Code 자동 컴파일과 프로젝트 구조",
+      "description": "VS Code의 Java 자동 빌드 동작, .class 파일 위치, Maven과 Gradle 기반 프로젝트 구조, 자동 재시작 도구를 정리한다.",
+      "date": "2026-08-11 09:00:00 +0900",
+      "categories": [
+        "java",
+        "debugging"
+      ],
+      "tags": [
+        "Java",
+        "Debugging",
+        "VS Code",
+        "Compiler",
+        "Maven",
+        "Gradle",
+        "Spring Boot",
+        "DevTools"
+      ],
+      "legacyPath": "/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/",
+      "inferredFields": [],
+      "route": "/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/jvm/2026-08-10-java-execution-memory.md",
+      "target": "content/posts/Backend/JAVA/jvm/2026-08-10-java-execution-memory.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 실행과 JVM Part 2: 메모리와 데이터 흐름",
+      "description": "Java 실행 환경부터 기본형과 참조형, Stack, Heap, Metaspace와 멀티스레드의 데이터 흐름을 정리한다.",
+      "date": "2026-08-10 10:00:00 +0900",
+      "categories": [
+        "java",
+        "jvm"
+      ],
+      "tags": [
+        "Java",
+        "JDK",
+        "JVM",
+        "Stack",
+        "Heap",
+        "Thread",
+        "StringBuilder",
+        "Synchronized"
+      ],
+      "legacyPath": "/java/jvm/2026/08/10/java-execution-memory/",
+      "inferredFields": [],
+      "route": "/java/jvm/2026/08/10/java-execution-memory/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/jvm/2026-08-10-java-python-compile-comparison.md",
+      "target": "content/posts/Backend/JAVA/jvm/2026-08-10-java-python-compile-comparison.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 실행과 JVM Part 1: Java와 Python 컴파일 비교",
+      "description": "Python과 Java의 바이트코드 실행 과정을 비교하고 javac, JVM, classpath, package의 역할을 정리한다.",
+      "date": "2026-08-10 09:50:00 +0900",
+      "categories": [
+        "java",
+        "jvm"
+      ],
+      "tags": [
+        "Java",
+        "Python",
+        "Compiler",
+        "Bytecode",
+        "JVM",
+        "Classpath",
+        "Package"
+      ],
+      "legacyPath": "/java/jvm/2026/08/10/java-python-compile-comparison/",
+      "inferredFields": [],
+      "route": "/java/jvm/2026/08/10/java-python-compile-comparison/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/jvm/2026-08-10-jvm-classloader-memory.md",
+      "target": "content/posts/Backend/JAVA/jvm/2026-08-10-jvm-classloader-memory.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 실행과 JVM Part 3: ClassLoader와 JVM 메모리",
+      "description": "Java 소스가 실행되는 과정과 ClassLoader, Heap, Stack, Method Area, Code Cache의 역할을 정리한다.",
+      "date": "2026-08-10 10:20:00 +0900",
+      "categories": [
+        "java",
+        "jvm"
+      ],
+      "tags": [
+        "Java",
+        "JVM",
+        "ClassLoader",
+        "Heap",
+        "Stack",
+        "Method Area",
+        "Code Cache"
+      ],
+      "legacyPath": "/java/jvm/2026/08/10/jvm-classloader-memory/",
+      "inferredFields": [],
+      "route": "/java/jvm/2026/08/10/jvm-classloader-memory/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/2026-08-10-java-class-object.md",
+      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-class-object.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 객체지향 Part 1: 클래스, 객체, 필드와 생성자",
+      "description": "클래스, 객체, 인스턴스부터 필드, 메서드, 생성자, this, super, static까지 기본 문법을 정리한다.",
+      "date": "2026-08-10 11:00:00 +0900",
+      "categories": [
+        "java",
+        "oop"
+      ],
+      "tags": [
+        "Java",
+        "Class",
+        "Object",
+        "Instance",
+        "Field",
+        "Method",
+        "Constructor",
+        "This",
+        "Super",
+        "Static"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-class-object/",
+      "inferredFields": [],
+      "route": "/java/oop/2026/08/10/java-class-object/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/2026-08-10-java-inheritance-interface.md",
+      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-inheritance-interface.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 객체지향 Part 4: 상속과 인터페이스",
+      "description": "Java의 상속, 인터페이스, Override 애너테이션과 다중 구현 방식을 예제로 정리한다.",
+      "date": "2026-08-10 13:20:00 +0900",
+      "categories": [
+        "java",
+        "oop"
+      ],
+      "tags": [
+        "Java",
+        "OOP",
+        "Inheritance",
+        "Interface",
+        "Override",
+        "Polymorphism"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-inheritance-interface/",
+      "inferredFields": [],
+      "route": "/java/oop/2026/08/10/java-inheritance-interface/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/2026-08-10-java-oop-concepts.md",
+      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-oop-concepts.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 객체지향 Part 2: OOP 핵심 문법",
+      "description": "참조 변수, 멤버, static, final, 접근 제어자, 캡슐화, 상속과 오버라이드를 코드로 정리한다.",
+      "date": "2026-08-10 12:00:00 +0900",
+      "categories": [
+        "java",
+        "oop"
+      ],
+      "tags": [
+        "Java",
+        "OOP",
+        "Class",
+        "Object",
+        "Instance",
+        "Field",
+        "Method",
+        "Constructor",
+        "Static",
+        "Encapsulation",
+        "Inheritance",
+        "Override"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-oop-concepts/",
+      "inferredFields": [],
+      "route": "/java/oop/2026/08/10/java-oop-concepts/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/2026-08-10-java-oop-design-four-pillars.md",
+      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-oop-design-four-pillars.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 객체지향 Part 3: 좋은 설계와 OOP 4대 특성",
+      "description": "응집도와 결합도, 캡슐화, 추상화, 상속, 다형성을 중심으로 객체지향 설계 원칙을 정리한다.",
+      "date": "2026-08-10 13:00:00 +0900",
+      "categories": [
+        "java",
+        "oop"
+      ],
+      "tags": [
+        "Java",
+        "OOP",
+        "Object",
+        "Encapsulation",
+        "Abstraction",
+        "Inheritance",
+        "Polymorphism"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-oop-design-four-pillars/",
+      "inferredFields": [],
+      "route": "/java/oop/2026/08/10/java-oop-design-four-pillars/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/2026-08-11-java-static-nested-class.md",
+      "target": "content/posts/Backend/JAVA/oop/2026-08-11-java-static-nested-class.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java 객체지향 Part 5: static 메서드와 중첩 클래스",
+      "description": "Java static 메서드, 일반 내부 클래스, static 중첩 클래스의 차이와 사용 기준을 정리한다.",
+      "date": "2026-08-11 11:20:00 +0900",
+      "categories": [
+        "java",
+        "oop"
+      ],
+      "tags": [
+        "Java",
+        "Static",
+        "Nested Class",
+        "Inner Class",
+        "Method",
+        "Polymorphism"
+      ],
+      "legacyPath": "/java/oop/2026/08/11/java-static-nested-class/",
+      "inferredFields": [],
+      "route": "/java/oop/2026/08/11/java-static-nested-class/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/Creational Pattern.md",
+      "target": "content/posts/Backend/JAVA/oop/Creational Pattern.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. Singleton Pattern",
+      "description": "Creational Pattern",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "JAVA",
+        "oop"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/java/oop/2026/08/12/Creational-Pattern/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/java/oop/2026/08/12/Creational-Pattern/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/JAVA/oop/SOLID.md",
+      "target": "content/posts/Backend/JAVA/oop/SOLID.md",
+      "visibility": "public",
+      "published": true,
+      "title": "SOLID",
+      "description": "SOLID 원칙을 큰 그림에서 바라보면",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "JAVA",
+        "oop"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/java/oop/2026/08/12/SOLID/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/java/oop/2026/08/12/SOLID/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/Kafka/temp.md",
+      "target": "content/posts/Backend/Kafka/temp.md",
+      "visibility": "public",
+      "published": true,
+      "title": "temp",
+      "description": "temp",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "Backend",
+        "Kafka"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/kafka/2026/08/26/temp/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/kafka/2026/08/26/temp/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/MSA.md",
+      "target": "content/posts/Backend/MSA.md",
+      "visibility": "public",
+      "published": true,
+      "title": "MSA",
+      "description": "MSA",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/2026/08/12/MSA/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/2026/08/12/MSA/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/MSA/Modular_Monolith.md",
+      "target": "content/posts/Backend/MSA/Modular_Monolith.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Modular Monolith",
+      "description": "Modular Monolith",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/msa/2026/08/26/Modular_Monolith/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/msa/2026/08/26/Modular_Monolith/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/MSA/Monolith.md",
+      "target": "content/posts/Backend/MSA/Monolith.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. Monolith",
+      "description": "단어의 유래 Monolith",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/msa/2026/08/26/Monolith/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/msa/2026/08/26/Monolith/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/MSA/MSA1.md",
+      "target": "content/posts/Backend/MSA/MSA1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "MSA1",
+      "description": "MSA1",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/msa/2026/08/26/MSA1/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/msa/2026/08/26/MSA1/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/Network(중요)/네트워크.md",
+      "target": "content/posts/Backend/Network(중요)/네트워크.md",
+      "visibility": "public",
+      "published": true,
+      "title": "네크워크 참조 모델",
+      "description": "OSI 7 Layer : 국제 표준화 기구ISO에서 발표한 네트워크 통신 기준이 되는 가장 대표적인 참조 모델 TCP/IP 4 Layer : 미 국방성 연구에서 시작되어 발전한 사실상의 업계 표준 참조 모델",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "Network(중요)"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/network-중요/2026/08/12/네트워크/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/network-중요/2026/08/12/네트워크/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/Network(중요)/Socket.md",
+      "target": "content/posts/Backend/Network(중요)/Socket.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Socket이란 무엇인가",
+      "description": "소켓(Socket)은 프로그램이 네트워크를 통해 다른 프로그램과 데이터를 주고받을 수 있게 해주는 통신 창구입니다.",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "Network"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/network/2026/08/12/Socket/",
+      "inferredFields": [
+        "description",
+        "date",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/network/2026/08/12/Socket/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING_AI /1.md",
+      "target": "content/posts/Backend/SPRING_AI /1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring AI를 배우기 전에 정리할 것",
+      "description": "프론트엔드도 알아야 하지만, 백엔드는 조금 더 깊게 파고들고 싶다. 기술을 한 가지만 고르기보다 여러 기술을 경험하되, 결국에는 내가 잘 아는 도메인 하나를 만들어야 한다.",
+      "date": "2026-08-18 19:28:21 +0900",
+      "categories": [
+        "Backend",
+        "SPRING_AI"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring_ai/2026/08/18/1/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring_ai/2026/08/18/1/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING_AI /2.md",
+      "target": "content/posts/Backend/SPRING_AI /2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "2",
+      "description": "2",
+      "date": "2026-08-12 07:20:07 +0900",
+      "categories": [
+        "Backend",
+        "SPRING_AI"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring_ai/2026/08/12/2/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring_ai/2026/08/12/2/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING_AI /3.md",
+      "target": "content/posts/Backend/SPRING_AI /3.md",
+      "visibility": "public",
+      "published": true,
+      "title": "3",
+      "description": "3",
+      "date": "2026-08-12 07:20:07 +0900",
+      "categories": [
+        "Backend",
+        "SPRING_AI"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring_ai/2026/08/12/3/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring_ai/2026/08/12/3/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING_AI /요약.md",
+      "target": "content/posts/Backend/SPRING_AI /요약.md",
+      "visibility": "public",
+      "published": true,
+      "title": "이번 강의는 무엇을 노리고 있을까?",
+      "description": "Spring Boot 계층 구조 위에 AI를 얹고, 프롬프트로 출력을 제어하고, RAG로 근거를 붙이고, Tool로 실제 행동을 수행한 뒤에, 보안과 메모리, 운영지표 관리해보자",
+      "date": "2026-08-19 15:35:50 +0900",
+      "categories": [
+        "Backend",
+        "SPRING_AI"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring_ai/2026/08/19/요약/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring_ai/2026/08/19/요약/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/2026-08-11-spring-ioc-bean-di.md",
+      "target": "content/posts/Backend/SPRING/2026-08-11-spring-ioc-bean-di.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation",
+      "description": "Spring을 사용하는 이유와 IoC Container, Bean, DI, Component Scan, Spring MVC, Transaction의 관계를 정리한다.",
+      "date": "2026-08-11 19:20:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "Spring Framework",
+        "IoC",
+        "DI",
+        "Bean",
+        "Annotation",
+        "Spring MVC",
+        "Transaction"
+      ],
+      "legacyPath": "/java/spring/2026/08/11/spring-ioc-bean-di/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/11/spring-ioc-bean-di/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/강의교재_정리.md",
+      "target": "content/posts/Backend/SPRING/강의교재_정리.md",
+      "visibility": "public",
+      "published": true,
+      "title": "전체 데이터 구조",
+      "description": "REST는 \"웹의 자원(RESORECE)\" 을 URI 로 식별하고, HTTP Method로 조작하고, JSON 형태로 주고 받는 방ㅅ기",
+      "date": "2026-08-18 19:28:21 +0900",
+      "categories": [
+        "Backend",
+        "SPRING"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/2026/08/18/강의교재_정리/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/2026/08/18/강의교재_정리/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/개념확인.md",
+      "target": "content/posts/Backend/SPRING/개념확인.md",
+      "visibility": "public",
+      "published": true,
+      "title": "2. Field/ Parameter / Argument/ this",
+      "description": "A: package com.practice // 본인의 경로를 적으면 된다. B: import com.practice.model.User C: ?? 그러길래 뭐냐? D: import는 실제 클래스 파일을 불러오는 것이 아니라 주어진 경로부터 클래스와 메서드를 불러오는 것 E: package는 import 할 주소 지정, import는 실제로 클래스와 메서드를 불러오는 명령어",
+      "date": "2026-08-12 07:20:07 +0900",
+      "categories": [
+        "Backend",
+        "SPRING"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/2026/08/12/개념확인/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/2026/08/12/개념확인/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/REST_API/REST_API_1.md",
+      "target": "content/posts/Backend/SPRING/REST_API/REST_API_1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "REST API의 개념과 설계 원칙",
+      "description": "웹 애플리케이션은 클라이언트와 서버가 HTTP와 같은 통신 규칙을 사용해 데이터를 주고받으며 동작하는 프로그램입니다. 일반적으로 웹 브라우저나 모바일 앱을 통해 이용합니다.",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/2026/08/12/REST_API_1/",
+      "inferredFields": [
+        "description",
+        "date",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/2026/08/12/REST_API_1/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring_Container/container.md",
+      "target": "content/posts/Backend/SPRING/Spring_Container/container.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 컨테이너",
+      "description": "IoC Container는 내부적으로 Map과 유사한 Collection을 가지고 있으며 여기에 Bean 을 등록하고 Bean 호출 시 생성이 아닌 기존 Bean 을 Input Argument로 전달",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring_Container"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring_container/2026/08/14/container/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring_container/2026/08/14/container/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-14-spring-mvc-request-flow.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-14-spring-mvc-request-flow.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 2: Spring MVC 요청 처리 흐름",
+      "description": "DispatcherServlet부터 Controller, Service, Repository, JSON 응답까지 Spring MVC의 전체 요청 흐름을 정리한다.",
+      "date": "2026-08-14 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "Spring Boot",
+        "Spring MVC",
+        "DispatcherServlet",
+        "REST API"
+      ],
+      "legacyPath": "/java/spring/2026/08/14/spring-mvc-request-flow/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/14/spring-mvc-request-flow/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-15-spring-rest-api-validation.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-15-spring-rest-api-validation.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 3: REST API 요청값과 입력값 검증",
+      "description": "PathVariable, RequestParam, RequestBody로 요청값을 받고 DTO와 Bean Validation으로 검증하는 흐름을 정리한다.",
+      "date": "2026-08-15 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "Spring Boot",
+        "REST API",
+        "Validation",
+        "DTO",
+        "RequestBody"
+      ],
+      "legacyPath": "/java/spring/2026/08/15/spring-rest-api-validation/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/15/spring-rest-api-validation/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-16-spring-data-jpa-basics.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-16-spring-data-jpa-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 4: JPA, Entity와 Repository",
+      "description": "ORM, JPA, Hibernate, Entity, Repository의 역할과 Spring Data JPA의 기본 CRUD 흐름을 정리한다.",
+      "date": "2026-08-16 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "Spring Boot",
+        "JPA",
+        "Hibernate",
+        "Spring Data JPA",
+        "Entity"
+      ],
+      "legacyPath": "/java/spring/2026/08/16/spring-data-jpa-basics/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/16/spring-data-jpa-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 5: EntityManager와 영속성 컨텍스트",
+      "description": "EntityManager의 역할, Entity 생명주기, 1차 캐시, 변경 감지, 쓰기 지연, flush와 commit의 차이를 정리한다.",
+      "date": "2026-08-17 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "JPA",
+        "EntityManager",
+        "Persistence Context",
+        "Dirty Checking"
+      ],
+      "legacyPath": "/java/spring/2026/08/17/jpa-entity-manager-persistence-context/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/17/jpa-entity-manager-persistence-context/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-18-jpa-relationship-mapping.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-18-jpa-relationship-mapping.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 6: JPA 연관관계 매핑",
+      "description": "객체 참조와 외래키를 연결하고, 다대일, 일대다, 연관관계의 주인, mappedBy와 지연 로딩을 이해한다.",
+      "date": "2026-08-18 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "JPA",
+        "Relationship Mapping",
+        "ManyToOne",
+        "OneToMany",
+        "Foreign Key"
+      ],
+      "legacyPath": "/java/spring/2026/08/18/jpa-relationship-mapping/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/18/jpa-relationship-mapping/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-19-spring-proxy.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-19-spring-proxy.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 7: Proxy 패턴과 Spring Proxy",
+      "description": "대리 객체인 Proxy가 실제 객체의 호출을 감싸는 원리와 Spring의 JDK Dynamic Proxy, CGLIB, 자기 호출 문제를 정리한다.",
+      "date": "2026-08-19 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "Proxy",
+        "Dynamic Proxy",
+        "JDK Proxy",
+        "CGLIB",
+        "Bean"
+      ],
+      "legacyPath": "/java/spring/2026/08/19/spring-proxy/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/19/spring-proxy/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-20-spring-aop.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-20-spring-aop.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 8: AOP와 공통 관심사 분리",
+      "description": "Aspect, Pointcut, Advice, JoinPoint의 의미와 Before, After, Around Advice가 Proxy를 통해 동작하는 흐름을 정리한다.",
+      "date": "2026-08-20 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "AOP",
+        "Aspect",
+        "Pointcut",
+        "Advice",
+        "Proxy"
+      ],
+      "legacyPath": "/java/spring/2026/08/20/spring-aop/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/20/spring-aop/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-21-jpa-transaction-concurrency.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-21-jpa-transaction-concurrency.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어",
+      "description": "Transactional의 동작, 커밋과 롤백, 전파, 격리 수준, 낙관적 락과 비관적 락을 하나의 흐름으로 정리한다.",
+      "date": "2026-08-21 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "JPA",
+        "Transaction",
+        "Transactional",
+        "Concurrency",
+        "Lock"
+      ],
+      "legacyPath": "/java/spring/2026/08/21/jpa-transaction-concurrency/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/21/jpa-transaction-concurrency/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-22-spring-async.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-22-spring-async.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 10: 비동기 처리와 @Async",
+      "description": "동기와 비동기, Thread와 Executor의 차이를 이해하고 Spring @Async의 설정, 반환값, 예외와 트랜잭션 경계를 정리한다.",
+      "date": "2026-08-22 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring",
+        "Async",
+        "EnableAsync",
+        "CompletableFuture",
+        "TaskExecutor",
+        "Thread Pool"
+      ],
+      "legacyPath": "/java/spring/2026/08/22/spring-async/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/22/spring-async/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 1,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/2026-08-23-spring-boot-actuator.md",
+      "target": "content/posts/Backend/SPRING/Spring/2026-08-23-spring-boot-actuator.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring 기초 Part 11: Actuator와 애플리케이션 모니터링",
+      "description": "Spring Boot Actuator의 Health, Metrics, Prometheus 엔드포인트와 노출 설정, 운영 환경 보안 주의사항을 정리한다.",
+      "date": "2026-08-23 09:00:00 +0900",
+      "categories": [
+        "java",
+        "spring"
+      ],
+      "tags": [
+        "Java",
+        "Spring Boot",
+        "Actuator",
+        "Monitoring",
+        "Metrics",
+        "Micrometer",
+        "Prometheus"
+      ],
+      "legacyPath": "/java/spring/2026/08/23/spring-boot-actuator/",
+      "inferredFields": [],
+      "route": "/java/spring/2026/08/23/spring-boot-actuator/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/입력값 검증.md",
+      "target": "content/posts/Backend/SPRING/Spring/입력값 검증.md",
+      "visibility": "public",
+      "published": true,
+      "title": "입력값 검증",
+      "description": "입력값 검증",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/입력값-검증/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/입력값-검증/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/Acuator.md",
+      "target": "content/posts/Backend/SPRING/Spring/Acuator.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Actuator 란?",
+      "description": "Spring Boot Actuator는 애플리케이션의 모니터링 및 관리를 위한 다양한 기능을 제공하는 라이브러리",
+      "date": "2026-08-14 17:44:25 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Acuator/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/Acuator/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/AOP.md",
+      "target": "content/posts/Backend/SPRING/Spring/AOP.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Java의 AOP(Aspect Oriented Programming)",
+      "description": "예를 들어 실제 객체가",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/AOP/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/AOP/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/Async.md",
+      "target": "content/posts/Backend/SPRING/Spring/Async.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Async : Asynchronous",
+      "description": "예를 들어 동기 방식",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Async/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/Async/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/bean_proxy.md",
+      "target": "content/posts/Backend/SPRING/Spring/bean_proxy.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Bean",
+      "description": "Bean을 사용하는 이유는 객체를 개발자가 매번 직접 만들지 않기 위해서",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/bean_proxy/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/bean_proxy/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/docker_container.md",
+      "target": "content/posts/Backend/SPRING/Spring/docker_container.md",
+      "visibility": "public",
+      "published": true,
+      "title": "docker container",
+      "description": "Java 서",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/12/docker_container/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/12/docker_container/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/EntityManager.md",
+      "target": "content/posts/Backend/SPRING/Spring/EntityManager.md",
+      "visibility": "public",
+      "published": true,
+      "title": "EntityManager",
+      "description": "@Entity public class User{ @Id @GenerativeValue",
+      "date": "2026-08-14 17:44:25 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/EntityManager/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/EntityManager/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/JPA_관계매핑.md",
+      "target": "content/posts/Backend/SPRING/Spring/JPA_관계매핑.md",
+      "visibility": "public",
+      "published": true,
+      "title": "JPA 연관관계 매핑",
+      "description": "자바 객체는 다른 객체를 필드로 참조한다.",
+      "date": "2026-08-14 17:44:25 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/JPA_관계매핑/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/JPA_관계매핑/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/JPA_트랜젝션.md",
+      "target": "content/posts/Backend/SPRING/Spring/JPA_트랜젝션.md",
+      "visibility": "public",
+      "published": true,
+      "title": "JPA 트랜잭션(Transaction)",
+      "description": "모든 작업이 성공하면 데이터베이스에 반영하고, 중간에 실패하면 작업 전체를 취소한다.",
+      "date": "2026-08-14 17:44:25 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/JPA_트랜젝션/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/JPA_트랜젝션/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/JPA.md",
+      "target": "content/posts/Backend/SPRING/Spring/JPA.md",
+      "visibility": "public",
+      "published": true,
+      "title": "JPA(Java Persistence API)",
+      "description": "쉽게 말하면 다음 두 세계를 연결해주는 규칙이다.",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/JPA/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/JPA/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/Proxy.md",
+      "target": "content/posts/Backend/SPRING/Spring/Proxy.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Proxy 패턴",
+      "description": "Proxy는 원래 법률이나 정치 분야에서 사용하는 대리인이라는 뜻에서 나왔다.",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Proxy/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/Proxy/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 2,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/Spring_1.md",
+      "target": "content/posts/Backend/SPRING/Spring/Spring_1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. Spirng 필요",
+      "description": "Spring: 복잡한 Java EE의 대안 à 유연하고 강력한 자바 엔터프라이즈 개발 프레임워크",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/12/Spring_1/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/12/Spring_1/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/Spring_2.md",
+      "target": "content/posts/Backend/SPRING/Spring/Spring_2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "컴포넌트 스캔",
+      "description": "-",
+      "date": "2026-08-12 17:47:59 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/12/Spring_2/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/12/Spring_2/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/Spring/Spring_MVC.md",
+      "target": "content/posts/Backend/SPRING/Spring/Spring_MVC.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring MVC",
+      "description": "Controller : 사용자 요청 -> Service : 그 요청을 어떻게 처리하지? -> Repository : 필요한 데이터는 DB에서 가져오자 -> Model : 처리한 데이터를 담자 -> View / JSON : 사용자에게 결과를 보여주자",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "Spring"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Spring_MVC/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/spring/2026/08/14/Spring_MVC/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/springboot/application.md",
+      "target": "content/posts/Backend/SPRING/springboot/application.md",
+      "visibility": "public",
+      "published": true,
+      "title": "application.yaml",
+      "description": "application.yaml은 Spring Boot 애플리케이션의 설정값을 모아두는 파일이다.",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "springboot"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/springboot/2026/08/14/application/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/springboot/2026/08/14/application/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Backend/SPRING/springboot/Lombok.md",
+      "target": "content/posts/Backend/SPRING/springboot/Lombok.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Lombok",
+      "description": "Lombok",
+      "date": "2026-08-14 10:19:08 +0900",
+      "categories": [
+        "Backend",
+        "SPRING",
+        "springboot"
+      ],
+      "tags": [],
+      "legacyPath": "/backend/spring/springboot/2026/08/14/Lombok/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/backend/spring/springboot/2026/08/14/Lombok/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Basic/2026-08-24-docker-os-basics.md",
+      "target": "content/posts/Basic/2026-08-24-docker-os-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker를 이해하기 위한 운영체제 기초",
+      "description": "Program, Process, CPU, Memory, Kernel부터 Namespace와 cgroup까지 Docker 학습에 필요한 운영체제 핵심 개념을 흐름에 따라 정리한다.",
+      "date": "2026-08-24 00:10:00 +0900",
+      "categories": [
+        "Basic",
+        "OS"
+      ],
+      "tags": [
+        "OS",
+        "Linux",
+        "Docker",
+        "Process",
+        "Kernel",
+        "Namespace",
+        "cgroup"
+      ],
+      "legacyPath": "/basic/os/2026/08/24/docker-os-basics/",
+      "inferredFields": [],
+      "route": "/basic/os/2026/08/24/docker-os-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Basic/2026-08-24-essential-development-terms.md",
+      "target": "content/posts/Basic/2026-08-24-essential-development-terms.md",
+      "visibility": "public",
+      "published": true,
+      "title": "개발 문서를 읽기 위한 핵심 기술 용어",
+      "description": "Docker, Linux, 백엔드, 네트워크 문서에서 반복해서 등장하는 공통 기술 용어와 자주 쓰는 표현을 정리한다.",
+      "date": "2026-08-24 00:05:00 +0900",
+      "categories": [
+        "Basic",
+        "CS"
+      ],
+      "tags": [
+        "CS",
+        "Backend",
+        "Docker",
+        "Linux",
+        "Network",
+        "Terminology"
+      ],
+      "legacyPath": "/basic/cs/2026/08/24/essential-development-terms/",
+      "inferredFields": [],
+      "route": "/basic/cs/2026/08/24/essential-development-terms/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Basic/temp.md",
+      "target": "content/posts/Basic/temp.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. 기술 스택",
+      "description": "너는 시니어 풀스택 개발자이자 기술 교육 콘텐츠 설계자다.",
+      "date": "2026-08-24 00:11:49 +0900",
+      "categories": [
+        "Basic"
+      ],
+      "tags": [],
+      "legacyPath": "/basic/2026/08/24/temp/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/basic/2026/08/24/temp/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-01-basics.md",
+      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-01-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "CI/CD 기초 1편: 개념과 GitHub Actions",
+      "description": "CI와 CD의 차이, GitHub Actions의 기본 구조, 라즈베리파이 배포 방법을 정리한다.",
+      "date": "2026-08-17 13:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "tags": [
+        "CI/CD",
+        "GitHub Actions",
+        "Docker",
+        "Deployment"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-01-basics/",
+      "inferredFields": [],
+      "route": "/devops/ci-cd/2026/08/17/ci-cd-01-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
+      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
+      "visibility": "public",
+      "published": true,
+      "title": "CI/CD 기초 2편: Docker 이미지와 배포 파이프라인",
+      "description": "Docker 기반 CI/CD의 흐름과 이미지, 컨테이너, Registry, 환경 설정 및 태그 관리 원칙을 정리한다.",
+      "date": "2026-08-17 14:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "tags": [
+        "CI/CD",
+        "Docker",
+        "GitHub Actions",
+        "Container Registry",
+        "Deployment"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/",
+      "inferredFields": [],
+      "route": "/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
+      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
+      "visibility": "public",
+      "published": true,
+      "title": "CI/CD 기초 3편: Jenkins와 Argo CD를 이용한 GitOps 배포",
+      "description": "컨테이너 이미지를 Build, Push하고 GitOps Repository와 Argo CD를 통해 Kubernetes에 배포하는 흐름을 정리한다.",
+      "date": "2026-08-17 14:30:00 +0900",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "tags": [
+        "CI/CD",
+        "Docker",
+        "Jenkins",
+        "GitOps",
+        "Argo CD",
+        "Kubernetes"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/",
+      "inferredFields": [],
+      "route": "/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
+      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
+      "visibility": "public",
+      "published": true,
+      "title": "CI/CD 기초 4편: 배포 전략과 운영",
+      "description": "컨테이너 배포 이후 필요한 Health Check, Rollback, 무중단 배포 전략과 모니터링을 정리한다.",
+      "date": "2026-08-17 15:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "tags": [
+        "CI/CD",
+        "Docker",
+        "Health Check",
+        "Rollback",
+        "Deployment",
+        "Observability"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/",
+      "inferredFields": [],
+      "route": "/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-01-core-concepts.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-01-core-concepts.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 1편: Dockerfile, Image와 Container",
+      "description": "Docker가 필요한 이유와 Dockerfile, Image, Container, 기본 명령어, Port Mapping과 격리 개념을 정리한다.",
+      "date": "2026-08-17 12:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Dockerfile",
+        "Image",
+        "Container",
+        "Port Mapping"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-01-core-concepts/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-01-core-concepts/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-02-ecosystem.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-02-ecosystem.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 2편: Layer, Registry, Volume과 Network",
+      "description": "Docker Image Layer와 Registry, Volume, Network, Docker Compose의 기본 역할을 정리한다.",
+      "date": "2026-08-17 12:05:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Layer",
+        "Registry",
+        "Volume",
+        "Network",
+        "Docker Compose"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-02-ecosystem/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-02-ecosystem/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-03-deployment-principles.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-03-deployment-principles.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 3편: CI/CD 연결과 배포 원칙",
+      "description": "Docker가 CI/CD와 연결되는 흐름, 이미지 기반 배포와 Immutable Infrastructure 원칙을 정리한다.",
+      "date": "2026-08-17 12:10:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "CI/CD",
+        "Deployment",
+        "Immutable Infrastructure"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-03-deployment-principles/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-03-deployment-principles/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 4편: 가상화와 컨테이너 이미지 생명주기",
+      "description": "가상화와 하이퍼바이저, VM과 컨테이너의 차이, 컨테이너 이미지 생명주기와 Dockerfile을 정리한다.",
+      "date": "2026-08-17 12:15:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Container",
+        "Virtualization",
+        "Hypervisor",
+        "Dockerfile"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-04-virtualization-and-image-lifecycle/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-04-virtualization-and-image-lifecycle/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 5편: 컨테이너 기본 명령어와 Volume",
+      "description": "Docker Network, 컨테이너 명령어와 Volume.",
+      "date": "2026-08-17 12:20:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Container",
+        "Network",
+        "Volume",
+        "Docker CLI"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-05-container-commands-and-volumes/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-05-container-commands-and-volumes/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-06-image-build-and-layers.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-06-image-build-and-layers.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 6편: 이미지 Layer와 빌드 최적화",
+      "description": "컨테이너 이미지 Layer, Push와 Pull, 멀티 스테이지 빌드, RUN, 빌드 캐시와 CMD를 정리한다.",
+      "date": "2026-08-17 12:25:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Image",
+        "Layer",
+        "Registry",
+        "Multi-stage Build",
+        "Build Cache"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-06-image-build-and-layers/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-06-image-build-and-layers/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-07-image-layer-archive.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-07-image-layer-archive.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 7편: 이미지 Layer와 tar 내부 구조",
+      "description": "Docker 이미지와 Layer의 특징, tar 명령어와 이미지 아카이브 내부 구조 확인 방법을 정리한다.",
+      "date": "2026-08-17 12:30:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Image",
+        "Layer",
+        "tar",
+        "Manifest",
+        "Blob"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-07-image-layer-archive/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-07-image-layer-archive/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 8편: 컨테이너 런타임과 격리",
+      "description": "Docker Client에서 runc와 Linux Kernel까지의 실행 흐름과 Namespace, cgroups, OverlayFS, 보안 기능을 정리한다.",
+      "date": "2026-08-17 12:35:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "containerd",
+        "runc",
+        "Namespace",
+        "cgroups",
+        "OverlayFS"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-08-runtime-and-isolation/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-08-runtime-and-isolation/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-09-container-networking.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-09-container-networking.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 9편: Docker 및 Kubernetes 네트워크",
+      "description": "Docker Bridge와 NAT, Port Publishing, Kubernetes CNI와 Calico 네트워크를 정리한다.",
+      "date": "2026-08-17 12:40:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Network",
+        "Bridge",
+        "NAT",
+        "CNI",
+        "Calico"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-09-container-networking/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-09-container-networking/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 10편: Compose 기본 구조와 이미지 빌드",
+      "description": "Docker Compose의 핵심 개념, compose.yaml 구조, 이미지 빌드와 command 및 entrypoint를 정리한다.",
+      "date": "2026-08-17 12:45:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Docker Compose",
+        "Service",
+        "YAML",
+        "Build",
+        "Entrypoint"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-10-compose-basics-and-build/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-10-compose-basics-and-build/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 11편: Compose 명령어와 환경 변수",
+      "description": "Docker Compose 생명주기 명령어와 환경 변수, env_file, .env 및 Secret 사용 방법을 정리한다.",
+      "date": "2026-08-17 12:50:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Docker Compose",
+        "Docker CLI",
+        "Environment Variable",
+        "Secret"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-11-compose-commands-and-environment/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-11-compose-commands-and-environment/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 12편: Compose 네트워크와 Volume",
+      "description": "Docker Compose 서비스 통신, ports와 expose, 네트워크 분리, Nginx와 Volume을 정리한다.",
+      "date": "2026-08-17 12:55:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Docker Compose",
+        "Network",
+        "Nginx",
+        "Volume",
+        "Bind Mount"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-12-compose-network-and-volume/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-12-compose-network-and-volume/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Docker 기초 13편: Compose Healthcheck와 실전 구성",
+      "description": "Docker Compose의 depends_on, Healthcheck, 재시작 정책과 Frontend, Backend, DB 전체 구성을 정리한다.",
+      "date": "2026-08-17 13:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Docker Compose",
+        "Healthcheck",
+        "depends_on",
+        "Restart Policy"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-13-compose-healthcheck-and-practice/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-13-compose-healthcheck-and-practice/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-spring-boot-practice-draft.md",
+      "target": "drafts/CI-CD-Docker/Docker/2026-08-17-docker-spring-boot-practice-draft.md",
+      "visibility": "draft",
+      "published": false,
+      "title": "Docker 실습 초안: Spring Boot 애플리케이션 컨테이너화",
+      "description": "Spring Boot 애플리케이션의 Docker Image를 만들고 MySQL과 연결해 Docker Compose로 실행하는 과정을 정리한다.",
+      "date": "2026-08-17 22:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "Docker",
+        "Spring Boot",
+        "MySQL",
+        "Docker Compose",
+        "DevOps"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-spring-boot-practice-draft/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/17/docker-spring-boot-practice-draft/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/2026-08-24-oci-container-standard.md",
+      "target": "content/posts/CI-CD-Docker/Docker/2026-08-24-oci-container-standard.md",
+      "visibility": "public",
+      "published": true,
+      "title": "OCI: 컨테이너 이미지와 런타임의 공통 표준",
+      "description": "OCI가 등장한 배경과 Image, Runtime, Distribution Specification의 역할, Docker와 Kubernetes에서 OCI가 사용되는 흐름을 정리한다.",
+      "date": "2026-08-24 00:50:00 +0900",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "tags": [
+        "OCI",
+        "Docker",
+        "Container",
+        "containerd",
+        "runc",
+        "Kubernetes"
+      ],
+      "legacyPath": "/devops/docker/2026/08/24/oci-container-standard/",
+      "inferredFields": [],
+      "route": "/devops/docker/2026/08/24/oci-container-standard/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/Docker/sigterm.md",
+      "target": "content/posts/CI-CD-Docker/Docker/sigterm.md",
+      "visibility": "public",
+      "published": true,
+      "title": "sigterm",
+      "description": "Docker 컨테이너가 종료될 때 Docker는 컨테이너의 PID 1 프로세스에 SIGTERM을 보냅니다. 따라서 어떤 프로세스가 PID 1인지가 Graceful Shutdown의 핵심입니다.",
+      "date": "2026-08-24 13:57:58 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "Docker"
+      ],
+      "tags": [],
+      "legacyPath": "/ci-cd-docker/docker/2026/08/24/sigterm/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/ci-cd-docker/docker/2026/08/24/sigterm/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/kubernetes/Calico.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/Calico.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Calico",
+      "description": "Calico는 Kubernetes에서 사용하는 CNI",
+      "date": "2026-08-26 07:11:14 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [],
+      "legacyPath": "/ci-cd-docker/kubernetes/2026/08/26/Calico/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/ci-cd-docker/kubernetes/2026/08/26/Calico/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/CI-CD-Docker/kubernetes/kubernetes1.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/kubernetes1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "쿠버네티스",
+      "description": "Docker는 컨테이너 하나를 만들고 실행하는 데 집중한다.",
+      "date": "2026-08-26 07:11:14 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [],
+      "legacyPath": "/ci-cd-docker/kubernetes/2026/08/26/kubernetes1/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/ci-cd-docker/kubernetes/2026/08/26/kubernetes1/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Data_Science/PostgreSQL/2026-07-31-psql1.md",
+      "target": "content/posts/Data_Science/PostgreSQL/2026-07-31-psql1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Psql 함수,프로시져,트리거",
+      "description": "PostgreSQL 함수, 프로시저와 트리거의 기본 문법과 사용 예시를 정리한다.",
+      "date": "2026-07-31 08:00:00 +0900",
+      "categories": [
+        "DB",
+        "PostgreSQL"
+      ],
+      "tags": [
+        "PostgreSQL"
+      ],
+      "legacyPath": "/db/postgresql/2026/07/31/psql1/",
+      "inferredFields": [],
+      "route": "/db/postgresql/2026/07/31/psql1/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Data_Science/PostgreSQL/2026-07-31-psql2.md",
+      "target": "content/posts/Data_Science/PostgreSQL/2026-07-31-psql2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Psql JSONB, 행 잠금, 멱등성",
+      "description": "PostgreSQL JSONB 처리, 행 잠금과 멱등성 구현에 필요한 핵심 개념을 정리한다.",
+      "date": "2026-07-31 09:00:00 +0900",
+      "categories": [
+        "DB",
+        "PostgreSQL"
+      ],
+      "tags": [
+        "PostgreSQL"
+      ],
+      "legacyPath": "/db/postgresql/2026/07/31/psql2/",
+      "inferredFields": [],
+      "route": "/db/postgresql/2026/07/31/psql2/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
+      "target": "content/posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
+      "visibility": "public",
+      "published": true,
+      "title": "현대 LLM 워크플로의 패턴",
+      "description": "Routing, Chaining, Parallelization, Evaluator-Optimizer, Orchestrator-Workers와 Agent Loop의 차이를 정리한다.",
+      "date": "2026-08-19 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "LLM"
+      ],
+      "tags": [
+        "Deep Learning",
+        "LLM",
+        "Workflow",
+        "Agent"
+      ],
+      "legacyPath": "/deep_learning/llm/2026/08/19/llm-workflow-patterns/",
+      "inferredFields": [],
+      "route": "/deep_learning/llm/2026/08/19/llm-workflow-patterns/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
+      "target": "content/posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "딥러닝 학습 기본 개념",
+      "description": "딥러닝 학습 흐름과 Epoch, Batch, 데이터 분리, 학습 및 추론의 기본 개념을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Basic"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Machine Learning",
+        "Training Basics"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/deep-learning-basics/",
+      "inferredFields": [],
+      "route": "/deep_learning/basic/2026/08/06/deep-learning-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
+      "target": "content/posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
+      "visibility": "public",
+      "published": true,
+      "title": "데이터 시각화",
+      "description": "딥러닝 학습 흐름과 Epoch, Batch, 데이터 분리, 학습 및 추론의 기본 개념을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Basic"
+      ],
+      "tags": [
+        "Deep Learning",
+        "EDA"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/EDA-copy/",
+      "inferredFields": [],
+      "route": "/deep_learning/basic/2026/08/06/EDA-copy/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
+      "target": "content/posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
+      "visibility": "public",
+      "published": true,
+      "title": "기초 통계와 ML 파이프라인 연결",
+      "description": "개추",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Basic"
+      ],
+      "tags": [
+        "Deep Learning",
+        "PipeLine"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/ML_Pipeline/",
+      "inferredFields": [],
+      "route": "/deep_learning/basic/2026/08/06/ML_Pipeline/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
+      "target": "content/posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "분석 자동화와 파이프라인 설계",
+      "description": "개추",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Basic"
+      ],
+      "tags": [
+        "Deep Learning",
+        "PipeLine"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/ML_Pipeline2/",
+      "inferredFields": [],
+      "route": "/deep_learning/basic/2026/08/06/ML_Pipeline2/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "visibility": "public",
+      "published": true,
+      "title": "CNN 아키텍처 발전 과정",
+      "description": "AlexNet부터 VGG, ResNet, DenseNet, MobileNet, EfficientNet, ConvNeXt까지 CNN의 발전 흐름을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Computer_Vision"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Computer Vision",
+        "CNN"
+      ],
+      "legacyPath": "/deep_learning/computer_vision/2026/08/06/cnn-architectures/",
+      "inferredFields": [],
+      "route": "/deep_learning/computer_vision/2026/08/06/cnn-architectures/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "visibility": "public",
+      "published": true,
+      "title": "이미지 세그멘테이션 모델과 핵심 개념",
+      "description": "Semantic, Instance, Panoptic Segmentation의 차이와 주요 이미지 세그멘테이션 모델을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Computer_Vision"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Computer Vision",
+        "Image Segmentation"
+      ],
+      "legacyPath": "/deep_learning/computer_vision/2026/08/06/image-segmentation/",
+      "inferredFields": [],
+      "route": "/deep_learning/computer_vision/2026/08/06/image-segmentation/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
+      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
+      "visibility": "public",
+      "published": true,
+      "title": "객체 탐지 모델과 핵심 개념",
+      "description": "객체 탐지의 기본 구조와 R-CNN, YOLO, DETR 계열 모델 및 평가 방법을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Computer_Vision"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Computer Vision",
+        "Object Detection"
+      ],
+      "legacyPath": "/deep_learning/computer_vision/2026/08/06/object-detection/",
+      "inferredFields": [],
+      "route": "/deep_learning/computer_vision/2026/08/06/object-detection/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
+      "target": "content/posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
+      "visibility": "public",
+      "published": true,
+      "title": "딥러닝 데이터셋 엔지니어링",
+      "description": "데이터 분리, 불균형, 증강, 라벨 노이즈, 중복 데이터와 데이터셋 버전 관리 방법을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Data"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Dataset Engineering",
+        "Data Augmentation"
+      ],
+      "legacyPath": "/deep_learning/data/2026/08/06/dataset-engineering/",
+      "inferredFields": [],
+      "route": "/deep_learning/data/2026/08/06/dataset-engineering/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "target": "content/posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "visibility": "public",
+      "published": true,
+      "title": "딥러닝 학습 문제 진단과 디버깅",
+      "description": "Loss, 과적합, 평가 지표, 데이터 분포, Gradient, GPU 메모리 등 딥러닝 학습 문제의 진단 항목을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Debugging"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Model Debugging",
+        "Training"
+      ],
+      "legacyPath": "/deep_learning/debugging/2026/08/06/deep-learning-debugging/",
+      "inferredFields": [],
+      "route": "/deep_learning/debugging/2026/08/06/deep-learning-debugging/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/RAG/1.Md",
+      "target": "content/posts/DeepLearning/RAG/1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1",
+      "description": "1",
+      "date": "2026-08-18 19:28:21 +0900",
+      "categories": [
+        "DeepLearning",
+        "RAG"
+      ],
+      "tags": [],
+      "legacyPath": "/deeplearning/rag/2026/08/18/1/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/deeplearning/rag/2026/08/18/1/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/RAG/Chunking.md",
+      "target": "content/posts/DeepLearning/RAG/Chunking.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Chunking?",
+      "description": "RAG 강의듣다가 궁금한게 생겼다. RAG가 문서를 벡터로 변환된어 있는 잘린 데이터를 찾아서 데이터 검색을 한다는데, 그렇다면 도대체 어떻게 자르는 것일까..? 하고 궁금해졌다.",
+      "date": "2026-08-18 19:28:21 +0900",
+      "categories": [
+        "DeepLearning",
+        "RAG"
+      ],
+      "tags": [],
+      "legacyPath": "/deeplearning/rag/2026/08/18/Chunking/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/deeplearning/rag/2026/08/18/Chunking/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
+      "target": "content/posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
+      "visibility": "public",
+      "published": true,
+      "title": "분산 학습과 MLOps",
+      "description": "멀티 GPU 분산 학습 방식과 실험 관리, 모델 배포, 모니터링, 재학습 파이프라인을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Technics"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Distributed Training",
+        "MLOps"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/distributed-training-mlops/",
+      "inferredFields": [],
+      "route": "/deep_learning/technics/2026/08/06/distributed-training-mlops/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
+      "target": "content/posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
+      "visibility": "public",
+      "published": true,
+      "title": "딥러닝 모델 경량화와 추론 최적화",
+      "description": "Quantization, Pruning, Knowledge Distillation, ONNX, TensorRT 등 모델 경량화와 추론 최적화 기법을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Technics"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Model Optimization",
+        "Quantization",
+        "Pruning"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/model-optimization/",
+      "inferredFields": [],
+      "route": "/deep_learning/technics/2026/08/06/model-optimization/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
+      "target": "content/posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "딥러닝 기본 학습 테크닉",
+      "description": "Learning Rate, Optimizer, Weight Decay, Early Stopping, Mixed Precision 등 기본 학습 기법을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Technics"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Training",
+        "Optimization"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/training-techniques-basics/",
+      "inferredFields": [],
+      "route": "/deep_learning/technics/2026/08/06/training-techniques-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "target": "content/posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "visibility": "public",
+      "published": true,
+      "title": "딥러닝 중급 학습 테크닉",
+      "description": "Label Smoothing, MixUp, CutMix, Knowledge Distillation, Pseudo Labeling 등 중급 학습 기법을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Technics"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Training",
+        "Advanced Techniques"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/training-techniques-intermediate/",
+      "inferredFields": [],
+      "route": "/deep_learning/technics/2026/08/06/training-techniques-intermediate/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
+      "target": "content/posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Mixture of Experts(MoE) 핵심 개념",
+      "description": "Sparse Model, Router, Top-k Routing, Load Balancing 등 Mixture of Experts의 핵심 개념을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Transformer"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Transformer",
+        "Mixture of Experts",
+        "MoE"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/mixture-of-experts/",
+      "inferredFields": [],
+      "route": "/deep_learning/transformer/2026/08/06/mixture-of-experts/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "target": "content/posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "visibility": "public",
+      "published": true,
+      "title": "멀티모달 파운데이션 모델 핵심 개념",
+      "description": "Foundation Model부터 CLIP, VLM, Multimodal RAG, Vision-Language-Action Model까지 멀티모달 모델의 핵심 개념을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Transformer"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Multimodal",
+        "Foundation Model",
+        "Vision Language Model"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/multimodal-foundation-models/",
+      "inferredFields": [],
+      "route": "/deep_learning/transformer/2026/08/06/multimodal-foundation-models/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
+      "target": "content/posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
+      "visibility": "public",
+      "published": true,
+      "title": "State Space Model과 Mamba",
+      "description": "State Space Model의 기본 아이디어와 Mamba 계열 구조, Transformer와의 차이를 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Transformer"
+      ],
+      "tags": [
+        "Deep Learning",
+        "State Space Model",
+        "Mamba",
+        "SSM"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/state-space-models/",
+      "inferredFields": [],
+      "route": "/deep_learning/transformer/2026/08/06/state-space-models/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "target": "content/posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Transformer와 Vision Transformer",
+      "description": "Transformer의 기본 구조와 Self-Attention, Vision Transformer, Swin Transformer, DETR의 흐름을 정리한다.",
+      "date": "2026-08-06 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Transformer"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Transformer",
+        "Vision Transformer",
+        "ViT"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/transformer-vision-transformer/",
+      "inferredFields": [],
+      "route": "/deep_learning/transformer/2026/08/06/transformer-vision-transformer/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/2026-08-07-Devops_1.md",
+      "target": "content/posts/DevOps/2026-08-07-Devops_1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "DevOps 기초 1편",
+      "description": "DevOps의 기본 개념과 Linux, 네트워크, Docker, CI/CD로 이어지는 학습 흐름을 정리한다.",
+      "date": "2026-08-07 09:00:00 +0900",
+      "categories": [
+        "DevOps"
+      ],
+      "tags": [
+        "DevOps"
+      ],
+      "legacyPath": "/devops/2026/08/07/Devops_1/",
+      "inferredFields": [],
+      "route": "/devops/2026/08/07/Devops_1/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/Agile/과제.md",
+      "target": "content/posts/DevOps/Agile/과제.md",
+      "visibility": "public",
+      "published": true,
+      "title": "실습에서는?",
+      "description": "MSA는 정답이 아니다.",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "DevOps",
+        "Agile"
+      ],
+      "tags": [],
+      "legacyPath": "/devops/agile/2026/08/26/과제/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/devops/agile/2026/08/26/과제/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/Agile/Agile1.md",
+      "target": "content/posts/DevOps/Agile/Agile1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Agile 개요, 왜 필요한가?",
+      "description": "AI 서비스가 어떻게 준비되고, 그게 사용자에게 제공되는지 알아야 한다.",
+      "date": "2026-08-26 14:08:02 +0900",
+      "categories": [
+        "DevOps",
+        "Agile"
+      ],
+      "tags": [],
+      "legacyPath": "/devops/agile/2026/08/26/Agile1/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/devops/agile/2026/08/26/Agile1/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/Nginx/2026-08-24-nginx-basics.md",
+      "target": "content/posts/DevOps/Nginx/2026-08-24-nginx-basics.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Nginx 기초와 동작 구조",
+      "description": "Nginx가 무엇인지 알아보고 Web Server, 정적 파일 제공, 요청 처리 구조를 정리한다.",
+      "date": "2026-08-24 00:20:00 +0900",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "tags": [
+        "Nginx",
+        "WebServer",
+        "DevOps",
+        "Network"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/nginx-basics/",
+      "inferredFields": [],
+      "route": "/devops/nginx/2026/08/24/nginx-basics/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/Nginx/2026-08-24-nginx-load-balancing-https.md",
+      "target": "content/posts/DevOps/Nginx/2026-08-24-nginx-load-balancing-https.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Nginx 로드 밸런싱과 HTTPS",
+      "description": "Nginx가 요청을 여러 서버로 분산하는 방법과 HTTPS 인증서를 처리하는 구조를 정리한다.",
+      "date": "2026-08-24 00:40:00 +0900",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "tags": [
+        "Nginx",
+        "LoadBalancing",
+        "HTTPS",
+        "TLS",
+        "DevOps"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/nginx-load-balancing-https/",
+      "inferredFields": [],
+      "route": "/devops/nginx/2026/08/24/nginx-load-balancing-https/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/Nginx/2026-08-24-nginx-reverse-proxy.md",
+      "target": "content/posts/DevOps/Nginx/2026-08-24-nginx-reverse-proxy.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Nginx 리버스 프록시와 Spring Boot 연결",
+      "description": "리버스 프록시의 의미와 Nginx가 클라이언트 요청을 Spring Boot 서버로 전달하는 과정을 정리한다.",
+      "date": "2026-08-24 00:30:00 +0900",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "tags": [
+        "Nginx",
+        "ReverseProxy",
+        "SpringBoot",
+        "DevOps"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/nginx-reverse-proxy/",
+      "inferredFields": [],
+      "route": "/devops/nginx/2026/08/24/nginx-reverse-proxy/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/DevOps/Nginx/Nginx.md",
+      "target": "content/posts/DevOps/Nginx/Nginx.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Nginx",
+      "description": "Nginx",
+      "date": "2026-08-24 13:57:58 +0900",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "tags": [],
+      "legacyPath": "/devops/nginx/2026/08/24/Nginx/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/devops/nginx/2026/08/24/Nginx/",
+      "warnings": [
+        "title을 파일명에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Frontend/Vue/2026-07-30-vue_intro1.md",
+      "target": "content/posts/Frontend/Vue/2026-07-30-vue_intro1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "01. Vue.js 입문: 핵심 구조와 렌더링",
+      "description": "Vue의 선언적 렌더링, 반응성, 컴포넌트 구조와 SPA 동작 방식을 한 번에 정리.",
+      "date": "2026-07-30 20:00:00 +0900",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "tags": [
+        "Frontend",
+        "Vue.js",
+        "SPA",
+        "Rendering",
+        "Virtual DOM"
+      ],
+      "legacyPath": "/frontend/vue/2026/07/30/vue_intro1/",
+      "inferredFields": [],
+      "route": "/frontend/vue/2026/07/30/vue_intro1/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 2,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Frontend/Vue/2026-07-31-vue_intro2.md",
+      "target": "content/posts/Frontend/Vue/2026-07-31-vue_intro2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "02. Vue 기초 문법 점검: JavaScript, 템플릿",
+      "description": "Vue 학습에 필요한 JavaScript 문법과 ref, 디렉티브, 이벤트, 컴포넌트 통신의 기초를 알아보자.",
+      "date": "2026-07-31 09:00:00 +0900",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "tags": [
+        "Frontend",
+        "Vue.js",
+        "JavaScript",
+        "Template",
+        "Directive"
+      ],
+      "legacyPath": "/frontend/vue/2026/07/31/vue_intro2/",
+      "inferredFields": [],
+      "route": "/frontend/vue/2026/07/31/vue_intro2/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 1,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Frontend/Vue/2026-08-02-vue-composition-api.md",
+      "target": "content/posts/Frontend/Vue/2026-08-02-vue-composition-api.md",
+      "visibility": "public",
+      "published": true,
+      "title": "03. Vue Composition API 정리",
+      "description": "Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다.",
+      "date": "2026-08-02 09:00:00 +0900",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "tags": [
+        "Frontend",
+        "Vue.js",
+        "Composition API",
+        "ref",
+        "reactive",
+        "computed",
+        "watch"
+      ],
+      "legacyPath": "/frontend/vue/2026/08/02/vue-composition-api/",
+      "inferredFields": [],
+      "route": "/frontend/vue/2026/08/02/vue-composition-api/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 1,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Frontend/Vue/2026-08-03-pinia.md",
+      "target": "content/posts/Frontend/Vue/2026-08-03-pinia.md",
+      "visibility": "public",
+      "published": true,
+      "title": "05. Pinia 상태 관리: store 설계와 사용법",
+      "description": "Pinia가 필요한 시점과 state, getters, actions로 store를 설계하고 컴포넌트에서 사용하는 방법을 정리한다.",
+      "date": "2026-08-03 02:00:00 +0900",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "tags": [
+        "Frontend",
+        "Vue.js",
+        "Pinia",
+        "State Management"
+      ],
+      "legacyPath": "/frontend/vue/2026/08/03/pinia/",
+      "inferredFields": [],
+      "route": "/frontend/vue/2026/08/03/pinia/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 1,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Frontend/Vue/2026-08-03-vue-component.md",
+      "target": "content/posts/Frontend/Vue/2026-08-03-vue-component.md",
+      "visibility": "public",
+      "published": true,
+      "title": "04. Vue 컴포넌트 설계: props, emit, slot과 생명주기",
+      "description": "Vue 컴포넌트의 구조와 데이터 흐름, 상태 위치를 결정하는 기준, 생명주기 훅을 예제로 정리.",
+      "date": "2026-08-03 01:00:00 +0900",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "tags": [
+        "Frontend",
+        "Vue.js",
+        "Component",
+        "Props",
+        "Emits",
+        "Slots",
+        "Lifecycle"
+      ],
+      "legacyPath": "/frontend/vue/2026/08/03/vue-component/",
+      "inferredFields": [],
+      "route": "/frontend/vue/2026/08/03/vue-component/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 1,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/MLOps/2026-08-07-Devops_1.md",
+      "target": "drafts/MLOps/2026-08-07-Devops_1.md",
+      "visibility": "draft",
+      "published": false,
+      "title": "MLOps",
+      "description": "MLOps",
+      "date": "2026-08-07 09:00:00 +0900",
+      "categories": [
+        "MLOps"
+      ],
+      "tags": [
+        "MLOps"
+      ],
+      "legacyPath": "/mlops/2026/08/07/Devops_1/",
+      "inferredFields": [
+        "description"
+      ],
+      "route": "/mlops/2026/08/07/Devops_1/",
+      "warnings": [
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Network/DNS.md",
+      "target": "content/posts/Network/DNS.md",
+      "visibility": "public",
+      "published": true,
+      "title": "DNS = Domain Name System",
+      "description": "사람이 읽기 쉬운 도메인 이름을 컴퓨터가 사용하는 IP 주소로 바꿔주는 시스템",
+      "date": "2026-08-26 07:11:14 +0900",
+      "categories": [
+        "Network"
+      ],
+      "tags": [],
+      "legacyPath": "/network/2026/08/26/DNS/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/network/2026/08/26/DNS/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/project/1. 프로젝트 셋업.md",
+      "target": "content/posts/project/1. 프로젝트 셋업.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Spring Boot, WebSocket, Vue, Docker 로 Raspberry Pi 실시간 모니터링 프로젝트 만들기 - 1편",
+      "description": "Spring Boot를 공부하면서 Controller, Service, Repository, JPA 개념은 배우기 했지만, 따로 공부하다 보니 실제 서비스에서는 이 기술들이 어떻게 연결되는지 감이 잘 안 온다... ㅇㅇ",
+      "date": "2026-08-17 01:05:35 +0900",
+      "categories": [
+        "project"
+      ],
+      "tags": [],
+      "legacyPath": "/project/2026/08/17/1-프로젝트-셋업/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/project/2026/08/17/1-프로젝트-셋업/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/project/2. 구현 시작.md",
+      "target": "content/posts/project/2. 구현 시작.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. Spring Boot 구현",
+      "description": "딸깍의 시대라지만, 그래도 작동구조는 알고 있어야 할 것이 아닌가?",
+      "date": "2026-08-17 01:05:35 +0900",
+      "categories": [
+        "project"
+      ],
+      "tags": [],
+      "legacyPath": "/project/2026/08/17/2-구현-시작/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/project/2026/08/17/2-구현-시작/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/project/깃허브_프로젝트/github_project.md",
+      "target": "content/posts/project/깃허브_프로젝트/github_project.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. GitHub Project 만들기",
+      "description": "그러면 기본적으로 다음 칸이 있는 보드가 만들어진다.",
+      "date": "2026-08-17 01:05:35 +0900",
+      "categories": [
+        "project",
+        "깃허브_프로젝트"
+      ],
+      "tags": [],
+      "legacyPath": "/project/깃허브_프로젝트/2026/08/17/github_project/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/project/깃허브_프로젝트/2026/08/17/github_project/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Python/2026-07-30-python.md",
+      "target": "content/posts/Python/2026-07-30-python.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Python 01. 실행 구조와 실무 기초",
+      "description": "좋은 Python 코드의 기준부터 실행 구조, 자료구조, 로깅, 환경 변수와 타입 힌트까지 정리한다.",
+      "date": "2026-07-30 09:00:00 +0900",
+      "categories": [
+        "Python"
+      ],
+      "tags": [
+        "Python",
+        "CPython",
+        "DataStructure",
+        "Logging",
+        "TypeHint"
+      ],
+      "legacyPath": "/python/2026/07/30/python/",
+      "inferredFields": [],
+      "route": "/python/2026/07/30/python/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Python/2026-08-07-python_2.md",
+      "target": "content/posts/Python/2026-08-07-python_2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Python 코드 품질: 디버깅부터 테스트와 자동화까지",
+      "description": "Python 디버깅, 로깅, pytest, Ruff, pre-commit과 GitHub Actions를 이용한 품질 관리 흐름을 정리한다.",
+      "date": "2026-08-07 09:00:00 +0900",
+      "categories": [
+        "Python"
+      ],
+      "tags": [
+        "Python",
+        "Debugging",
+        "Pytest",
+        "Ruff",
+        "Pre-commit",
+        "CI"
+      ],
+      "legacyPath": "/python/2026/08/07/python_2/",
+      "inferredFields": [],
+      "route": "/python/2026/08/07/python_2/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Python/2026-08-08-python_3.md",
+      "target": "drafts/Python/2026-08-08-python_3.md",
+      "visibility": "draft",
+      "published": false,
+      "title": "Python 03",
+      "description": "Python 03",
+      "date": "2026-08-08 09:00:00 +0900",
+      "categories": [
+        "Python"
+      ],
+      "tags": [
+        "Python"
+      ],
+      "legacyPath": "/python/2026/08/08/python_3/",
+      "inferredFields": [
+        "description"
+      ],
+      "route": "/python/2026/08/08/python_3/",
+      "warnings": [
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Thinking/2026-08-09-ai-era-developers-disappear.md",
+      "target": "content/posts/Thinking/2026-08-09-ai-era-developers-disappear.md",
+      "visibility": "public",
+      "published": true,
+      "title": "AI 시대, 개발자는 사라지는가?",
+      "description": "AI 시대에 개발자의 역할은?",
+      "date": "2026-08-09 22:00:00 +0900",
+      "categories": [
+        "AI",
+        "Development"
+      ],
+      "tags": [
+        "AI",
+        "Software Engineering",
+        "Coding Agent",
+        "Developer",
+        "Career"
+      ],
+      "legacyPath": "/ai/development/2026/08/09/ai-era-developers-disappear/",
+      "inferredFields": [],
+      "route": "/ai/development/2026/08/09/ai-era-developers-disappear/",
+      "warnings": [],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    },
+    {
+      "source": "_posts/Thinking/시대_단상/temp.md",
+      "target": "content/posts/Thinking/시대_단상/temp.md",
+      "visibility": "public",
+      "published": true,
+      "title": "시대 단상에 대한 주저리주저리",
+      "description": "시대 단상에 대한 주저리주저리",
+      "date": "2026-08-17 01:05:35 +0900",
+      "categories": [
+        "Thinking",
+        "시대_단상"
+      ],
+      "tags": [],
+      "legacyPath": "/thinking/시대_단상/2026/08/17/temp/",
+      "inferredFields": [
+        "title",
+        "description",
+        "date",
+        "categories",
+        "tags",
+        "layout"
+      ],
+      "route": "/thinking/시대_단상/2026/08/17/temp/",
+      "warnings": [
+        "title을 첫 H1에서 추론했습니다.",
+        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
+      ],
+      "transformations": {
+        "mermaidCapturesConverted": 0,
+        "rawWrappersRemoved": 0,
+        "brokenImageReferencesFixed": 0
+      }
+    }
+  ]
+}

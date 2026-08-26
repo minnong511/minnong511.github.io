@@ -1,0 +1,41 @@
+{
+  "name": "minnong511-github-io",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.19.0",
+  "engines": {
+    "node": "^22.19.0 || ^24.11.0 || >=26.0.0"
+  },
+  "scripts": {
+    "dev": "npm run content:index && nuxt dev",
+    "build": "npm run content:index && nuxt build",
+    "generate": "npm run content:index && npm run content:validate && nuxt generate && node scripts/verify-output.mjs",
+    "preview": "nuxt preview",
+    "post:new": "node scripts/new-post.mjs",
+    "content:migrate": "node scripts/migrate-content.mjs && node scripts/build-migration-report.mjs && node scripts/build-content-index.mjs",
+    "content:index": "node scripts/build-content-index.mjs",
+    "content:validate": "node scripts/validate-nuxt-content.mjs",
+    "lint": "nuxt prepare && eslint .",
+    "typecheck": "nuxt typecheck",
+    "test": "vitest run",
+    "verify": "npm run content:index && npm run content:validate && npm run lint && npm run typecheck && npm run test && nuxt generate && node scripts/verify-output.mjs"
+  },
+  "dependencies": {
+    "@nuxt/content": "3.15.2",
+    "mermaid": "11.17.2",
+    "minisearch": "7.2.0",
+    "nuxt": "4.5.2",
+    "three": "0.185.1",
+    "yaml": "2.9.0"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "1.17.0",
+    "@types/node": "24.10.13",
+    "@vue/test-utils": "2.4.6",
+    "eslint": "10.9.1",
+    "happy-dom": "20.11.6",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11",
+    "vue-tsc": "3.3.11"
+  }
+}

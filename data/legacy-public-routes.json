@@ -1,0 +1,494 @@
+[
+  {
+    "source": "_posts/Algorithm/Python 코테/2026-08-14-counter.md",
+    "title": "Python Counter, 빈도수를 쉽게 세는 방법",
+    "path": "/algorithm/2026/08/14/counter/",
+    "canonical": "https://minnong511.github.io/algorithm/2026/08/14/counter/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
+    "title": "Java 심화 Part 2: Annotation",
+    "path": "/java/advanced/2026/08/11/java-annotations/",
+    "canonical": "https://minnong511.github.io/java/advanced/2026/08/11/java-annotations/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-functional-programming-lambda.md",
+    "title": "Java 심화 Part 3: 함수형 프로그래밍과 Lambda",
+    "path": "/java/advanced/2026/08/11/java-functional-programming-lambda/",
+    "canonical": "https://minnong511.github.io/java/advanced/2026/08/11/java-functional-programming-lambda/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-reflection.md",
+    "title": "Java 심화 Part 1: Reflection",
+    "path": "/java/advanced/2026/08/11/java-reflection/",
+    "canonical": "https://minnong511.github.io/java/advanced/2026/08/11/java-reflection/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/basics/2026-08-10-java-basics.md",
+    "title": "Java 기초 Part 1: 백엔드 배경과 Java 실행 구조",
+    "path": "/java/basics/2026/08/10/java-basics/",
+    "canonical": "https://minnong511.github.io/java/basics/2026/08/10/java-basics/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/basics/2026-08-10-java-comments-javadoc.md",
+    "title": "Java 기초 Part 2: 주석과 Javadoc",
+    "path": "/java/basics/2026/08/10/java-comments-javadoc/",
+    "canonical": "https://minnong511.github.io/java/basics/2026/08/10/java-comments-javadoc/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/basics/2026-08-10-java-control-flow.md",
+    "title": "Java 기초 Part 3: 제어문",
+    "path": "/java/basics/2026/08/10/java-control-flow/",
+    "canonical": "https://minnong511.github.io/java/basics/2026/08/10/java-control-flow/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/basics/2026-08-11-java-generics.md",
+    "title": "Java 기초 Part 4: 제네릭",
+    "path": "/java/basics/2026/08/11/java-generics/",
+    "canonical": "https://minnong511.github.io/java/basics/2026/08/11/java-generics/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/basics/2026-08-11-java-stream-api.md",
+    "title": "Java 기초 Part 5: Stream API",
+    "path": "/java/basics/2026/08/11/java-stream-api/",
+    "canonical": "https://minnong511.github.io/java/basics/2026/08/11/java-stream-api/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/debugging/2026-08-11-java-confusing-concepts-debugging.md",
+    "title": "Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념",
+    "path": "/java/debugging/2026/08/11/java-confusing-concepts-debugging/",
+    "canonical": "https://minnong511.github.io/java/debugging/2026/08/11/java-confusing-concepts-debugging/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
+    "title": "Java 디버깅 Part 2: VS Code 자동 컴파일과 프로젝트 구조",
+    "path": "/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/",
+    "canonical": "https://minnong511.github.io/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/jvm/2026-08-10-java-execution-memory.md",
+    "title": "Java 실행과 JVM Part 2: 메모리와 데이터 흐름",
+    "path": "/java/jvm/2026/08/10/java-execution-memory/",
+    "canonical": "https://minnong511.github.io/java/jvm/2026/08/10/java-execution-memory/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/jvm/2026-08-10-java-python-compile-comparison.md",
+    "title": "Java 실행과 JVM Part 1: Java와 Python 컴파일 비교",
+    "path": "/java/jvm/2026/08/10/java-python-compile-comparison/",
+    "canonical": "https://minnong511.github.io/java/jvm/2026/08/10/java-python-compile-comparison/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/jvm/2026-08-10-jvm-classloader-memory.md",
+    "title": "Java 실행과 JVM Part 3: ClassLoader와 JVM 메모리",
+    "path": "/java/jvm/2026/08/10/jvm-classloader-memory/",
+    "canonical": "https://minnong511.github.io/java/jvm/2026/08/10/jvm-classloader-memory/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/oop/2026-08-10-java-class-object.md",
+    "title": "Java 객체지향 Part 1: 클래스, 객체, 필드와 생성자",
+    "path": "/java/oop/2026/08/10/java-class-object/",
+    "canonical": "https://minnong511.github.io/java/oop/2026/08/10/java-class-object/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/oop/2026-08-10-java-inheritance-interface.md",
+    "title": "Java 객체지향 Part 4: 상속과 인터페이스",
+    "path": "/java/oop/2026/08/10/java-inheritance-interface/",
+    "canonical": "https://minnong511.github.io/java/oop/2026/08/10/java-inheritance-interface/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/oop/2026-08-10-java-oop-concepts.md",
+    "title": "Java 객체지향 Part 2: OOP 핵심 문법",
+    "path": "/java/oop/2026/08/10/java-oop-concepts/",
+    "canonical": "https://minnong511.github.io/java/oop/2026/08/10/java-oop-concepts/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/oop/2026-08-10-java-oop-design-four-pillars.md",
+    "title": "Java 객체지향 Part 3: 좋은 설계와 OOP 4대 특성",
+    "path": "/java/oop/2026/08/10/java-oop-design-four-pillars/",
+    "canonical": "https://minnong511.github.io/java/oop/2026/08/10/java-oop-design-four-pillars/"
+  },
+  {
+    "source": "_posts/Backend/JAVA/oop/2026-08-11-java-static-nested-class.md",
+    "title": "Java 객체지향 Part 5: static 메서드와 중첩 클래스",
+    "path": "/java/oop/2026/08/11/java-static-nested-class/",
+    "canonical": "https://minnong511.github.io/java/oop/2026/08/11/java-static-nested-class/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/2026-08-11-spring-ioc-bean-di.md",
+    "title": "Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation",
+    "path": "/java/spring/2026/08/11/spring-ioc-bean-di/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/11/spring-ioc-bean-di/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-14-spring-mvc-request-flow.md",
+    "title": "Spring 기초 Part 2: Spring MVC 요청 처리 흐름",
+    "path": "/java/spring/2026/08/14/spring-mvc-request-flow/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/14/spring-mvc-request-flow/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-15-spring-rest-api-validation.md",
+    "title": "Spring 기초 Part 3: REST API 요청값과 입력값 검증",
+    "path": "/java/spring/2026/08/15/spring-rest-api-validation/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/15/spring-rest-api-validation/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-16-spring-data-jpa-basics.md",
+    "title": "Spring 기초 Part 4: JPA, Entity와 Repository",
+    "path": "/java/spring/2026/08/16/spring-data-jpa-basics/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/16/spring-data-jpa-basics/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
+    "title": "Spring 기초 Part 5: EntityManager와 영속성 컨텍스트",
+    "path": "/java/spring/2026/08/17/jpa-entity-manager-persistence-context/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/17/jpa-entity-manager-persistence-context/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-18-jpa-relationship-mapping.md",
+    "title": "Spring 기초 Part 6: JPA 연관관계 매핑",
+    "path": "/java/spring/2026/08/18/jpa-relationship-mapping/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/18/jpa-relationship-mapping/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-19-spring-proxy.md",
+    "title": "Spring 기초 Part 7: Proxy 패턴과 Spring Proxy",
+    "path": "/java/spring/2026/08/19/spring-proxy/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/19/spring-proxy/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-20-spring-aop.md",
+    "title": "Spring 기초 Part 8: AOP와 공통 관심사 분리",
+    "path": "/java/spring/2026/08/20/spring-aop/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/20/spring-aop/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-21-jpa-transaction-concurrency.md",
+    "title": "Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어",
+    "path": "/java/spring/2026/08/21/jpa-transaction-concurrency/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/21/jpa-transaction-concurrency/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-22-spring-async.md",
+    "title": "Spring 기초 Part 10: 비동기 처리와 @Async",
+    "path": "/java/spring/2026/08/22/spring-async/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/22/spring-async/"
+  },
+  {
+    "source": "_posts/Backend/SPRING/Spring/2026-08-23-spring-boot-actuator.md",
+    "title": "Spring 기초 Part 11: Actuator와 애플리케이션 모니터링",
+    "path": "/java/spring/2026/08/23/spring-boot-actuator/",
+    "canonical": "https://minnong511.github.io/java/spring/2026/08/23/spring-boot-actuator/"
+  },
+  {
+    "source": "_posts/Basic/2026-08-24-docker-os-basics.md",
+    "title": "Docker를 이해하기 위한 운영체제 기초",
+    "path": "/basic/os/2026/08/24/docker-os-basics/",
+    "canonical": "https://minnong511.github.io/basic/os/2026/08/24/docker-os-basics/"
+  },
+  {
+    "source": "_posts/Basic/2026-08-24-essential-development-terms.md",
+    "title": "개발 문서를 읽기 위한 핵심 기술 용어",
+    "path": "/basic/cs/2026/08/24/essential-development-terms/",
+    "canonical": "https://minnong511.github.io/basic/cs/2026/08/24/essential-development-terms/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-01-basics.md",
+    "title": "CI/CD 기초 1편: 개념과 GitHub Actions",
+    "path": "/devops/ci-cd/2026/08/17/ci-cd-01-basics/",
+    "canonical": "https://minnong511.github.io/devops/ci-cd/2026/08/17/ci-cd-01-basics/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
+    "title": "CI/CD 기초 2편: Docker 이미지와 배포 파이프라인",
+    "path": "/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/",
+    "canonical": "https://minnong511.github.io/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
+    "title": "CI/CD 기초 3편: Jenkins와 Argo CD를 이용한 GitOps 배포",
+    "path": "/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/",
+    "canonical": "https://minnong511.github.io/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
+    "title": "CI/CD 기초 4편: 배포 전략과 운영",
+    "path": "/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/",
+    "canonical": "https://minnong511.github.io/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-01-core-concepts.md",
+    "title": "Docker 기초 1편: Dockerfile, Image와 Container",
+    "path": "/devops/docker/2026/08/17/docker-01-core-concepts/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-01-core-concepts/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-02-ecosystem.md",
+    "title": "Docker 기초 2편: Layer, Registry, Volume과 Network",
+    "path": "/devops/docker/2026/08/17/docker-02-ecosystem/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-02-ecosystem/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-03-deployment-principles.md",
+    "title": "Docker 기초 3편: CI/CD 연결과 배포 원칙",
+    "path": "/devops/docker/2026/08/17/docker-03-deployment-principles/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-03-deployment-principles/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
+    "title": "Docker 기초 4편: 가상화와 컨테이너 이미지 생명주기",
+    "path": "/devops/docker/2026/08/17/docker-04-virtualization-and-image-lifecycle/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-04-virtualization-and-image-lifecycle/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
+    "title": "Docker 기초 5편: 컨테이너 기본 명령어와 Volume",
+    "path": "/devops/docker/2026/08/17/docker-05-container-commands-and-volumes/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-05-container-commands-and-volumes/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-06-image-build-and-layers.md",
+    "title": "Docker 기초 6편: 이미지 Layer와 빌드 최적화",
+    "path": "/devops/docker/2026/08/17/docker-06-image-build-and-layers/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-06-image-build-and-layers/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-07-image-layer-archive.md",
+    "title": "Docker 기초 7편: 이미지 Layer와 tar 내부 구조",
+    "path": "/devops/docker/2026/08/17/docker-07-image-layer-archive/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-07-image-layer-archive/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
+    "title": "Docker 기초 8편: 컨테이너 런타임과 격리",
+    "path": "/devops/docker/2026/08/17/docker-08-runtime-and-isolation/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-08-runtime-and-isolation/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-09-container-networking.md",
+    "title": "Docker 기초 9편: Docker 및 Kubernetes 네트워크",
+    "path": "/devops/docker/2026/08/17/docker-09-container-networking/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-09-container-networking/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
+    "title": "Docker 기초 10편: Compose 기본 구조와 이미지 빌드",
+    "path": "/devops/docker/2026/08/17/docker-10-compose-basics-and-build/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-10-compose-basics-and-build/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
+    "title": "Docker 기초 11편: Compose 명령어와 환경 변수",
+    "path": "/devops/docker/2026/08/17/docker-11-compose-commands-and-environment/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-11-compose-commands-and-environment/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
+    "title": "Docker 기초 12편: Compose 네트워크와 Volume",
+    "path": "/devops/docker/2026/08/17/docker-12-compose-network-and-volume/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-12-compose-network-and-volume/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
+    "title": "Docker 기초 13편: Compose Healthcheck와 실전 구성",
+    "path": "/devops/docker/2026/08/17/docker-13-compose-healthcheck-and-practice/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/17/docker-13-compose-healthcheck-and-practice/"
+  },
+  {
+    "source": "_posts/CI-CD-Docker/Docker/2026-08-24-oci-container-standard.md",
+    "title": "OCI: 컨테이너 이미지와 런타임의 공통 표준",
+    "path": "/devops/docker/2026/08/24/oci-container-standard/",
+    "canonical": "https://minnong511.github.io/devops/docker/2026/08/24/oci-container-standard/"
+  },
+  {
+    "source": "_posts/Data_Science/PostgreSQL/2026-07-31-psql1.md",
+    "title": "Psql 함수,프로시져,트리거",
+    "path": "/db/postgresql/2026/07/31/psql1/",
+    "canonical": "https://minnong511.github.io/db/postgresql/2026/07/31/psql1/"
+  },
+  {
+    "source": "_posts/Data_Science/PostgreSQL/2026-07-31-psql2.md",
+    "title": "Psql JSONB, 행 잠금, 멱등성",
+    "path": "/db/postgresql/2026/07/31/psql2/",
+    "canonical": "https://minnong511.github.io/db/postgresql/2026/07/31/psql2/"
+  },
+  {
+    "source": "_posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
+    "title": "현대 LLM 워크플로의 패턴",
+    "path": "/deep_learning/llm/2026/08/19/llm-workflow-patterns/",
+    "canonical": "https://minnong511.github.io/deep_learning/llm/2026/08/19/llm-workflow-patterns/"
+  },
+  {
+    "source": "_posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
+    "title": "딥러닝 학습 기본 개념",
+    "path": "/deep_learning/basic/2026/08/06/deep-learning-basics/",
+    "canonical": "https://minnong511.github.io/deep_learning/basic/2026/08/06/deep-learning-basics/"
+  },
+  {
+    "source": "_posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
+    "title": "데이터 시각화",
+    "path": "/deep_learning/basic/2026/08/06/EDA-copy/",
+    "canonical": "https://minnong511.github.io/deep_learning/basic/2026/08/06/EDA-copy/"
+  },
+  {
+    "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
+    "title": "기초 통계와 ML 파이프라인 연결",
+    "path": "/deep_learning/basic/2026/08/06/ML_Pipeline/",
+    "canonical": "https://minnong511.github.io/deep_learning/basic/2026/08/06/ML_Pipeline/"
+  },
+  {
+    "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
+    "title": "분석 자동화와 파이프라인 설계",
+    "path": "/deep_learning/basic/2026/08/06/ML_Pipeline2/",
+    "canonical": "https://minnong511.github.io/deep_learning/basic/2026/08/06/ML_Pipeline2/"
+  },
+  {
+    "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
+    "title": "CNN 아키텍처 발전 과정",
+    "path": "/deep_learning/computer_vision/2026/08/06/cnn-architectures/",
+    "canonical": "https://minnong511.github.io/deep_learning/computer_vision/2026/08/06/cnn-architectures/"
+  },
+  {
+    "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
+    "title": "이미지 세그멘테이션 모델과 핵심 개념",
+    "path": "/deep_learning/computer_vision/2026/08/06/image-segmentation/",
+    "canonical": "https://minnong511.github.io/deep_learning/computer_vision/2026/08/06/image-segmentation/"
+  },
+  {
+    "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
+    "title": "객체 탐지 모델과 핵심 개념",
+    "path": "/deep_learning/computer_vision/2026/08/06/object-detection/",
+    "canonical": "https://minnong511.github.io/deep_learning/computer_vision/2026/08/06/object-detection/"
+  },
+  {
+    "source": "_posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
+    "title": "딥러닝 데이터셋 엔지니어링",
+    "path": "/deep_learning/data/2026/08/06/dataset-engineering/",
+    "canonical": "https://minnong511.github.io/deep_learning/data/2026/08/06/dataset-engineering/"
+  },
+  {
+    "source": "_posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
+    "title": "딥러닝 학습 문제 진단과 디버깅",
+    "path": "/deep_learning/debugging/2026/08/06/deep-learning-debugging/",
+    "canonical": "https://minnong511.github.io/deep_learning/debugging/2026/08/06/deep-learning-debugging/"
+  },
+  {
+    "source": "_posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
+    "title": "분산 학습과 MLOps",
+    "path": "/deep_learning/technics/2026/08/06/distributed-training-mlops/",
+    "canonical": "https://minnong511.github.io/deep_learning/technics/2026/08/06/distributed-training-mlops/"
+  },
+  {
+    "source": "_posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
+    "title": "딥러닝 모델 경량화와 추론 최적화",
+    "path": "/deep_learning/technics/2026/08/06/model-optimization/",
+    "canonical": "https://minnong511.github.io/deep_learning/technics/2026/08/06/model-optimization/"
+  },
+  {
+    "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
+    "title": "딥러닝 기본 학습 테크닉",
+    "path": "/deep_learning/technics/2026/08/06/training-techniques-basics/",
+    "canonical": "https://minnong511.github.io/deep_learning/technics/2026/08/06/training-techniques-basics/"
+  },
+  {
+    "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
+    "title": "딥러닝 중급 학습 테크닉",
+    "path": "/deep_learning/technics/2026/08/06/training-techniques-intermediate/",
+    "canonical": "https://minnong511.github.io/deep_learning/technics/2026/08/06/training-techniques-intermediate/"
+  },
+  {
+    "source": "_posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
+    "title": "Mixture of Experts(MoE) 핵심 개념",
+    "path": "/deep_learning/transformer/2026/08/06/mixture-of-experts/",
+    "canonical": "https://minnong511.github.io/deep_learning/transformer/2026/08/06/mixture-of-experts/"
+  },
+  {
+    "source": "_posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
+    "title": "멀티모달 파운데이션 모델 핵심 개념",
+    "path": "/deep_learning/transformer/2026/08/06/multimodal-foundation-models/",
+    "canonical": "https://minnong511.github.io/deep_learning/transformer/2026/08/06/multimodal-foundation-models/"
+  },
+  {
+    "source": "_posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
+    "title": "State Space Model과 Mamba",
+    "path": "/deep_learning/transformer/2026/08/06/state-space-models/",
+    "canonical": "https://minnong511.github.io/deep_learning/transformer/2026/08/06/state-space-models/"
+  },
+  {
+    "source": "_posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
+    "title": "Transformer와 Vision Transformer",
+    "path": "/deep_learning/transformer/2026/08/06/transformer-vision-transformer/",
+    "canonical": "https://minnong511.github.io/deep_learning/transformer/2026/08/06/transformer-vision-transformer/"
+  },
+  {
+    "source": "_posts/DevOps/2026-08-07-Devops_1.md",
+    "title": "DevOps 기초 1편",
+    "path": "/devops/2026/08/07/Devops_1/",
+    "canonical": "https://minnong511.github.io/devops/2026/08/07/Devops_1/"
+  },
+  {
+    "source": "_posts/DevOps/Nginx/2026-08-24-nginx-basics.md",
+    "title": "Nginx 기초와 동작 구조",
+    "path": "/devops/nginx/2026/08/24/nginx-basics/",
+    "canonical": "https://minnong511.github.io/devops/nginx/2026/08/24/nginx-basics/"
+  },
+  {
+    "source": "_posts/DevOps/Nginx/2026-08-24-nginx-load-balancing-https.md",
+    "title": "Nginx 로드 밸런싱과 HTTPS",
+    "path": "/devops/nginx/2026/08/24/nginx-load-balancing-https/",
+    "canonical": "https://minnong511.github.io/devops/nginx/2026/08/24/nginx-load-balancing-https/"
+  },
+  {
+    "source": "_posts/DevOps/Nginx/2026-08-24-nginx-reverse-proxy.md",
+    "title": "Nginx 리버스 프록시와 Spring Boot 연결",
+    "path": "/devops/nginx/2026/08/24/nginx-reverse-proxy/",
+    "canonical": "https://minnong511.github.io/devops/nginx/2026/08/24/nginx-reverse-proxy/"
+  },
+  {
+    "source": "_posts/Frontend/Vue/2026-07-30-vue_intro1.md",
+    "title": "01. Vue.js 입문: 핵심 구조와 렌더링",
+    "path": "/frontend/vue/2026/07/30/vue_intro1/",
+    "canonical": "https://minnong511.github.io/frontend/vue/2026/07/30/vue_intro1/"
+  },
+  {
+    "source": "_posts/Frontend/Vue/2026-07-31-vue_intro2.md",
+    "title": "02. Vue 기초 문법 점검: JavaScript, 템플릿",
+    "path": "/frontend/vue/2026/07/31/vue_intro2/",
+    "canonical": "https://minnong511.github.io/frontend/vue/2026/07/31/vue_intro2/"
+  },
+  {
+    "source": "_posts/Frontend/Vue/2026-08-02-vue-composition-api.md",
+    "title": "03. Vue Composition API 정리",
+    "path": "/frontend/vue/2026/08/02/vue-composition-api/",
+    "canonical": "https://minnong511.github.io/frontend/vue/2026/08/02/vue-composition-api/"
+  },
+  {
+    "source": "_posts/Frontend/Vue/2026-08-03-pinia.md",
+    "title": "05. Pinia 상태 관리: store 설계와 사용법",
+    "path": "/frontend/vue/2026/08/03/pinia/",
+    "canonical": "https://minnong511.github.io/frontend/vue/2026/08/03/pinia/"
+  },
+  {
+    "source": "_posts/Frontend/Vue/2026-08-03-vue-component.md",
+    "title": "04. Vue 컴포넌트 설계: props, emit, slot과 생명주기",
+    "path": "/frontend/vue/2026/08/03/vue-component/",
+    "canonical": "https://minnong511.github.io/frontend/vue/2026/08/03/vue-component/"
+  },
+  {
+    "source": "_posts/Python/2026-07-30-python.md",
+    "title": "Python 01. 실행 구조와 실무 기초",
+    "path": "/python/2026/07/30/python/",
+    "canonical": "https://minnong511.github.io/python/2026/07/30/python/"
+  },
+  {
+    "source": "_posts/Python/2026-08-07-python_2.md",
+    "title": "Python 코드 품질: 디버깅부터 테스트와 자동화까지",
+    "path": "/python/2026/08/07/python_2/",
+    "canonical": "https://minnong511.github.io/python/2026/08/07/python_2/"
+  },
+  {
+    "source": "_posts/Thinking/2026-08-09-ai-era-developers-disappear.md",
+    "title": "AI 시대, 개발자는 사라지는가?",
+    "path": "/ai/development/2026/08/09/ai-era-developers-disappear/",
+    "canonical": "https://minnong511.github.io/ai/development/2026/08/09/ai-era-developers-disappear/"
+  }
+]
