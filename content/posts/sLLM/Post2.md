@@ -1,3 +1,13 @@
+---
+layout: post
+title: "제한된 자원에서 sLLM 구축하기"
+description: "LoRA와 QLoRA, 양자화, KV Cache와 RAG를 조합해 제한된 자원에서 sLLM을 구축하는 방법을 정리한다."
+date: "2026-08-28 17:45:21 +0900"
+categories: ["sLLM"]
+tags: ["sLLM", "LoRA", "QLoRA", "Quantization", "RAG"]
+legacyPath: "/sllm/2026/08/28/resource-efficient-build/"
+---
+
 # 예시 
 
 Base 모델: Qwen2.5-1.5B
@@ -162,4 +172,4 @@ INT4 모델
 "연차 신청은"
 "연차 신청은 그룹웨어에서"
 
-새 토큰을 만들 때마다 이전 토큰들의 Attention 계산을 
+새 토큰을 만들 때마다 이전 토큰들의 Attention 계산을

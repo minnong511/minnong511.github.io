@@ -1,3 +1,13 @@
+---
+layout: post
+title: "sLLM 핵심 기술과 전체 구조"
+description: "도메인 특화 sLLM을 구성하는 Fine-Tuning, RAG, Context 설계와 추론 최적화 기술을 정리한다."
+date: "2026-08-28 17:45:21 +0900"
+categories: ["sLLM"]
+tags: ["sLLM", "Fine-Tuning", "RAG", "Inference Optimization"]
+legacyPath: "/sllm/2026/08/28/core-technologies/"
+---
+
 # 결론
 
 > sLLM은 단순히 작은 언어 모델이 아니라, 도메인에 맞게 학습된 모델, 필요한 근거를 적절하게 제공하는 맥락 파이프라인, 제한된 자원에서 빠르게 실행되는 추론 시스템을 함께 설계한 AI

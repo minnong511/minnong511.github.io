@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "totals": {
-    "publicPosts": 135
+    "publicPosts": 144
   },
   "entries": [
     {
@@ -111,6 +111,27 @@
       ]
     },
     {
+      "source": "content/posts/Algorithm/DFS_BFS/DFS_BFS.md",
+      "target": "content/posts/Algorithm/DFS_BFS/DFS_BFS.md",
+      "visibility": "public",
+      "published": true,
+      "title": "DFS와 BFS",
+      "description": "DFS와 BFS의 탐색 순서, 방문 처리, 구현 방법과 대표 활용 사례를 정리한다.",
+      "date": "2026-08-29 19:21:08 +0900",
+      "categories": [
+        "Algorithm",
+        "DFS_BFS"
+      ],
+      "tags": [
+        "Algorithm",
+        "DFS",
+        "BFS",
+        "Graph"
+      ],
+      "legacyPath": "/algorithm/dfs-bfs/2026/08/29/dfs-bfs/",
+      "route": "/algorithm/dfs-bfs/2026/08/29/dfs-bfs/"
+    },
+    {
       "source": "_posts/Algorithm/Greedy/알고리즘 논리.md",
       "target": "content/posts/Algorithm/Greedy/알고리즘 논리.md",
       "visibility": "public",
@@ -157,6 +178,46 @@
       ],
       "legacyPath": "/algorithm/2026/08/14/counter/",
       "route": "/algorithm/2026/08/14/counter/"
+    },
+    {
+      "source": "content/posts/Algorithm/Python 코테/딕셔너리.md",
+      "target": "content/posts/Algorithm/Python 코테/딕셔너리.md",
+      "visibility": "public",
+      "published": true,
+      "title": "파이썬 딕셔너리와 코딩 테스트 활용",
+      "description": "파이썬 딕셔너리의 기본 사용법과 빠른 조회 특성을 코딩 테스트 문제에 활용하는 방법을 정리한다.",
+      "date": "2026-08-29 19:21:08 +0900",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "tags": [
+        "Python",
+        "Algorithm",
+        "Dictionary",
+        "Hash"
+      ],
+      "legacyPath": "/algorithm/python/2026/08/29/dictionary/",
+      "route": "/algorithm/python/2026/08/29/dictionary/"
+    },
+    {
+      "source": "content/posts/AX/1.md",
+      "target": "content/posts/AX/1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "AX 시대의 가치 정의와 현장 리딩",
+      "description": "AX 시대에 이해관계자에게 제공할 가치를 정의하고 현장을 이끄는 역할을 고민한 메모다.",
+      "date": "2026-08-28 17:45:21 +0900",
+      "categories": [
+        "AX"
+      ],
+      "tags": [
+        "AX",
+        "Stakeholder",
+        "Leadership"
+      ],
+      "legacyPath": "/ax/2026/08/28/value-definition/",
+      "route": "/ax/2026/08/28/value-definition/"
     },
     {
       "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
@@ -685,6 +746,27 @@
       ]
     },
     {
+      "source": "content/posts/Backend/Kafka/핵심.md",
+      "target": "content/posts/Backend/Kafka/핵심.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Kafka의 핵심 설계 원리",
+      "description": "Kafka의 Decoupling, Buffering, Fan-out, Replay와 Load Balancing 원리를 서비스 구조와 함께 정리한다.",
+      "date": "2026-08-27 07:29:47 +0900",
+      "categories": [
+        "Backend",
+        "Kafka"
+      ],
+      "tags": [
+        "Kafka",
+        "Messaging",
+        "Event Streaming",
+        "Distributed System"
+      ],
+      "legacyPath": "/backend/kafka/2026/08/27/core-principles/",
+      "route": "/backend/kafka/2026/08/27/core-principles/"
+    },
+    {
       "source": "content/posts/Backend/Kafka/kafka-messaging-system.md",
       "target": "content/posts/Backend/Kafka/kafka-messaging-system.md",
       "visibility": "public",
@@ -832,10 +914,16 @@
         "Backend",
         "MSA"
       ],
-      "tags": ["MSA", "Microservices", "Kafka", "Docker", "Kubernetes", "Saga"],
+      "tags": [
+        "MSA",
+        "Microservices",
+        "Kafka",
+        "Docker",
+        "Kubernetes",
+        "Saga"
+      ],
       "legacyPath": "/backend/msa/2026/08/26/MSA1/",
-      "route": "/backend/msa/2026/08/26/MSA1/",
-      "inferredFields": []
+      "route": "/backend/msa/2026/08/26/MSA1/"
     },
     {
       "source": "_posts/Backend/Network(중요)/네트워크.md",
@@ -2466,7 +2554,7 @@
     },
     {
       "source": "_posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
-      "target": "content/posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
+      "target": "content/posts/Deep_Learning/2026-08-19-llm-workflow-patterns.md",
       "visibility": "public",
       "published": true,
       "title": "현대 LLM 워크플로의 패턴",
@@ -2488,7 +2576,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-deep-learning-basics.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 학습 기본 개념",
@@ -2509,7 +2597,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-EDA copy.md",
       "visibility": "public",
       "published": true,
       "title": "데이터 시각화",
@@ -2529,7 +2617,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline.md",
       "visibility": "public",
       "published": true,
       "title": "기초 통계와 ML 파이프라인 연결",
@@ -2549,7 +2637,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline2.md",
       "visibility": "public",
       "published": true,
       "title": "분석 자동화와 파이프라인 설계",
@@ -2569,7 +2657,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
-      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-cnn-architectures.md",
       "visibility": "public",
       "published": true,
       "title": "CNN 아키텍처 발전 과정",
@@ -2590,7 +2678,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
-      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-image-segmentation.md",
       "visibility": "public",
       "published": true,
       "title": "이미지 세그멘테이션 모델과 핵심 개념",
@@ -2611,7 +2699,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
-      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
+      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-object-detection.md",
       "visibility": "public",
       "published": true,
       "title": "객체 탐지 모델과 핵심 개념",
@@ -2632,7 +2720,7 @@
     },
     {
       "source": "_posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
-      "target": "content/posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
+      "target": "content/posts/Deep_Learning/Data/2026-08-06-dataset-engineering.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 데이터셋 엔지니어링",
@@ -2653,7 +2741,7 @@
     },
     {
       "source": "_posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
-      "target": "content/posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "target": "content/posts/Deep_Learning/Debugging/2026-08-06-deep-learning-debugging.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 학습 문제 진단과 디버깅",
@@ -2673,8 +2761,71 @@
       "summary": "딥러닝 학습과 평가 과정에서 발생하는 주요 문제와 점검 항목을 정리한다."
     },
     {
+      "source": "content/posts/Deep_Learning/Latent_Space/2026-08-29-latent-space.md",
+      "target": "content/posts/Deep_Learning/Latent_Space/2026-08-29-latent-space.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Latent Space",
+      "description": "Latent Space를 정리한 글입니다.",
+      "date": "2026-08-29T00:00:00+09:00",
+      "categories": [
+        "DeepLearning",
+        "Latent_Space"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Latent Space"
+      ],
+      "legacyPath": "/deeplearning/latent-space/2026/08/29/latent-space/",
+      "route": "/deeplearning/latent-space/2026/08/29/latent-space/"
+    },
+    {
+      "source": "content/posts/Deep_Learning/LoRA/LoRA.md",
+      "target": "content/posts/Deep_Learning/LoRA/LoRA.md",
+      "visibility": "public",
+      "published": true,
+      "title": "LoRA (Low-Rank Adaptation)",
+      "description": "LoRA의 저랭크 행렬 분해 원리, 학습 방식, Full Fine-Tuning 및 RAG와의 차이를 정리한다.",
+      "date": "2026-08-28 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "LoRA"
+      ],
+      "tags": [
+        "Deep Learning",
+        "LoRA",
+        "PEFT",
+        "Fine-Tuning",
+        "QLoRA"
+      ],
+      "legacyPath": "/deep_learning/lora/2026/08/28/lora/",
+      "route": "/deep_learning/lora/2026/08/28/lora/",
+      "summary": "LoRA가 적은 파라미터로 Base Model을 특정 작업에 적응시키는 원리를 정리한다."
+    },
+    {
+      "source": "content/posts/Deep_Learning/LoRA/Transformer_LoRA.md",
+      "target": "content/posts/Deep_Learning/LoRA/Transformer_LoRA.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Transformer에서 LoRA 적용 대상 정하기",
+      "description": "Transformer의 Attention과 MLP에서 LoRA를 적용할 Projection과 적용 범위를 정리한다.",
+      "date": "2026-08-29 15:28:08 +0900",
+      "categories": [
+        "Deep_Learning",
+        "LoRA"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Transformer",
+        "LoRA",
+        "PEFT"
+      ],
+      "legacyPath": "/deep_learning/lora/2026/08/29/transformer-lora/",
+      "route": "/deep_learning/lora/2026/08/29/transformer-lora/"
+    },
+    {
       "source": "_posts/DeepLearning/RAG/1.Md",
-      "target": "content/posts/DeepLearning/RAG/1.md",
+      "target": "content/posts/Deep_Learning/RAG/1.md",
       "visibility": "public",
       "published": true,
       "title": "1",
@@ -2702,7 +2853,7 @@
     },
     {
       "source": "_posts/DeepLearning/RAG/Chunking.md",
-      "target": "content/posts/DeepLearning/RAG/Chunking.md",
+      "target": "content/posts/Deep_Learning/RAG/Chunking.md",
       "visibility": "public",
       "published": true,
       "title": "Chunking?",
@@ -2729,7 +2880,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-distributed-training-mlops.md",
       "visibility": "public",
       "published": true,
       "title": "분산 학습과 MLOps",
@@ -2750,7 +2901,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-model-optimization.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 모델 경량화와 추론 최적화",
@@ -2772,7 +2923,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-basics.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 기본 학습 테크닉",
@@ -2793,7 +2944,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-intermediate.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 중급 학습 테크닉",
@@ -2814,7 +2965,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-mixture-of-experts.md",
       "visibility": "public",
       "published": true,
       "title": "Mixture of Experts(MoE) 핵심 개념",
@@ -2836,7 +2987,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-multimodal-foundation-models.md",
       "visibility": "public",
       "published": true,
       "title": "멀티모달 파운데이션 모델 핵심 개념",
@@ -2858,7 +3009,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-state-space-models.md",
       "visibility": "public",
       "published": true,
       "title": "State Space Model과 Mamba",
@@ -2880,7 +3031,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-transformer-vision-transformer.md",
       "visibility": "public",
       "published": true,
       "title": "Transformer와 Vision Transformer",
@@ -3382,6 +3533,47 @@
       ],
       "legacyPath": "/python/2026/08/07/python_2/",
       "route": "/python/2026/08/07/python_2/"
+    },
+    {
+      "source": "content/posts/sLLM/Post1.md",
+      "target": "content/posts/sLLM/Post1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "sLLM 핵심 기술과 전체 구조",
+      "description": "도메인 특화 sLLM을 구성하는 Fine-Tuning, RAG, Context 설계와 추론 최적화 기술을 정리한다.",
+      "date": "2026-08-28 17:45:21 +0900",
+      "categories": [
+        "sLLM"
+      ],
+      "tags": [
+        "sLLM",
+        "Fine-Tuning",
+        "RAG",
+        "Inference Optimization"
+      ],
+      "legacyPath": "/sllm/2026/08/28/core-technologies/",
+      "route": "/sllm/2026/08/28/core-technologies/"
+    },
+    {
+      "source": "content/posts/sLLM/Post2.md",
+      "target": "content/posts/sLLM/Post2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "제한된 자원에서 sLLM 구축하기",
+      "description": "LoRA와 QLoRA, 양자화, KV Cache와 RAG를 조합해 제한된 자원에서 sLLM을 구축하는 방법을 정리한다.",
+      "date": "2026-08-28 17:45:21 +0900",
+      "categories": [
+        "sLLM"
+      ],
+      "tags": [
+        "sLLM",
+        "LoRA",
+        "QLoRA",
+        "Quantization",
+        "RAG"
+      ],
+      "legacyPath": "/sllm/2026/08/28/resource-efficient-build/",
+      "route": "/sllm/2026/08/28/resource-efficient-build/"
     },
     {
       "source": "_posts/Thinking/2026-08-09-ai-era-developers-disappear.md",

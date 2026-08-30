@@ -1,4 +1,12 @@
-
+---
+layout: post
+title: "Transformer에서 LoRA 적용 대상 정하기"
+description: "Transformer의 Attention과 MLP에서 LoRA를 적용할 Projection과 적용 범위를 정리한다."
+date: "2026-08-29 15:28:08 +0900"
+categories: ["Deep_Learning", "LoRA"]
+tags: ["Deep Learning", "Transformer", "LoRA", "PEFT"]
+legacyPath: "/deep_learning/lora/2026/08/29/transformer-lora/"
+---
 
 v_proj
 
@@ -35,4 +43,4 @@ vs
 Attention + MLP까지 수정
 
 
-일단 당장은 추가하지 말고, MSA부터 추가하자 
+일단 당장은 추가하지 말고, MSA부터 추가하자

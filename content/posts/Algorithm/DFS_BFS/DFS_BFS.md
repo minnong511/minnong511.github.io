@@ -1,3 +1,13 @@
+---
+layout: post
+title: "DFS와 BFS"
+description: "DFS와 BFS의 탐색 순서, 방문 처리, 구현 방법과 대표 활용 사례를 정리한다."
+date: "2026-08-29 19:21:08 +0900"
+categories: ["Algorithm", "DFS_BFS"]
+tags: ["Algorithm", "DFS", "BFS", "Graph"]
+legacyPath: "/algorithm/dfs-bfs/2026/08/29/dfs-bfs/"
+---
+
 # DFS와 BFS
 
 그래프나 격자(미로)를 탐색할 때 가장 많이 쓰는 알고리즘은 DFS(깊이 우선 탐색)와 BFS(너비 우선 탐색)이다.

@@ -2958,7 +2958,7 @@
     },
     {
       "source": "_posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
-      "target": "content/posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
+      "target": "content/posts/Deep_Learning/2026-08-19-llm-workflow-patterns.md",
       "visibility": "public",
       "published": true,
       "title": "현대 LLM 워크플로의 패턴",
@@ -2986,7 +2986,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-deep-learning-basics.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 학습 기본 개념",
@@ -3013,7 +3013,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-EDA copy.md",
       "visibility": "public",
       "published": true,
       "title": "데이터 시각화",
@@ -3039,7 +3039,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline.md",
       "visibility": "public",
       "published": true,
       "title": "기초 통계와 ML 파이프라인 연결",
@@ -3065,7 +3065,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
-      "target": "content/posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
+      "target": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline2.md",
       "visibility": "public",
       "published": true,
       "title": "분석 자동화와 파이프라인 설계",
@@ -3091,7 +3091,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
-      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-cnn-architectures.md",
       "visibility": "public",
       "published": true,
       "title": "CNN 아키텍처 발전 과정",
@@ -3118,7 +3118,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
-      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-image-segmentation.md",
       "visibility": "public",
       "published": true,
       "title": "이미지 세그멘테이션 모델과 핵심 개념",
@@ -3145,7 +3145,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
-      "target": "content/posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
+      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-object-detection.md",
       "visibility": "public",
       "published": true,
       "title": "객체 탐지 모델과 핵심 개념",
@@ -3172,7 +3172,7 @@
     },
     {
       "source": "_posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
-      "target": "content/posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
+      "target": "content/posts/Deep_Learning/Data/2026-08-06-dataset-engineering.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 데이터셋 엔지니어링",
@@ -3199,7 +3199,7 @@
     },
     {
       "source": "_posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
-      "target": "content/posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "target": "content/posts/Deep_Learning/Debugging/2026-08-06-deep-learning-debugging.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 학습 문제 진단과 디버깅",
@@ -3226,7 +3226,7 @@
     },
     {
       "source": "_posts/DeepLearning/RAG/1.Md",
-      "target": "content/posts/DeepLearning/RAG/1.md",
+      "target": "content/posts/Deep_Learning/RAG/1.md",
       "visibility": "public",
       "published": true,
       "title": "1",
@@ -3259,7 +3259,7 @@
     },
     {
       "source": "_posts/DeepLearning/RAG/Chunking.md",
-      "target": "content/posts/DeepLearning/RAG/Chunking.md",
+      "target": "content/posts/Deep_Learning/RAG/Chunking.md",
       "visibility": "public",
       "published": true,
       "title": "Chunking?",
@@ -3291,7 +3291,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-distributed-training-mlops.md",
       "visibility": "public",
       "published": true,
       "title": "분산 학습과 MLOps",
@@ -3318,7 +3318,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-model-optimization.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 모델 경량화와 추론 최적화",
@@ -3346,7 +3346,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-basics.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 기본 학습 테크닉",
@@ -3373,7 +3373,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
-      "target": "content/posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "target": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-intermediate.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 중급 학습 테크닉",
@@ -3400,7 +3400,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-mixture-of-experts.md",
       "visibility": "public",
       "published": true,
       "title": "Mixture of Experts(MoE) 핵심 개념",
@@ -3428,7 +3428,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-multimodal-foundation-models.md",
       "visibility": "public",
       "published": true,
       "title": "멀티모달 파운데이션 모델 핵심 개념",
@@ -3456,7 +3456,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-state-space-models.md",
       "visibility": "public",
       "published": true,
       "title": "State Space Model과 Mamba",
@@ -3484,7 +3484,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
-      "target": "content/posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-transformer-vision-transformer.md",
       "visibility": "public",
       "published": true,
       "title": "Transformer와 Vision Transformer",
