@@ -1,0 +1,231 @@
+#__nuxt {
+  min-height: 100%;
+}
+
+.ide-layout-root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.ide-tab {
+  padding: 0 4px 0 0;
+}
+
+.ide-tab-link {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 7px;
+  padding-left: 10px;
+  color: inherit;
+}
+
+.ide-tab-link small {
+  margin-left: auto;
+}
+
+.ide-outline-list button {
+  display: block;
+  width: 100%;
+  padding: 5px 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--ui-font);
+  font-size: 11px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color .18s ease, background-color .18s ease;
+}
+
+.ide-outline-list button:hover,
+.ide-outline-list button.is-current {
+  color: var(--accent-cyan);
+}
+
+.ide-outline-list button.is-h3 {
+  padding-left: 14px;
+  color: var(--text-muted);
+}
+
+.ide-outline-list button.is-h3.is-current,
+.ide-context-link.is-saved {
+  color: var(--accent-orange);
+}
+
+.ide-runtime-enhancer {
+  display: none !important;
+}
+
+.ide-mermaid-runtime {
+  display: none !important;
+}
+
+.ide-mermaid {
+  max-width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--panel-bg);
+}
+
+.ide-mermaid figcaption {
+  display: flex;
+  min-height: 32px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--ui-font);
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+.ide-mermaid-output {
+  display: grid;
+  min-height: 120px;
+  padding: 20px;
+  overflow-x: auto;
+  place-items: center;
+  color: var(--text-secondary);
+  font-family: var(--ui-font);
+  font-size: 12px;
+}
+
+.ide-mermaid-output svg {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.ide-mermaid-output.is-loading {
+  opacity: .7;
+}
+
+.ide-mermaid-output.is-error {
+  min-height: 0;
+  place-items: start;
+  color: var(--accent-orange);
+}
+
+.ide-mermaid-source {
+  border-top: 1px solid var(--border);
+}
+
+.ide-mermaid-source summary {
+  padding: 8px 10px;
+  color: var(--accent-cyan);
+  cursor: pointer;
+  font-family: var(--ui-font);
+  font-size: 10px;
+}
+
+.ide-mermaid-source pre {
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.ide-document-content > :first-child,
+.ide-document-content > div > :first-child {
+  margin-top: 0;
+}
+
+.ide-home-visual {
+  position: relative;
+  height: clamp(240px, 36vw, 390px);
+  margin: 34px 0 30px;
+  overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: linear-gradient(145deg, rgba(85, 194, 255, .08), transparent 60%), var(--panel-bg);
+}
+
+.ide-home-visual-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 16px;
+  color: var(--text-secondary);
+  font-family: var(--ui-font);
+  pointer-events: none;
+}
+
+.ide-home-visual-frame span {
+  font-size: 10px;
+  letter-spacing: .1em;
+}
+
+.ide-home-visual-frame strong {
+  padding-top: 10px;
+  border-top: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-size: clamp(18px, 3vw, 34px);
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+
+.ide-home-visual + .ide-home-actions {
+  margin-top: 0;
+}
+
+.ide-document-content pre.shiki,
+.ide-document-content pre[class*="language-"] {
+  background: transparent !important;
+}
+
+.ide-document-content .contains-task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.ide-document-content input[type="checkbox"] {
+  margin-right: .5em;
+  accent-color: var(--accent-cyan);
+}
+
+.tag-hub-results {
+  margin-top: 38px;
+}
+
+.topic-results-heading {
+  margin-bottom: 12px;
+}
+
+.topic-results-heading h2 {
+  margin-top: 6px;
+}
+
+.primary-topic-card,
+.tag-hub-chip {
+  font-family: inherit;
+}
+
+.ide-palette-card button {
+  border-radius: 0;
+}
+
+@media (max-width: 767px) {
+  .ide-titlebar {
+    grid-template-columns: 0 0 minmax(0, 1fr) auto;
+  }
+
+  .ide-titlebar > .ide-mobile-title {
+    display: block;
+    grid-column: 3;
+    grid-row: 1;
+    padding: 0 12px;
+  }
+
+  .ide-home-visual {
+    height: 280px;
+    margin-inline: -4px;
+  }
+}

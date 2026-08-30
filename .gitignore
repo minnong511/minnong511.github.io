@@ -1,0 +1,11 @@
+node_modules/
+.nuxt/
+.output/
+.data/
+.cache/
+dist
+coverage/
+output/playwright/
+.playwright-cli/
+.DS_Store
+npm-debug.log*
