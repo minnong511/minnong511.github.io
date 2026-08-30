@@ -1043,33 +1043,21 @@
     },
     {
       "source": "_posts/Backend/MSA/MSA1.md",
-      "target": "content/posts/Backend/MSA/MSA1.md",
+      "target": "content/posts/Backend/MSA/MSA.md",
       "visibility": "public",
       "metadata": {
-        "title": "MSA1",
-        "description": "MSA1",
+        "title": "MSA, 서비스 분리와 운영의 원리",
+        "description": "모놀리식에서 MSA로 전환할 때 알아야 할 서비스 경계, 통신, 데이터, 장애 대응, 운영 원칙을 정리한다.",
         "date": "2026-08-26 14:08:02 +0900",
         "categories": [
           "Backend",
           "MSA"
         ],
-        "tags": [],
+        "tags": ["MSA", "Microservices", "Kafka", "Docker", "Kubernetes", "Saga"],
         "published": true
       },
       "legacyPath": "/backend/msa/2026/08/26/MSA1/",
       "publicUrl": "https://minnong511.github.io/backend/msa/2026/08/26/MSA1/",
-      "inferredFields": [
-        "title",
-        "description",
-        "date",
-        "categories",
-        "tags",
-        "layout"
-      ],
-      "warnings": [
-        "title을 파일명에서 추론했습니다.",
-        "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
-      ],
       "transformations": {
         "mermaidCapturesConverted": 0,
         "rawWrappersRemoved": 0,
