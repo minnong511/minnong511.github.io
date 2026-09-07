@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "totals": {
-    "publicPosts": 144
+    "publicPosts": 157
   },
   "entries": [
     {
@@ -180,6 +180,30 @@
       "route": "/algorithm/2026/08/14/counter/"
     },
     {
+      "source": "content/posts/Algorithm/Python 코테/7일의 전사.md",
+      "target": "content/posts/Algorithm/Python 코테/7일의 전사.md",
+      "visibility": "public",
+      "published": true,
+      "title": "코딩 테스트 핵심 알고리즘 정리",
+      "description": "그리디, 완전 탐색, DP, 해시, 스택의 핵심 개념과 파이썬 구현 방법을 정리한다.",
+      "date": "2026-08-31 00:00:00 +0900",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "tags": [
+        "Python",
+        "Algorithm",
+        "Greedy",
+        "Brute Force",
+        "DP",
+        "Hash",
+        "Stack"
+      ],
+      "legacyPath": "/algorithm/python/2026/08/31/core-algorithms/",
+      "route": "/algorithm/python/2026/08/31/core-algorithms/"
+    },
+    {
       "source": "content/posts/Algorithm/Python 코테/딕셔너리.md",
       "target": "content/posts/Algorithm/Python 코테/딕셔너리.md",
       "visibility": "public",
@@ -201,8 +225,8 @@
       "route": "/algorithm/python/2026/08/29/dictionary/"
     },
     {
-      "source": "content/posts/AX/1.md",
-      "target": "content/posts/AX/1.md",
+      "source": "content/posts/AX/꿀팀.md",
+      "target": "content/posts/AX/꿀팀.md",
       "visibility": "public",
       "published": true,
       "title": "AX 시대의 가치 정의와 현장 리딩",
@@ -218,6 +242,42 @@
       ],
       "legacyPath": "/ax/2026/08/28/value-definition/",
       "route": "/ax/2026/08/28/value-definition/"
+    },
+    {
+      "source": "content/posts/AX/AX.md",
+      "target": "content/posts/AX/AX.md",
+      "visibility": "public",
+      "published": true,
+      "title": "AX 프로젝트, 문제 정의부터 확산까지",
+      "description": "업무 흐름과 KPI를 기준으로 AX 후보를 찾고 PoC와 실제 시스템 연결을 설계하는 과정을 정리한다.",
+      "date": "2026-09-01 00:00:00 +0900",
+      "categories": [
+        "AX"
+      ],
+      "tags": [
+        "AX",
+        "제조AI"
+      ],
+      "legacyPath": "/ax/2026/09/01/ax-project/",
+      "route": "/ax/2026/09/01/ax-project/"
+    },
+    {
+      "source": "content/posts/AX/AX2.md",
+      "target": "content/posts/AX/AX2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "예시로 살펴보는 AX",
+      "description": "공개된 기업 사례를 참고해 문제 정의, PoC, 기존 시스템 연결, 평가와 확산의 흐름을 살펴본다.",
+      "date": "2026-09-01 00:00:00 +0900",
+      "categories": [
+        "AX"
+      ],
+      "tags": [
+        "AX",
+        "제조AI"
+      ],
+      "legacyPath": "/ax/2026/09/01/ax-examples/",
+      "route": "/ax/2026/09/01/ax-examples/"
     },
     {
       "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
@@ -819,6 +879,30 @@
         "title을 파일명에서 추론했습니다.",
         "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
       ]
+    },
+    {
+      "source": "content/posts/Backend/Kubernetes/2026-09-06-kubernetes-introduction.md",
+      "target": "content/posts/Backend/Kubernetes/2026-09-06-kubernetes-introduction.md",
+      "visibility": "public",
+      "published": true,
+      "title": "쿠버네티스 입문",
+      "description": "쿠버네티스의 핵심 용어와 아키텍처를 살펴보고, Nginx 배포 실습으로 원하는 상태를 유지하는 작동 과정을 정리한다.",
+      "date": "2026-09-06 09:00:00 +0900",
+      "categories": [
+        "Backend",
+        "Kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "Pod",
+        "Deployment",
+        "ReplicaSet",
+        "Service",
+        "kubectl",
+        "minikube"
+      ],
+      "legacyPath": "/backend/kubernetes/2026/09/06/kubernetes-introduction/",
+      "route": "/backend/kubernetes/2026/09/06/kubernetes-introduction/"
     },
     {
       "source": "_posts/Backend/MSA.md",
@@ -2463,6 +2547,195 @@
       ]
     },
     {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-1.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-1.md",
+      "visibility": "public",
+      "published": true,
+      "title": "1. 쿠버네티스, 원하는 상태와 컨테이너 이미지",
+      "description": "컨테이너를 실행한 뒤 남는 운영 문제에서 출발해, 선언형 관리와 배포 가능한 이미지의 조건을 연결한다.",
+      "date": "2026-09-07 08:00:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "Docker",
+        "컨테이너",
+        "이미지",
+        "Reconciliation"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-1/",
+      "route": "/ci-cd-docker/kubernetes/part-1/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 1,
+      "summary": "쿠버네티스는 원하는 상태와 실제 상태의 차이를 계속 줄인다. 개발자는 실행할 이미지와 개수, 준비 상태의 기준을 제공하고, 클러스터는 배치와 복구를 맡는다. 먼저 재현 가능한 이미지를 준비해야 이 구조가 의미를 갖는다.",
+      "key_concepts": [
+        "spec: 원하는 상태, status: 관찰된 현재 상태",
+        "Reconciliation: 두 상태의 차이를 줄이는 반복 작업",
+        "이미지: 실행에 필요한 파일과 설정을 담은 패키지",
+        "Digest: 이미지 내용을 특정하는 해시 기반 식별자"
+      ]
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-2.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-2.md",
+      "visibility": "public",
+      "published": true,
+      "title": "2. 클러스터는 명령을 어떻게 Pod로 바꿀까",
+      "description": "API Server에서 ReplicaSet, Scheduler, kubelet과 containerd까지, Pod가 만들어지는 흐름으로 구성 요소의 역할을 이해한다.",
+      "date": "2026-09-07 08:01:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "ControlPlane",
+        "Scheduler",
+        "kubelet",
+        "containerd"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-2/",
+      "route": "/ci-cd-docker/kubernetes/part-2/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 2,
+      "summary": "API Server는 요청과 상태 변경의 관문이고, 컨트롤러는 객체의 목표를 맞추며, Scheduler는 노드를 고른다. kubelet은 자기 노드에 배정된 Pod를 런타임으로 실행하고 상태를 보고한다. 이 역할의 경계가 장애를 좁히는 기준이 된다.",
+      "key_concepts": [
+        "Control Plane: API와 컨트롤러, 스케줄링을 담당하는 관리 영역",
+        "ReplicaSet Controller: 관리하는 Pod의 개수를 맞춘다",
+        "Scheduler: 미배정 Pod가 실행될 Node를 선택한다",
+        "CRI: kubelet과 컨테이너 런타임 사이의 인터페이스"
+      ]
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-3.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-3.md",
+      "visibility": "public",
+      "published": true,
+      "title": "3. kubectl과 Pod, 상태에서 원인을 찾는 법",
+      "description": "get과 describe의 차이, Running과 Ready의 차이, 세 프로브와 장애 Events를 작은 예제로 구분한다.",
+      "date": "2026-09-07 08:02:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "kubectl",
+        "Pod",
+        "Readiness",
+        "ImagePullBackOff"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-3/",
+      "route": "/ci-cd-docker/kubernetes/part-3/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 3,
+      "summary": "Pod 진단은 목록에서 이상한 대상을 찾고, describe의 Events로 멈춘 단계를 확인하는 흐름이다. Running은 컨테이너 실행 상태이고 Ready는 요청을 받을 준비 조건이다. 이미지를 받지 못한 상황과 실행 뒤 준비 검사에 실패한 상황은 조치가 다르다.",
+      "key_concepts": [
+        "get: 리소스 목록과 요약 상태 조회",
+        "describe: 객체의 조건과 Events 확인",
+        "Ready: 요청을 받을 준비 조건, Pod phase와 다름",
+        "Readiness 실패: 트래픽 대상에서 제외, 자체적으로 재시작하지 않음"
+      ]
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-4.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-4.md",
+      "visibility": "public",
+      "published": true,
+      "title": "4. 직접 실험하는 Kubernetes, Pod 복구부터 롤백까지",
+      "description": "3D 클러스터와 모의 kubectl 터미널로 Pod 조회, 삭제와 복구, 확장, 이미지 교체, 장애 진단과 롤백을 직접 관찰한다.",
+      "date": "2026-09-07 08:03:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "kubectl",
+        "시뮬레이션",
+        "Deployment",
+        "ReplicaSet",
+        "롤백"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-4/",
+      "route": "/ci-cd-docker/kubernetes/part-4/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 4,
+      "summary": "목표를 바꾸는 명령과 실제 Pod가 준비되는 시점은 다르다. 이 실험실은 같은 모의 상태를 터미널, 3D 장면과 미션에 연결한다. 원하는 개수, 실제 개수, Ready 수, 연결 대상의 차이를 보며 조정 루프와 롤아웃을 이해한다.",
+      "key_concepts": [
+        "Desired / Actual / Ready: 목표, 종료 중을 제외한 Pod 수, 준비된 Pod 수",
+        "RollingUpdate: 새 Pod의 준비를 확인하며 이전 Pod를 교체",
+        "maxSurge=1: 목표보다 한 개 더 생성할 수 있는 여유",
+        "rollout undo: 이전 Pod template으로 복귀"
+      ]
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-5.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-5.md",
+      "visibility": "public",
+      "published": true,
+      "title": "5. Service와 Ingress, 요청은 어디로 흐를까",
+      "description": "Pod IP, Service, Endpoints, DNS와 Ingress를 하나의 요청 경로로 연결하고, 통신 장애를 구간별로 좁혀 본다.",
+      "date": "2026-09-07 08:04:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "Service",
+        "EndpointSlice",
+        "DNS",
+        "Ingress",
+        "네트워크"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-5/",
+      "route": "/ci-cd-docker/kubernetes/part-5/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 5,
+      "summary": "Service는 바뀌는 Pod 앞에 일관된 접근 지점을 제공하고, 연결 대상 정보는 Pod의 Label과 준비 상태에 따라 갱신된다. DNS는 이름을 주소로 찾고, Ingress는 외부 HTTP 요청의 경로를 정한다. 장애는 이 역할의 경계를 따라 확인한다.",
+      "key_concepts": [
+        "Service: Pod 집합에 대한 일관된 접근 지점",
+        "EndpointSlice: Service 뒤 연결 대상과 조건을 기록하는 객체",
+        "port / targetPort: Service 쪽 포트 / 대상 Pod 쪽 포트",
+        "Ingress / Controller: 라우팅 규칙 / 규칙을 구현하는 구성 요소"
+      ]
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-6.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-6.md",
+      "visibility": "public",
+      "published": true,
+      "title": "6. 설정과 저장소, 앱을 운영할 수 있는 상태로 만들기",
+      "description": "ConfigMap과 Secret의 반영 시점, 볼륨의 수명, requests와 limits, 프로브와 종료 처리를 하나의 배포 조건으로 연결한다.",
+      "date": "2026-09-07 08:05:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "ConfigMap",
+        "Secret",
+        "PVC",
+        "리소스",
+        "운영"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-6/",
+      "route": "/ci-cd-docker/kubernetes/part-6/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 6,
+      "summary": "운영 준비는 같은 이미지를 환경별 설정으로 실행하고, 필요한 데이터를 Pod 수명 밖에 보존하며, 자원과 종료 조건을 맞추는 일이다. 설정 객체가 바뀌는 시점과 앱이 새 값을 쓰는 시점은 다르다. 배포 성공은 실제 준비 상태와 요청 결과로 확인한다.",
+      "key_concepts": [
+        "ConfigMap / Secret: 일반 설정 / 민감한 값의 분리",
+        "PVC / PV / StorageClass: 저장소 요청 / 볼륨 객체 / 제공 방식",
+        "requests / limits: 배치를 위한 자원 요청 / 실행 자원 제한",
+        "Graceful shutdown: 처리 중 요청을 정리한 뒤 종료"
+      ]
+    },
+    {
       "source": "_posts/CI-CD-Docker/kubernetes/Calico.md",
       "target": "content/posts/CI-CD-Docker/kubernetes/Calico.md",
       "visibility": "public",
@@ -2494,16 +2767,23 @@
       "target": "content/posts/CI-CD-Docker/kubernetes/kubernetes1.md",
       "visibility": "public",
       "published": true,
-      "title": "쿠버네티스",
-      "description": "Docker는 컨테이너 하나를 만들고 실행하는 데 집중한다.",
+      "title": "쿠버네티스 입문, 원하는 상태를 유지하는 시스템",
+      "description": "Docker와 Kubernetes의 역할, 원하는 상태와 조정 루프, Pod와 Deployment, Service의 관계를 먼저 살펴본다.",
       "date": "2026-08-26 07:11:14 +0900",
       "categories": [
         "CI-CD-Docker",
         "kubernetes"
       ],
-      "tags": [],
+      "tags": [
+        "Kubernetes",
+        "Docker",
+        "Pod",
+        "Deployment",
+        "Reconciliation"
+      ],
       "legacyPath": "/ci-cd-docker/kubernetes/2026/08/26/kubernetes1/",
       "route": "/ci-cd-docker/kubernetes/2026/08/26/kubernetes1/",
+      "summary": "쿠버네티스는 여러 노드에서 컨테이너를 원하는 상태로 실행하고, 실제 상태가 달라지면 컨트롤러가 차이를 줄인다. 기본 구조를 이해한 뒤 파트별 글과 3D 모의 실습으로 이어갈 수 있다.",
       "inferredFields": [
         "title",
         "description",
@@ -2656,6 +2936,30 @@
       "summary": "개추."
     },
     {
+      "source": "content/posts/Deep_Learning/Basic/ML_입문.md",
+      "target": "content/posts/Deep_Learning/Basic/ML_입문.md",
+      "visibility": "public",
+      "published": true,
+      "title": "머신러닝 입문",
+      "description": "머신러닝의 기본 개념과 데이터 분할, 학습 유형, Tree 기반 모델, SVM, Regularization을 정리한다.",
+      "date": "2026-09-01 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Basic"
+      ],
+      "tags": [
+        "Deep Learning",
+        "Machine Learning",
+        "Classification",
+        "Regression",
+        "Tree",
+        "SVM"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/09/01/ml-introduction/",
+      "route": "/deep_learning/basic/2026/09/01/ml-introduction/",
+      "summary": "머신러닝 문제 정의부터 주요 알고리즘을 선택하는 기준까지 입문 개념을 정리한다."
+    },
+    {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
       "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-cnn-architectures.md",
       "visibility": "public",
@@ -2761,6 +3065,29 @@
       "summary": "딥러닝 학습과 평가 과정에서 발생하는 주요 문제와 점검 항목을 정리한다."
     },
     {
+      "source": "content/posts/Deep_Learning/domain_adaptive.md",
+      "target": "content/posts/Deep_Learning/domain_adaptive.md",
+      "visibility": "public",
+      "published": true,
+      "title": "도메인 적응 방법",
+      "description": "Prompt Engineering, RAG, SFT, LoRA, Continued Pretraining 등 LLM의 도메인 적응 방법을 정리한다.",
+      "date": "2026-08-31 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "LLM"
+      ],
+      "tags": [
+        "Deep Learning",
+        "LLM",
+        "Domain Adaptation",
+        "Fine-Tuning",
+        "RAG"
+      ],
+      "legacyPath": "/deep_learning/llm/2026/08/31/domain-adaptive/",
+      "route": "/deep_learning/llm/2026/08/31/domain-adaptive/",
+      "summary": "지식, 행동, 선호도, 도구 관점에서 LLM 도메인 적응 방법의 차이를 정리한다."
+    },
+    {
       "source": "content/posts/Deep_Learning/Latent_Space/2026-08-29-latent-space.md",
       "target": "content/posts/Deep_Learning/Latent_Space/2026-08-29-latent-space.md",
       "visibility": "public",
@@ -2822,6 +3149,29 @@
       ],
       "legacyPath": "/deep_learning/lora/2026/08/29/transformer-lora/",
       "route": "/deep_learning/lora/2026/08/29/transformer-lora/"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Optimization/2026-08-31-quantization.md",
+      "target": "content/posts/Deep_Learning/Optimization/2026-08-31-quantization.md",
+      "visibility": "public",
+      "published": true,
+      "title": "LLM 양자화와 QLoRA",
+      "description": "LLM 양자화의 기본 원리와 Block-wise Quantization, NF4, Double Quantization, QLoRA의 학습 구조를 정리한다.",
+      "date": "2026-08-31 00:00:00 +0900",
+      "categories": [
+        "Deep_Learning",
+        "Optimization"
+      ],
+      "tags": [
+        "Deep Learning",
+        "LLM",
+        "Quantization",
+        "QLoRA",
+        "NF4"
+      ],
+      "legacyPath": "/deep_learning/optimization/2026/08/31/quantization/",
+      "route": "/deep_learning/optimization/2026/08/31/quantization/",
+      "summary": "가중치를 저비트로 근사하는 과정부터 QLoRA가 메모리를 절감하는 방식까지 정리한다."
     },
     {
       "source": "_posts/DeepLearning/RAG/1.Md",

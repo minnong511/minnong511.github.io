@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-expect-error -- The pinned Three.js runtime does not include declarations in this project.
 import * as THREE from 'three'
 
 const mount = ref<HTMLDivElement | null>(null)
