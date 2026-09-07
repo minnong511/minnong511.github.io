@@ -19,6 +19,8 @@ legacyPath: "/ci-cd-docker/kubernetes/part-5/"
 
 **Pod가 교체될 때마다 클라이언트 설정을 수정하지 않으려면, 바뀌지 않는 접근 지점이 필요하다.** Service가 그 역할을 하고, 뒤쪽의 실제 연결 대상은 자동으로 갱신된다.
 
+[7편, 로드 밸런싱 시각화](/ci-cd-docker/kubernetes/part-7/)에서 요청을 한 단계씩 옮기고 Pod의 Ready 상태에 따라 연결 대상이 달라지는 과정을 볼 수 있다.
+
 ```text
 클라이언트
   → Service 이름

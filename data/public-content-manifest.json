@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "totals": {
-    "publicPosts": 157
+    "publicPosts": 158
   },
   "entries": [
     {
@@ -2734,6 +2734,35 @@
         "requests / limits: 배치를 위한 자원 요청 / 실행 자원 제한",
         "Graceful shutdown: 처리 중 요청을 정리한 뒤 종료"
       ]
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-7.md",
+      "target": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-7.md",
+      "visibility": "public",
+      "published": true,
+      "title": "7. 쿠버네티스 로드 밸런싱, 요청을 따라가 보자",
+      "description": "요청 칩을 따라 Load Balancer의 대상 선택, Ingress의 규칙 판단, Ready Pod의 상품 응답을 보고 관리형 쿠버네티스와 EKS의 운영 책임을 비교한다.",
+      "date": "2026-09-07 08:06:00 +0900",
+      "categories": [
+        "CI-CD-Docker",
+        "kubernetes"
+      ],
+      "tags": [
+        "Kubernetes",
+        "LoadBalancer",
+        "Ingress",
+        "Service",
+        "EndpointSlice",
+        "Readiness",
+        "EKS",
+        "관리형쿠버네티스",
+        "시각화"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-7/",
+      "route": "/ci-cd-docker/kubernetes/part-7/",
+      "series": "직접 실험하는 Kubernetes",
+      "part": 7,
+      "summary": "Pod가 바뀌어도 사용자는 고정된 주소로 접근하고, 시스템은 요청을 처리할 준비가 된 Pod로 연결한다."
     },
     {
       "source": "_posts/CI-CD-Docker/kubernetes/Calico.md",

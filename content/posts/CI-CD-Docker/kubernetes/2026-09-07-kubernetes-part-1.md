@@ -21,7 +21,7 @@ legacyPath: "/ci-cd-docker/kubernetes/part-1/"
 
 예를 들어 `demo-api`를 세 개 실행했다고 해보자. 하나가 사라지면 누군가는 이를 발견하고 새로 띄워야 한다. 새 Pod의 IP가 달라지면 트래픽 연결 대상도 바꿔야 한다. 이미지 v2를 배포할 때는 새 버전이 준비되기 전에 기존 버전을 전부 내리지 않아야 한다. 쿠버네티스는 이런 일을 여러 컴포넌트가 나눠 처리하도록 만든 시스템이다.
 
-이 시리즈는 원하는 상태를 선언하는 원리부터 앱 운영에 필요한 조건까지 여섯 파트로 다룬다. 예제 앱은 `demo-api`로 통일하고, [4편 실험실](/ci-cd-docker/kubernetes/part-4/)에서 명령과 상태 변화를 직접 연결한다.
+이 시리즈는 원하는 상태를 선언하는 원리부터 앱 운영에 필요한 조건까지 일곱 파트로 다룬다. 1~6편은 `demo-api`를 예제로 사용하고, [4편 실험실](/ci-cd-docker/kubernetes/part-4/)에서 명령과 상태 변화를 직접 연결한다. 7편에서는 상품 조회 요청으로 로드 밸런싱을 조작해 본다.
 
 | 파트 | 먼저 답할 질문 | 핵심 개념 |
 |---|---|---|
@@ -31,6 +31,7 @@ legacyPath: "/ci-cd-docker/kubernetes/part-1/"
 | [4. 복구와 배포 실험실](/ci-cd-docker/kubernetes/part-4/) | 삭제, 확장, 배포, 롤백은 어떻게 이어지는가? | Reconciliation, 확장, 롤아웃, 롤백 |
 | [5. Service와 요청 경로](/ci-cd-docker/kubernetes/part-5/) | 사용자의 요청은 어떤 Pod에 도달하는가? | Service, EndpointSlice, DNS, Ingress |
 | [6. 설정, 저장소와 운영](/ci-cd-docker/kubernetes/part-6/) | 재시작과 배포 뒤에도 무엇이 남아야 하는가? | ConfigMap, Secret, 저장소, 프로브 |
+| [7. 로드 밸런싱 시각화](/ci-cd-docker/kubernetes/part-7/) | Ready 상태가 바뀌면 새 요청은 어디로 가는가? | Load Balancer, Ingress Controller, EndpointSlice |
 
 ## 1. 원하는 상태를 적으면 차이를 메운다
 
