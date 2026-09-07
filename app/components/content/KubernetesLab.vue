@@ -287,6 +287,8 @@ kubectl rollout undo deployment/demo-api</pre>
   --muted: #a8bacf;
   --line: #35485e;
   --mint: #6ee7ba;
+  /* Keep absolute accessibility labels inside the lab's scroll boundary. */
+  position: relative;
   container-type: inline-size;
   display: flex;
   flex-direction: column;
@@ -428,7 +430,7 @@ kubectl rollout undo deployment/demo-api</pre>
 .command-help p { font-size: 11px; }
 .model-details { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--line); }
 .model-details summary { color: var(--muted); cursor: pointer; font-size: 11px; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sr-only { position: absolute; top: 0; left: 0; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @container (max-width: 650px) {
   .lab-heading { padding: 10px 12px; }
   .lab-heading h3 { font-size: 17px; }
