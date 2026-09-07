@@ -1,13 +1,16 @@
 ---
 layout: post
-title: "쿠버네티스"
-description: "Docker는 컨테이너 하나를 만들고 실행하는 데 집중한다."
+title: "쿠버네티스 입문, 원하는 상태를 유지하는 시스템"
+description: "Docker와 Kubernetes의 역할, 원하는 상태와 조정 루프, Pod와 Deployment, Service의 관계를 먼저 살펴본다."
 date: "2026-08-26 07:11:14 +0900"
 categories: ["CI-CD-Docker", "kubernetes"]
-tags: []
+tags: ["Kubernetes", "Docker", "Pod", "Deployment", "Reconciliation"]
+summary: "쿠버네티스는 여러 노드에서 컨테이너를 원하는 상태로 실행하고, 실제 상태가 달라지면 컨트롤러가 차이를 줄인다. 기본 구조를 이해한 뒤 파트별 글과 3D 모의 실습으로 이어갈 수 있다."
 legacyPath: "/ci-cd-docker/kubernetes/2026/08/26/kubernetes1/"
 ---
 # 쿠버네티스 
+
+> ‘직접 실험하는 Kubernetes’의 [6개 파트 학습 목차](/ci-cd-docker/kubernetes/part-1/)와 [3D Kubernetes 터미널 실험실](/ci-cd-docker/kubernetes/part-4/)을 추가했다. 이 글은 처음 개념을 잡는 입문 노트다.
 
 > 쿠버네티스는 여러 컴퓨터에서 컨테이너를 원하는 상태로 실행하고, 그 상태가 깨지면 자동으로 복구하는 컨테이너 오케스트레이션 시스템 
 

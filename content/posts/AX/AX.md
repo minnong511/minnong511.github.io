@@ -1,3 +1,12 @@
+---
+title: "AX 프로젝트, 문제 정의부터 확산까지"
+description: "업무 흐름과 KPI를 기준으로 AX 후보를 찾고 PoC와 실제 시스템 연결을 설계하는 과정을 정리한다."
+date: "2026-09-01 00:00:00 +0900"
+categories: [AX]
+tags: [AX, 제조AI]
+legacyPath: "/ax/2026/09/01/ax-project/"
+---
+
 # AX 프로젝트
 
 **AX(AI Transformation)의 핵심은 AI 자체가 아니라, 신기술을 현장에 적용해 기존 대비 유의미한 결과를 만드는 것이다.**

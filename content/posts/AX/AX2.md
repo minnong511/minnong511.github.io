@@ -1,3 +1,12 @@
+---
+title: "예시로 살펴보는 AX"
+description: "공개된 기업 사례를 참고해 문제 정의, PoC, 기존 시스템 연결, 평가와 확산의 흐름을 살펴본다."
+date: "2026-09-01 00:00:00 +0900"
+categories: [AX]
+tags: [AX, 제조AI]
+legacyPath: "/ax/2026/09/01/ax-examples/"
+---
+
 # 예시로 살펴보는 AX
 
 AX 프로젝트 설계 레퍼런스를 를 좀 살펴보면서 
