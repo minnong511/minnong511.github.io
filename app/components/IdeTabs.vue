@@ -3,6 +3,8 @@ import { normalizeContentPath } from '~/utils/content'
 
 const route = useRoute()
 const workspace = useWorkspaceState()
+const mobileExpanded = ref(false)
+watch(() => route.path, () => { mobileExpanded.value = false })
 
 function isActive(url: string): boolean {
   return normalizeContentPath(route.path) === normalizeContentPath(url)
@@ -20,7 +22,9 @@ async function closeTab(url: string) {
 </script>
 
 <template>
-  <div class="ide-tabs" :class="{ 'is-empty': !workspace.tabs.value.length }" role="tablist" aria-label="최근 게시물">
+  <div v-if="workspace.tabs.value.length" class="ide-tabs-wrapper">
+    <button class="ide-tabs-toggle" type="button" :aria-expanded="mobileExpanded" aria-controls="recentDocumentTabs" @click="mobileExpanded = !mobileExpanded"><i class="ri-history-line" aria-hidden="true" />최근 읽은 글 <span>{{ workspace.tabs.value.length }}</span><i :class="mobileExpanded ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'" aria-hidden="true" /></button>
+  <div id="recentDocumentTabs" class="ide-tabs" :class="{ 'mobile-expanded': mobileExpanded }" role="tablist" aria-label="최근 게시물">
     <div v-if="!workspace.tabs.value.length" class="ide-tabs-empty">열린 문서가 없습니다.</div>
     <div
       v-for="tab in workspace.tabs.value"
@@ -39,5 +43,6 @@ async function closeTab(url: string) {
         <i class="ri-close-line" aria-hidden="true" />
       </button>
     </div>
+  </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
 title: "Kafka 기본 개념과 EC2 Docker 구성"
 description: "Kafka의 Producer, Consumer, Topic, Partition, Offset과 KRaft 기반 Docker 구성을 정리한다."
 date: "2026-08-26T14:08:02+09:00"
-categories: ["Backend", "Kafka"]
+categories: ["Backend","Kafka"]
 tags: ["Kafka", "KRaft", "Docker", "EC2"]
 legacyPath: "/backend/kafka/2026/08/26/temp/"
 published: true

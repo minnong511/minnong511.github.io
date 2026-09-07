@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatPostDate, postTimestamp, primaryCategory } from '~/utils/content'
+import { postTimestamp } from '~/utils/content'
 
 const route = useRoute()
 const router = useRouter()
@@ -40,10 +40,6 @@ function tagKey(value: string): string {
     .replace(/\s+/g, '-')
     .replace(/[^\p{L}\p{N}-]+/gu, '')
     .replace(/-+/g, '-')
-}
-
-function categoryLabel(value: string): string {
-  return value.replaceAll('_', ' ')
 }
 
 function parseHash(hash: string): string[] {
@@ -228,19 +224,7 @@ useSiteSeo({
             <span class="section-kicker">{{ resultHeading.kicker }}</span>
             <h2>{{ resultHeading.title }}</h2>
           </div>
-          <div v-if="visiblePosts.length" class="ide-archive-list">
-            <NuxtLink
-              v-for="post in visiblePosts"
-              :key="post.path"
-              class="ide-archive-row"
-              :to="post.path"
-            >
-              <time :datetime="post.date">{{ formatPostDate(post.date) }}</time>
-              <strong>{{ post.title }}</strong>
-              <span>{{ post.description || categoryLabel(primaryCategory(post)) }}</span>
-              <i class="ri-arrow-right-line" aria-hidden="true" />
-            </NuxtLink>
-          </div>
+          <IdePostList v-if="visiblePosts.length" :posts="visiblePosts" />
           <p v-else class="ide-empty">선택한 주제나 태그에 해당하는 게시물이 없습니다.</p>
         </section>
       </div>

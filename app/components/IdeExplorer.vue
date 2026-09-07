@@ -24,12 +24,15 @@ function resetExplorer() {
   <aside id="explorerPanel" class="ide-explorer" aria-label="작업 영역">
     <section v-show="workspace.activeSidebar.value === 'explorer'" class="ide-sidebar-panel is-active" aria-labelledby="explorerHeading">
       <div class="ide-panel-heading">
-        <div><span class="ide-panel-label">WORKSPACE</span><h2 id="explorerHeading">EXPLORER</h2></div>
+        <div><span class="ide-panel-label">WORKSPACE</span><h2 id="explorerHeading">주제 탐색</h2></div>
         <div class="ide-panel-actions">
           <button class="ide-panel-button" type="button" aria-label="탐색기 새로고침" title="새로고침" @click="resetExplorer"><i class="ri-refresh-line" /></button>
           <button class="ide-panel-button" type="button" aria-label="탐색기 접기" title="탐색기 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button>
         </div>
       </div>
+      <nav class="ide-sidebar-nav" aria-label="빠른 탐색">
+        <NuxtLink to="/">홈</NuxtLink><NuxtLink to="/archive/">전체 글</NuxtLink><NuxtLink to="/search/">검색</NuxtLink><NuxtLink to="/about/">소개</NuxtLink>
+      </nav>
       <label class="ide-explorer-search">
         <i class="ri-search-line" aria-hidden="true" /><input v-model="query" type="search" placeholder="게시물 필터" autocomplete="off" @keydown.esc="query = ''"><kbd>ESC</kbd>
       </label>
@@ -43,7 +46,7 @@ function resetExplorer() {
     </section>
 
     <section v-show="workspace.activeSidebar.value === 'search'" class="ide-sidebar-panel" aria-labelledby="sidebarSearchHeading">
-      <div class="ide-panel-heading"><div><span class="ide-panel-label">WORKSPACE</span><h2 id="sidebarSearchHeading">SEARCH</h2></div><button class="ide-panel-button" type="button" aria-label="검색 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
+      <div class="ide-panel-heading"><div><span class="ide-panel-label">WORKSPACE</span><h2 id="sidebarSearchHeading">검색</h2></div><button class="ide-panel-button" type="button" aria-label="검색 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
       <label class="ide-explorer-search"><i class="ri-search-line" /><input v-model="sidebarQuery" type="search" placeholder="제목, 카테고리, 태그 검색" autocomplete="off" @keydown.esc="sidebarQuery = ''"><kbd>ESC</kbd></label>
       <div class="ide-sidebar-results" aria-live="polite">
         <p v-if="!sidebarQuery" class="ide-panel-empty">제목, 카테고리와 태그로 검색하세요.</p>
@@ -53,17 +56,17 @@ function resetExplorer() {
     </section>
 
     <section v-show="workspace.activeSidebar.value === 'source'" class="ide-sidebar-panel" aria-labelledby="sourceHeading">
-      <div class="ide-panel-heading"><div><span class="ide-panel-label">VERSION CONTROL</span><h2 id="sourceHeading">SOURCE CONTROL</h2></div><button class="ide-panel-button" type="button" aria-label="소스 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
+      <div class="ide-panel-heading"><div><span class="ide-panel-label">VERSION CONTROL</span><h2 id="sourceHeading">블로그 소스</h2></div><button class="ide-panel-button" type="button" aria-label="소스 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
       <div class="ide-sidebar-content"><div class="ide-source-status"><i class="ri-git-branch-line" /><strong>master</strong><span>GitHub Pages</span></div><a class="ide-sidebar-action" href="https://github.com/minnong511/minnong511.github.io" target="_blank" rel="noopener noreferrer"><i class="ri-github-line" /><span>저장소 열기</span><i class="ri-external-link-line" /></a></div>
     </section>
 
     <section v-show="workspace.activeSidebar.value === 'run'" class="ide-sidebar-panel" aria-labelledby="runHeading">
-      <div class="ide-panel-heading"><div><span class="ide-panel-label">BUILD STATUS</span><h2 id="runHeading">RUN AND DEBUG</h2></div><button class="ide-panel-button" type="button" aria-label="실행 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
+      <div class="ide-panel-heading"><div><span class="ide-panel-label">BUILD STATUS</span><h2 id="runHeading">배포 기록</h2></div><button class="ide-panel-button" type="button" aria-label="실행 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
       <div class="ide-sidebar-content"><p class="ide-panel-empty">게시물은 GitHub Actions에서 검증하고 정적 페이지로 빌드합니다.</p><a class="ide-sidebar-action" href="https://github.com/minnong511/minnong511.github.io/actions" target="_blank" rel="noopener noreferrer"><i class="ri-play-circle-line" /><span>Actions 열기</span><i class="ri-external-link-line" /></a></div>
     </section>
 
     <section v-show="workspace.activeSidebar.value === 'about'" class="ide-sidebar-panel" aria-labelledby="manageHeading">
-      <div class="ide-panel-heading"><div><span class="ide-panel-label">WORKSPACE</span><h2 id="manageHeading">MANAGE</h2></div><button class="ide-panel-button" type="button" aria-label="관리 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
+      <div class="ide-panel-heading"><div><span class="ide-panel-label">WORKSPACE</span><h2 id="manageHeading">소개와 바로가기</h2></div><button class="ide-panel-button" type="button" aria-label="관리 패널 접기" @click="workspace.sidebarOpen.value = false"><i class="ri-layout-left-line" /></button></div>
       <div class="ide-sidebar-content">
         <NuxtLink class="ide-sidebar-action" to="/"><i class="ri-home-5-line" /><span>홈 열기</span><i class="ri-arrow-right-line" /></NuxtLink>
         <NuxtLink class="ide-sidebar-action" to="/archive/"><i class="ri-file-list-3-line" /><span>전체 게시물</span><i class="ri-arrow-right-line" /></NuxtLink>

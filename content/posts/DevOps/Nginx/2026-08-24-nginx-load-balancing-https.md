@@ -3,7 +3,7 @@ layout: post
 title: "Nginx 로드 밸런싱과 HTTPS"
 description: "Nginx가 요청을 여러 서버로 분산하는 방법과 HTTPS 인증서를 처리하는 구조를 정리한다."
 date: 2026-08-24 00:40:00 +0900
-categories: [DevOps, Nginx]
+categories: ["DevOps","Nginx"]
 tags: [Nginx, LoadBalancing, HTTPS, TLS, DevOps]
 series: "Nginx 기초"
 part: 3

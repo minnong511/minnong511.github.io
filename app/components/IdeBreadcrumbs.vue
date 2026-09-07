@@ -1,22 +1,14 @@
 <script setup lang="ts">
+import { categoryKey, categoryLabel } from '~/utils/topics'
 const route = useRoute()
 const documentContext = useDocumentContext()
 
 const pageTitles: Record<string, string> = {
-  '/': 'workspace',
-  '/archive/': 'archive',
-  '/tags/': 'topics',
-  '/search/': 'search',
-  '/about/': 'about',
-}
-
-function categoryKey(value: string): string {
-  return value
-    .trim()
-    .toLocaleLowerCase('ko-KR')
-    .replaceAll('_', '-')
-    .replace(/\s+/g, '-')
-    .replace(/[^\p{L}\p{N}-]+/gu, '')
+  '/': '홈',
+  '/archive/': '전체 글',
+  '/tags/': '태그',
+  '/search/': '검색',
+  '/about/': '소개',
 }
 
 const currentLabel = computed(() => {
@@ -28,15 +20,15 @@ const currentLabel = computed(() => {
 
 <template>
   <nav class="ide-breadcrumbs" aria-label="현재 경로">
-    <NuxtLink to="/">workspace</NuxtLink>
+    <NuxtLink to="/">홈</NuxtLink>
     <template v-if="documentContext.currentPost.value">
       <span aria-hidden="true">&gt;</span>
-      <NuxtLink to="/archive/">posts</NuxtLink>
+      <NuxtLink to="/archive/">전체 글</NuxtLink>
       <template v-for="category in documentContext.currentPost.value.categories" :key="category">
         <span aria-hidden="true">&gt;</span>
         <NuxtLink
           :to="{ path: '/archive/', query: { category: categoryKey(category) } }"
-        >{{ category.replaceAll('_', ' ').toLocaleLowerCase('ko-KR') }}</NuxtLink>
+        >{{ categoryLabel(category) }}</NuxtLink>
       </template>
     </template>
     <span v-if="route.path !== '/'" aria-hidden="true">&gt;</span>

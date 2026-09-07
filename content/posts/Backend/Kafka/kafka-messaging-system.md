@@ -2,7 +2,7 @@
 title: "Kafka 메시징 시스템의 구성과 동작 방식"
 description: "Kafka 기반 메시징 시스템에서 Publish/Subscribe, Broker, Topic, Partition, Producer, Consumer와 Offset이 동작하는 방식을 정리한다."
 date: "2026-08-26T14:08:02+09:00"
-categories: ["Backend", "Kafka"]
+categories: ["Backend","Kafka"]
 tags: ["Kafka", "Messaging", "Producer", "Consumer"]
 legacyPath: "/backend/kafka/2026/08/26/kafka-messaging-system/"
 published: true

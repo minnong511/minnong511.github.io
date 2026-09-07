@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { topicForPost } from '~/utils/topics'
 import type { FontSizePreference } from '~/types/content'
 
 const workspace = useWorkspaceState()
@@ -10,33 +11,27 @@ const sizes: Array<{ value: FontSizePreference, mark: string, label: string }> =
   { value: 'large', mark: 'A＋', label: '크게' },
 ]
 
-const folder = computed(() => documentContext.currentPost.value?.categories.join(' / ').replaceAll('_', ' ') || 'workspace')
-
-function toggleMobileContext() {
-  workspace.contextVisible.value = true
-  workspace.mobileContextOpen.value = !workspace.mobileContextOpen.value
-}
+const folder = computed(() => documentContext.currentPost.value ? topicForPost(documentContext.currentPost.value).name : '공부 기록')
 </script>
 
 <template>
   <footer class="ide-statusbar" aria-label="문서 상태">
     <div>
-      <span><i class="ri-git-branch-line" aria-hidden="true" /> main</span>
+
       <span><i class="ri-folder-2-line" aria-hidden="true" /> {{ folder }}</span>
     </div>
     <div>
       <button
+        v-if="documentContext.currentPost.value"
         class="ide-mobile-context"
         type="button"
         :aria-expanded="workspace.mobileContextOpen.value"
         aria-controls="contextPanel"
-        aria-label="목차 열기"
-        @click="toggleMobileContext"
+        :aria-label="workspace.mobileContextOpen.value ? '목차 닫기' : '목차 열기'"
+        @click="workspace.toggleContext()"
       ><i class="ri-list-ordered-2" aria-hidden="true" /><span>목차</span></button>
-      <span>{{ documentContext.readingMinutes.value }} min read</span>
-      <span>UTF-8</span>
-      <span>Markdown</span>
-      <fieldset class="ide-font-size-control">
+      <span v-if="documentContext.currentPost.value">약 {{ documentContext.readingMinutes.value }}분</span>
+      <fieldset v-if="documentContext.currentPost.value" class="ide-font-size-control">
         <legend class="sr-only">본문 글씨 크기</legend>
         <label v-for="size in sizes" :key="size.value" class="ide-font-size-option" :title="`본문 글씨 ${size.label}`">
           <input

@@ -37,6 +37,7 @@ function writeJson(key: string, value: unknown) {
 export function useWorkspaceState() {
   const sidebarOpen = useState<boolean>('ide:sidebar-open', () => false)
   const mobileContextOpen = useState<boolean>('ide:mobile-context-open', () => false)
+  const compactViewport = useState<boolean>('ide:compact-viewport', () => false)
   const contextVisible = useState<boolean>('ide:context-visible', () => true)
   const activeSidebar = useState<SidebarView>('ide:active-sidebar', () => 'explorer')
   const theme = useState<ThemePreference>('ide:theme', () => 'dark')
@@ -55,6 +56,11 @@ export function useWorkspaceState() {
     }
     activeSidebar.value = view
     sidebarOpen.value = true
+  }
+
+  function toggleContext() {
+    if (compactViewport.value) mobileContextOpen.value = !mobileContextOpen.value
+    else contextVisible.value = !contextVisible.value
   }
 
   function addTab(tab: WorkspaceTab) {
@@ -90,6 +96,8 @@ export function useWorkspaceState() {
   return {
     sidebarOpen,
     mobileContextOpen,
+    compactViewport,
+    toggleContext,
     contextVisible,
     activeSidebar,
     theme,

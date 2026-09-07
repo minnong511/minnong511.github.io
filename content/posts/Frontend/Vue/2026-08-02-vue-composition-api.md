@@ -2,7 +2,7 @@
 layout: post
 title: "03. Vue Composition API 정리"
 date: 2026-08-02 09:00:00 +0900
-categories: [Frontend, Vue]
+categories: ["Frontend","Vue"]
 tags: [Frontend, Vue.js, Composition API, ref, reactive, computed, watch]
 description: "Vue Composition API의 기본 개념과 ref, reactive, computed, watch, watchEffect의 사용 방법을 정리한다."
 summary: "Composition API는 컴포넌트의 상태와 로직을 기능별로 모아 작성하는 Vue 3의 코드 작성 방식."

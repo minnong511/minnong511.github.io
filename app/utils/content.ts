@@ -1,3 +1,4 @@
+import { categoryKey, categoryLabel } from './topics'
 import type { BlogPost, ContentManifestEntry, ExplorerFolderNode } from '~/types/content'
 
 const SEOUL_DATE_FORMATTER = new Intl.DateTimeFormat('en-US', {
@@ -153,10 +154,10 @@ export function buildExplorerTree(posts: BlogPost[]): ExplorerFolderNode[] {
     let leaf: ExplorerFolderNode | undefined
     categories.forEach((name) => {
       parents = [...parents, name]
-      const key = parents.map(part => part.toLocaleLowerCase('ko-KR')).join('/')
+      const key = parents.map(categoryKey).join('/')
       let node = siblings.find(item => item.key === key)
       if (!node) {
-        node = { key, name, posts: [], children: [] }
+        node = { key, name: categoryLabel(name), posts: [], children: [] }
         siblings.push(node)
       }
       leaf = node
@@ -176,7 +177,7 @@ export function buildExplorerTree(posts: BlogPost[]): ExplorerFolderNode[] {
 export function postMatches(post: BlogPost, query: string): boolean {
   const needle = query.trim().toLocaleLowerCase('ko-KR')
   if (!needle) return true
-  return [post.title, post.description, ...post.categories, ...post.tags]
+  return [post.title, post.description, post.summary, ...post.categories, ...post.tags]
     .join(' ')
     .toLocaleLowerCase('ko-KR')
     .includes(needle)

@@ -3,7 +3,7 @@ layout: post
 title: "Nginx 기초와 동작 구조"
 description: "Nginx가 무엇인지 알아보고 Web Server, 정적 파일 제공, 요청 처리 구조를 정리한다."
 date: 2026-08-24 00:20:00 +0900
-categories: [DevOps, Nginx]
+categories: ["DevOps","Nginx"]
 tags: [Nginx, WebServer, DevOps, Network]
 series: "Nginx 기초"
 part: 1

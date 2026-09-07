@@ -2,7 +2,7 @@
 layout: post
 title: "04. Vue 컴포넌트 설계: props, emit, slot과 생명주기"
 date: 2026-08-03 01:00:00 +0900
-categories: [Frontend, Vue]
+categories: ["Frontend","Vue"]
 tags: [Frontend, Vue.js, Component, Props, Emits, Slots, Lifecycle]
 description: "Vue 컴포넌트의 구조와 데이터 흐름, 상태 위치를 결정하는 기준, 생명주기 훅을 예제로 정리."
 summary: "Vue 컴포넌트의 입력과 출력, 콘텐츠 확장, 상태 공유 범위와 생명주기 정리 방법을 살펴본다."

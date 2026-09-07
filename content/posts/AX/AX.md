@@ -2,7 +2,7 @@
 title: "AX 프로젝트, 문제 정의부터 확산까지"
 description: "업무 흐름과 KPI를 기준으로 AX 후보를 찾고 PoC와 실제 시스템 연결을 설계하는 과정을 정리한다."
 date: "2026-09-01 00:00:00 +0900"
-categories: [AX]
+categories: ["AX"]
 tags: [AX, 제조AI]
 legacyPath: "/ax/2026/09/01/ax-project/"
 ---

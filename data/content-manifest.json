@@ -12,7 +12,7 @@
   "entries": [
     {
       "source": "_posts/면접/면접질문.md",
-      "target": "content/posts/면접/면접질문.md",
+      "target": "content/posts/Notes/Interview/면접질문.md",
       "visibility": "public",
       "published": true,
       "title": "면접질문",
@@ -43,7 +43,7 @@
     },
     {
       "source": "_posts/Agile/회의록_0826_점심.md",
-      "target": "content/posts/Agile/회의록_0826_점심.md",
+      "target": "content/posts/Notes/Agile/회의록_0826_점심.md",
       "visibility": "public",
       "published": true,
       "title": "해야하는 거",
@@ -171,7 +171,7 @@
     },
     {
       "source": "_posts/Algorithm/Python 코테/2026-08-14-counter.md",
-      "target": "content/posts/Algorithm/Python 코테/2026-08-14-counter.md",
+      "target": "content/posts/Algorithm/Python/2026-08-14-counter.md",
       "visibility": "public",
       "published": true,
       "title": "Python Counter, 빈도수를 쉽게 세는 방법",
@@ -198,7 +198,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
-      "target": "content/posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
+      "target": "content/posts/Backend/Java/advanced/2026-08-11-java-annotations.md",
       "visibility": "public",
       "published": true,
       "title": "Java 심화 Part 2: Annotation",
@@ -228,7 +228,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-functional-programming-lambda.md",
-      "target": "content/posts/Backend/JAVA/advanced/2026-08-11-java-functional-programming-lambda.md",
+      "target": "content/posts/Backend/Java/advanced/2026-08-11-java-functional-programming-lambda.md",
       "visibility": "public",
       "published": true,
       "title": "Java 심화 Part 3: 함수형 프로그래밍과 Lambda",
@@ -258,7 +258,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/advanced/2026-08-11-java-reflection.md",
-      "target": "content/posts/Backend/JAVA/advanced/2026-08-11-java-reflection.md",
+      "target": "content/posts/Backend/Java/advanced/2026-08-11-java-reflection.md",
       "visibility": "public",
       "published": true,
       "title": "Java 심화 Part 1: Reflection",
@@ -288,7 +288,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/basics/2026-08-10-java-basics.md",
-      "target": "content/posts/Backend/JAVA/basics/2026-08-10-java-basics.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-10-java-basics.md",
       "visibility": "public",
       "published": true,
       "title": "Java 기초 Part 1: 백엔드 배경과 Java 실행 구조",
@@ -319,7 +319,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/basics/2026-08-10-java-comments-javadoc.md",
-      "target": "content/posts/Backend/JAVA/basics/2026-08-10-java-comments-javadoc.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-10-java-comments-javadoc.md",
       "visibility": "public",
       "published": true,
       "title": "Java 기초 Part 2: 주석과 Javadoc",
@@ -348,7 +348,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/basics/2026-08-10-java-control-flow.md",
-      "target": "content/posts/Backend/JAVA/basics/2026-08-10-java-control-flow.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-10-java-control-flow.md",
       "visibility": "public",
       "published": true,
       "title": "Java 기초 Part 3: 제어문",
@@ -379,7 +379,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/basics/2026-08-11-java-generics.md",
-      "target": "content/posts/Backend/JAVA/basics/2026-08-11-java-generics.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-11-java-generics.md",
       "visibility": "public",
       "published": true,
       "title": "Java 기초 Part 4: 제네릭",
@@ -408,7 +408,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/basics/2026-08-11-java-stream-api.md",
-      "target": "content/posts/Backend/JAVA/basics/2026-08-11-java-stream-api.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-11-java-stream-api.md",
       "visibility": "public",
       "published": true,
       "title": "Java 기초 Part 5: Stream API",
@@ -438,7 +438,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/debugging/2026-08-11-java-confusing-concepts-debugging.md",
-      "target": "content/posts/Backend/JAVA/debugging/2026-08-11-java-confusing-concepts-debugging.md",
+      "target": "content/posts/Backend/Java/debugging/2026-08-11-java-confusing-concepts-debugging.md",
       "visibility": "public",
       "published": true,
       "title": "Java 디버깅 Part 1: 자주 헷갈리는 핵심 개념",
@@ -471,7 +471,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
-      "target": "content/posts/Backend/JAVA/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
+      "target": "content/posts/Backend/Java/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
       "visibility": "public",
       "published": true,
       "title": "Java 디버깅 Part 2: VS Code 자동 컴파일과 프로젝트 구조",
@@ -503,7 +503,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/jvm/2026-08-10-java-execution-memory.md",
-      "target": "content/posts/Backend/JAVA/jvm/2026-08-10-java-execution-memory.md",
+      "target": "content/posts/Backend/Java/jvm/2026-08-10-java-execution-memory.md",
       "visibility": "public",
       "published": true,
       "title": "Java 실행과 JVM Part 2: 메모리와 데이터 흐름",
@@ -535,7 +535,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/jvm/2026-08-10-java-python-compile-comparison.md",
-      "target": "content/posts/Backend/JAVA/jvm/2026-08-10-java-python-compile-comparison.md",
+      "target": "content/posts/Backend/Java/jvm/2026-08-10-java-python-compile-comparison.md",
       "visibility": "public",
       "published": true,
       "title": "Java 실행과 JVM Part 1: Java와 Python 컴파일 비교",
@@ -566,7 +566,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/jvm/2026-08-10-jvm-classloader-memory.md",
-      "target": "content/posts/Backend/JAVA/jvm/2026-08-10-jvm-classloader-memory.md",
+      "target": "content/posts/Backend/Java/jvm/2026-08-10-jvm-classloader-memory.md",
       "visibility": "public",
       "published": true,
       "title": "Java 실행과 JVM Part 3: ClassLoader와 JVM 메모리",
@@ -597,7 +597,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/2026-08-10-java-class-object.md",
-      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-class-object.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-class-object.md",
       "visibility": "public",
       "published": true,
       "title": "Java 객체지향 Part 1: 클래스, 객체, 필드와 생성자",
@@ -631,7 +631,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/2026-08-10-java-inheritance-interface.md",
-      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-inheritance-interface.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-inheritance-interface.md",
       "visibility": "public",
       "published": true,
       "title": "Java 객체지향 Part 4: 상속과 인터페이스",
@@ -661,7 +661,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/2026-08-10-java-oop-concepts.md",
-      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-oop-concepts.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-oop-concepts.md",
       "visibility": "public",
       "published": true,
       "title": "Java 객체지향 Part 2: OOP 핵심 문법",
@@ -697,7 +697,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/2026-08-10-java-oop-design-four-pillars.md",
-      "target": "content/posts/Backend/JAVA/oop/2026-08-10-java-oop-design-four-pillars.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-oop-design-four-pillars.md",
       "visibility": "public",
       "published": true,
       "title": "Java 객체지향 Part 3: 좋은 설계와 OOP 4대 특성",
@@ -728,7 +728,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/2026-08-11-java-static-nested-class.md",
-      "target": "content/posts/Backend/JAVA/oop/2026-08-11-java-static-nested-class.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-11-java-static-nested-class.md",
       "visibility": "public",
       "published": true,
       "title": "Java 객체지향 Part 5: static 메서드와 중첩 클래스",
@@ -758,7 +758,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/Creational Pattern.md",
-      "target": "content/posts/Backend/JAVA/oop/Creational Pattern.md",
+      "target": "content/posts/Backend/Java/oop/Creational Pattern.md",
       "visibility": "public",
       "published": true,
       "title": "1. Singleton Pattern",
@@ -791,7 +791,7 @@
     },
     {
       "source": "_posts/Backend/JAVA/oop/SOLID.md",
-      "target": "content/posts/Backend/JAVA/oop/SOLID.md",
+      "target": "content/posts/Backend/Java/oop/SOLID.md",
       "visibility": "public",
       "published": true,
       "title": "SOLID",
@@ -857,7 +857,7 @@
     },
     {
       "source": "_posts/Backend/MSA.md",
-      "target": "content/posts/Backend/MSA.md",
+      "target": "content/posts/Backend/MSA/2026-08-12-MSA.md",
       "visibility": "public",
       "published": true,
       "title": "MSA",
@@ -964,7 +964,14 @@
         "Backend",
         "MSA"
       ],
-      "tags": ["MSA", "Microservices", "Kafka", "Docker", "Kubernetes", "Saga"],
+      "tags": [
+        "MSA",
+        "Microservices",
+        "Kafka",
+        "Docker",
+        "Kubernetes",
+        "Saga"
+      ],
       "legacyPath": "/backend/msa/2026/08/26/MSA1/",
       "route": "/backend/msa/2026/08/26/MSA1/",
       "transformations": {
@@ -975,7 +982,7 @@
     },
     {
       "source": "_posts/Backend/Network(중요)/네트워크.md",
-      "target": "content/posts/Backend/Network(중요)/네트워크.md",
+      "target": "content/posts/CS/Network/네트워크.md",
       "visibility": "public",
       "published": true,
       "title": "네크워크 참조 모델",
@@ -1007,7 +1014,7 @@
     },
     {
       "source": "_posts/Backend/Network(중요)/Socket.md",
-      "target": "content/posts/Backend/Network(중요)/Socket.md",
+      "target": "content/posts/CS/Network/Socket.md",
       "visibility": "public",
       "published": true,
       "title": "Socket이란 무엇인가",
@@ -1035,7 +1042,7 @@
     },
     {
       "source": "_posts/Backend/SPRING_AI /1.md",
-      "target": "content/posts/Backend/SPRING_AI /1.md",
+      "target": "content/posts/Backend/SpringAI/1.md",
       "visibility": "public",
       "published": true,
       "title": "Spring AI를 배우기 전에 정리할 것",
@@ -1067,7 +1074,7 @@
     },
     {
       "source": "_posts/Backend/SPRING_AI /2.md",
-      "target": "content/posts/Backend/SPRING_AI /2.md",
+      "target": "content/posts/Backend/SpringAI/2.md",
       "visibility": "public",
       "published": true,
       "title": "2",
@@ -1100,7 +1107,7 @@
     },
     {
       "source": "_posts/Backend/SPRING_AI /3.md",
-      "target": "content/posts/Backend/SPRING_AI /3.md",
+      "target": "content/posts/Backend/SpringAI/3.md",
       "visibility": "public",
       "published": true,
       "title": "3",
@@ -1133,7 +1140,7 @@
     },
     {
       "source": "_posts/Backend/SPRING_AI /요약.md",
-      "target": "content/posts/Backend/SPRING_AI /요약.md",
+      "target": "content/posts/Backend/SpringAI/요약.md",
       "visibility": "public",
       "published": true,
       "title": "이번 강의는 무엇을 노리고 있을까?",
@@ -1165,7 +1172,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/2026-08-11-spring-ioc-bean-di.md",
-      "target": "content/posts/Backend/SPRING/2026-08-11-spring-ioc-bean-di.md",
+      "target": "content/posts/Backend/Spring/2026-08-11-spring-ioc-bean-di.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 1: IoC, Bean, DI와 주요 Annotation",
@@ -1198,7 +1205,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/강의교재_정리.md",
-      "target": "content/posts/Backend/SPRING/강의교재_정리.md",
+      "target": "content/posts/Backend/Spring/강의교재_정리.md",
       "visibility": "public",
       "published": true,
       "title": "전체 데이터 구조",
@@ -1230,7 +1237,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/개념확인.md",
-      "target": "content/posts/Backend/SPRING/개념확인.md",
+      "target": "content/posts/Backend/Spring/개념확인.md",
       "visibility": "public",
       "published": true,
       "title": "2. Field/ Parameter / Argument/ this",
@@ -1262,7 +1269,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/REST_API/REST_API_1.md",
-      "target": "content/posts/Backend/SPRING/REST_API/REST_API_1.md",
+      "target": "content/posts/Backend/Spring/REST_API/REST_API_1.md",
       "visibility": "public",
       "published": true,
       "title": "REST API의 개념과 설계 원칙",
@@ -1290,7 +1297,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring_Container/container.md",
-      "target": "content/posts/Backend/SPRING/Spring_Container/container.md",
+      "target": "content/posts/Backend/Spring/Container/container.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 컨테이너",
@@ -1323,7 +1330,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-14-spring-mvc-request-flow.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-14-spring-mvc-request-flow.md",
+      "target": "content/posts/Backend/Spring/2026-08-14-spring-mvc-request-flow.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 2: Spring MVC 요청 처리 흐름",
@@ -1353,7 +1360,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-15-spring-rest-api-validation.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-15-spring-rest-api-validation.md",
+      "target": "content/posts/Backend/Spring/2026-08-15-spring-rest-api-validation.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 3: REST API 요청값과 입력값 검증",
@@ -1384,7 +1391,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-16-spring-data-jpa-basics.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-16-spring-data-jpa-basics.md",
+      "target": "content/posts/Backend/Spring/2026-08-16-spring-data-jpa-basics.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 4: JPA, Entity와 Repository",
@@ -1415,7 +1422,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
+      "target": "content/posts/Backend/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 5: EntityManager와 영속성 컨텍스트",
@@ -1445,7 +1452,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-18-jpa-relationship-mapping.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-18-jpa-relationship-mapping.md",
+      "target": "content/posts/Backend/Spring/2026-08-18-jpa-relationship-mapping.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 6: JPA 연관관계 매핑",
@@ -1476,7 +1483,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-19-spring-proxy.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-19-spring-proxy.md",
+      "target": "content/posts/Backend/Spring/2026-08-19-spring-proxy.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 7: Proxy 패턴과 Spring Proxy",
@@ -1507,7 +1514,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-20-spring-aop.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-20-spring-aop.md",
+      "target": "content/posts/Backend/Spring/2026-08-20-spring-aop.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 8: AOP와 공통 관심사 분리",
@@ -1538,7 +1545,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-21-jpa-transaction-concurrency.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-21-jpa-transaction-concurrency.md",
+      "target": "content/posts/Backend/Spring/2026-08-21-jpa-transaction-concurrency.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 9: JPA 트랜잭션과 동시성 제어",
@@ -1569,7 +1576,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-22-spring-async.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-22-spring-async.md",
+      "target": "content/posts/Backend/Spring/2026-08-22-spring-async.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 10: 비동기 처리와 @Async",
@@ -1600,7 +1607,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/2026-08-23-spring-boot-actuator.md",
-      "target": "content/posts/Backend/SPRING/Spring/2026-08-23-spring-boot-actuator.md",
+      "target": "content/posts/Backend/Spring/2026-08-23-spring-boot-actuator.md",
       "visibility": "public",
       "published": true,
       "title": "Spring 기초 Part 11: Actuator와 애플리케이션 모니터링",
@@ -1631,7 +1638,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/입력값 검증.md",
-      "target": "content/posts/Backend/SPRING/Spring/입력값 검증.md",
+      "target": "content/posts/Backend/Spring/입력값 검증.md",
       "visibility": "public",
       "published": true,
       "title": "입력값 검증",
@@ -1665,7 +1672,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/Acuator.md",
-      "target": "content/posts/Backend/SPRING/Spring/Acuator.md",
+      "target": "content/posts/Backend/Spring/Acuator.md",
       "visibility": "public",
       "published": true,
       "title": "Actuator 란?",
@@ -1698,7 +1705,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/AOP.md",
-      "target": "content/posts/Backend/SPRING/Spring/AOP.md",
+      "target": "content/posts/Backend/Spring/AOP.md",
       "visibility": "public",
       "published": true,
       "title": "Java의 AOP(Aspect Oriented Programming)",
@@ -1731,7 +1738,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/Async.md",
-      "target": "content/posts/Backend/SPRING/Spring/Async.md",
+      "target": "content/posts/Backend/Spring/Async.md",
       "visibility": "public",
       "published": true,
       "title": "Async : Asynchronous",
@@ -1764,7 +1771,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/bean_proxy.md",
-      "target": "content/posts/Backend/SPRING/Spring/bean_proxy.md",
+      "target": "content/posts/Backend/Spring/bean_proxy.md",
       "visibility": "public",
       "published": true,
       "title": "Bean",
@@ -1797,7 +1804,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/docker_container.md",
-      "target": "content/posts/Backend/SPRING/Spring/docker_container.md",
+      "target": "content/posts/Backend/Spring/docker_container.md",
       "visibility": "public",
       "published": true,
       "title": "docker container",
@@ -1830,7 +1837,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/EntityManager.md",
-      "target": "content/posts/Backend/SPRING/Spring/EntityManager.md",
+      "target": "content/posts/Backend/Spring/EntityManager.md",
       "visibility": "public",
       "published": true,
       "title": "EntityManager",
@@ -1863,7 +1870,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/JPA_관계매핑.md",
-      "target": "content/posts/Backend/SPRING/Spring/JPA_관계매핑.md",
+      "target": "content/posts/Backend/Spring/JPA_관계매핑.md",
       "visibility": "public",
       "published": true,
       "title": "JPA 연관관계 매핑",
@@ -1896,7 +1903,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/JPA_트랜젝션.md",
-      "target": "content/posts/Backend/SPRING/Spring/JPA_트랜젝션.md",
+      "target": "content/posts/Backend/Spring/JPA_트랜젝션.md",
       "visibility": "public",
       "published": true,
       "title": "JPA 트랜잭션(Transaction)",
@@ -1929,7 +1936,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/JPA.md",
-      "target": "content/posts/Backend/SPRING/Spring/JPA.md",
+      "target": "content/posts/Backend/Spring/JPA.md",
       "visibility": "public",
       "published": true,
       "title": "JPA(Java Persistence API)",
@@ -1962,7 +1969,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/Proxy.md",
-      "target": "content/posts/Backend/SPRING/Spring/Proxy.md",
+      "target": "content/posts/Backend/Spring/Proxy.md",
       "visibility": "public",
       "published": true,
       "title": "Proxy 패턴",
@@ -1995,7 +2002,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/Spring_1.md",
-      "target": "content/posts/Backend/SPRING/Spring/Spring_1.md",
+      "target": "content/posts/Backend/Spring/Spring_1.md",
       "visibility": "public",
       "published": true,
       "title": "1. Spirng 필요",
@@ -2028,7 +2035,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/Spring_2.md",
-      "target": "content/posts/Backend/SPRING/Spring/Spring_2.md",
+      "target": "content/posts/Backend/Spring/Spring_2.md",
       "visibility": "public",
       "published": true,
       "title": "컴포넌트 스캔",
@@ -2061,7 +2068,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/Spring/Spring_MVC.md",
-      "target": "content/posts/Backend/SPRING/Spring/Spring_MVC.md",
+      "target": "content/posts/Backend/Spring/Spring_MVC.md",
       "visibility": "public",
       "published": true,
       "title": "Spring MVC",
@@ -2094,7 +2101,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/springboot/application.md",
-      "target": "content/posts/Backend/SPRING/springboot/application.md",
+      "target": "content/posts/Backend/Spring/Boot/application.md",
       "visibility": "public",
       "published": true,
       "title": "application.yaml",
@@ -2127,7 +2134,7 @@
     },
     {
       "source": "_posts/Backend/SPRING/springboot/Lombok.md",
-      "target": "content/posts/Backend/SPRING/springboot/Lombok.md",
+      "target": "content/posts/Backend/Spring/Boot/Lombok.md",
       "visibility": "public",
       "published": true,
       "title": "Lombok",
@@ -2161,7 +2168,7 @@
     },
     {
       "source": "_posts/Basic/2026-08-24-docker-os-basics.md",
-      "target": "content/posts/Basic/2026-08-24-docker-os-basics.md",
+      "target": "content/posts/CS/OS/2026-08-24-docker-os-basics.md",
       "visibility": "public",
       "published": true,
       "title": "Docker를 이해하기 위한 운영체제 기초",
@@ -2192,7 +2199,7 @@
     },
     {
       "source": "_posts/Basic/2026-08-24-essential-development-terms.md",
-      "target": "content/posts/Basic/2026-08-24-essential-development-terms.md",
+      "target": "content/posts/CS/Basics/2026-08-24-essential-development-terms.md",
       "visibility": "public",
       "published": true,
       "title": "개발 문서를 읽기 위한 핵심 기술 용어",
@@ -2222,7 +2229,7 @@
     },
     {
       "source": "_posts/Basic/temp.md",
-      "target": "content/posts/Basic/temp.md",
+      "target": "content/posts/CS/Basics/temp.md",
       "visibility": "public",
       "published": true,
       "title": "1. 기술 스택",
@@ -2253,7 +2260,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-01-basics.md",
-      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-01-basics.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-01-basics.md",
       "visibility": "public",
       "published": true,
       "title": "CI/CD 기초 1편: 개념과 GitHub Actions",
@@ -2281,7 +2288,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
-      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
       "visibility": "public",
       "published": true,
       "title": "CI/CD 기초 2편: Docker 이미지와 배포 파이프라인",
@@ -2310,7 +2317,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
-      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
       "visibility": "public",
       "published": true,
       "title": "CI/CD 기초 3편: Jenkins와 Argo CD를 이용한 GitOps 배포",
@@ -2340,7 +2347,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
-      "target": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
       "visibility": "public",
       "published": true,
       "title": "CI/CD 기초 4편: 배포 전략과 운영",
@@ -2370,7 +2377,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-01-core-concepts.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-01-core-concepts.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-01-core-concepts.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 1편: Dockerfile, Image와 Container",
@@ -2399,7 +2406,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-02-ecosystem.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-02-ecosystem.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-02-ecosystem.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 2편: Layer, Registry, Volume과 Network",
@@ -2429,7 +2436,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-03-deployment-principles.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-03-deployment-principles.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-03-deployment-principles.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 3편: CI/CD 연결과 배포 원칙",
@@ -2457,7 +2464,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 4편: 가상화와 컨테이너 이미지 생명주기",
@@ -2486,7 +2493,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 5편: 컨테이너 기본 명령어와 Volume",
@@ -2515,7 +2522,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-06-image-build-and-layers.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-06-image-build-and-layers.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-06-image-build-and-layers.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 6편: 이미지 Layer와 빌드 최적화",
@@ -2545,7 +2552,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-07-image-layer-archive.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-07-image-layer-archive.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-07-image-layer-archive.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 7편: 이미지 Layer와 tar 내부 구조",
@@ -2575,7 +2582,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 8편: 컨테이너 런타임과 격리",
@@ -2605,7 +2612,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-09-container-networking.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-09-container-networking.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-09-container-networking.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 9편: Docker 및 Kubernetes 네트워크",
@@ -2635,7 +2642,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 10편: Compose 기본 구조와 이미지 빌드",
@@ -2665,7 +2672,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 11편: Compose 명령어와 환경 변수",
@@ -2694,7 +2701,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 12편: Compose 네트워크와 Volume",
@@ -2724,7 +2731,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
       "visibility": "public",
       "published": true,
       "title": "Docker 기초 13편: Compose Healthcheck와 실전 구성",
@@ -2782,7 +2789,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/2026-08-24-oci-container-standard.md",
-      "target": "content/posts/CI-CD-Docker/Docker/2026-08-24-oci-container-standard.md",
+      "target": "content/posts/DevOps/Docker/2026-08-24-oci-container-standard.md",
       "visibility": "public",
       "published": true,
       "title": "OCI: 컨테이너 이미지와 런타임의 공통 표준",
@@ -2812,7 +2819,7 @@
     },
     {
       "source": "_posts/CI-CD-Docker/Docker/sigterm.md",
-      "target": "content/posts/CI-CD-Docker/Docker/sigterm.md",
+      "target": "content/posts/DevOps/Docker/sigterm.md",
       "visibility": "public",
       "published": true,
       "title": "sigterm",
@@ -2908,7 +2915,7 @@
     },
     {
       "source": "_posts/Data_Science/PostgreSQL/2026-07-31-psql1.md",
-      "target": "content/posts/Data_Science/PostgreSQL/2026-07-31-psql1.md",
+      "target": "content/posts/Backend/Database/PostgreSQL/2026-07-31-psql1.md",
       "visibility": "public",
       "published": true,
       "title": "Psql 함수,프로시져,트리거",
@@ -2933,7 +2940,7 @@
     },
     {
       "source": "_posts/Data_Science/PostgreSQL/2026-07-31-psql2.md",
-      "target": "content/posts/Data_Science/PostgreSQL/2026-07-31-psql2.md",
+      "target": "content/posts/Backend/Database/PostgreSQL/2026-07-31-psql2.md",
       "visibility": "public",
       "published": true,
       "title": "Psql JSONB, 행 잠금, 멱등성",
@@ -2958,7 +2965,7 @@
     },
     {
       "source": "_posts/DeepLearning/2026-08-19-llm-workflow-patterns.md",
-      "target": "content/posts/Deep_Learning/2026-08-19-llm-workflow-patterns.md",
+      "target": "content/posts/AI/DeepLearning/2026-08-19-llm-workflow-patterns.md",
       "visibility": "public",
       "published": true,
       "title": "현대 LLM 워크플로의 패턴",
@@ -2986,7 +2993,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
-      "target": "content/posts/Deep_Learning/Basic/2026-08-06-deep-learning-basics.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 학습 기본 개념",
@@ -3013,7 +3020,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-EDA copy.md",
-      "target": "content/posts/Deep_Learning/Basic/2026-08-06-EDA copy.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-EDA copy.md",
       "visibility": "public",
       "published": true,
       "title": "데이터 시각화",
@@ -3039,7 +3046,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
-      "target": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
       "visibility": "public",
       "published": true,
       "title": "기초 통계와 ML 파이프라인 연결",
@@ -3065,7 +3072,7 @@
     },
     {
       "source": "_posts/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
-      "target": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline2.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
       "visibility": "public",
       "published": true,
       "title": "분석 자동화와 파이프라인 설계",
@@ -3091,7 +3098,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
-      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "target": "content/posts/AI/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
       "visibility": "public",
       "published": true,
       "title": "CNN 아키텍처 발전 과정",
@@ -3118,7 +3125,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
-      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "target": "content/posts/AI/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
       "visibility": "public",
       "published": true,
       "title": "이미지 세그멘테이션 모델과 핵심 개념",
@@ -3145,7 +3152,7 @@
     },
     {
       "source": "_posts/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
-      "target": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-object-detection.md",
+      "target": "content/posts/AI/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
       "visibility": "public",
       "published": true,
       "title": "객체 탐지 모델과 핵심 개념",
@@ -3172,7 +3179,7 @@
     },
     {
       "source": "_posts/DeepLearning/Data/2026-08-06-dataset-engineering.md",
-      "target": "content/posts/Deep_Learning/Data/2026-08-06-dataset-engineering.md",
+      "target": "content/posts/AI/DeepLearning/Data/2026-08-06-dataset-engineering.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 데이터셋 엔지니어링",
@@ -3199,7 +3206,7 @@
     },
     {
       "source": "_posts/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
-      "target": "content/posts/Deep_Learning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "target": "content/posts/AI/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 학습 문제 진단과 디버깅",
@@ -3226,7 +3233,7 @@
     },
     {
       "source": "_posts/DeepLearning/RAG/1.Md",
-      "target": "content/posts/Deep_Learning/RAG/1.md",
+      "target": "content/posts/AI/DeepLearning/RAG/1.md",
       "visibility": "public",
       "published": true,
       "title": "1",
@@ -3259,7 +3266,7 @@
     },
     {
       "source": "_posts/DeepLearning/RAG/Chunking.md",
-      "target": "content/posts/Deep_Learning/RAG/Chunking.md",
+      "target": "content/posts/AI/DeepLearning/RAG/Chunking.md",
       "visibility": "public",
       "published": true,
       "title": "Chunking?",
@@ -3291,7 +3298,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
-      "target": "content/posts/Deep_Learning/Technics/2026-08-06-distributed-training-mlops.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
       "visibility": "public",
       "published": true,
       "title": "분산 학습과 MLOps",
@@ -3318,7 +3325,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-model-optimization.md",
-      "target": "content/posts/Deep_Learning/Technics/2026-08-06-model-optimization.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-model-optimization.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 모델 경량화와 추론 최적화",
@@ -3346,7 +3353,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
-      "target": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-basics.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 기본 학습 테크닉",
@@ -3373,7 +3380,7 @@
     },
     {
       "source": "_posts/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
-      "target": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
       "visibility": "public",
       "published": true,
       "title": "딥러닝 중급 학습 테크닉",
@@ -3400,7 +3407,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
-      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-mixture-of-experts.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
       "visibility": "public",
       "published": true,
       "title": "Mixture of Experts(MoE) 핵심 개념",
@@ -3428,7 +3435,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
-      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
       "visibility": "public",
       "published": true,
       "title": "멀티모달 파운데이션 모델 핵심 개념",
@@ -3456,7 +3463,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-state-space-models.md",
-      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-state-space-models.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-state-space-models.md",
       "visibility": "public",
       "published": true,
       "title": "State Space Model과 Mamba",
@@ -3484,7 +3491,7 @@
     },
     {
       "source": "_posts/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
-      "target": "content/posts/Deep_Learning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
       "visibility": "public",
       "published": true,
       "title": "Transformer와 Vision Transformer",
@@ -3536,7 +3543,7 @@
     },
     {
       "source": "_posts/DevOps/Agile/과제.md",
-      "target": "content/posts/DevOps/Agile/과제.md",
+      "target": "content/posts/Notes/Agile/과제.md",
       "visibility": "public",
       "published": true,
       "title": "실습에서는?",
@@ -3568,7 +3575,7 @@
     },
     {
       "source": "_posts/DevOps/Agile/Agile1.md",
-      "target": "content/posts/DevOps/Agile/Agile1.md",
+      "target": "content/posts/Notes/Agile/Agile1.md",
       "visibility": "public",
       "published": true,
       "title": "Agile 개요, 왜 필요한가?",
@@ -3894,7 +3901,7 @@
     },
     {
       "source": "_posts/Network/DNS.md",
-      "target": "content/posts/Network/DNS.md",
+      "target": "content/posts/CS/Network/DNS.md",
       "visibility": "public",
       "published": true,
       "title": "DNS = Domain Name System",
@@ -4019,7 +4026,7 @@
     },
     {
       "source": "_posts/Python/2026-07-30-python.md",
-      "target": "content/posts/Python/2026-07-30-python.md",
+      "target": "content/posts/Algorithm/Python/2026-07-30-python.md",
       "visibility": "public",
       "published": true,
       "title": "Python 01. 실행 구조와 실무 기초",
@@ -4047,7 +4054,7 @@
     },
     {
       "source": "_posts/Python/2026-08-07-python_2.md",
-      "target": "content/posts/Python/2026-08-07-python_2.md",
+      "target": "content/posts/Algorithm/Python/2026-08-07-python_2.md",
       "visibility": "public",
       "published": true,
       "title": "Python 코드 품질: 디버깅부터 테스트와 자동화까지",
@@ -4104,7 +4111,7 @@
     },
     {
       "source": "_posts/Thinking/2026-08-09-ai-era-developers-disappear.md",
-      "target": "content/posts/Thinking/2026-08-09-ai-era-developers-disappear.md",
+      "target": "content/posts/Notes/Thinking/2026-08-09-ai-era-developers-disappear.md",
       "visibility": "public",
       "published": true,
       "title": "AI 시대, 개발자는 사라지는가?",
@@ -4133,7 +4140,7 @@
     },
     {
       "source": "_posts/Thinking/시대_단상/temp.md",
-      "target": "content/posts/Thinking/시대_단상/temp.md",
+      "target": "content/posts/Notes/Thinking/시대_단상/temp.md",
       "visibility": "public",
       "published": true,
       "title": "시대 단상에 대한 주저리주저리",

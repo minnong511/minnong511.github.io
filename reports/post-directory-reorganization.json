@@ -1,0 +1,1668 @@
+{
+  "date": "2026-09-08",
+  "total": 159,
+  "moved": 132,
+  "counts": {
+    "AX": 7,
+    "Notes": 7,
+    "Algorithm": 9,
+    "Backend": 64,
+    "DevOps": 33,
+    "CS": 6,
+    "AI": 28,
+    "Frontend": 5
+  },
+  "bodyPreserved": true,
+  "metadataExceptCategoriesPreserved": true,
+  "publicUrlsPreserved": true,
+  "protectedDirectoriesPreserved": true,
+  "emptyDirectories": [],
+  "preexistingMissingTargets": [
+    "content/posts/CI-CD-Docker/kubernetes/Calico.md",
+    "content/posts/CI-CD-Docker/kubernetes/kubernetes1.md",
+    "content/posts/project/1. 프로젝트 셋업.md",
+    "content/posts/project/2. 구현 시작.md",
+    "content/posts/project/깃허브_프로젝트/github_project.md"
+  ],
+  "moves": [
+    {
+      "source": "content/posts/AX/AX.md",
+      "target": "content/posts/AX/AX.md",
+      "categories": [
+        "AX"
+      ],
+      "legacyPath": "/ax/2026/09/01/ax-project/",
+      "bodySha256": "b6750f4dddeded0e3d9bd98f8614cf53e539574dd5c9cd0d42f3b0956c6a1d71"
+    },
+    {
+      "source": "content/posts/AX/꿀팀.md",
+      "target": "content/posts/AX/꿀팀.md",
+      "categories": [
+        "AX"
+      ],
+      "legacyPath": "/ax/2026/08/28/value-definition/",
+      "bodySha256": "29112884d6d366bfe5cd47f0135796db6f377908a89089225746c0347098ef9d"
+    },
+    {
+      "source": "content/posts/AX/반도체/2026-09-07-semiconductor-part-1.md",
+      "target": "content/posts/AX/반도체/2026-09-07-semiconductor-part-1.md",
+      "categories": [
+        "AX",
+        "반도체"
+      ],
+      "legacyPath": "/ax/semiconductor/part-1/",
+      "bodySha256": "da8369ac8daab3d4468379add02af444ca4746233beddf98f6e9c61f939daea6"
+    },
+    {
+      "source": "content/posts/AX/반도체/2026-09-07-semiconductor-part-2.md",
+      "target": "content/posts/AX/반도체/2026-09-07-semiconductor-part-2.md",
+      "categories": [
+        "AX",
+        "반도체"
+      ],
+      "legacyPath": "/ax/semiconductor/part-2/",
+      "bodySha256": "12ac19d04a8782c5925166c46b1b7cdf884039e85c42e4e22ce1a9304e55288a"
+    },
+    {
+      "source": "content/posts/AX/반도체/2026-09-07-semiconductor-part-3.md",
+      "target": "content/posts/AX/반도체/2026-09-07-semiconductor-part-3.md",
+      "categories": [
+        "AX",
+        "반도체"
+      ],
+      "legacyPath": "/ax/semiconductor/part-3/",
+      "bodySha256": "791511d4554ce966c3e54f8d44fc5f98214c76fc4fd7d3fa21f80d9e7670dbf8"
+    },
+    {
+      "source": "content/posts/AX/반도체/2026-09-07-semiconductor-part-4.md",
+      "target": "content/posts/AX/반도체/2026-09-07-semiconductor-part-4.md",
+      "categories": [
+        "AX",
+        "반도체"
+      ],
+      "legacyPath": "/ax/semiconductor/part-4/",
+      "bodySha256": "bcfc7757db00082fff86a931251c3b8b149352b24ad0af932d993e878e0a40db"
+    },
+    {
+      "source": "content/posts/AX/제조_AI.md",
+      "target": "content/posts/AX/제조_AI.md",
+      "categories": [
+        "AX"
+      ],
+      "legacyPath": "/ax/2026/09/07/manufacturing-ai/",
+      "bodySha256": "0ef9222acfed4098b6922ad636f00c6d2e78f1251f3ec11d8e474ea6f60fb30f"
+    },
+    {
+      "source": "content/posts/Agile/회의록_0826_점심.md",
+      "target": "content/posts/Notes/Agile/회의록_0826_점심.md",
+      "categories": [
+        "Notes",
+        "Agile"
+      ],
+      "legacyPath": "/agile/2026/08/26/회의록_0826_점심/",
+      "bodySha256": "ff92ef41c2f9de347737c0621740ffb96b4b28ba9b6b73205390c577dead10c9"
+    },
+    {
+      "source": "content/posts/Algorithm/DFS_BFS/DFS_BFS.md",
+      "target": "content/posts/Algorithm/DFS_BFS/DFS_BFS.md",
+      "categories": [
+        "Algorithm",
+        "DFS_BFS"
+      ],
+      "legacyPath": "/algorithm/dfs-bfs/2026/08/29/dfs-bfs/",
+      "bodySha256": "4bf2fb4deb60f0337ecda406b1ec232e460ef87cb7dafd88e561cdfae86aacb9"
+    },
+    {
+      "source": "content/posts/Algorithm/Greedy/알고리즘 논리.md",
+      "target": "content/posts/Algorithm/Greedy/알고리즘 논리.md",
+      "categories": [
+        "Algorithm",
+        "Greedy"
+      ],
+      "legacyPath": "/algorithm/greedy/2026/08/12/알고리즘-논리/",
+      "bodySha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "source": "content/posts/Algorithm/Python 코테/2026-08-14-counter.md",
+      "target": "content/posts/Algorithm/Python/2026-08-14-counter.md",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "legacyPath": "/algorithm/2026/08/14/counter/",
+      "bodySha256": "80967fe80e2ca75f81710ecf743999dcde152e69b34150d02457c5ceb49bacac"
+    },
+    {
+      "source": "content/posts/Algorithm/Python 코테/7일의 전사.md",
+      "target": "content/posts/Algorithm/Python/7일의 전사.md",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "legacyPath": "/algorithm/python/2026/08/31/core-algorithms/",
+      "bodySha256": "93954cd645925f9d86f97fd4cbadca3239b7c75ca0c635ded8f1358ac7f88014"
+    },
+    {
+      "source": "content/posts/Algorithm/Python 코테/딕셔너리.md",
+      "target": "content/posts/Algorithm/Python/딕셔너리.md",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "legacyPath": "/algorithm/python/2026/08/29/dictionary/",
+      "bodySha256": "b72669ebfa37296f0c2e71dac0c29fb594f425214f78f197c4dc73e4819f3620"
+    },
+    {
+      "source": "content/posts/Algorithm/정렬/정렬.md",
+      "target": "content/posts/Algorithm/정렬/정렬.md",
+      "categories": [
+        "Algorithm",
+        "정렬"
+      ],
+      "legacyPath": "/algorithm/정렬/2026/08/26/정렬/",
+      "bodySha256": "475d51a9f07f70238e99f1838b83cea3c41c6b70c9c381e49b31b034b7d7e349"
+    },
+    {
+      "source": "content/posts/Algorithm/투포인터_슬라이딩윈도우/투포인터_슬라이딩윈도우.md",
+      "target": "content/posts/Algorithm/투포인터_슬라이딩윈도우/투포인터_슬라이딩윈도우.md",
+      "categories": [
+        "Algorithm",
+        "투포인터_슬라이딩윈도우"
+      ],
+      "legacyPath": "/algorithm/투포인터_슬라이딩윈도우/2026/08/26/투포인터_슬라이딩윈도우/",
+      "bodySha256": "b18e45a27b747c1aa4c4bd8353d61dff1189359c6d9162417914667fe4ea222c"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/advanced/2026-08-11-java-annotations.md",
+      "target": "content/posts/Backend/Java/advanced/2026-08-11-java-annotations.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "advanced"
+      ],
+      "legacyPath": "/java/advanced/2026/08/11/java-annotations/",
+      "bodySha256": "6f7e363f076950f0512759e1fa709850fc6acc21659aaecd78fbb71cacd64d5f"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/advanced/2026-08-11-java-functional-programming-lambda.md",
+      "target": "content/posts/Backend/Java/advanced/2026-08-11-java-functional-programming-lambda.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "advanced"
+      ],
+      "legacyPath": "/java/advanced/2026/08/11/java-functional-programming-lambda/",
+      "bodySha256": "b1c736c9c75fdae5d083480c8a3a8a2cf94ce4e80ee08e459aecc3c2eaad24f8"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/advanced/2026-08-11-java-reflection.md",
+      "target": "content/posts/Backend/Java/advanced/2026-08-11-java-reflection.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "advanced"
+      ],
+      "legacyPath": "/java/advanced/2026/08/11/java-reflection/",
+      "bodySha256": "2ef0c130f070cc42743f91e82a0f0db87b78dadc33e18aa163ccef430b08a74a"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/basics/2026-08-10-java-basics.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-10-java-basics.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "basics"
+      ],
+      "legacyPath": "/java/basics/2026/08/10/java-basics/",
+      "bodySha256": "b7bd98b0333c0810628b2625f8e0a213113ff0a73b49a06d4a57aa068587fde9"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/basics/2026-08-10-java-comments-javadoc.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-10-java-comments-javadoc.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "basics"
+      ],
+      "legacyPath": "/java/basics/2026/08/10/java-comments-javadoc/",
+      "bodySha256": "7f0e3e02527f80a4df0c55d041809693a699d8af7c99bf67edfb168f5bb644eb"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/basics/2026-08-10-java-control-flow.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-10-java-control-flow.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "basics"
+      ],
+      "legacyPath": "/java/basics/2026/08/10/java-control-flow/",
+      "bodySha256": "28172b710aacb1f5d2d235ba29b4b0fc1f23e154ead47caaf589472a184f313b"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/basics/2026-08-11-java-generics.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-11-java-generics.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "basics"
+      ],
+      "legacyPath": "/java/basics/2026/08/11/java-generics/",
+      "bodySha256": "88f122e3dfa0d97a6d83a8665086bd4fa576e9a39fa571ff5affd593cf75e8a2"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/basics/2026-08-11-java-stream-api.md",
+      "target": "content/posts/Backend/Java/basics/2026-08-11-java-stream-api.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "basics"
+      ],
+      "legacyPath": "/java/basics/2026/08/11/java-stream-api/",
+      "bodySha256": "3f433c2eaa2798eb125defda577890ef528a45a70fc92c189d224a90d99dc2d3"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/debugging/2026-08-11-java-confusing-concepts-debugging.md",
+      "target": "content/posts/Backend/Java/debugging/2026-08-11-java-confusing-concepts-debugging.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "debugging"
+      ],
+      "legacyPath": "/java/debugging/2026/08/11/java-confusing-concepts-debugging/",
+      "bodySha256": "22ccb36c2d9497383205d0a8151ce804c1f4da45b4d91c85c3ef9c408f7f8c87"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
+      "target": "content/posts/Backend/Java/debugging/2026-08-11-java-vscode-auto-compile-debugging.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "debugging"
+      ],
+      "legacyPath": "/java/debugging/2026/08/11/java-vscode-auto-compile-debugging/",
+      "bodySha256": "23146f6225ab3fdf75b9dff65bf3fa617044bda14ad569717f6532bd0f903094"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/jvm/2026-08-10-java-execution-memory.md",
+      "target": "content/posts/Backend/Java/jvm/2026-08-10-java-execution-memory.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "jvm"
+      ],
+      "legacyPath": "/java/jvm/2026/08/10/java-execution-memory/",
+      "bodySha256": "6efccbf8fce572c08de4df58e67ba4859a235f46b1c5aef754e7f0feef39b6c4"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/jvm/2026-08-10-java-python-compile-comparison.md",
+      "target": "content/posts/Backend/Java/jvm/2026-08-10-java-python-compile-comparison.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "jvm"
+      ],
+      "legacyPath": "/java/jvm/2026/08/10/java-python-compile-comparison/",
+      "bodySha256": "b78e329d63045fe65a7acb4fbcee50c1461e1e70470c85c2404e51fb4ad3ee50"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/jvm/2026-08-10-jvm-classloader-memory.md",
+      "target": "content/posts/Backend/Java/jvm/2026-08-10-jvm-classloader-memory.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "jvm"
+      ],
+      "legacyPath": "/java/jvm/2026/08/10/jvm-classloader-memory/",
+      "bodySha256": "a3d0e757e05cad87cc1e9c3277ea71dbf718250dd6588692e7bf90f470c2f167"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/2026-08-10-java-class-object.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-class-object.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-class-object/",
+      "bodySha256": "d3f823512ae7e075a9940f803a38146065aaa8670daffbc0950b11507459fc58"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/2026-08-10-java-inheritance-interface.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-inheritance-interface.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-inheritance-interface/",
+      "bodySha256": "bee6770ee28ca4b280a5fc729cce412395b4919a4a36128631ef77ff6395373c"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/2026-08-10-java-oop-concepts.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-oop-concepts.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-oop-concepts/",
+      "bodySha256": "28da5b418bc3e24c61b2c533d25f5ac086af2d1d7d203fcd4bb697c8a1f8fc97"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/2026-08-10-java-oop-design-four-pillars.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-10-java-oop-design-four-pillars.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/java/oop/2026/08/10/java-oop-design-four-pillars/",
+      "bodySha256": "bfbb055e9d78e32a469a6f8250b950864f0dbfe8b5f40ff450b23094e0010840"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/2026-08-11-java-static-nested-class.md",
+      "target": "content/posts/Backend/Java/oop/2026-08-11-java-static-nested-class.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/java/oop/2026/08/11/java-static-nested-class/",
+      "bodySha256": "08b2220e85d8d69c97719592fa4e654001c492c89910f9cac8033c2f6196b52b"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/Creational Pattern.md",
+      "target": "content/posts/Backend/Java/oop/Creational Pattern.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/backend/java/oop/2026/08/12/Creational-Pattern/",
+      "bodySha256": "1797d6e11b5accbdeaaf4b0e54bd9331afa08884bb3bceda6033eb912eae7869"
+    },
+    {
+      "source": "content/posts/Backend/JAVA/oop/SOLID.md",
+      "target": "content/posts/Backend/Java/oop/SOLID.md",
+      "categories": [
+        "Backend",
+        "Java",
+        "oop"
+      ],
+      "legacyPath": "/backend/java/oop/2026/08/12/SOLID/",
+      "bodySha256": "33a3d354c7cdf9a887eb07df9c104a9e79300a98f3a672d932ff7ec90553159b"
+    },
+    {
+      "source": "content/posts/Backend/Kafka/kafka-messaging-system.md",
+      "target": "content/posts/Backend/Kafka/kafka-messaging-system.md",
+      "categories": [
+        "Backend",
+        "Kafka"
+      ],
+      "legacyPath": "/backend/kafka/2026/08/26/kafka-messaging-system/",
+      "bodySha256": "4205ef8d6ea7c1b18a8dbbe692470bd5fb3716bc76c0b032fdcbee0185678ba4"
+    },
+    {
+      "source": "content/posts/Backend/Kafka/temp.md",
+      "target": "content/posts/Backend/Kafka/temp.md",
+      "categories": [
+        "Backend",
+        "Kafka"
+      ],
+      "legacyPath": "/backend/kafka/2026/08/26/temp/",
+      "bodySha256": "7626e0143b3b7144876c2d16a22109bf23cd353640af655fca898ddbf96834f5"
+    },
+    {
+      "source": "content/posts/Backend/Kafka/핵심.md",
+      "target": "content/posts/Backend/Kafka/핵심.md",
+      "categories": [
+        "Backend",
+        "Kafka"
+      ],
+      "legacyPath": "/backend/kafka/2026/08/27/core-principles/",
+      "bodySha256": "9066cdac318f90267a694fb25e7bd650126cc8bca9081a02d8c6ab1ee9753188"
+    },
+    {
+      "source": "content/posts/Backend/Kubernetes/2026-09-06-kubernetes-introduction.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-06-kubernetes-introduction.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/backend/kubernetes/2026/09/06/kubernetes-introduction/",
+      "bodySha256": "0bc634fa1d5908cc56c58ba4a8d4082b4f2afe1380edbcf4c2a3557400896d2b"
+    },
+    {
+      "source": "content/posts/Backend/MSA/MSA.md",
+      "target": "content/posts/Backend/MSA/MSA.md",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "legacyPath": "/backend/msa/2026/08/26/MSA1/",
+      "bodySha256": "39786628f2b0e2ccfc7f7356fb76d6ea33e04fd6b806cd42b55777381853198f"
+    },
+    {
+      "source": "content/posts/Backend/MSA/Modular_Monolith.md",
+      "target": "content/posts/Backend/MSA/Modular_Monolith.md",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "legacyPath": "/backend/msa/2026/08/26/Modular_Monolith/",
+      "bodySha256": "a8a0a015f824d765de749bc6581aa4e6f8f9fa4fe11adb48929d419175ae04e2"
+    },
+    {
+      "source": "content/posts/Backend/MSA/Monolith.md",
+      "target": "content/posts/Backend/MSA/Monolith.md",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "legacyPath": "/backend/msa/2026/08/26/Monolith/",
+      "bodySha256": "1e9a3565cf925d542f5e3ab32497d1f062ee2dd698bf56e36fb1ca95c6fead71"
+    },
+    {
+      "source": "content/posts/Backend/MSA.md",
+      "target": "content/posts/Backend/MSA/2026-08-12-MSA.md",
+      "categories": [
+        "Backend",
+        "MSA"
+      ],
+      "legacyPath": "/backend/2026/08/12/MSA/",
+      "bodySha256": "661ed0b6f1c6473287921b2d523599a8733882387a8facd93cf06df8d55b3926"
+    },
+    {
+      "source": "content/posts/Backend/Network(중요)/Socket.md",
+      "target": "content/posts/CS/Network/Socket.md",
+      "categories": [
+        "CS",
+        "Network"
+      ],
+      "legacyPath": "/backend/network/2026/08/12/Socket/",
+      "bodySha256": "88a21520b38f32d93e874e3540fd1091cf7730a29e78d7899d02ac72e23fa225"
+    },
+    {
+      "source": "content/posts/Backend/Network(중요)/네트워크.md",
+      "target": "content/posts/CS/Network/네트워크.md",
+      "categories": [
+        "CS",
+        "Network"
+      ],
+      "legacyPath": "/backend/network-중요/2026/08/12/네트워크/",
+      "bodySha256": "c821a71f852fd71645d612d350fc35ad477b4cbdabf6fff23beee60eb3641b2d"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/2026-08-11-spring-ioc-bean-di.md",
+      "target": "content/posts/Backend/Spring/2026-08-11-spring-ioc-bean-di.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/11/spring-ioc-bean-di/",
+      "bodySha256": "f6afa29ea49e40c6f2e811c30d137575b714a02b88cc17ff60bbf652fbbc9306"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/REST_API/REST_API_1.md",
+      "target": "content/posts/Backend/Spring/REST_API/REST_API_1.md",
+      "categories": [
+        "Backend",
+        "Spring",
+        "REST_API"
+      ],
+      "legacyPath": "/backend/spring/2026/08/12/REST_API_1/",
+      "bodySha256": "c747ab53ebd768d0d55b8eaefb6de401e24405cc61d96e2e1e15809259ee66ea"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-14-spring-mvc-request-flow.md",
+      "target": "content/posts/Backend/Spring/2026-08-14-spring-mvc-request-flow.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/14/spring-mvc-request-flow/",
+      "bodySha256": "df02ca5127b28f6e159f95ab13a319d98a8659351ed8781cddca2900c22698b8"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-15-spring-rest-api-validation.md",
+      "target": "content/posts/Backend/Spring/2026-08-15-spring-rest-api-validation.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/15/spring-rest-api-validation/",
+      "bodySha256": "6688884e8cae6854f6605c3e414cda34f0cc4755ed48999986661567dbdbc59e"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-16-spring-data-jpa-basics.md",
+      "target": "content/posts/Backend/Spring/2026-08-16-spring-data-jpa-basics.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/16/spring-data-jpa-basics/",
+      "bodySha256": "0d0a26c887e2cd7e2d4443cb4f0a3f0fdae06072902f0e414f9c3143c59243b2"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
+      "target": "content/posts/Backend/Spring/2026-08-17-jpa-entity-manager-persistence-context.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/17/jpa-entity-manager-persistence-context/",
+      "bodySha256": "9cd93ef4805aa9dcd1829b6aba4380849b4f63e84b8e78b98d949234223331da"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-18-jpa-relationship-mapping.md",
+      "target": "content/posts/Backend/Spring/2026-08-18-jpa-relationship-mapping.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/18/jpa-relationship-mapping/",
+      "bodySha256": "169dc417469f69d654ec4d338a0d5b5ea91cc2bbbf50e8f804991803702a229e"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-19-spring-proxy.md",
+      "target": "content/posts/Backend/Spring/2026-08-19-spring-proxy.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/19/spring-proxy/",
+      "bodySha256": "1bbb0590f6036a7148c8e7999b1700a611747df8d998bd30f84caa7feb491736"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-20-spring-aop.md",
+      "target": "content/posts/Backend/Spring/2026-08-20-spring-aop.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/20/spring-aop/",
+      "bodySha256": "655a37c76aa47fa2befa41a6a0ef95ffe20c77e1ae611207d91b3d0382f4f458"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-21-jpa-transaction-concurrency.md",
+      "target": "content/posts/Backend/Spring/2026-08-21-jpa-transaction-concurrency.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/21/jpa-transaction-concurrency/",
+      "bodySha256": "7d257aeb0359180d8158d524e47143d420520f71df39e34f4d227eed74f0693b"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-22-spring-async.md",
+      "target": "content/posts/Backend/Spring/2026-08-22-spring-async.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/22/spring-async/",
+      "bodySha256": "81ddf8d6047e84f674131236cba95f0d7ed4c01a6d51fc92eb511bf30b1d08a3"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/2026-08-23-spring-boot-actuator.md",
+      "target": "content/posts/Backend/Spring/2026-08-23-spring-boot-actuator.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/java/spring/2026/08/23/spring-boot-actuator/",
+      "bodySha256": "8eef219e2b81e9338b68c7ff4d03d323bebd4e0585840a38f2cd7df61f3cfb24"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/AOP.md",
+      "target": "content/posts/Backend/Spring/AOP.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/AOP/",
+      "bodySha256": "06a9f063d019b91b0baad0d01889d01f565d0c020ad46856b0d2bfc426c81deb"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/Acuator.md",
+      "target": "content/posts/Backend/Spring/Acuator.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Acuator/",
+      "bodySha256": "d06d33795a54c7f0d94fab95e6e282d3a2fb9106e6a9a1c1c4c41c67cfe18949"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/Async.md",
+      "target": "content/posts/Backend/Spring/Async.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Async/",
+      "bodySha256": "d32cfe95ac9ab304681156d91708e6e80754c21fe408fc22b6b5b6c9e3d56dc1"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/EntityManager.md",
+      "target": "content/posts/Backend/Spring/EntityManager.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/EntityManager/",
+      "bodySha256": "31c9ed4b04eea5cd0c7b02186b50d07bb9a9489b72f65e8536d89fede5e2c2d2"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/JPA.md",
+      "target": "content/posts/Backend/Spring/JPA.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/JPA/",
+      "bodySha256": "7b4e32eb90a590886b1c197ae6657caf7d2ea9cd35d1f4e50c2703cfda2bb33e"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/JPA_관계매핑.md",
+      "target": "content/posts/Backend/Spring/JPA_관계매핑.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/JPA_관계매핑/",
+      "bodySha256": "b026c616aa92c6827dba746bcceed5c72284ce36a83d28ed53555a9c54a46591"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/JPA_트랜젝션.md",
+      "target": "content/posts/Backend/Spring/JPA_트랜젝션.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/JPA_트랜젝션/",
+      "bodySha256": "deb778b8e89fa3fabe9d7eaa98b57c735fc2defdd2b9b3117f34644ab721bb3f"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/Proxy.md",
+      "target": "content/posts/Backend/Spring/Proxy.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Proxy/",
+      "bodySha256": "537c47528c6cf1518147e2e4de49b85741423a93d97886f5a20c0631cf949a05"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/Spring_1.md",
+      "target": "content/posts/Backend/Spring/Spring_1.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/12/Spring_1/",
+      "bodySha256": "36f91a921fbc6485b7e9399969acf981437b6caa886d9829155681f2c4fbe74b"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/Spring_2.md",
+      "target": "content/posts/Backend/Spring/Spring_2.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/12/Spring_2/",
+      "bodySha256": "d3d2dce77936c537a4d9663e6d0bcaaf1b15fcefe863ab3ccd733f520a839ff7"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/Spring_MVC.md",
+      "target": "content/posts/Backend/Spring/Spring_MVC.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/Spring_MVC/",
+      "bodySha256": "4ac5ec54ac88e49c99d391bc937a4913aa5b6b2533ebb4a3a029b38af8318f3c"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/bean_proxy.md",
+      "target": "content/posts/Backend/Spring/bean_proxy.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/bean_proxy/",
+      "bodySha256": "19006abcf1384eecfe60457d28fd338fdb3556d9cd76e60ab780ebb9ac3822a7"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/docker_container.md",
+      "target": "content/posts/Backend/Spring/docker_container.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/12/docker_container/",
+      "bodySha256": "30485113a08deb02f04b03cf3022636c75da713f5f150c52cba0b5070c01be53"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring/입력값 검증.md",
+      "target": "content/posts/Backend/Spring/입력값 검증.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/spring/2026/08/14/입력값-검증/",
+      "bodySha256": "749748e0cafa71998a8253a7be9f8830a71451a3d72396672345c5d8a8972495"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/Spring_Container/container.md",
+      "target": "content/posts/Backend/Spring/Container/container.md",
+      "categories": [
+        "Backend",
+        "Spring",
+        "Container"
+      ],
+      "legacyPath": "/backend/spring/spring_container/2026/08/14/container/",
+      "bodySha256": "290bc6b4f8f6578b02b7d0cf4f310173e573840d7e89e8c9082f7c11cd090be5"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/springboot/Lombok.md",
+      "target": "content/posts/Backend/Spring/Boot/Lombok.md",
+      "categories": [
+        "Backend",
+        "Spring",
+        "Boot"
+      ],
+      "legacyPath": "/backend/spring/springboot/2026/08/14/Lombok/",
+      "bodySha256": "46f81bfcea16e4eafcbdbd04c410ccc97c9962d0f54cf662535f0ef23ffaf76e"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/springboot/application.md",
+      "target": "content/posts/Backend/Spring/Boot/application.md",
+      "categories": [
+        "Backend",
+        "Spring",
+        "Boot"
+      ],
+      "legacyPath": "/backend/spring/springboot/2026/08/14/application/",
+      "bodySha256": "36e25342a42d7e82df0fa557a2c4988dae0709666096b3b26665f647ebf5f15a"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/강의교재_정리.md",
+      "target": "content/posts/Backend/Spring/강의교재_정리.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/2026/08/18/강의교재_정리/",
+      "bodySha256": "4af7377f4a3a3b1917bedf2e30c8035c1aa5bb9b74e3a57e406820691b52a419"
+    },
+    {
+      "source": "content/posts/Backend/SPRING/개념확인.md",
+      "target": "content/posts/Backend/Spring/개념확인.md",
+      "categories": [
+        "Backend",
+        "Spring"
+      ],
+      "legacyPath": "/backend/spring/2026/08/12/개념확인/",
+      "bodySha256": "d2331fbe6966db2c1d3fb0b29ab6fa5899b3fc9f1f89c66b1da04a9dd6aa7be8"
+    },
+    {
+      "source": "content/posts/Backend/SPRING_AI /1.md",
+      "target": "content/posts/Backend/SpringAI/1.md",
+      "categories": [
+        "Backend",
+        "SpringAI"
+      ],
+      "legacyPath": "/backend/spring_ai/2026/08/18/1/",
+      "bodySha256": "97b9ed898189939ebb4b1e5aae5f9b1d57410ac0db50f1b08399f05e3846e374"
+    },
+    {
+      "source": "content/posts/Backend/SPRING_AI /2.md",
+      "target": "content/posts/Backend/SpringAI/2.md",
+      "categories": [
+        "Backend",
+        "SpringAI"
+      ],
+      "legacyPath": "/backend/spring_ai/2026/08/12/2/",
+      "bodySha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "source": "content/posts/Backend/SPRING_AI /3.md",
+      "target": "content/posts/Backend/SpringAI/3.md",
+      "categories": [
+        "Backend",
+        "SpringAI"
+      ],
+      "legacyPath": "/backend/spring_ai/2026/08/12/3/",
+      "bodySha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "source": "content/posts/Backend/SPRING_AI /요약.md",
+      "target": "content/posts/Backend/SpringAI/요약.md",
+      "categories": [
+        "Backend",
+        "SpringAI"
+      ],
+      "legacyPath": "/backend/spring_ai/2026/08/19/요약/",
+      "bodySha256": "0d159295a80a4783f25c6972f65cd0bf83df97ba6b80386351620f40b81c203a"
+    },
+    {
+      "source": "content/posts/Basic/2026-08-24-docker-os-basics.md",
+      "target": "content/posts/CS/OS/2026-08-24-docker-os-basics.md",
+      "categories": [
+        "CS",
+        "OS"
+      ],
+      "legacyPath": "/basic/os/2026/08/24/docker-os-basics/",
+      "bodySha256": "9005ade76378c39c25429fd4581a5523f676e74b3c848ebf76c4287ecf4ec793"
+    },
+    {
+      "source": "content/posts/Basic/2026-08-24-essential-development-terms.md",
+      "target": "content/posts/CS/Basics/2026-08-24-essential-development-terms.md",
+      "categories": [
+        "CS",
+        "Basics"
+      ],
+      "legacyPath": "/basic/cs/2026/08/24/essential-development-terms/",
+      "bodySha256": "d049895fa4ee92d95012f1aa2b63ab4630bec0f09a7eead1e32ad83ff65cfcce"
+    },
+    {
+      "source": "content/posts/Basic/temp.md",
+      "target": "content/posts/CS/Basics/temp.md",
+      "categories": [
+        "CS",
+        "Basics"
+      ],
+      "legacyPath": "/basic/2026/08/24/temp/",
+      "bodySha256": "89b52f579fc35f6317f8e08fc88016e20cdc4d9604bb5d6a4ffbff94ec85db4a"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-01-basics.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-01-basics.md",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-01-basics/",
+      "bodySha256": "d12a71380a7ff7655dc24b6776726c613c5395407eb9b10c159c0c0d51ce3360"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-02-docker-pipeline.md",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-02-docker-pipeline/",
+      "bodySha256": "d28474a13a622ef15110b524dd39cfdeee7856e89e205594c3e643543a3cb69c"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-03-gitops-deployment.md",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-03-gitops-deployment/",
+      "bodySha256": "ee164acd76843f75b8104fea70fce5cbde80cce9420c5a279b273bf8d461e8d6"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
+      "target": "content/posts/DevOps/CI-CD/2026-08-17-ci-cd-04-deployment-operations.md",
+      "categories": [
+        "DevOps",
+        "CI-CD"
+      ],
+      "legacyPath": "/devops/ci-cd/2026/08/17/ci-cd-04-deployment-operations/",
+      "bodySha256": "ab05dfa2c812abeedb59d06c0a5c80582e757045783b99739f2fd339fe77fd78"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-01-core-concepts.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-01-core-concepts.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-01-core-concepts/",
+      "bodySha256": "f3b9b3705e1d0666c81fe1e7721fbc2c9a94ced59ed34da38bf257b10c553b81"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-02-ecosystem.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-02-ecosystem.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-02-ecosystem/",
+      "bodySha256": "2026324af7df1cf8db5e0f7262f7d5088d4b65adbb1905b69f6410f6bea9e45f"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-03-deployment-principles.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-03-deployment-principles.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-03-deployment-principles/",
+      "bodySha256": "eaf7b3ce37139d66325d6e5bb239cd80469323faedd6d562cb88e9af61d854a2"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-04-virtualization-and-image-lifecycle.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-04-virtualization-and-image-lifecycle/",
+      "bodySha256": "25b5a2cb5466d6d5855ddf277106bec82ad7f1f51c2f11c1491f1d097cc60ab9"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-05-container-commands-and-volumes.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-05-container-commands-and-volumes/",
+      "bodySha256": "aded3ed52403b75694e3704aa001709718d512f2765a7f5e889b06d0b4b9a731"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-06-image-build-and-layers.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-06-image-build-and-layers.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-06-image-build-and-layers/",
+      "bodySha256": "3cff149681edc3bad04abaff09142d8d7bf8fb3fbc94cd5510e3787d17d932ac"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-07-image-layer-archive.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-07-image-layer-archive.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-07-image-layer-archive/",
+      "bodySha256": "a8d0ad0fb7560af36dbe3ca940e4831a798fbce2079b58dc55266992402c4d19"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-08-runtime-and-isolation.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-08-runtime-and-isolation/",
+      "bodySha256": "7db73a82c4b7bbfc4f7415df1a15a3b6723dccc85701ea5630ee28a28499f0ca"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-09-container-networking.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-09-container-networking.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-09-container-networking/",
+      "bodySha256": "75f9a87b47ccb80cb8ab4a60f29647dac248d9241283b54c7fd3428e25409cb0"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-10-compose-basics-and-build.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-10-compose-basics-and-build/",
+      "bodySha256": "12bcf9ab92a231225e6b01423fcda3e2c81d4c89fe3d71208e112300d83c5293"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-11-compose-commands-and-environment.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-11-compose-commands-and-environment/",
+      "bodySha256": "6444d58158825decdf70735d31d9152dfa2f4b10f4a96c62ca4eeea63acae39a"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-12-compose-network-and-volume.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-12-compose-network-and-volume/",
+      "bodySha256": "a265c4058cf27abff72ccc837950afb7eef0086c92ccc882b8d87b99bd0ef3fc"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
+      "target": "content/posts/DevOps/Docker/2026-08-17-docker-13-compose-healthcheck-and-practice.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/17/docker-13-compose-healthcheck-and-practice/",
+      "bodySha256": "6218c3b2e7118f0eb6fa17374171c5afc692c370349d83b806615d4158156c19"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/2026-08-24-oci-container-standard.md",
+      "target": "content/posts/DevOps/Docker/2026-08-24-oci-container-standard.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/devops/docker/2026/08/24/oci-container-standard/",
+      "bodySha256": "5fc92f318110f815ec1cf6f67969ed4a163cbc664a52f74ba11f5d82816b6b58"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/Docker/sigterm.md",
+      "target": "content/posts/DevOps/Docker/sigterm.md",
+      "categories": [
+        "DevOps",
+        "Docker"
+      ],
+      "legacyPath": "/ci-cd-docker/docker/2026/08/24/sigterm/",
+      "bodySha256": "87975ba182b5dc13d0424e187f58c8a2bdadbf17cd7921f28b364eb822187ed0"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-1.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-1.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-1/",
+      "bodySha256": "ebc12e6083e1378530ef4b3e15d8c8d921902755eb7f5e0755446b2624c3d69f"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-2.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-2.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-2/",
+      "bodySha256": "fda3c64e4650767f25fcc18ccbc1396551c6f4ee4dc43876cb00e34a24d48ff0"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-3.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-3.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-3/",
+      "bodySha256": "df152e6485b433b5bd91926d8f79afa853dc731c81d0b63aa923ecb0befcfd21"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-4.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-4.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-4/",
+      "bodySha256": "a3500f8c5b0c21bd9bed9ba187007fd39a82f655f227f1464ca0eb793ddefd8e"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-5.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-5.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-5/",
+      "bodySha256": "009f87434239eaca02907408c042d0ac56b5f133796b294ec6b410228f33c36c"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-6.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-6.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-6/",
+      "bodySha256": "bfdad94d76272ed9fee61f74adfcf800e0da94c49fd8d885aeac7187aafe43d2"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-7.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-7.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/part-7/",
+      "bodySha256": "d9d2517e42b95ca5a2e667863985548ebcfdac19934ce7da7c28f64de7013159"
+    },
+    {
+      "source": "content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-three-flows.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-three-flows.md",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "legacyPath": "/ci-cd-docker/kubernetes/three-flows/",
+      "bodySha256": "512fb2681ee254fe79919744f8e51f3b94334b8ded78a735f35b9fe85813c01a"
+    },
+    {
+      "source": "content/posts/Data_Science/PostgreSQL/2026-07-31-psql1.md",
+      "target": "content/posts/Backend/Database/PostgreSQL/2026-07-31-psql1.md",
+      "categories": [
+        "Backend",
+        "Database",
+        "PostgreSQL"
+      ],
+      "legacyPath": "/db/postgresql/2026/07/31/psql1/",
+      "bodySha256": "64dfddb4b98b377f96847d164555f431299927d2c1895907b99f5619dd236fca"
+    },
+    {
+      "source": "content/posts/Data_Science/PostgreSQL/2026-07-31-psql2.md",
+      "target": "content/posts/Backend/Database/PostgreSQL/2026-07-31-psql2.md",
+      "categories": [
+        "Backend",
+        "Database",
+        "PostgreSQL"
+      ],
+      "legacyPath": "/db/postgresql/2026/07/31/psql2/",
+      "bodySha256": "0669d53c4fe2ce583e9730f631a15e145524fbfeed9ac6b2dd21711b078808e9"
+    },
+    {
+      "source": "content/posts/Deep_Learning/2026-08-19-llm-workflow-patterns.md",
+      "target": "content/posts/AI/DeepLearning/2026-08-19-llm-workflow-patterns.md",
+      "categories": [
+        "AI",
+        "DeepLearning"
+      ],
+      "legacyPath": "/deep_learning/llm/2026/08/19/llm-workflow-patterns/",
+      "bodySha256": "afb85f8133fedf2f256d02b0aadd02945a2cbe9dbc2e1286dc6715974a4cb7ba"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Basic/2026-08-06-EDA copy.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-EDA copy.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Basic"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/EDA-copy/",
+      "bodySha256": "a92321ea145cb8d55e4b422f55907ffc93e01193acfcdf8a490c8cb967c7c25f"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-ML_Pipeline.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Basic"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/ML_Pipeline/",
+      "bodySha256": "03160b1fc4c143e810eafb7a3c613ce6048ac7998d605c5fa38974348ced2311"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Basic/2026-08-06-ML_Pipeline2.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-ML_Pipeline2.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Basic"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/ML_Pipeline2/",
+      "bodySha256": "fd15d03a44b95b98453c39e5d709fc2b3b18f4b68003b07b9e48e16d13bac133"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Basic/2026-08-06-deep-learning-basics.md",
+      "target": "content/posts/AI/DeepLearning/Basic/2026-08-06-deep-learning-basics.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Basic"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/08/06/deep-learning-basics/",
+      "bodySha256": "6e378a1e314f00ed4cd339689fb4b0aa94e8b8d2c5fab985ff151052cf3e9e06"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Basic/ML_입문.md",
+      "target": "content/posts/AI/DeepLearning/Basic/ML_입문.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Basic"
+      ],
+      "legacyPath": "/deep_learning/basic/2026/09/01/ml-introduction/",
+      "bodySha256": "b7a0faeae957950bf40ff3a9a87cd76fd361559f500321b385913d2db54ef2e5"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "target": "content/posts/AI/DeepLearning/Computer_Vision/2026-08-06-cnn-architectures.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Computer_Vision"
+      ],
+      "legacyPath": "/deep_learning/computer_vision/2026/08/06/cnn-architectures/",
+      "bodySha256": "59abc35a92c0e3ab05dbf0dff2d1cf60ff31b992b4feb62a8e0b514e85d7305b"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "target": "content/posts/AI/DeepLearning/Computer_Vision/2026-08-06-image-segmentation.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Computer_Vision"
+      ],
+      "legacyPath": "/deep_learning/computer_vision/2026/08/06/image-segmentation/",
+      "bodySha256": "3e82b52aec3d081a0652d85bcbef1a5af5ce8533f6ad7c60825198654efe1b38"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Computer_Vision/2026-08-06-object-detection.md",
+      "target": "content/posts/AI/DeepLearning/Computer_Vision/2026-08-06-object-detection.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Computer_Vision"
+      ],
+      "legacyPath": "/deep_learning/computer_vision/2026/08/06/object-detection/",
+      "bodySha256": "1fe34ac0becea8d02e348302b1713b978b819eec8072299f4654fecd1453da7e"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Data/2026-08-06-dataset-engineering.md",
+      "target": "content/posts/AI/DeepLearning/Data/2026-08-06-dataset-engineering.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Data"
+      ],
+      "legacyPath": "/deep_learning/data/2026/08/06/dataset-engineering/",
+      "bodySha256": "9e91ae2a425e7e20e8319addee872144ad41f6bb1c7c457596d564d6dea0cc3f"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "target": "content/posts/AI/DeepLearning/Debugging/2026-08-06-deep-learning-debugging.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Debugging"
+      ],
+      "legacyPath": "/deep_learning/debugging/2026/08/06/deep-learning-debugging/",
+      "bodySha256": "2744962df7efc904813f9cc759ca440f263633879f8139a3b2f15d226903155f"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Latent_Space/2026-08-29-latent-space.md",
+      "target": "content/posts/AI/DeepLearning/Latent_Space/2026-08-29-latent-space.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Latent_Space"
+      ],
+      "legacyPath": "/deeplearning/latent-space/2026/08/29/latent-space/",
+      "bodySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "content/posts/Deep_Learning/LoRA/LoRA.md",
+      "target": "content/posts/AI/DeepLearning/LoRA/LoRA.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "LoRA"
+      ],
+      "legacyPath": "/deep_learning/lora/2026/08/28/lora/",
+      "bodySha256": "01ffcee29f2f388c6897e55279043b29a2c07790a31bc551323b7afe1eb75765"
+    },
+    {
+      "source": "content/posts/Deep_Learning/LoRA/Transformer_LoRA.md",
+      "target": "content/posts/AI/DeepLearning/LoRA/Transformer_LoRA.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "LoRA"
+      ],
+      "legacyPath": "/deep_learning/lora/2026/08/29/transformer-lora/",
+      "bodySha256": "bbd8304da24794f33b59ae11a814ef98d7514dd0f126a5abeb7915e771caad53"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Optimization/2026-08-31-quantization.md",
+      "target": "content/posts/AI/DeepLearning/Optimization/2026-08-31-quantization.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Optimization"
+      ],
+      "legacyPath": "/deep_learning/optimization/2026/08/31/quantization/",
+      "bodySha256": "23a9d08a4b9c5a101542253e092aba793b86b25263d61ce91d19aa38837e17e3"
+    },
+    {
+      "source": "content/posts/Deep_Learning/RAG/1.md",
+      "target": "content/posts/AI/DeepLearning/RAG/1.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "RAG"
+      ],
+      "legacyPath": "/deeplearning/rag/2026/08/18/1/",
+      "bodySha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "source": "content/posts/Deep_Learning/RAG/Chunking.md",
+      "target": "content/posts/AI/DeepLearning/RAG/Chunking.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "RAG"
+      ],
+      "legacyPath": "/deeplearning/rag/2026/08/18/Chunking/",
+      "bodySha256": "2e0444a305eccff82edfd95a95341af8ac28428cbff3df80b461a49cf7cde83f"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Technics/2026-08-06-distributed-training-mlops.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-distributed-training-mlops.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Technics"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/distributed-training-mlops/",
+      "bodySha256": "4289ef6ac49fc5bb015fb70f80ede5438a5e37fe9f1cb945a06dd4bad3b8ac6e"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Technics/2026-08-06-model-optimization.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-model-optimization.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Technics"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/model-optimization/",
+      "bodySha256": "a01d9a2848b528c0ee2bd8da5f768dfb560c61de9bfcf2e99ff9d9425203312d"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-basics.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-training-techniques-basics.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Technics"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/training-techniques-basics/",
+      "bodySha256": "04e6756084dee03de9cf1d66f3bcf3e0ffeeb0a704790d32e596f0898dc3f356"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "target": "content/posts/AI/DeepLearning/Technics/2026-08-06-training-techniques-intermediate.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Technics"
+      ],
+      "legacyPath": "/deep_learning/technics/2026/08/06/training-techniques-intermediate/",
+      "bodySha256": "f5422dec9971dd9f83026f3eedc0d484a4360b3d9e950f29d89129090566d494"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Transformer/2026-08-06-mixture-of-experts.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-mixture-of-experts.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Transformer"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/mixture-of-experts/",
+      "bodySha256": "6a630c7e3370b7b7647e9bd9ed482bd9e5e49d9d7f8093b156a75fb410935a13"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-multimodal-foundation-models.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Transformer"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/multimodal-foundation-models/",
+      "bodySha256": "8f0fad7a114693e7968687fd16c69e4ecb94bb81ee37b144a827b68a22cda9f5"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Transformer/2026-08-06-state-space-models.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-state-space-models.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Transformer"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/state-space-models/",
+      "bodySha256": "eb5a73a034bf26571767d6ce37a666532a03c8cd9fbae951089978106689cba6"
+    },
+    {
+      "source": "content/posts/Deep_Learning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "target": "content/posts/AI/DeepLearning/Transformer/2026-08-06-transformer-vision-transformer.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "Transformer"
+      ],
+      "legacyPath": "/deep_learning/transformer/2026/08/06/transformer-vision-transformer/",
+      "bodySha256": "851897f6096d50487999d667735f9b67c1105c7bfc25b0553c4f2e5c8fd6f719"
+    },
+    {
+      "source": "content/posts/Deep_Learning/domain_adaptive.md",
+      "target": "content/posts/AI/DeepLearning/domain_adaptive.md",
+      "categories": [
+        "AI",
+        "DeepLearning"
+      ],
+      "legacyPath": "/deep_learning/llm/2026/08/31/domain-adaptive/",
+      "bodySha256": "d0263eac0322f9d042e74102c35562f469a1ce97e3c3a807a6823bc4538a8f06"
+    },
+    {
+      "source": "content/posts/Deep_Learning/sLLM/Post1.md",
+      "target": "content/posts/AI/DeepLearning/sLLM/Post1.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "sLLM"
+      ],
+      "legacyPath": "/sllm/2026/08/28/core-technologies/",
+      "bodySha256": "ecb0c31e96ceaf758671f75534a68323a00730aa9e154652c878387e629e620a"
+    },
+    {
+      "source": "content/posts/Deep_Learning/sLLM/Post2.md",
+      "target": "content/posts/AI/DeepLearning/sLLM/Post2.md",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "sLLM"
+      ],
+      "legacyPath": "/sllm/2026/08/28/resource-efficient-build/",
+      "bodySha256": "3fdf3b324c9c3c3bfdd14c0516083820eb1a06eb62aa081d6cfd97774958b72f"
+    },
+    {
+      "source": "content/posts/DevOps/2026-08-07-Devops_1.md",
+      "target": "content/posts/DevOps/2026-08-07-Devops_1.md",
+      "categories": [
+        "DevOps"
+      ],
+      "legacyPath": "/devops/2026/08/07/Devops_1/",
+      "bodySha256": "13edd24545889dfcf1282567bb1f0c96fb47b6711ec68c985558fe35e6721eef"
+    },
+    {
+      "source": "content/posts/DevOps/Agile/Agile1.md",
+      "target": "content/posts/Notes/Agile/Agile1.md",
+      "categories": [
+        "Notes",
+        "Agile"
+      ],
+      "legacyPath": "/devops/agile/2026/08/26/Agile1/",
+      "bodySha256": "d7452d8d6ee19ac0f48910e94c209727859c95480fe704cca837c9af93dae16a"
+    },
+    {
+      "source": "content/posts/DevOps/Agile/과제.md",
+      "target": "content/posts/Notes/Agile/과제.md",
+      "categories": [
+        "Notes",
+        "Agile"
+      ],
+      "legacyPath": "/devops/agile/2026/08/26/과제/",
+      "bodySha256": "56cda4e953813d746df62dddc4653b7725411f4f103b30c1d7b7f1b573214403"
+    },
+    {
+      "source": "content/posts/DevOps/Nginx/2026-08-24-nginx-basics.md",
+      "target": "content/posts/DevOps/Nginx/2026-08-24-nginx-basics.md",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/nginx-basics/",
+      "bodySha256": "c5db1b46358714e72684c37205d4a4d7183cdfa55e14d6f3e00137a67bec2682"
+    },
+    {
+      "source": "content/posts/DevOps/Nginx/2026-08-24-nginx-load-balancing-https.md",
+      "target": "content/posts/DevOps/Nginx/2026-08-24-nginx-load-balancing-https.md",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/nginx-load-balancing-https/",
+      "bodySha256": "938825d38a140d061e9357c3643855cda9d3fceb2430c880ba8ca93228a4d336"
+    },
+    {
+      "source": "content/posts/DevOps/Nginx/2026-08-24-nginx-reverse-proxy.md",
+      "target": "content/posts/DevOps/Nginx/2026-08-24-nginx-reverse-proxy.md",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/nginx-reverse-proxy/",
+      "bodySha256": "3c2382419c412ab740bfbb121368ce8be435fde7d1836cc1d891c770ee75f186"
+    },
+    {
+      "source": "content/posts/DevOps/Nginx/Nginx.md",
+      "target": "content/posts/DevOps/Nginx/Nginx.md",
+      "categories": [
+        "DevOps",
+        "Nginx"
+      ],
+      "legacyPath": "/devops/nginx/2026/08/24/Nginx/",
+      "bodySha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "source": "content/posts/Frontend/Vue/2026-07-30-vue_intro1.md",
+      "target": "content/posts/Frontend/Vue/2026-07-30-vue_intro1.md",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "legacyPath": "/frontend/vue/2026/07/30/vue_intro1/",
+      "bodySha256": "297641b1ec7d9c2f790e30fdbc6aec195dd4623a18659762e43983ce4d85d89b"
+    },
+    {
+      "source": "content/posts/Frontend/Vue/2026-07-31-vue_intro2.md",
+      "target": "content/posts/Frontend/Vue/2026-07-31-vue_intro2.md",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "legacyPath": "/frontend/vue/2026/07/31/vue_intro2/",
+      "bodySha256": "e29f5a4507b0dc7ac76048e9eda502b5159d63047f78e38bb116795b9122a3f9"
+    },
+    {
+      "source": "content/posts/Frontend/Vue/2026-08-02-vue-composition-api.md",
+      "target": "content/posts/Frontend/Vue/2026-08-02-vue-composition-api.md",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "legacyPath": "/frontend/vue/2026/08/02/vue-composition-api/",
+      "bodySha256": "20f591a8099fbae2cd4e8b212c1df81a18bb5fd2c2aa12f012d1e2c2b1bb1b3d"
+    },
+    {
+      "source": "content/posts/Frontend/Vue/2026-08-03-pinia.md",
+      "target": "content/posts/Frontend/Vue/2026-08-03-pinia.md",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "legacyPath": "/frontend/vue/2026/08/03/pinia/",
+      "bodySha256": "fb7f99989ec7ab836791c7bdbcbaadbc13789bab000b267c9819c0550a2cbd1e"
+    },
+    {
+      "source": "content/posts/Frontend/Vue/2026-08-03-vue-component.md",
+      "target": "content/posts/Frontend/Vue/2026-08-03-vue-component.md",
+      "categories": [
+        "Frontend",
+        "Vue"
+      ],
+      "legacyPath": "/frontend/vue/2026/08/03/vue-component/",
+      "bodySha256": "0c98af530256925af8c83948d01024546b34d0bdf380ca959fe61661eb08e13b"
+    },
+    {
+      "source": "content/posts/Network/DNS.md",
+      "target": "content/posts/CS/Network/DNS.md",
+      "categories": [
+        "CS",
+        "Network"
+      ],
+      "legacyPath": "/network/2026/08/26/DNS/",
+      "bodySha256": "6e8ddfe6c40557643e1371e172c0318b0c6aa14b0c76b2d7bc2021e5b2fd8d48"
+    },
+    {
+      "source": "content/posts/Python/2026-07-30-python.md",
+      "target": "content/posts/Algorithm/Python/2026-07-30-python.md",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "legacyPath": "/python/2026/07/30/python/",
+      "bodySha256": "cd524861c31e56afbf5ca7428f4d822737da4c460b4b8c9edb5198106456c2bf"
+    },
+    {
+      "source": "content/posts/Python/2026-08-07-python_2.md",
+      "target": "content/posts/Algorithm/Python/2026-08-07-python_2.md",
+      "categories": [
+        "Algorithm",
+        "Python"
+      ],
+      "legacyPath": "/python/2026/08/07/python_2/",
+      "bodySha256": "f80f09131b0ea8f8c4386848983c3dd37a296535008bdcf4aecfab63e54917d2"
+    },
+    {
+      "source": "content/posts/Thinking/2026-08-09-ai-era-developers-disappear.md",
+      "target": "content/posts/Notes/Thinking/2026-08-09-ai-era-developers-disappear.md",
+      "categories": [
+        "Notes",
+        "Thinking"
+      ],
+      "legacyPath": "/ai/development/2026/08/09/ai-era-developers-disappear/",
+      "bodySha256": "546d4066fa71ec54c252635ea6e9df86565b35a4fb81ad6c78181939687a3c45"
+    },
+    {
+      "source": "content/posts/Thinking/시대_단상/temp.md",
+      "target": "content/posts/Notes/Thinking/시대_단상/temp.md",
+      "categories": [
+        "Notes",
+        "Thinking",
+        "시대_단상"
+      ],
+      "legacyPath": "/thinking/시대_단상/2026/08/17/temp/",
+      "bodySha256": "0f1bd7aa1ab642a4d9adde50e6cb2c3ef915638a1c7befdccdf1d75945e53b3b"
+    },
+    {
+      "source": "content/posts/면접/면접질문.md",
+      "target": "content/posts/Notes/Interview/면접질문.md",
+      "categories": [
+        "Notes",
+        "Interview"
+      ],
+      "legacyPath": "/면접/2026/08/14/면접질문/",
+      "bodySha256": "f213ce621dd5e2a555e08c8994a5ef63a08322cc7834012beb96c34b6cf9f331"
+    },
+    {
+      "source": "content/posts/포스팅용_디자인/시각화.md",
+      "target": "content/posts/Notes/PostingDesign/시각화.md",
+      "categories": [
+        "Notes",
+        "PostingDesign"
+      ],
+      "legacyPath": "/posting-design/visualization/",
+      "bodySha256": "74323d4a152ee5d22f0b9a40ff3b373e40290383c769a77e4c1c88db34c044d5"
+    }
+  ]
+}

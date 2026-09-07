@@ -3,6 +3,7 @@ const route = useRoute()
 const workspace = useWorkspaceState()
 const documentContext = useDocumentContext()
 const fullscreen = ref(false)
+const contextExpanded = computed(() => workspace.compactViewport.value ? workspace.mobileContextOpen.value : workspace.contextVisible.value)
 
 const title = computed(() => documentContext.currentPost.value?.title || String(route.meta.title || 'Minnong\'s Study Log'))
 const address = computed(() => {
@@ -55,11 +56,13 @@ onBeforeUnmount(() => document.removeEventListener('fullscreenchange', syncFulls
         @click="workspace.setTheme(workspace.theme.value === 'dark' ? 'light' : 'dark')"
       ><i class="ri-contrast-2-line" /></button>
       <button
+        v-if="documentContext.currentPost.value"
         class="ide-icon-button ide-context-toggle"
         type="button"
-        :aria-expanded="workspace.contextVisible.value"
-        :aria-label="workspace.contextVisible.value ? '목차 패널 숨기기' : '목차 패널 열기'"
-        @click="workspace.contextVisible.value = !workspace.contextVisible.value"
+        :aria-expanded="contextExpanded"
+        aria-controls="contextPanel"
+        :aria-label="contextExpanded ? '목차 패널 숨기기' : '목차 패널 열기'"
+        @click="workspace.toggleContext()"
       ><i class="ri-layout-right-line" /></button>
       <button class="ide-icon-button" type="button" :aria-label="fullscreen ? '전체 화면 닫기' : '전체 화면'" @click="toggleFullscreen"><i :class="fullscreen ? 'ri-fullscreen-exit-line' : 'ri-fullscreen-line'" /></button>
       <button

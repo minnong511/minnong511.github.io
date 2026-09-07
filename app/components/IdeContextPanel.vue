@@ -11,6 +11,7 @@ const main = inject<Ref<HTMLElement | null>>('ideMain', ref(null))
 const activeTab = ref<'outline' | 'info' | 'related'>('outline')
 const activeHeading = ref('')
 const copyState = ref<'idle' | 'copied' | 'error'>('idle')
+const panelHidden = computed(() => !documentContext.currentPost.value || (workspace.compactViewport.value ? !workspace.mobileContextOpen.value : !workspace.contextVisible.value))
 
 const post = computed(() => documentContext.currentPost.value)
 const isBookmarked = computed(() => Boolean(post.value && workspace.bookmarks.value.some(item => item.url === post.value?.path)))
@@ -54,6 +55,9 @@ function goToHeading(id: string) {
   }
   history.replaceState(null, '', `${route.path}#${id}`)
   activeHeading.value = id
+  if (workspace.compactViewport.value) workspace.mobileContextOpen.value = false
+  heading.tabIndex = -1
+  heading.focus({ preventScroll: true })
 }
 
 async function copyPageLink() {
@@ -87,7 +91,7 @@ function toggleBookmark() {
 }
 
 function collapsePanel() {
-  if (import.meta.client && window.innerWidth <= 767) workspace.mobileContextOpen.value = false
+  if (workspace.compactViewport.value) workspace.mobileContextOpen.value = false
   else workspace.contextVisible.value = false
 }
 
@@ -110,7 +114,9 @@ watch(() => documentContext.outline.value, () => nextTick(updateActiveHeading), 
     id="contextPanel"
     class="ide-context"
     :class="{ 'mobile-open': workspace.mobileContextOpen.value }"
-    aria-label="문서 컨텍스트"
+    aria-label="문서 목차와 정보"
+    :inert="panelHidden"
+    :aria-hidden="panelHidden"
   >
     <div class="ide-context-tabs" role="tablist" aria-label="문서 패널">
       <button
@@ -123,12 +129,12 @@ watch(() => documentContext.outline.value, () => nextTick(updateActiveHeading), 
         :aria-controls="`context-${tab}`"
         data-context-tab
         @click="activeTab = tab"
-      >{{ tab.toUpperCase() }}</button>
+      >{{ { outline: '목차', info: '글 정보', related: '관련 글' }[tab] }}</button>
       <button class="ide-context-collapse" type="button" aria-label="목차 패널 숨기기" title="목차 패널 숨기기" @click="collapsePanel"><i class="ri-layout-right-line" aria-hidden="true" /></button>
     </div>
 
     <section v-show="activeTab === 'outline'" id="context-outline" class="ide-context-view" role="tabpanel">
-      <span class="ide-panel-label">DOCUMENT STRUCTURE</span>
+      <span class="ide-panel-label">이 글의 순서</span>
       <nav id="postOutline" class="ide-outline-list" aria-label="문서 목차">
         <button
           v-for="item in documentContext.outline.value"
@@ -143,7 +149,7 @@ watch(() => documentContext.outline.value, () => nextTick(updateActiveHeading), 
     </section>
 
     <section v-show="activeTab === 'info'" id="context-info" class="ide-context-view" role="tabpanel">
-      <span class="ide-panel-label">DOCUMENT INFO</span>
+      <span class="ide-panel-label">글 정보</span>
       <dl class="ide-info-list">
         <div><dt>TYPE</dt><dd>{{ post ? 'Markdown' : 'Page' }}</dd></div>
         <div><dt>DATE</dt><dd>{{ post?.date ? formatPostDate(post.date) : '—' }}</dd></div>
@@ -162,7 +168,7 @@ watch(() => documentContext.outline.value, () => nextTick(updateActiveHeading), 
     </section>
 
     <section v-show="activeTab === 'related'" id="context-related" class="ide-context-view" role="tabpanel">
-      <span class="ide-panel-label">RELATED DOCUMENTS</span>
+      <span class="ide-panel-label">함께 읽기</span>
       <div class="ide-related-list">
         <NuxtLink v-for="item in related" :key="item.path" :to="item.path"><i class="ri-markdown-line" aria-hidden="true" /><span>{{ item.title }}</span></NuxtLink>
         <p v-if="!related.length" class="ide-panel-empty">연결된 문서가 없습니다.</p>

@@ -1,4 +1,5 @@
-:root {
+:root,
+html[data-theme="dark"] {
   --app-bg: #090a0c;
   --titlebar-bg: #08090b;
   --activity-bg: #0c0e11;
@@ -14,9 +15,11 @@
   --border-strong: #3a414c;
   --accent-orange: #f59e0b;
   --accent-cyan: #55c2ff;
+  --statusbar-bg: #55c2ff;
   --accent-green: #6ccf8d;
   --danger: #ff6b6b;
   --selection: rgba(85, 194, 255, .16);
+  --selection-ink: #d7dce2;
   --hover: rgba(255, 255, 255, .045);
   --activity-width: 52px;
   --explorer-width: 280px;
@@ -29,6 +32,9 @@
 }
 
 html[data-theme="light"] {
+  --accent-cyan: #006b9f;
+  --accent-orange: #925400;
+  --accent-green: #257942;
   --app-bg: #f2f4f6;
   --titlebar-bg: #e9edf1;
   --activity-bg: #dde3e8;
@@ -43,5 +49,6 @@ html[data-theme="light"] {
   --border: #cbd3da;
   --border-strong: #aeb9c3;
   --selection: rgba(0, 127, 190, .14);
+  --selection-ink: #1b232c;
   --hover: rgba(0, 0, 0, .045);
 }

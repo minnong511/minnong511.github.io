@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { formatPostDate, normalizeContentPath, primaryCategory } from '~/utils/content'
 
+import { normalizeReadingHeadings } from '~/utils/reading'
+
 const route = useRoute()
 const { posts, findByPath } = await useContentIndex()
 const documentContext = useDocumentContext()
@@ -10,19 +12,26 @@ if (!initialPost) {
   throw createError({ statusCode: 404, statusMessage: '게시물을 찾을 수 없습니다.' })
 }
 
-const postPath = computed(() => normalizeContentPath(route.path))
-const { data: postDocument } = await useAsyncData(
-  computed(() => `post-document:${postPath.value}`),
+// Each route owns its document, including while the next page is mounting.
+const postPath = normalizeContentPath(initialPost.path)
+const { data: postDocument, status, error } = await useAsyncData(
+  `post-document:${postPath}`,
   () => queryCollection('posts')
     .where('published', '=', true)
-    .where('legacyPath', '=', postPath.value)
+    .where('legacyPath', '=', postPath)
     .first(),
+  { lazy: true, timeout: 15000 },
 )
-if (!postDocument.value) {
+if (import.meta.server && !postDocument.value) {
+  if (error.value) throw createError({ statusCode: 503, statusMessage: '게시물 본문을 불러오지 못했습니다.' })
   throw createError({ statusCode: 404, statusMessage: '게시물 본문을 찾을 수 없습니다.' })
 }
 
-const post = computed(() => findByPath(route.path) || initialPost)
+const readingDocument = computed(() => postDocument.value
+  ? { ...postDocument.value, body: normalizeReadingHeadings(postDocument.value.body) }
+  : null)
+
+const post = computed(() => initialPost)
 const index = computed(() => posts.value.findIndex(item => item.path === post.value.path))
 const previousPost = computed(() => posts.value[index.value + 1])
 const nextPost = computed(() => index.value > 0 ? posts.value[index.value - 1] : undefined)
@@ -114,8 +123,15 @@ useHead(() => ({
       </section>
     </aside>
 
-    <div id="postContent" class="ide-document-content prose">
-      <ContentRenderer v-if="postDocument" :value="postDocument" />
+    <div v-if="status === 'idle' || status === 'pending'" class="ide-post-load-state" role="status" aria-live="polite">
+      <p>글을 불러오는 중입니다.</p>
+    </div>
+    <div v-else-if="error || !readingDocument" class="ide-post-load-state" role="alert">
+      <p>글 본문을 불러오지 못했습니다. 다시 시도해 주세요.</p>
+      <button type="button" @click="reloadNuxtApp({ force: true })">다시 불러오기</button>
+    </div>
+    <div v-else id="postContent" class="ide-document-content prose">
+      <ContentRenderer v-if="readingDocument" :value="readingDocument" />
     </div>
 
     <footer v-if="post.tags.length" class="ide-document-tags">
@@ -132,3 +148,18 @@ useHead(() => ({
     <IdeGiscus :key="post.path" />
   </article>
 </template>
+
+<style scoped>
+.ide-post-load-state {
+  padding: 24px 0;
+  color: var(--text-muted);
+}
+.ide-post-load-state button {
+  padding: 8px 14px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  color: var(--accent-cyan);
+  background: transparent;
+  cursor: pointer;
+}
+</style>

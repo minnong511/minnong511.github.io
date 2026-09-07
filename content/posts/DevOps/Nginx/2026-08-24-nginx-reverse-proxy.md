@@ -3,7 +3,7 @@ layout: post
 title: "Nginx 리버스 프록시와 Spring Boot 연결"
 description: "리버스 프록시의 의미와 Nginx가 클라이언트 요청을 Spring Boot 서버로 전달하는 과정을 정리한다."
 date: 2026-08-24 00:30:00 +0900
-categories: [DevOps, Nginx]
+categories: ["DevOps","Nginx"]
 tags: [Nginx, ReverseProxy, SpringBoot, DevOps]
 series: "Nginx 기초"
 part: 2

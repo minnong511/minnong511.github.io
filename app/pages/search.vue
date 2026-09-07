@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import MiniSearch from 'minisearch'
 import type { BlogPost } from '~/types/content'
-import { formatPostDate, normalizeContentPath, postTimestamp, primaryCategory } from '~/utils/content'
+import { normalizeContentPath, postTimestamp } from '~/utils/content'
 
 interface SearchRecord {
   title: string
@@ -37,10 +37,6 @@ const searchEngine = computed(() => {
 
 function firstQueryValue(value: unknown): string {
   return Array.isArray(value) ? String(value[0] || '') : String(value || '')
-}
-
-function categoryLabel(value: string): string {
-  return value.replaceAll('_', ' ')
 }
 
 function relevance(post: BlogPost, query: string): number {
@@ -90,23 +86,23 @@ watch(query, (value) => {
 })
 
 useSiteSeo({
-  title: 'Search',
+  title: '검색',
   description: '제목, 설명, 카테고리, 태그와 본문에서 블로그 게시물을 검색합니다.',
 })
 </script>
 
 <template>
-  <section class="ide-page" aria-labelledby="pageTitle">
-    <header class="ide-document-header">
+  <section class="ide-page ide-search-page" aria-labelledby="pageTitle">
+    <header class="ide-document-header ide-list-header">
       <div class="ide-document-meta">
         <strong>SEARCH</strong>
-        <span>{{ posts.length }} indexed documents</span>
+        <span>전체 {{ posts.length }}개 글</span>
       </div>
-      <h1 id="pageTitle">Search</h1>
-      <p class="ide-document-deck">검색어를 입력하면 제목, 설명, 카테고리, 태그와 본문에서 결과를 찾습니다.</p>
+      <h1 id="pageTitle">검색</h1>
+      <p class="ide-document-deck">제목부터 본문까지, 궁금한 내용을 찾아보세요.</p>
     </header>
 
-    <article class="ide-document-content prose">
+    <div class="ide-search-content">
       <label class="sr-only" for="pageSearchInput">게시물 검색어</label>
       <input
         id="pageSearchInput"
@@ -123,20 +119,8 @@ useSiteSeo({
         <template v-else>검색어를 입력해 주세요.</template>
       </p>
 
-      <div v-if="results.length" id="search-page-results" class="search-page-results ide-archive-list">
-        <NuxtLink
-          v-for="post in results"
-          :key="post.path"
-          class="ide-archive-row"
-          :to="post.path"
-        >
-          <time :datetime="post.date">{{ formatPostDate(post.date) }}</time>
-          <strong>{{ post.title }}</strong>
-          <span>{{ post.description || categoryLabel(primaryCategory(post)) }}</span>
-          <i class="ri-arrow-right-line" aria-hidden="true" />
-        </NuxtLink>
-      </div>
-      <p v-else-if="query.trim()" class="ide-empty">검색 결과가 없습니다.</p>
-    </article>
+      <IdePostList v-if="results.length" :posts="results" :query="query" />
+      <div v-else-if="query.trim()" class="ide-empty"><p>검색 결과가 없습니다. 다른 표현으로 검색해 보세요.</p><button class="ide-home-action" type="button" @click="query = ''">검색어 지우기</button></div>
+    </div>
   </section>
 </template>

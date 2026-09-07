@@ -39,6 +39,21 @@ describe('Explorer SSR defaults', () => {
     expect(layout).toContain("'sidebar-collapsed': !workspace.sidebarOpen.value")
     expect(layout).toContain("'explorer-open': workspace.sidebarOpen.value")
   })
+
+  it('opens tablet and mobile outlines independently of the saved desktop preference', async () => {
+    const { useWorkspaceState } = await import('../app/composables/useWorkspaceState')
+    const workspace = useWorkspaceState()
+    workspace.contextVisible.value = false
+    workspace.compactViewport.value = true
+    workspace.toggleContext()
+    expect(workspace.mobileContextOpen.value).toBe(true)
+    expect(workspace.contextVisible.value).toBe(false)
+    workspace.toggleContext()
+    expect(workspace.mobileContextOpen.value).toBe(false)
+    workspace.compactViewport.value = false
+    workspace.toggleContext()
+    expect(workspace.contextVisible.value).toBe(true)
+  })
 })
 
 describe('/write/ removal', () => {

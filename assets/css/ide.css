@@ -601,7 +601,7 @@ select {
 .ide-document-content h2 { margin: 2.2em 0 .7em; padding-bottom: 9px; border-bottom: 1px solid var(--border); font-size: 30px; line-height: 1.2; }
 .ide-document-content h3 { margin: 1.8em 0 .55em; color: var(--text-primary); font-size: 23px; line-height: 1.3; }
 .ide-document-content p { margin: 0 0 1.25em; }
-.ide-document-content a { color: var(--accent-cyan); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; transition: text-decoration-color .14s ease; }
+.ide-document-content a { color: var(--accent-cyan); text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; transition: text-decoration-color .14s ease; }
 .ide-document-content a:hover { text-decoration-color: currentColor; }
 .ide-document-content ul,
 .ide-document-content ol { padding-left: 1.4em; }
@@ -724,7 +724,7 @@ select {
 .ide-minimap span:nth-child(3) { width: 60%; }
 .ide-minimap i { position: absolute; top: 16px; right: -2px; left: -2px; height: 16px; border: 1px solid var(--accent-cyan); }
 
-.ide-statusbar { display: flex; grid-column: 1 / -1; grid-row: 3; min-width: 0; align-items: center; justify-content: space-between; gap: 16px; padding: 0 10px; overflow: hidden; background: var(--accent-cyan); color: #061018; font-family: var(--ui-font); font-size: 12px; }
+.ide-statusbar { display: flex; grid-column: 1 / -1; grid-row: 3; min-width: 0; align-items: center; justify-content: space-between; gap: 16px; padding: 0 10px; overflow: hidden; background: var(--statusbar-bg); color: #061018; font-family: var(--ui-font); font-size: 12px; }
 .ide-statusbar { min-height: calc(var(--statusbar-height) + env(safe-area-inset-bottom, 0px)); height: calc(var(--statusbar-height) + env(safe-area-inset-bottom, 0px)); box-sizing: border-box; padding-bottom: env(safe-area-inset-bottom, 0px); white-space: nowrap; }
 .ide-statusbar > div { display: flex; min-width: 0; align-items: center; gap: 14px; }
 .ide-statusbar span { white-space: nowrap; }
@@ -738,7 +738,7 @@ select {
 .ide-font-size-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
 .ide-font-size-option > span:first-of-type { display: grid; width: 100%; height: 100%; place-items: center; }
 .ide-font-size-option:hover > span:first-of-type,
-.ide-font-size-option input:checked + span { background: #061018; color: var(--accent-cyan); }
+.ide-font-size-option input:checked + span { background: #061018; color: var(--statusbar-bg); }
 .ide-font-size-option:focus-within { outline: 2px solid #061018; outline-offset: 2px; }
 
 html[data-font-size="small"] .ide-document-content { font-size: 15px; }

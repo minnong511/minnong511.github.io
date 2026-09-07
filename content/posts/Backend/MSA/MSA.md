@@ -3,7 +3,7 @@ layout: post
 title: "MSA, 서비스 분리와 운영의 원리"
 description: "모놀리식에서 MSA로 전환할 때 알아야 할 서비스 경계, 통신, 데이터, 장애 대응, 운영 원칙을 정리한다."
 date: "2026-08-26 14:08:02 +0900"
-categories: ["Backend", "MSA"]
+categories: ["Backend","MSA"]
 tags: ["MSA", "Microservices", "Kafka", "Docker", "Kubernetes", "Saga"]
 legacyPath: "/backend/msa/2026/08/26/MSA1/"
 ---

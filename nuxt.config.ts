@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { normalizeMathDelimiters } from './app/utils/markdown-math'
 
 interface MigrationEntry {
   visibility?: string
@@ -36,7 +37,46 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content', '@nuxt/eslint'],
   devtools: { enabled: false },
   ssr: true,
+  css: ['katex/dist/katex.min.css'],
+  hooks: {
+    'content:file:beforeParse'({ file }) {
+      if (file.id.endsWith('.md')) file.body = normalizeMathDelimiters(file.body)
+    },
+    'build:manifest'(manifest) {
+      // This learning tool is explicitly activated by the reader. Nuxt otherwise
+      // emits a prefetch for dynamic imports even when their button is untouched.
+      const initial = new Set<string>()
+      function keepInitial(key: string) {
+        if (!manifest[key] || initial.has(key)) return
+        initial.add(key)
+        for (const dependency of manifest[key].imports || []) keepInitial(dependency)
+      }
+      for (const key of Object.keys(manifest)) {
+        if (key.endsWith('content/SemiconductorExplorer.vue')) keepInitial(key)
+      }
+      const visited = new Set<string>()
+      function defer(key: string) {
+        const chunk = manifest[key]
+        if (!chunk || visited.has(key) || initial.has(key)) return
+        visited.add(key)
+        chunk.prefetch = false
+        chunk.preload = false
+        // Three.js / OrbitControls may become a shared chunk when another
+        // learning component uses them. Defer that dependency chain as well.
+        for (const dependency of chunk.imports || []) defer(dependency)
+      }
+      for (const key of Object.keys(manifest)) {
+        if (key.includes('utils/semiconductor/renderer')) defer(key)
+      }
+    },
+  },
   content: {
+    build: {
+      markdown: {
+        remarkPlugins: { 'remark-math': { options: { singleDollarTextMath: false } } },
+        rehypePlugins: { 'rehype-katex': { options: { trust: false, throwOnError: false } } },
+      },
+    },
     experimental: {
       sqliteConnector: 'native'
     }

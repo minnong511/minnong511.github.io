@@ -6,7 +6,7 @@ const get = (id: Parameters<typeof detailedFlow>[0], step: string, mode: 'self' 
 
 describe('combined Kubernetes diagrams', () => {
   it('renders two experiments while retaining all eight detailed sections and bounded scenes', () => {
-    const post = readFileSync('content/posts/CI-CD-Docker/kubernetes/2026-09-07-kubernetes-part-7.md', 'utf8')
+    const post = readFileSync('content/posts/DevOps/Kubernetes/2026-09-07-kubernetes-part-7.md', 'utf8')
     expect([...post.matchAll(/diagram="([a-z]+)"/g)].map(match => match[1])).toEqual([...combinedFlowIds])
     for (const id of detailedFlowIds) {
       const flow = detailedFlow(id)

@@ -10,7 +10,8 @@ const documentContext = useDocumentContext()
 const shellClasses = computed(() => ({
   'sidebar-collapsed': !workspace.sidebarOpen.value,
   'explorer-open': workspace.sidebarOpen.value,
-  'context-collapsed': !workspace.contextVisible.value,
+  'context-collapsed': !workspace.contextVisible.value || !documentContext.currentPost.value,
+  'context-overlay-open': workspace.mobileContextOpen.value,
 }))
 
 const shellStyle = computed(() => ({
@@ -19,9 +20,9 @@ const shellStyle = computed(() => ({
 }))
 
 function closeMobilePanels() {
-  if (!import.meta.client || window.innerWidth > 767) return
-  workspace.sidebarOpen.value = false
-  workspace.mobileContextOpen.value = false
+  if (!import.meta.client) return
+  if (window.innerWidth <= 767) workspace.sidebarOpen.value = false
+  if (window.innerWidth < 1200) workspace.mobileContextOpen.value = false
 }
 
 function startResize(panel: 'explorer' | 'context', event: PointerEvent) {
@@ -49,7 +50,7 @@ function openSidebar(view: SidebarView) {
   workspace.showSidebar(view)
 }
 
-watch(() => route.fullPath, async () => {
+watch(() => route.path, async () => {
   closeMobilePanels()
   await nextTick()
   main.value?.scrollTo({ top: 0, behavior: 'auto' })
@@ -69,16 +70,19 @@ function handleKey(event: KeyboardEvent) {
   }
   if (event.key === 'Escape') {
     workspace.paletteOpen.value = false
-    if (window.innerWidth <= 767) closeMobilePanels()
+    closeMobilePanels()
   }
 }
 
 function handleViewport() {
-  workspace.sidebarOpen.value = false
-  workspace.mobileContextOpen.value = false
+  const compact = window.innerWidth < 1200
+  if (compact !== workspace.compactViewport.value) workspace.mobileContextOpen.value = false
+  workspace.compactViewport.value = compact
+  if (window.innerWidth <= 767) workspace.sidebarOpen.value = false
 }
 
 onMounted(() => {
+  handleViewport()
   window.addEventListener('keydown', handleKey)
   window.addEventListener('resize', handleViewport, { passive: true })
 })
