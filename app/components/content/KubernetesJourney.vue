@@ -3,9 +3,12 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } fro
 import { journey, journeyFrame, journeyIds, journeyToken, detailDuration, nextDetailCursor, previousDetailCursor } from '~/utils/kubernetes/journey'
 import type { JourneyId } from '~/utils/kubernetes/journey'
 
+import { eksJourney } from '~/utils/kubernetes/eks-journey'
+
+const props = defineProps<{ scenario?: 'eks' }>()
 const uid = useId()
 const selected = ref<JourneyId>('deploy')
-const flow = computed(() => journey(selected.value))
+const flow = computed(() => props.scenario === 'eks' ? eksJourney : journey(selected.value))
 const cursor = ref(-1)
 const playing = ref(false)
 const infoOpen = ref(false)
@@ -15,7 +18,7 @@ const tokenTop = ref(26)
 const startButton = ref<HTMLButtonElement>()
 const frame = computed(() => journeyFrame(flow.value, cursor.value))
 const phaseLabels = { arrival: '도착', decision: '판단', result: '결과' }
-const token = computed(() => frame.value ? journeyToken(selected.value, frame.value.step, frame.value.phase) : '')
+const token = computed(() => frame.value ? props.scenario === 'eks' ? (frame.value.index < 2 ? '설정' : frame.value.index < 6 ? '선언' : frame.value.done ? 'Ready' : 'Pod') : journeyToken(selected.value, frame.value.step, frame.value.phase) : '')
 const reference = computed(() => frame.value && flow.value.references.includes(frame.value.step.id))
 let resizeObserver: ResizeObserver | undefined
 let timer: ReturnType<typeof setTimeout> | undefined
@@ -97,9 +100,9 @@ onBeforeUnmount(() => { resizeObserver?.disconnect(); pause(); document.removeEv
 </script>
 
 <template>
-  <section ref="root" class="kj" aria-label="쿠버네티스 세 가지 흐름, 모의 실험" :data-journey="selected" :data-cursor="cursor" :data-playing="playing" @keydown.esc="infoOpen = false">
+  <section ref="root" class="kj" :aria-label="scenario === 'eks' ? 'EKS 접속과 배포, 모의 실험' : '쿠버네티스 세 가지 흐름, 모의 실험'" :data-journey="selected" :data-cursor="cursor" :data-playing="playing" @keydown.esc="infoOpen = false">
     <div class="kj-toolbar">
-      <div class="kj-tabs" role="group" aria-label="따라갈 흐름">
+      <div v-if="scenario !== 'eks'" class="kj-tabs" role="group" aria-label="따라갈 흐름">
         <button v-for="(id, index) in journeyIds" :key="id" type="button" :aria-pressed="selected === id" @click="choose(id)"><span>{{ index + 1 }}</span>{{ journey(id).label }}</button>
       </div>
       <div class="kj-controls" role="group" aria-label="흐름 재생">

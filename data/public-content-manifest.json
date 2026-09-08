@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "totals": {
-    "publicPosts": 159
+    "publicPosts": 160
   },
   "entries": [
     {
@@ -3649,6 +3649,28 @@
       ],
       "legacyPath": "/ci-cd-docker/kubernetes/three-flows/",
       "route": "/ci-cd-docker/kubernetes/three-flows/"
+    },
+    {
+      "source": "content/posts/DevOps/Kubernetes/2026-09-08-amazon-eks.md",
+      "target": "content/posts/DevOps/Kubernetes/2026-09-08-amazon-eks.md",
+      "visibility": "public",
+      "published": true,
+      "title": "Amazon EKS, Kubernetes와 AWS가 연결되는 구조",
+      "description": "EKS의 Control Plane과 Worker Node 역할, 접속과 인증, AWS 네트워크와 스토리지 연결을 정리한다.",
+      "date": "2026-09-08 00:00:00 +0900",
+      "categories": [
+        "DevOps",
+        "Kubernetes"
+      ],
+      "tags": [
+        "AWS",
+        "EKS",
+        "Kubernetes",
+        "IAM",
+        "VPC"
+      ],
+      "legacyPath": "/devops/kubernetes/amazon-eks/",
+      "route": "/devops/kubernetes/amazon-eks/"
     },
     {
       "source": "_posts/DevOps/Nginx/2026-08-24-nginx-basics.md",

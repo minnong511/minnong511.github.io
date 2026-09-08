@@ -1,0 +1,37 @@
+{
+  "initialCodeGzip": 15719,
+  "activatedCodeGzip": 150401,
+  "totalFeatureCodeGzip": 166120,
+  "initialFiles": [
+    "Ba037MLX.js",
+    "BDNMzG2s.js",
+    "SemiconductorExplorer.BT8s86K8.css"
+  ],
+  "activatedFiles": [
+    "a7Py6JsF.js",
+    "BXkl_V5l.js"
+  ],
+  "pages": [
+    {
+      "part": 1,
+      "htmlAndPayloadGzip": 48585,
+      "initialUpperBound": 64304
+    },
+    {
+      "part": 2,
+      "htmlAndPayloadGzip": 54055,
+      "initialUpperBound": 69774
+    },
+    {
+      "part": 3,
+      "htmlAndPayloadGzip": 57683,
+      "initialUpperBound": 73402
+    },
+    {
+      "part": 4,
+      "htmlAndPayloadGzip": 52301,
+      "initialUpperBound": 68020
+    }
+  ],
+  "method": "gzip estimates; excludes existing shared app chunks; includes whole HTML and payload as a conservative initial-page bound; validates no 3D resource hints"
+}
