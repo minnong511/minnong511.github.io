@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "totals": {
-    "publicPosts": 160
+    "publicPosts": 161
   },
   "entries": [
     {
@@ -387,6 +387,30 @@
         "title을 파일명에서 추론했습니다.",
         "일반 문단을 찾지 못해 제목을 description으로 사용했습니다."
       ]
+    },
+    {
+      "source": "content/posts/AI/DeepLearning/RAG/2026-09-18-rag-project-practical-tips.md",
+      "target": "content/posts/AI/DeepLearning/RAG/2026-09-18-rag-project-practical-tips.md",
+      "visibility": "public",
+      "published": true,
+      "title": "실전! RAG 프로젝트 - 핵심 10개",
+      "description": "RAG 프로젝트의 핵심 10가지 요약과 문서 전처리부터 검색, 생성, 평가까지의 실전 팁",
+      "date": "2026-09-18T00:00:00+09:00",
+      "categories": [
+        "AI",
+        "DeepLearning",
+        "RAG"
+      ],
+      "tags": [
+        "RAG",
+        "Chunking",
+        "Embedding",
+        "Retrieval",
+        "Reranking",
+        "Evaluation"
+      ],
+      "legacyPath": "/deeplearning/rag/2026/09/18/rag-project-practical-tips/",
+      "route": "/deeplearning/rag/2026/09/18/rag-project-practical-tips/"
     },
     {
       "source": "_posts/DeepLearning/RAG/Chunking.md",
